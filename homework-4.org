@@ -1,0 +1,87 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 4
+
+* Task (100 pts)
+
+  1. (10pts) Build truth tables for the following formulas:
+
+     1. $(A \vee B) \wedge C$
+
+     2. $(A \rightarrow B) \vee (B \rightarrow \neg C)$
+
+  2. (10pts) Find variable assignments that satisfy the following
+     formulas, or state that no such assignment exists:
+
+     1. $(A \wedge \neg B) \vee (\neg A \wedge B \wedge C)$
+
+     2. $C \rightarrow (\neg C \wedge \neg A)$
+
+  3. (10pts) Express the following statements in propositional logic:
+
+     1. $B$ is true whenever $C$ is false.
+
+     2. Either $X$ is true or $Z$ is true but not both.
+
+     3. At most one of $R$, $S$, and $T$ can be true.
+
+     4. The dog only barks when she hears a noise. (Create
+        propositional symbols, and give their definitions.)
+
+  4. (20pts) We have a knowledge base that contains:
+
+     - $(R \rightarrow S) \wedge Q$
+
+     - $(J \wedge Q) \rightarrow P$
+
+     - $Q \rightarrow Z$
+
+     - $P \rightarrow \neg Q$
+
+     - $(R \rightarrow S) \rightarrow (\neg H \rightarrow J)$
+
+     Derive each of the following using inference rules for
+     propositional logic:
+
+     1. $Z$
+
+     2. $\neg P$
+
+     3. $\neg (J \wedge Q)$
+
+     4. $\neg J$
+
+     5. $H$
+
+  5. (40pts) Rewrite the following statements in first-order logic,
+     stating definitions for the predicates you use. (Note, some of
+     these are /hard/; make an attempt...)
+
+     1. James is a dolphin.
+
+     2. Dolphins are mammals.
+
+     3. Mammals have hair and three middle ear bones.
+
+     4. Some mammals have sweat glands and specialized teeth.
+
+     5. Vignesh stopped by his house before going to the party.
+
+     6. There is no apparent correlation between tobacco use and city
+        of birth.
+
+     7. The result of firing a loaded gun at a person is that the
+        person dies.
+
+     8. The /usual/ result of firing a loaded gun at a person is that
+        the person dies (unless, the person has a bulletproof vest, or
+        the gun misfires, or...)
+
+     9. Obama will win the 2012 election.
+
+     10. There is a chance that Obama will win the 2012 election.
+
+     11. I'm hungry.
+
+     12. This sentence is false.
+
+#+INCLUDE: footer.org

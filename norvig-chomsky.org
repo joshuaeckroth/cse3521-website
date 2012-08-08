@@ -1,0 +1,397 @@
+#+SETUPFILE: setup.org
+#+TITLE: The Norvig - Chomsky debate
+
+Recently, Peter Norvig took the time to write a response to a comment
+Noam Chomsky made at a conference (not a comment made to Norvig, but
+to an entire research community of which Norvig considers himself a
+part).
+
+Chomsky is (in)famous for hypothesizing and arguing that all humans
+have a tacit but unlearned knowledge of linguistic structure, a
+universal grammar. He believes the evidence for this hypothesis is
+that children cannot possibly learn all that they do about their first
+language just from what they hear. Rather, the structure of language
+is so deep and sophisticated that children must already have the
+mental structures needed, and do not learn these structures from
+experience. An important structure, for example, is the ability to
+understand recursive utterances, such as:
+
+#+BEGIN_QUOTE
+My homework assignment, which is worth 100 points in my CSE 630 class,
+which is not required for my major but I wanted to take it anyway,
+which has turned out to be quite interesting as it happens, is due
+Thursday.
+#+END_QUOTE
+
+Although that sentence is a bit contrived, we can understand it
+(spoken or written). There are limits to how much recursive structure
+we can keep in our short-term memory, but there is clearly (or not?) a
+logic to it. How does a child learn this logic?
+
+Norvig distinguishes language generation from language interpretation
+(I do not know if this is a common or, alternatively, a pathological
+distinction):
+
+#+BEGIN_QUOTE
+I understand how Chomsky arrives at the conclusion that probabilistic
+models are unnecessary, from his study of the generation of
+language. But the vast majority of people who study interpretation
+tasks, such as speech recognition, quickly see that interpretation is
+an inherently probabilistic problem: given a stream of noisy input to
+my ears, what did the speaker most likely mean? [...] Many phenomena
+in science are stochastic, and the simplest model of them is a
+probabilistic model; I believe language is such a phenomenon and
+therefore that probabilistic models are our best tool for representing
+facts about language, for algorithmically processing language, and for
+understanding how humans process language.
+#+END_QUOTE
+
+First I would like to add that it is not true that only probabilistic
+methods can handle noise. Noise can be removed or ignored with rules
+as well.
+
+He also states that language is a stochastic phenomenon. This strikes
+me as fundamentally confused.
+
+#+BEGIN_CENTER
+[[./images/kumi-yamashita-building-blocks.jpg]]
+
+"Building Blocks," [[http://www.kumiyamashita.com/portfolio/building-blocks/][Kumi Yamashita]], 1997; H230, W400, D5cm; wood,
+single light source, shadow
+#+END_CENTER
+
+
+* "i before e except after c"
+
+#+BEGIN_EXAMPLE
+P(IE) = 0.0177         P(CIE) = 0.0014        P(*IE) = 0.163
+P(EI) = 0.0046         P(CEI) = 0.0005        P(*EI) = 0.0041
+#+END_EXAMPLE
+
+This model comes from statistics on a corpus of a trillion words of
+English text. The notation P(IE) is the probability that a word
+sampled from this corpus contains the consecutive letters "IE." P(CIE)
+is the probability that a word contains the consecutive letters "CIE",
+and P(*IE) is the probability of any letter other than C followed by
+IE. The statistical data confirms that IE is in fact more common than
+EI, and that the dominance of IE lessens when following a C, but
+contrary to the rule, CIE is still more common than CEI. Examples of
+"CIE" words include "science," "society," "ancient" and "species." The
+disadvantage of the "I before E except after C" model is that it is
+not very accurate.
+
+* Justice handshakes
+
+Reasons to prefer different representations of a solution. Lookup
+table vs. a causal explanation (rules).
+
+* Success metrics
+
+Statistical approaches are generally the most successful in various
+linguistics problems.
+
+* Science: modeling or insight?
+
+#+BEGIN_QUOTE
+My conclusion is that 100% of these articles and awards are more about
+"accurately modeling the world" than they are about "providing
+insight," although they all have some theoretical insight component as
+well.
+#+END_QUOTE
+
+* Are statistical models ok?
+
+#+BEGIN_QUOTE
+Every probabilistic model is a superset of a deterministic model
+(because the deterministic model could be seen as a probabilistic
+model where the probabilities are restricted to be 0 or 1), so any
+valid criticism of probabilistic models would have to be because they
+are too expressive, not because they are not expressive enough.
+#+END_QUOTE
+
+This is a bit disingenuous. Probabilisitic models rarely express
+complex, deep relationships among data because such relationships are
+hard to discover via a hands-off training process. On the other hand,
+rule-based systems often have quite complex and deep rules (because,
+apparently, sometimes such rules are necessary), which are made
+possible by the fact that a human is creating them.
+
+#+BEGIN_QUOTE
+And yes, it seems clear that an adult speaker of English does know
+billions of language facts (for example, that one says "big game"
+rather than "large game" when talking about an important football
+game). These facts must somehow be encoded in the brain.
+#+END_QUOTE
+
+Fair enough. There does seem to be a statistical bias in language
+generation, like the feeling of a word just rolling off the tongue,
+before you have thought about it. That effect is probably what
+produces "big game" rather than "large game."
+
+#+BEGIN_QUOTE
+For example, the verb /quake/ is listed as intransitive in
+dictionaries, meaning that (1) below is grammatical, and (2) is not,
+according to a categorical theory of grammar.
+
+  1. The earth quaked.
+  2. ? It quaked her bowels. 
+
+But (2) actually appears as a sentence of English. This poses a
+dilemma for the categorical theory.
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Chomsky: "You can also collect butterflies and make many
+observations. If you like butterflies, that's fine; but such work must
+not be confounded with research, which is concerned to discover
+explanatory principles."
+#+END_QUOTE
+
+
+#+BEGIN_QUOTE
+From the beginning, Chomsky has focused on the generative side of
+language. From this side, it is reasonable to tell a non-probabilistic
+story: I know definitively the idea I want to express---I'm starting
+from a single semantic form---thus all I have to do is choose the
+words to say it; why can't that be a deterministic, categorical
+process? If Chomsky had focused on the other side, interpretation, as
+Claude Shannon did, he may have changed his tune. In interpretation
+(such as speech recognition) the listener receives a noisy, ambiguous
+signal and needs to decide which of many possible intended messages is
+most likely. Thus, it is obvious that this is inherently a
+probabilistic problem[...]
+#+END_QUOTE
+
+Why the distinction?
+
+#+BEGIN_QUOTE
+We also now know that language is like that as well: languages are
+complex, random, contingent biological processes that are subject to
+the whims of evolution and cultural change. What constitutes a
+language is not an eternal ideal form, represented by the settings of
+a small number of parameters, but rather is the contingent outcome of
+complex processes. Since they are contingent, it seems they can only
+be analyzed with probabilistic models. Since people have to
+continually understand the uncertain. ambiguous, noisy speech of
+others, it seems they must be using something like probabilistic
+reasoning. Chomsky for some reason wants to avoid this, and therefore
+he must declare the actual facts of language use out of bounds and
+declare that true linguistics only exists in the mathematical realm,
+where he can impose the formalism he wants. Then, to get language from
+this abstract, eternal, mathematical realm into the heads of people,
+he must fabricate a mystical facility that is exactly tuned to the
+eternal realm. This may be very interesting from a mathematical point
+of view, but it misses the point about what language is, and how it
+works.
+#+END_QUOTE
+
+But is it not equally true that a statistical conception of language
+likewise requires a fantastically rich and sophisticated model in
+order to generate and understand highly-structured, subtle,
+carefully-crafted utterances that intelligent humans are known for?
+Again, there is a missing link, no proof-by-demonstration.
+
+* Statistical models for language acquisition
+
+#+BEGIN_QUOTE
+On the evidence that what we will and won't say and what we will and
+won't accept can be characterized by rules, it has been argued that,
+in some sene, we "know" the rules of our language. The sense in which
+we know them is not the same as the sense in which we know such
+"rules" as "/i/ before /e/ except after /c/," however, since we need
+not necessarily be able to state the rules explicitly. We know them in
+a way that allows us to use them to make judgments of grammaticality,
+it is often said, or to speak and understand, but this knowledge is
+not in a form or location that permits it to be encoded into a
+communicable verbal statement. --- "On Learning the Past Tenses of
+English Verbs," Rumelhart and McClelland (1986)
+#+END_QUOTE
+
+*** The phenomenon
+
+#+BEGIN_QUOTE
+In Stage 1, children use only a small number of verbs in the past
+tense. Such verbs tend to be very high-frequency words, and the
+majority of these are irregular. At this stage, children tend to get
+the past tenses of these words correct if they use the past tense at
+all.
+
+[...]
+
+In Stage 2, evidence of implicit knowledge of a linguistic rule
+emerges. At this stage, children use a much larger number of verbs in
+the past tense. These verbs include a few more irregular items, but it
+turns out that the majority of the words at this stage are examples of
+the /regular/ past tense in English. [...]
+
+  - The child can now generate a past tense for an invented word.
+
+  - Children now /incorrectly/ supply regular past-tense endings for
+    words which they used correctly in Stage 1. These errors may
+    involve either adding /ed/ to the root as in /comed/, or adding
+    /ed/ to the irregular past tense form as in /camed/.
+
+[...]
+
+In Stage 3, the regular and irregular forms coexist. That is, children
+have regained the use of the correct irregular forms of the past
+tense, while they continue to apply the regular form to new words they
+learn. Regularization persists into adulthood [...]
+#+END_QUOTE
+
+The authors further add that the stages are not well-delineated, and
+that the acquisition process is gradual.
+
+They develop a statistical neural network model that, when given
+example verbs (like a child hearing them used), produces behavior
+exactly like that described in the three stages (above).
+
+*** A critique
+
+#+BEGIN_QUOTE
+Classical models [...] account for this [phenomenon] in an intuitively
+obvious way. They posit an initial stage in which the child has
+effectively memorized a small set of forms in a totally unsystematic
+and unconnected way. This is stage one. At stage two, according to
+this story, the child manages to extract a rule covering a large
+number of cases. But the rule is now mistakenly deployed to generate
+/all/ past tenses. At the final stage this is put right. Now the child
+uses lexical, memorized, item-indexed resources to handle irregular
+cases and non-lexical, rule-based resources to handle regular
+ones. --- "Critique of Rumelhart and McClelland," Andy Clark (1989)
+#+END_QUOTE
+
+Problems wiht the statistical neural network model (according to
+Clark, who is summarizing "On language and connectionism," Pinker and
+Prince (1988)):
+
+  - Overreliance on the environment :: the stage 1 to stage 2
+       transition of the model was achieved solely because only
+       irregular verbs were presented to it first, followed by a
+       "massive influx" of regular verbs; generally, neural nets can
+       learn virtually anything (approximate any function), but their
+       ability to do so depends highly on the nature of the
+       inputs. "Given a different set of inputs, these models might go
+       straight to stage 2, or even regress from stage 2 to
+       stage 1. It is at least not obvious that human infants enjoy
+       the same degree of freedom."
+
+  - The power of learning algorithms :: statistical approaches are
+       often too good; humans do a poor job detecting statistical
+       correlations; for example, we have a hard time learning how to
+       efficiently match words to their reverse images, yet a
+       statistical model could learn that perfectly; a good model of
+       language acquisition should also explain what we cannot learn.
+
+  - Microfeature representations :: humans do not seem to treat all
+       features of an observation equally; we do not see a word as a
+       sequence of equally-important letters; Pinker and Prince give
+       the example, "an animal that looks exactly like a skunk will
+       nonetheless be treated as a raccoon if one is told that the
+       stripe was painted onto an animal that had raccoon parents and
+       raccoon babies."
+
+#+BEGIN_QUOTE
+The single most obvious phenomenon about the meanings of words is the
+difficulty of focusing consciousness upon them. If I ask you what
+does the verb "sight" mean in the sentence:
+
+He sighted a herd of elephants on the plain
+
+then you are immediately aware that you know the meaning of the word,
+and that you understand the sentence with no difficulty. You should
+also be able to offer a paraphrase of the word, such as:
+
+to see something at a distance.
+
+But the formulation of this paraphrase is not an immediate and
+automatic process. You cannot turn to the appropriate definition in a
+mental dictionary and read out the contents that you find there. It
+may take a second or two to formulate a definition, and in some cases,
+as we shall see, you may be unable to give a helpful definition at
+all. In short, you have an immediate awareness of knowing the sense of
+a word, but you have no direct introspect access to the representation
+of its meaning.
+#+END_QUOTE
+
+* The edge of understanding
+
+"Outside a psychological laboratory, the recognition of words is
+seldom an end in itself, because listeners want to understand what
+they hear." (Johnson-Laird)
+
+#+BEGIN_EXAMPLE
+a leaf
+left
+by the
+cat
+I guess
+
+--- Aram Saroyan
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+My cup is yellow
+Or not, though not's
+
+Impossible
+It's yellow
+
+--- Aram Saroyan
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+I leaps
+
+through
+my eyes
+
+--- Aram Saroyan
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+a window to walk away
+in
+
+--- Aram Saroyan
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+"Gamut"
+
+Much ado about trees lichen
+hugs alga and fungus live
+off each other hoe does
+dear owe dear earth terrace
+money sunday coffee poorjoe snow
+
+--- Louis Zukofsky
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+colorless green ideas sleep furiously
+
+--- Noam Chomsky
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+Every farmer who owns a donkey beats it.
+
+Every farmer who owns a tractor uses it to drive to church on Sundays.
+
+Some farmers who own a donkey beat it.
+
+--- infamous "donkey sentence" and variants
+#+END_EXAMPLE
+
+#+BEGIN_CENTER
+[[./images/kumi-yamashita-lovers.jpg]]
+
+"Lovers," [[http://www.kumiyamashita.com/portfolio/lovers/][Kumi Yamashita]], 1999; H190, W240, D15cm; cut aluminum plate,
+single light source, shadow
+#+END_CENTER
+
+	
+
+
+#+INCLUDE: footer.org

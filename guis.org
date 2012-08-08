@@ -1,0 +1,11 @@
+#+SETUPFILE: setup.org
+#+TITLE: GUIs (graphical user interfaces)
+
+* Why a GUI?
+
+* GUIs in Python
+
+* GUIs in Java
+
+#+INCLUDE: footer.org
+

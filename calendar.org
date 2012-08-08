@@ -1,0 +1,19 @@
+#+SETUPFILE: setup.org
+#+TITLE: Course calendar
+
+| Week                  | Topics                       | Homework    | Read in book (3rd ed.)                         |
+|-----------------------+------------------------------+-------------+------------------------------------------------|
+| 1 (Mar 26 -- Mar 30)  | Syllabus and introduction    | [[./homework-1.html][Homework 1]]  | 1--31, 34--39                                  |
+| 2 (Apr 2 -- Apr 6)    | Search                       | [[./homework-2.html][Homework 2]]  | 64--91                                         |
+| 3 (Apr 9 -- Apr 13)   | Search                       | [[./homework-3.html][Homework 3]]  | 92--95, 102--107, 120--125, 126--129, 161--167 |
+| 4 (Apr 16 -- Apr 20)  | Knowledge representation     | [[./homework-4.html][Homework 4]]  | 234--256, 265--274                             |
+| 5 (Apr 23 -- Apr 27)  | Knowledge representation     | [[./homework-5.html][Homework 5]]  | 285--312, 339--344                             |
+| 6 (Apr 30 -- May 4)   | Midterm review / reflections | [[./midterm-guide.html][Midterm]]     |                                                |
+| 7 (May 7 -- May 11)   | Multi-agent systems          | [[./homework-7.html][Homework 7]]  | 429 (bottom)                                   |
+| 8 (May 14 -- May 16)  | Uncertainty                  | [[./homework-8.html][Homework 8]]  | 480--495, 693--706                             |
+| 9 (May 21 -- May 25)  | Uncertainty                  | [[./homework-9.html][Homework 9]]  | 737--744, 868--869                             |
+| 10 (May 28 -- June 1) | Philosophical perspectives   | no homework |                                                |
+| 11 (June 6)           |                              | [[./final-guide.html][Final]]       |                                                |
+
+
+#+INCLUDE: footer.org

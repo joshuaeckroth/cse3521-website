@@ -1,0 +1,5 @@
+#+SETUPFILE: setup.org
+#+TITLE: Emotions and intelligence
+
+
+#+INCLUDE: footer.org

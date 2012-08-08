@@ -1,0 +1,227 @@
+#+SETUPFILE: setup.org
+#+TITLE: Bayesian methods
+
+* Basic probability calculus
+
+We say that the probability of an event occurring is $P(A)$ where $A$
+is the event. Note that $0 \leq P(A) \leq 1$ by convention. For
+example, the probability of a fair coin landing heads up is $P(H) =
+0.5$, and perhaps the probability of a lightning storm today is $P(L)
+= 0.01$. $P(\neg A)$ is always equal to $1.0 - P(A)$.
+
+Sometimes we want to describe the probability of some event given that
+we know (or are supposing) that some other event occurred. For
+example, the probability of a lightning storm is higher if the sky is
+cloudy, i.e., $P(L|C) > P(L|\neg C)$ (where $C$ means the sky is
+cloudy and $\neg C$ means it is not).
+
+If two events $A$ and $B$ are independent (e.g., knowing that $A$
+occurred tells you nothing about whether $B$ occurred), then $P(A, B)
+= P(A)P(B)$.
+
+If $A$ and $B$ are not independent, then they are conditional, e.g.,
+knowing that $A$ occurred changes the probability that $B$
+occurred. Now we have,
+
+$$P(A,B) = P(A|B)P(B),$$
+
+where $P(A|B)$ means "probability of $A$ given that $B$ is known to
+have occurred."
+
+Of course, if $A$ and $B$ are independent, then $P(A|B)=P(A)$, so
+we're back to the definiton of independent probabilities.
+
+* Bayes' insight
+
+Notice that $P(A, B) = P(B, A)$ (always), simply because the comma
+doesn't add any meaning, it's just a way of writing "$A$ and $B$ both
+occurred (and not in some special temporal sequence)."
+
+Thus, the conditional probability of $P(B,A)$ is,
+
+$$P(B,A) = P(B|A)P(A),$$
+
+which means,
+
+$$P(B|A)P(A) = P(A|B)P(B),$$
+
+and rewriting we get,
+
+$$P(B|A) = \frac{P(A|B)P(B)}{P(A)}.$$
+
+So who cares? Well, what we just discovered is that the conditional
+probability of $B$ given $A$ (i.e., $P(B|A)$), depends entirely on the
+conditional probability of $A$ given $B$ and the prior probabilities
+of $A$ and $B$ (i.e., $P(A)$ means how often does $A$ occur with or
+without $B$ occurring also? same question for $P(B)$).
+
+If we take $A$ and $B$ to be events like "$A$ = your house alarm is
+making noise" and "$B$ = a burglar is inside your house," then we have
+that "the probability that a burglar is inside your house given that
+you know your house alarm is making noise depends on the chance of
+your house alarm making noise given a burglar being in your house
+($P(A|B)$), the prior probability of being robbed at all ($P(B)$), and
+the prior probability of your house alarm making noise from burglars,
+cats, thunder, etc. ($P(A)$)." Note that the prior probability of the
+alarm making noise ($P(A)$) is at least as large as $P(A|B)P(B)$,
+which is the numerator of this fraction. This is because
+$P(A)=P(A|B)P(B)+P(A|\neg B)P(\neg B)$, in other words, the
+probability of the alarm making noise is the probability of it making
+noise due to a burglar plus the probability of it making noise due to
+some other cause. We use "plus" rather than "times" here because we
+are describing two separate causes for the alarm making noise; these
+causes are not required to happen simultaneously.
+
+*Bam!* We have a way of calculating the probability of events we're
+not sure about (the chance there is a burglar in my house) given the
+probabilities of events we do know about. This micro insight has
+revolutionized computer science, medicine, pyschology, etc. etc.,
+beginning in the 1980s or so. The person who made these and more
+complex calculations achievable in computer software, Judea Pearl, was
+awarded the Turing Award in 2012. The importance of Bayes' micro
+insight cannot be overstated.
+
+#+BEGIN_CENTER
+[[./images/320px-Bayes_Theorem_MMB_01.jpg]]
+
+[[http://en.wikipedia.org/wiki/File:Bayes%27_Theorem_MMB_01.jpg][Wikipedia]]
+#+END_CENTER
+
+* Naïve Bayesian classification
+
+** Feature vectors
+
+Documents are simply binary word vectors. No tf-idf transformation is
+done.
+
+** Category vectors
+
+Each category vector is represented as a series of probabilities, one
+probability per word (each vector dimension represents a word, just
+like a document feature vector). Each probability means, "the
+probability of this word being present in a document that is a member
+of this category." Thus, the category vector has terms $C_c = (p_{c1},
+p_{c2}, \dots, p_{ck})$, and
+
+$$p_{ci} = P(w_i|C_c) = \frac{d_{ci}+1}{d_{i}+|C|},$$
+
+where $d_{ci}$ is the number of documents in $C_c$ that have word $i$
+(anywhere in the document, any number of occurrences), $d_i$ is the
+number of documents in /any/ category that have word $i$, and $|C|$ is
+the number of categories. We add 1 and add $|C|$ so that $P(w_i|C_c)$
+is never equal to 0. (This is called [[http://en.wikipedia.org/wiki/Additive_smoothing][Laplace smoothing]].)
+
+** Algorithm
+
+We assume, for simplicity, that the occurrences of words in documents
+are completely independent (this is what makes the method
+"naïve"). This is patently false since, for instance, the words
+"vision" and "image" often both appear in documents about computer
+vision; so seeing the word "vision" suggests that "image" will also
+appear in the document.
+
+We further assume that the order the words appear in the document does
+not matter.
+
+Because we make this independence assumption, we can calculate the
+probability of a document being a member of some category quite
+easily:
+
+$$P(\hat{X}|C_c) = \prod_i P(w_i|C_c),$$
+
+where $P(w_i|C_c) = p_{ci}$ (from the definition above).
+
+Now, Bayes' theorem gives us:
+
+$$P(C_c|\hat{X}) = P(\hat{X}|C_c)P(C_c) / P(\hat{X}),$$
+
+with,
+
+$$P(C_c) = \frac{n_c + 1}{n + |C|},$$
+
+where $n_c$ is the number of documents in category $C_c$ and $n$ is
+the number of documents overall. Again, we use Laplace smoothing; this
+allows us to avoid probabilities equal to 0.0.
+
+Since we want to find the category $C_c$ that makes the quantity
+maximal, we can ignore $P(\hat{X})$ because it does not change
+depending on which category we are considering.
+
+Thus, we are actually looking for:
+
+$$\arg\max_{C_c} P(C_c|\hat{X}) = \arg\max_{C_c} P(\hat{X}|C_c)P(C_c)$$
+
+We just check all the categories, and choose the single best or top $N$.
+
+** A problem with tiny values
+
+With a lot of unique words, we create very small values by multiplying
+many $p_{ci}$ terms. On a computer, the values may become so small
+that they may "underflow" (run out of bits required to represent the
+value). To prevent this, we just throw a logarithm around everything:
+
+$$\log P(\hat{X}|C_c)P(C_c) = \log P(\hat{X}|C_c) + \log P(C_c),$$
+
+and furthermore,
+
+$$\log P(\hat{X}|C_c) = \log \prod_i P(w_i|C_c) = \sum_i \log P(w_i|C_c)$$
+
+So our multiplications turn to sums, and we avoid the underflow
+problem. Rewriting again, we ultimately have this problem:
+
+$$\arg\max_{C_c} (\sum_i \log P(w_i|C_c)) + \log P(C_c)$$
+
+** Evaluation
+
+These graphs show the performance of the naïve Bayes approach on
+various datasets (compare with results from the [[./document-classification.html][document
+classification]] notes). The calculations described above are
+represented as the "binary" algorithm in the graphs. The "tfidf"
+algorithm, as applied in a naïve Bayes context, uses slightly
+different calculations that have not been described in these notes.
+
+#+BEGIN_CENTER
+[[./images/naivebayes-fscore-datasets.png]]
+#+END_CENTER
+
+#+BEGIN_CENTER
+[[./images/naivebayes-fscore-ai.png]]
+#+END_CENTER
+
+The book [[http://nlp.stanford.edu/IR-book/html/htmledition/irbook.html][Introduction to Information Retrieval]] gathered some published
+results for classification tasks. We can see that naïve Bayes is
+usually not as good as k-nearest neighbor (which we did learn about)
+nor support vector machines (which we didn't learn about).
+
+#+BEGIN_CENTER
+| Dataset  | Naïve Bayes | k-nearest neighbor | Support vector machines |
+|----------+-------------+--------------------+-------------------------|
+| earn     |        0.96 |               0.97 |                    0.98 |
+| acq      |        0.88 |               0.92 |                    0.94 |
+| money-fx |        0.57 |               0.78 |                    0.75 |
+| grain    |        0.79 |               0.82 |                    0.95 |
+| crude    |        0.80 |               0.86 |                    0.89 |
+| trade    |        0.64 |               0.77 |                    0.76 |
+| interest |        0.65 |               0.74 |                    0.78 |
+| ship     |        0.85 |               0.79 |                    0.86 |
+| wheat    |        0.70 |               0.77 |                    0.92 |
+| corn     |        0.65 |               0.78 |                    0.90 |
+#+END_CENTER
+
+I also performed a Spam detection experiment, using the [[http://archive.ics.uci.edu/ml/datasets/Spambase][Spambase]]
+dataset. With naïve Bayes I was able to achieve ~80% accuracy.
+
+** Benefits of naïve Bayes
+
+  - It is very fast. In the table above, while naïve Bayes does not
+    perform as well, it is significantly more efficient than either
+    k-nearest neighbor or support vector machines. The latter, support
+    vector machines, are /painfully/ slow (at least in the training
+    phase).
+
+** Drawbacks of naïve Bayes
+
+  - Accuracy is low, as seen in the table above.
+
+
+#+INCLUDE: footer.org

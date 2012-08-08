@@ -1,0 +1,6 @@
+#+SETUPFILE: setup.org
+#+TITLE: Planning
+
+
+
+#+INCLUDE: footer.org

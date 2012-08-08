@@ -1,0 +1,119 @@
+#+SETUPFILE: setup.org
+#+TITLE: Boolean logic
+
+The most basic, yet somewhat useful, form of logic is Boolean logic
+(named after George Boole, 1815-1864). In this logic, we have
+variables that can be true or false, and we have ways of "connecting"
+or "relating" these variables. In fact, Boole (and De Morgan)
+described an algebra over these variables and relations, so we have a
+variety of equivalences that allow us to translate one form into
+another.
+
+* Logical relations
+
+Besides variables (which, again, are just true or false), we have the
+following relations:
+
+  - $\wedge$ which we call "and"
+
+  - $\vee$ which we call "or"
+
+  - $\neg$ which we call "not"
+
+$\wedge$ and $\vee$ relate two variables: $x \wedge y$ and $x \vee
+y$. $\neg$ can be applied to one entity: $\neg x$.
+
+This can all be composed, too: $\neg (x \vee (y \wedge \neg z))$.
+
+* Truth tables
+
+Having a bunch of symbols (regardless of what we call them) does not
+do much for us. We need a way of determining whether the value of a
+sentence is true or false. (A "sentence" is a composition of variables
+and relations.)
+
+The truth tables for the basic relations are so simple we'll just
+describe them: $x \wedge y$ is true if and only if both $x$ and $y$
+are true; $x \vee y$ is true if and only if at least one of $x$ or $y$
+is true; and $\neg x$ is true only if $x$ is false.
+
+Now, we can figure out the truth of a complicated sentence by finding
+the truth-value of each part. We build a table for this operation
+because we need to keep track of all the different values that the
+variable may hold.
+
+For what values of $x$, $y$, and $z$ make this true? $\neg (x \vee (y
+\wedge \neg z))$
+
+We break the sentence into its main parts and put them all in the
+table.
+
+| $x$ | $y$ | $z$ | $\neg z$ | $y \wedge \neg z$ | $x \vee (y \wedge \neg z)$ | $\neg (x \vee (y \wedge \neg z))$ |
+|-----+-----+-----+----------+-------------------+----------------------------+-----------------------------------|
+| T   | T   | T   | F        | F                 | T                          | F                                 |
+| T   | T   | F   | T        | T                 | T                          | F                                 |
+| T   | F   | T   | F        | F                 | T                          | F                                 |
+| T   | F   | F   | T        | F                 | T                          | F                                 |
+| F   | T   | T   | F        | F                 | F                          | T                                 |
+| F   | T   | F   | T        | T                 | T                          | F                                 |
+| F   | F   | T   | F        | F                 | F                          | T                                 |
+| F   | F   | F   | T        | F                 | F                          | T                                 |
+
+We see that there are three variable assignements that make the whole
+expression true: $x$ is false, $y$ is true, and $z$ is true; $x$ is
+false, $y$ is false, and $z$ is true; and $x$ is false, $y$ is false,
+and $z$ is false.
+
+* Boole's and De Morgan's Laws
+
+  - $\neg F \equiv T$
+
+  - $\neg T \equiv F$
+
+  - $x \vee \neg x \equiv T$
+
+  - $x \vee F \equiv x$
+
+  - $x \vee T \equiv T$
+
+  - $x \wedge T \equiv x$
+
+  - $x \wedge F \equiv F$
+
+  - $x \vee y \vee z \equiv x \vee (y \vee z) \equiv (x \vee y) \vee z$
+
+  - $x \wedge y \wedge z \equiv x \wedge (y \wedge z) \equiv (x \wedge y) \wedge z$
+
+  - $x \vee y \equiv y \vee x$
+
+  - $x \wedge y \equiv y \wedge x$
+
+  - $x \wedge (y \vee z) \equiv (x \wedge y) \vee (x \wedge z)$
+
+  - $x \vee (y \wedge z) \equiv (x \vee y) \wedge (x \vee z)$
+
+  - $\neg (x \vee y) \equiv (\neg x) \wedge (\neg y)$
+
+  - $\neg (x \wedge y) \equiv (\neg x) \vee (\neg y)$
+
+  - $x \vee x \equiv x$
+
+  - $x \wedge x \equiv x$
+
+  - $\neg \neg x \equiv x$
+
+  - $x \wedge (x \vee y) \equiv x$
+
+  - $x \vee (x \wedge y) \equiv x$
+
+* Examples
+
+Using the above rules, we can simplify complex expressions into
+equivalent simpler expressions:
+
+  - $z \vee \neg (y \wedge z) \equiv z \vee (\neg y \vee \neg z) \equiv (z \vee \neg z) \vee \neg y \equiv T \vee \neg y \equiv T$
+
+  - $\neg (x \wedge y) \wedge (\neg x \vee y) \wedge (\neg y \vee y) \equiv \neg (x \wedge y) \wedge (\neg x \vee y) \equiv (\neg x \vee \neg y) \wedge (\neg x \vee y) \equiv \neg x \vee (\neg y \wedge y) \equiv \neg x$
+
+
+#+INCLUDE: footer.org

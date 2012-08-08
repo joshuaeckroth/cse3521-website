@@ -1,0 +1,123 @@
+#+SETUPFILE: setup.org
+#+TITLE: Syllabus and introduction
+
+* What this course is about
+Being effectively a "first gloss of artificial intelligence as a human
+pursuit," I believe this course should give you a modern and critical
+perspective and skillset focused on evaluating claims about AI,
+thinking about what makes an artifact intelligent (if that makes any
+sense), and basic design and implementation skills for creating
+supposedly-intelligent systems. AI is not only about programming
+machines. There are strong (and contentious) philosophical,
+psychological, and social overtones to all AI research. We'll attempt
+to understand some of that, as well as build useful software.
+
+* What to expect
+Mostly, you'll be required to do a lot of reading, programming, and
+mathematically-oriented problem-solving. Except for homework 5, in
+which you practice programming in Prolog, you can choose which
+programming language(s) you use. (I'll try to demonstrate Python code,
+usually). Some assignments, however, will ask you to read texts and/or
+listen to podcasts and do some critical thinking.
+
+All homework solutions must be submitted on the CSE Linux servers,
+using the ~submit~ command. All programs must compile and execute
+without error on the Linux servers. Thus, be sure to test your code
+on those servers before submitting it!
+
+Instructions about the Linux servers are available in [[./linux.html][lecture notes]].
+
+* Text book
+While I do not require that you have the text book, there is an
+official text book for this class: [[http://www.amazon.com/Artificial-Intelligence-Modern-Approach-Edition/dp/0136042597/ref=sr_1_1?s=books&ie=UTF8&qid=1332257784&sr=1-1][Artificial Intelligence: A Modern
+Approach]], by Russell and Norvig. You can get the 3rd or 2nd edition;
+the 1st edition is a bit out-of-date.
+
+I suggest you buy the book if you like "another opinion" on
+matters. It's a good book. Most lecture topics in this class have
+corresponding sections in the text book; look at the [[./calendar.html][course calendar]]
+for the relevant pages. Again, whether you buy the book or not is up
+to you; it is not required.
+
+The text book is very popular; over 1,200 universities currently use
+this book for their AI courses. This means that the internet is
+saturated with lecture notes, homeworks, exams, etc. for very similar
+introductory AI courses. Additionally, an entire introductory AI
+course can be experienced at [[http://www.ai-class.com][ai-class.com]], taught by Sebastian Thrun
+and Peter Norvig (one of the authors of the text book).
+
+* Grading
+  - Homeworks: 40% (8 of them; 1--5 and 7--9; "6" is skipped because
+    there is no homework for week 6; we have the midterm instead)
+
+  - Midterm: 30%
+
+  - Final: 30%
+
+There will be abundant extra credit opportunities. These are described
+in the relevant homeworks.
+
+Late work is penalized 10 points, no matter how late it is.
+
+Note that if I suspect you copied your homework solutions from someone
+(or something) else, I reserve the right to ask you many probing
+questions about those solutions. If you do not answer those questions
+to my satisfaction, I reserve the right to give you a 0% grade on that
+homework.
+
+* Exams
+We have two exams: the midterm and the final. The midterm covers
+search and logic; the final covers everything. You will not be asked
+programming questions on the exams. All questions will ask you to
+perform calculations or answer questions with regular prose.
+
+* Time expectations
+You should operate under the expectation that homework assignments
+will take longer than you expect. Trivial bugs in your code can cause
+you to waste hours attempting to fix your program. The last 10% of the
+work takes 90% of the time. And so on... So start early!
+
+#+INDEX: Hofstadter, D.
+#+BEGIN_QUOTE
+*Hofstadter's Law:* "It always takes longer than you expect, even when
+you take into account Hofstadter’s Law." --- /Gödel, Escher, Bach/
+#+END_QUOTE
+
+Or if you prefer,
+
+#+BEGIN_QUOTE
+*Murphy's law of Programming:* "The sooner you start coding your
+program, the longer it is going to take." --- /The computer
+contradictionary/
+#+END_QUOTE
+
+* Academic misconduct
+This course is designed for individual work.
+
+The only work required of you outside of class is homework
+assignments. Obviously, there is no tolerance for cheating (looking at
+others' work) during the midterm or the final exam. However, you may
+participate in a reasonable amount of collaboration over
+homeworks. Collaboration is limited to: discussing how to approach the
+solution, or how to solve small coding problems; looking at the
+Internet for information about general topics, not solutions to the
+particulars of the homework assignment. It is considered academic
+misconduct if you copy significant portions of code from anyone (the
+Internet included). Your solutions should not bear an uncanny
+resemblance to anyone else’s code. It should be clear to you what I
+mean by this; do not test the limits of this (fairly liberal)
+policy. Violators will be referred to the OSU Committee on Academic
+Misconduct (COAM).
+
+* Disability statement
+Any student who feels he or she may need an accommodation based on the
+impact of a disability should contact me privately to discuss your
+specific needs. Please contact the Office for Disability Services at
+614-292-3307 in room 150 Pomerene Hall to coordinate reasonable
+accommodations for students with documented disabilities.
+
+#+INCLUDE: footer.org
+
+#+BEGIN_CENTER
+[[./images/aaai-its-for-real.jpg]]
+#+END_CENTER

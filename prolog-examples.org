@@ -1,0 +1,414 @@
+#+SETUPFILE: setup.org
+#+TITLE: Prolog examples
+
+* 8-puzzle
+
+Prolog does depth-first search natively. So, let's exploit that to
+solve the 8-puzzle problem.
+
+First, we define the goal:
+
+#+BEGIN_SRC prolog
+goal([1,2,3,
+      4,0,5,
+      6,7,8]).
+#+END_SRC
+
+Now, we define all the possible moves (a bit laboriously):
+
+#+BEGIN_SRC prolog
+%% From: http://www-module.cs.york.ac.uk/lpa/prac2009/prolog-lab-3.pdf
+
+%% move left in the top row
+move([X1,0,X3, X4,X5,X6, X7,X8,X9],
+     [0,X1,X3, X4,X5,X6, X7,X8,X9]).
+move([X1,X2,0, X4,X5,X6, X7,X8,X9],
+     [X1,0,X2, X4,X5,X6, X7,X8,X9]).
+
+%% move left in the middle row
+move([X1,X2,X3, X4,0,X6,X7,X8,X9],
+     [X1,X2,X3, 0,X4,X6,X7,X8,X9]).
+move([X1,X2,X3, X4,X5,0,X7,X8,X9],
+     [X1,X2,X3, X4,0,X5,X7,X8,X9]).
+
+%% move left in the bottom row
+move([X1,X2,X3, X4,X5,X6, X7,0,X9],
+     [X1,X2,X3, X4,X5,X6, 0,X7,X9]).
+move([X1,X2,X3, X4,X5,X6, X7,X8,0],
+     [X1,X2,X3, X4,X5,X6, X7,0,X8]).
+
+%% move right in the top row 
+move([0,X2,X3, X4,X5,X6, X7,X8,X9],
+     [X2,0,X3, X4,X5,X6, X7,X8,X9]).
+move([X1,0,X3, X4,X5,X6, X7,X8,X9],
+     [X1,X3,0, X4,X5,X6, X7,X8,X9]).
+
+%% move right in the middle row 
+move([X1,X2,X3, 0,X5,X6, X7,X8,X9],
+     [X1,X2,X3, X5,0,X6, X7,X8,X9]).
+move([X1,X2,X3, X4,0,X6, X7,X8,X9],
+     [X1,X2,X3, X4,X6,0, X7,X8,X9]).
+
+%% move right in the bottom row
+move([X1,X2,X3, X4,X5,X6,0,X8,X9],
+     [X1,X2,X3, X4,X5,X6,X8,0,X9]).
+move([X1,X2,X3, X4,X5,X6,X7,0,X9],
+     [X1,X2,X3, X4,X5,X6,X7,X9,0]).
+
+%% move up from the middle row
+move([X1,X2,X3, 0,X5,X6, X7,X8,X9],
+     [0,X2,X3, X1,X5,X6, X7,X8,X9]).
+move([X1,X2,X3, X4,0,X6, X7,X8,X9],
+     [X1,0,X3, X4,X2,X6, X7,X8,X9]).
+move([X1,X2,X3, X4,X5,0, X7,X8,X9],
+     [X1,X2,0, X4,X5,X3, X7,X8,X9]).
+
+%% move up from the bottom row
+move([X1,X2,X3, X4,X5,X6, X7,0,X9],
+     [X1,X2,X3, X4,0,X6, X7,X5,X9]).
+move([X1,X2,X3, X4,X5,X6, X7,X8,0],
+     [X1,X2,X3, X4,X5,0, X7,X8,X6]).
+move([X1,X2,X3, X4,X5,X6, 0,X8,X9],
+     [X1,X2,X3, 0,X5,X6, X4,X8,X9]).
+
+%% move up from the top row
+move([0,X2,X3, X4,X5,X6, X7,X8,X9],
+     [X4,X2,X3, 0,X5,X6, X7,X8,X9]).
+move([X1,0,X3, X4,X5,X6, X7,X8,X9],
+     [X1,X5,X3, X4,0,X6, X7,X8,X9]).
+move([X1,X2,0, X4,X5,X6, X7,X8,X9],
+     [X1,X2,X6, X4,X5,0, X7,X8,X9]).
+
+%% move down from the middle row
+move([X1,X2,X3, 0,X5,X6, X7,X8,X9],
+     [X1,X2,X3, X7,X5,X6, 0,X8,X9]).
+move([X1,X2,X3, X4,0,X6, X7,X8,X9],
+     [X1,X2,X3, X4,X8,X6, X7,0,X9]).
+move([X1,X2,X3, X4,X5,0, X7,X8,X9],
+     [X1,X2,X3, X4,X5,X9, X7,X8,0]).
+#+END_SRC
+
+Now we can define depth-first search. Since Prolog does this naturally
+(it searches for values of variables to make predicates true), we just
+need to specify what should happen if the goal is not immediately
+found (i.e., a move should be made).
+
+#+BEGIN_SRC prolog
+dfsSimplest(S, [S]) :- goal(S).
+dfsSimplest(S, [S|Rest]) :- move(S, S2), dfsSimplest(S2, Rest).
+#+END_SRC
+
+Let's try it with an initial state that is one /left/ move away from
+the goal.
+
+#+BEGIN_SRC prolog
+?- dfsSimplest([1,2,3, 0,4,5, 6,7,8], Path).
+Path = [[1, 2, 3, 0, 4, 5, 6, 7|...], [1, 2, 3, 4, 0, 5, 6|...]] .
+#+END_SRC
+
+Ok, it found the right move (the path lists two boards, the initial
+and the goal).
+
+If we start with an initial board that is one /down/ move away from
+the goal, ...
+
+#+BEGIN_SRC prolog
+?- dfs([1,2,3, 4,7,5, 6,0,8], Path).
+.... get a cup of coffee now?
+
+ERROR: Out of local stack
+#+END_SRC
+
+Prolog never found the answer. This is because it started with left
+moves, then more left moves, etc.... If we rearrange the ~move~
+predicates so that the up-moves are first, the path is found
+immediately again.
+
+Apart from rearranging our move predicates, we can also avoid the
+problem of searching from the same states more than once. We need to
+keep track of "checked" states, so we'll add another parameter to our
+predicate:
+
+#+BEGIN_SRC prolog
+dfs(S, Path, Path) :- goal(S).
+
+dfs(S, Checked, Path) :-
+    % try a move
+    move(S, S2),
+    % ensure the resulting state is new
+    \+member(S2, Checked),
+    % and that this state leads to the goal
+    dfs(S2, [S2|Checked], Path).
+#+END_SRC
+
+Let's try it:
+
+#+BEGIN_SRC prolog
+?- dfs([1,2,3, 0,4,5, 6,7,8], [], Path).
+Path = [[1, 2, 3, 4, 0, 5, 6, 7|...]] .
+#+END_SRC
+
+Seems to work with the initial state just one /left/ move from the
+goal.
+
+Now let's make an initial state on /up/ move from the goal. Recall
+that naive DFS ran out of memory (because it continued checking from
+repeated states).
+
+#+BEGIN_SRC prolog
+?- dfs([1,2,3, 4,7,5, 6,0,8], [], Path), length(Path, N).
+Path = [[1, 2, 3, 4, 0, 5, 6, 7|...], [1, 2, 3, 0, 4, 5, 6|...], [0, 2, 3, 1, 4, 5|...], [2, 0, 3, 1, 4|...], [2, 3, 0, 1|...], [2, 3, 5|...], [2, 3|...], [2|...], [...|...]|...],
+N = 23759 .
+#+END_SRC
+
+23,759 moves (in the /solution/), when only one move was needed. The
+order of predicates in the database can be of critical importance.
+
+* A maze "game"
+
+If you took my CSE 230 class, you'll remember building a maze
+game. Rooms were connected to other rooms, and players could walk
+through them. Each room had a description, and possibly even monsters
+that mocked you as you passed through.
+
+Anyway, building such a game in Prolog is trivial (save for the
+monsters). Let's start with some room descriptions:
+
+#+BEGIN_SRC prolog
+room(garden, 'Garden', 'You are in the Garden. The trees and shrubs appear...').
+room(hallway, 'Hallway', 'You are in the Hallway. Dusty broken lamps and flower pots...').
+room(kitchen, 'Kitchen', 'You are in the kitchen. Knives, pots, pans, ...').
+room(library, 'Library', 'You are among many books in the Library...').
+room(lair, 'Lair', 'You have found an apparently quite evil lair, of all things...').
+connected(north, library, hallway).
+connected(south, hallway, library).
+connected(down, library, lair).
+connected(up, lair, library).
+connected(west, library, garden).
+connected(east, garden, library).
+connected(west, hallway, kitchen).
+connected(east, kitchen, hallway).
+#+END_SRC
+
+We'll add a predicate that causes the description of our room to be
+printed:
+
+#+BEGIN_SRC prolog
+% this predicate has no inputs
+print_location :-
+    current_room(Current),
+    room(Current, Name, Description),
+    % nl means "newline"
+    print(Name), nl, print(Description), nl.    
+#+END_SRC
+
+This predicate requires that ~current_room~ is a predicate that gives
+the current room. E.g., ~current_room(library).~
+
+But the current room should change, naturally. We can change the facts
+of the database in the middle of running the program by using
+~retract~ and ~assertz~. The ~retract~ predicate ("meta-predicate"
+technically) takes as input a predicate and removes it from current
+facts. On the other hand, ~assertz~ adds a predicate to the list of
+facts, at the bottom of the list (that's what the ~z~ means; the
+alternative is to add the new fact at the top, in which case you use
+~asserta~).
+
+We have to indicate that the ~current_room~ predicate may be changed,
+so we put this in our file:
+
+#+BEGIN_SRC prolog
+:- dynamic current_room/1.
+#+END_SRC
+
+Now we can define a change room predicate:
+
+#+BEGIN_SRC prolog
+change_room(NewRoom) :-
+    current_room(Current),
+    retract(current_room(Current)),
+    assertz(current_room(NewRoom)).
+#+END_SRC
+
+We'll want user input. Here is a quick & dirty way that supports the
+word "go" followed by a direction:
+
+#+BEGIN_SRC prolog
+:- use_module(library(readln)).
+
+:- prompt(_, 'Type a command (or ''help''): ').
+
+strip_punctuation([], []).
+
+strip_punctuation([Word|Tail], [Word|Result]) :-
+    \+(member(Word, ['.', ',', '?', '!'])),
+    strip_punctuation(Tail, Result).
+
+strip_punctuation([_|Tail], Result) :-
+    strip_punctuation(Tail, Result).
+
+read_sentence(Input) :-
+    % this is a special predicate from the readln library
+    readln(Input1, _, ".!?", "_0123456789", lowercase),
+    strip_punctuation(Input1, Input).
+
+get_input :- read_sentence(Input), get_input(Input).
+get_input([quit]).
+get_input(Input) :-
+    process_input(Input), print_location,
+    read_sentence(Input1), get_input(Input1).
+
+process_input([help]) :- print('Help...'), nl.
+
+process_input([go, Direction]) :-
+    current_room(Current),
+    connected(Direction, Current, NewRoom),
+    change_room(NewRoom).
+
+process_input([go, _]) :-
+    print('No exit that direction.'), nl.
+
+process_input([_]) :-
+    print('Huh?'), nl, nl.
+#+END_SRC
+
+Finally, we define a ~play~ predicate that starts the whole thing:
+
+#+BEGIN_SRC prolog
+play :-
+    retractall(current_room(_)),
+    assertz(current_room(library)),
+    print_location,
+    get_input.
+#+END_SRC
+
+Here is how we play:
+
+#+BEGIN_EXAMPLE
+?- play.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go west.
+Garden
+You are in the Garden. The trees and shrubs appear...
+Type a command (or 'help'): go bizarre.
+No exit that direction.
+Garden
+You are in the Garden. The trees and shrubs appear...
+Type a command (or 'help'): help.
+Help...
+Garden
+You are in the Garden. The trees and shrubs appear...
+Type a command (or 'help'): go east.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go down.
+Lair
+You have found an apparently quite evil lair, of all things...
+Type a command (or 'help'): quit.
+
+true 
+#+END_EXAMPLE
+
+Now, let's make it a little more interesting. Suppose we have switches
+that can be toggled, and access to certain rooms requires that certain
+switches have been toggled. We'll first indicate that the ~toggled~
+predicate is dynamic (will be asserted and retracted):
+
+#+BEGIN_SRC prolog
+:- dynamic toggled/1.
+#+END_SRC
+
+We'll also add support for typing "toggle switch15" or whatever:
+
+#+BEGIN_SRC prolog
+process_input([toggle, Switch]) :-
+    toggle(Switch),
+    % retrieve a set of switches that have been toggled
+    setof(X, toggled(X), Switches),
+    % print these
+    print('Toggled switches: '), print(Switches), nl.
+
+process_input([toggle, _]) :-
+    print('Cannot toggle that switch.'), nl.
+#+END_SRC
+
+We'll have three switches. Switch 1 can be toggled whenever. But
+switch 2 requires that switch 1 is already toggled, and switch 3
+requires that switch 2 is already toggled.
+
+#+BEGIN_SRC prolog
+toggle(switch1) :- assertz(toggled(switch1)).
+
+toggle(switch2) :- toggled(switch1), assertz(toggled(switch2)).
+
+toggle(switch3) :- toggled(switch2), assertz(toggled(switch3)).
+#+END_SRC
+
+Finally, let's make the lair only accessible if switch 3 is toggled
+(of course, we remove the 'down' connection from the library and
+replace it with this one):
+
+#+BEGIN_SRC prolog
+connected(down, library, lair) :- toggled(switch3).
+#+END_SRC
+
+And the ~play~ predicate is updated to retract all toggle states when
+we start the game:
+
+#+BEGIN_SRC prolog
+play :-
+    retractall(current_room(_)), retractall(toggled(_)),
+    assertz(current_room(library)),
+    print_location,
+    get_input.
+#+END_SRC
+
+Let's play!
+
+#+BEGIN_EXAMPLE
+?- play.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go down.
+No exit that direction.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch3.
+Cannot toggle that switch.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch2.
+Cannot toggle that switch.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch1.
+Toggled switches: [switch1]
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch2.
+Toggled switches: [switch1,switch2]
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch3.
+Toggled switches: [switch1,switch2,switch3]
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go down.
+Lair
+You have found an apparently quite evil lair, of all things...
+Type a command (or 'help'): go up.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): quit.
+
+true
+#+END_EXAMPLE
+
+Hopefully you can imagine how the game can be improved from here. For
+example, how do we require that switch 1 can only be toggled in the
+garden? Hint: the answer involves modifying ~toggle(switch1)~
+predicate to include the requirement that the ~current_room~ predicate
+has a certain value...
+
+#+INCLUDE: footer.org
