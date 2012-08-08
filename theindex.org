@@ -20,18 +20,14 @@
    - [[file:turing-test.org::#sec-1-3][Leibniz, G.]]
    - [[file:turing-test.org::#sec-3][Loebner Prize]]
    - [[file:search.org::#sec-1][lookup table]]
-** N
-   - [[file:recent-developments.org::#sec-6][Norvig, P.]]
 ** P
    - [[file:search.org::#sec-2][path cost]]
-   - [[file:recent-developments.org::#sec-3][Pearl, J.]]
    - [[file:search.org::#sec-2][possible actions]]
 ** R
    - [[file:turing-test.org::#sec-4][Radiolab]]
 ** S
    - [[file:search.org][Simon, H. A.]]
 ** T
-   - [[file:recent-developments.org::#sec-6][Thurn, S.]]
    - [[file:search.org::#sec-2][transition model]]
    - [[file:turing-test.org][Turing, A.]]
 ** W
