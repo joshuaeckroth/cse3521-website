@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Homework 5</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Homework 5"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:43 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Homework 5</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Task 1 (40 pts)</a></li>
+<li><a href="#sec-2">Task 2 (60 pts)</a></li>
+<li><a href="#sec-3">Extra credit (20 pts)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Task 1 (40 pts)</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Assume we have the following Prolog database:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">parent</span>(tom, liz).
+<span style="color: #0000ff;">parent</span>(bob, ann).
+<span style="color: #0000ff;">parent</span>(bob, pat).
+<span style="color: #0000ff;">parent</span>(pat, jim).
+
+<span style="color: #0000ff;">female</span>(pam).
+<span style="color: #0000ff;">male</span>(tom).
+<span style="color: #0000ff;">male</span>(bob).
+<span style="color: #0000ff;">female</span>(liz).
+<span style="color: #0000ff;">female</span>(pat).
+<span style="color: #0000ff;">female</span>(ann).
+<span style="color: #0000ff;">male</span>(jim).
+</pre>
+
+
+<ol>
+<li>Write Prolog queries for the following questions:
+
+<ol>
+<li>Who is Pat&rsquo;s parent?
+
+</li>
+<li>Does Liz have a child?
+
+</li>
+<li>Who is Pat&rsquo;s grandparent?
+
+</li>
+</ol>
+
+</li>
+<li>Write a rule that describes a child, so that <code>child(X, Y)</code> means
+   <code>X</code> is the child of <code>Y</code>. Don&rsquo;t allow a person to be his or her own
+   child.
+
+</li>
+<li>Write some friendship facts (e.g., <code>friend(fred, jane).</code>), then
+   write one or more rules that specify friendship is symmetric (if X
+   is a friend of Y, then Y is a friend of X). Now, add some enemies
+   facts. Then create a rule specifying that any enemy of my enemy is
+   my friend. Don&rsquo;t allow a person to be his or her own friend or
+   enemy.
+
+</li>
+<li>Define an ancestor rule. An ancestor is a parent of a person, a
+   grandparent, a great-grandparent, etc. Naturally, this rule is
+   recursive (like the <code>member</code> predicate in the notes).
+
+</li>
+<li>Define a descendant rule. This rule is the opposite of the ancestor
+   rule. A child is a descendant; so is a grandchild,
+   great-grandchild, etc.
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Task 2 (60 pts)</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Copy-paste the family database from the notes and the various
+predicates created to operate on that database. Now, look at the
+guidelines regarding poverty at the <a href="http://aspe.hhs.gov/poverty/12poverty.shtml">Dept. of Health &amp; Human Services</a>
+website (for the 48 states). These guidelines define the minimum
+amount of income, for a given household size, to be considered outside
+of poverty. Define a <code>family_in_poverty(FamilyID)</code> predicate that is
+only true when the family designated by <code>FamilyID</code> is in poverty
+according to the guidelines. Also, add some more family data so you
+have examples of families in poverty.
+</p>
+<p>
+Additionally, provide a query or define a predicate that tells you the
+average household income of families in poverty.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Extra credit (20 pts)</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Combine some of your predicates about grandparents, ancestors,
+friends, enemies, etc. into the family database. Add some predicates
+that utilize this information; for example, do children in families
+below the poverty level make friends or enemies with children in
+families above the poverty level?
+</p>
+<p>
+Or, instead, define more predicates/queries about families and
+poverty. Which people working at OSU are in poverty? Are unemployed
+people more likely to be in families that are below the poverty line?
+(You can answer this by finding the length of the list of unemployed
+people in families that are below the poverty line, and compare that
+length (using <code>Length1 &gt; Length2</code>) to the length of the list of
+employed people in families that are below the poverty line.)
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

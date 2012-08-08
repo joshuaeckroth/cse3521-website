@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Prolog</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Prolog"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:30 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Prolog</h1>
+
+<p>Knowledge databases that you might build with <a href="./first-order-logic.html">first-order logic</a> suffer
+from a fatal problem: the logic is so sophisticated that finding
+answers efficiently (or even finding an answer at all) becomes
+difficult or impossible. First-order logic is so powerful that it can
+express almost anything, including very tricky or paradoxical
+statements. It&rsquo;s not easy to design algorithms to work with such
+systems.
+</p>
+<p>
+Prolog is a programming language that allows us to &ldquo;program&rdquo; with
+declarative knowledge. It puts limitations on the kinds of logical
+statements we can write. These limitations are essential for allowing
+Prolog programs to work efficiently and always provide an answer (or
+determine there is no answer).
+</p>
+<p>
+Because Prolog is a &ldquo;Turing-complete&rdquo; language, we can write any
+program in Prolog. Of course, a program that is easy to write in Java
+or C++ will, in all likelihood, be <i>very</i> difficult to write in
+Prolog, although it is possible. Prolog programs often feel like
+they&rsquo;re programs written in &ldquo;reverse,&rdquo; since they are written
+declaratively rather than procedurally.
+</p>
+<p>
+(Note: Download and install <a href="http://www.swi-prolog.org/download/stable">SWI Prolog</a>; you may also want <a href="http://sewiki.iai.uni-bonn.de/research/pdt/start">PDT</a> for
+Eclipse. The CSE Linux servers do not have Prolog; that is ok, you
+should still submit from Linux but otherwise test your code on your
+own machine. There is also the option to download a <a href="http://portableapps.com/node/23749">portable version of SWI Prolog</a> to install on a USB key and use in any Windows machine
+you&rsquo;d like, such as the campus lab computers.)
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Some quick concepts and examples</a></li>
+<li><a href="#sec-2">Defining complex predicates (rules)</a></li>
+<li><a href="#sec-3">Negation as failure</a></li>
+<li><a href="#sec-4">Lists in Prolog</a></li>
+<li><a href="#sec-5">Prolog for databases</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Some quick concepts and examples</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+There is probably no better way to introduce Prolog than to show some
+examples. But first, a few important notes:
+</p>
+<ul>
+<li>Prolog programs have two parts: a database (of facts and rules),
+    and an interactive &ldquo;query&rdquo; tool; the database must be typed into a
+    file.
+
+</li>
+<li>Prolog databases are &ldquo;consulted&rdquo; (loaded), and then the query tool
+    is used to &ldquo;make queries&rdquo; (ask questions) about the database.
+
+</li>
+<li>How queries are answered is generally beyond the control of the
+    programmer; Prolog uses a depth-first search to figure out how to
+    answer queries; this is (generally) non-negotiable.
+
+</li>
+<li>&ldquo;Programs&rdquo; written in Prolog are &ldquo;executed&rdquo; by performing queries.
+</li>
+</ul>
+
+
+<p>
+Let&rsquo;s make a database by creating some facts:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">parent</span>(tom, liz).
+<span style="color: #0000ff;">parent</span>(bob, ann).
+<span style="color: #0000ff;">parent</span>(bob, pat).
+<span style="color: #0000ff;">parent</span>(pat, jim).
+
+<span style="color: #0000ff;">female</span>(pam).
+<span style="color: #0000ff;">male</span>(tom).
+<span style="color: #0000ff;">male</span>(bob).
+<span style="color: #0000ff;">female</span>(liz).
+<span style="color: #0000ff;">female</span>(pat).
+<span style="color: #0000ff;">female</span>(ann).
+<span style="color: #0000ff;">male</span>(jim).
+</pre>
+
+
+<p>
+We type that into a file, maybe named <code>family.pl</code>, and &ldquo;consult&rdquo; the
+file in the query tool.
+</p>
+<p>
+Now what? Well, we can ask questions:
+</p>
+
+
+
+<pre class="src src-prolog">?- female(pam).
+true.
+</pre>
+
+
+<p>
+Ok, it&rsquo;s true that <code>pam</code> is a female.
+</p>
+
+
+
+<pre class="src src-prolog">?- parent(pat, ann).
+false.
+</pre>
+
+
+<p>
+Right, <code>pat</code> is not <code>ann</code>&rsquo;s parent.
+</p>
+<p>
+Now let&rsquo;s use variables. Variables always start with capital
+letters. Objects (like <code>pam</code>) must not.
+</p>
+
+
+
+<pre class="src src-prolog">?- parent(<span style="color: #a0522d;">X</span>, ann).
+<span style="color: #a0522d;">X</span> = bob.
+</pre>
+
+
+<p>
+So Prolog has found an assignment for <code>X</code> that makes the statement
+true. We call <code>parent</code> a predicate (a 2-ary predicate because it
+accepts two inputs), and we always write queries by first stating a
+predicate.
+</p>
+<p>
+Let&rsquo;s ask, &ldquo;Who are all the parents?&rdquo;
+</p>
+
+
+
+<pre class="src src-prolog">?- parent(<span style="color: #a0522d;">P</span>, <span style="color: #a0522d;">C</span>).
+<span style="color: #a0522d;">P</span> = tom,
+<span style="color: #a0522d;">C</span> = liz <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">P</span> = bob,
+<span style="color: #a0522d;">C</span> = ann <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">P</span> = bob,
+<span style="color: #a0522d;">C</span> = pat <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">P</span> = pat,
+<span style="color: #a0522d;">C</span> = jim.
+</pre>
+
+
+<p>
+(I typed the <code>;</code> &mdash; we type that to get the next answer.)
+</p>
+<p>
+If I don&rsquo;t actually care who the children are, I can replace <code>C</code> with
+<code>_</code> like so:
+</p>
+
+
+
+<pre class="src src-prolog">?- parent(<span style="color: #a0522d;">P</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #a0522d;">P</span> = tom <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">P</span> = bob <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">P</span> = bob <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">P</span> = pat.
+</pre>
+
+
+<p>
+We get <code>bob</code> twice because he&rsquo;s the parent of two people.
+</p>
+<p>
+Now let&rsquo;s ask, &ldquo;Who are the female parents?&rdquo;
+</p>
+
+
+
+<pre class="src src-prolog">?- parent(<span style="color: #a0522d;">P</span>, <span style="color: #a0522d;">_</span>), female(<span style="color: #a0522d;">P</span>).
+<span style="color: #a0522d;">P</span> = pat.
+</pre>
+
+
+<p>
+The comma means &ldquo;AND.&rdquo; So the query requires that <code>P</code> is a parent and
+a female.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Defining complex predicates (rules)</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+The predicates shown above (<code>parent</code>, <code>male</code>, and <code>female</code>) are always
+true. They are called &ldquo;facts.&rdquo;
+</p>
+<p>
+A &ldquo;rule,&rdquo; instead, is true only when some conditions are met. These
+conditions look like the last query above: they typically require
+several predicates to be true. The last query above is basically what
+defines a &ldquo;mother.&rdquo; Let&rsquo;s make a rule (in our database file,
+<code>family.pl</code>):
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">mother</span>(<span style="color: #a0522d;">X</span>) :- parent(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">_</span>), female(<span style="color: #a0522d;">X</span>).
+</pre>
+
+
+<p>
+&ldquo;Consult&rdquo; the database again, and run these queries:
+</p>
+
+
+
+<pre class="src src-prolog">?- mother(pat).
+true.
+
+?- mother(jim).
+false.
+
+?- mother(<span style="color: #a0522d;">X</span>).
+<span style="color: #a0522d;">X</span> = pat.
+</pre>
+
+
+<p>
+Now for fathers. In the database, we add:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">father</span>(<span style="color: #a0522d;">X</span>) :- parent(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">_</span>), male(<span style="color: #a0522d;">X</span>).
+</pre>
+
+
+<p>
+And here is a query:
+</p>
+
+
+
+<pre class="src src-prolog">?- father(<span style="color: #a0522d;">X</span>).
+<span style="color: #a0522d;">X</span> = tom <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = bob <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = bob <span style="color: #a020f0;">;</span>
+false.
+</pre>
+
+
+<p>
+Why the <code>false</code> at the end? The <code>;</code> basically means &ldquo;throw away the
+answer you just gave, and try again.&rdquo; Prolog finds a parent <code>X</code>
+(probably <code>pat</code>), but then that <code>X</code> does not satisfy the second part
+of the <code>father</code> rule, which is written <code>male(X)</code>, so the answer is
+<code>false</code> for that <code>X</code>.
+</p>
+<p>
+Notice that <code>pat</code> is the parent of <code>jim</code> and <code>bob</code> is the parent of
+<code>pat</code>. That makes <code>bob</code> a grandparent. Let&rsquo;s write a query to that
+effect:
+</p>
+
+
+
+<pre class="src src-prolog">?- parent(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>), parent(<span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #a0522d;">X</span> = bob,
+<span style="color: #a0522d;">Y</span> = pat.
+</pre>
+
+
+<p>
+See? <code>bob</code> is a grandparent. Let&rsquo;s make a rule:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">grandparent</span>(<span style="color: #a0522d;">X</span>) :- parent(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>), parent(<span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">_</span>).
+</pre>
+
+
+<p>
+And here are two queries:
+</p>
+
+
+
+<pre class="src src-prolog">?- grandparent(bob).
+true.
+
+?- grandparent(jim).
+false.
+</pre>
+
+
+<p>
+Let&rsquo;s try defining the sister relationship:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">sister</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>) :- parent(<span style="color: #a0522d;">Z</span>, <span style="color: #a0522d;">X</span>), parent(<span style="color: #a0522d;">Z</span>, <span style="color: #a0522d;">Y</span>), female(<span style="color: #a0522d;">X</span>), female(<span style="color: #a0522d;">Y</span>).
+</pre>
+
+
+<p>
+And some queries:
+</p>
+
+
+
+<pre class="src src-prolog">?- sister(ann, pat).
+true.
+
+?- sister(bob, pat).
+false.
+
+?- sister(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>).
+<span style="color: #a0522d;">X</span> = <span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">Y</span> = liz <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = <span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">Y</span> = ann <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = ann,
+<span style="color: #a0522d;">Y</span> = pat <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = pat,
+<span style="color: #a0522d;">Y</span> = ann <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = <span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">Y</span> = pat <span style="color: #a020f0;">;</span>
+false.
+</pre>
+
+
+<p>
+What does <code>X = Y, Y = liz</code> mean? It means <code>liz</code> is, apparently, her
+own sister:
+</p>
+
+
+
+<pre class="src src-prolog">?- sister(liz, liz).
+true.
+</pre>
+
+
+<p>
+Let&rsquo;s prevent that by adding another clause to the <code>sister</code> predicate
+(<code>\=</code> means &ldquo;not equal&rdquo;):
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">sister</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>) :- parent(<span style="color: #a0522d;">Z</span>, <span style="color: #a0522d;">X</span>), parent(<span style="color: #a0522d;">Z</span>, <span style="color: #a0522d;">Y</span>), female(<span style="color: #a0522d;">X</span>), female(<span style="color: #a0522d;">Y</span>), <span style="color: #a0522d;">X</span> \= <span style="color: #a0522d;">Y</span>.
+</pre>
+
+
+<p>
+Now, we get the correct behavior:
+</p>
+
+
+
+<pre class="src src-prolog">?- sister(liz, liz).
+false.
+
+?- sister(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>).
+<span style="color: #a0522d;">X</span> = ann,
+<span style="color: #a0522d;">Y</span> = pat <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = pat,
+<span style="color: #a0522d;">Y</span> = ann <span style="color: #a020f0;">;</span>
+false.
+</pre>
+
+
+<p>
+These rules are essentially the following logical statements:
+</p>
+
+
+$$(\forall x)(\exists y)((Parent(x, y) \wedge Female(x)) \rightarrow
+Mother(x))$$
+
+$$(\forall x)(\exists y)((Parent(x, y) \wedge Male(x)) \rightarrow
+Father(x))$$
+
+$$(\forall x)(\exists y)(\exists z)((Parent(x, y) \wedge Parent(y, z))
+\rightarrow Grandparent(x))$$
+
+$$(\forall x)(\forall y)(\exists z)((Parent(z, x) \wedge Parent(z, y)
+\wedge Female(x) \wedge Female(y) \wedge x \neq y)
+\rightarrow Sister(x, y))$$
+
+<p>
+Notice how they all have the same form. Essentially, the variables in
+the rule (<code>X</code> or both <code>X</code> and <code>Y</code> in each of these cases) have a
+\(\forall\) in front (because the rule is true for all variables <code>X</code> or
+<code>X</code> and <code>Y</code>, should certain conditions hold), and the variables inside
+the rule have \(\exists\) in front because you only need to find one
+value for each variable to make the rule true. Notice we have
+\(\rightarrow\) not \(\leftrightarrow\) because there may be more than one
+way to satisfy a rule. For example,
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">engineer</span>(<span style="color: #a0522d;">X</span>) :- mechanical_engineer(<span style="color: #a0522d;">X</span>).
+
+<span style="color: #0000ff;">engineer</span>(<span style="color: #a0522d;">X</span>) :- chemical_engineer(<span style="color: #a0522d;">X</span>).
+
+<span style="color: #0000ff;">engineer</span>(<span style="color: #a0522d;">X</span>) :- electrical_engineer(<span style="color: #a0522d;">X</span>).
+
+<span style="color: #b22222;">% </span><span style="color: #b22222;">etc. etc.</span>
+</pre>
+
+
+<p>
+This is how we do &ldquo;or&rdquo; in Prolog: we make new rules. In each rule, we
+use commas for &ldquo;and,&rdquo; but (generally) do not write &ldquo;or&rdquo; inside a rule.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Negation as failure</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Negation is a little bit funny in Prolog. That&rsquo;s because negation is a
+little bit funny in life. How does anyone prove a negative statement?
+&ldquo;I never read that book&rdquo; &mdash; how can that be proved?
+</p>
+<p>
+Let&rsquo;s say we want a predicate like &ldquo;this person is not a father.&rdquo;
+Well, we know how to figure out who <i>is</i> a father: we have the
+<code>father</code> rule. How can we define a &ldquo;is not a father&rdquo; rule?
+</p>
+<p>
+The first thing to note is Prolog does not allow us to use negatives
+in facts. We cannot write &ldquo;not-a-father(jim).&rdquo; or anything like
+that.
+</p>
+<p>
+Instead, to prove a negative in Prolog, we use a little trick: we
+assume everything stated in the database is <i>everything that exists</i>
+(this is the &ldquo;closed-world assumption&rdquo;). Anything not stated in the
+database does not exist. So, we can &ldquo;prove&rdquo; that <code>jim</code> is not a father
+by <i>failing</i> to prove that <code>jim</code> is a father (with our <code>father</code> rule).
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">not_a_father</span>(<span style="color: #a0522d;">X</span>) :- \+father(<span style="color: #a0522d;">X</span>).
+</pre>
+
+
+<p>
+Some queries:
+</p>
+
+
+
+<pre class="src src-prolog">?- not_a_father(bob).
+false.
+
+?- not_a_father(jim).
+true.
+</pre>
+
+
+<p>
+The <code>\+</code> is the &ldquo;negation operator.&rdquo; The idea is that <code>\+father(X)</code> is
+true whenever <code>father(X)</code> fails to be proved (recall that Prolog may
+search <i>every possibility</i> in order to prove something; thus, negation
+can be computationally expensive).
+</p>
+<p>
+We cannot use <code>\+</code> on the left-side of a rule or written as a fact
+because it makes no sense to say, &ldquo;this will fail to be proven
+always.&rdquo; Only positive statements can be on the left of a rule or
+written as a fact.
+</p>
+<p>
+This connection between &ldquo;failing to prove&rdquo; and &ldquo;negation&rdquo; is called
+&ldquo;negation as failure.&rdquo; Negation as failure means, &ldquo;proving the
+negation of something is equivalent to failing to prove that
+something&rdquo; and depends on a closed-world assumption.
+</p>
+<blockquote>
+
+<p><b>negation-as-failure</b> <i>Also</i> <b>negation-by-failure</b> <i>n.</i> <i>Logic programming</i> <b>1</b> The reasonable assumption that <i>P</i> is false if one
+has failed to prove that <i>P</i> is true. <b>2</b> The unreasonable assumption
+that <i>P</i> is false if others have failed to prove that <i>P</i> is true. <b>3</b>
+<i>Drugs</i> The ineffectiveness of the &ldquo;Just Say No!&rdquo; campaign. &mdash; <i>The computer contradictionary</i>
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Lists in Prolog</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Besides atoms (<code>ann</code>, <code>pat</code>, <code>bob</code>, etc.) we can create lists. Let&rsquo;s
+make a simple predicate that says whether or not something is at the
+head (front) of a list:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">head</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
+</pre>
+
+
+<p>
+The code <code>[X|_]</code> means there is a list that starts with <code>X</code> and the
+rest (after the <code>|</code>) I don&rsquo;t care about (hence the <code>_</code>). Here are some
+uses of this predicate:
+</p>
+
+
+
+<pre class="src src-prolog">?- head(a, <span style="color: #a020f0;">[</span>a, b, c<span style="color: #a020f0;">]</span>).
+true.
+
+?- head(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span>a, b, c<span style="color: #a020f0;">]</span>).
+<span style="color: #a0522d;">X</span> = a.
+
+?- head(a, <span style="color: #a0522d;">X</span>).
+<span style="color: #a0522d;">X</span> = <span style="color: #a020f0;">[</span>a<span style="color: #a020f0;">|</span><span style="color: #a0522d;">_G228</span><span style="color: #a020f0;">]</span>.
+</pre>
+
+
+<p>
+The <code>_G228</code> is a variable that Prolog created to represent the rest of
+the list; it has made no commitment about what <code>_G228</code> is, hence it
+can only describe it as variable <code>_G228</code>.
+</p>
+<p>
+Predicates can be recursive, which is exactly what is needed for the
+membership predicate:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #b22222;">% </span><span style="color: #b22222;">X is a member of a list if the list only has the element X in it</span>
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">% </span><span style="color: #b22222;">X is a member of a list if the list starts with X</span>
+<span style="color: #b22222;">% </span><span style="color: #b22222;">(technically, the above statement is not needed; this</span>
+<span style="color: #b22222;">% </span><span style="color: #b22222;">statement suffices)</span>
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">% </span><span style="color: #b22222;">Finally, X is a member of a list if it's a member of</span>
+<span style="color: #b22222;">% </span><span style="color: #b22222;">the tail of the list</span>
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Tail</span><span style="color: #a020f0;">]</span>) :- member(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Tail</span>).
+</pre>
+
+
+<p>
+Example usage (I&rsquo;m typing <code>.</code> after some responses because I don&rsquo;t
+want other possible answers):
+</p>
+
+
+
+<pre class="src src-prolog">?- member(a, <span style="color: #a020f0;">[</span>a<span style="color: #a020f0;">]</span>).
+true .
+
+?- member(a, <span style="color: #a020f0;">[</span>a, b, c<span style="color: #a020f0;">]</span>).
+true .
+
+?- member(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span>a, b, c<span style="color: #a020f0;">]</span>).
+<span style="color: #a0522d;">X</span> = a <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = b <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = c .
+
+?- member(a, <span style="color: #a0522d;">X</span>).
+<span style="color: #a0522d;">X</span> = <span style="color: #a020f0;">[</span>a<span style="color: #a020f0;">|</span><span style="color: #a0522d;">_G231</span><span style="color: #a020f0;">]</span> <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_G230</span>, a<span style="color: #a020f0;">|</span><span style="color: #a0522d;">_G234</span><span style="color: #a020f0;">]</span> <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_G230</span>, <span style="color: #a0522d;">_G233</span>, a<span style="color: #a020f0;">|</span><span style="color: #a0522d;">_G237</span><span style="color: #a020f0;">]</span> <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_G230</span>, <span style="color: #a0522d;">_G233</span>, <span style="color: #a0522d;">_G236</span>, a<span style="color: #a020f0;">|</span><span style="color: #a0522d;">_G240</span><span style="color: #a020f0;">]</span> <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_G230</span>, <span style="color: #a0522d;">_G233</span>, <span style="color: #a0522d;">_G236</span>, <span style="color: #a0522d;">_G239</span>, a<span style="color: #a020f0;">|</span><span style="color: #a0522d;">_G243</span><span style="color: #a020f0;">]</span> .
+</pre>
+
+
+<p>
+In that last case, Prolog is <i>generating</i> lists that have <code>a</code> as a
+member somewhere. Pretty weird, huh? It&rsquo;s finding some way to make the
+predicate true.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Prolog for databases</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+Now we&rsquo;ll investigate using Prolog for representing and answering
+queries about data. Let&rsquo;s build a database of people and families. We
+want to say that certain people are born on certain dates, have jobs
+with particular incomes, are married, have children, etc.
+</p>
+<p>
+We&rsquo;ll start with a predicate, <code>family</code>, that says a family is made up
+of an ID (a number), two parents, and zero-or-more children (a
+list). Each person has a first name and last name, birth date, and is
+either unemployed or has a job with a particular salary.
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(10392,
+       person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
+       person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
+       <span style="color: #b22222;">% here are the children...</span>
+       <span style="color: #a020f0;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+        person(jim, fox, born(1, june, 1986), unemployed),
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #a020f0;">]</span>).
+
+<span style="color: #0000ff;">family</span>(38463, 
+       person(susan, rothchild, born(13, september, 1972), works(osu, 75000)),
+       person(jess, rothchild, born(20, july, 1975), works(nationwide, 123500)),
+       <span style="color: #b22222;">% here are the children...</span>
+       <span style="color: #a020f0;">[</span>person(ace, rothchild, born(2, january, 2010), unemployed)<span style="color: #a020f0;">]</span>).
+</pre>
+
+
+<p>
+There are two families. Note that <code>person</code> is not a predicate, it&rsquo;s
+just a way of writing data. We have no way of asking <code>person(X, Y, ...)</code> because it&rsquo;s not a predicate. To access person data, we have to
+use the <code>family</code> predicate. Here are some examples:
+</p>
+
+
+
+<pre class="src src-prolog">?- family(38463, <span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">Z</span>).
+<span style="color: #a0522d;">X</span> = person(susan, rothchild, born(13, september, 1972), works(osu, 75000)),
+<span style="color: #a0522d;">Y</span> = person(jess, rothchild, born(20, july, 1975), works(nationwide, 123500)),
+<span style="color: #a0522d;">Z</span> = <span style="color: #a020f0;">[</span>person(ace, rothchild, born(2, january, 2010), unemployed)<span style="color: #a020f0;">]</span>.
+
+?- family(38463, person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #a0522d;">FirstName</span> = susan,
+<span style="color: #a0522d;">LastName</span> = rothchild.
+
+?- family(<span style="color: #a0522d;">ID</span>, person(susan, rothchild, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #a0522d;">ID</span> = 38463.
+</pre>
+
+
+<p>
+Using this <code>family</code> predicate, we just put a variable in a location
+that we want to retrieve information about (such as family ID or a
+first name / last name of a person), and put <code>_</code> for all the slots we
+don&rsquo;t care about.
+</p>
+<p>
+Now let&rsquo;s make it a little more interesting. Here is a <code>married</code>
+predicate that says if two people are married:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">married</span>(<span style="color: #a0522d;">FirstName1</span>, <span style="color: #a0522d;">LastName1</span>, <span style="color: #a0522d;">FirstName2</span>, <span style="color: #a0522d;">LastName2</span>) :-
+    family(<span style="color: #a0522d;">_</span>, person(<span style="color: #a0522d;">FirstName1</span>, <span style="color: #a0522d;">LastName1</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>),
+           person(<span style="color: #a0522d;">FirstName2</span>, <span style="color: #a0522d;">LastName2</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>).
+
+<span style="color: #0000ff;">married</span>(<span style="color: #a0522d;">FirstName1</span>, <span style="color: #a0522d;">LastName1</span>, <span style="color: #a0522d;">FirstName2</span>, <span style="color: #a0522d;">LastName2</span>) :-
+    family(<span style="color: #a0522d;">_</span>, person(<span style="color: #a0522d;">FirstName2</span>, <span style="color: #a0522d;">LastName2</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>),
+           person(<span style="color: #a0522d;">FirstName1</span>, <span style="color: #a0522d;">LastName1</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>).
+</pre>
+
+
+<p>
+And its use:
+</p>
+
+
+
+<pre class="src src-prolog">?- married(tom, fox, ann, fox).
+true .
+
+?- married(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>, ann, fox).
+<span style="color: #a0522d;">X</span> = tom,
+<span style="color: #a0522d;">Y</span> = fox .
+
+?- married(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">A</span>, <span style="color: #a0522d;">B</span>).
+<span style="color: #a0522d;">X</span> = tom,
+<span style="color: #a0522d;">Y</span> = fox,
+<span style="color: #a0522d;">A</span> = ann,
+<span style="color: #a0522d;">B</span> = fox <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = susan,
+<span style="color: #a0522d;">Y</span> = rothchild,
+<span style="color: #a0522d;">A</span> = jess,
+<span style="color: #a0522d;">B</span> = rothchild .
+</pre>
+
+
+<p>
+Here is a predicate for calculating household income. We can calculate
+(simple math) using the <code>is</code> keyword:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">householdIncome</span>(<span style="color: #a0522d;">ID</span>, <span style="color: #a0522d;">Income</span>) :-
+    family(<span style="color: #a0522d;">ID</span>, person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, works(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Income1</span>)),
+           person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, works(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Income2</span>)), <span style="color: #a0522d;">_</span>),
+    <span style="color: #a0522d;">Income</span> is <span style="color: #a0522d;">Income1</span> + <span style="color: #a0522d;">Income2</span>.
+</pre>
+
+
+<p>
+And its use:
+</p>
+
+
+
+<pre class="src src-prolog">?- householdIncome(38463, <span style="color: #a0522d;">X</span>).
+<span style="color: #a0522d;">X</span> = 198500.
+
+?- householdIncome(<span style="color: #a0522d;">X</span>, 198500).
+<span style="color: #a0522d;">X</span> = 38463.
+
+?- householdIncome(<span style="color: #a0522d;">X</span>, 999).
+false.
+
+?- householdIncome(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>).
+<span style="color: #a0522d;">X</span> = 10392,
+<span style="color: #a0522d;">Y</span> = 217000 <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = 38463,
+<span style="color: #a0522d;">Y</span> = 198500.
+</pre>
+
+
+<p>
+To facilitate further queries, we&rsquo;ll create an <code>exists</code> predicate that
+we can use to retrieve details about a person. It just pulls person
+information out of the various places it may appear in a <code>family</code>
+fact.
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Children</span>), member(<span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">Children</span>).
+</pre>
+
+
+<p>
+We can use it like so:
+</p>
+
+
+
+<pre class="src src-prolog">?- exists(<span style="color: #a0522d;">X</span>).
+<span style="color: #a0522d;">X</span> = person(tom, fox, born(7, may, 1960), works(cnn, 152000)) <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = person(susan, rothchild, born(13, september, 1972), works(osu, 75000)) <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = person(ann, fox, born(19, april, 1961), works(nyu, 65000)) <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = person(jess, rothchild, born(20, july, 1975), works(nationwide, 123500)) <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = person(pat, fox, born(5, october, 1983), unemployed) <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = person(jim, fox, born(1, june, 1986), unemployed) <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = person(amy, fox, born(17, december, 1990), unemployed) <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = person(ace, rothchild, born(2, january, 2010), unemployed).
+
+?- exists(person(<span style="color: #a0522d;">X</span>, fox, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>)).
+<span style="color: #a0522d;">X</span> = tom <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = ann <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = pat <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = jim <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">X</span> = amy .
+
+?- exists(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, 1972), <span style="color: #a0522d;">_</span>)).
+<span style="color: #a0522d;">FirstName</span> = susan,
+<span style="color: #a0522d;">LastName</span> = rothchild .
+
+?- exists(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, <span style="color: #a0522d;">_</span>, unemployed)).
+<span style="color: #a0522d;">FirstName</span> = pat,
+<span style="color: #a0522d;">LastName</span> = fox <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">FirstName</span> = jim,
+<span style="color: #a0522d;">LastName</span> = fox <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">FirstName</span> = amy,
+<span style="color: #a0522d;">LastName</span> = fox <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">FirstName</span> = ace,
+<span style="color: #a0522d;">LastName</span> = rothchild.
+</pre>
+
+
+<p>
+Let&rsquo;s get a little more sophisticated. Here is an interesting query:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #b22222;">% </span><span style="color: #b22222;">Find all people born after 1980 who do not work at OSU</span>
+
+?- exists(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">Job</span>)),
+      <span style="color: #a0522d;">Year</span> &gt; 1980, <span style="color: #a0522d;">Job</span> \= osu.
+
+<span style="color: #a0522d;">FirstName</span> = pat,
+<span style="color: #a0522d;">LastName</span> = fox,
+<span style="color: #a0522d;">Year</span> = 1983,
+<span style="color: #a0522d;">Job</span> = unemployed <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">FirstName</span> = jim,
+<span style="color: #a0522d;">LastName</span> = fox,
+<span style="color: #a0522d;">Year</span> = 1986,
+<span style="color: #a0522d;">Job</span> = unemployed <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">FirstName</span> = amy,
+<span style="color: #a0522d;">LastName</span> = fox,
+<span style="color: #a0522d;">Year</span> = 1990,
+<span style="color: #a0522d;">Job</span> = unemployed <span style="color: #a020f0;">;</span>
+<span style="color: #a0522d;">FirstName</span> = ace,
+<span style="color: #a0522d;">LastName</span> = rothchild,
+<span style="color: #a0522d;">Year</span> = 2010,
+<span style="color: #a0522d;">Job</span> = unemployed.
+</pre>
+
+
+<p>
+Let&rsquo;s add a <code>householdSize</code> predicate. It &ldquo;counts&rdquo; the number of
+children and adds 2 (for the parents):
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">householdSize</span>(<span style="color: #a0522d;">ID</span>, <span style="color: #a0522d;">Size</span>) :-
+    family(<span style="color: #a0522d;">ID</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Children</span>),
+    length(<span style="color: #a0522d;">Children</span>, <span style="color: #a0522d;">ChildrenCount</span>),
+    <span style="color: #a0522d;">Size</span> is 2 + <span style="color: #a0522d;">ChildrenCount</span>.
+</pre>
+
+
+<p>
+E.g.,
+</p>
+
+
+
+<pre class="src src-prolog">?- householdSize(38463, <span style="color: #a0522d;">Size</span>).
+<span style="color: #a0522d;">Size</span> = 3.
+
+?- householdSize(<span style="color: #a0522d;">X</span>, 5).
+<span style="color: #a0522d;">X</span> = 10392 .
+
+?- householdSize(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Size</span>), <span style="color: #a0522d;">Size</span> &gt; 3.
+<span style="color: #a0522d;">X</span> = 10392,
+<span style="color: #a0522d;">Size</span> = 5 .
+</pre>
+
+
+<p>
+We can use an interesting built-in predicate, <code>findall</code>, that finds a
+list of objects that match some &ldquo;goal.&rdquo; Here is its use in a query:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #b22222;">% </span><span style="color: #b22222;">First part of findall is what to collect,</span>
+<span style="color: #b22222;">% </span><span style="color: #b22222;">second part is the </span><span style="color: #b22222;">"goal"</span><span style="color: #b22222;"> (a predicate),</span>
+<span style="color: #b22222;">% </span><span style="color: #b22222;">third part is the name of the resulting list</span>
+?- findall(<span style="color: #a0522d;">FirstName</span>, exists(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>)), <span style="color: #a0522d;">Result</span>).
+<span style="color: #a0522d;">Result</span> = <span style="color: #a020f0;">[</span>tom, susan, ann, jess, pat, jim, amy, ace<span style="color: #a020f0;">]</span>.
+</pre>
+
+
+<p>
+Of course, we can count the list:
+</p>
+
+
+
+<pre class="src src-prolog">?- findall(<span style="color: #a0522d;">FirstName</span>, exists(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>)), <span style="color: #a0522d;">Result</span>),
+       length(<span style="color: #a0522d;">Result</span>, <span style="color: #a0522d;">N</span>).
+<span style="color: #a0522d;">Result</span> = <span style="color: #a020f0;">[</span>tom, susan, ann, jess, pat, jim, amy, ace<span style="color: #a020f0;">]</span>,
+<span style="color: #a0522d;">N</span> = 8.
+</pre>
+
+
+<p>
+If we get a list of numbers, we can sum or average them. We&rsquo;ll need to
+load a Prolog library, however. Here is some code in a database file:
+</p>
+
+
+
+<pre class="src src-prolog">:- <span style="color: #483d8b;">use_module</span>(library(lists)). <span style="color: #b22222;">% load lists library for sumlist predicate</span>
+
+<span style="color: #0000ff;">average</span>(<span style="color: #a0522d;">List</span>, <span style="color: #a0522d;">Avg</span>) :-
+    sumlist(<span style="color: #a0522d;">List</span>, <span style="color: #a0522d;">Sum</span>),
+    length(<span style="color: #a0522d;">List</span>, <span style="color: #a0522d;">N</span>),
+    <span style="color: #a0522d;">Avg</span> is <span style="color: #a0522d;">Sum</span> / <span style="color: #a0522d;">N</span>.
+</pre>
+
+
+<p>
+Here is a use:
+</p>
+
+
+
+<pre class="src src-prolog">?- average(<span style="color: #a020f0;">[</span>1, 3, 4.2, 4.5<span style="color: #a020f0;">]</span>, <span style="color: #a0522d;">Avg</span>).
+<span style="color: #a0522d;">Avg</span> = 3.175.
+</pre>
+
+
+<p>
+Ok, now let&rsquo;s grab household incomes and average them. In query mode:
+</p>
+
+
+
+<pre class="src src-prolog">?- findall(<span style="color: #a0522d;">Income</span>, householdIncome(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Income</span>), <span style="color: #a0522d;">Result</span>), average(<span style="color: #a0522d;">Result</span>, <span style="color: #a0522d;">Avg</span>).
+<span style="color: #a0522d;">Result</span> = <span style="color: #a020f0;">[</span>217000, 198500<span style="color: #a020f0;">]</span>,
+<span style="color: #a0522d;">Avg</span> = 207750.
+</pre>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

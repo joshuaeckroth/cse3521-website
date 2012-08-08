@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Final guide</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Final guide"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:24:48 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Final guide</h1>
+
+<p>Answers on the bottom. Also, you can <b>bring a notecard</b> (5in x 7in
+max) with notes or whatnot.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Multi-agent systems</a>
+<ul>
+<li><a href="#sec-1-1">Ant intelligence</a></li>
+<li><a href="#sec-1-2">NetLogo</a></li>
+<li><a href="#sec-1-3">Prisoner&rsquo;s dilemma</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Learning</a>
+<ul>
+<li><a href="#sec-2-1">k-means clustering</a></li>
+<li><a href="#sec-2-2">k-nearest neighbor</a></li>
+<li><a href="#sec-2-3">Document classification</a></li>
+<li><a href="#sec-2-4">Probability and Bayesian methods</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">The &ldquo;Chinese room&rdquo; argument</a></li>
+<li><a href="#sec-4">Answers</a>
+<ul>
+<li><a href="#sec-4-1">Multi-agent systems</a>
+<ul>
+<li><a href="#sec-4-1-1">Ant intelligence</a></li>
+<li><a href="#sec-4-1-2">NetLogo</a></li>
+<li><a href="#sec-4-1-3">Prisoner&rsquo;s dilemma</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-2">Learning</a>
+<ul>
+<li><a href="#sec-4-2-1">k-means clustering</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-3">k-nearest neighbor</a></li>
+<li><a href="#sec-4-4">Document classification</a></li>
+<li><a href="#sec-4-5">Probability and Bayesian methods</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">The &ldquo;Chinese room&rdquo; argument</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Multi-agent systems</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+What are two principles for designing agent-based simulations?
+</p>
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1">Ant intelligence</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<p>
+Which of the following features are in the &ldquo;ant brood sorting&rdquo; model?
+</p>
+<ul>
+<li>Scent-following
+</li>
+<li>Random walks
+</li>
+<li>Always pick up an object if ant finds one
+</li>
+<li>Decide stochastically to drop an object if holding one
+</li>
+<li>Drop the object only when encountering another object (if holding
+    an object)
+</li>
+<li>Communicate directly with other ants
+</li>
+</ul>
+
+
+<p>
+(The question on the Final will ask about ant transport that you read
+for Homework 7.)
+</p>
+<p>
+Why is it important that the chemical ants leave behind when they are
+carrying food slowly evaporates?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2">NetLogo</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+<p>
+What is a &ldquo;turtle&rdquo; in NetLogo?
+</p>
+<p>
+What is a &ldquo;patch&rdquo; in NetLogo?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3">Prisoner&rsquo;s dilemma</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+<p>
+True or false? &ldquo;Defecting&rdquo; means confessing to the crime so that you
+get off the hook but your partner goes to jail.
+</p>
+<p>
+Describe the &ldquo;Jesus&rdquo; strategy.
+</p>
+<p>
+Describe the &ldquo;Lucifer&rdquo; strategy.
+</p>
+<p>
+Describe the &ldquo;Unforgiving&rdquo; strategy.
+</p>
+<p>
+Describe the &ldquo;Tit-for-tat&rdquo; a.k.a. &ldquo;Moses&rdquo; strategy. What is the first
+choice in this strategy? What are all future choices?
+</p>
+<p>
+Which of these three strategies generally performed best across random
+scenarios in the iterated prisoner&rsquo;s dilemma?
+</p>
+<p>
+If two &ldquo;Tit-for-tat&rdquo; strategies face each other in the iterated
+prisoner&rsquo;s dilemma, we will see behavior equivalent to which
+non-Tit-for-tat strategy or strategies facing each other?
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Learning</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Describe the difference between &ldquo;supervised&rdquo; and &ldquo;unsupervised&rdquo;
+learning.
+</p>
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">k-means clustering</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+k-means clustering is an unsupervised or supervised learning strategy?
+</p>
+<p>
+What does the choice of \(k\) represent?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">k-nearest neighbor</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<p>
+What does k-nearest neighbor allow us to do with a new, unknown data
+point?
+</p>
+<p>
+k-nearest neighbor is an unsupervised or supervised learning strategy?
+</p>
+<p>
+What does the choice of \(k\) represent?
+</p>
+<p>
+What problem may a very small value of \(k\) cause?
+</p>
+<p>
+What problem may a very large value of \(k\) cause?
+</p>
+<p>
+Is there one value for \(k\) that works best for nearly all data sets?
+If so, what is it?
+</p>
+<p>
+Give one benefit of k-nearest neighbor learning.
+</p>
+<p>
+Give one drawback of k-nearest neighbor learning.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3">Document classification</h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+<p>
+What is the goal of document classification?
+</p>
+<p>
+Define true positive (TP). Define false positive (FP). Define false
+negative (FN). Define precision (in terms of TP and/or FP and/or
+FN). Define recall (in terms of TP and/or FP and/or FN). Define
+F-score (in terms of precision and/or recall).
+</p>
+<p>
+Suppose we make our classification engine more cautious; that is, it
+is less likely overall to predict any category. Does precision go up
+or down or remain unchanged? Does recall go up or down or remain
+unchanged?
+</p>
+<p>
+If the true categories for a document are [Applications, Robots,
+Interfaces, Speech] and the predicted categories are [Applications,
+Games, Speech], what are the true positive, false positive, and false
+negative counts?
+</p>
+<p>
+If the true categories for document 1 are [Applications, Robots,
+Interfaces, Speech], for document 2 are [Games], for document 3 are
+[Ethics, Philosophy, Robots], and for document 4 are [Applications,
+Vision, ScienceFiction], then what are the precision, recall, and
+f-score if the predicted categories for document 1 are [Applications,
+Games, Speech], for document 2 are [Games], for document 3 are
+[MachineLearning, Vision], and for document 4 are [ScienceFiction]?
+</p>
+<p>
+Give a possible result of stemming each of the following words:
+&ldquo;linguistic,&rdquo; &ldquo;dog,&rdquo; &ldquo;jumping,&rdquo; &ldquo;philosophy.&rdquo;
+</p>
+<p>
+Describe a &ldquo;binary feature vector&rdquo; for a text document.
+</p>
+<p>
+Why do you suppose tf-idf feature vectors perform better (in terms of
+F-score) than, say, frequency count feature vectors?
+</p>
+<p>
+A common word (most documents have many occurrences of this word)
+would have a high or low tf-idf score?
+</p>
+<p>
+What is a centroid (in terms of document vectors)?
+</p>
+<p>
+What is one way a centroid approach to classification is better than
+k-nearest neighbor?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4">Probability and Bayesian methods</h3>
+<div class="outline-text-3" id="text-2-4">
+
+
+<p>
+Describe what \(P(A)\) means (in words).
+</p>
+<p>
+Describe what \(P(A,B)\) means (in words).
+</p>
+<p>
+Describe what \(P(A|B)\) means (in words).
+</p>
+<p>
+If events \(A\) and \(B\) are independent, and \(P(A) = 0.25\), \(P(B) =
+0.10\), what is \(P(A,B)\)? What is \(P(B,A)\)?
+</p>
+<p>
+Write Bayes&rsquo; theorem.
+</p>
+<p>
+Suppose I know that \(P(B|A)=0.1, P(A)=0.9, P(B)=0.25\), what is
+\(P(A|B)\)?
+</p>
+<p>
+What is the outcome of computing \(\arg\max X (P(x))\) where \(X\) is an
+event? (If \(\arg\max X (P(X))\) was a function, what would the output
+of the function be?) Describe in English.
+</p>
+<p>
+Suppose I know that \(P(B|A)=0.1, P(A)=0.9, P(B|C)=0.2, P(C)=0.8\), what
+is \(\arg\max X (P(X|B))\)?
+</p>
+<p>
+As described in the naïve Bayesian classification notes, what does
+\(d_i\) represent for some word \(i\)? What does \(d_{ci}\) represent for
+some word \(i\) and category \(c\)?
+</p>
+<p>
+Why do we use logarithms for naïve Bayesian classification
+calculations?
+</p>
+<p>
+What is the outcome of computing \(\arg\max x P(x)\) where \(x\) is an
+event? (If \(\arg\max x P(x)\) was a function, what would the output of
+the function be?) Describe in English.
+</p>
+<p>
+Give one benefit of naïve Bayesian classification (as compared to
+other classification methods like k-nearest neighbor).
+</p>
+<p>
+Give one drawback of naïve Bayesian classification (as compared to
+other classification methods like support vector machines).
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">The &ldquo;Chinese room&rdquo; argument</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+What is the essential goal of &ldquo;strong AI?&rdquo;
+</p>
+<p>
+What is the most critical assumption in the Chinese room argument?
+</p>
+<p>
+If you believe the Chinese room argument, can you also (reasonably)
+believe that passing the Turing test gives proof that a machine
+possesses a mind (i.e., can be said to truly understand things)?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Answers</h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1">Multi-agent systems</h3>
+<div class="outline-text-3" id="text-4-1">
+
+
+<p>
+What are two principles for designing agent-based simulations?
+</p>
+<p>
+Here are seven:
+</p>
+<ol>
+<li>agents not functions (not functional decomposition) 
+</li>
+<li>keep agents small in size 
+</li>
+<li>keep agents small in time (forgetful) 
+</li>
+<li>keep agents small in scope (local sensing and action) 
+</li>
+<li>decentralizd system control 
+</li>
+<li>support agent diversity 
+</li>
+<li>provide an entropy leak 
+</li>
+</ol>
+
+
+
+</div>
+
+<div id="outline-container-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1">Ant intelligence</h4>
+<div class="outline-text-4" id="text-4-1-1">
+
+
+<ul>
+<li><b>No</b>: Scent-following
+</li>
+<li><b>Yes</b>: Random walks
+</li>
+<li><b>No</b>: Always pick up an object if ant finds one
+</li>
+<li><b>Yes</b>: Decide stochastically to drop an object if holding one
+</li>
+<li><b>No</b>: Drop the object only when encountering another object (if
+    holding an object) &mdash; (every time step, regardless of whether
+    another object is encountered, determine whether to drop the
+    object if holding one)
+</li>
+<li><b>No</b>: Communicate directly with other ants
+</li>
+</ul>
+
+
+<p>
+Why is it important that the chemical ants leave behind when they are
+carrying food slowly evaporates?
+</p>
+<p>
+<b>The chemical must evaporate so that the ants do not continue trying to walk to a food source that no longer exists. The ants need to &ldquo;forget&rdquo; (one of the principles of agent design).</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-1-2" class="outline-4">
+<h4 id="sec-4-1-2">NetLogo</h4>
+<div class="outline-text-4" id="text-4-1-2">
+
+
+<p>
+What is a &ldquo;turtle&rdquo; in NetLogo?
+</p>
+<p>
+<b>A turtle is a single agent that acts independently of all other turtles (agents).</b>
+</p>
+<p>
+What is a &ldquo;patch&rdquo; in NetLogo?
+</p>
+<p>
+<b>A patch is a square on the map; the patch can have a color or other properties like a chemical. Patches do not move but they can have actions (such as changing one of their properties).</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-1-3" class="outline-4">
+<h4 id="sec-4-1-3">Prisoner&rsquo;s dilemma</h4>
+<div class="outline-text-4" id="text-4-1-3">
+
+
+<p>
+True or false? &ldquo;Defecting&rdquo; means confessing to the crime so that you
+get off the hook but your partner goes to jail. <b>True</b>
+</p>
+<p>
+Describe the &ldquo;Jesus&rdquo; strategy. <b>Always cooperate</b>
+</p>
+<p>
+Describe the &ldquo;Lucifer&rdquo; strategy. <b>Always defect</b>
+</p>
+<p>
+Describe the &ldquo;Unforgiving&rdquo; strategy. <b>Cooperate until the partner defects, and then defect forever after.</b>
+</p>
+<p>
+Describe the &ldquo;Tit-for-tat&rdquo; a.k.a. &ldquo;Moses&rdquo; strategy. What is the first
+choice in this strategy? <b>Tit-for-tat does the same action the partner did in the last time step; it just mirrors the partner. The first choice (if tit-for-tat goes first) is to cooperate.</b>
+</p>
+<p>
+Which of these three strategies generally performed best across random
+scenarios in the iterated prisoner&rsquo;s dilemma? <b>Tit-for-tat</b>
+</p>
+<p>
+If two &ldquo;Tit-for-tat&rdquo; strategies face each other in the iterated
+prisoner&rsquo;s dilemma, we will see behavior equivalent to which
+non-Tit-for-tat strategy or strategies facing each other? <b>Jesus strategies</b>
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2">Learning</h3>
+<div class="outline-text-3" id="text-4-2">
+
+
+<p>
+Describe the difference between &ldquo;supervised&rdquo; and &ldquo;unsupervised&rdquo;
+learning.
+</p>
+<p>
+<b>Supervised learning uses information about the truth when training. Unsupervised learning does not have the truth (ever) so obviously cannot use this information.</b>
+</p>
+
+</div>
+
+<div id="outline-container-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1">k-means clustering</h4>
+<div class="outline-text-4" id="text-4-2-1">
+
+
+<p>
+k-means clustering is an unsupervised or supervised learning strategy?
+<b>Unsupervised</b>
+</p>
+<p>
+What does the choice of \(k\) represent? <b>The number of clusters.</b>
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3">k-nearest neighbor</h3>
+<div class="outline-text-3" id="text-4-3">
+
+
+<p>
+What does k-nearest neighbor allow us to do with a new, unknown data
+point? <b>Determine its category (class, label, tag, etc.).</b>
+</p>
+<p>
+k-nearest neighbor is an unsupervised or supervised learning strategy?
+<b>Supervised</b>
+</p>
+<p>
+What does the choice of \(k\) represent? <b>The number of neighbors that get a &ldquo;vote&rdquo; during the classification stage.</b>
+</p>
+<p>
+What problem may a very small value of \(k\) cause? <b>Noise has too great an impact. The nearest neighbor will be chosen without considering the &ldquo;larger&rdquo; picture.</b>
+</p>
+<p>
+What problem may a very large value of \(k\) cause? <b>The more common category will be chosen more often than it should.</b>
+</p>
+<p>
+Is there one value for \(k\) that works best for nearly all data sets?
+If so, what is it? <b>There is not one best value; need to experiment with different values to find the best for your dataset.</b>
+</p>
+<p>
+Give one benefit of k-nearest neighbor learning. <b>It is a very simple algorithm and can work quite well in some cases.</b>
+</p>
+<p>
+Give one drawback of k-nearest neighbor learning. <b>It is very slow because it checks every item in the database. It also requires one to retain all the training examples in the database.</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-4" class="outline-3">
+<h3 id="sec-4-4">Document classification</h3>
+<div class="outline-text-3" id="text-4-4">
+
+
+<p>
+What is the goal of document classification? <b>Determine the category (class) or categories for a new document.</b>
+</p>
+<p>
+Define true positive (TP). Define false positive (FP). Define false
+negative (FN). Define precision (in terms of TP and/or FP and/or
+FN). Define recall (in terms of TP and/or FP and/or FN). Define
+F-score (in terms of precision and/or recall).
+</p>
+<p>
+<b>True positive (tp): chosen categories that are true categories.</b>
+</p>
+<p>
+<b>False positive (fp): chosen categories that are not true categories.</b>
+</p>
+<p>
+<b>False negatives (fn): true categories that are not chosen.</b>
+</p>
+<p>
+<b>Precision: \(tp/(tp+fp)\).</b>
+</p>
+<p>
+<b>Recall: \(tp/(tp+fn)\).</b>
+</p>
+<p>
+<b>F-score: \(2 * precision * recall / (precision + recall)\).</b>
+</p>
+<p>
+Suppose we make our classification engine more cautious; that is, it
+is less likely overall to predict any category. Does precision go up
+or down or remain unchanged? Does recall go up or down or remain
+unchanged? <b>Precision goes up because there are fewer \(fp\). Recall goes down because there are more \(fn\).</b>
+</p>
+<p>
+If the true categories for a document are [Applications, Robots,
+Interfaces, Speech] and the predicted categories are [Applications,
+Games, Speech], what are the true positive, false positive, and false
+negative counts? <b>TP: 2, FP: 1, FN: 2</b>
+</p>
+<p>
+If the true categories for document 1 are [Applications, Robots,
+Interfaces, Speech], for document 2 are [Games], for document 3 are
+[Ethics, Philosophy, Robots], and for document 4 are [Applications,
+Vision, ScienceFiction], then what are the precision, recall, and
+f-score if the predicted categories for document 1 are [Applications,
+Games, Speech], for document 2 are [Games], for document 3 are
+[MachineLearning, Vision], and for document 4 are [ScienceFiction]?
+</p>
+<p>
+<b>For doc 1: TP: 2, FP: 1, FN: 2.</b>
+</p>
+<p>
+<b>For doc 2: TP: 1, FP: 0, FN: 0.</b>
+</p>
+<p>
+<b>For doc 3: TP: 0, FP: 2, FN: 3.</b>
+</p>
+<p>
+<b>For doc 4: TP: 1, FP: 0, FN: 2.</b>
+</p>
+<p>
+<b>Sums: TP: 4, FP: 3, FN: 7.</b>
+</p>
+<p>
+<b>Thus, precision: \(4/(4+3)=0.57\), recall: \(4/(4+7)=0.36\), f-score:  \(2*0.57*0.36/(0.57+0.36)=0.44\).</b>
+</p>
+<p>
+Give a possible result of stemming each of the following words:
+&ldquo;linguistic,&rdquo; &ldquo;dog,&rdquo; &ldquo;jumping,&rdquo; &ldquo;philosophy.&rdquo; <b>Maybe: &ldquo;linguist&rdquo; &ldquo;dog&rdquo; &ldquo;jump&rdquo; &ldquo;philos&rdquo;. &ldquo;Dog&rdquo; won&rsquo;t be stemmed, for example.</b>
+</p>
+<p>
+Describe a &ldquo;binary feature vector&rdquo; for a text document. <b>Each unique word is a &ldquo;dimension,&rdquo; and the value for that dimension is 1 or 0. It is 1 if the word is present in the document, 0 otherwise.</b>
+</p>
+<p>
+Why do you suppose tf-idf feature vectors perform better (in terms of
+F-score) than, say, frequency count feature vectors? <b>The &ldquo;contribution&rdquo; of each word is considered rather than its count.  This matters because some common words, like &ldquo;the,&rdquo; don&rsquo;t contribute any information about the document&rsquo;s category. We can detect the contribution of a word by considering how many other docs have the same word.</b>
+</p>
+<p>
+A common word (most documents have many occurrences of this word)
+would have a high or low tf-idf score? <b>A low tf-idf score.</b>
+</p>
+<p>
+What is a centroid (in terms of document vectors)? <b>A vector that is the average of the vectors of all documents in some category.</b>
+</p>
+<p>
+What is one way a centroid approach to classification is better than
+k-nearest neighbor? <b>Only need to keep the centroids in memory, not every individual training document.</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-5" class="outline-3">
+<h3 id="sec-4-5">Probability and Bayesian methods</h3>
+<div class="outline-text-3" id="text-4-5">
+
+
+<p>
+Describe what \(P(A)\) means (in words). <b>The probability that some event \(A\) occurs.</b>
+</p>
+<p>
+Describe what \(P(A,B)\) means (in words). <b>The probability that two events \(A\) and \(B\) occur together.</b>
+</p>
+<p>
+Describe what \(P(A|B)\) means (in words). <b>The probability that some event \(A\) occurs given that we know or are assuming event \(B\) also occurs.</b>
+</p>
+<p>
+If events \(A\) and \(B\) are independent, and \(P(A) = 0.25\), \(P(B) =
+0.10\), what is \(P(A,B)\)? <b>$0.25 * 0.10 = 0.025$</b> What is \(P(B,A)\)?
+<b>Same.</b>
+</p>
+<p>
+Write Bayes&rsquo; theorem. <b>\(P(B|A) = P(A|B)P(B)/P(A)\) or equivalently \(P(A|B) = P(B|A)P(A)/P(B)\).</b>
+</p>
+<p>
+Suppose I know that \(P(B|A)=0.1, P(A)=0.9, P(B)=0.25\), what is
+\(P(A|B)\)? <b>\(P(A|B)=0.1*0.9/0.25=0.36\).</b>
+</p>
+<p>
+What is the outcome of computing \(\arg\max X (P(X))\) where \(X\) is an
+event? (If \(\arg\max X (P(x))\) was a function, what would the output
+of the function be?) Describe in English. <b>The outcome would be an event, not a probability.</b>
+</p>
+<p>
+Suppose I know that \(P(B|A)=0.1, P(A)=0.9, P(B|C)=0.2, P(C)=0.8\), what
+is \(\arg\max X (P(X|B))\)? <b>The answer is \(C\) because \(P(B|A)P(A) &lt; P(B|C)P(C)\).</b>
+</p>
+<p>
+As described in the naïve Bayesian classification notes, what does
+\(d_i\) represent for some word \(i\)? <b>\(d_i\) is the number of documents (in the whole database) that contain at least one occurrence of word \(i\).</b> What does \(d_{ci}\) represent for some word \(i\) and category \(c\)?
+<b>\(d_{ci}\) is the number of documents in category \(c\) that contain at least one occurrence of word \(i\).</b>
+</p>
+<p>
+Why do we use logarithms for naïve Bayesian classification
+calculations? <b>To avoid &ldquo;underflow&rdquo; with our numbers; after multiplying a lot of probabilities (one probability per word), we get very small values.</b>
+</p>
+<p>
+Give one benefit of naïve Bayesian classification (as compared to
+other classification methods like k-nearest neighbor). <b>It is fast.</b>
+</p>
+<p>
+Give one drawback of naïve Bayesian classification (as compared to
+other classification methods like support vector machines). <b>It is not always highly accurate.</b>
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">The &ldquo;Chinese room&rdquo; argument</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+What is the essential goal of &ldquo;strong AI?&rdquo; <b>Create a true &ldquo;mind,&rdquo; i.e., an intelligent thinking machine. It may even be conscious.</b>
+</p>
+<p>
+What is the most critical assumption in the Chinese room argument?
+<b>That the person in the room does not understand Chinese.</b>
+</p>
+<p>
+If you believe the Chinese room argument, can you also (reasonably)
+believe that passing the Turing test gives proof that a machine
+possesses a mind (i.e., can be said to truly understand things)? <b>No.</b>
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

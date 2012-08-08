@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Homework 7</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Homework 7"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:42 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Homework 7</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Task 1 (30 pts)</a></li>
+<li><a href="#sec-2">Task 2 (70 pts)</a></li>
+<li><a href="#sec-3">Extra credit 1 (10 pts)</a></li>
+<li><a href="#sec-4">Extra credit 2 (20 pts)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Task 1 (30 pts)</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Read/skim <a href="http://natcomp.liacs.nl/SWI/papers/cooperative.transport/cooperative.transport.by.ants.and.robots.pdf">Cooperative transport by ants and robots</a> (PDF) by Kube and
+Bonabeau (2000) (<a href="http://jmvidal.cse.sc.edu/lib/kube00a.html">full citation</a>). Answer the following questions:
+</p>
+<ol>
+<li>What is a suggested solution to the problem of many robots
+     communicating with each other?
+
+</li>
+<li>What are two problems with robot swarms?
+
+</li>
+<li>How does an ant decide that &ldquo;group transport&rdquo; is needed?
+
+</li>
+<li>How was the &ldquo;stagnation&rdquo; problem solved in experiments with
+     robots?
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Task 2 (70 pts)</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Modify the Shepherds model in NetLogo:
+</p>
+<ul>
+<li>Add a new kind of &ldquo;breed&rdquo; called a sheepdog. The sheepdogs will
+    run around dropping &ldquo;chemical&rdquo; (scent) which the sheep will avoid.
+
+</li>
+<li>Program the sheepdogs to move, much like the sheep do.
+
+</li>
+<li>Every time a sheepdog moves, it should leave chemical on the
+    &ldquo;patch&rdquo; (grid square) that it is currently on.
+
+</li>
+<li>This chemical will diffuse and evaporate. You&rsquo;ll want to look at
+    the Ants model in NetLogo and copy how the diffusion and
+    evaporation works there.
+
+</li>
+<li>Sheep avoid this chemical (they are scared of the
+    sheepdogs). Again, look at the Ants model; in that model, the ants
+    go towards the chemical. The sheep, on the other hand, should
+    avoid the chemical.
+</li>
+</ul>
+
+
+<p>
+Run some experiments by playing with the number of sheepdogs,
+diffusion and evaporation rates, etc. Be sure to add sliders to the
+interface to manipulate these parameters.
+</p>
+<p>
+Turn in your code (the <code>.nlogo</code> file). If you are not able to transfer
+it to Linux, email it to me.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Extra credit 1 (10 pts)</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Load the Wolf Sheep Predation model. Run a BehaviorSpace experiment
+(Tools menu, BehaviorSpace). The goal is to find conditions where the
+populations are stable. Set some parameter ranges and more than one
+repetition. Measure <code>count wolves</code> and <code>count sheep</code>. Be sure to add
+a &ldquo;Stop condition&rdquo; like <code>count turtles &gt; 5000</code> to avoid explosions of
+sheep. Also add a time limit like 3000. Create a spreadsheet of the
+results. Include this spreadsheet in your homework submission as well
+as a written summary of what you observed  (5-7 sentences).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Extra credit 2 (20 pts)</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Create a new strategy for the prisoner&rsquo;s dilemma model called PD Two
+Person Iterated. Find the code that starts <code>to custom-strategy</code> and
+modify it. Experiment with your new strategy and report on how well it
+works (a few sentences). Provide your new code in your report.
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

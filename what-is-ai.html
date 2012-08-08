@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>What is AI?</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="What is AI?"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:22 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">What is AI?</h1>
+
+<p>AI, as a <i>field</i>, has several different goals. The textbook breaks
+them down into four categories: artifacts that [act/think]
+[humanly/rationally]. In the first dimension, acting vs. thinking, the
+idea is that an artifact that acts a certain way will exhibit the
+relevant properties via its motion, its responses to questions, its
+appearance, etc. On the other hand, an artifact that only thinks a
+certain way must be studied at a deeper level: we would need to look
+at the internal structures and algorithms.
+</p>
+<p>
+Artifacts may act/think like humans or act/think rationally. The
+authors chose this division because humans do not always act or think
+rationally. An AI system that should act/think like a human should
+make human-like mistakes. On the other hand, an AI system that
+acts/thinks rationally should make the most rational or intelligent
+choices at every juncture, regardless of what humans would typically
+do in the same situations.
+</p>
+<p>
+The authors of the textbook decide that acting rationally is the most
+important framing of AI. They describe an &ldquo;intelligent agent&rdquo; as a
+system that responds to its environment, and changes it environment
+(by acting within it), in the most rational manner in order to achieve
+goals. We&rsquo;ll see in the <a href="./beyond-agents.html">Beyond &ldquo;intelligent agents&rdquo;</a> lecture notes that
+this viewpoint is somewhat limiting.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">The AI archetype</a>
+<ul>
+<li><a href="#sec-1-1">Responsiveness</a></li>
+<li><a href="#sec-1-2">Autonomy</a></li>
+<li><a href="#sec-1-3">Literal-mindedness</a></li>
+<li><a href="#sec-1-4">Presence</a></li>
+<li><a href="#sec-1-5">Electronics</a></li>
+<li><a href="#sec-1-6">Artificiality</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">The AI archetype</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+AI, as a <i>quality</i>, or a property of some artifact, or something that
+an artifact possesses, is a more provocative idea than AI as a
+field. When many people think about AI, they are thinking about
+artifacts that &ldquo;have&rdquo; AI.
+</p>
+<p>
+What does an artifact &ldquo;have&rdquo; when it has AI?
+</p>
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1">Responsiveness</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<p>
+A robot that does not respond to its environment is decidedly lacking
+any intelligence. Many AI researchers believe that an artifact cannot
+be considered intelligent if it does not respond to changes in its
+surroundings. This assumes that an intelligent action actually does
+depend on the state of one&rsquo;s surroundings.
+</p>
+<p>
+We find something troubling about an otherwise intelligent being
+acting (or refusing to act) without proper consideration of their
+environment. For example, schizophrenic patients with alogia or
+catatonia suffer from an apparent disconnect with their surroundings.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2">Autonomy</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+<p>
+Intelligent artifacts do not only take instructions from others (if
+they do at all), they also, to some degree or another, decide their
+actions on their own. The advanced robot archetype is fully
+autonomous; it asks for no instructions, and it rarely takes advice.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3">Literal-mindedness</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+<p>
+Artificial intelligence is generally believed to be significantly
+lacking cleverness or creativity. Machines &ldquo;just do what they are
+told.&rdquo; Even machines that &ldquo;learn&rdquo; are only able to learn what they are
+programmed to learn, no more, no less.
+</p>
+<p>
+This literalness is a source of major concern for many people who are
+unfamiliar with the actual workings of the robot. AI researchers are
+quite aware of how flexible a robot can be, assuming the researcher is
+able to continue updating the robot&rsquo;s programming. However, it seems
+that the popular understanding of AI is that a robot thinks about its
+world and thinks about our interactions with it under some kind of
+pathological literal-mindedness. Interestingly, we see the same
+feature in genies, who typically grant a literal interpretation of a
+wish.
+</p>
+<p>
+The allure of many robots and other AI systems in science fiction is
+grounded on literalness and the incommensurability of robot
+understanding and human understanding of the same situations. While
+humans often find reasons that rules may be broken, robots typically
+can make no sense of such exceptions. For example, Gort from <i>The Day the Earth Stood Still</i> is programmed to destroy humanity if/when
+humans decide to wage nuclear war with each other. No matter the
+reason for the war; Gort makes no exceptions:
+</p>
+<blockquote>
+
+<p>For our policemen, we created a race of robots&mdash;(indicating
+Gort)&mdash;Their function is to patrol the planets&mdash;in space ships like
+this one&mdash;and preserve the peace. [&hellip;] At the first sign of
+violence they act automatically against the aggressor. And the penalty
+for provoking their action is too terrible to risk. &mdash; Klaatu (the
+alien) speaking, who brought Gort; <i>The Day the Earth Stood Still</i>
+(1951)
+</p>
+</blockquote>
+
+
+<p>
+If exceptions were possible, the emotional impact of Gort&rsquo;s presence
+would vanish.
+</p>
+<p>
+HAL 9000 from <i>2001: A Space Odyssey</i>, likewise, sacrifices humans for
+the sake of long-term mission objectives. This feature of the AI archetype
+is perhaps the most psychologically impactful.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4">Presence</h3>
+<div class="outline-text-3" id="text-1-4">
+
+
+<p>
+AI, whether just a computer program or a fully-mobile robot, is
+generally believed to exist in some particular space and time. That
+is, the AI is generally believed to be &ldquo;present&rdquo; and embodied. You can
+ask it questions, turn it on or off, repair it when it breaks.
+</p>
+<p>
+However, true intelligence may not be a property of individuals but
+rather an emergent social or collective phenomenon. And AI systems may
+be diverse, spread across the internet or across many simple-minded
+micro-robots that communicate peer-to-peer. Presence is not
+necessarily a quality of AI systems.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-5" class="outline-3">
+<h3 id="sec-1-5">Electronics</h3>
+<div class="outline-text-3" id="text-1-5">
+
+
+<p>
+Although electronic and electro-mechanical systems are easy to create
+and control, they may not be the only way to create intelligent
+artifacts. Biological or even quantum systems may well be the future
+of AI. Perhaps our sophistication in designing physical and digital
+systems will yield insights about how to build biological or quantum
+intelligent systems. Or perhaps entirely new ideas must be brought to
+bear.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-6" class="outline-3">
+<h3 id="sec-1-6">Artificiality</h3>
+<div class="outline-text-3" id="text-1-6">
+
+
+<p>
+Robots are not humans. They are simulations, at best. Thus, typically,
+they are outside the purview of human rights, etc. Spielberg&rsquo;s film
+<i>A.I.</i> explores this issue (there, robots/androids are demolished in
+public stagings). However, whether a robot can become &ldquo;more than it
+is,&rdquo; i.e., more than just the creation of the watchmaker, is an open
+question. For a sophisticated and quite provocative take on this,
+consider listening to a reading of Baudrillard&rsquo;s <i>Le Xerox et l&rsquo;infini</i> (read in English) from People Like Us (<a href="http://www.peoplelikeus.org/2010/jean_baudrillard_le_xerox_et_linfini_free_download.html">website</a>; about 30
+minutes).
+</p>
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

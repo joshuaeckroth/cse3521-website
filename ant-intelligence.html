@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Ant intelligence</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Ant intelligence"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:24:59 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Ant intelligence</h1>
+
+<p>And, termite intelligence.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Building a termite nest</a></li>
+<li><a href="#sec-2">Ants finding food</a></li>
+<li><a href="#sec-3">Ants sorting things in a nest</a></li>
+<li><a href="#sec-4">Principles for designing agent-based solutions</a></li>
+<li><a href="#sec-5">Emergence (Radiolab, August 14, 2007)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Building a termite nest</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+How termites do it:
+</p>
+<ul>
+<li>use pheromones
+
+</li>
+<li>metabolize bodily waste, which contains pheromones; this waste is
+    what the mound is constructed of
+
+</li>
+<li>wander randomly, but prefer the direction of the strongest local
+    pheromone concentration
+
+</li>
+<li>at each step, decide stochastically whether to deposit the current
+    load of waste
+
+<ul>
+<li>the probability of deposit increases with the local pheromone
+      density and the amount of waste it is carrying
+
+</li>
+<li>a full termite will drop its waste even if there is no deposit
+      nearby
+
+</li>
+<li>a termite that senses very high local concentration of
+      pheromones will deposit whatever waste it is carrying (even a
+      small amount)
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Ants finding food</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+How ants do it:
+</p>
+<ul>
+<li>five rules
+
+</li>
+<li>avoid obstacles (ants will not aimlessly push against a wall)
+
+</li>
+<li>wander randomly, in the general direction of nearby pheromones
+
+<ul>
+<li>if no pheromones are sensed, execute Brownian motion (uniform
+      distribution of choices)
+
+</li>
+</ul>
+
+</li>
+<li>if holding food, drop pheromone at constant rate as it walks
+
+<ul>
+<li>maybe follow a &ldquo;nest beacon&rdquo;
+
+</li>
+</ul>
+
+</li>
+<li>if not holding food and finds food, pick it up
+
+</li>
+<li>if holding food and finds nest, drop food
+</li>
+</ul>
+
+
+<blockquote>
+
+<p>The initial path will not be straight, but the tendency of ants to
+wander even in the presence of pheromones will generate short-cuts
+across initial meanders. Because pheromone paths have some breadth,
+they tend to merge together into a trace that becomes straighter the
+more it is used.
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Ants sorting things in a nest</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+This model is described in the article <a href="http://ww.perada.eu/documents/articles-perspectives/go-to-the-ants-engineering-principles-from-natural-agent-systems.pdf">&ldquo;Go to the ant&rdquo;: Engineering principles from natural multi-agent systems</a> (PDF) by Parunak (1997).
+</p>
+<p>
+This is the description from the article:
+</p>
+<blockquote>
+
+<p><b>System Behavior</b> An ant hill houses different kinds of things,
+including larvae, eggs, cocoons, and food. The ant colony keeps these
+entities sorted by kind. For example, when an egg hatches, the larva
+does not stay with other eggs, but is moved to the area for
+larvae. Computer scientists have developed a number of algorithms for
+sorting things, but no ant in the ant hill is executing a sorting
+algorithm.
+</p>
+<p>
+<b>Responsibilities</b> The individual ant algorithm that yields
+system-level sorting behavior contains some behaviors similar to those
+in the path-planning problem.
+</p>
+<ol>
+<li>Wander randomly around the nest.
+
+</li>
+<li>Sense nearby objects, and maintain a short memory (about ten
+     steps) of what has been seen.
+
+</li>
+<li>If an ant is not carrying anything when it encounters an object,
+     decide stochastically whether or not to pick up the object. The
+     probability of picking up an object decreases if the ant has
+     recently encountered similar objects.
+
+<p>
+     In the emulation, the probability of picking up an object is <code>P =      (K+ /(K+ + F))^2</code> where <code>F</code> is the fraction of positions in
+     short-term memory occupied by objects of the same type as the
+     object sensed and <code>K+</code> is a constant. As <code>F</code> becomes small
+     compared with <code>K+</code>, the probability that the ant will pick up the
+     object approaches certainty.
+</p>
+</li>
+<li>If an ant is carrying something, at each time step decide
+   stochastically whether or not to drop it, where the probability of
+   dropping a carried object increases if the ant has recently
+   encountered similar items in the environment. In the emulation, <code>P    = (F / (K- + F))^2</code> where <code>F</code> is the fraction of positions in
+   short-term memory occupied by objects of the same type as the
+   object carried, and <code>K-</code> is another constant. As <code>F</code> becomes large
+   compared with <code>K-</code>, the probability that the carried object will be
+   put down approaches certainty.
+</li>
+</ol>
+
+
+<p>
+<b>Integration</b> As in path planning, the Brownian walk eventually brings
+the wandering ants to examine all objects in the nest. Even a random
+scattering of different items in the nest will yield local
+concentrations of similar items that stimulate ants to drop other
+similar items. As concentrations grow, they tend to retain current
+members and attract new ones. The stochastic nature of the pick-up and
+drop behaviors enables multiple concentrations to merge, since ants
+occasionally pick up items from one existing concentration and
+transport them to another.
+</p>
+<p>
+The put-down constant <code>K-</code> must be stronger than the pick-up constant
+<code>K+</code>, or else clusters will dissolve faster than they form. Typically,
+<code>K+</code> is about 1 and <code>K-</code> is about 3. The length of short-term memory
+and the length of the ant&rsquo;s step in each time period determine the
+radius within which the ant compares objects. If the memory is too
+long, the ant sees the entire nest as a single location, and sorting
+will not take place.
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Principles for designing agent-based solutions</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<ul>
+<li>agents not functions (not functional decomposition)
+
+</li>
+<li>keep agents small in size
+</li>
+</ul>
+
+
+<blockquote>
+
+<p>The motivation for this principle derives not from our theory of
+multi-agent systems, but from the experience of software engineers
+that the difficulty of designing, implementing, and launching
+computer-based systems increases exponentially with the size of the
+system. Small individual agents are easier to construct and understand
+than large monolithic systems, and the impact of the failure of any
+single agent will be minimal. In addition, a large population of
+agents gives the system a richer overall space of possible behaviors,
+thus providing for a wider scope of emergent behavior. Very roughly,
+the number of agents is a multiplicative factor in determining the
+implementation effort, but an exponent in determining the size of the
+overall system state space. The effort to code \(100\) agents with \(10\)
+behaviors each is on the order of \(100*10 = 10^3\), but the resulting
+state space is on the order of \(10^{100}\).
+</p>
+</blockquote>
+
+
+<ul>
+<li>keep agents small in time (forgetful)
+</li>
+</ul>
+
+
+<blockquote>
+
+<p>Naturally occurring agent systems can forget. Pheromones evaporate,
+and as a result obsolete paths leading to depleted food sources
+disappear rather than misleading members of the colony. The
+probability that a wasp will forage decreases as it successfully
+resists stimulation. Even the death of unsuccessful organisms in an
+ecosystem is an important mechanism for freeing up resources so that
+better adapted organisms can flourish.
+</p>
+</blockquote>
+
+
+<ul>
+<li>keep agents small in scope (local sensing and action)
+</li>
+</ul>
+
+
+<blockquote>
+
+<p>Software engineering offers another argument for local agent
+communications. [Dijkstra 1968] warned of the dangers of the Fortran
+GOTO statement, which gave the programmer the ability to jump from
+anywhere to anywhere in a program. This powerful tool led to tangled
+mazes of spaghetti code that were easy to break and almost impossible
+to correct and maintain. More disciplined structures proved to have
+the same expressive power, while supporting modularity and restricted
+interfaces that limited the propagation of faults. Global data
+reference has the same kind of engineering implications that global
+transfer of control does. In both cases, direct remote interactions
+are difficult for humans to understand, maintain, and control. In both
+cases, global effects can be obtained by propagation of local
+influences, much more robustly than by providing global influences.
+</p>
+</blockquote>
+
+
+<ul>
+<li>decentralizd system control
+
+<ul>
+<li>avoids single points of failure
+
+</li>
+<li>avoids performance bottlenecks
+
+</li>
+<li>can grow more
+
+</li>
+</ul>
+
+</li>
+<li>support agent diversity
+
+<ul>
+<li>diverse agents cover more of the environment and provide better
+      performance
+
+</li>
+</ul>
+
+</li>
+<li>provide an entropy leak
+</li>
+</ul>
+
+
+<blockquote>
+
+<p>Natural agent-based systems do organize themselves with striking
+efficiency. A common explanation is that a system can become more
+organized if energy is added to it from the outside (for example, by
+the metabolism of the food gathered by an insect hive). The addition
+of energy is necessary for self-organization, but hardly
+sufficient. Gasoline in construction equipment can erect a building,
+but the same gasoline in a terrorist&rsquo;s bomb can destroy it.
+</p>
+<p>
+In natural systems, agents can organize themselves at the macro level
+because their actions are coupled to a dissipative or disorganizing
+process at a micro level. The system can reduce entropy at the macro
+level by generating more than enough entropy at the micro level to pay
+its second-law debt. To adopt another metaphor, it provides an entropy
+leak to drain disorder away from the macro level (where useful work is
+done) to the micro level (where it won&rsquo;t interfere with the system&rsquo;s
+function).
+</p>
+</blockquote>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Emergence (Radiolab, August 14, 2007)</h2>
+<div class="outline-text-2" id="text-5">
+
+
+
+<div style="text-align: center">
+
+<embed
+flashvars="file=http://www.radiolab.org/audio/xspf/91500/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/91500/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab021805.mp3"
+quality="high" allowscriptaccess="always" wmode="transparent"
+src="http://www.radiolab.org/media/audioplayer/player5.swf"
+height="300" width="400"></embed><script
+type="text/javascript">(function(){var
+s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTimeout(s,10);};s();})();</script>
+
+<p>
+1 hour / <a href="http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab021805.mp3">Download MP3</a> / <a href="http://www.radiolab.org/2007/aug/14/">Radiolab website for this episode</a>
+</p>
+
+</div>
+
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

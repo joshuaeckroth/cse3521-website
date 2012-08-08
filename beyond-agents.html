@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Beyond intelligent agents</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Beyond intelligent agents"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:52 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Beyond intelligent agents</h1>
+
+<p>Our prototypical AI system in this class is a single intelligent
+agent. The agent acts alone. The agent has a knowledge base (facts
+about the world) and some algorithms to operate on that knowledge base
+(searching algorithms, for example).
+</p>
+<p>
+This &ldquo;intelligent agent&rdquo; metaphor becomes stretched when we look at
+certain other forms of intelligent systems.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Multi-agent systems</a></li>
+<li><a href="#sec-2">Emergent intelligence</a></li>
+<li><a href="#sec-3">Intelligence with almost no representation</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Multi-agent systems</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Some systems utilize a collection of communicating agents. Each agent
+typically has a specialization: some task that it performs better than
+other tasks. A group of communicating agents come together to solve
+complex problems, with each agent solving just a small part of the
+problem.
+</p>
+<p>
+The &ldquo;intelligent agent&rdquo; metaphor is stretched here because no single
+agent achieves the system&rsquo;s goal; no single agent possesses enough
+intelligence to do so. Designing a multi-agent system requires
+thinking both about each individual agent and how they come together.
+</p>
+<p>
+Marvin Minsky, a founder of the field of AI, believes that the mind
+takes this form. He calls his model the &ldquo;society of mind.&rdquo; In this
+model, the mind consists of many independent agents that each perform
+one small task (such as recognizing shapes, or responding to hot
+things, or retrieving a memory, or coordinating among other agents,
+etc.). Minsky was trying to develop a theory of <i>natural</i>
+intelligence, so an important feature of the model is that no single
+agent has a mind; each agent is too simplistic. Rather, the idea of
+the &ldquo;mind&rdquo; comes from the quick, widespread, and possibly chaotic
+interaction of the agents.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Emergent intelligence</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Minsky&rsquo;s &ldquo;society of mind&rdquo; model is an example of emergent
+intelligence. An even simpler, and demonstrably effective, form of
+emergent intelligence is ant and honey bee behavior. Each ant or bee
+is very simple. Each effectively performs a random walk until it comes
+upon some morsel of food. The ants do not even communicate the
+location of the discovery; rather, other ants (<i>randomly</i>) find
+themselves on the same path as a prior ant (paths are indicated by
+pheromones) and follow that path rather than continue their random
+walks. This second ant releases more pheromones (as they all do),
+which reinforces the path and increases the probability that another
+ant will follow it should another ant randomly discover it. Honey
+bees, on the other hand, communicate a small amount of information
+about their finding by performing the &ldquo;waggle dance.&rdquo; This dance
+communicates the quality of a flower and its direction and distance.
+</p>
+<p>
+Studied at an individual level, ants and honey bees are too simple to
+be effective models for AI systems. They have virtually no memory and
+little variation in their behaviors. However, when hundreds or
+thousands of ants or honey bees are brought together, an intelligent
+system emerges.
+</p>
+<p>
+We&rsquo;ll practice with <a href="./ant-intelligence.html">ant intelligence</a> and look at honey bee
+intelligence. Some modern AI applications that employ ant/bee
+intelligence include network routing, airplane routing, computer
+vision and pattern recognition, job scheduling, etc.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Intelligence with almost no representation</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Traditional AI systems are cathedral-like constructions, with lots of
+interconnected subsystems, complex rules for their interaction,
+libraries of knowledge and formal procedures for using such
+knowledge. This makes them somewhat brittle, since the
+interactions among subsystems are so sophisticated.
+</p>
+<p>
+However, Rodney Brooks has shown that an agent need not be intelligent
+in order to perform well in complex environments. Must like insects,
+his robots do not keep a library of knowledge and perform no search
+algorithms. They just <i>continually respond</i> to data obtained from
+their sensors. In a sense, all their knowledge about the world is kept
+in the world itself, not kept in the robot&rsquo;s mind. If the robot is
+designed to navigate towards the light, it does not try to keep an
+internal map of where it is and where the light is; rather, it just
+continually moves an inch towards whatever direction it currently
+senses the light.
+</p>
+<p>
+Brooks was a founder of iRobot, the company that created the Roomba
+and builds many military robots. Most of their robots do much more
+than seek light. By employing many fast, accurate sensors and a fast
+computation cycle, their (huge) robots can travel very quickly over
+very rough terrain while following a group of humans who direct the
+robot with radio signals.
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Prolog examples</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Prolog examples"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:32 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Prolog examples</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">8-puzzle</a></li>
+<li><a href="#sec-2">A maze &ldquo;game&rdquo;</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">8-puzzle</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Prolog does depth-first search natively. So, let&rsquo;s exploit that to
+solve the 8-puzzle problem.
+</p>
+<p>
+First, we define the goal:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">goal</span>(<span style="color: #a020f0;">[</span>1,2,3,
+      4,0,5,
+      6,7,8<span style="color: #a020f0;">]</span>).
+</pre>
+
+
+<p>
+Now, we define all the possible moves (a bit laboriously):
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #b22222;">%% </span><span style="color: #b22222;">From: http://www-module.cs.york.ac.uk/lpa/prac2009/prolog-lab-3.pdf</span>
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move left in the top row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,0,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span>0,<span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,0, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,0,<span style="color: #a0522d;">X2</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move left in the middle row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,0,<span style="color: #a0522d;">X6</span>,<span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, 0,<span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X6</span>,<span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,0,<span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,0,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move left in the bottom row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,0,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, 0,<span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,0<span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,0,<span style="color: #a0522d;">X8</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move right in the top row </span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span>0,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X2</span>,0,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,0,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X3</span>,0, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move right in the middle row </span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, 0,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X5</span>,0,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,0,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X6</span>,0, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move right in the bottom row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>,0,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>,<span style="color: #a0522d;">X8</span>,0,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>,<span style="color: #a0522d;">X7</span>,0,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>,<span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X9</span>,0<span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move up from the middle row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, 0,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span>0,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,0,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,0,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,0, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,0, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move up from the bottom row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,0,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,0,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,0<span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,0, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X6</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, 0,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, 0,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move up from the top row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span>0,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, 0,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,0,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,0,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,0, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,0, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+
+<span style="color: #b22222;">%% </span><span style="color: #b22222;">move down from the middle row</span>
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, 0,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X6</span>, 0,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,0,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X6</span>, <span style="color: #a0522d;">X7</span>,0,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">move</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,0, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,<span style="color: #a0522d;">X9</span><span style="color: #a020f0;">]</span>,
+     <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X1</span>,<span style="color: #a0522d;">X2</span>,<span style="color: #a0522d;">X3</span>, <span style="color: #a0522d;">X4</span>,<span style="color: #a0522d;">X5</span>,<span style="color: #a0522d;">X9</span>, <span style="color: #a0522d;">X7</span>,<span style="color: #a0522d;">X8</span>,0<span style="color: #a020f0;">]</span>).
+</pre>
+
+
+<p>
+Now we can define depth-first search. Since Prolog does this naturally
+(it searches for values of variables to make predicates true), we just
+need to specify what should happen if the goal is not immediately
+found (i.e., a move should be made).
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">dfsSimplest</span>(<span style="color: #a0522d;">S</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">S</span><span style="color: #a020f0;">]</span>) :- goal(<span style="color: #a0522d;">S</span>).
+<span style="color: #0000ff;">dfsSimplest</span>(<span style="color: #a0522d;">S</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">S</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Rest</span><span style="color: #a020f0;">]</span>) :- move(<span style="color: #a0522d;">S</span>, <span style="color: #a0522d;">S2</span>), dfsSimplest(<span style="color: #a0522d;">S2</span>, <span style="color: #a0522d;">Rest</span>).
+</pre>
+
+
+<p>
+Let&rsquo;s try it with an initial state that is one <i>left</i> move away from
+the goal.
+</p>
+
+
+
+<pre class="src src-prolog">?- dfsSimplest(<span style="color: #a020f0;">[</span>1,2,3, 0,4,5, 6,7,8<span style="color: #a020f0;">]</span>, <span style="color: #a0522d;">Path</span>).
+<span style="color: #a0522d;">Path</span> = <span style="color: #a020f0;">[[</span>1, 2, 3, 0, 4, 5, 6, 7<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>1, 2, 3, 4, 0, 5, 6<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]]</span> .
+</pre>
+
+
+<p>
+Ok, it found the right move (the path lists two boards, the initial
+and the goal).
+</p>
+<p>
+If we start with an initial board that is one <i>down</i> move away from
+the goal, &hellip;
+</p>
+
+
+
+<pre class="src src-prolog">?- dfs(<span style="color: #a020f0;">[</span>1,2,3, 4,7,5, 6,0,8<span style="color: #a020f0;">]</span>, <span style="color: #a0522d;">Path</span>).
+.... <span style="color: #0000ff;">get</span> a cup of coffee now?
+
+<span style="color: #a0522d;">ERROR</span>: <span style="color: #a0522d;">Out</span> of local stack
+</pre>
+
+
+<p>
+Prolog never found the answer. This is because it started with left
+moves, then more left moves, etc&hellip;. If we rearrange the <code>move</code>
+predicates so that the up-moves are first, the path is found
+immediately again.
+</p>
+<p>
+Apart from rearranging our move predicates, we can also avoid the
+problem of searching from the same states more than once. We need to
+keep track of &ldquo;checked&rdquo; states, so we&rsquo;ll add another parameter to our
+predicate:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">dfs</span>(<span style="color: #a0522d;">S</span>, <span style="color: #a0522d;">Path</span>, <span style="color: #a0522d;">Path</span>) :- goal(<span style="color: #a0522d;">S</span>).
+
+<span style="color: #0000ff;">dfs</span>(<span style="color: #a0522d;">S</span>, <span style="color: #a0522d;">Checked</span>, <span style="color: #a0522d;">Path</span>) :-
+    <span style="color: #b22222;">% try a move</span>
+    move(<span style="color: #a0522d;">S</span>, <span style="color: #a0522d;">S2</span>),
+    <span style="color: #b22222;">% ensure the resulting state is new</span>
+    \+member(<span style="color: #a0522d;">S2</span>, <span style="color: #a0522d;">Checked</span>),
+    <span style="color: #b22222;">% and that this state leads to the goal</span>
+    dfs(<span style="color: #a0522d;">S2</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">S2</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Checked</span><span style="color: #a020f0;">]</span>, <span style="color: #a0522d;">Path</span>).
+</pre>
+
+
+<p>
+Let&rsquo;s try it:
+</p>
+
+
+
+<pre class="src src-prolog">?- dfs(<span style="color: #a020f0;">[</span>1,2,3, 0,4,5, 6,7,8<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[]</span>, <span style="color: #a0522d;">Path</span>).
+<span style="color: #a0522d;">Path</span> = <span style="color: #a020f0;">[[</span>1, 2, 3, 4, 0, 5, 6, 7<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]]</span> .
+</pre>
+
+
+<p>
+Seems to work with the initial state just one <i>left</i> move from the
+goal.
+</p>
+<p>
+Now let&rsquo;s make an initial state on <i>up</i> move from the goal. Recall
+that naive DFS ran out of memory (because it continued checking from
+repeated states).
+</p>
+
+
+
+<pre class="src src-prolog">?- dfs(<span style="color: #a020f0;">[</span>1,2,3, 4,7,5, 6,0,8<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[]</span>, <span style="color: #a0522d;">Path</span>), length(<span style="color: #a0522d;">Path</span>, <span style="color: #a0522d;">N</span>).
+<span style="color: #a0522d;">Path</span> = <span style="color: #a020f0;">[[</span>1, 2, 3, 4, 0, 5, 6, 7<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>1, 2, 3, 0, 4, 5, 6<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>0, 2, 3, 1, 4, 5<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>2, 0, 3, 1, 4<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>2, 3, 0, 1<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>2, 3, 5<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>2, 3<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>2<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span>...<span style="color: #a020f0;">|</span>...<span style="color: #a020f0;">]|</span>...<span style="color: #a020f0;">]</span>,
+<span style="color: #a0522d;">N</span> = 23759 .
+</pre>
+
+
+<p>
+23,759 moves (in the <i>solution</i>), when only one move was needed. The
+order of predicates in the database can be of critical importance.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">A maze &ldquo;game&rdquo;</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+If you took my CSE 230 class, you&rsquo;ll remember building a maze
+game. Rooms were connected to other rooms, and players could walk
+through them. Each room had a description, and possibly even monsters
+that mocked you as you passed through.
+</p>
+<p>
+Anyway, building such a game in Prolog is trivial (save for the
+monsters). Let&rsquo;s start with some room descriptions:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">room</span>(garden, <span style="color: #8b2252;">'Garden'</span>, <span style="color: #8b2252;">'You are in the Garden. The trees and shrubs appear...'</span>).
+<span style="color: #0000ff;">room</span>(hallway, <span style="color: #8b2252;">'Hallway'</span>, <span style="color: #8b2252;">'You are in the Hallway. Dusty broken lamps and flower pots...'</span>).
+<span style="color: #0000ff;">room</span>(kitchen, <span style="color: #8b2252;">'Kitchen'</span>, <span style="color: #8b2252;">'You are in the kitchen. Knives, pots, pans, ...'</span>).
+<span style="color: #0000ff;">room</span>(library, <span style="color: #8b2252;">'Library'</span>, <span style="color: #8b2252;">'You are among many books in the Library...'</span>).
+<span style="color: #0000ff;">room</span>(lair, <span style="color: #8b2252;">'Lair'</span>, <span style="color: #8b2252;">'You have found an apparently quite evil lair, of all things...'</span>).
+<span style="color: #0000ff;">connected</span>(north, library, hallway).
+<span style="color: #0000ff;">connected</span>(south, hallway, library).
+<span style="color: #0000ff;">connected</span>(down, library, lair).
+<span style="color: #0000ff;">connected</span>(up, lair, library).
+<span style="color: #0000ff;">connected</span>(west, library, garden).
+<span style="color: #0000ff;">connected</span>(east, garden, library).
+<span style="color: #0000ff;">connected</span>(west, hallway, kitchen).
+<span style="color: #0000ff;">connected</span>(east, kitchen, hallway).
+</pre>
+
+
+<p>
+We&rsquo;ll add a predicate that causes the description of our room to be
+printed:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #b22222;">% </span><span style="color: #b22222;">this predicate has no inputs</span>
+<span style="color: #0000ff;">print_location</span> :-
+    current_room(<span style="color: #a0522d;">Current</span>),
+    room(<span style="color: #a0522d;">Current</span>, <span style="color: #a0522d;">Name</span>, <span style="color: #a0522d;">Description</span>),
+    <span style="color: #b22222;">% nl means </span><span style="color: #b22222;">"newline"</span>
+    print(<span style="color: #a0522d;">Name</span>), nl, print(<span style="color: #a0522d;">Description</span>), nl.    
+</pre>
+
+
+<p>
+This predicate requires that <code>current_room</code> is a predicate that gives
+the current room. E.g., <code>current_room(library).</code>
+</p>
+<p>
+But the current room should change, naturally. We can change the facts
+of the database in the middle of running the program by using
+<code>retract</code> and <code>assertz</code>. The <code>retract</code> predicate (&ldquo;meta-predicate&rdquo;
+technically) takes as input a predicate and removes it from current
+facts. On the other hand, <code>assertz</code> adds a predicate to the list of
+facts, at the bottom of the list (that&rsquo;s what the <code>z</code> means; the
+alternative is to add the new fact at the top, in which case you use
+<code>asserta</code>).
+</p>
+<p>
+We have to indicate that the <code>current_room</code> predicate may be changed,
+so we put this in our file:
+</p>
+
+
+
+<pre class="src src-prolog">:- <span style="color: #483d8b;">dynamic</span> <span style="color: #0000ff;">current_room/1</span>.
+</pre>
+
+
+<p>
+Now we can define a change room predicate:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">change_room</span>(<span style="color: #a0522d;">NewRoom</span>) :-
+    current_room(<span style="color: #a0522d;">Current</span>),
+    retract(current_room(<span style="color: #a0522d;">Current</span>)),
+    assertz(current_room(<span style="color: #a0522d;">NewRoom</span>)).
+</pre>
+
+
+<p>
+We&rsquo;ll want user input. Here is a quick &amp; dirty way that supports the
+word &ldquo;go&rdquo; followed by a direction:
+</p>
+
+
+
+<pre class="src src-prolog">:- <span style="color: #483d8b;">use_module</span>(library(readln)).
+
+:- prompt(<span style="color: #a0522d;">_</span>, <span style="color: #8b2252;">'Type a command (or '</span><span style="color: #8b2252;">'help</span><span style="color: #8b2252;">''</span><span style="color: #8b2252;">): '</span>).
+
+<span style="color: #0000ff;">strip_punctuation</span>(<span style="color: #a020f0;">[]</span>, <span style="color: #a020f0;">[]</span>).
+
+<span style="color: #0000ff;">strip_punctuation</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">Word</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Tail</span><span style="color: #a020f0;">]</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">Word</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Result</span><span style="color: #a020f0;">]</span>) :-
+    \+(member(<span style="color: #a0522d;">Word</span>, <span style="color: #a020f0;">[</span><span style="color: #8b2252;">'.'</span>, <span style="color: #8b2252;">','</span>, <span style="color: #8b2252;">'?'</span>, <span style="color: #8b2252;">'!'</span><span style="color: #a020f0;">]</span>)),
+    strip_punctuation(<span style="color: #a0522d;">Tail</span>, <span style="color: #a0522d;">Result</span>).
+
+<span style="color: #0000ff;">strip_punctuation</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Tail</span><span style="color: #a020f0;">]</span>, <span style="color: #a0522d;">Result</span>) :-
+    strip_punctuation(<span style="color: #a0522d;">Tail</span>, <span style="color: #a0522d;">Result</span>).
+
+<span style="color: #0000ff;">read_sentence</span>(<span style="color: #a0522d;">Input</span>) :-
+    <span style="color: #b22222;">% this is a special predicate from the readln library</span>
+    readln(<span style="color: #a0522d;">Input1</span>, <span style="color: #a0522d;">_</span>, <span style="color: #8b2252;">".!?"</span>, <span style="color: #8b2252;">"_0123456789"</span>, lowercase),
+    strip_punctuation(<span style="color: #a0522d;">Input1</span>, <span style="color: #a0522d;">Input</span>).
+
+<span style="color: #0000ff;">get_input</span> :- read_sentence(<span style="color: #a0522d;">Input</span>), get_input(<span style="color: #a0522d;">Input</span>).
+<span style="color: #0000ff;">get_input</span>(<span style="color: #a020f0;">[</span>quit<span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">get_input</span>(<span style="color: #a0522d;">Input</span>) :-
+    process_input(<span style="color: #a0522d;">Input</span>), print_location,
+    read_sentence(<span style="color: #a0522d;">Input1</span>), get_input(<span style="color: #a0522d;">Input1</span>).
+
+<span style="color: #0000ff;">process_input</span>(<span style="color: #a020f0;">[</span>help<span style="color: #a020f0;">]</span>) :- print(<span style="color: #8b2252;">'Help...'</span>), nl.
+
+<span style="color: #0000ff;">process_input</span>(<span style="color: #a020f0;">[</span>go, <span style="color: #a0522d;">Direction</span><span style="color: #a020f0;">]</span>) :-
+    current_room(<span style="color: #a0522d;">Current</span>),
+    connected(<span style="color: #a0522d;">Direction</span>, <span style="color: #a0522d;">Current</span>, <span style="color: #a0522d;">NewRoom</span>),
+    change_room(<span style="color: #a0522d;">NewRoom</span>).
+
+<span style="color: #0000ff;">process_input</span>(<span style="color: #a020f0;">[</span>go, <span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>) :-
+    print(<span style="color: #8b2252;">'No exit that direction.'</span>), nl.
+
+<span style="color: #0000ff;">process_input</span>(<span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>) :-
+    print(<span style="color: #8b2252;">'Huh?'</span>), nl, nl.
+</pre>
+
+
+<p>
+Finally, we define a <code>play</code> predicate that starts the whole thing:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">play</span> :-
+    retractall(current_room(<span style="color: #a0522d;">_</span>)),
+    assertz(current_room(library)),
+    print_location,
+    get_input.
+</pre>
+
+
+<p>
+Here is how we play:
+</p>
+
+
+
+<pre class="example">?- play.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go west.
+Garden
+You are in the Garden. The trees and shrubs appear...
+Type a command (or 'help'): go bizarre.
+No exit that direction.
+Garden
+You are in the Garden. The trees and shrubs appear...
+Type a command (or 'help'): help.
+Help...
+Garden
+You are in the Garden. The trees and shrubs appear...
+Type a command (or 'help'): go east.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go down.
+Lair
+You have found an apparently quite evil lair, of all things...
+Type a command (or 'help'): quit.
+
+true 
+</pre>
+
+
+<p>
+Now, let&rsquo;s make it a little more interesting. Suppose we have switches
+that can be toggled, and access to certain rooms requires that certain
+switches have been toggled. We&rsquo;ll first indicate that the <code>toggled</code>
+predicate is dynamic (will be asserted and retracted):
+</p>
+
+
+
+<pre class="src src-prolog">:- <span style="color: #483d8b;">dynamic</span> <span style="color: #0000ff;">toggled/1</span>.
+</pre>
+
+
+<p>
+We&rsquo;ll also add support for typing &ldquo;toggle switch15&rdquo; or whatever:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">process_input</span>(<span style="color: #a020f0;">[</span>toggle, <span style="color: #a0522d;">Switch</span><span style="color: #a020f0;">]</span>) :-
+    toggle(<span style="color: #a0522d;">Switch</span>),
+    <span style="color: #b22222;">% retrieve a set of switches that have been toggled</span>
+    setof(<span style="color: #a0522d;">X</span>, toggled(<span style="color: #a0522d;">X</span>), <span style="color: #a0522d;">Switches</span>),
+    <span style="color: #b22222;">% print these</span>
+    print(<span style="color: #8b2252;">'Toggled switches: '</span>), print(<span style="color: #a0522d;">Switches</span>), nl.
+
+<span style="color: #0000ff;">process_input</span>(<span style="color: #a020f0;">[</span>toggle, <span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>) :-
+    print(<span style="color: #8b2252;">'Cannot toggle that switch.'</span>), nl.
+</pre>
+
+
+<p>
+We&rsquo;ll have three switches. Switch 1 can be toggled whenever. But
+switch 2 requires that switch 1 is already toggled, and switch 3
+requires that switch 2 is already toggled.
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">toggle</span>(switch1) :- assertz(toggled(switch1)).
+
+<span style="color: #0000ff;">toggle</span>(switch2) :- toggled(switch1), assertz(toggled(switch2)).
+
+<span style="color: #0000ff;">toggle</span>(switch3) :- toggled(switch2), assertz(toggled(switch3)).
+</pre>
+
+
+<p>
+Finally, let&rsquo;s make the lair only accessible if switch 3 is toggled
+(of course, we remove the &lsquo;down&rsquo; connection from the library and
+replace it with this one):
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">connected</span>(down, library, lair) :- toggled(switch3).
+</pre>
+
+
+<p>
+And the <code>play</code> predicate is updated to retract all toggle states when
+we start the game:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">play</span> :-
+    retractall(current_room(<span style="color: #a0522d;">_</span>)), retractall(toggled(<span style="color: #a0522d;">_</span>)),
+    assertz(current_room(library)),
+    print_location,
+    get_input.
+</pre>
+
+
+<p>
+Let&rsquo;s play!
+</p>
+
+
+
+<pre class="example">?- play.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go down.
+No exit that direction.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch3.
+Cannot toggle that switch.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch2.
+Cannot toggle that switch.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch1.
+Toggled switches: [switch1]
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch2.
+Toggled switches: [switch1,switch2]
+Library
+You are among many books in the Library...
+Type a command (or 'help'): toggle switch3.
+Toggled switches: [switch1,switch2,switch3]
+Library
+You are among many books in the Library...
+Type a command (or 'help'): go down.
+Lair
+You have found an apparently quite evil lair, of all things...
+Type a command (or 'help'): go up.
+Library
+You are among many books in the Library...
+Type a command (or 'help'): quit.
+
+true
+</pre>
+
+
+<p>
+Hopefully you can imagine how the game can be improved from here. For
+example, how do we require that switch 1 can only be toggled in the
+garden? Hint: the answer involves modifying <code>toggle(switch1)</code>
+predicate to include the requirement that the <code>current_room</code> predicate
+has a certain value&hellip;
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

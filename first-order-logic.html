@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>First-order logic</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="First-order logic"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:49 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">First-order logic</h1>
+
+<p>Propositional logic is limited in a very significant way: for every
+individual object or idea we want to describe, we have to create a new
+variable. We have no way of saying all objects of some type share
+certain properties.
+</p>
+<p>
+We&rsquo;ll introduce a few new logical constructs, and arrive at what is
+called first-order or predicate logic.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Constant symbols</a></li>
+<li><a href="#sec-2">Predicates</a></li>
+<li><a href="#sec-3">Variables</a></li>
+<li><a href="#sec-4">Operators</a></li>
+<li><a href="#sec-5">Quantifiers</a></li>
+<li><a href="#sec-6">Possible worlds (semantics)</a></li>
+<li><a href="#sec-7">Building a knowledge database</a>
+<ul>
+<li><a href="#sec-7-1">Inferencing with a knowledge database</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">Declarative vs. procedural knowledge</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Constant symbols</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+An constant symbol is a single object, like &ldquo;my cat Tony&rdquo; or
+&ldquo;President Obama.&rdquo;  Note that propositional logic does not have
+constant symbols that represent objects; instead, propositional logic
+only has statements like &ldquo;President Obama is a Democrat.&rdquo;
+</p>
+<p>
+We use upper-case for constant symbols: my cat Tony is \(Tony\),
+President Obama is \(Obama\), etc.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Predicates</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+We&rsquo;ll also add new relations among objects that are called
+predicates. A predicate is true or false. So, the predicate \(IsACat\)
+is true when apply to Tony: \(IsACat(Tony) = T\). On the other hand,
+\(IsACat(Obama) = F\).
+</p>
+<p>
+Predicates may have more than one argument: \(Eats(Tony, CatFood) = T\),
+\(TastesLike(YellowCandy, Banana) = T\), or \(ParentsOf(Isabelle,
+Penelope, Rene) = F\).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Variables</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Sometimes we want to find out for what values of, say, the second
+argument of a predicate, makes the predicate true. For example, for
+what values of \(x\) make this true: \(Eats(Tony, x)\)
+</p>
+<p>
+It turns out that when \(x\) equals any of \(CatFood, Bugs, CatNip,
+MashedPotatoes\) (etc.) then the predicate is true.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Operators</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+We have the same operators as before: \(\wedge\), \(\vee\), \(\neg\),
+\(\rightarrow\), \(\leftrightarrow\). Thus, we can write \(Fish(Jenny)
+\rightarrow HasGills(Jenny)\). If this is true, then if Jenny is a
+fish, then she has gills.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Quantifiers</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+We can combine variables, predicates, and relations to make statements
+like &ldquo;all fish have gills&rdquo; and &ldquo;at least one cat eats mashed
+potatoes.&rdquo; Two new symbols are introduced to build these statements:
+\(\forall\) (read &ldquo;for all&rdquo;) and \(\exists\) (read &ldquo;exists&rdquo;).
+</p>
+<p>
+For example, \((\forall x)(Fish(x) \rightarrow HasGills(x))\) is read
+&ldquo;for all \(x\), if \(x\) is a fish then \(x\) has gills.&rdquo; That statement may
+be true or false; it depends on whether it is true that all fish have
+gills (we&rsquo;ll see how to answer that question in the next section).
+</p>
+<p>
+Another example: \((\exists x)(Cat(x) \wedge Eats(x, MashedPotatoes))\),
+which is read &ldquo;there exists an \(x\) such that \(x\) is a cat and \(x\) eats
+mashed potatoes.&rdquo; Again, we need to ask, how do we know if this is
+true?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Possible worlds (semantics)</h2>
+<div class="outline-text-2" id="text-6">
+
+
+<p>
+How do we know if \((\forall x)(Fish(x) \rightarrow HasGills(x))\) is
+true? It depends from what &ldquo;world&rdquo; we pull our \(x\) values. A &ldquo;world,&rdquo;
+or &ldquo;possible world,&rdquo; is simply a set of objects and truth-values for
+predicates. In one possible world, the set of objects may be $Tony,
+Jenny, Obama, Isabelle, Penelope, Rene, YellowCandy, Banana,$ etc. The
+truth values for the predicates are \(Cat(Tony) = T, Fish(Tony) = F,
+Cat(Jenny) = F, Fish(Jenny) = F, Eats(Tony, Jenny) = F, Eats(Jenny,
+Tony) = F\), etc. Every predicate must be true or false for every
+object or combination of objects.
+</p>
+<p>
+Now if we want to know if some statement is true, we just use the
+following rules:
+</p>
+<ul>
+<li>If the statement has a \(\forall\) in front, we just check if every
+    object makes the statement true.
+
+</li>
+<li>If the statement has a \(\exists\) in front, we just check if there
+    is at least one object that makes the statement true.
+</li>
+</ul>
+
+
+<p>
+Notice that the negation of a \(\forall\) statement is an \(\exists\)
+statement and vice versa:
+</p>
+
+
+$$\neg (\forall x) (P(x)) \equiv (\exists x) (\neg P(x))$$
+
+$$\neg (\exists x) (P(x)) \equiv (\forall x) (\neg P(x))$$
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">Building a knowledge database</h2>
+<div class="outline-text-2" id="text-7">
+
+
+<p>
+Here is a very simple (and common) example of a database of
+first-order logic statements:
+</p>
+<ul>
+<li>\((\forall m)(\forall c)(Mother(m, c) \leftrightarrow (Female(m)
+    \wedge Parent(m, c)))\)
+
+<ul>
+<li>(mothers are female parents and vice versa)
+
+</li>
+</ul>
+
+</li>
+<li>\((\forall f)(\forall c)(Father(f, c) \leftrightarrow (Male(f)
+    \wedge Parent(f, c)))\)
+
+<ul>
+<li>(fathers are male parents and vice versa)
+
+</li>
+</ul>
+
+</li>
+<li>\((\forall x)(Male(x) \leftrightarrow \neg Female(x))\)
+
+<ul>
+<li>(males are not females and vice versa, and there are only two
+      sexes; this statement recalls our discussion about the
+      &ldquo;violence&rdquo; of knowledge engineering)
+
+</li>
+</ul>
+
+</li>
+<li>\((\forall x)(\forall y)(Brother(x, y) \leftrightarrow Brother(y,
+    x))\)
+
+<ul>
+<li>(being a brother is a symmetric relationship)
+
+</li>
+</ul>
+
+</li>
+<li>\((\forall x)(\forall y)(\forall c)((Parent(x, c) \wedge Brother(x,
+    y)) \leftrightarrow Uncle(y, c))\)
+
+<ul>
+<li>(uncles are brothers of one&rsquo;s parent and vice versa)
+
+</li>
+</ul>
+
+</li>
+<li>\((\forall c)((\forall x)(\forall y)((Parent(x, c) \wedge
+    BiologicalParent(y, c)) \rightarrow x \neq y) \leftrightarrow
+    Adopted(c))\)
+
+<ul>
+<li>(adopted children all (both) of their biological parents
+      different from their &ldquo;regular&rdquo; (everyday) parents)
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+And so on&hellip;
+</p>
+<p>
+We also need to know about our objects and predicates. Our world is:
+</p>
+<ul>
+<li>\(\{Frank, John, Kathy, Susan, Gabrielle, Male(Frank) = T,
+    Male(Susan) = F, \dots\)
+
+</li>
+<li>\(BiologicalParent(John, Gabrielle) = T, Father(Frank, Gabrielle)
+    = T, \dots\)
+
+</li>
+<li>\(Parent(Kathy, Gabrielle) = T, BiologicalParent(Susan,
+    Gabrielle) = T, \dots \}\)
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1">Inferencing with a knowledge database</h3>
+<div class="outline-text-3" id="text-7-1">
+
+
+<p>
+Let&rsquo;s make a query: Is Gabrielle adopted? \(Adopted(Gabrielle)\)? How do
+we answer this question using our knowledge database?
+</p>
+<p>
+First we look at the statements in the database and ask, which ones
+refer to adoption? Only the last statement listed above refers to
+adoption; it says that for Gabrielle to be adopted, all objects \(x\)
+and \(y\) where \(x\) is Gabrielle&rsquo;s parent and \(y\) is Gabrielle&rsquo;s
+biological parent, must have the further property that \(x \neq y\) in
+order for Gabrielle to be adopted. If, after checking all objects in
+our world, the relations described hold, then Gabrielle is adopted.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8">Declarative vs. procedural knowledge</h2>
+<div class="outline-text-2" id="text-8">
+
+
+<p>
+First-order logic provides a way of writing declarative knowledge. But
+when we ask a query, we need some kind of procedure for determining if
+the query is true, or alternatively, finding objects (to put in place
+of the variables) to make a query true. There are several procedures
+that can perform this task. They are essentially all search
+procedures. Actually, we can apply depth-first search (say), to
+evaluate queries. <a href="./prolog.html">Prolog</a> will do this search for us, as long as we
+properly provide the declarative knowledge we care about.
+</p>
+<p>
+As an example, consider the following knowledge database:
+</p>
+<ul>
+<li>\((\forall x)((List(x) \wedge Empty(x)) \rightarrow Sorted(x, x))\)
+
+<ul>
+<li>(an empty list is a sorted list; the \(Sorted(a, b)\) predicate
+      means \(b\) is the sorted version of \(a\))
+
+</li>
+</ul>
+
+</li>
+<li>\((\forall x)(\forall y)(\forall z)((List(x) \wedge FirstElement(y,
+    x) \wedge RestOfList(x, z) \wedge Empty(z)) \rightarrow
+    Sorted(x, x))\)
+
+<ul>
+<li>(a list with one element is a sorted list)
+
+</li>
+</ul>
+
+</li>
+<li>\((\forall x)(\forall x')(\forall y)(\forall y')(\forall z)(\forall
+    z')((List(x) \wedge Permutation(x, x') \wedge FirstElement(y, x')\)
+
+    \(\wedge RestOfList(z, x') \wedge Sorted(z, z') \wedge
+    FirstElement(y', z') \wedge LessThan(y, y'))\)
+
+    \(\rightarrow Sorted(x, x'))\)
+
+<ul>
+<li>(\(x'\), a permutation of a list \(x\), is the sorted version \(x\)
+      when the first two elements of the list \(x'\) are \(y\) and \(y'\),
+      and \(z'\) is the sorted remainder of the list (which includes
+      \(y'\) at the front), and \(y &lt; y'\))
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+This is the declarative knowledge about sorted lists. The query
+\(Sorted([5, 2, 6, 3, 4], x')\) should find the value for \(x'\) that
+makes the query true. Finding this \(x'\) is finding the sorted version
+of \([5, 2, 6, 3, 4]\), i.e., sorting the list. An inefficient way to
+find this \(x'\) is to try all possible permutations of \(x\), that is,
+consider all \(x'\) that satisfy the predicate \(Permutation(x, x')\) (we
+are assuming the world contains the sorted permutations of all known
+lists, and may well contain many more permutations of those lists).
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

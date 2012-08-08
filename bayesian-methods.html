@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Bayesian methods</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Bayesian methods"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:24:58 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Bayesian methods</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Basic probability calculus</a></li>
+<li><a href="#sec-2">Bayes&rsquo; insight</a></li>
+<li><a href="#sec-3">Naïve Bayesian classification</a>
+<ul>
+<li><a href="#sec-3-1">Feature vectors</a></li>
+<li><a href="#sec-3-2">Category vectors</a></li>
+<li><a href="#sec-3-3">Algorithm</a></li>
+<li><a href="#sec-3-4">A problem with tiny values</a></li>
+<li><a href="#sec-3-5">Evaluation</a></li>
+<li><a href="#sec-3-6">Benefits of naïve Bayes</a></li>
+<li><a href="#sec-3-7">Drawbacks of naïve Bayes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Basic probability calculus</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+We say that the probability of an event occurring is \(P(A)\) where \(A\)
+is the event. Note that \(0 \leq P(A) \leq 1\) by convention. For
+example, the probability of a fair coin landing heads up is \(P(H) =
+0.5\), and perhaps the probability of a lightning storm today is \(P(L)
+= 0.01\). \(P(\neg A)\) is always equal to \(1.0 - P(A)\).
+</p>
+<p>
+Sometimes we want to describe the probability of some event given that
+we know (or are supposing) that some other event occurred. For
+example, the probability of a lightning storm is higher if the sky is
+cloudy, i.e., \(P(L|C) &gt; P(L|\neg C)\) (where \(C\) means the sky is
+cloudy and \(\neg C\) means it is not).
+</p>
+<p>
+If two events \(A\) and \(B\) are independent (e.g., knowing that \(A\)
+occurred tells you nothing about whether \(B\) occurred), then \(P(A, B)
+= P(A)P(B)\).
+</p>
+<p>
+If \(A\) and \(B\) are not independent, then they are conditional, e.g.,
+knowing that \(A\) occurred changes the probability that \(B\)
+occurred. Now we have,
+</p>
+
+
+$$P(A,B) = P(A|B)P(B),$$
+
+<p>
+where \(P(A|B)\) means &ldquo;probability of \(A\) given that \(B\) is known to
+have occurred.&rdquo;
+</p>
+<p>
+Of course, if \(A\) and \(B\) are independent, then \(P(A|B)=P(A)\), so
+we&rsquo;re back to the definiton of independent probabilities.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Bayes&rsquo; insight</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Notice that \(P(A, B) = P(B, A)\) (always), simply because the comma
+doesn&rsquo;t add any meaning, it&rsquo;s just a way of writing &ldquo;\(A\) and \(B\) both
+occurred (and not in some special temporal sequence).&rdquo;
+</p>
+<p>
+Thus, the conditional probability of \(P(B,A)\) is,
+</p>
+
+
+$$P(B,A) = P(B|A)P(A),$$
+
+<p>
+which means,
+</p>
+
+
+$$P(B|A)P(A) = P(A|B)P(B),$$
+
+<p>
+and rewriting we get,
+</p>
+
+
+$$P(B|A) = \frac{P(A|B)P(B)}{P(A)}.$$
+
+<p>
+So who cares? Well, what we just discovered is that the conditional
+probability of \(B\) given \(A\) (i.e., \(P(B|A)\)), depends entirely on the
+conditional probability of \(A\) given \(B\) and the prior probabilities
+of \(A\) and \(B\) (i.e., \(P(A)\) means how often does \(A\) occur with or
+without \(B\) occurring also? same question for \(P(B)\)).
+</p>
+<p>
+If we take \(A\) and \(B\) to be events like &ldquo;\(A\) = your house alarm is
+making noise&rdquo; and &ldquo;\(B\) = a burglar is inside your house,&rdquo; then we have
+that &ldquo;the probability that a burglar is inside your house given that
+you know your house alarm is making noise depends on the chance of
+your house alarm making noise given a burglar being in your house
+(\(P(A|B)\)), the prior probability of being robbed at all (\(P(B)\)), and
+the prior probability of your house alarm making noise from burglars,
+cats, thunder, etc. (\(P(A)\)).&rdquo; Note that the prior probability of the
+alarm making noise (\(P(A)\)) is at least as large as \(P(A|B)P(B)\),
+which is the numerator of this fraction. This is because
+\(P(A)=P(A|B)P(B)+P(A|\neg B)P(\neg B)\), in other words, the
+probability of the alarm making noise is the probability of it making
+noise due to a burglar plus the probability of it making noise due to
+some other cause. We use &ldquo;plus&rdquo; rather than &ldquo;times&rdquo; here because we
+are describing two separate causes for the alarm making noise; these
+causes are not required to happen simultaneously.
+</p>
+<p>
+<b>Bam!</b> We have a way of calculating the probability of events we&rsquo;re
+not sure about (the chance there is a burglar in my house) given the
+probabilities of events we do know about. This micro insight has
+revolutionized computer science, medicine, pyschology, etc. etc.,
+beginning in the 1980s or so. The person who made these and more
+complex calculations achievable in computer software, Judea Pearl, was
+awarded the Turing Award in 2012. The importance of Bayes&rsquo; micro
+insight cannot be overstated.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/320px-Bayes_Theorem_MMB_01.jpg"  alt="./images/320px-Bayes_Theorem_MMB_01.jpg" />
+</p>
+<p>
+<a href="http://en.wikipedia.org/wiki/File:Bayes'_Theorem_MMB_01.jpg">Wikipedia</a>
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Naïve Bayesian classification</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">Feature vectors</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<p>
+Documents are simply binary word vectors. No tf-idf transformation is
+done.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2">Category vectors</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<p>
+Each category vector is represented as a series of probabilities, one
+probability per word (each vector dimension represents a word, just
+like a document feature vector). Each probability means, &ldquo;the
+probability of this word being present in a document that is a member
+of this category.&rdquo; Thus, the category vector has terms \(C_c = (p_{c1},
+p_{c2}, \dots, p_{ck})\), and
+</p>
+
+
+$$p_{ci} = P(w_i|C_c) = \frac{d_{ci}+1}{d_{i}+|C|},$$
+
+<p>
+where \(d_{ci}\) is the number of documents in \(C_c\) that have word \(i\)
+(anywhere in the document, any number of occurrences), \(d_i\) is the
+number of documents in <i>any</i> category that have word \(i\), and \(|C|\) is
+the number of categories. We add 1 and add \(|C|\) so that \(P(w_i|C_c)\)
+is never equal to 0. (This is called <a href="http://en.wikipedia.org/wiki/Additive_smoothing">Laplace smoothing</a>.)
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3">Algorithm</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+<p>
+We assume, for simplicity, that the occurrences of words in documents
+are completely independent (this is what makes the method
+&ldquo;naïve&rdquo;). This is patently false since, for instance, the words
+&ldquo;vision&rdquo; and &ldquo;image&rdquo; often both appear in documents about computer
+vision; so seeing the word &ldquo;vision&rdquo; suggests that &ldquo;image&rdquo; will also
+appear in the document.
+</p>
+<p>
+We further assume that the order the words appear in the document does
+not matter.
+</p>
+<p>
+Because we make this independence assumption, we can calculate the
+probability of a document being a member of some category quite
+easily:
+</p>
+
+
+$$P(\hat{X}|C_c) = \prod_i P(w_i|C_c),$$
+
+<p>
+where \(P(w_i|C_c) = p_{ci}\) (from the definition above).
+</p>
+<p>
+Now, Bayes&rsquo; theorem gives us:
+</p>
+
+
+$$P(C_c|\hat{X}) = P(\hat{X}|C_c)P(C_c) / P(\hat{X}),$$
+
+<p>
+with,
+</p>
+
+
+$$P(C_c) = \frac{n_c + 1}{n + |C|},$$
+
+<p>
+where \(n_c\) is the number of documents in category \(C_c\) and \(n\) is
+the number of documents overall. Again, we use Laplace smoothing; this
+allows us to avoid probabilities equal to 0.0.
+</p>
+<p>
+Since we want to find the category \(C_c\) that makes the quantity
+maximal, we can ignore \(P(\hat{X})\) because it does not change
+depending on which category we are considering.
+</p>
+<p>
+Thus, we are actually looking for:
+</p>
+
+
+$$\arg\max_{C_c} P(C_c|\hat{X}) = \arg\max_{C_c} P(\hat{X}|C_c)P(C_c)$$
+
+<p>
+We just check all the categories, and choose the single best or top \(N\).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4">A problem with tiny values</h3>
+<div class="outline-text-3" id="text-3-4">
+
+
+<p>
+With a lot of unique words, we create very small values by multiplying
+many \(p_{ci}\) terms. On a computer, the values may become so small
+that they may &ldquo;underflow&rdquo; (run out of bits required to represent the
+value). To prevent this, we just throw a logarithm around everything:
+</p>
+
+
+$$\log P(\hat{X}|C_c)P(C_c) = \log P(\hat{X}|C_c) + \log P(C_c),$$
+
+<p>
+and furthermore,
+</p>
+
+
+$$\log P(\hat{X}|C_c) = \log \prod_i P(w_i|C_c) = \sum_i \log P(w_i|C_c)$$
+
+<p>
+So our multiplications turn to sums, and we avoid the underflow
+problem. Rewriting again, we ultimately have this problem:
+</p>
+
+
+$$\arg\max_{C_c} (\sum_i \log P(w_i|C_c)) + \log P(C_c)$$
+
+</div>
+
+</div>
+
+<div id="outline-container-3-5" class="outline-3">
+<h3 id="sec-3-5">Evaluation</h3>
+<div class="outline-text-3" id="text-3-5">
+
+
+<p>
+These graphs show the performance of the naïve Bayes approach on
+various datasets (compare with results from the <a href="./document-classification.html">document classification</a> notes). The calculations described above are
+represented as the &ldquo;binary&rdquo; algorithm in the graphs. The &ldquo;tfidf&rdquo;
+algorithm, as applied in a naïve Bayes context, uses slightly
+different calculations that have not been described in these notes.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/naivebayes-fscore-datasets.png"  alt="./images/naivebayes-fscore-datasets.png" />
+</p>
+</div>
+
+
+<div style="text-align: center">
+<p><img src="./images/naivebayes-fscore-ai.png"  alt="./images/naivebayes-fscore-ai.png" />
+</p>
+</div>
+
+<p>
+The book <a href="http://nlp.stanford.edu/IR-book/html/htmledition/irbook.html">Introduction to Information Retrieval</a> gathered some published
+results for classification tasks. We can see that naïve Bayes is
+usually not as good as k-nearest neighbor (which we did learn about)
+nor support vector machines (which we didn&rsquo;t learn about).
+</p>
+
+<div style="text-align: center">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="right" /><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Dataset</th><th scope="col" class="right">Naïve Bayes</th><th scope="col" class="right">k-nearest neighbor</th><th scope="col" class="right">Support vector machines</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">earn</td><td class="right">0.96</td><td class="right">0.97</td><td class="right">0.98</td></tr>
+<tr><td class="left">acq</td><td class="right">0.88</td><td class="right">0.92</td><td class="right">0.94</td></tr>
+<tr><td class="left">money-fx</td><td class="right">0.57</td><td class="right">0.78</td><td class="right">0.75</td></tr>
+<tr><td class="left">grain</td><td class="right">0.79</td><td class="right">0.82</td><td class="right">0.95</td></tr>
+<tr><td class="left">crude</td><td class="right">0.80</td><td class="right">0.86</td><td class="right">0.89</td></tr>
+<tr><td class="left">trade</td><td class="right">0.64</td><td class="right">0.77</td><td class="right">0.76</td></tr>
+<tr><td class="left">interest</td><td class="right">0.65</td><td class="right">0.74</td><td class="right">0.78</td></tr>
+<tr><td class="left">ship</td><td class="right">0.85</td><td class="right">0.79</td><td class="right">0.86</td></tr>
+<tr><td class="left">wheat</td><td class="right">0.70</td><td class="right">0.77</td><td class="right">0.92</td></tr>
+<tr><td class="left">corn</td><td class="right">0.65</td><td class="right">0.78</td><td class="right">0.90</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+<p>
+I also performed a Spam detection experiment, using the <a href="http://archive.ics.uci.edu/ml/datasets/Spambase">Spambase</a>
+dataset. With naïve Bayes I was able to achieve ~80% accuracy.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-6" class="outline-3">
+<h3 id="sec-3-6">Benefits of naïve Bayes</h3>
+<div class="outline-text-3" id="text-3-6">
+
+
+<ul>
+<li>It is very fast. In the table above, while naïve Bayes does not
+    perform as well, it is significantly more efficient than either
+    k-nearest neighbor or support vector machines. The latter, support
+    vector machines, are <i>painfully</i> slow (at least in the training
+    phase).
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-7" class="outline-3">
+<h3 id="sec-3-7">Drawbacks of naïve Bayes</h3>
+<div class="outline-text-3" id="text-3-7">
+
+
+<ul>
+<li>Accuracy is low, as seen in the table above.
+</li>
+</ul>
+
+
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

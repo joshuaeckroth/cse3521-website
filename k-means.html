@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>k-means clustering</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="k-means clustering"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:40 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">k-means clustering</h1>
+
+<p>Suppose we measure some properties of flowers, species of iris to be
+precise (data available from <a href="http://archive.ics.uci.edu/ml/datasets/Iris">UCI</a>). We have a table like the following:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="right" /><col class="right" /><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">Sepal length (cm)</th><th scope="col" class="right">Sepal width (cm)</th><th scope="col" class="right">Petal length (cm)</th><th scope="col" class="right">Petal width (cm)</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">5.1</td><td class="right">3.5</td><td class="right">1.4</td><td class="right">0.2</td></tr>
+<tr><td class="right">4.9</td><td class="right">3.0</td><td class="right">1.4</td><td class="right">0.2</td></tr>
+<tr><td class="right">4.7</td><td class="right">3.2</td><td class="right">1.3</td><td class="right">0.2</td></tr>
+<tr><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Here are two plots of these data.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/iris-no-class-sepal.png"  alt="./images/iris-no-class-sepal.png" />
+</p>
+<p>
+<img src="./images/iris-no-class-petal.png"  alt="./images/iris-no-class-petal.png" />
+</p>
+</div>
+
+<p>
+There are more plots we could study (e.g. Sepal width vs. Petal
+length, etc.). However, sometimes we may have many more than just four
+dimensions in our data. Plotting is not always the best way to study
+the data.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Clustering</a></li>
+<li><a href="#sec-2">k-means clustering</a>
+<ul>
+<li><a href="#sec-2-1">Voronoi diagram</a></li>
+<li><a href="#sec-2-2">Benefits of k-means</a></li>
+<li><a href="#sec-2-3">Drawbacks of k-means</a></li>
+<li><a href="#sec-2-4">How to choose k</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Clustering</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+We want to know if there are more than one distinct kinds of iris
+plants represented in these data. In other words, we want to classify
+each measured flower as some species of iris. But we don&rsquo;t know, a
+priori, which points belong in which groups. We see in the second
+graph that, most likely, the bottom left cluster of points is a likely
+a distinct group.
+</p>
+<p>
+There exist many algorithms to automatically cluster data like
+these. We&rsquo;ll look at the simplest, which is called k-means.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">k-means clustering</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+The k-means algorithm is the simplest and most intuitive. It works as
+follows.
+</p>
+<ol>
+<li>Decide how many clusters we want. Call this \(k\). (Because we have
+     to choose \(k\), this method is &ldquo;semi-supervised&rdquo; rather than
+     wholly &ldquo;unsupervised.&rdquo;)
+
+</li>
+<li>Create \(k\) random cluster means (also called &ldquo;centroids&rdquo;). Our
+     data come in four dimensions; thus, each cluster mean will be
+     four-dimensional. We can choose random values for each dimension
+     for each of the \(k\) clusters or we can choose a random data point
+     to represent each initial cluster mean.
+
+</li>
+<li>For each measured flower (each row in the table of data), use
+     Euclidean distance (which works in any number of dimensions) to
+     determine which cluster&rsquo;s mean is closest to the
+     measurements. Assign this flower to that cluster. (Note it may
+     have already been assigned to that cluster.)
+
+</li>
+<li>Now that all flowers have been assigned (or reassigned) to
+     clusters, recalculate the cluster means. This simply involves
+     summing all data vectors in the cluster and dividing by the
+     number of members in the cluster.
+
+</li>
+<li>Go back to step 3 until no cluster assignments change.
+</li>
+</ol>
+
+
+<p>
+<a href="http://shabal.in/visuals/kmeans/1.html">View an animation of k-means.</a>
+</p>
+<p>
+The result is each flower (each row in the table) is assigned to a
+cluster. We can graph these clusters with color.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/iris-class-sepal.png"  alt="./images/iris-class-sepal.png" />
+</p>
+<p>
+<img src="./images/iris-class-petal.png"  alt="./images/iris-class-petal.png" />
+</p>
+</div>
+
+<p>
+If we get a new set of measurements for a new plant, we can predict
+(approximate, guess) its membership in one of the clusters by finding
+which cluster mean is closest.
+</p>
+<p>
+Unfortunately, these clusters are not entirely accurate. The following
+graphs show the real clusters.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/iris-true-class-sepal.png"  alt="./images/iris-true-class-sepal.png" />
+</p>
+<p>
+<img src="./images/iris-true-class-petal.png"  alt="./images/iris-true-class-petal.png" />
+</p>
+</div>
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">Voronoi diagram</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+If we look at a random x,y coordinate in the cluster graph, we will
+find that one cluster (one mean) is closest. Thus we can color each
+x,y point (each pixel) with the color of its assigned cluster. The
+result is a digram that divides the whole space into cells. The
+borders between cells are exactly half-way between the two closest
+cluster means. This kind of diagram is called a Voronoi diagram (named
+after Georgy Voronoi).
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/voronoi.png"  alt="./images/voronoi.png" />
+</p>
+<p>
+From <a href="http://en.wikipedia.org/wiki/File:2Ddim-L2norm-10site.png">Wikipedia</a>.
+</p>
+</div>
+
+<p>
+<a href="http://informationandvisualization.de/blog/kmeans-and-voronoi-tesselation-built-processing">View an animation showing the Voronoi diagram in each step of the k-means algorithm.</a>
+</p>
+<p>
+These diagrams are actually quite useful in many areas of AI. For
+example, consider a robot navigating through a building. Draw walls
+and other obstacles with points. Then construct the Vornoi diagram;
+the Voronoi borders will be equidistant between the nearest walls. If
+the robot simply follows these Voronoi borders, then it will stay as
+far away from the walls as is physically possible. This is usually the
+safest route for a robot. A visualization of this process can be found
+at <a href="http://www.cs.columbia.edu/~pblaer/projects/path_planner/">Robot Path Planning Using Generalized Voronoi Diagrams</a>.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">Benefits of k-means</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<ul>
+<li>Very simple algorithm.
+
+</li>
+<li>Reasonably fast (although its &ldquo;worst case&rdquo; behavior is poor).
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3">Drawbacks of k-means</h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+<blockquote>
+
+<p>A key limitation of k-means is its cluster model. The concept is based
+on spherical clusters that are separable in a way so that the mean
+value converges towards the cluster center. The clusters are expected
+to be of similar size, so that the assignment to the nearest cluster
+center is the correct assignment. When for example applying k-means
+with a value of \(k=3\) onto the well-known Iris flower data set, the
+result often fails to separate the three Iris species contained in the
+data set. With \(k=2\), the two visible clusters (one containing two
+species) will be discovered, whereas with \(k=3\) one of the two
+clusters will be split into two even parts. In fact, \(k=2\) is more
+appropriate for this data set, despite the data set containing 3
+classes. As with any other clustering algorithm, the k-means result
+relies on the data set to satisfy the assumptions made by the
+clustering algorithms. It works well on some data sets, while failing
+on others. (<a href="http://en.wikipedia.org/wiki/K-means_clustering">Wikipedia</a>)
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4">How to choose k</h3>
+<div class="outline-text-3" id="text-2-4">
+
+
+<p>
+Check out the Wikipedia article about calculating the <a href="http://en.wikipedia.org/wiki/Silhouette_(clustering)">silhouette</a>,
+which is a measure of the average dissimilarity of the clusters. We
+can start at \(k=1\) and increase it until we find a max silhouette (or
+at least a &ldquo;local&rdquo; max).
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

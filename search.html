@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Search</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Search"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:26 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Search</h1>
+
+<blockquote>
+
+<p>Problem-solving searches require trial and error in that they
+generally do not go directly to the solution without traversing and
+retracing some blind alleys&mdash;sometimes many, sometimes few. When a
+person solves a problem without any backtracking whatsoever, we are
+apt to deny that he needed to think at all. We say, &ldquo;He knew the
+answer,&rdquo; or &ldquo;he didn&rsquo;t have to think; he did it by rote.&rdquo;
+&mdash; <a href="http://octopus.library.cmu.edu/cgi-bin/tiff2pdf/simon/box00065/fld04969/bdl0001/doc0001/simon.pdf"><i>Thinking by computers</i>, Herbert A. Simon</a>
+</p>
+</blockquote>
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Why search?</a>
+<ul>
+<li><a href="#sec-1-1">Practical reason 1: space</a></li>
+<li><a href="#sec-1-2">Practical reason 2: unpredictable input</a></li>
+<li><a href="#sec-1-3">Intellectual reason: code may have meaning</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Definition of a search problem</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Why search?</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Why search for the answer if you can just know it instead?
+</p>
+<p>
+No matter how an algorithm is coded, it can be reduced to a series of
+if-then statements in a loop. The if-then statements can be
+represented in a lookup table, where each row in the table is a
+different condition. Thus, even a complex search algorithm can be
+reduced to a lookup table, assuming one has all the requisite data to
+produce such a table.
+</p>
+<p>
+For example, we could devise a search algorithm that plays good
+tic-tac-toe. Or, we can produce a table (with less than 1024 entries)
+that describes which move to take depending on the current board
+configuration.
+</p>
+<p>
+Why use a search if we can make a lookup table instead? There are
+three reasons: two practical, one intellectual.
+</p>
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1">Practical reason 1: space</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<p>
+A lookup table may be too large when fully expanded. A typical chess
+game lasts about 40 moves. To represent all possible moves and
+counter-moves would require a lookup table with 10<sup>120</sup> entries. This
+is, naturally, impossible without some extremely clever encoding
+scheme, since the universe is estimated to contain less than 10<sup>81</sup>
+atoms.
+</p>
+<p>
+Using a search algorithm that generates possible moves when requested
+avoids this impossible space requirement. This way, the lookup table
+is never available in its entirety. Instead, each possible move and
+corresponding action are generated as-needed.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2">Practical reason 2: unpredictable input</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+<p>
+The natural world, unlike chess, does not seem to obey a simple set of
+rules. Imagine a robot placed in a random building; the robot has no
+way of mapping this building before it arrives there, so it cannot
+make a lookup table of all the different movements it can make through
+the building.
+</p>
+<p>
+Also consider a web search engine; there is simply no way to predict
+the content and links that webpages will contain as people publish
+more and more material. Likewise, there exists an infinite variety of
+search queries. Thus, no lookup table relating all possible queries to
+ever-changing web pages can be generated.
+</p>
+<p>
+A lookup table is impossible, yet again. Search is required.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3">Intellectual reason: code may have meaning</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+<p>
+Lastly, a lookup table tells us nothing about how a problem is
+solved. A table that contains all the moves of tic-tac-toe or checkers
+or chess gives no insight about how a good game may be played. There
+may be reasons certain moves are better than others but the lookup
+table does not offer those insights.
+</p>
+<p>
+A search algorithm, on the other hand, describes intelligent behavior,
+assuming the intelligent thing to do is to search. For example, we may
+read the Google Search source code and see that a page is ranked more
+highly if other highly-ranked pages link to it. The algorithm may not
+be appropriate (although Google Search is quite successful, so it
+probably is appropriate), but nevertheless the code describes a
+certain process that we, as programmers, may find to be meaningful and
+possibly intelligent.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Definition of a search problem</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+<p>
+A problem may be solvable by a search technique if the problem has
+each of the following features:
+</p>
+<dl>
+<dt>Initial state</dt><dd>some description of the agent&rsquo;s starting situation
+
+</dd>
+<dt>Possible actions</dt><dd>the set of actions (such as chess moves)
+     available to the agent, also called &ldquo;applicable&rdquo; actions; the
+     possible actions depend on the state
+
+</dd>
+<dt>Transition model</dt><dd>some way of figuring out what an action <i>does</i>;
+     in other words, a <code>resultOf(state, action)</code> function which
+     returns a state; the transition model defines a state space,
+     which takes the form of a directed graph (vertices are states,
+     edges are actions)
+
+</dd>
+<dt>Goal criteria</dt><dd>some way of finding out if the agent has reached
+                   its search goal; the function <code>goal?(state)</code> is a
+                   boolean function (i.e., a predicate)
+
+</dd>
+<dt>Path cost</dt><dd>a function that calculates the cost of a path (a
+               sequence of actions); for example, a driving agent may
+               calculate a path cost by adding the number of driving
+               minutes between each city in its route
+</dd>
+</dl>
+
+
+
+<p>
+Of course, each of these components assumes a liberal abstraction away
+from most of the details that the agent will be facing in reality. For
+example, a driving agent may have a transition model that shows that
+driving north on some street results in arriving at the center of
+town. Of course, this is a <i>ceteris paribus</i> assumption (&ldquo;everything
+else being equal&rdquo;); if something bad happens, like a flat tire, this
+transition model is useless.
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

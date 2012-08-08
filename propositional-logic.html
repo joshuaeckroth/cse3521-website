@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Propositional logic</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Propositional logic"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:28 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Propositional logic</h1>
+
+<p><a href="./boolean-logic.html">Boolean logic</a> gave us a collection of equivalences that allows us to
+simplify (or complicate) expressions involving true/false variables
+and logical relations. That&rsquo;s all fine and good, but (our presentation
+of) it was lacking any guidance about how to make an argument of the
+form &ldquo;if we know \(x \vee \neg y\) is true and we know \(y\) is true, then
+it must be the case that \(x\) is true.
+</p>
+<p>
+Note that we will be adding the following logical relations.
+</p>
+<p>
+\(\rightarrow\) (&ldquo;if&hellip; then&hellip;&rdquo;)
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(x\)</th><th scope="col" class="left">\(y\)</th><th scope="col" class="left">\(x \rightarrow y\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">T</td><td class="left">T</td><td class="left">T</td></tr>
+<tr><td class="left">T</td><td class="left">F</td><td class="left">F</td></tr>
+<tr><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
+<tr><td class="left">F</td><td class="left">F</td><td class="left">T</td></tr>
+</tbody>
+</table>
+
+
+<p>
+\(\leftrightarrow\) (&ldquo;if and only if&hellip; then&hellip;&rdquo;)
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(x\)</th><th scope="col" class="left">\(y\)</th><th scope="col" class="left">\(x \leftrightarrow y\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">T</td><td class="left">T</td><td class="left">T</td></tr>
+<tr><td class="left">T</td><td class="left">F</td><td class="left">F</td></tr>
+<tr><td class="left">F</td><td class="left">T</td><td class="left">F</td></tr>
+<tr><td class="left">F</td><td class="left">F</td><td class="left">T</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Besides Boole&rsquo;s and De Morgan&rsquo;s rules in the <a href="./boolean-logic.html">Boolean logic</a> notes, we
+have some equivalences relating to \(\rightarrow\) and
+\(\leftrightarrow\):
+</p>
+<ul>
+<li>\(x \rightarrow y \equiv \neg y \rightarrow \neg x\)
+    (&ldquo;contrapositive&rdquo;)
+
+</li>
+<li>\(x \rightarrow y \equiv \neg x \vee y\)
+
+</li>
+<li>\(x \rightarrow (y \rightarrow z) \equiv (x \wedge y) \rightarrow
+    z\)
+
+</li>
+<li>\(x \leftrightarrow y \equiv (x \rightarrow y) \wedge (y
+    \rightarrow x) \equiv (x \wedge y) \vee (\neg x \wedge \neg y)\)
+</li>
+</ul>
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Logical consequences and rules of inference</a></li>
+<li><a href="#sec-2">Practice deductions</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Logical consequences and rules of inference</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Suppose we have three sentences: \(\phi\), \(\psi\), and \(\rho\) (these
+variables are just names for possibly complex arrangements of
+variables and logical relations, from the Boolean logic notes).
+</p>
+<p>
+We can make an argument of the form: \(\phi\) and \(\psi\); therefore,
+\(\rho\). This is either true or false. For example:
+</p>
+<ul>
+<li>\(\phi = x \rightarrow y\)
+
+</li>
+<li>\(\psi = \neg y \rightarrow x\)
+
+</li>
+<li>\(\rho = y\)
+</li>
+</ul>
+
+
+<p>
+This argument is true if (and only if) there is no configuration of
+truth values for \(x\) and \(y\) such that both \(\phi\) and \(\psi\) are
+true but \(\rho\) is false. We say then that \(\rho\) is a <i>logical consequence</i> of the compound statement &ldquo;\(\phi\) and \(\psi\).&rdquo;
+</p>
+<p>
+The idea is that \(\rho\) cannot be a &ldquo;consequence&rdquo; of \(\phi\) and \(\psi\)
+if both \(\phi\) and \(\psi\) can be true but nevertheless \(\rho\) is
+false.
+</p>
+<p>
+As an example, consider these assignments of the variables:
+</p>
+<ul>
+<li>\(\phi =\) &ldquo;All humans are mortal.&rdquo;
+
+</li>
+<li>\(\psi =\) &ldquo;Socrates is a human.&rdquo;
+
+</li>
+<li>\(\rho =\) &ldquo;Socrates is mortal.&rdquo;
+</li>
+</ul>
+
+
+<p>
+It&rsquo;s not possible for \(\rho\) to be false if both \(\phi\) and \(\psi\) are
+true. Thus, \(\rho\) is a logical consequence of \(\phi\) and \(\psi\)
+(collectively).
+</p>
+<p>
+There are many patterns of logical consequences. Here are some that
+will be useful in our journey:
+</p>
+<ul>
+<li>Modus ponens (MP):
+<ul>
+<li>\(\phi = x \rightarrow y\)
+</li>
+<li>\(\psi = x\)
+</li>
+<li>\(\rho = y\)
+
+</li>
+</ul>
+
+</li>
+<li>Modus tollens (MT):
+<ul>
+<li>\(\phi = x \rightarrow y\)
+</li>
+<li>\(\psi = \neg y\)
+</li>
+<li>\(\rho = \neg x\)
+
+</li>
+</ul>
+
+</li>
+<li>Disjunctive syllogism (DS):
+<ul>
+<li>\(\phi = x \vee y\)
+</li>
+<li>\(\psi = \neg x\)
+</li>
+<li>\(\rho = y\)
+</li>
+</ul>
+
+<p>    There is another form of this:
+</p><ul>
+<li>\(\phi = x \vee y\)
+</li>
+<li>\(\psi = \neg y\)
+</li>
+<li>\(\rho = x\)
+
+</li>
+</ul>
+
+</li>
+<li>Addition (Add):
+<ul>
+<li>\(\phi = x\)
+</li>
+<li>\(\rho = x \vee y\) (for any \(y\); we have no need for \(\psi\) here)
+
+</li>
+</ul>
+
+</li>
+<li>Simplification (Simp):
+<ul>
+<li>\(\phi = x \wedge y\)
+</li>
+<li>\(\rho = x\) (for any \(y\))
+
+</li>
+</ul>
+
+</li>
+<li>Conjunction (Conj):
+<ul>
+<li>\(\phi = x\)
+</li>
+<li>\(\psi = y\)
+</li>
+<li>\(\rho = x \wedge y\)
+
+</li>
+</ul>
+
+</li>
+<li>Hypothetical syllogism (HS):
+<ul>
+<li>\(\phi = x \rightarrow y\)
+</li>
+<li>\(\psi = y \rightarrow z\)
+</li>
+<li>\(\rho = x \rightarrow z\)
+
+</li>
+</ul>
+
+</li>
+<li>Constructive dilemma (CD):
+<ul>
+<li>\(\phi = (x \rightarrow y) \wedge (w \rightarrow z)\)
+</li>
+<li>\(\psi = x \vee w\)
+</li>
+<li>\(\rho = y \vee z\)
+
+</li>
+</ul>
+
+</li>
+<li>Absorption (Abs):
+<ul>
+<li>\(\phi = x \rightarrow y\)
+</li>
+<li>\(\rho = x \rightarrow (x \wedge y)\)
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Practice deductions</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Now, given our relations and inference rules, we can collect some
+sentences and then deduce logical consequences of those sentences.
+</p>
+<p>
+Suppose we know the following (don&rsquo;t worry about what the variables
+actually mean; we&rsquo;ll get to that issue later):
+</p>
+<ol>
+<li>\(c \vee d\)
+
+</li>
+<li>\(c \rightarrow o\)
+
+</li>
+<li>\(d \rightarrow m\)
+
+</li>
+<li>\(\neg o\)
+</li>
+</ol>
+
+
+<p>
+Ok, can we deduce that \(m\) is a logical consequence? Yes:
+</p>
+<ol>
+<li value="5">\(\neg c\) because of premises 2 and 4 plus modus tollens.
+
+</li>
+<li>\(d\) because of premise 1 and consequence 5 and disjunctive
+     syllogism.
+
+</li>
+<li>\(m\) because of premise 2 and consequence 6 and modus ponens.
+</li>
+</ol>
+
+
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

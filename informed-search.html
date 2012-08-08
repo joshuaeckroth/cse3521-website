@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Informed search</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Informed search"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:41 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Informed search</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Generic search algorithm</a></li>
+<li><a href="#sec-2">Heuristics for 8-puzzle</a></li>
+<li><a href="#sec-3">Hill-climbing search</a></li>
+<li><a href="#sec-4">Best-first search</a></li>
+<li><a href="#sec-5">More sophisticated heuristics</a></li>
+<li><a href="#sec-6">A* search</a></li>
+<li><a href="#sec-7">Comparisons</a>
+<ul>
+<li><a href="#sec-7-1">Number of checked states (time)</a></li>
+<li><a href="#sec-7-2">Maximum number of states in memory</a></li>
+<li><a href="#sec-7-3">Length of path (goodness of solutions)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Generic search algorithm</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>Here is the algorithm again, first seen in the <a href="./uninformed-search.html">Uninformed search</a>
+lecture notes.
+</p>
+
+
+
+<pre class="example">1. create a list called "tocheck" of states to check
+   - put the initial state in this list
+
+2. loop:
+   a. if the "tocheck" list is empty:
+      - oh no! we have nothing left to check, and we never found a
+        goal state! we'll have to quit with "no solution"
+
+   b. otherwise, pull a state from the "tocheck" list, ensuring that
+      we have not yet checked this state
+
+      i. if this state is a goal state, we're done (return this state)
+
+      ii. otherwise,
+          - find the next states accessible from this state
+          - put each next state in the "tocheck" list
+          - repeat the loop
+</pre>
+
+
+<p>
+In the uninformed searches, the random search used no particular
+technique for choosing the next state to check. Breadth-first search
+(BFS) checked the earliest discovered state, and depth-first
+search (DFS) checked the most recently discovered state.
+</p>
+<p>
+BFS is probably the right solution if the goal state is not deep in
+the search graph. DFS is probably the right solution if the opposite
+is the case. Naturally, random search is probably never a good idea.
+</p>
+<p>
+However, many problems do not fit simple descriptions like &ldquo;the goal
+state is not deep in the graph.&rdquo; The goal state may be anywhere, and
+in different occasions may be deep or shallow in the graph.
+</p>
+<p>
+Rather than choose how to search based solely on breadth-first or
+depth-first, we can often come up with better <i>heuristics</i>. A
+heuristic is a &ldquo;rule of thumb,&rdquo; or some kind of rule that&rsquo;s &ldquo;usually a
+good idea.&rdquo; BFS and DFS have their own heuristics but their heuristics
+(how to choose the next states to check) do not change depending on
+the problem. Normally, we talk about heuristics in a more
+problem-specific sense. A heuristic would be applied in step <code>2.b.</code>,
+in which we choose the next state to check.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Heuristics for 8-puzzle</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Here are some heuristics we might apply to the 8-puzzle problem. Each
+heuristic is a function of a state, i.e., \(h(s) = n\) where \(s\) is a
+state and \(n\) is an integer:
+</p>
+<ul>
+<li>(OP): The number of tokens that are out of place.
+
+</li>
+<li>(MD): The sum of &ldquo;Manhattan-distances&rdquo; between each token and its
+  goal position.
+
+</li>
+<li>(RC): Number of tokens out of row plus number of tokens out of column.
+
+</li>
+<li>Perform a breadth-first search from the state to the goal, counting
+  the number of moves in the shortest path. This &ldquo;heuristic&rdquo; is
+  perfect; but it requires solving the whole problem before choosing
+  to follow that state (which is ridiculous).
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Hill-climbing search</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Imagine the search space as terrain. One or more high points on this
+terrain (tops of hills) are goals. If there is only one goal, then
+there is only one highest point. The idea with hill-climbing search is
+to always &ldquo;climb&rdquo; upwards, toward a high point. Once you find that no
+movement takes you to a higher point, then you are done. Note that you
+may have only found the top of a local hill (a non-goal), not the top
+of the tallest hill (the goal).
+</p>
+<p>
+Hill-climbing search does not remember where it was prior to its
+current location in the search space. It&rsquo;s also possible to actually
+perform this search in the real world (by climbing, for example);
+other searches that bounce around to different states or backtrack a
+lot are harder or impossible to perform in reality. This makes
+hill-climbing very efficient in terms of memory usage. However, if the
+search arrives at a local maximum rather than a global maximum, it has
+no way of fixing that error.
+</p>
+<p>
+Our general search algorithm can be modified to support hill-climbing
+search by modifying step <code>2.b.ii.</code> so that the entire &ldquo;tocheck&rdquo; list
+is deleted and replaced with only those states accessible from the
+current state. Also, step <code>2.b.</code> is modified to choose the best state
+in terms of the chosen heuristic (&ldquo;climb up the hill&rdquo; means &ldquo;maximize
+the heuristic function&rdquo;).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Best-first search</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Best-first retains a record of every state that has been visited as
+well as the heuristic value of that state. At step <code>2.b.</code>, the best
+state ever visited is retrieved and search continues from there. This
+makes best-first search appear to jump around the search tree, like a
+random search, but of course best-first search is not random. The
+memory requirements for best-first search are worse than hill-climbing
+but not as bad as breadth-first. This is because breadth-first search
+does not use a heuristic to avoid obviously worse states.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">More sophisticated heuristics</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+Unfortunately, both hill-climbing search and best-first search can
+yield terrible solutions. Imagine a maze-navigating robot in a maze
+that has some windows in the walls. The robot can sometimes see the
+goal through windows. A hill-climbing or best-first search robot may
+believe it is close to the goal because it can see it through some
+windows, but in actuality it is quite far from the goal, and must
+actually back up to make progress. Instead, however, the robot keeps
+going deeper and deeper into the maze, enticed by the illusory
+nearness of the goal.
+</p>
+<p>
+If the robot simply kept track of how &ldquo;deep&rdquo; it had gone into the
+maze, and if it had reason to believe that the goal cannot possibly be
+&ldquo;this deep,&rdquo; it would back up before going even deeper.
+</p>
+<p>
+In other words, there is more to an appropriate heuristic than
+closeness to the goal. One must also keep in mind how many steps have
+already been taken. For example, if we are solving the 8-puzzle game,
+we should consider how many moves have already been made. If we are
+planning a driving route, we should consider how far we have already
+traveled (or planned to travel); perhaps there is a shorter route if
+we abandon the path we are on.
+</p>
+<p>
+Thus, a good heuristic function actually has two parts: \(f(s) = g(s) +
+h(s)\), where \(s\) is a state, \(g\) computes the cost of arriving at \(s\)
+from the initial state (the number of moves to \(s\) or the distance
+traveled so far), and \(h\) is our heuristic, i.e., our estimate of how
+far away \(s\) is from the goal.
+</p>
+<p>
+In the 8-puzzle, \(g\) is simply the number of moves made so far (to get
+to state \(s\)); in the routing problem, \(g\) is the miles traveled so
+far. In the 8-puzzle, \(h\) is one of the heuristics described above
+(OP, MD, RC); in the routing problem, \(h\) is perhaps an
+&ldquo;as-the-crow-flies&rdquo; distance (i.e., Euclidean distance) from \(s\) to
+the goal.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">A* search</h2>
+<div class="outline-text-2" id="text-6">
+
+
+<p>
+Let&rsquo;s modify best-first search to use the new complex heuristic \(f(s)
+= g(s) + h(s)\). This is the algorithm known as A (not A*).
+</p>
+<p>
+If \(g\) is the number of moves made so far (number of &ldquo;hops&rdquo; in
+the search tree) and \(h\) is always equal to 0.0, then we have
+breadth-first search. Recall that breadth-first search is optimal for
+unweighted graphs (graphs were the edges always have weight 1.0).
+</p>
+<p>
+Actually, the A algorithm is optimal as well, even on weighted graphs,
+if we keep \(h\) constantly equal to 0.0. This is because it acts like
+breadth-first search, in that it always considers better alternatives
+before going &ldquo;deeper.&rdquo; The A algorithm here is optimal on weighted
+graphs because it simply considers the true path cost (unlike
+breadth-first search), and proceeds from the lowest cost path.
+</p>
+<p>
+Furthermore, if \(h(s)\) always <i>underestimates</i> the true cost of a path
+from \(s\) to the goal, then the A algorithm is optimal. If we call the
+true cost function from \(s\) to the goal \(h^*(s)\), then we are saying
+that if \(h(s) \leq h^*(s)\) for all \(s\), then A is optimal. When this
+restriction is met, we call the algorithm A*.
+</p>
+<p>
+An \(h\) that meets this <i>underestimation</i> criterion is an <i>admissible</i>
+heuristic, and turns the A algorithm into A*, which we call an
+admissible search algorithm. Furthermore, A* is the most efficient
+algorithm (called &ldquo;optimally efficient&rdquo;) that uses some particular
+heuristic. This means that any other search algorithm using the same
+heuristic will check no fewer states than A*.
+</p>
+<p>
+How poorly \(h\) estimates the actual cost to the goal makes one \(h\)
+better than another. With \(h(s)=0.0\) for all \(s\), we have a very poor
+heuristic (unless the cost truly is always 0.0, but then why
+search?). Ideally, \(h\) is as close as possible (or equal to) \(h^*\) but
+still underestimates (if not equal).
+</p>
+<p>
+If \(h\) overestimates the true cost to the goal, then our search
+algorithm will obviously make the wrong choices. It will move the
+robot farther from the end of the maze rather than towards the end.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">Comparisons</h2>
+<div class="outline-text-2" id="text-7">
+
+
+<p>
+Here we have the results of some experiments with the 8-puzzle
+problem. The breadth-first search (BFS) results are the 0
+line. Results from other searches are shown as how far they differ
+from BFS. So, if a search is higher than the 0 line in these results,
+it performs worse (in all graphs, higher is worse); if it is under the
+0 line, it performs better than BFS.
+</p>
+<p>
+The x-axis in the graphs shows the complexity of the 8-puzzle
+problem. Starting with a solved 8-puzzle, we perform some number of
+random moves. The optimal solution to the puzzle is at most that many
+moves (the moves we made may &ldquo;cancel each other out&rdquo; in some cases, so
+the optimal solution back to the starting state may involve fewer
+moves). Since random search performs so badly, we do not show its
+performance characteristics in the graphs after 10 moves.
+</p>
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1">Number of checked states (time)</h3>
+<div class="outline-text-3" id="text-7-1">
+
+
+
+<div style="text-align: center">
+<p><img src="./images/search-checked.png"  alt="./images/search-checked.png" />
+</p>
+</div>
+
+<p>
+We use &ldquo;number of checked states&rdquo; as a proxy for computational
+time. Random is obviously quite bad. Interesting, IDDFS is also bad;
+this is because, at least how our algorithm works, many states are
+checked more than once when the algorithm restarts with greater depth
+limits.
+</p>
+<p>
+Notice A* gets to the goal fastest. This is because A* is &ldquo;optimally
+efficient.&rdquo;
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2">Maximum number of states in memory</h3>
+<div class="outline-text-3" id="text-7-2">
+
+
+
+<div style="text-align: center">
+<p><img src="./images/search-memory.png"  alt="./images/search-memory.png" />
+</p>
+</div>
+
+<p>
+&ldquo;Memory&rdquo; is measured as the maximum size ever encountered of the
+&ldquo;tocheck&rdquo; list. Hill-climbing search keeps the &ldquo;tocheck&rdquo; list the
+smallest, overall, because it always deletes the list and creates a
+new list with only the next accessible states.
+</p>
+<p>
+BFS uses a lot of memory because it keeps knowledge of all accessible
+states from every state higher up in the &ldquo;search tree.&rdquo; Other
+algorithms generally prefer keeping knowledge of states accessible
+from only the best states.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7-3" class="outline-3">
+<h3 id="sec-7-3">Length of path (goodness of solutions)</h3>
+<div class="outline-text-3" id="text-7-3">
+
+
+
+<div style="text-align: center">
+<p><img src="./images/search-path.png"  alt="./images/search-path.png" />
+</p>
+</div>
+
+<p>
+We learned that A* is optimal (with respect to the path cost of the
+solution). Breadth-first search is also optimal since we have a graph
+with edge weights all equal to 1.0. So, A* and BFS perform just as
+well, and nothing performs better.
+</p>
+<p>
+Hill-climbing and best-first search got lost &ldquo;in the weeds,&rdquo; producing
+terrible solutions, because they do not consider the complexity if
+their search path (the depth of their search tree). They just keep
+searching further. DFS would do the same except that we are using
+IDDFS instead (depth-limited DFS); IDDFS finds shorter solutions
+before longer solutions, and thus nearly always finds the optimal
+solution. Interestingly, random search finds near-optimal solutions,
+possibly because it is more likely it will look at a shallow node
+(there are up to four from each state) than a deep node.
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

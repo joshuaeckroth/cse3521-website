@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>The &ldquo;Chinese room&rdquo; argument</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="The &ldquo;Chinese room&rdquo; argument"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:24:54 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">The &ldquo;Chinese room&rdquo; argument</h1>
+
+<p>(Disclaimer: All this talk of Chinese, as a language that is not
+understood by certain parties involved, is clearly ethnocentric; but
+the use of Chinese in this argument is engrained in the culture of the
+philosophy of AI.)
+</p>
+<p>
+Quoted from <a href="http://cogprints.org/7150/1/10.1.1.83.5248.pdf">&ldquo;Minds, Brains, and Programs&rdquo;</a> (PDF) (<a href="http://scholar.google.com/scholar.bib?q=info:HYbsea2E9v4J:scholar.google.com/&amp;output=citation&amp;hl=en&amp;as_sdt=0,36&amp;ct=citation&amp;cd=0">full cite</a>) by John
+Searle:
+</p>
+<blockquote>
+
+<p>What psychological and philosophical significance should we attach to
+recent efforts at computer simulations of human cognitive capacities?
+In answering this question, I find it useful to distinguish what I
+will call &ldquo;strong&rdquo; AI from &ldquo;weak&rdquo; or &ldquo;cautious&rdquo; AI.
+</p>
+</blockquote>
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Weak AI</a></li>
+<li><a href="#sec-2">Strong AI</a></li>
+</ul>
+</li>
+<li><a href="#sec-1">The setup</a></li>
+<li><a href="#sec-2">The matter at hand</a>
+<ul>
+<li><a href="#sec-2-1">Does John Searle, therefore, understand Chinese?</a></li>
+<li><a href="#sec-2-2">Does this &ldquo;program&rdquo; explain human understanding?</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Batting down potential objections</a>
+<ul>
+<li><a href="#sec-3-1">The &ldquo;systems&rdquo; reply</a></li>
+<li><a href="#sec-3-2">The &ldquo;robot&rdquo; reply</a></li>
+<li><a href="#sec-3-3">The &ldquo;brain simulator&rdquo; reply</a></li>
+<li><a href="#sec-3-4">The &ldquo;combination&rdquo; reply</a></li>
+<li><a href="#sec-3-5">The &ldquo;other minds&rdquo; reply</a></li>
+<li><a href="#sec-3-6">The &ldquo;many mansions&rdquo; reply</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">The point</a></li>
+<li><a href="#sec-5">Emergence</a></div>
+</div>
+
+<div id="outline-container-1" class="outline-3">
+<h3 id="sec-1">Weak AI</h3>
+<div class="outline-text-3" id="text-1">
+
+
+<blockquote>
+
+<p>According to weak AI, the principal value of the computer in the study
+of the mind is that <b>it gives us a very powerful tool.</b> For example,
+it enables us to formulate and test hypotheses in a more rigorous and
+precise fashion. (emphasis added)
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-3">
+<h3 id="sec-2">Strong AI</h3>
+<div class="outline-text-3" id="text-2">
+
+
+<blockquote>
+
+<p>But according to strong AI, the computer is not merely a tool in the
+study of the mind; rather, the appropriately programmed computer
+<b>really is a mind</b>, in the sense that computers given the right
+programs can be literally said to <b>understand</b> and have other
+cognitive states. In strong AI, because the programmed computer has
+cognitive states, the programs are not mere tools that enable us to
+test psychological explanations; rather, <b>the programs are themselves the explanations.</b> (emphasis added)
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">The setup</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Searle spends a moment describing a program by Schank that processes
+stories. An example:
+</p>
+<blockquote>
+
+<p>A man went into a restaurant and ordered a hamburger. When the
+hamburger arrived it was burned to a crisp, and the man stormed out of
+the restaurant angrily, without paying for the hamburger or leaving a
+tip.
+</p>
+</blockquote>
+
+
+<p>
+If you are asked, &ldquo;Did the man eat the hamburger?&rdquo; what would you
+answer?
+</p>
+<p>
+Now suppose the story is:
+</p>
+<blockquote>
+
+<p>A man went into a restaurant and ordered a hamburger; when the
+hamburger came he was very pleased with it; and as he left the
+restaurant he gave the waitress a large tip before paying his bill.&rdquo;
+</p>
+</blockquote>
+
+
+<p>
+Again, did the man eat the hamburger?
+</p>
+<p>
+Regardless of your answer (and its plausible qualifications, if you
+are really thinking about this), I expect you can imagine what Schank
+and Searle expect your answers to be.
+</p>
+<p>
+Schank&rsquo;s program could answer these questions after &ldquo;reading&rdquo; those
+stories. His program used a data structure called &ldquo;scripts&rdquo; that
+indicated when a person goes to a restaurant, certain other things
+usually happen. When the person eats his meal and pays for it, he is
+happy with it; when he does not eat it, he is not happy with it, and
+so on. A &ldquo;script&rdquo; is a scenario; some parts may be missing from the
+story, but the script tells what those parts must be.
+</p>
+<p>
+Now, Searle claims that Schank claims that the computer (running the
+program) is not only simulating a human ability but also:
+</p>
+<ol>
+<li>can literally be said to understand the story and provide the answers
+     to questions, and
+
+</li>
+<li>that what the machine and its program do explains the human
+     ability to understand the story and answer questions about it.
+</li>
+</ol>
+
+
+<p>
+Searle says both claims are unsupported by Schanks work (viz., the
+program he wrote).
+</p>
+<p>
+So, to prove this, Searle chooses to investigate what it would be like
+for a mind to work like a theory of mind says it works. He sets up the
+following scenario:
+</p>
+<ul>
+<li>Suppose I am locked in a room with a large book of Chinese
+    writing.
+
+</li>
+<li>Suppose I know no Chinese, written or spoken, and I can&rsquo;t even
+    reliably recognize it (as opposed to Japanese or bogus
+    characters).
+
+</li>
+<li>Suppose I have another book of Chinese writing together with a set
+    of rules for correlating the first book&rsquo;s entries with the second
+    book&rsquo;s.
+
+</li>
+<li>Suppose these rules are in English (which I do understand).
+
+</li>
+<li>Suppose I am given a <i>third</i> book of Chinese, also with some
+    instructions in English that enable me to correlate phrases from
+    the third Chinese book with the first two books.
+
+<ul>
+<li>These rules tell me how to give back Chinese symbols/phrases in
+      response to certain symbols given from the third book.
+
+</li>
+</ul>
+
+</li>
+<li>Unknown to me, the people who are giving me all of these symbols
+    call the first book the &ldquo;script,&rdquo; the second book the &ldquo;story,&rdquo; and
+    the third book the &ldquo;questions.&rdquo;
+
+<ul>
+<li>The symbols I give back are called the &ldquo;answers&rdquo; (again, unknown
+      to me).
+
+</li>
+</ul>
+
+</li>
+<li>&ldquo;Just to complicate the story a little,&rdquo; suppose these people give
+    me stories in English and ask me questions about those stories. I
+    understand English, so I give back correct answers in English.
+
+</li>
+<li>Suppose the Chinese books are written so well that, <b>from an     outside observer</b>, my answers (in Chinese) to questions (posed in
+    Chinese) to stories (written in Chinese) are correct and
+    appropriate (like Schank&rsquo;s program).
+</li>
+</ul>
+
+
+<p>
+<b>Nobody looking at my answers can tell that I don&rsquo;t speak a word of Chinese.</b> My answers to Chinese questions and English questions look
+just as good.
+</p>
+<blockquote>
+
+<p>But in the Chinese case, unlike the English case, I produce the
+answers by manipulating uninterpreted formal symbols. As far as the
+Chinese is concerned, I simply behave like a computer; I perform
+computational operations on formally specified elements. For the
+purposes of the Chinese, I am simply an instantiation of the computer
+program.
+</p>
+</blockquote>
+
+
+
+<div style="text-align: center">
+<p><img src="./images/chinese-room.png"  alt="./images/chinese-room.png" />
+</p>
+<p>
+(<a href="http://sophoslogos.wordpress.com/tag/chinese-room/">source</a>)
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">The matter at hand</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">Does John Searle, therefore, understand Chinese?</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+Well, no, by assumption. Case closed, right?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">Does this &ldquo;program&rdquo; explain human understanding?</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<p>
+No: the computer and program (Searle is the computer, the English
+rules make up the program, the Chinese books are the data) operate
+correctly but no part of them understands Chinese (Searle does not,
+and of course a book does not &ldquo;understand&rdquo; anything, right?). So no
+understanding is taking place, so this program cannot explain human
+understanding.
+</p>
+<blockquote>
+
+<p>In the Chinese case I have everything that artificial intelligence can
+put into me by way of a program, and I understand nothing; in the
+English case I understand everything, and there is so far no reason at
+all to suppose that my understanding has anything to do with computer
+programs, that is, with computational operations on purely formally
+specified elements. As long as the program is defined in terms of
+computational operations on purely formally defined elements, what the
+example suggests is that these by themselves have no interesting
+connection with understanding. They are certainly not sufficient
+conditions, and not the slightest reason has been given to suppose
+that they are necessary conditions or even that they make a
+significant contribution to understanding.
+</p>
+<p>
+[&hellip;]
+</p>
+
+<p>
+Whatever purely formal principles you put into the computer, they will
+not be sufficient for understanding, since a human will be able to
+follow the formal principles without understanding anything. No reason
+whatever has been offered to suppose that such principles are
+necessary or even contributory, since no reason has been given to
+suppose that when I understand English I am operating with any formal
+program at all.
+</p>
+</blockquote>
+
+
+<p>
+<b>What does Searle have in the case of answering English questions that he does not have in the case of answering Chinese questions?</b>
+</p>
+<blockquote>
+
+<p>The obvious answer is that I know what the former mean, while I
+haven&rsquo;t the faintest idea what the latter mean. But in what does this
+consist and why couldn&rsquo;t we give it to a machine, whatever it is?
+</p>
+</blockquote>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Batting down potential objections</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Like Turing&rsquo;s <a href="http://www.loebner.net/Prizef/TuringArticle.html">Computing machinery and intelligence</a>, which gives us the
+Turing test (Imitation Game), Searle is sure to diffuse a range of
+objections.
+</p>
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">The &ldquo;systems&rdquo; reply</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<blockquote>
+
+<p>&ldquo;While it is true that the individual person who is locked in the room
+does not understand the story, the fact is that he is merely part of a
+whole system, and the system does understand the story. The person has
+a large ledger in front of him in which are written the rules, he has
+a lot of scratch paper and pencils for doing calculations, he has
+&lsquo;data banks&rsquo; of sets of Chinese symbols.  Now, understanding is not
+being ascribed to the mere individual; rather it is being ascribed to
+this whole system of which he is a part.&rdquo;
+</p>
+</blockquote>
+
+
+<p>
+Searle&rsquo;s response (summed up): Let the human memorize everything. Even
+get rid of the room. Then the system just is him, and he still doesn&rsquo;t
+understand Chinese.
+</p>
+<blockquote>
+
+<p>Actually I feel somewhat embarrassed to give even this answer to the
+systems theory because the theory seems to me so implausible to start
+with. The idea is that while a person doesn&rsquo;t understand Chinese,
+somehow the conjunction of that person and bits of paper might
+understand Chinese. It is not easy for me to imagine how someone who
+was not in the grip of an ideology would find the idea at all
+plausible.
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2">The &ldquo;robot&rdquo; reply</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<blockquote>
+
+<p>&ldquo;Suppose we wrote a different kind of program from Schank&rsquo;s
+program. Suppose we put a computer inside a robot, and this computer
+would not just take in formal symbols as input and give out formal
+symbols as output, but rather would actually operate the robot in such
+a way that the robot does something very much like perceiving,
+walking, moving about, hammering nails, eating, drinking &mdash; anything
+you like. The robot would, for example, have a television camera
+attached to it that enabled it to &lsquo;see,&rsquo; it would have arms and legs
+that enabled it to &lsquo;act,&rsquo; and all of this would be controlled by its
+computer &lsquo;brain.&rsquo; Such a robot would, unlike Schank&rsquo;s computer, have
+genuine understanding and other mental states.&rdquo;
+</p>
+</blockquote>
+
+
+<p>
+Searle&rsquo;s response: Suppose, unknown to Searle, some of
+those Chinese symbols are descriptions of images or sounds (from
+cameras or microphones), and some are actions (move arm left,
+etc.). Still, he need not understand any of that; the symbols look the
+same to him.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3">The &ldquo;brain simulator&rdquo; reply</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+<blockquote>
+
+<p>&ldquo;Suppose we design a program that doesn&rsquo;t represent information that
+we have about the world, such as the information in Schank&rsquo;s scripts,
+but simulates the actual sequence of neuron firings at the synapses of
+the brain of a native Chinese speaker when he understands stories in
+Chinese and gives answers to them. The machine takes in Chinese
+stories and questions about them as input, it simulates the formal
+structure of actual Chinese brains in processing these stories, and it
+gives out Chinese answers as outputs. We can even imagine that the
+machine operates, not with a single serial program, but with a whole
+set of programs operating in parallel, in the manner that actual human
+brains presumably operate when they process natural language. Now
+surely in such a case we would have to say that the machine understood
+the stories; and if we refuse to say that, wouldn&rsquo;t we also have to
+deny that native Chinese speakers understood the stories? At the level
+of the synapses, what would or could be different about the program of
+the computer and the program of the Chinese brain?&rdquo;
+</p>
+</blockquote>
+
+
+<p>
+Searle&rsquo;s response: First, &ldquo;if we had to know how the brain
+worked to do AI, we wouldn&rsquo;t do AI&rdquo; (I find that to be a curious
+response&hellip;).
+</p>
+<p>
+The main thrust of his argument is very interesting. Suppose the man
+in the room is communicating via water pipes; his English rules tell
+him how turn on or off various valves. The water connections
+correspond to synapses in a Chinese speaker&rsquo;s brain. The whole system
+is set up so that only after the right valves are turned on and off,
+and the water comes out at the end in the right way, certain Chinese
+symbols pop out.
+</p>
+<p>
+This pipe system simulates a Chinese speaker&rsquo;s brain. Yet where is the
+understanding? It&rsquo;s not in the valve operator who reads the English
+rules (by assumption). It&rsquo;s not in the pipes (right?). It&rsquo;s not in the
+&ldquo;whole system&rdquo; because the operator can just pretend to turn on and
+off valves, the pipes are in his imagination, yet still he does not
+understand Chinese (right?).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4">The &ldquo;combination&rdquo; reply</h3>
+<div class="outline-text-3" id="text-3-4">
+
+
+<blockquote>
+
+<p>&ldquo;While each of the previous three replies might not be completely
+convincing by itself as a refutation of the Chinese room
+counterexample, if you take all three together they are collectively
+much more convincing and even decisive. Imagine a robot with a
+brain-shaped computer lodged in its cranial cavity, imagine the
+computer programmed with all the synapses of a human brain, imagine
+the whole behavior of the robot is indistinguishable from human
+behavior, and now think of the whole thing as a unified system and not
+just as a computer with inputs and outputs. Surely in such a case we
+would have to ascribe intentionality (understanding) to the system.&rdquo;
+</p>
+</blockquote>
+
+
+<p>
+Searle&rsquo;s response: Sure, if such a robot existed (and
+passed the total Turing test, etc.), we would ascribe understanding to
+it, failing some reason not to. But we are just assuming this
+understanding is there. If we knew how the robot really operated, we
+would no longer say it understands.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-5" class="outline-3">
+<h3 id="sec-3-5">The &ldquo;other minds&rdquo; reply</h3>
+<div class="outline-text-3" id="text-3-5">
+
+
+<blockquote>
+
+<p>&ldquo;How do you know that other people understand Chinese or anything
+else? Only by their behavior. Now the computer can pass the behavioral
+tests as well as they can (in principle), so if you are going to
+attribute cognition to other people you must in principle also
+attribute it to computers.&rdquo;
+</p>
+</blockquote>
+
+
+<p>
+Searle&rsquo;s response: The question at hand is not why we
+believe other people have mental states, but rather what something has
+when we say it has mental states / understanding.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-6" class="outline-3">
+<h3 id="sec-3-6">The &ldquo;many mansions&rdquo; reply</h3>
+<div class="outline-text-3" id="text-3-6">
+
+
+<blockquote>
+
+<p>&ldquo;Your whole argument presupposes that AI is only about analogue and
+digital computers. But that just happens to be the present state of
+technology. Whatever these causal processes are that you say are
+essential for intentionality (assuming you are right), eventually we
+will be able to build devices that have these causal processes, and
+that will be artificial intelligence. So your arguments are in no way
+directed at the ability of artificial intelligence to produce and
+explain cognition.&rdquo;
+</p>
+</blockquote>
+
+
+<p>
+Searle&rsquo;s response: The Chinese room argument attacks the claim of
+strong AI that understanding only requires formal processes operating
+on formal symbols. This &ldquo;many mansions&rdquo; reply redefines the claims of
+strong AI, and those new claims are not what Searle is arguing about.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/kanin-20090119-CRA-nykr.jpg"  alt="./images/kanin-20090119-CRA-nykr.jpg" />
+</p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">The point</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+What is Searle ultimately getting at?
+</p>
+<p>
+<b>Formal operations that work on formal symbols do not exhibit understanding.</b> By &ldquo;formal operations&rdquo; we mean operations like &ldquo;flip
+this bit from 0 to 1,&rdquo; &ldquo;sort this list,&rdquo; etc. Likewise, formal symbols
+are equivalently shapes; &ldquo;0&rdquo; and &ldquo;1&rdquo; mean nothing, neither do &ldquo;x&rdquo; and
+&ldquo;y&rdquo; or even &ldquo;Searle&rdquo; (the string of characters). They mean nothing to
+a computer, that is. It does not matter what <i>we</i> think of these
+symbols, they symbolize <i>nothing</i> as far as the computer is
+concerned. Just to prove that point, we can take any computer program,
+replace every mention of a variable named &ldquo;x&rdquo; with the name &ldquo;xx&rdquo; and
+end up with the same program (assuming there did not previously exist
+a variable named &ldquo;xx&rdquo;).
+</p>
+
+
+<div style="float: right; text-align: center">
+<img src="./images/chinese-room-Comic64.jpg"/>
+<br/>
+(<a
+href="http://seemedfunny.blogspot.com/2011/01/ishmael-64-chinese-room.html">source</a>)
+</div>
+
+<p>
+In linguistic terms, symbols are all syntax, with no semantics.
+</p>
+<p>
+Any understanding or intentionality a program seems to have is just in
+the minds of the programmers, and is <i>not</i> found in the computer that
+is executing the program or the program code itself.
+</p>
+<p>
+The same program can be &ldquo;executed&rdquo; using something other than a
+computer. A child with a pencil and paper, or an elaborate
+configuration of pulleys and stones, or water and pipes, etc. can
+perform the same formal operations (given some energy source). The
+first digital computers were &ldquo;programmed&rdquo; by plugging cables into
+various slots; that is somewhat close to the metaphorical water pipe
+system. Surely water and pipes do not understand what &ldquo;programs&rdquo; they
+are &ldquo;executing&rdquo; (right?).
+</p>
+<p>
+However, <b>real understanding</b> (a.k.a., mental states, or intentional
+states) <b>is not purely formal</b>. Real understanding is <b>about</b>
+something. When I believe it is raining, I am not just instantiating
+some formal structure, but rather I <b>believe</b> it is truly <b>raining</b>,
+like that wet stuff outside, falling from the sky. I can describe this
+belief in any number of symbolic ways; none of those symbolic forms
+are equivalent to the actual belief that I have.
+</p>
+<p>
+Therefore, no formal system can have real mental states, real
+beliefs about anything.
+</p>
+<p>
+Therefore, the claim of strong AI, that an appropriately programmed
+computer is a &ldquo;mind,&rdquo; (i.e., has understanding), is false. AI may
+still be fun and interesting to test hypotheses about how minds might
+work, but no robot will have a mind of its own (so to speak). Thus,
+the Turing test does not test for true
+intelligence/understanding. Thus, the so-called Singularity is
+impossible, etc.
+</p>
+<p>
+<b>This is profound</b>, because the Church-Turing thesis (which cannot be
+proven but seems inconceivable to deny), says that <b>any formal algorithm that we can completely describe in detail</b> can be programmed
+and put on a computer (or calculated by hand or whatever). <b>Thus</b>, if
+Searle is right, <b>there is no formal algorithm</b> for true mental
+processes, for what we call the &ldquo;mind.&rdquo; The brain, being just that
+physical mass, can be simulated, etc. But formal algorithms will never
+produce a &ldquo;mind.&rdquo;
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Emergence</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+Is understanding an emergent property, just like ant societies are
+emergent? Are we being too narrow-minded just looking at symbols and
+individual programs? Perhaps the mind is a formal system but a very
+vast system that has emergent properties which cannot be found in any
+of the individual symbols or programs. (Marvin Minsky has a similar
+viewpoint which he calls <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-868j-the-society-of-mind-spring-2007/">The Society of Mind</a>.)
+</p>
+<p>
+Curiously, while we could replace every mention of a variable &ldquo;x&rdquo; with
+a new name &ldquo;xx,&rdquo; which proves that what it is called (what it looks
+like) makes no difference ultimately, we cannot do the same
+replacement with an &ldquo;emergent&rdquo; system like a group of ants. If some
+ants are replaced with larger ants, or slower ants, or ants without
+mandibles (mouths), then the emergent behavior of the group will
+radically change, even though all the ants still follow the same rules
+(same program). How the ants look matters.
+</p>
+<p>
+Is it the case that the emergent behavior of ants or emergent behavior
+of a bunch of brain neurons cannot be completely described, and thus
+coded in an algorithm? (This is essentially Smolensky&rsquo;s Subsymbolic
+Hypothesis.)
+</p>
+<p>
+If this is true, then Searle&rsquo;s argument falls flat. We can grant that
+no single ant understands what it is doing; no single ant understands
+Chinese (to overextend the metaphor). It&rsquo;s the collective, emergent
+behavior that seems to have understanding, intentionality, beliefs,
+goals, and all the rest. Right?
+</p>
+<p>
+(The above argument essentially comes from Chalmers&rsquo; <a href="http://consc.net/papers/subsymbolic.pdf">&ldquo;Subsymbolic Computation and the Chinese Room&rdquo;</a> (PDF); <a href="http://scholar.google.com/scholar.bib?q=info:-1mhqsjgfWkJ:scholar.google.com/&amp;output=citation&amp;hl=en&amp;as_sdt=0,36&amp;ct=citation&amp;cd=0">full cite</a>)
+</p>
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

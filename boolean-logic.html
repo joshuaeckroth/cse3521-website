@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Boolean logic</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Boolean logic"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-08 14:30:52 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+          <!-- Plupper Tracking Code -->
+          <script src="https://www.google.com/jsapi"></script>
+          <script type="text/javascript"
+                  src="https://static.plupper.com/js/plupper.js"></script>
+          <script type="text/javascript">
+            plupper.init("joshuaeckroth@plupper.com");
+            plupper.enableCobrowsing();
+          </script>
+          <!-- End of Plupper Tracking Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Boolean logic</h1>
+
+<p>The most basic, yet somewhat useful, form of logic is Boolean logic
+(named after George Boole, 1815-1864). In this logic, we have
+variables that can be true or false, and we have ways of &ldquo;connecting&rdquo;
+or &ldquo;relating&rdquo; these variables. In fact, Boole (and De Morgan)
+described an algebra over these variables and relations, so we have a
+variety of equivalences that allow us to translate one form into
+another.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Logical relations</a></li>
+<li><a href="#sec-2">Truth tables</a></li>
+<li><a href="#sec-3">Boole&rsquo;s and De Morgan&rsquo;s Laws</a></li>
+<li><a href="#sec-4">Examples</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Logical relations</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Besides variables (which, again, are just true or false), we have the
+following relations:
+</p>
+<ul>
+<li>\(\wedge\) which we call &ldquo;and&rdquo;
+
+</li>
+<li>\(\vee\) which we call &ldquo;or&rdquo;
+
+</li>
+<li>\(\neg\) which we call &ldquo;not&rdquo;
+</li>
+</ul>
+
+
+<p>
+\(\wedge\) and \(\vee\) relate two variables: \(x \wedge y\) and \(x \vee
+y\). \(\neg\) can be applied to one entity: \(\neg x\).
+</p>
+<p>
+This can all be composed, too: \(\neg (x \vee (y \wedge \neg z))\).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Truth tables</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Having a bunch of symbols (regardless of what we call them) does not
+do much for us. We need a way of determining whether the value of a
+sentence is true or false. (A &ldquo;sentence&rdquo; is a composition of variables
+and relations.)
+</p>
+<p>
+The truth tables for the basic relations are so simple we&rsquo;ll just
+describe them: \(x \wedge y\) is true if and only if both \(x\) and \(y\)
+are true; \(x \vee y\) is true if and only if at least one of \(x\) or \(y\)
+is true; and \(\neg x\) is true only if \(x\) is false.
+</p>
+<p>
+Now, we can figure out the truth of a complicated sentence by finding
+the truth-value of each part. We build a table for this operation
+because we need to keep track of all the different values that the
+variable may hold.
+</p>
+<p>
+For what values of \(x\), \(y\), and \(z\) make this true? \(\neg (x \vee (y
+\wedge \neg z))\)
+
+We break the sentence into its main parts and put them all in the
+table.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(x\)</th><th scope="col" class="left">\(y\)</th><th scope="col" class="left">\(z\)</th><th scope="col" class="left">\(\neg z\)</th><th scope="col" class="left">\(y \wedge \neg z\)</th><th scope="col" class="left">\(x \vee (y \wedge \neg z)\)</th><th scope="col" class="left">\(\neg (x \vee (y \wedge \neg z))\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">F</td></tr>
+<tr><td class="left">T</td><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">F</td></tr>
+<tr><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">F</td></tr>
+<tr><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">F</td></tr>
+<tr><td class="left">F</td><td class="left">T</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">T</td></tr>
+<tr><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">F</td></tr>
+<tr><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">T</td></tr>
+<tr><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">T</td></tr>
+</tbody>
+</table>
+
+
+<p>
+We see that there are three variable assignements that make the whole
+expression true: \(x\) is false, \(y\) is true, and \(z\) is true; \(x\) is
+false, \(y\) is false, and \(z\) is true; and \(x\) is false, \(y\) is false,
+and \(z\) is false.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Boole&rsquo;s and De Morgan&rsquo;s Laws</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<ul>
+<li>\(\neg F \equiv T\)
+
+</li>
+<li>\(\neg T \equiv F\)
+
+</li>
+<li>\(x \vee \neg x \equiv T\)
+
+</li>
+<li>\(x \vee F \equiv x\)
+
+</li>
+<li>\(x \vee T \equiv T\)
+
+</li>
+<li>\(x \wedge T \equiv x\)
+
+</li>
+<li>\(x \wedge F \equiv F\)
+
+</li>
+<li>\(x \vee y \vee z \equiv x \vee (y \vee z) \equiv (x \vee y) \vee z\)
+
+</li>
+<li>\(x \wedge y \wedge z \equiv x \wedge (y \wedge z) \equiv (x \wedge y) \wedge z\)
+
+</li>
+<li>\(x \vee y \equiv y \vee x\)
+
+</li>
+<li>\(x \wedge y \equiv y \wedge x\)
+
+</li>
+<li>\(x \wedge (y \vee z) \equiv (x \wedge y) \vee (x \wedge z)\)
+
+</li>
+<li>\(x \vee (y \wedge z) \equiv (x \vee y) \wedge (x \vee z)\)
+
+</li>
+<li>\(\neg (x \vee y) \equiv (\neg x) \wedge (\neg y)\)
+
+</li>
+<li>\(\neg (x \wedge y) \equiv (\neg x) \vee (\neg y)\)
+
+</li>
+<li>\(x \vee x \equiv x\)
+
+</li>
+<li>\(x \wedge x \equiv x\)
+
+</li>
+<li>\(\neg \neg x \equiv x\)
+
+</li>
+<li>\(x \wedge (x \vee y) \equiv x\)
+
+</li>
+<li>\(x \vee (x \wedge y) \equiv x\)
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Examples</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Using the above rules, we can simplify complex expressions into
+equivalent simpler expressions:
+</p>
+<ul>
+<li>\(z \vee \neg (y \wedge z) \equiv z \vee (\neg y \vee \neg z) \equiv (z \vee \neg z) \vee \neg y \equiv T \vee \neg y \equiv T\)
+
+</li>
+<li>\(\neg (x \wedge y) \wedge (\neg x \vee y) \wedge (\neg y \vee y) \equiv \neg (x \wedge y) \wedge (\neg x \vee y) \equiv (\neg x \vee \neg y) \wedge (\neg x \vee y) \equiv \neg x \vee (\neg y \wedge y) \equiv \neg x\)
+</li>
+</ul>
+
+
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 630 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse630.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse630-website/tree/gh-pages">GitHub</a>.
+</div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
