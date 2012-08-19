@@ -17,10 +17,10 @@ experience. An important structure, for example, is the ability to
 understand recursive utterances, such as:
 
 #+BEGIN_QUOTE
-My homework assignment, which is worth 100 points in my CSE 630 class,
-which is not required for my major but I wanted to take it anyway,
-which has turned out to be quite interesting as it happens, is due
-Thursday.
+My homework assignment, which is worth 100 points in my CSE 3521
+class, which is not required for my major but I wanted to take it
+anyway, which has turned out to be quite interesting as it happens, is
+due Thursday.
 #+END_QUOTE
 
 Although that sentence is a bit contrived, we can understand it

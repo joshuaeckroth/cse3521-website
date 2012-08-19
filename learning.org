@@ -25,7 +25,7 @@ The paradox on which I will focus arises from the question whether the
 clause of a constitution that authorizes amendments may authorize its
 own amendment or repeal. May a rule that permits the change of other
 rules also permit its own change, especially its irrevocable change
-nnnninto a form inconsistent with its original form? This paradox does not
+into a form inconsistent with its original form? This paradox does not
 have a strict counterpart in logic, for it pertains to changing the
 rules of the system by means of a rule within the system. In logic
 rules are traditionally thought to be either immutable and eternal, or

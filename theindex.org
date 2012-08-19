@@ -12,7 +12,7 @@
    - [[file:what-is-ai.org::#sec-1-3][Gort]]
 ** H
    - [[file:what-is-ai.org::#sec-1-3][HAL 9000]]
-   - [[file:syllabus.org::#sec-6][Hofstadter, D.]]
+   - [[file:syllabus.org::#sec-4][Hofstadter, D.]]
 ** I
    - [[file:turing-test.org][imitation game]]
    - [[file:search.org::#sec-2][initial state]]

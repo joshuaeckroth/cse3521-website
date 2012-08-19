@@ -1,7 +1,14 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 1
 
-* Task (100 pts)
+* Task 1 (20 pts)
+
+Read about what I call the [[./what-is-ai.html][AI archetype]]. Argue (in a few sentences)
+that a particular AI system does /not/ meet one or more criteria of
+the AI archetype as described. Be sure to describe the AI system you
+have in mind if it is not well-known.
+
+* Task 2 (60 pts)
 
 Read [[./coffeehouse-conversation.html][A coffeehouse conversation]], and answer the following questions:
 
@@ -17,6 +24,11 @@ Read [[./coffeehouse-conversation.html][A coffeehouse conversation]], and answer
 
   - Do you think the Turing test would effectively test for artificial
     intelligence? Why or why not?
+
+* Task 3 (20 pts)
+
+Read about the [[./knowledge-level.html][knowledge level]]. Write a "knowledge level" description
+of the Roomba robot (the robot that vacuums your floor).
 
 * Extra credit (40 pts)
 

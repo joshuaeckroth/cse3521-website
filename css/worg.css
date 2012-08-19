@@ -6,7 +6,7 @@
         line-height: 21px;
         color: #333;
 
-        max-width: 95%;
+        max-width: 62em;
         margin: auto;
     }
     body #content {
@@ -76,7 +76,6 @@
         padding:0 0 30px 0;
         margin-top: 10px;
         margin-bottom: 10px;
-        margin-right: 7%;
         color: #666;
     }
 
@@ -999,8 +998,11 @@ ul.index-links {
 
 ul.index-links li {
     list-style-type: none;
+    margin-left: 0;
 }
 
 div#preamble div#plupperButton a img {
-    margin-top: 5px;
+    height: 16px;
+    position: absolute;
+    top: 4px;
 }

@@ -14,7 +14,7 @@ answer," or "he didn't have to think; he did it by rote."
 
 * Why search?
 
-Why search for the answer if you can just know it instead?
+*Why search for the answer if you can just know it instead?*
 
 #+INDEX: lookup table
 No matter how an algorithm is coded, it can be reduced to a series of

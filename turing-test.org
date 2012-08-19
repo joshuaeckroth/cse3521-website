@@ -5,6 +5,15 @@
 #+INDEX: imitation game
 #+INDEX: Dennett, D.
 
+#+BEGIN_HTML
+<div style="float: right; width: 200px; margin-left: 5px; padding:
+5px; border: 1px solid #ccc;">
+<img src="./images/turing.jpg" width=200 height=268 />
+<br/>
+Turing looking appropriately mischievious.
+</div>
+#+END_HTML
+
 The Turing test is the name given to Alan Turing's test for mechanical
 intelligence. He called it the "Imitation game," which is described
 below. We also look at variations suggested by Daniel Dennett to
@@ -249,6 +258,14 @@ reduced form of this test. The judges simply estimate how "closely" a
 computer imitates a human, and judges are not allowed to attempt
 trickery (such as typing random symbols) or delve into deep
 conversation.
+
+#+BEGIN_HTML
+<div style="text-align: center">
+<iframe width="640" height="360"
+src="http://www.youtube.com/embed/3PiwEQQNnBk?rel=0" frameborder="0"
+allowfullscreen></iframe>
+</div>
+#+END_HTML
 
 * Podcasts
 
