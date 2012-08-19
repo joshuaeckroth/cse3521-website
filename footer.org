@@ -1,0 +1,16 @@
+#+BEGIN_HTML
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521">GitHub</a>.
+</div>
+
+<!-- Plupper Tracking Code -->
+<script src="https://www.google.com/jsapi"></script>
+<script type="text/javascript"
+    src="https://static.plupper.com/js/plupper.js"></script>
+<script type="text/javascript">
+    plupper.init("joshuaeckroth@plupper.com");
+    plupper.enableCobrowsing();
+</script>
+<!-- End of Plupper Tracking Code -->
+#+END_HTML
+

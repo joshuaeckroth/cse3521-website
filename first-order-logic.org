@@ -1,0 +1,204 @@
+#+SETUPFILE: setup.org
+#+TITLE: First-order logic
+
+Propositional logic is limited in a very significant way: for every
+individual object or idea we want to describe, we have to create a new
+variable. We have no way of saying all objects of some type share
+certain properties.
+
+We'll introduce a few new logical constructs, and arrive at what is
+called first-order or predicate logic.
+
+* Constant symbols
+
+An constant symbol is a single object, like "my cat Tony" or
+"President Obama."  Note that propositional logic does not have
+constant symbols that represent objects; instead, propositional logic
+only has statements like "President Obama is a Democrat."
+
+We use upper-case for constant symbols: my cat Tony is $Tony$,
+President Obama is $Obama$, etc.
+
+* Predicates
+
+We'll also add new relations among objects that are called
+predicates. A predicate is true or false. So, the predicate $IsACat$
+is true when apply to Tony: $IsACat(Tony) = T$. On the other hand,
+$IsACat(Obama) = F$.
+
+Predicates may have more than one argument: $Eats(Tony, CatFood) = T$,
+$TastesLike(YellowCandy, Banana) = T$, or $ParentsOf(Isabelle,
+Penelope, Rene) = F$.
+
+* Variables
+
+Sometimes we want to find out for what values of, say, the second
+argument of a predicate, makes the predicate true. For example, for
+what values of $x$ make this true: $Eats(Tony, x)$
+
+It turns out that when $x$ equals any of $CatFood, Bugs, CatNip,
+MashedPotatoes$ (etc.) then the predicate is true.
+
+* Operators
+
+We have the same operators as before: $\wedge$, $\vee$, $\neg$,
+$\rightarrow$, $\leftrightarrow$. Thus, we can write $Fish(Jenny)
+\rightarrow HasGills(Jenny)$. If this is true, then if Jenny is a
+fish, then she has gills.
+
+* Quantifiers
+
+We can combine variables, predicates, and relations to make statements
+like "all fish have gills" and "at least one cat eats mashed
+potatoes." Two new symbols are introduced to build these statements:
+$\forall$ (read "for all") and $\exists$ (read "exists").
+
+For example, $(\forall x)(Fish(x) \rightarrow HasGills(x))$ is read
+"for all $x$, if $x$ is a fish then $x$ has gills." That statement may
+be true or false; it depends on whether it is true that all fish have
+gills (we'll see how to answer that question in the next section).
+
+Another example: $(\exists x)(Cat(x) \wedge Eats(x, MashedPotatoes))$,
+which is read "there exists an $x$ such that $x$ is a cat and $x$ eats
+mashed potatoes." Again, we need to ask, how do we know if this is
+true?
+
+* Possible worlds (semantics)
+
+How do we know if $(\forall x)(Fish(x) \rightarrow HasGills(x))$ is
+true? It depends from what "world" we pull our $x$ values. A "world,"
+or "possible world," is simply a set of objects and truth-values for
+predicates. In one possible world, the set of objects may be $Tony,
+Jenny, Obama, Isabelle, Penelope, Rene, YellowCandy, Banana,$ etc. The
+truth values for the predicates are $Cat(Tony) = T, Fish(Tony) = F,
+Cat(Jenny) = F, Fish(Jenny) = F, Eats(Tony, Jenny) = F, Eats(Jenny,
+Tony) = F$, etc. Every predicate must be true or false for every
+object or combination of objects.
+
+Now if we want to know if some statement is true, we just use the
+following rules:
+
+  - If the statement has a $\forall$ in front, we just check if every
+    object makes the statement true.
+
+  - If the statement has a $\exists$ in front, we just check if there
+    is at least one object that makes the statement true.
+
+Notice that the negation of a $\forall$ statement is an $\exists$
+statement and vice versa:
+
+$$\neg (\forall x) (P(x)) \equiv (\exists x) (\neg P(x))$$
+
+$$\neg (\exists x) (P(x)) \equiv (\forall x) (\neg P(x))$$
+
+* Building a knowledge database
+
+Here is a very simple (and common) example of a database of
+first-order logic statements:
+
+  - $(\forall m)(\forall c)(Mother(m, c) \leftrightarrow (Female(m)
+    \wedge Parent(m, c)))$
+
+    - (mothers are female parents and vice versa)
+
+  - $(\forall f)(\forall c)(Father(f, c) \leftrightarrow (Male(f)
+    \wedge Parent(f, c)))$
+
+    - (fathers are male parents and vice versa)
+
+  - $(\forall x)(Male(x) \leftrightarrow \neg Female(x))$
+
+    - (males are not females and vice versa, and there are only two
+      sexes; this statement recalls our discussion about the
+      "violence" of knowledge engineering)
+
+  - $(\forall x)(\forall y)(Brother(x, y) \leftrightarrow Brother(y,
+    x))$
+
+    - (being a brother is a symmetric relationship)
+
+  - $(\forall x)(\forall y)(\forall c)((Parent(x, c) \wedge Brother(x,
+    y)) \leftrightarrow Uncle(y, c))$
+
+    - (uncles are brothers of one's parent and vice versa)
+
+  - $(\forall c)((\forall x)(\forall y)((Parent(x, c) \wedge
+    BiologicalParent(y, c)) \rightarrow x \neq y) \leftrightarrow
+    Adopted(c))$
+
+    - (adopted children all (both) of their biological parents
+      different from their "regular" (everyday) parents)
+
+And so on...
+
+We also need to know about our objects and predicates. Our world is:
+
+  - $\{Frank, John, Kathy, Susan, Gabrielle, Male(Frank) = T,
+    Male(Susan) = F, \dots$
+
+  - $BiologicalParent(John, Gabrielle) = T, Father(Frank, Gabrielle)
+    = T, \dots$
+
+  - $Parent(Kathy, Gabrielle) = T, BiologicalParent(Susan,
+    Gabrielle) = T, \dots \}$
+
+** Inferencing with a knowledge database
+
+Let's make a query: Is Gabrielle adopted? $Adopted(Gabrielle)$? How do
+we answer this question using our knowledge database?
+
+First we look at the statements in the database and ask, which ones
+refer to adoption? Only the last statement listed above refers to
+adoption; it says that for Gabrielle to be adopted, all objects $x$
+and $y$ where $x$ is Gabrielle's parent and $y$ is Gabrielle's
+biological parent, must have the further property that $x \neq y$ in
+order for Gabrielle to be adopted. If, after checking all objects in
+our world, the relations described hold, then Gabrielle is adopted.
+
+* Declarative vs. procedural knowledge
+
+First-order logic provides a way of writing declarative knowledge. But
+when we ask a query, we need some kind of procedure for determining if
+the query is true, or alternatively, finding objects (to put in place
+of the variables) to make a query true. There are several procedures
+that can perform this task. They are essentially all search
+procedures. Actually, we can apply depth-first search (say), to
+evaluate queries. [[./prolog.html][Prolog]] will do this search for us, as long as we
+properly provide the declarative knowledge we care about.
+
+As an example, consider the following knowledge database:
+
+  - $(\forall x)((List(x) \wedge Empty(x)) \rightarrow Sorted(x, x))$
+
+    - (an empty list is a sorted list; the $Sorted(a, b)$ predicate
+      means $b$ is the sorted version of $a$)
+
+  - $(\forall x)(\forall y)(\forall z)((List(x) \wedge FirstElement(y,
+    x) \wedge RestOfList(x, z) \wedge Empty(z)) \rightarrow
+    Sorted(x, x))$
+
+    - (a list with one element is a sorted list)
+
+  - $(\forall x)(\forall x')(\forall y)(\forall y')(\forall z)(\forall
+    z')((List(x) \wedge Permutation(x, x') \wedge FirstElement(y, x')$
+
+    $\wedge RestOfList(z, x') \wedge Sorted(z, z') \wedge
+    FirstElement(y', z') \wedge LessThan(y, y'))$
+
+    $\rightarrow Sorted(x, x'))$
+
+    - ($x'$, a permutation of a list $x$, is the sorted version $x$
+      when the first two elements of the list $x'$ are $y$ and $y'$,
+      and $z'$ is the sorted remainder of the list (which includes
+      $y'$ at the front), and $y < y'$)
+
+This is the declarative knowledge about sorted lists. The query
+$Sorted([5, 2, 6, 3, 4], x')$ should find the value for $x'$ that
+makes the query true. Finding this $x'$ is finding the sorted version
+of $[5, 2, 6, 3, 4]$, i.e., sorting the list. An inefficient way to
+find this $x'$ is to try all possible permutations of $x$, that is,
+consider all $x'$ that satisfy the predicate $Permutation(x, x')$ (we
+are assuming the world contains the sorted permutations of all known
+lists, and may well contain many more permutations of those lists).
+
+#+INCLUDE: footer.org

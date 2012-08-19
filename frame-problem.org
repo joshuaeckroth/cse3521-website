@@ -1,0 +1,39 @@
+#+SETUPFILE: setup.org
+#+TITLE: The frame problem
+
+#+BEGIN_QUOTE
+The analogy of the stage magician is particularly apt. One is not
+likely to make much progress in figuring out /how/ the tricks are done
+by simply sitting attentively in the audience and watching like a
+hawk. Too much is going on out of sight. Better to face the fact that
+one must either rummage around backstage or in the wings, hoping to
+disrupt the performance in telling ways; or, from one's armchair,
+think aphoristically about how the tricks /must/ be done, given
+whatever is manifest about the constraints. The frame problem is then
+rather like the unsettling but familiar 'discovery' that so far as
+armchair thought can determine, a certain trick we have just observed
+is flat impossible.
+--- [[http://web.fc.uaem.mx:8080/~bruno/material/dennet_93_cognitiveWheels.pdf]["Cognitive Wheels: The frame problem of AI," Daniel C. Dennett]]
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+The frame problem is not the problem of induction in disguise. For
+suppose the problem of induction were solved. Suppose---perhaps
+miraculously---that our agent has solved all its induction problems or
+had them solved by fiat; it believes, then, all the right
+generalizations from its evidence, and associates with all of them the
+appropriate probabilities and conditional probabilities. This agent,
+/ex hypothesi/, believes just what it ought to believe about all
+empirical matters in its ken, including the probabilities of future
+events. It might still have a bad case of the frame problem, for that
+problem concerns how to represent (so it can be /used/) all that
+hard-won empirical information---a problem that arises independently of
+the truth value, probability, warranted assertability, or subjective
+certainty of any of it. Even if you have excellent /knowledge/ (and
+not mere belief) about the changing world, how can this knowledge be
+represented so that it can be efficaciously brought to bear?
+--- [[http://web.fc.uaem.mx:8080/~bruno/material/dennet_93_cognitiveWheels.pdf]["Cognitive Wheels: The frame problem of AI," Daniel C. Dennett]]
+#+END_QUOTE
+
+
+#+INCLUDE: footer.org

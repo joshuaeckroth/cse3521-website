@@ -1,0 +1,157 @@
+#+SETUPFILE: setup.org
+#+TITLE: Propositional logic
+
+[[./boolean-logic.html][Boolean logic]] gave us a collection of equivalences that allows us to
+simplify (or complicate) expressions involving true/false variables
+and logical relations. That's all fine and good, but (our presentation
+of) it was lacking any guidance about how to make an argument of the
+form "if we know $x \vee \neg y$ is true and we know $y$ is true, then
+it must be the case that $x$ is true.
+
+Note that we will be adding the following logical relations.
+
+$\rightarrow$ ("if... then...")
+
+| $x$ | $y$ | $x \rightarrow y$ |
+|-----+-----+-------------------|
+| T   | T   | T                 |
+| T   | F   | F                 |
+| F   | T   | T                 |
+| F   | F   | T                 | 
+
+$\leftrightarrow$ ("if and only if... then...")
+
+| $x$ | $y$ | $x \leftrightarrow y$ |
+|-----+-----+-----------------------|
+| T   | T   | T                     |
+| T   | F   | F                     |
+| F   | T   | F                     |
+| F   | F   | T                     |
+
+Besides Boole's and De Morgan's rules in the [[./boolean-logic.html][Boolean logic]] notes, we
+have some equivalences relating to $\rightarrow$ and
+$\leftrightarrow$:
+
+  - $x \rightarrow y \equiv \neg y \rightarrow \neg x$
+    ("contrapositive")
+
+  - $x \rightarrow y \equiv \neg x \vee y$
+
+  - $x \rightarrow (y \rightarrow z) \equiv (x \wedge y) \rightarrow
+    z$
+
+  - $x \leftrightarrow y \equiv (x \rightarrow y) \wedge (y
+    \rightarrow x) \equiv (x \wedge y) \vee (\neg x \wedge \neg y)$
+
+* Logical consequences and rules of inference
+
+Suppose we have three sentences: $\phi$, $\psi$, and $\rho$ (these
+variables are just names for possibly complex arrangements of
+variables and logical relations, from the Boolean logic notes).
+
+We can make an argument of the form: $\phi$ and $\psi$; therefore,
+$\rho$. This is either true or false. For example:
+
+  - $\phi = x \rightarrow y$
+
+  - $\psi = \neg y \rightarrow x$
+
+  - $\rho = y$
+
+This argument is true if (and only if) there is no configuration of
+truth values for $x$ and $y$ such that both $\phi$ and $\psi$ are
+true but $\rho$ is false. We say then that $\rho$ is a /logical
+consequence/ of the compound statement "$\phi$ and $\psi$."
+
+The idea is that $\rho$ cannot be a "consequence" of $\phi$ and $\psi$
+if both $\phi$ and $\psi$ can be true but nevertheless $\rho$ is
+false.
+
+As an example, consider these assignments of the variables:
+
+  - $\phi =$ "All humans are mortal."
+
+  - $\psi =$ "Socrates is a human."
+
+  - $\rho =$ "Socrates is mortal."
+
+It's not possible for $\rho$ to be false if both $\phi$ and $\psi$ are
+true. Thus, $\rho$ is a logical consequence of $\phi$ and $\psi$
+(collectively).
+
+There are many patterns of logical consequences. Here are some that
+will be useful in our journey:
+
+  - Modus ponens (MP):
+    - $\phi = x \rightarrow y$
+    - $\psi = x$
+    - $\rho = y$
+
+  - Modus tollens (MT):
+    - $\phi = x \rightarrow y$
+    - $\psi = \neg y$
+    - $\rho = \neg x$
+
+  - Disjunctive syllogism (DS):
+    - $\phi = x \vee y$
+    - $\psi = \neg x$
+    - $\rho = y$
+    There is another form of this:
+    - $\phi = x \vee y$
+    - $\psi = \neg y$
+    - $\rho = x$
+
+  - Addition (Add):
+    - $\phi = x$
+    - $\rho = x \vee y$ (for any $y$; we have no need for $\psi$ here)
+
+  - Simplification (Simp):
+    - $\phi = x \wedge y$
+    - $\rho = x$ (for any $y$)
+
+  - Conjunction (Conj):
+    - $\phi = x$
+    - $\psi = y$
+    - $\rho = x \wedge y$
+
+  - Hypothetical syllogism (HS):
+    - $\phi = x \rightarrow y$
+    - $\psi = y \rightarrow z$
+    - $\rho = x \rightarrow z$
+
+  - Constructive dilemma (CD):
+    - $\phi = (x \rightarrow y) \wedge (w \rightarrow z)$
+    - $\psi = x \vee w$
+    - $\rho = y \vee z$
+
+  - Absorption (Abs):
+    - $\phi = x \rightarrow y$
+    - $\rho = x \rightarrow (x \wedge y)$
+
+* Practice deductions
+
+Now, given our relations and inference rules, we can collect some
+sentences and then deduce logical consequences of those sentences.
+
+Suppose we know the following (don't worry about what the variables
+actually mean; we'll get to that issue later):
+
+  1. $c \vee d$
+
+  2. $c \rightarrow o$
+
+  3. $d \rightarrow m$
+
+  4. $\neg o$
+
+Ok, can we deduce that $m$ is a logical consequence? Yes:
+
+  5. [@5] $\neg c$ because of premises 2 and 4 plus modus tollens.
+
+  6. $d$ because of premise 1 and consequence 5 and disjunctive
+     syllogism.
+
+  7. $m$ because of premise 2 and consequence 6 and modus ponens.
+
+
+#+INCLUDE: footer.org

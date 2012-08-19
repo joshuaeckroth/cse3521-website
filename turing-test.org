@@ -1,0 +1,309 @@
+#+SETUPFILE: setup.org
+#+TITLE: The Turing test
+
+#+INDEX: Turing, A.
+#+INDEX: imitation game
+#+INDEX: Dennett, D.
+
+#+BEGIN_HTML
+<div style="float: right; width: 200px; margin-left: 5px; padding:
+5px; border: 1px solid #ccc;">
+<img src="./images/turing.jpg" width=200 height=268 />
+<br/>
+Turing looking appropriately mischievious.
+</div>
+#+END_HTML
+
+The Turing test is the name given to Alan Turing's test for mechanical
+intelligence. He called it the "Imitation game," which is described
+below. We also look at variations suggested by Daniel Dennett to
+support his claim that the Turing test is actually very
+strong. Turing's original description can be found in his 1950 paper,
+"[[http://www.loebner.net/Prizef/TuringArticle.html][Computing machinery and intelligence]]."
+
+* The imitation game
+
+The game is played by three people: a man (/A/), a woman (/B/), and an
+interrogator (/C/) who may be of either sex. The interrogator stays in
+a separate room. The object of the game is for the interrogator to
+determine who of /A/ and /B/ (known to the interrogator as /X/ and
+/Y/) is the man and who is the woman.
+
+The interrogator asks questions of /A/ and /B/ such as: Will /X/
+please tell me the length of his or her hair?
+
+/A/ wants /C/ (the interrogator) to come to the wrong
+conclusion. Thus, /A/ may say his hair is long (which, we are
+supposing, gives /C/ reason to think that /A/ is a woman, i.e. that
+/A/ is /B/).
+
+Clearly, some measures must be taken so that /C/ cannot simply see or
+hear who is the man and who is the woman. So conversation happens
+through a typewriter.
+
+/B/, unlike /A/, wants /C/ to come to the right conclusion. So, /B/
+may say, "I am the woman!" But so might /A/.
+
+** What's happening?
+
+Before we talk about replacing one of these players with a machine, we
+should try to understand what Turing is doing here. Let's take it for
+granted (as I suppose he did) that men and women are quite different;
+that there is some /fundamental/ distinction and a sophisticated
+interrogator might have a chance of telling them apart. (This must be
+Turing's belief because the imitation game is pointless if there is no
+reasonable way to distinguish the players, for example distinguishing
+identical twins with similar life experiences, neither of whom you
+know closely.)
+
+So, given that men and women are very different, person /A/ would
+succeed in confusing the interrogator (making /C/ believe that /X/ is
+/B/ rather than the true answer, /A/), and similarly, person /B/ would
+fail in convincing /C/ of the truth, if /A/ is a better imitator of a
+woman than /B/ is, and furthermore that /B/'s arguments to the
+contrary fail.
+
+Thus, /B/ may win (expose /A/ as a man) if /A/ is a bad imitator or
+/B/ has really strong arguments.
+
+Suppose /C/ gets the right answer only p% of the time (perhaps with
+different interrogators but the same /A/ and /B/ players; Turing is
+unclear here). This performance p% is important to keep in mind.
+
+** Replace the man with a machine!
+
+Now we are ready to understand why Turing set up this game to test
+machine intelligence. If we replace /A/ with a machine (perhaps /B/ is
+still a woman, perhaps not, but of course is a human), then we have a
+test for machine intelligence.
+
+Now, the machine is trying to convince the interrogator that it is a
+human, but the human is not. The human is trying to convince the
+interrogator that he or she is a human, but the machine is not.
+
+Just as, supposedly, a man would find it difficult to immitate a
+woman, a machine would probably find it difficult to immitate a
+human. Yet, if the machine is not only able to act like a human but
+also (or alternatively?) to counteract the arguments produced by the
+human, then the machine is quite intelligent indeed.
+
+Some interrogator may be naive. Thus, I believe this performance p%
+is relevant. If the same machine and human players (or perhaps
+different human players) can convince different interrogators more
+often than p% of the time, then the machine has passed the test. The
+machine need not achieve perfect performance (p = 100%), just has to
+beat human performance. (Because, presumably, humans are the most
+intelligent creatures that can be used in this test.)
+
+I don't believe there is any reason to suppose a man can successfully
+convince a judge he is a woman and the woman is a man more than 50% of
+the time. If a man could do this, then he acts like a woman better
+than most other women, and furthermore can counteract their arguments
+to the contrary. Because the woman is arguing as well, maximum
+performance near 25% is probably more appropriate. Anyway, the
+machine's goal is to beat that figure, not achieve perfect
+convincing. The existence of a machine that can consistently convince
+a judge that it is human and the human is a machine, even though the
+human is begging for mercy, is an amazing thought!
+
+** Two philosophical points
+
+#+INDEX: Descartes, R.
+
+Firstly, Descartes somewhat "predicted" the usefulness of such a test,
+even though he believed machines would never be able to pass it, in
+principle (because he thought machines could never respond to their
+environments):
+
+#+BEGIN_QUOTE
+If there were machines which bore a resemblance to our bodies and
+imitated our actions as closely as possible for all practical
+purposes, we should still have two very certain means of recognizing
+that they were not real men. The first is that they could never use
+words, or put together signs, as we do in order to declare our
+thoughts to others. For we can certainly conceive of a machine so
+constructed that it utters words, and even utters words that
+correspond to bodily actions causing a change in its organs. … But it
+is not conceivable that such a machine should produce different
+arrangements of words so as to give an appropriately meaningful answer
+to whatever is said in its presence, as the dullest of men can
+do. Secondly, even though some machines might do some things as well
+as we do them, or perhaps even better, they would inevitably fail in
+others, which would reveal that they are acting not from
+understanding, but only from the disposition of their organs. For
+whereas reason is a universal instrument, which can be used in all
+kinds of situations, these organs need some particular action; hence
+it is for all practical purposes impossible for a machine to have
+enough different organs to make it act in all the contingencies of
+life in the way in which our reason makes us act. --- [[http://plato.stanford.edu/entries/turing-test/][Source]]
+#+END_QUOTE
+
+#+INDEX: Leibniz, G.
+
+Secondly, Leibniz investigated what he called the "identity of
+indiscernibles," ([[http://plato.stanford.edu/entries/identity-indiscernible/][source]]) which is essentially the statement that two
+objects, $x$ and $y$, are identical if there does not exist any
+property that $x$ has but $y$ does not and vice versa.
+
+The Turing test is essentially making a similar, though weaker,
+statement: machine intelligence and human intelligence are equivalent
+if there does not exist any observable property (observable via a
+typewriter, and observable by a singular human interrogator) that
+differentiates machine and human intelligence. In other words, if
+there does not exist any tell-tale question that separates the two
+forms of intelligence, then they are identical.
+
+* The Turing test is quite strong
+
+#+INDEX: Dennett, D.
+
+All quotes are from Dennett, "Can Machines Think?" (1985)
+
+#+BEGIN_QUOTE
+Remember, failure on the Turing test does not predict failure on those
+others, but success would surely predict success. His test was so
+severe, he thought, that nothing that could pass it fair and square
+would disappoint us in other quarters. Maybe it wouldn’t do everything
+we hoped---maybe it wouldn't appreciate ballet, understand quantum
+physics, or have a good plan far world peace, but we'd all see that it
+was surely one of the intelligent, thinking entities in the
+neighborhood.
+
+[...]
+
+#+INDEX: Winograd, T.
+
+Terry Winograd, a leader in AI efforts to produce conversational
+ability in a computer, draws our attention to a pair of sentences.
+They differ in only one word. The first sentence is this: "The
+committee denied the group a parade permit because they advocated
+violence." Here's the second sentence: "The committee denied the group
+a parade permit because they feared violence."
+
+The difference is just in the verb---"advocated" or "feared." As
+Winograd points out, the pronoun "they" in each sentence is officially
+ambiguous. Both readings of the pronoun are always legal. Thus, we can
+imagine a world in which governmental committees in charge of parade
+permits advocate violence in the streets and, for some strange reason,
+use this as their pretext for denying a parade permit. But the
+natural, reasonable, intelligent reading of the first sentence is that
+it's the group that advocated violence, and of the second, that it's
+the committee that feared the violence.
+
+Now sentences like this are embedded in a conversation, the computer
+must figure out which reading of the pronoun is meant, it is to
+respond intelligently. But mere rules of grammar or vocabulary will
+not fix the right reading. What fixes the right reading for us is
+knowledge about politics, social circumstances, committees and their
+attitudes, groups that want to parade, how they tend to behave, and
+the like. One must know about the world, in short, to make sense of
+such a sentence.
+
+[...]
+
+The only way, it appears, for a computer to disambiguate that
+sentence and keep up its end of a conversation that uses that sentence
+would be for it to have a much more general ability to respond
+intelligently to information about social and political circumstances
+and many other topics. Thus, such sentences, by putting a demand on
+such abilities, are good quick probes. That is, they test for a wider
+competence.
+#+END_QUOTE
+
+** Weaker varieties
+
+*** Candidate 1
+
+#+BEGIN_QUOTE
+A computer is intelligent; it wins the World Chess Championship.
+
+That's not a good test, it turns out. Chess prowess has proven to be
+an isolatable talent. There are programs today that can play fine
+chess but do nothing else. So the quick-probe assumption is false far
+the test of playing winning chess.
+#+END_QUOTE
+
+*** Candidate 2
+
+#+BEGIN_QUOTE
+The computer is intelligent; it solves the Arab-Israeli conflict.
+
+This is surely a more severe test than Turing's. But it has some
+defects: passed once, it is unrepeatable; it is slow, no doubt; and it
+is not crisply clear what would count as passing it. Here's another
+prospect, then:
+#+END_QUOTE
+
+*** Candidate 3
+
+#+BEGIN_QUOTE
+A computer is intelligent; it succeeds in stealing the British crown
+jewels without the use of force or violence.
+
+Now this is better. First, it could be repeated again and again,
+though of course each repeat test would presumably be harder, but this
+is a feature it shares with the Turing test. Second, the mark of
+success is clear: either you've got the jewels to show for your
+efforts or you don't. But it is expensive and slow, a socially dubious
+caper at best, and no doubt luck would play too great a role.
+#+END_QUOTE
+
+* We have a long way to go
+
+#+INDEX: Loebner Prize
+
+Nobody actually practices with a real Turing test. It's too hard for
+the machine. Instead, the yearly [[http://www.loebner.net/Prizef/loebner-prize.html][Loebner Prize]] experiments with a
+reduced form of this test. The judges simply estimate how "closely" a
+computer imitates a human, and judges are not allowed to attempt
+trickery (such as typing random symbols) or delve into deep
+conversation.
+
+#+BEGIN_HTML
+<div style="text-align: center">
+<iframe width="640" height="360"
+src="http://www.youtube.com/embed/3PiwEQQNnBk?rel=0" frameborder="0"
+allowfullscreen></iframe>
+</div>
+#+END_HTML
+
+* Podcasts
+
+#+INDEX: Radiolab
+
+** Talking to machines (Radiolab, May 31, 2011)
+
+#+BEGIN_CENTER
+#+BEGIN_HTML
+<embed
+flashvars="file=http://www.radiolab.org/audio/xspf/137407/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/137407/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab053111.mp3"
+quality="high" allowscriptaccess="always" wmode="transparent"
+src="http://www.radiolab.org/media/audioplayer/player5.swf"
+height="300" width="400"></embed><script
+type="text/javascript">(function(){var
+s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTimeout(s,10);};s();})();</script>
+#+END_HTML
+
+1 hour / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab053111.mp3][Download MP3]] / [[http://www.radiolab.org/2011/may/31/][Radiolab website for this episode]]
+
+#+END_CENTER
+
+** The Turing Problem (Radiolab, March 19, 2012)
+
+#+BEGIN_CENTER
+#+BEGIN_HTML
+<embed
+flashvars="file=http://www.radiolab.org/audio/xspf/193037/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/193037/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab_podcast/radiolab_podcast12turing.mp3"
+quality="high" allowscriptaccess="always" wmode="transparent"
+src="http://www.radiolab.org/media/audioplayer/player5.swf"
+height="300" width="400"></embed><script
+type="text/javascript">(function(){var
+s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTimeout(s,10);};s();})();</script>
+#+END_HTML
+
+23 minutes / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab_podcast/radiolab_podcast12turing.mp3][Download MP3]] / [[http://www.radiolab.org/blogs/radiolab-blog/2012/mar/19/turing-problem/][Radiolab website for this episode]]
+
+#+END_CENTER
+
+#+INCLUDE: footer.org
+

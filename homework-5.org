@@ -1,0 +1,81 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 5
+
+* Task 1 (40 pts)
+
+Assume we have the following Prolog database:
+
+#+BEGIN_SRC prolog
+parent(tom, liz).
+parent(bob, ann).
+parent(bob, pat).
+parent(pat, jim).
+
+female(pam).
+male(tom).
+male(bob).
+female(liz).
+female(pat).
+female(ann).
+male(jim).
+#+END_SRC
+
+1. Write Prolog queries for the following questions:
+
+   1. Who is Pat's parent?
+
+   2. Does Liz have a child?
+
+   3. Who is Pat's grandparent?
+
+2. Write a rule that describes a child, so that ~child(X, Y)~ means
+   ~X~ is the child of ~Y~. Don't allow a person to be his or her own
+   child.
+
+3. Write some friendship facts (e.g., ~friend(fred, jane).~), then
+   write one or more rules that specify friendship is symmetric (if X
+   is a friend of Y, then Y is a friend of X). Now, add some enemies
+   facts. Then create a rule specifying that any enemy of my enemy is
+   my friend. Don't allow a person to be his or her own friend or
+   enemy.
+
+4. Define an ancestor rule. An ancestor is a parent of a person, a
+   grandparent, a great-grandparent, etc. Naturally, this rule is
+   recursive (like the ~member~ predicate in the notes).
+
+5. Define a descendant rule. This rule is the opposite of the ancestor
+   rule. A child is a descendant; so is a grandchild,
+   great-grandchild, etc.
+
+* Task 2 (60 pts)
+
+Copy-paste the family database from the notes and the various
+predicates created to operate on that database. Now, look at the
+guidelines regarding poverty at the [[http://aspe.hhs.gov/poverty/12poverty.shtml][Dept. of Health & Human Services]]
+website (for the 48 states). These guidelines define the minimum
+amount of income, for a given household size, to be considered outside
+of poverty. Define a ~family_in_poverty(FamilyID)~ predicate that is
+only true when the family designated by ~FamilyID~ is in poverty
+according to the guidelines. Also, add some more family data so you
+have examples of families in poverty.
+
+Additionally, provide a query or define a predicate that tells you the
+average household income of families in poverty.
+
+* Extra credit (20 pts)
+
+Combine some of your predicates about grandparents, ancestors,
+friends, enemies, etc. into the family database. Add some predicates
+that utilize this information; for example, do children in families
+below the poverty level make friends or enemies with children in
+families above the poverty level?
+
+Or, instead, define more predicates/queries about families and
+poverty. Which people working at OSU are in poverty? Are unemployed
+people more likely to be in families that are below the poverty line?
+(You can answer this by finding the length of the list of unemployed
+people in families that are below the poverty line, and compare that
+length (using ~Length1 > Length2~) to the length of the list of
+employed people in families that are below the poverty line.)
+
+#+INCLUDE: footer.org

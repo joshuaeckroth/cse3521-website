@@ -1,0 +1,90 @@
+#+SETUPFILE: setup.org
+#+TITLE: Syllabus
+
+#+BEGIN_HTML
+<div style="text-align: center; color: #999; font-size: 1.45em;
+margin-top: 30px; margin-bottom: 30px;">
+computation, philosophy, technology
+</div>
+#+END_HTML
+
+* Text book
+The text book is not required. [[http://www.amazon.com/Artificial-Intelligence-Modern-Approach-Edition/dp/0136042597/ref=sr_1_1?s=books&ie=UTF8&qid=1332257784&sr=1-1][Artificial Intelligence: A Modern
+Approach]], by Russell and Norvig.
+
+* Homework
+
+Homework must be submitted on the CSE Linux servers, using the
+~submit~ command. All programs must compile and execute without error
+on the Linux servers. Thus, be sure to test your code on those servers
+before submitting it.
+
+Instructions about the Linux servers are available in [[./linux.html][lecture notes]].
+
+* Grading
+
+  - Homeworks: 40%
+  - Midterm: 30%
+  - Final: 30%
+
+Late work is penalized 20 points, no matter how late it is. The last
+day to turn in late work is the day of the Final.
+
+Note that if I suspect you copied your homework solutions from someone
+(or something) else, I reserve the right to ask you many probing
+questions about those solutions. If you do not answer those questions
+to my satisfaction, I reserve the right to give you a 0% grade on that
+assignment.
+
+#+BEGIN_CENTER
+[[./images/kumi-yamashita-square.jpg]]
+
+"Square," [[http://www.kumiyamashita.com/portfolio/square/][Kumi Yamashita]], 1995; H36, W53, D15cm; aluminum,
+single light source, shadow
+#+END_CENTER
+
+* Time expectations
+#+INDEX: Hofstadter, D.
+#+BEGIN_QUOTE
+*Hofstadter's Law:* "It always takes longer than you expect, even when
+you take into account Hofstadter’s Law." --- /Gödel, Escher, Bach/
+#+END_QUOTE
+
+Or if you prefer,
+
+#+BEGIN_QUOTE
+*Murphy's law of Programming:* "The sooner you start coding your
+program, the longer it is going to take." --- /The computer
+contradictionary/
+#+END_QUOTE
+
+* Academic misconduct
+This course is designed for individual work.
+
+The only work required of you outside of class is homework
+assignments. During the midterm and final exam, there is no tolerance
+for cheating (looking at others' work). However, you may participate
+in a reasonable amount of collaboration over homeworks. Collaboration
+is limited to: discussing how to approach the solution, or how to
+solve small coding problems; looking at the Internet for information
+about general topics, not solutions to the particulars of the homework
+assignment. It is considered academic misconduct if you copy
+significant portions of code from anyone (the Internet included). Your
+solutions should not bear an uncanny resemblance to anyone else’s
+code. It should be clear to you what I mean by this; do not test the
+limits of this (fairly liberal) policy. Violators will be referred to
+the OSU Committee on Academic Misconduct (COAM).
+
+* Disability statement
+Any student who feels he or she may need an accommodation based on the
+impact of a disability should contact me privately to discuss your
+specific needs. You should contact the Office for Disability Services
+at 614-292-3307 in room 150 Pomerene Hall to coordinate reasonable
+accommodations for documented disabilities.
+
+#+BEGIN_CENTER
+[[./images/aaai-its-for-real.jpg]]
+#+END_CENTER
+
+#+INCLUDE: footer.org
+

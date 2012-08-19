@@ -1,0 +1,27 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 2
+
+* Task (100 pts)
+
+  - Code either breadth-first search or depth-first search in whatever
+    programming language you wish. Solve the "Routing from Dreese
+    Labs to Goodale Park" problem on the [[./search-practice.html][search practice]] notes.
+
+  - What are some admissible heuristics for the 8-puzzle problem? Give
+    at least two.
+
+  - The "Routing from Dreese Labs to Goodale Park" used road
+    intersection distance to find the minimal-time route. However,
+    this distance ("as the crow flies," i.e. distance not accounting
+    for curved roads) is only one aspect of what makes one route
+    better than another. What other information should we use to find
+    the truly minimal-time route between these two locations?
+
+  - For unweighted search graphs, which of the following search
+    algorithms are complete? Which are optimal? What about weighted
+    graphs?
+
+    - Breadth-first search, depth-first search, random search,
+      best-first search, hill-climbing search, A* search
+
+#+INCLUDE: footer.org

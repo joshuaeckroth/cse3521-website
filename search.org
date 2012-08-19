@@ -1,0 +1,124 @@
+#+SETUPFILE: setup.org
+#+TITLE: Search
+
+#+INDEX: Simon, H. A.
+#+BEGIN_QUOTE
+Problem-solving searches require trial and error in that they
+generally do not go directly to the solution without traversing and
+retracing some blind alleys---sometimes many, sometimes few. When a
+person solves a problem without any backtracking whatsoever, we are
+apt to deny that he needed to think at all. We say, "He knew the
+answer," or "he didn't have to think; he did it by rote."
+--- [[http://octopus.library.cmu.edu/cgi-bin/tiff2pdf/simon/box00065/fld04969/bdl0001/doc0001/simon.pdf][/Thinking by computers/, Herbert A. Simon]]
+#+END_QUOTE
+
+* Why search?
+
+*Why search for the answer if you can just know it instead?*
+
+#+INDEX: lookup table
+No matter how an algorithm is coded, it can be reduced to a series of
+if-then statements in a loop. The if-then statements can be
+represented in a lookup table, where each row in the table is a
+different condition. Thus, even a complex search algorithm can be
+reduced to a lookup table, assuming one has all the requisite data to
+produce such a table.
+
+For example, we could devise a search algorithm that plays good
+tic-tac-toe. Or, we can produce a table (with less than 1024 entries)
+that describes which move to take depending on the current board
+configuration.
+
+Why use a search if we can make a lookup table instead? There are
+three reasons: two practical, one intellectual.
+
+** Practical reason 1: space
+
+A lookup table may be too large when fully expanded. A typical chess
+game lasts about 40 moves. To represent all possible moves and
+counter-moves would require a lookup table with 10^{120} entries. This
+is, naturally, impossible without some extremely clever encoding
+scheme, since the universe is estimated to contain less than 10^{81}
+atoms.
+
+Using a search algorithm that generates possible moves when requested
+avoids this impossible space requirement. This way, the lookup table
+is never available in its entirety. Instead, each possible move and
+corresponding action are generated as-needed.
+
+** Practical reason 2: unpredictable input
+
+The natural world, unlike chess, does not seem to obey a simple set of
+rules. Imagine a robot placed in a random building; the robot has no
+way of mapping this building before it arrives there, so it cannot
+make a lookup table of all the different movements it can make through
+the building.
+
+Also consider a web search engine; there is simply no way to predict
+the content and links that webpages will contain as people publish
+more and more material. Likewise, there exists an infinite variety of
+search queries. Thus, no lookup table relating all possible queries to
+ever-changing web pages can be generated.
+
+A lookup table is impossible, yet again. Search is required.
+
+** Intellectual reason: code may have meaning
+
+Lastly, a lookup table tells us nothing about how a problem is
+solved. A table that contains all the moves of tic-tac-toe or checkers
+or chess gives no insight about how a good game may be played. There
+may be reasons certain moves are better than others but the lookup
+table does not offer those insights.
+
+A search algorithm, on the other hand, describes intelligent behavior,
+assuming the intelligent thing to do is to search. For example, we may
+read the Google Search source code and see that a page is ranked more
+highly if other highly-ranked pages link to it. The algorithm may not
+be appropriate (although Google Search is quite successful, so it
+probably is appropriate), but nevertheless the code describes a
+certain process that we, as programmers, may find to be meaningful and
+possibly intelligent.
+
+* Definition of a search problem
+
+#+INDEX: initial state
+#+INDEX: possible actions
+#+INDEX: transition model
+#+INDEX: goal criteria
+#+INDEX: path cost
+
+A problem may be solvable by a search technique if the problem has
+each of the following features:
+
+- Initial state :: some description of the agent's starting situation
+
+- Possible actions :: the set of actions (such as chess moves)
+     available to the agent, also called "applicable" actions; the
+     possible actions depend on the state
+
+- Transition model :: some way of figuring out what an action /does/;
+     in other words, a =resultOf(state, action)= function which
+     returns a state; the transition model defines a state space,
+     which takes the form of a directed graph (vertices are states,
+     edges are actions)
+
+- Goal criteria :: some way of finding out if the agent has reached
+                   its search goal; the function =goal?(state)= is a
+                   boolean function (i.e., a predicate)
+
+- Path cost :: a function that calculates the cost of a path (a
+               sequence of actions); for example, a driving agent may
+               calculate a path cost by adding the number of driving
+               minutes between each city in its route
+
+#+INDEX: ceteris paribus
+
+Of course, each of these components assumes a liberal abstraction away
+from most of the details that the agent will be facing in reality. For
+example, a driving agent may have a transition model that shows that
+driving north on some street results in arriving at the center of
+town. Of course, this is a /ceteris paribus/ assumption ("everything
+else being equal"); if something bad happens, like a flat tire, this
+transition model is useless.
+
+#+INCLUDE: footer.org

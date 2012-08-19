@@ -1,0 +1,90 @@
+#+SETUPFILE: setup.org
+#+TITLE: Beyond intelligent agents
+
+Our prototypical AI system in this class is a single intelligent
+agent. The agent acts alone. The agent has a knowledge base (facts
+about the world) and some algorithms to operate on that knowledge base
+(searching algorithms, for example).
+
+This "intelligent agent" metaphor becomes stretched when we look at
+certain other forms of intelligent systems.
+
+* Multi-agent systems
+
+Some systems utilize a collection of communicating agents. Each agent
+typically has a specialization: some task that it performs better than
+other tasks. A group of communicating agents come together to solve
+complex problems, with each agent solving just a small part of the
+problem.
+
+The "intelligent agent" metaphor is stretched here because no single
+agent achieves the system's goal; no single agent possesses enough
+intelligence to do so. Designing a multi-agent system requires
+thinking both about each individual agent and how they come together.
+
+Marvin Minsky, a founder of the field of AI, believes that the mind
+takes this form. He calls his model the "society of mind." In this
+model, the mind consists of many independent agents that each perform
+one small task (such as recognizing shapes, or responding to hot
+things, or retrieving a memory, or coordinating among other agents,
+etc.). Minsky was trying to develop a theory of /natural/
+intelligence, so an important feature of the model is that no single
+agent has a mind; each agent is too simplistic. Rather, the idea of
+the "mind" comes from the quick, widespread, and possibly chaotic
+interaction of the agents.
+
+* Emergent intelligence
+
+Minsky's "society of mind" model is an example of emergent
+intelligence. An even simpler, and demonstrably effective, form of
+emergent intelligence is ant and honey bee behavior. Each ant or bee
+is very simple. Each effectively performs a random walk until it comes
+upon some morsel of food. The ants do not even communicate the
+location of the discovery; rather, other ants (/randomly/) find
+themselves on the same path as a prior ant (paths are indicated by
+pheromones) and follow that path rather than continue their random
+walks. This second ant releases more pheromones (as they all do),
+which reinforces the path and increases the probability that another
+ant will follow it should another ant randomly discover it. Honey
+bees, on the other hand, communicate a small amount of information
+about their finding by performing the "waggle dance." This dance
+communicates the quality of a flower and its direction and distance.
+
+Studied at an individual level, ants and honey bees are too simple to
+be effective models for AI systems. They have virtually no memory and
+little variation in their behaviors. However, when hundreds or
+thousands of ants or honey bees are brought together, an intelligent
+system emerges.
+
+We'll practice with [[./ant-intelligence.html][ant intelligence]] and look at honey bee
+intelligence. Some modern AI applications that employ ant/bee
+intelligence include network routing, airplane routing, computer
+vision and pattern recognition, job scheduling, etc.
+
+* Intelligence with almost no representation
+
+Traditional AI systems are cathedral-like constructions, with lots of
+interconnected subsystems, complex rules for their interaction,
+libraries of knowledge and formal procedures for using such
+knowledge. This makes them somewhat brittle, since the
+interactions among subsystems are so sophisticated.
+
+However, Rodney Brooks has shown that an agent need not be intelligent
+in order to perform well in complex environments. Must like insects,
+his robots do not keep a library of knowledge and perform no search
+algorithms. They just /continually respond/ to data obtained from
+their sensors. In a sense, all their knowledge about the world is kept
+in the world itself, not kept in the robot's mind. If the robot is
+designed to navigate towards the light, it does not try to keep an
+internal map of where it is and where the light is; rather, it just
+continually moves an inch towards whatever direction it currently
+senses the light.
+
+Brooks was a founder of iRobot, the company that created the Roomba
+and builds many military robots. Most of their robots do much more
+than seek light. By employing many fast, accurate sensors and a fast
+computation cycle, their (huge) robots can travel very quickly over
+very rough terrain while following a group of humans who direct the
+robot with radio signals.
+
+#+INCLUDE: footer.org

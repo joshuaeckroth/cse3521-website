@@ -1,0 +1,7 @@
+#+SETUPFILE: setup.org
+#+TITLE: Multi-agent systems
+
+http://ccl.northwestern.edu/netlogo/5.0.1/
+
+#+INCLUDE: footer.org
+

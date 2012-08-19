@@ -1,0 +1,34 @@
+* Index
+** B
+   - [[file:what-is-ai.org::#sec-1-6][Baudrillard, J.]]
+** C
+   - [[file:search.org::#sec-2][ceteris paribus]]
+** D
+   - [[file:turing-test.org::#sec-2][Dennett, D.]]
+   - [[file:turing-test.org][Dennett, D.]]
+   - [[file:turing-test.org::#sec-1-3][Descartes, R.]]
+** G
+   - [[file:search.org::#sec-2][goal criteria]]
+   - [[file:what-is-ai.org::#sec-1-3][Gort]]
+** H
+   - [[file:what-is-ai.org::#sec-1-3][HAL 9000]]
+   - [[file:syllabus.org::#sec-4][Hofstadter, D.]]
+** I
+   - [[file:turing-test.org][imitation game]]
+   - [[file:search.org::#sec-2][initial state]]
+** L
+   - [[file:turing-test.org::#sec-1-3][Leibniz, G.]]
+   - [[file:turing-test.org::#sec-3][Loebner Prize]]
+   - [[file:search.org::#sec-1][lookup table]]
+** P
+   - [[file:search.org::#sec-2][path cost]]
+   - [[file:search.org::#sec-2][possible actions]]
+** R
+   - [[file:turing-test.org::#sec-4][Radiolab]]
+** S
+   - [[file:search.org][Simon, H. A.]]
+** T
+   - [[file:search.org::#sec-2][transition model]]
+   - [[file:turing-test.org][Turing, A.]]
+** W
+   - [[file:turing-test.org::#sec-2][Winograd, T.]]

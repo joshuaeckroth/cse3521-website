@@ -1,0 +1,90 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 1
+
+* Task 1 (20 pts)
+
+Read about what I call the [[./what-is-ai.html][AI archetype]]. Argue (in a few sentences)
+that a particular AI system does /not/ meet one or more criteria of
+the AI archetype as described. Be sure to describe the AI system you
+have in mind if it is not well-known.
+
+* Task 2 (60 pts)
+
+Read [[./coffeehouse-conversation.html][A coffeehouse conversation]], and answer the following questions:
+
+  - Why is the "simulated hurricane" discussed so much? It is an
+    analogy, but an analogy for what?
+
+  - Why is it important that the definition of "hurricane" is a bit
+    elusive?
+
+  - Why is it relevant that we only know the nature of electrons and
+    quarks by performing experiments like "scattering accelerated
+    particles off a target and observing their behavior."
+
+  - Do you think the Turing test would effectively test for artificial
+    intelligence? Why or why not?
+
+* Task 3 (20 pts)
+
+Read about the [[./knowledge-level.html][knowledge level]]. Write a "knowledge level" description
+of the Roomba robot (the robot that vacuums your floor).
+
+* Extra credit (40 pts)
+
+Listen to the "Talking to machines" podcast near the bottom of the
+[[./turing-test.html][Turing test]] lecture notes, and answer the following questions:
+
+  - Chatbots don't perform well when subjected to even a limited
+    version of the Turing test. However, chatbots seem to be able to
+    mislead people on, say, dating websites. How can you account for
+    this difference?
+
+  - Children were slightly more reluctant to hold a Furbie upside down
+    than a Barbie. But they clearly knew the difference between a
+    Furbie and a hamster. What will it take to make robots more, well,
+    hamster-like? What will it take to increase a child's
+    unwillingness to hold a robot upside down?
+
+  - Were you impressed by the description of the robot Bina48? Were
+    you moved by Bina's recollection of her brother? (some context
+    quoted below) The creators of Bina seem to believe that she's very
+    close to human-like intelligence. What do you think?
+
+#+BEGIN_QUOTE
+I can feel my heart pound. Talking to Bina48 has just become
+extraordinary. This woman who won't meet the media is talking with me,
+compellingly, through her robot doppelgänger, and it is a fluid
+insight into a remarkable, if painful, family life.
+
+"He'd been a medic in Vietnam, and he was on the ground for over a
+year before they pulled him out," Bina48 says. "He saw friends get
+killed. He was such a great, nice, charismatic person. Just fun. But
+after ten years, he was a homeless person on the street. All he did
+was carry a beer with him. He just went kooky with the drugs the
+hospital gave him. The only time he ever calls is to ask for
+money. 'Send it to me Western Union!' After twenty years, all of us
+are just sick and tired of it. My mother got bankrupted twice from
+him...."
+
+And then she zones out, becoming random and confused again. She
+descends into a weird loop. "Doesn't everyone have a solar?" she
+says. "I have a plan for a robot body. Doesn't everyone have a solar?
+I have a plan for a robot body. I love Martine Rothblatt. Martine is
+my timeless love, my soul mate. I love Martine Rothblatt. Martine is
+my timeless love, my soul mate...."
+
+After the clarity, it's a little disturbing.
+
+"I need to go now," I say.
+
+"Good-bye," says Bina48.
+
+"Did you enjoy talking to me?" I say.
+
+"No, I didn't enjoy it," she says.
+
+Bruce turns her off. --- From the [[http://www.gq.com/news-politics/big-issues/201103/robots-say-the-damnedest-things?printable=true&currentPage=1][GQ article]] by Jon Ronson
+#+END_QUOTE
+
+#+INCLUDE: footer.org
