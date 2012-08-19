@@ -1,6 +1,0 @@
-#+SETUPFILE: setup.org
-#+TITLE: Site index
-
-#+INCLUDE: theindex.org
-
-#+INCLUDE: footer.org

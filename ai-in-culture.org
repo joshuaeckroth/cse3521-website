@@ -1,8 +1,0 @@
-#+SETUPFILE: setup.org
-#+TITLE: AI in culture
-
-* Films
-
-** Enthiran
-
-#+INCLUDE: footer.org
