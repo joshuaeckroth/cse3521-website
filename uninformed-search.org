@@ -2,7 +2,7 @@
 #+TITLE: Uninformed search
 
 We learned in the [[./search.html][Search]] lecture notes that search problems have the
-following components: an initial state, possible actions, a transition
+following components: a starting state, possible actions, a transition
 model that describes how actions change one state to another, a goal
 criteria, and a way of calculating the cost of a sequence of actions
 (a "path" cost). We do not use the path cost when executing uninformed
@@ -28,56 +28,67 @@ than four movements are possible.
 All searches essentially follow the same algorithm:
 
 #+BEGIN_EXAMPLE
-1. create a list called "tocheck" of states to check
-   - put the initial state in this list
+1. create an empty list called "closedset"; this list will contain
+   states that have been visited
 
-2. loop:
-   a. if the "tocheck" list is empty:
-      - oh no! we have nothing left to check, and we never found a
-        goal state! we'll have to quit with "no solution"
+2. create a list called "openset" that contains just the starting
+   state; this list contains states that have not been visited but are
+   known to exist
 
-   b. otherwise, pull a state from the "tocheck" list, ensuring that
-      we have not yet checked this state
+3. create an empty map (key/value pairs) called "parents"; this map
+   contains the previous state of each state that has been visited
 
-      i. if this state is a goal state, we're done (return this state)
+4. while the openset is not empty:
 
-      ii. otherwise,
-          - find the next states accessible from this state
-          - put each next state in the "tocheck" list
-          - repeat the loop
+   a. grab a state from the openset (and remove it)
+
+   b. if that state is the goal, hey we're done!
+
+      i. return a reconstructed path from the goal state to the start
+         state (this is easy: recursively grab parent states from the
+         "parents" map)
+
+   c. it's not the goal state; for each next state that is accessible
+      from here:
+
+       i. if this next state is in the closedset (it has been visited
+          before), ignore it
+
+      ii. if this next state is not in the openset, put it in the
+          openset and record its parent
+
+   d. (repeat the loop)
+
+5. if the openset is empty and we never found the goal, oops!
 #+END_EXAMPLE
 
-We see that whenever the search algorithm discovers a state is not a
-goal state, all accessible states are calculated and added to the
-"tocheck" list. This "tocheck" list typically grows quite
-rapidly. However, rarely do we check every state in the "tocheck"
-list. In fact, the different varieties of search differ almost only in
-how they process this "tocheck" list, as we will see.
+Step ~4.a.~ is a key step. The "algorithm" above gives no guidance
+about how to choose the next state to evaluate. You can imagine that
+some choices are better (closer to the goal) than others...
 
 * Random search
 A random search, while never practical as far as I know, is
 nevertheless interesting to consider as a worst case search. To
-program this search, modify step ~2.b.~ so that a /random/ "tocheck"
-state is chosen. Given enough time, the goal state should be found,
-but a random search will probably take more time (more states are
-checked) than any other method.
+program this search, modify step ~4.a.~ so that a /random/ state is
+chosen. Given enough time, the goal state should be found, but a
+random search will probably take more time (more states are checked)
+than any other method.
 
 * Breadth-first search
-In breadth-first search (BFS), we want to check all states (which we'll call
-"children states") accessible from the previous state (the "parent
-state") before we check states accessible from the children. So if
-some state is to be checked, say state X, and there are 15 children of
-state X, then we will check all of those 15 children before checking
-any of their children.
+In breadth-first search (BFS), we want to check all states (which
+we'll call "children states") accessible from the previous state (the
+"parent state") before we check states accessible from the
+children. So if some state is to be checked, say state X, and there
+are 15 children of state X, then we will check all of those 15
+children before checking any of their children.
 
-Breadth-first search appears to search horizontally before searching
-vertically.
+Breadth-first search appears to search a tree horizontally before
+searching vertically.
 
-To implement BFS, modify step ~2.b.~ to pick out of the "tocheck" list
-the state that was added /first/. This means that earlier-discovered
-states are checked first. For example, the children of the initial
-state are checked before the their children, because the children of
-the initial state are discovered earlier. The "tocheck" list in BFS is
+To implement BFS, modify step ~4.a.~ to pick out of the ~openset~ the
+state that was added /earliest/ (in time). For example, the children
+of a state are checked before the their children, because the children
+of the original state are discovered earlier. The ~openset~ in BFS is
 essentially a queue.
 
 Here is an example of BFS operating on the 8-puzzle:
@@ -117,12 +128,12 @@ PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Vers
 #+END_HTML
 
 A trivial change to breadth-first search gives us depth-first search
-(DFS). For DFS, modify step ~2.b.~ to pick out of the "tocheck" list
-the state that was added /last/. So in DFS, the "tocheck" list is
-essentially a stack. The purpose is to check the initial state's first
+(DFS). For DFS, modify step ~4.a.~ to pick out of the ~openset~ the
+state that was added /last/ (in time). So in DFS, the ~openset~ is
+essentially a stack. The purpose is to check the a state's first
 discovered child, and then that child's first child, etc. before
-checking the initial state's second child. DFS appears to search
-vertically before it searches horizontally.
+checking the original state's second child. DFS appears to search a
+tree vertically before it searches horizontally.
 
 ** Iterative-deepening depth-first search
 
@@ -132,21 +143,20 @@ say, BFS, arrives at the solution rather quickly. We see this behavior
 in the 8-puzzle problem because DFS just keeps trying moves that are
 built off prior moves until it either repeats a state (somewhat
 unlikely; there are 9! = 362,880 states) or finds the goal. If the
-true goal is only five moves away from the initial state, then BFS
+true goal is only five moves away from the starting state, then BFS
 will find this goal in less than 1024 checks while DFS may require,
 well, 362,880 checks.
 
 To solve the problem of DFS going to "deep" into "never-never-land,"
-we can put a limit on the depth of DFS. Step ~2.b.ii.~ is modified so
+we can put a limit on the depth of DFS. Step ~4.c.~ is modified so
 that only states that have depth less than some constant are added to
-the "tocheck" list. The depth is calculated as the number of actions
-that have been applied to the initial state.
+the ~openset~. The depth is calculated as the number of actions or
+moves that have been applied to the starting state.
 
 Because it is often difficult to know what the correct depth limit is,
-the /iterative-deepening depth-first search/ (IDDFS if you like)
-first tries DFS with depth limit 1; if no goal state is found, DFS is
-run again with depth limit 2; and so on, until the goal state is
-found.
+the /iterative-deepening depth-first search/ (IDDFS if you like) first
+tries DFS with depth limit 1; if no goal state is found, DFS is run
+again with depth limit 2; and so on, until the goal state is found.
 
 * Breadth-first versus depth-first search
 
@@ -159,23 +169,5 @@ consider.
 
 On the other hand, depth-first search seems a bit block-headed and
 just pushes forward whenever it has a next possible move.
-
-If we place a robot in a maze, a BFS robot would look around every
-nearby corner before choosing to move forward. A DFS robot would move
-forward as many times as it could (in any direction) before backing up
-even once. If the maze can be solved by many possible paths, perhaps
-the DFS robot is better.
-
-But DFS is bad for the 8-puzzle game, because it is much more likely
-that DFS will get further and further from the goal by making more and
-more moves. BFS, on the other hand, is probably good for the 8-puzzle
-game because there are at most only four possible moves and the goal
-is often only a few moves away.
-
-Also, it is important to note that if a robot is actually making these
-moves, in the physical world (like driving a car), BFS is a bad
-idea. BFS involves a lot of backtracking, so the robot would have to
-turn around quite often. DFS, on the other hand, typically minimizes
-backtracking.
 
 #+INCLUDE: footer.org

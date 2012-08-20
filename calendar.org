@@ -1,23 +1,23 @@
 #+SETUPFILE: setup.org
 #+TITLE: Course calendar
 
-| Week                | Topics                       | Homework         | Read in book (3rd ed.)                         |
-|---------------------+------------------------------+------------------+------------------------------------------------|
-| 1 (Aug 22, Aug 24)  | Syllabus and introduction    |                  |                                                |
-| 2 (Aug 29, Aug 31)  | The Turing test, etc.        | [[./homework-1.html][Homework 1]]       | 1--31, 34--39                                  |
-| 3 (Sep 5, Sep 7)    | Search                       | [[./homework-2.html][Homework 2]]       | 64--91                                         |
-| 4 (Sep 12, Sep 14)  | Search                       | [[./homework-3.html][Homework 3]]       | 92--95, 102--107, 120--125, 126--129, 161--167 |
-| 5 (Sep 19, Sep 21)  | Knowledge representation     | [[./homework-4.html][Homework 4]]       | 234--256, 265--274                             |
-| 6 (Sep 26, Sep 28)  | Knowledge representation     |                  |                                                |
-| 7 (Oct 3, Oct 5)    | Knowledge representation     | [[./homework-5.html][Homework 5]]       | 285--312, 339--344                             |
-| 8 (Oct 10, Oct 12)  | Midterm review / reflections | [[./midterm-guide.html][Midterm]] (Oct 12) |                                                |
-| 9 (Oct 17, Oct 19)  | Multi-agent systems          |                  |                                                |
-| 10 (Oct 24, Oct 26) | Multi-agent systems          | [[./homework-6.html][Homework 6]]       | 429 (bottom)                                   |
-| 11 (Oct 31, Nov 2)  | Uncertainty                  | [[./homework-7.html][Homework 7]]       | 480--495, 693--706                             |
-| 12 (Nov 7, Nov 9)   | Uncertainty                  |                  |                                                |
-| 13 (Nov 14, Nov 16) | Uncertainty                  | [[./homework-8.html][Homework 8]]       | 737--744, 868--869                             |
-| 14 (Nov 21, Nov 23) |                              | Holiday          |                                                |
-| 15 (Nov 28, Nov 30) | Philosophical perspectives   |                  |                                                |
-| 16 (Dec 6)          |                              | [[./final-guide.html][Final]]            |                                                |
+| Week                | Topics                     | Homework        | Read in book (3rd ed.)                         |
+|---------------------+----------------------------+-----------------+------------------------------------------------|
+| 1 (Aug 22, Aug 24)  | The Turing test, etc.      | [[./homework-1.html][Homework 1]]      | 1--31, 34--39                                  |
+| 2 (Aug 29, Aug 31)  | Search                     | [[./homework-2.html][Homework 2]]      | 64--91                                         |
+| 3 (Sep 5, Sep 7)    | Search                     | [[./homework-3.html][Homework 3]]      | 92--95, 102--107, 120--125, 126--129, 161--167 |
+| 4 (Sep 12, Sep 14)  | Knowledge representation   | [[./homework-4.html][Homework 4]]      | 234--256, 265--274                             |
+| 5 (Sep 19, Sep 21)  | Knowledge representation   |                 |                                                |
+| 6 (Sep 26, Sep 28)  | Knowledge representation   | [[./homework-5.html][Homework 5]]      | 285--312, 339--344                             |
+| 7 (Oct 3, Oct 5)    | Midterm review, Midterm    | [[./midterm-guide.html][Midterm]] (Oct 5) |                                                |
+| 8 (Oct 10, Oct 12)  | Multi-agent systems        |                 |                                                |
+| 9 (Oct 17, Oct 19)  | Multi-agent systems        | [[./homework-6.html][Homework 6]]      | 429 (bottom)                                   |
+| 10 (Oct 24, Oct 26) | Uncertainty                | [[./homework-7.html][Homework 7]]      | 480--495, 693--706                             |
+| 11 (Oct 31, Nov 2)  | Uncertainty                |                 |                                                |
+| 12 (Nov 7, Nov 9)   | Uncertainty                | [[./homework-8.html][Homework 8]]      | 737--744, 868--869                             |
+| 13 (Nov 14, Nov 16) |                            |                 |                                                |
+| 14 (Nov 21, Nov 23) |                            | Holiday         |                                                |
+| 15 (Nov 28, Nov 30) | Philosophical perspectives |                 |                                                |
+| 16 (Dec 6)          |                            | [[./final-guide.html][Final]]           |                                                |
 
 #+INCLUDE: footer.org

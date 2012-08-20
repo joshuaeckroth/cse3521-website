@@ -6,29 +6,44 @@ Here is the algorithm again, first seen in the [[./uninformed-search.html][Uninf
 lecture notes.
 
 #+BEGIN_EXAMPLE
-1. create a list called "tocheck" of states to check
-   - put the initial state in this list
+1. create an empty list called "closedset"; this list will contain
+   states that have been visited
 
-2. loop:
-   a. if the "tocheck" list is empty:
-      - oh no! we have nothing left to check, and we never found a
-        goal state! we'll have to quit with "no solution"
+2. create a list called "openset" that contains just the starting
+   state; this list contains states that have not been visited but are
+   known to exist
 
-   b. otherwise, pull a state from the "tocheck" list, ensuring that
-      we have not yet checked this state
+3. create an empty map (key/value pairs) called "parents"; this map
+   contains the previous state of each state that has been visited
 
-      i. if this state is a goal state, we're done (return this state)
+4. while the openset is not empty:
 
-      ii. otherwise,
-          - find the next states accessible from this state
-          - put each next state in the "tocheck" list
-          - repeat the loop
+   a. grab a state from the openset (and remove it)
+
+   b. if that state is the goal, hey we're done!
+
+      i. return a reconstructed path from the goal state to the start
+         state (this is easy: recursively grab parent states from the
+         "parents" map)
+
+   c. it's not the goal state; for each next state that is accessible
+      from here:
+
+       i. if this next state is in the closedset (it has been visited
+          before), ignore it
+
+      ii. if this next state is not in the openset, put it in the
+          openset and record its parent
+
+   d. (repeat the loop)
+
+5. if the openset is empty and we never found the goal, oops!
 #+END_EXAMPLE
 
 In the uninformed searches, the random search used no particular
 technique for choosing the next state to check. Breadth-first search
-(BFS) checked the earliest discovered state, and depth-first
-search (DFS) checked the most recently discovered state.
+(BFS) checked the earliest discovered state, and depth-first search
+(DFS) checked the most recently discovered state.
 
 BFS is probably the right solution if the goal state is not deep in
 the search graph. DFS is probably the right solution if the opposite
