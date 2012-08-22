@@ -1,0 +1,5 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 10
+
+
+#+INCLUDE: footer.org

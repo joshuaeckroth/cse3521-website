@@ -1,5 +1,5 @@
 #+SETUPFILE: setup.org
-#+TITLE: Midterm guide
+#+TITLE: Midterm 1 guide
 
 Answers on the bottom. Also, you can *bring a notecard* (5in x 7in
 max) with notes or whatnot.

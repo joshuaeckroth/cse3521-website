@@ -1,0 +1,5 @@
+#+SETUPFILE: setup.org
+#+TITLE: Neural networks
+
+
+#+INCLUDE: footer.org
