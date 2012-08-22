@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Midterm 1 guide</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Midterm 1 guide"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-08-22 08:13:04 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Midterm 1 guide</h1>
+
+<p>Answers on the bottom. Also, you can <b>bring a notecard</b> (5in x 7in
+max) with notes or whatnot.
+</p>
+
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Turing test</a></li>
+<li><a href="#sec-2">Search</a>
+<ul>
+<li><a href="#sec-2-1">General search</a></li>
+<li><a href="#sec-2-2">Adversarial search</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Knowledge representation</a>
+<ul>
+<li><a href="#sec-3-1">Boolean logic</a></li>
+<li><a href="#sec-3-2">Propositional logic</a></li>
+<li><a href="#sec-3-3">First-order logic</a></li>
+<li><a href="#sec-3-4">Prolog</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Answers&hellip;</a>
+<ul>
+<li><a href="#sec-4-1">Turing test</a></li>
+<li><a href="#sec-4-2">Search</a>
+<ul>
+<li><a href="#sec-4-2-1">General search</a></li>
+<li><a href="#sec-4-2-2">Adversarial search</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-3">Knowledge representation</a>
+<ul>
+<li><a href="#sec-4-3-1">Boolean logic</a></li>
+<li><a href="#sec-4-3-2">Propositional logic</a></li>
+<li><a href="#sec-4-3-3">First-order logic</a></li>
+<li><a href="#sec-4-3-4">Prolog</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Turing test</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+True or false? Turing first described a test between a monkey and a
+human before describing a test between a human and a machine.
+</p>
+<p>
+True or false? The goal of the machine is to convince the judge that
+the human is a machine.
+</p>
+<p>
+True or false? To pass the Turing test, the machine should be expected
+to fool the judge (convince the judge that the machine is a human)
+nearly 100% of the time; or, maybe just 70% of the time.
+</p>
+<p>
+True or false? Dennett thinks that winning a chess championship is
+just as strong a test for computer intelligence as the Turing test.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Search</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">General search</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+Give an initial state, describe possible actions and the transition
+model (i.e., how states connect), and specify a goal criterion for the
+following search problem:
+</p>
+<blockquote>
+
+<p>A robot wants to exit a maze. The maze is represented as a square
+grid; open areas and walls are represented by grid squares.
+</p>
+</blockquote>
+
+
+<p>
+Repeat this exercise for the following search problem:
+</p>
+<blockquote>
+
+<p>Recall from calculus that the derivative is the inverse of the
+integral. Finding the derivative of a formula is easy (no search
+needed). But finding the integral of a formula is often challenging,
+and may require a search procedure. Describe this search procedure.
+</p>
+</blockquote>
+
+
+<p>
+Complete the following table (assume a finite search space):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Search algorithm</th><th scope="col" class="left">Always complete?</th><th scope="col" class="left">Always optimal?</th><th scope="col" class="left">Uses a heuristic?</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">Breadth-first search</td><td class="left">Yes</td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">Depth-first search</td><td class="left"></td><td class="left">No</td><td class="left"></td></tr>
+<tr><td class="left">Hill-climbing search</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">Best-first search</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
+<tr><td class="left">A* search</td><td class="left"></td><td class="left"></td><td class="left">Yes</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Recall the Goodale route search problem from <a href="./search-practice.html">Practice with searching</a>
+notes. Answer the following questions for each of breadth-first
+search, depth-first search, best-first search (using distances),
+hill-climbing search, and A* search (using some heuristic like
+distance &ldquo;as the crow flies&rdquo;). Assume we start at <code>Woodruff &amp; Tuttle</code>
+and the goal is <code>Goodale parking lot</code>. For each question, there may be
+more than one correct answer.
+</p>
+<ol>
+<li>What are the first two states (beyond <code>Woodruff &amp; Tuttle</code>) that
+     will be checked?
+
+</li>
+<li>What does the <code>tocheck</code> list look like after checking those
+     states from question 1? Be sure to order the list by an
+     appropriate sort order (breadth-first, hill-climbing, best-first,
+     and A* will take the next state from the front of the list;
+     depth-first will take the next state from the end).
+</li>
+</ol>
+
+
+<p>
+True or false? Iterative deepening depth-first search is complete
+whenever regular depth-first search is complete for some search
+problem.
+</p>
+<p>
+True or false? Iterative deepening depth-first search can usually be
+expected to find a shorter path to the goal than regular depth-first
+search.
+</p>
+<p>
+What is the singular requirement for a heuristic to be called
+&ldquo;admissible?&rdquo;
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">Adversarial search</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<p>
+Describe a utility function for an adversarial search procedure (e.g.,
+minimax) for playing chess.
+</p>
+<p>
+True or false? Minimax is an appropriate search procedure for
+single-player games (like a solitaire card game or a Rubik&rsquo;s cube)?
+</p>
+<p>
+True or false? Alpha-beta pruning, as applied to the minimax
+procedure, produces more optimal solutions (e.g., produces game moves
+that allow the computer to win in fewer moves).
+</p>
+<p>
+True or false? Alpha-beta pruning (applied to minimax) uses different
+utility functions than regular minimax.
+</p>
+<p>
+True or false? Alpha-beta pruning (applied to minimax) is the same
+algorithm as minimax, just faster because irrelevant computations are
+omitted.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Knowledge representation</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">Boolean logic</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<p>
+Simplify the following expression using Boole&rsquo;s and De Morgan&rsquo;s laws:
+$$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
+
+</p></div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2">Propositional logic</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<p>
+Build a truth-table for:
+$$\neg A \vee (B \leftrightarrow A)$$
+
+Find a satisfying assignment (if any exists) for:
+$$\neg A \wedge (A \rightarrow (B \wedge C))$$
+
+Given,
+</p>
+<ol>
+<li>\((S \vee T) \wedge (A \vee B)\)
+
+</li>
+<li>\(S \rightarrow Q\)
+
+</li>
+<li>\(\neg Q\)
+
+</li>
+<li>\(\neg C \vee Q\)
+</li>
+</ol>
+
+
+<p>
+Prove (and state the rules and premises you utilize):
+</p>
+<ol>
+<li>\(\neg S\)
+
+</li>
+<li>\(T\)
+
+</li>
+<li>\(\neg C \vee W\)
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3">First-order logic</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+<p>
+Rewrite the following statements in first-order logic:
+</p>
+<ol>
+<li>Tony is a tiger.
+
+</li>
+<li>All tigers have stripes.
+
+</li>
+<li>Some tigers are white.
+
+</li>
+<li>If any tiger is white, then we know it lives in the snow (but not
+     necessarily vice versa).
+
+</li>
+<li>A tiger is not both white and orange.
+</li>
+</ol>
+
+
+<p>
+Rewrite the following without using \(\forall\) (hint: use negation):
+$$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+
+Rewrite the following without using \(\exists\):
+$$(\exists x)(W(x) \vee \neg Q(x))$$
+
+</p></div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4">Prolog</h3>
+<div class="outline-text-3" id="text-3-4">
+
+
+<p>
+Given,
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Tail</span><span style="color: #a020f0;">]</span>) :- member(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Tail</span>).
+
+<span style="color: #0000ff;">foobar</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">List</span>) :- member(<span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">List</span>), <span style="color: #a0522d;">X</span> \= <span style="color: #a0522d;">Y</span>.
+</pre>
+
+
+<p>
+What are the values of each of these queries? (Write &ldquo;true&rdquo; or
+&ldquo;false&rdquo;, or give one value of the variable X.)
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(5, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 1, 1<span style="color: #a020f0;">]</span>).
+</pre>
+
+
+<p>
+Given,
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(10392,
+       person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
+       person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
+       <span style="color: #b22222;">% here are the children...</span>
+       <span style="color: #a020f0;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+        person(jim, fox, born(1, june, 1986), unemployed),
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #a020f0;">]</span>).
+
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Children</span>), member(<span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">Children</span>).
+</pre>
+
+
+<p>
+What are the values of each of these queries (write &ldquo;true&rdquo; or &ldquo;false&rdquo;,
+or give one value for each of the variables)?
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
+
+<span style="color: #b22222;">% </span><span style="color: #b22222;">don't forget to give one value for each variable:</span>
+<span style="color: #b22222;">% </span><span style="color: #b22222;">FirstName, LastName, and X</span>
+<span style="color: #0000ff;">exists</span>(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">X</span>)), <span style="color: #a0522d;">X</span> \= unemployed.
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Answers&hellip;</h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1">Turing test</h3>
+<div class="outline-text-3" id="text-4-1">
+
+
+<p>
+True or false? Turing first described a test between a monkey and a
+human before describing a test between a human and a machine.
+</p>
+<p>
+<b>False</b> &mdash; the original test was between a man and a woman; the man
+was supposed to impersonate the woman.
+</p>
+<p>
+True or false? The goal of the machine is to convince the judge that
+the human is a machine.
+</p>
+<p>
+<b>True</b> &mdash; or, <b>False</b> &mdash; my fault, both answers are true: the
+machine is supposed to convince the judge that it is a human, which is
+equivalent to convincing the judge that the human is a machine.
+</p>
+<p>
+True or false? To pass the Turing test, the machine should be expected
+to fool the judge (convince the judge that the machine is a human)
+nearly 100% of the time; or, maybe just 70% of the time.
+</p>
+<p>
+<b>False</b> &mdash; the machine should not be expected to be &ldquo;more human than
+human,&rdquo; so convincing the judge just 25% of the time seems
+sufficient. Over 50% may well change our definition of humanity&hellip;
+</p>
+<p>
+True or false? Dennett thinks that winning a chess championship is
+just as strong a test for computer intelligence as the Turing test. 
+</p>
+<p>
+<b>False</b> &mdash; beating humans in chess is not sufficient because chess
+requires only a narrow kind of intelligence, more calculation than
+anything
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2">Search</h3>
+<div class="outline-text-3" id="text-4-2">
+
+
+
+</div>
+
+<div id="outline-container-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1">General search</h4>
+<div class="outline-text-4" id="text-4-2-1">
+
+
+<p>
+Give an initial state, describe possible actions and the transition
+model (i.e., how states connect), and specify a goal criterion for the
+following search problem:
+</p>
+<blockquote>
+
+<p>A robot wants to exit a maze. The maze is represented as a square
+grid; open areas and walls are represented by grid squares.
+</p>
+</blockquote>
+
+
+<ul>
+<li>initial state: the robot&rsquo;s starting location
+
+</li>
+<li>possible actions: move north, south, east, west (not all movements
+    are always possible)
+
+</li>
+<li>transition model: look at the map, connect grid locations via
+    north/south/east/west links
+
+</li>
+<li>goal criterion: finding the exit from the maze
+</li>
+</ul>
+
+
+<p>
+Repeat this exercise for the following search problem:
+</p>
+<blockquote>
+
+<p>Recall from calculus that the derivative is the inverse of the
+integral. Finding the derivative of a formula is easy (no search
+needed). But finding the integral of a formula is often challenging,
+and may require a search procedure. Describe this search procedure.
+</p>
+</blockquote>
+
+
+<ul>
+<li>initial state: the starting formula that needs a symbolic integral
+    to be found
+
+</li>
+<li>possible actions / transition model: create a database like this:
+
+<ul>
+<li><code>sin(x) --&gt; -cos(x)</code>
+
+</li>
+<li><code>cx --&gt; cx^2/2</code>
+
+</li>
+<li><code>x^n --&gt; (x^(n+1)/(n+1))</code>
+
+</li>
+<li>&hellip;
+
+</li>
+</ul>
+
+</li>
+<li>goal criterion: say you are looking at a new formula <code>g</code>, and the
+    original formula is <code>f</code>, then you want <code>dg/dx = f</code>; every &ldquo;state&rdquo;
+    (formula) is checked in this way
+</li>
+</ul>
+
+
+<p>
+Complete the following table (assume a finite search space):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Search algorithm</th><th scope="col" class="left">Always complete?</th><th scope="col" class="left">Always optimal?</th><th scope="col" class="left">Uses a heuristic?</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">Breadth-first search</td><td class="left">Yes</td><td class="left">No*</td><td class="left">No</td></tr>
+<tr><td class="left">Depth-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">No</td></tr>
+<tr><td class="left">Hill-climbing search</td><td class="left">No</td><td class="left">No</td><td class="left">Yes</td></tr>
+<tr><td class="left">Best-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">Yes</td></tr>
+<tr><td class="left">A* search</td><td class="left">Yes</td><td class="left">Yes</td><td class="left">Yes</td></tr>
+</tbody>
+</table>
+
+
+<p>
+<code>*</code> I should have clarified: we have weighted graphs; breadth-first
+search <i>is</i> optimal for unweighted graphs.
+</p>
+<p>
+Recall the Goodale route search problem from <a href="./search-practice.html">Practice with searching</a>
+notes. Answer the following questions for each of breadth-first
+search, depth-first search, best-first search (using distances),
+hill-climbing search, and A* search (using some heuristic like
+distance &ldquo;as the crow flies&rdquo;). Assume we start at <code>Woodruff &amp; Tuttle</code>
+and the goal is <code>Goodale parking lot</code>. For each question, there may be
+more than one correct answer.
+</p>
+<ol>
+<li>What are the first two states (beyond <code>Woodruff &amp; Tuttle</code>) that
+     will be checked?
+
+<ul>
+<li>breadth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>High &amp;        Woodruff</code>
+
+</li>
+<li>depth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>SR-315 &amp;        Lane</code>
+
+</li>
+<li>best-first (only answer): <code>High &amp; Woodruff</code>, <code>High &amp; 15th</code>
+
+</li>
+<li>hill-climbing (only answer): same as best-first
+
+</li>
+<li>A* (only answer): same as best-first
+
+</li>
+</ul>
+
+</li>
+<li>What does the <code>tocheck</code> list look like after checking those
+     states from question 1? Be sure to order the list by an
+     appropriate sort order (breadth-first, hill-climbing, best-first,
+     and A* will take the next state from the front of the list;
+     depth-first will take the next state from the end). Assume
+     already-checked states are not added.
+
+<ul>
+<li>breadth-first (one possible answer): <code>[High &amp; 15th, SR-315 &amp; Lane]</code>
+
+</li>
+<li>depth-first (one possible answer): <code>[High &amp; Woodruff, SR-315 I-670 offramp, SR-315 &amp; King]</code>
+
+</li>
+<li>best-first: <code>[High &amp; 11th, Lane &amp; Tuttle, US-23 &amp; 15th]</code>
+
+</li>
+<li>hill-climbing: <code>[High &amp; 11th, US-23 &amp; 15th]</code>
+
+</li>
+<li>A*: <code>[High &amp; 11th, Lane &amp; Tuttle, US-23 &amp; 15th]</code>
+</li>
+</ul>
+
+</li>
+</ol>
+
+
+<p>
+True or false? Iterative deepening depth-first (IDDFS) search is
+complete whenever regular depth-first search is complete for some
+search problem.
+</p>
+<p>
+<b>True</b> &mdash; DFS is complete when the search space is not
+infinite. Since IDDFS performs repeated DFS (with greater depth
+limits), it too will be complete if DFS is.
+</p>
+<p>
+True or false? Iterative deepening depth-first search can usually be
+expected to find a shorter path to the goal than regular depth-first
+search.
+</p>
+<p>
+<b>True</b> &mdash; The purpose of IDDFS is to not get lost in deep searches by
+putting a limit on the DFS depth (which causes more breadth to be
+searched because it hits the depth limit).
+</p>
+<p>
+What is the singular requirement for a heuristic to be called
+&ldquo;admissible?&rdquo;
+</p>
+<ul>
+<li>The heuristic must always <i>underestimate</i> (or exactly match) the
+    true cost from the current state to the goal state.
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2">Adversarial search</h4>
+<div class="outline-text-4" id="text-4-2-2">
+
+
+<p>
+Describe a utility function for an adversarial search procedure (e.g.,
+minimax) for playing chess.
+</p>
+<ul>
+<li>One possible answer: Number of captured pieces, maybe with a
+    weight for each piece (so a queen will have a large weight, a pawn
+    not so much)
+</li>
+</ul>
+
+
+<p>
+True or false? Minimax is an appropriate search procedure for
+single-player games (like a solitaire card game or a Rubik&rsquo;s cube)?
+</p>
+<p>
+<b>False</b> &mdash; there is no adversary to simulate and minimize, thus no
+minimax
+</p>
+<p>
+True or false? Alpha-beta pruning, as applied to the minimax
+procedure, produces more optimal solutions (e.g., produces game moves
+that allow the computer to win in fewer moves).
+</p>
+<p>
+<b>False</b> &mdash; alpha-beta does not change the solutions.
+</p>
+<p>
+True or false? Alpha-beta pruning (applied to minimax) uses different
+utility functions than regular minimax.
+</p>
+<p>
+<b>False</b> &mdash; the utility functions are not changed, just which parts of
+the search space are actually searched.
+</p>
+<p>
+True or false? Alpha-beta pruning (applied to minimax) is the same
+algorithm as minimax, just faster because irrelevant computations are
+omitted.
+</p>
+<p>
+<b>True</b> &mdash; that&rsquo;s all alpha-beta pruning is; it still does minimax.
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3">Knowledge representation</h3>
+<div class="outline-text-3" id="text-4-3">
+
+
+
+</div>
+
+<div id="outline-container-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1">Boolean logic</h4>
+<div class="outline-text-4" id="text-4-3-1">
+
+
+<p>
+Simplify the following expression using Boole&rsquo;s and De Morgan&rsquo;s laws:
+$$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
+
+</p><ul>
+<li>Change \(y \vee \neg y\) to \(T\), yielding: \(\neg(\neg x \vee \neg y)
+    \wedge (x \wedge T)\)
+
+</li>
+<li>Change \(x \wedge T\) to \(x\), yielding: \(\neg(\neg x \vee \neg y)
+    \wedge x\)
+
+</li>
+<li>Distribute the negative, yielding: \((x \wedge y) \wedge x\)
+
+</li>
+<li>Get rid of parentheses, reduce redundancy, yielding \(x \wedge y\)
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2">Propositional logic</h4>
+<div class="outline-text-4" id="text-4-3-2">
+
+
+<p>
+Build a truth-table for:
+$$\neg A \vee (B \leftrightarrow A)$$
+
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(A\)</th><th scope="col" class="left">\(B\)</th><th scope="col" class="left">\(B \leftrightarrow A\)</th><th scope="col" class="left">\(\neg A \vee (B \leftrightarrow A)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td></tr>
+<tr><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
+<tr><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">T</td></tr>
+<tr><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Find a satisfying assignment (if any exists) for:
+$$\neg A \wedge (A \rightarrow (B \wedge C))$$
+
+Build a truth table to find this:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(A\)</th><th scope="col" class="left">\(B\)</th><th scope="col" class="left">\(C\)</th><th scope="col" class="left">\(B \wedge C\)</th><th scope="col" class="left">\(A \rightarrow (B \wedge C)\)</th><th scope="col" class="left">\(\neg A \wedge (A \rightarrow (B \wedge C))\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">F</td></tr>
+<tr><td class="left">T</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
+<tr><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
+<tr><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
+<tr><td class="left">F</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td></tr>
+<tr><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
+<tr><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
+<tr><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
+</tbody>
+</table>
+
+
+<p>
+The last four rows will provide satisfying assignments.  
+</p>
+<p>
+Given,
+</p>
+<ol>
+<li>\((S \vee T) \wedge (A \vee B)\)
+
+</li>
+<li>\(S \rightarrow Q\)
+
+</li>
+<li>\(\neg Q\)
+
+</li>
+<li>\(\neg C \vee Q\)
+</li>
+</ol>
+
+
+<p>
+Prove (and state the rules and premises you utilize):
+</p>
+<ol>
+<li>\(\neg S\)
+
+<ol>
+<li>From 2, 3 and modus tollens.
+
+</li>
+</ol>
+
+</li>
+<li>\(T\)
+
+<ol>
+<li>From \(\neg S\) (above) and 1, simplification, and disjunctive
+        syllogism.
+
+</li>
+</ol>
+
+</li>
+<li>\(\neg C \vee W\)
+
+<ol>
+<li>From 3, 4 and disjunctive syllogism (which gives us \(\neg C\));
+        now apply addition plus introduce the arbitrary symbol \(W\)
+        (which is allowed with the addition rule)
+</li>
+</ol>
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-3-3" class="outline-4">
+<h4 id="sec-4-3-3">First-order logic</h4>
+<div class="outline-text-4" id="text-4-3-3">
+
+
+<p>
+Rewrite the following statements in first-order logic:
+</p>
+<ol>
+<li>Tony is a tiger.
+
+<ul>
+<li>\(Tiger(Tony)\)
+
+</li>
+</ul>
+
+</li>
+<li>All tigers have stripes.
+
+<ul>
+<li>\((\forall x)(Tiger(x) \rightarrow Striped(x))\)
+
+</li>
+</ul>
+
+</li>
+<li>Some tigers are white.
+
+<ul>
+<li>\((\exists x)(Tiger(x) \wedge White(x))\)
+
+</li>
+</ul>
+
+</li>
+<li>If any tiger is white, then we know it lives in the snow (but not
+     necessarily vice versa).
+
+<ul>
+<li>\((\forall x)((Tiger(x) \wedge White(x)) \rightarrow LivesInSnow(x))\)
+
+</li>
+</ul>
+
+</li>
+<li>A tiger is not both white and orange.
+
+<ul>
+<li>\((\forall x)(Tiger(x) \rightarrow (\neg White(x) \vee \neg Orange(x)))\)
+</li>
+</ul>
+
+</li>
+</ol>
+
+
+<p>
+Rewrite the following without using \(\forall\) (hint: use negation):
+$$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+
+$$\neg(\exists x)((P(x) \vee (A(x) \wedge B(x))) \wedge (\neg P(x)
+\vee \neg(A(x) \wedge B(x))))$$
+
+Rewrite the following without using \(\exists\):
+$$(\exists x)(W(x) \vee \neg Q(x))$$
+
+$$\neg (\forall x)(\neg W(x) \wedge Q(x))$$
+
+</p></div>
+
+</div>
+
+<div id="outline-container-4-3-4" class="outline-4">
+<h4 id="sec-4-3-4">Prolog</h4>
+<div class="outline-text-4" id="text-4-3-4">
+
+
+<p>
+Given,
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Tail</span><span style="color: #a020f0;">]</span>) :- member(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Tail</span>).
+
+<span style="color: #0000ff;">foobar</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">List</span>) :- member(<span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">List</span>), <span style="color: #a0522d;">X</span> \= <span style="color: #a0522d;">Y</span>.
+</pre>
+
+
+<p>
+What are the values of each of these queries? (Write &ldquo;true&rdquo; or
+&ldquo;false&rdquo;, or give one value of the variable X.)
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(5, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; false</span>
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; X = 1 or 2 or 3</span>
+<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; true</span>
+<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 1, 1<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; false</span>
+</pre>
+
+
+<p>
+Given,
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(10392,
+       person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
+       person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
+       <span style="color: #b22222;">% here are the children...</span>
+       <span style="color: #a020f0;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+        person(jim, fox, born(1, june, 1986), unemployed),
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #a020f0;">]</span>).
+
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>).
+<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Children</span>), member(<span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">Children</span>).
+</pre>
+
+
+<p>
+What are the values of each of these queries (write &ldquo;true&rdquo; or &ldquo;false&rdquo;,
+or give one value for each of the variables)?
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
+<span style="color: #b22222;">% </span><span style="color: #b22222;">answer: false</span>
+</pre>
+
+
+
+<pre class="src src-prolog"><span style="color: #b22222;">% </span><span style="color: #b22222;">don't forget to give one value for each variable:</span>
+<span style="color: #b22222;">% </span><span style="color: #b22222;">FirstName, LastName, and X</span>
+<span style="color: #0000ff;">exists</span>(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">X</span>)), <span style="color: #a0522d;">X</span> \= unemployed.
+<span style="color: #b22222;">% </span><span style="color: #b22222;">one answer: FirstName = tom, LastName = fox, X = works(cnn, 152000)</span>
+</pre>
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521">GitHub</a>.
+</div>
+
+<!-- Plupper Tracking Code -->
+<script src="https://www.google.com/jsapi"></script>
+<script type="text/javascript"
+    src="https://static.plupper.com/js/plupper.js"></script>
+<script type="text/javascript">
+    plupper.init("joshuaeckroth@plupper.com");
+    plupper.enableCobrowsing();
+</script>
+<!-- End of Plupper Tracking Code -->
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>
