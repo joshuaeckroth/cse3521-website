@@ -57,7 +57,7 @@ When you are ready to submit files for a homework assignment, run the
 ~submit~ command like so:
 
 #+BEGIN_EXAMPLE
-submit c630aa hw1 myhw1
+submit c3521ab hw1 myhw1
 #+END_EXAMPLE
 
 This example assumes your files are in the folder ~myhw1~. Note that
@@ -66,8 +66,5 @@ each time you submit, your prior submission will be erased.
 Always submit an executable version of your code, plus the code
 itself. Also, always provide a ~README~ file that tells the grader how
 to compile and execute your code.
-
-Do not submit Microsoft Word documents; submit a PDF or text file
-instead.
 
 #+INCLUDE: footer.org
