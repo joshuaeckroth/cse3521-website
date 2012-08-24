@@ -229,6 +229,12 @@ against the other prisoner/suspect, regardless of actual
 guilt. (Wikipedia)
 #+END_QUOTE
 
+#+BEGIN_CENTER
+[[./images/playitbytrust.jpg]]
+
+Play it by Trust, Yoko Ono
+#+END_CENTER
+
 * One Good Deed Deserves Another (Radiolab, December 14, 2010)
 
 #+BEGIN_CENTER

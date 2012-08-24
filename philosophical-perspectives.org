@@ -11,4 +11,10 @@ the other hand it is an expression of our inventiveness and
 freedom. --- David Porush, /The Soft Machine: Cybernetic Fiction/
 #+END_QUOTE
 
+#+BEGIN_CENTER
+[[./images/dicesculptures.jpg]]
+
+Dice Sculptures, [[http://www.tony-cragg.com/][Tony Cragg]]
+#+END_CENTER
+
 #+INCLUDE: footer.org

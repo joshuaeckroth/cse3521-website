@@ -1,0 +1,12 @@
+#+SETUPFILE: setup.org
+#+TITLE: Robot ethics
+
+
+#+BEGIN_CENTER
+[[./images/robotethics.jpg]]
+
+[[http://phys.org/news/2012-03-ethical-robots.html][How to make ethical robots]], Phys.org, March 12, 2012
+#+END_CENTER
+
+
+#+INCLUDE: footer.org
