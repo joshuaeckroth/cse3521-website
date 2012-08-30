@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Homework 2"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-08-08 20:07:02 EDT"/>
+<meta name="generated" content="2012-08-30 14:38:37 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -103,44 +103,79 @@
 <h2>TOC</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Task (100 pts)</a></li>
+<li><a href="#sec-1">Task 1 (70 pts)</a></li>
+<li><a href="#sec-2">Task 2 (10 pts)</a></li>
+<li><a href="#sec-3">Task 3 (10 pts)</a></li>
+<li><a href="#sec-4">Task 4 (10 pts)</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Task (100 pts)</h2>
+<h2 id="sec-1">Task 1 (70 pts)</h2>
 <div class="outline-text-2" id="text-1">
 
 
-<ul>
-<li>Code either breadth-first search or depth-first search in whatever
-    programming language you wish. Solve the &ldquo;Routing from Dreese
-    Labs to Goodale Park&rdquo; problem on the <a href="./search-practice.html">search practice</a> notes.
+<p>
+  Code either breadth-first search or depth-first search in whatever
+  programming language you wish. Solve the &ldquo;Routing from Dreese Labs
+  to Goodale Park&rdquo; problem on the <a href="./search-practice.html">search practice</a> notes. Ask the user
+  for a starting location and ending (goal) location, and print out
+  the path from the start to the end.
+</p>
+<p>
+  Because I&rsquo;m asking you to code BFS or DFS, which don&rsquo;t consider edge
+  weights (distance between road intersections in the map), you do not
+  need to include edge weights in your representation of the search
+  graph.
+</p>
+</div>
 
-</li>
-<li>What are some admissible heuristics for the 8-puzzle problem? Give
-    at least two.
+</div>
 
-</li>
-<li>The &ldquo;Routing from Dreese Labs to Goodale Park&rdquo; used road
-    intersection distance to find the minimal-time route. However,
-    this distance (&ldquo;as the crow flies,&rdquo; i.e. distance not accounting
-    for curved roads) is only one aspect of what makes one route
-    better than another. What other information should we use to find
-    the truly minimal-time route between these two locations?
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Task 2 (10 pts)</h2>
+<div class="outline-text-2" id="text-2">
 
-</li>
-<li>For unweighted search graphs, which of the following search
-    algorithms are complete? Which are optimal? What about weighted
-    graphs?
 
+<p>
+  The &ldquo;Routing from Dreese Labs to Goodale Park&rdquo; used road
+  intersection distance to find the minimal-time route (when informed
+  search was used). However, this distance (&ldquo;as the crow flies&rdquo;) is
+  only one aspect of what makes one route better than another. What
+  other information should we use to find the truly minimal-time route
+  between these two locations?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Task 3 (10 pts)</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+  What are some <i>admissible</i> heuristics for the 8-puzzle problem? Give
+  at least two.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Task 4 (10 pts)</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+  For unweighted search graphs (equivalently, all weights equal 1.0),
+  which of the following search algorithms are complete? Which are
+  optimal?  What about weighted graphs?
+</p>
 <ul>
 <li>Breadth-first search, depth-first search, random search,
-      best-first search, hill-climbing search, A* search
-</li>
-</ul>
-
+    best-first search, hill-climbing search, A* search
 </li>
 </ul>
 
