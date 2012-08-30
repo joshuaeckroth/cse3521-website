@@ -263,4 +263,67 @@ solution. Interestingly, random search finds near-optimal solutions,
 possibly because it is more likely it will look at a shallow node
 (there are up to four from each state) than a deep node.
 
+* More comparisons
+
+** 8-puzzle
+
+   All numbers are compared to breadth-first search, the control
+   case. The numbers reflect averages across 20 runs.
+   
+| Search type  | Resulting path length | Largest closedset | Largest openset |
+|--------------+-----------------------+-------------------+-----------------|
+| A*           |                   0.0 |             -24.7 |           -15.6 |
+| Hillclimbing |                  +4.9 |             -13.6 |           -18.1 |
+| Best-first   |                  +1.5 |             -10.8 |            -6.3 |
+
+*** Discussion
+
+    A* finds an equally-good path as breadth-first (because both
+    breadth-first and A* are optimal with unweighted graphs). However,
+    A* checks fewer states ("largest closedset" is smaller).
+
+    DFS was not tested here because it checks far too many states; the
+    simulations would have taken hours.
+
+** Goodale routing
+
+   All numbers are compared to breadth-first search, the control
+   case. The numbers reflect averages across 20 runs.
+
+| Search type  | Resulting path length | Largest closedset | Largest openset |
+|--------------+-----------------------+-------------------+-----------------|
+| A*           |                  -1.9 |              -4.5 |            -1.1 |
+| Hillclimbing |                 +17.4 |              -1.0 |            -1.9 |
+| Best-first   |                  -1.9 |              +0.7 |            +0.1 |
+| Depth-first  |                  +8.6 |              +1.6 |            +0.7 |
+
+*** Discussion
+
+    A* again finds the best paths; but so does best-first (in this
+    experiment; sometimes best-first does worse).
+
+** Maze path-finding
+
+   All numbers are compared to breadth-first search, the control
+   case. The numbers reflect averages across 20 runs.
+
+| Search type  | Resulting path length | Largest closedset | Largest openset |
+|--------------+-----------------------+-------------------+-----------------|
+| A*           |                   0.0 |            -524.8 |            -0.1 |
+| Hillclimbing |                +213.0 |           -2166.9 |           -17.9 |
+| Best-first   |                   0.0 |              +0.8 |            +0.2 |
+| Depth-first  |                +505.4 |             -83.5 |           +43.6 |
+
+*** Discussion
+
+    A* and best-first again find the best paths, which aren't any
+    better than those found by breadth-first, since all movements cost
+    the same.
+
+    However, A* considers far fewer states. Hillclimbing likewise, but
+    hillclimbing is terrible for finding optimal paths (in this case).
+
+    As expected, depth-first also does not find short paths.
+
+
 #+INCLUDE: footer.org
