@@ -1,27 +1,40 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 2
 
-* Task (100 pts)
+* Task 1 (70 pts)
 
-  - Code either breadth-first search or depth-first search in whatever
-    programming language you wish. Solve the "Routing from Dreese
-    Labs to Goodale Park" problem on the [[./search-practice.html][search practice]] notes.
+  Code either breadth-first search or depth-first search in whatever
+  programming language you wish. Solve the "Routing from Dreese Labs
+  to Goodale Park" problem on the [[./search-practice.html][search practice]] notes. Ask the user
+  for a starting location and ending (goal) location, and print out
+  the path from the start to the end.
 
-  - What are some admissible heuristics for the 8-puzzle problem? Give
-    at least two.
+  Because I'm asking you to code BFS or DFS, which don't consider edge
+  weights (distance between road intersections in the map), you do not
+  need to include edge weights in your representation of the search
+  graph.
 
-  - The "Routing from Dreese Labs to Goodale Park" used road
-    intersection distance to find the minimal-time route. However,
-    this distance ("as the crow flies," i.e. distance not accounting
-    for curved roads) is only one aspect of what makes one route
-    better than another. What other information should we use to find
-    the truly minimal-time route between these two locations?
+* Task 2 (10 pts)
 
-  - For unweighted search graphs, which of the following search
-    algorithms are complete? Which are optimal? What about weighted
-    graphs?
+  The "Routing from Dreese Labs to Goodale Park" used road
+  intersection distance to find the minimal-time route (when informed
+  search was used). However, this distance ("as the crow flies") is
+  only one aspect of what makes one route better than another. What
+  other information should we use to find the truly minimal-time route
+  between these two locations?
 
-    - Breadth-first search, depth-first search, random search,
-      best-first search, hill-climbing search, A* search
+* Task 3 (10 pts)
+
+  What are some /admissible/ heuristics for the 8-puzzle problem? Give
+  at least two.
+
+* Task 4 (10 pts)
+
+  For unweighted search graphs (equivalently, all weights equal 1.0),
+  which of the following search algorithms are complete? Which are
+  optimal?  What about weighted graphs?
+
+  - Breadth-first search, depth-first search, random search,
+    best-first search, hill-climbing search, A* search
 
 #+INCLUDE: footer.org
