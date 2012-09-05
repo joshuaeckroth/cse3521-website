@@ -45,6 +45,32 @@ Here are some useful videos to help you get up to speed on Linux:
 | Python      | ~python~                     |                    2.6.6 |
 | Ruby        | ~ruby~                       |                    1.9.2 |
 
+If you want to use Java, you must use "subscribe" to it by issuing
+this command:
+
+#+BEGIN_EXAMPLE
+subscribe
+#+END_EXAMPLE
+
+You will see this menu:
+
+#+BEGIN_EXAMPLE
+?  #   Package           ?  #   Package           ?  #   Package
+-  -   -------           -  -   -------           -  -   -------
+   0   ACU-COBOL            7   HOMEBIN              14  OPERATOR      
+   1   ADMIN                8   JDK-CURRENT          15  ORACLE        
+   2   CONSULT              9   MAGICK-CURRENT       16  PYTHON-3      
+   3   DRT                  10  MAPLE11              17  RESOLVE       
+   4   EIFFEL               11  MYSQL                18  SML           
+   5   FIREFOX              12  OPEN-COBOL-1.0       19  SVN           
+   6   FIREFOX-CURRENT       13  OPEN-COBOL-1.1       20  VI            
+
+Enter a command (a,i,q, or h for help), or a number to SUBSCRIBE:
+#+END_EXAMPLE
+
+Choose option =8 JDK-CURRENT= (type =8= and press enter). Log out,
+then log back in. Now you can use Java.
+
 ** Other languages
 
 Email me before you submit an assignment in a different language than
