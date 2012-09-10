@@ -3,25 +3,149 @@
 
 * Task (100 pts)
 
-  - Code the minimax algorithm, as applied to tic-tac-toe. Allow a
-    human to play against the computer. Modify it so it prefers moves
-    that win sooner. For example, the best move when 'x' is at (0,0)
-    and (1,0) and 'o' is at (0,1) and (0,2) should be 'x' at (2,0) to
-    make the win. (Positions are written in (x,y) format, with (0,0)
-    at the top-left.)
+Code the minimax algorithm, as applied to connect-4. Here are the
+rules of connect-4:
 
-* Extra credit (40 pts)
+  - The board is 6 rows by 7 columns.
 
-  - Code the alpha-beta pruning algorithm (instead of the minimax
-    algorithm) for the same task described above. This extra credit
-    gives you +20 pts and the 100 pts for the task.
+  - Two players, say H (human) and C (computer).
 
-  - Now that you have some experience with search, as a general AI
-    technique, can you think of some problems (2-3 problems) for which
-    it is difficult if not impossible to solve with search? Hint:
-    Think about problems in which it is difficult/impossible to
-    describe the initial state, and/or possible actions, and/or
-    transition model, and/or goal criteria, etc.
+  - On a player's move, he/she/it can choose to put a token in one of
+    the 7 columns. The token falls to the lowest row that is
+    unoccupied in that column. A column is full and unplayable when it
+    has all rows filled (6 tokens).
 
+Winning condition:
+
+  - A player wins when he/she/it gets four tokens in a row:
+    diagonally, vertically, or horizontally.
+
+  - A tie occurs when there are no free moves and neither player won.
+
+Be sure to provide a simple user interface. Ask the human for a move,
+then show the board after the move. You can choose if the human or
+computer moves first.
+
+*Note:* This game has a huge search space. You cannot /just/ use
+minimax, and even alpha-beta pruning won't help you enough. You have
+to also *limit the search depth*. Recall that minimax is a recursive
+algorithm. You can keep track of the depth of your recursive calls by
+giving the depth as an input to each recursive function call. Each
+call gives the current depth + 1. Add a depth-limit parameter, or
+hard-code one. I found that a depth-limit of 6 works ok. Don't call
+the next recursive function if the depth would exceed this
+depth-limit.
+
+
+* Extra credit (20 pts)
+
+Code the alpha-beta pruning modification of the minimax algorithm
+(instead of just the minimax algorithm) for the same task described
+above. This extra credit gives you 120 pts overall. You do not have to
+code the game twice.
+
+* Example code
+
+To help you focus more on the interesting bits, here is some C++ code
+for checking diagonals (only down-left and down-right are required
+since up-right and up-left are equivalent), printing the grid, etc.
+
+#+BEGIN_SRC c++
+char grid[6][7];
+
+void initializeGrid()
+{
+    for(int i = 0; i < 6; i++)
+    {
+        for(int j = 0; j < 7; j++)
+        {
+            grid[i][j] = ' ';
+        }
+    }
+}
+
+void printGrid()
+{
+    for(int i = 0; i < 6; i++)
+    {
+        for(int j = 0; j < 7; j++)
+        {
+            cout << "--";
+        }
+        cout << "-" << endl;
+
+        for(int j = 0; j < 7; j++)
+        {
+            cout << "|" << grid[i][j];
+        }
+        cout << "|" << endl;
+    }
+    for(int j = 0; j < 7; j++)
+    {
+        cout << "--";
+    }
+    cout << "-" << endl;
+    for(int j = 1; j <= 7; j++)
+    {
+        cout << " " << j;
+    }
+    cout << endl;
+}
+
+bool checkDownLeft(int col, int row, char player)
+{
+    int count = 0;
+    for(int i = row, j = col; i < 6 && j < 7; i++, j--)
+    {
+        if(grid[i][j] == player) count++;
+        else count = 0;
+
+        if(count == 4) break;
+    }
+    return (count == 4);
+}
+
+bool checkDownRight(int col, int row, char player)
+{
+    int count = 0;
+    for(int i = row, j = col; i < 6 && j < 7; i++, j++)
+    {
+        if(grid[i][j] == player) count++;
+        else count = 0;
+
+        if(count == 4) break;
+    }
+    return (count == 4);
+}
+
+bool checkHorizontal(int row, char player)
+{
+    // omitted
+}
+
+bool checkVertical(int col, char player)
+{
+    // omitted
+}
+
+bool won(char player)
+{
+    for(int j = 0; j < 7; j++)
+    {
+        if(checkVertical(j, player)) return true;
+    }
+    for(int i = 0; i < 6; i++)
+    {
+        if(checkHorizontal(i, player)) return true;
+
+        for(int j = 0; j < 7; j++)
+        {
+            if(checkDownLeft(j, i, player)) return true;
+            if(checkDownRight(j, i, player)) return true;
+        }
+    }
+    return false;
+}
+#+END_SRC
 
 #+INCLUDE: footer.org
