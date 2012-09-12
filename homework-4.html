@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Homework 4"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-09 21:17:49 EDT"/>
+<meta name="generated" content="2012-09-12 19:58:07 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -157,10 +157,10 @@
 <li>(10pts) Build truth tables for the following formulas:
 
 <ol>
-<li>\((A \vee B) \wedge C\)
+<li>\(\neg (A \wedge C) \vee B\)
 
 </li>
-<li>\((A \rightarrow B) \vee (B \rightarrow \neg C)\)
+<li>\((A \rightarrow \neg B) \vee (B \leftrightarrow C)\)
 
 </li>
 </ol>
@@ -170,10 +170,10 @@
      formulas, or state that no such assignment exists:
 
 <ol>
-<li>\((A \wedge \neg B) \vee (\neg A \wedge B \wedge C)\)
+<li>\(\neg (A \vee B) \wedge (\neg A \wedge B \wedge \neg C)\)
 
 </li>
-<li>\(C \rightarrow (\neg C \wedge \neg A)\)
+<li>\(C \leftrightarrow (\neg C \vee \neg A)\)
 
 </li>
 </ol>
@@ -182,17 +182,18 @@
 <li>(10pts) Express the following statements in propositional logic:
 
 <ol>
-<li>\(B\) is true whenever \(C\) is false.
+<li>\(B\) or \(C\) is true whenever \(A\) is true.
 
 </li>
-<li>Either \(X\) is true or \(Z\) is true but not both.
+<li>\(B\) is known to be true when \(A\) is true.
 
 </li>
 <li>At most one of \(R\), \(S\), and \(T\) can be true.
 
 </li>
-<li>The dog only barks when she hears a noise. (Create
-        propositional symbols, and give their definitions.)
+<li>The grass is wet if either it rained or the sprinkler was
+        on. (Create propositional symbols, and give their
+        definitions.)
 
 </li>
 </ol>
@@ -254,14 +255,13 @@
 <li>Mammals have hair and three middle ear bones.
 
 </li>
+<li>Not all dolphins live in the ocean.
+
+</li>
 <li>Some mammals have sweat glands and specialized teeth.
 
 </li>
 <li>Vignesh stopped by his house before going to the party.
-
-</li>
-<li>There is no apparent correlation between tobacco use and city
-        of birth.
 
 </li>
 <li>The result of firing a loaded gun at a person is that the
@@ -273,10 +273,13 @@
         the gun misfires, or&hellip;)
 
 </li>
-<li>Obama will win the 2012 election.
+<li>One of the teachers on this campus always gets spitballs
+        launched at him whenever he turns around.
 
 </li>
-<li>There is a chance that Obama will win the 2012 election.
+<li>The only mammals that lay eggs are the monotremes, and all
+         but the playtpus are extinct. (You may need multiple
+         logic &ldquo;sentences&rdquo; for this one.)
 
 </li>
 <li>I&rsquo;m hungry.
