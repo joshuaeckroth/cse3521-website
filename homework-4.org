@@ -5,27 +5,28 @@
 
   1. (10pts) Build truth tables for the following formulas:
 
-     1. $(A \vee B) \wedge C$
+     1. $\neg (A \wedge C) \vee B$
 
-     2. $(A \rightarrow B) \vee (B \rightarrow \neg C)$
+     2. $(A \rightarrow \neg B) \vee (B \leftrightarrow C)$
 
   2. (10pts) Find variable assignments that satisfy the following
      formulas, or state that no such assignment exists:
 
-     1. $(A \wedge \neg B) \vee (\neg A \wedge B \wedge C)$
+     1. $\neg (A \vee B) \wedge (\neg A \wedge B \wedge \neg C)$
 
-     2. $C \rightarrow (\neg C \wedge \neg A)$
+     2. $C \leftrightarrow (\neg C \vee \neg A)$
 
   3. (10pts) Express the following statements in propositional logic:
 
-     1. $B$ is true whenever $C$ is false.
+     1. $B$ or $C$ is true whenever $A$ is true.
 
-     2. Either $X$ is true or $Z$ is true but not both.
+     2. $B$ is known to be true when $A$ is true.
 
      3. At most one of $R$, $S$, and $T$ can be true.
 
-     4. The dog only barks when she hears a noise. (Create
-        propositional symbols, and give their definitions.)
+     4. The grass is wet if either it rained or the sprinkler was
+        on. (Create propositional symbols, and give their
+        definitions.)
 
   4. (20pts) We have a knowledge base that contains:
 
@@ -62,12 +63,11 @@
 
      3. Mammals have hair and three middle ear bones.
 
-     4. Some mammals have sweat glands and specialized teeth.
+     4. Not all dolphins live in the ocean.
 
-     5. Vignesh stopped by his house before going to the party.
+     5. Some mammals have sweat glands and specialized teeth.
 
-     6. There is no apparent correlation between tobacco use and city
-        of birth.
+     6. Vignesh stopped by his house before going to the party.
 
      7. The result of firing a loaded gun at a person is that the
         person dies.
@@ -76,9 +76,12 @@
         the person dies (unless, the person has a bulletproof vest, or
         the gun misfires, or...)
 
-     9. Obama will win the 2012 election.
+     9. One of the teachers on this campus always gets spitballs
+        launched at him whenever he turns around.
 
-     10. There is a chance that Obama will win the 2012 election.
+     10. The only mammals that lay eggs are the monotremes, and all
+         but the playtpus are extinct. (You may need multiple
+         logic "sentences" for this one.)
 
      11. I'm hungry.
 
