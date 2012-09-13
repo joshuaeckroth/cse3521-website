@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Homework 3"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-09 21:21:16 EDT"/>
+<meta name="generated" content="2012-09-13 18:03:39 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -240,7 +240,7 @@ since up-right and up-left are equivalent), printing the grid, etc.
 <span style="color: #228b22;">bool</span> <span style="color: #0000ff;">checkDownLeft</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">col</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">row</span>, <span style="color: #228b22;">char</span> <span style="color: #a0522d;">player</span>)
 {
     <span style="color: #228b22;">int</span> <span style="color: #a0522d;">count</span> = 0;
-    <span style="color: #a020f0;">for</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = row, <span style="color: #a0522d;">j</span> = col; i &lt; 6 &amp;&amp; j &lt; 7; i++, j--)
+    <span style="color: #a020f0;">for</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = row, <span style="color: #a0522d;">j</span> = col; i &lt; 6 &amp;&amp; j &gt;= 0; i++, j--)
     {
         <span style="color: #a020f0;">if</span>(grid[i][j] == player) count++;
         <span style="color: #a020f0;">else</span> count = 0;
