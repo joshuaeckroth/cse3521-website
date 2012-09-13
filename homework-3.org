@@ -95,7 +95,7 @@ void printGrid()
 bool checkDownLeft(int col, int row, char player)
 {
     int count = 0;
-    for(int i = row, j = col; i < 6 && j < 7; i++, j--)
+    for(int i = row, j = col; i < 6 && j >= 0; i++, j--)
     {
         if(grid[i][j] == player) count++;
         else count = 0;
