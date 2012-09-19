@@ -1,13 +1,13 @@
 #+SETUPFILE: setup.org
 #+TITLE: Prolog
 
-Knowledge databases that you might build with [[./first-order-logic.org][first-order logic]] suffer
-from a fatal problem: the logic is so sophisticated that finding
-answers efficiently (or even finding an answer at all) becomes
-difficult or impossible. First-order logic is so powerful that it can
-express almost anything, including very tricky or paradoxical
-statements. It's not easy to design algorithms to work with such
-systems.
+Knowledge databases that you might build with
+[[./first-order-logic.org][first-order logic]] suffer from a
+fatal problem: the logic is so sophisticated that finding answers
+efficiently (or even finding an answer at all) becomes difficult or
+impossible. First-order logic is so powerful that it can express almost
+anything, including very tricky or paradoxical statements. It's not easy
+to design algorithms to work with such systems.
 
 Prolog is a programming language that allows us to "program" with
 declarative knowledge. It puts limitations on the kinds of logical
@@ -15,19 +15,21 @@ statements we can write. These limitations are essential for allowing
 Prolog programs to work efficiently and always provide an answer (or
 determine there is no answer).
 
-Because Prolog is a "Turing-complete" language, we can write any
-program in Prolog. Of course, a program that is easy to write in Java
-or C++ will, in all likelihood, be /very/ difficult to write in
-Prolog, although it is possible. Prolog programs often feel like
-they're programs written in "reverse," since they are written
-declaratively rather than procedurally.
+Because Prolog is a "Turing-complete" language, we can write any program
+in Prolog. Of course, a program that is easy to write in Java or C++ will,
+in all likelihood, be /very/ difficult to write in Prolog, although it
+is possible. Prolog programs often feel like they're programs written in
+"reverse," since they are written declaratively rather than procedurally.
 
-(Note: Download and install [[http://www.swi-prolog.org/download/stable][SWI Prolog]]; you may also want [[http://sewiki.iai.uni-bonn.de/research/pdt/start][PDT]] for
-Eclipse. The CSE Linux servers do not have Prolog; that is ok, you
-should still submit from Linux but otherwise test your code on your
-own machine. There is also the option to download a [[http://portableapps.com/node/23749][portable version
-of SWI Prolog]] to install on a USB key and use in any Windows machine
-you'd like, such as the campus lab computers.)
+(Note: Download and install
+[[http://www.swi-prolog.org/download/stable][SWI Prolog]]; you may
+also want [[http://sewiki.iai.uni-bonn.de/research/pdt/start][PDT]]
+for Eclipse. The CSE Linux servers do not have Prolog; that is
+ok, you should still submit from Linux but otherwise test your
+code on your own machine. There is also the option to download a
+[[http://portableapps.com/node/23749][portable version of SWI Prolog]]
+to install on a USB key and use in any Windows machine you'd like,
+such as the campus lab computers.)
 
 * Some quick concepts and examples
 
