@@ -314,8 +314,7 @@ Well, we know how to figure out who /is/ a father: we have the
 ~father~ rule. How can we define a "is not a father" rule?
 
 The first thing to note is Prolog does not allow us to use negatives
-in facts. We cannot write "not-a-father(jim)." or anything like
-that.
+in facts. We cannot write "not father(jim)."
 
 Instead, to prove a negative in Prolog, we use a little trick: we
 assume everything stated in the database is /everything that exists/

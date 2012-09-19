@@ -68,12 +68,13 @@ true?
 How do we know if $(\forall x)(Fish(x) \rightarrow HasGills(x))$ is
 true? It depends from what "world" we pull our $x$ values. A "world,"
 or "possible world," is simply a set of objects and truth-values for
-predicates. In one possible world, the set of objects may be $Tony,
-Jenny, Obama, Isabelle, Penelope, Rene, YellowCandy, Banana,$ etc. The
-truth values for the predicates are $Cat(Tony) = T, Fish(Tony) = F,
-Cat(Jenny) = F, Fish(Jenny) = F, Eats(Tony, Jenny) = F, Eats(Jenny,
-Tony) = F$, etc. Every predicate must be true or false for every
-object or combination of objects.
+predicates. In one possible world, the set of objects may be $Tony$,
+$Jenny$, $Obama$, $Isabelle$, $Penelope$, $Rene$, $YellowCandy$,
+$Banana$, etc. The truth values for the predicates are $Cat(Tony) = T,
+Fish(Tony) = F, Cat(Jenny) = F, Fish(Jenny) = F, Eats(Tony, Jenny) =
+F, Eats(Jenny, Tony) = F$, etc. Every predicate must be true or false
+for every object or combination of objects (in other words, no
+predicate's truth for any inputs is "unknown").
 
 Now if we want to know if some statement is true, we just use the
 following rules:

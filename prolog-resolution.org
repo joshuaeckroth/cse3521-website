@@ -1,0 +1,95 @@
+#+SETUPFILE: setup.org
+#+TITLE: Prolog resolution
+
+Suppose we have the following knowledge base:
+
+#+BEGIN_SRC prolog
+f(a). 
+f(b). 
+
+g(a). 
+g(b). 
+
+h(b). 
+
+k(X) :- f(X), g(X), h(X).
+#+END_SRC
+
+How does Prolog determine whether ~k(Y)~ is true (provable)? That is,
+how does Prolog determine the value for ~Y~ that makes the query true?
+
+Its search process can be see in this graphic. The process is as
+follows:
+
+  1. Create a temporary variable ~_G34~ (randomly-named) to stand in
+     for ~Y~. This is an implementation detail, so that if some other
+     rule uses ~Y~ (a completely different variable), then the
+     variable names don't collide.
+
+  2. The goal is to prove ~k(_G34)~. To do so, proving ~f(_G34),
+     g(_G34), h(_G34)~ will be enough. This is the new goal.
+
+  3. To satisfy the first part of the new goal, ~f(_G34)~, the
+     knowledge base is searched. There is no rule for ~f/1~ (the
+     predicate with arity one) but there is a fact: ~f(a)~. *The first
+     matching fact/rule is tried first.* Thus, ~_G34~ gets set to
+     ~a~ (from unification).
+
+  4. Now, ~g(a), h(a)~ is the new goal. ~g(a)~ is satisfied just fine,
+     because exactly that term is found in the knowledge base (trivial
+     unification).
+
+  5. Now, ~h(a)~ is the new goal. But, nothing in the knowledge base
+     unifies with ~h(a)~ and there is no ~h/1~ rule, so there is a
+     problem.
+
+  6. Go to the last decision point. This was when ~_G34~ was set to
+     ~a~. Try to set it to something else. ~f(b)~ is in the knowledge
+     base as well, so go with ~_G34 = b~.
+
+  7. The new goal is ~g(b), h(b)~, etc... (which ultimately works).
+
+#+BEGIN_CENTER
+[[./images/prolog-resolution-ex1.png]]
+#+END_CENTER
+
+Now we'll switch to this knowledge base:
+
+#+BEGIN_PROLOG
+loves(vincent, mia).
+loves(marcellus, mia).
+jealous(A, B) :- loves(A, C), loves(B, C).
+#+END_PROLOG
+
+How is the proof for ~jealous(X, Y)~ found, and what values to the
+variables take?
+
+The proof tree is shown below. Note that there are four smiley-face
+leaves in tree. This means there are four different ways to get a
+proof, which in this case means there are four different variable
+assignments.
+
+#+BEGIN_CENTER
+[[./images/prolog-resolution-ex2.png]]
+#+END_CENTER
+
+Finally, let's look at a list predicate.
+
+#+BEGIN_SRC prolog
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+#+END_SRC
+
+This is familiar to us from the [[./prolog.html][Prolog]] notes. When we query with
+~member(X, [a, b, c])~ we get that ~X = a~.
+
+#+BEGIN_CENTER
+[[./images/prolog-resolution-ex3.png]]
+#+END_CENTER
+
+
+Much of these notes were adapted from [[http://www.learnprolognow.org][Learn Prolog Now!]], a free
+online textbook.
+
+
+#+INCLUDE: footer.org
