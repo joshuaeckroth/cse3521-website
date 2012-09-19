@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Prolog resolution</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Prolog resolution"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-09-18 22:35:54 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Prolog resolution</h1>
+
+<p>Suppose we have the following knowledge base:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">f</span>(a). 
+<span style="color: #0000ff;">f</span>(b). 
+
+<span style="color: #0000ff;">g</span>(a). 
+<span style="color: #0000ff;">g</span>(b). 
+
+<span style="color: #0000ff;">h</span>(b). 
+
+<span style="color: #0000ff;">k</span>(<span style="color: #a0522d;">X</span>) :- f(<span style="color: #a0522d;">X</span>), g(<span style="color: #a0522d;">X</span>), h(<span style="color: #a0522d;">X</span>).
+</pre>
+
+
+<p>
+How does Prolog determine whether <code>k(Y)</code> is true (provable)? That is,
+how does Prolog determine the value for <code>Y</code> that makes the query true?
+</p>
+<p>
+Its search process can be see in this graphic. The process is as
+follows:
+</p>
+<ol>
+<li>Create a temporary variable <code>_G34</code> (randomly-named) to stand in
+     for <code>Y</code>. This is an implementation detail, so that if some other
+     rule uses <code>Y</code> (a completely different variable), then the
+     variable names don&rsquo;t collide.
+
+</li>
+<li>The goal is to prove <code>k(_G34)</code>. To do so, proving <code>f(_G34),      g(_G34), h(_G34)</code> will be enough. This is the new goal.
+
+</li>
+<li>To satisfy the first part of the new goal, <code>f(_G34)</code>, the
+     knowledge base is searched. There is no rule for <code>f/1</code> (the
+     predicate with arity one) but there is a fact: <code>f(a)</code>. <b>The first      matching fact/rule is tried first.</b> Thus, <code>_G34</code> gets set to
+     <code>a</code> (from unification).
+
+</li>
+<li>Now, <code>g(a), h(a)</code> is the new goal. <code>g(a)</code> is satisfied just fine,
+     because exactly that term is found in the knowledge base (trivial
+     unification).
+
+</li>
+<li>Now, <code>h(a)</code> is the new goal. But, nothing in the knowledge base
+     unifies with <code>h(a)</code> and there is no <code>h/1</code> rule, so there is a
+     problem.
+
+</li>
+<li>Go to the last decision point. This was when <code>_G34</code> was set to
+     <code>a</code>. Try to set it to something else. <code>f(b)</code> is in the knowledge
+     base as well, so go with <code>_G34 = b</code>.
+
+</li>
+<li>The new goal is <code>g(b), h(b)</code>, etc&hellip; (which ultimately works).
+</li>
+</ol>
+
+
+
+<div style="text-align: center">
+<p><img src="./images/prolog-resolution-ex1.png"  alt="./images/prolog-resolution-ex1.png" />
+</p>
+</div>
+
+<p>
+Now we&rsquo;ll switch to this knowledge base:
+</p>
+<p>
+loves(vincent, mia).
+loves(marcellus, mia).
+jealous(A, B) :- loves(A, C), loves(B, C).
+</p>
+<p>
+How is the proof for <code>jealous(X, Y)</code> found, and what values to the
+variables take?
+</p>
+<p>
+The proof tree is shown below. Note that there are four smiley-face
+leaves in tree. This means there are four different ways to get a
+proof, which in this case means there are four different variable
+assignments.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/prolog-resolution-ex2.png"  alt="./images/prolog-resolution-ex2.png" />
+</p>
+</div>
+
+<p>
+Finally, let&rsquo;s look at a list predicate.
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
+<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">T</span><span style="color: #a020f0;">]</span>) :- member(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">T</span>).
+</pre>
+
+
+<p>
+This is familiar to us from the <a href="./prolog.html">Prolog</a> notes. When we query with
+<code>member(X, [a, b, c])</code> we get that <code>X = a</code>.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/prolog-resolution-ex3.png"  alt="./images/prolog-resolution-ex3.png" />
+</p>
+</div>
+
+
+<p>
+Much of these notes were adapted from <a href="http://www.learnprolognow.org">Learn Prolog Now!</a>, a free
+online textbook.
+</p>
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<!-- Plupper Tracking Code -->
+<script src="https://www.google.com/jsapi"></script>
+<script type="text/javascript"
+    src="https://static.plupper.com/js/plupper.js"></script>
+<script type="text/javascript">
+    plupper.init("joshuaeckroth@plupper.com");
+    plupper.enableCobrowsing();
+</script>
+<!-- End of Plupper Tracking Code -->
+
+
+</div>
+
+</body>
+</html>

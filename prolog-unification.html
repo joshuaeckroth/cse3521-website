@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Prolog unification</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Prolog unification"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-09-18 22:35:53 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Prolog unification</h1>
+
+<p>When programming in Prolog, we spend a lot of time thinking about how
+variables and rules &ldquo;match&rdquo; or &ldquo;are assigned.&rdquo; There are actually two
+aspects to this. The first, &ldquo;unification,&rdquo; regards how terms are
+matched and variables assigned to make terms match. The second,
+&ldquo;resolution,&rdquo; is described in <a href="./prolog-resolution.html">separate notes</a>. Resolution is only used
+if rules are involved. You may notice in these notes that no rules are
+involved since we are only talking about unification.
+</p>
+
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Terms</a></li>
+<li><a href="#sec-2">A more formal definition</a></li>
+<li><a href="#sec-3">Practice</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Terms</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Prolog has three kinds of <b>terms</b>:
+</p>
+<ol>
+<li>Constants like <code>42</code> (numbers) and <code>franklin</code> (atoms, i.e.,
+     lower-case words).
+
+</li>
+<li>Variables like <code>X</code> and <code>Person</code> (words that start with upper-case).
+
+</li>
+<li>Complex terms like <code>parent(franklin, bo).</code> and <code>foobar(X) :-      baz(X, Y), quux(Y).</code>
+</li>
+</ol>
+
+
+<p>
+Two terms <b>unify</b> if they can be matched. Two terms can be matched if:
+</p>
+<ul>
+<li>they are the same term (obviously), or
+
+</li>
+<li>they contain variables that can be unified so that the two terms
+    without variables are the same.
+</li>
+</ul>
+
+
+<p>
+For example, suppose our knowledge base is:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">woman</span>(mia).
+<span style="color: #0000ff;">loves</span>(vincent, angela).
+<span style="color: #0000ff;">loves</span>(franklin, mia).
+</pre>
+
+
+<ul>
+<li><code>mia</code> and <code>mia</code> unify because they are the same.
+
+</li>
+<li><code>mia</code> and <code>X</code> unify because <code>X</code> can be given the value <code>mia</code> so
+    that the two terms (without variables) are the same.
+
+</li>
+<li><code>woman(mia)</code> and <code>woman(X)</code> unify because <code>X</code> can be set to <code>mia</code>
+    which results in identical terms.
+
+</li>
+<li><code>loves(X, mia)</code> and <code>loves(vincent, X)</code> <b>cannot</b> unify because
+    there is no assignment for <code>X</code> (given our knowledge base) that
+    makes the two terms identical.
+
+</li>
+<li><code>loves(X, mia)</code> and <code>loves(franklin, X)</code> also cannot unify (can
+    you see why?).
+</li>
+</ul>
+
+
+<p>
+We saw in the <a href="./prolog.html">Prolog</a> notes that we can &ldquo;query&rdquo; the knowledge base and
+get, say, all the people who love <code>mia</code>. When we query with <code>loves(X, mia).</code> we are asking Prolog to give us all the values for <code>X</code> that
+unify. These values are, essentially, the people who love <code>mia</code>.
+</p>
+<p>
+All &ldquo;computation&rdquo; in Prolog centers on unification.
+</p>
+<p>
+Not surprisingly, the method Prolog uses to unify is a depth-first
+search (could instead be breadth-first, I suppose; the difference may
+matter with large programs that have many &ldquo;shallow&rdquo; rules, so that
+depth-first search provides a unification faster). The order that
+terms are listed in the knowledge base is the order that Prolog
+attempts to give variables their values to check for unification.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">A more formal definition</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+<code>term1</code> and <code>term2</code> unify whenever:
+</p>
+<ol>
+<li>If <code>term1</code> and <code>term2</code> are <b>constants</b>, then <code>term1</code> and <code>term2</code>
+   unify if and only if they are the same atom, or the same number.
+
+</li>
+<li>If <code>term1</code> is a <b>variable</b> and <code>term2</code> is any type of term, then
+   <code>term1</code> and <code>term2</code> unify, and <code>term1</code> is instantiated to
+   <code>term2</code>. (And vice versa.) (If they are both variables, they&rsquo;re
+   both instantiated to each other, and we say that they share
+   values.)
+
+</li>
+<li>If <code>term1</code> and <code>term2</code> are <b>complex terms</b>, they unify if and only
+   if:
+
+<p>
+   a. They have the same <b>functor</b> and <b>arity</b>. The functor is the
+      &ldquo;function&rdquo; name (this functor is <code>foo</code>: <code>foo(X, bar)</code>). The
+      arity is the number of arguments for the functor (the arity for
+      <code>foo(X, bar)</code> is 2).
+</p>
+<p>
+   b. All of their corresponding arguments unify. <b>Recursion!</b>
+</p>
+<p>
+   c. The variable instantiations are compatible (i.e., the same
+      variable is not given two different unifications/values).
+</p>
+</li>
+<li>Two terms unify if and only if they unify for one of the above
+   three reasons (there are no reasons left unstated).
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Practice</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+We&rsquo;ll use the <code>=</code> predicate to test if two terms unify. Prolog will
+answer &ldquo;Yes&rdquo; if they do, as well as any sufficient variable
+assignments to make the unification work.
+</p>
+<p>
+<b>Do these two terms unify?</b>
+</p>
+
+
+
+<pre class="src src-prolog">?- mia = mia.
+</pre>
+
+
+<p>
+Yes, from rule 1.
+</p>
+<p>
+<b>Do these two terms unify?</b>
+</p>
+
+
+
+<pre class="src src-prolog">?- mia = <span style="color: #a0522d;">X</span>.
+</pre>
+
+
+<p>
+Yes, from rule 2.
+</p>
+<p>
+<b>Do these two terms unify?</b>
+</p>
+
+
+
+<pre class="src src-prolog">?- <span style="color: #a0522d;">X</span> = <span style="color: #a0522d;">Y</span>.
+</pre>
+
+
+<p>
+Yes, from rule 2.
+</p>
+<p>
+<b>Do these two terms unify?</b>
+</p>
+
+
+
+<pre class="src src-prolog">?- k(s(g), <span style="color: #a0522d;">Y</span>) = k(<span style="color: #a0522d;">X</span>, t(k)).
+</pre>
+
+
+<p>
+Yes, from rule 3 and, in the recursion, from rule 2 in two cases (<code>X</code>
+set to <code>s(g)</code> and <code>Y</code> set to <code>t(k)</code>).
+</p>
+<p>
+<b>Do these two terms unify?</b>
+</p>
+
+
+
+<pre class="src src-prolog">?- k(s(g), <span style="color: #a0522d;">Y</span>) = k(s(g, <span style="color: #a0522d;">X</span>), <span style="color: #a0522d;">Y</span>).
+</pre>
+
+
+<p>
+No, because rule 3 fails in the recursion (in which rule 3 is invoked
+again, and the arity of <code>s(g)</code> does not match <code>s(g, X)</code>).
+</p>
+
+<p>
+Much of these notes were adapted from <a href="http://www.learnprolognow.org">Learn Prolog Now!</a>, a free
+online textbook.
+</p>
+
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<!-- Plupper Tracking Code -->
+<script src="https://www.google.com/jsapi"></script>
+<script type="text/javascript"
+    src="https://static.plupper.com/js/plupper.js"></script>
+<script type="text/javascript">
+    plupper.init("joshuaeckroth@plupper.com");
+    plupper.enableCobrowsing();
+</script>
+<!-- End of Plupper Tracking Code -->
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

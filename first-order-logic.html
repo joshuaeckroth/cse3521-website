@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="First-order logic"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-09 21:17:53 EDT"/>
+<meta name="generated" content="2012-09-18 22:35:21 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -276,12 +276,13 @@ true?
 How do we know if \((\forall x)(Fish(x) \rightarrow HasGills(x))\) is
 true? It depends from what &ldquo;world&rdquo; we pull our \(x\) values. A &ldquo;world,&rdquo;
 or &ldquo;possible world,&rdquo; is simply a set of objects and truth-values for
-predicates. In one possible world, the set of objects may be $Tony,
-Jenny, Obama, Isabelle, Penelope, Rene, YellowCandy, Banana,$ etc. The
-truth values for the predicates are \(Cat(Tony) = T, Fish(Tony) = F,
-Cat(Jenny) = F, Fish(Jenny) = F, Eats(Tony, Jenny) = F, Eats(Jenny,
-Tony) = F\), etc. Every predicate must be true or false for every
-object or combination of objects.
+predicates. In one possible world, the set of objects may be \(Tony\),
+\(Jenny\), \(Obama\), \(Isabelle\), \(Penelope\), \(Rene\), \(YellowCandy\),
+\(Banana\), etc. The truth values for the predicates are \(Cat(Tony) = T,
+Fish(Tony) = F, Cat(Jenny) = F, Fish(Jenny) = F, Eats(Tony, Jenny) =
+F, Eats(Jenny, Tony) = F\), etc. Every predicate must be true or false
+for every object or combination of objects (in other words, no
+predicate&rsquo;s truth for any inputs is &ldquo;unknown&rdquo;).
 </p>
 <p>
 Now if we want to know if some statement is true, we just use the
