@@ -151,7 +151,7 @@ Path = [[1, 2, 3, 4, 0, 5, 6, 7|...]] .
 Seems to work with the initial state just one /left/ move from the
 goal.
 
-Now let's make an initial state on /up/ move from the goal. Recall
+Now let's make an initial state one /up/ move from the goal. Recall
 that naive DFS ran out of memory (because it continued checking from
 repeated states).
 
