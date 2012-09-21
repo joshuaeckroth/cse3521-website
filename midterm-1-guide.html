@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Midterm 1 guide"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-19 10:19:45 EDT"/>
+<meta name="generated" content="2012-09-21 10:28:46 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -230,8 +230,9 @@ following search problem:
 </p>
 <blockquote>
 
-<p>A robot wants to exit a maze. The maze is represented as a square
-grid; open areas and walls are represented by grid squares.
+<p>A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
 </p>
 </blockquote>
 
@@ -250,7 +251,7 @@ and may require a search procedure. Describe this search procedure.
 
 
 <p>
-Complete the following table (assume a finite search space):
+Complete the following table for weighted, finite search graphs:
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption></caption>
@@ -260,6 +261,7 @@ Complete the following table (assume a finite search space):
 <tr><th scope="col" class="left">Search algorithm</th><th scope="col" class="left">Always complete?</th><th scope="col" class="left">Always optimal?</th><th scope="col" class="left">Uses a heuristic?</th></tr>
 </thead>
 <tbody>
+<tr><td class="left">Random search</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
 <tr><td class="left">Breadth-first search</td><td class="left">Yes</td><td class="left"></td><td class="left"></td></tr>
 <tr><td class="left">Depth-first search</td><td class="left"></td><td class="left">No</td><td class="left"></td></tr>
 <tr><td class="left">Hill-climbing search</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
@@ -516,6 +518,54 @@ or give one value for each of the variables)?
 </pre>
 
 
+<p>
+Do the following unify, and if so, what are values for the variables
+(one set of values for each question), if any variables are involved,
+that make the unification work?
+</p>
+<ul>
+<li><code>foo</code> and <code>foo</code>
+
+</li>
+<li><code>foo(X)</code> and <code>X</code>
+
+</li>
+<li><code>foo(foo(foo))</code> and <code>foo(X)</code>
+
+</li>
+<li><code>foo(X, foo)</code> and <code>foo(foo, X)</code>
+
+</li>
+<li><code>foo(X, foo)</code> and <code>foo(Y)</code>
+
+</li>
+<li><code>foo(foo(X, Y))</code> and <code>foo(Z)</code>
+</li>
+</ul>
+
+
+<p>
+Suppose we have the following knowledge base:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">f</span>(a).
+<span style="color: #0000ff;">f</span>(b). 
+
+<span style="color: #0000ff;">g</span>(a, a).
+<span style="color: #0000ff;">g</span>(b, c).
+
+<span style="color: #0000ff;">h</span>(b).
+<span style="color: #0000ff;">h</span>(c).
+
+<span style="color: #0000ff;">k</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>) :- f(<span style="color: #a0522d;">X</span>), g(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>), h(<span style="color: #a0522d;">Y</span>).
+</pre>
+
+
+<p>
+Draw the resolution tree for the first successful proof of <code>k(X, c)</code>.
+</p>
 </div>
 </div>
 
@@ -594,8 +644,9 @@ following search problem:
 </p>
 <blockquote>
 
-<p>A robot wants to exit a maze. The maze is represented as a square
-grid; open areas and walls are represented by grid squares.
+<p>A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
 </p>
 </blockquote>
 
@@ -661,7 +712,7 @@ and may require a search procedure. Describe this search procedure.
 
 
 <p>
-Complete the following table (assume a finite search space):
+Complete the following table for weighted, finite search graphs:
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption></caption>
@@ -671,7 +722,8 @@ Complete the following table (assume a finite search space):
 <tr><th scope="col" class="left">Search algorithm</th><th scope="col" class="left">Always complete?</th><th scope="col" class="left">Always optimal?</th><th scope="col" class="left">Uses a heuristic?</th></tr>
 </thead>
 <tbody>
-<tr><td class="left">Breadth-first search</td><td class="left">Yes</td><td class="left">No*</td><td class="left">No</td></tr>
+<tr><td class="left">Random search</td><td class="left">Yes</td><td class="left">No</td><td class="left">No</td></tr>
+<tr><td class="left">Breadth-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">No</td></tr>
 <tr><td class="left">Depth-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">No</td></tr>
 <tr><td class="left">Hill-climbing search</td><td class="left">No</td><td class="left">No</td><td class="left">Yes</td></tr>
 <tr><td class="left">Best-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">Yes</td></tr>
@@ -680,10 +732,6 @@ Complete the following table (assume a finite search space):
 </table>
 
 
-<p>
-<code>*</code> I should have clarified: we have weighted graphs; breadth-first
-search <i>is</i> optimal for unweighted graphs.
-</p>
 <p>
 Recall the Goodale route search problem from <a href="./search-practice.html">Practice with searching</a>
 notes. Answer the following questions for each of breadth-first
@@ -1126,6 +1174,98 @@ or give one value for each of the variables)?
 <span style="color: #0000ff;">exists</span>(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">X</span>)), <span style="color: #a0522d;">X</span> \= unemployed.
 <span style="color: #b22222;">% </span><span style="color: #b22222;">one answer: FirstName = tom, LastName = fox, X = works(cnn, 152000)</span>
 </pre>
+
+
+<p>
+Do the following unify, and if so, what are values for the variables
+(one set of values for each question), if any variables are involved,
+that make the unification work?
+</p>
+<ul>
+<li><code>foo</code> and <code>foo</code>
+
+<ul>
+<li>Yes, they unify (trivially).
+
+</li>
+</ul>
+
+</li>
+<li><code>foo(X)</code> and <code>X</code>
+
+<ul>
+<li>No. There is no value of <code>X</code> such that <code>X = foo(X)</code>.
+
+</li>
+</ul>
+
+</li>
+<li><code>foo(foo(foo))</code> and <code>foo(X)</code>
+
+<ul>
+<li>Yes, with <code>X = foo(foo)</code>.
+
+</li>
+</ul>
+
+</li>
+<li><code>foo(X, foo)</code> and <code>foo(foo, X)</code>
+
+<ul>
+<li>Yes, with <code>X = foo</code>.
+
+</li>
+</ul>
+
+</li>
+<li><code>foo(X, foo)</code> and <code>foo(Y)</code>
+
+<ul>
+<li>No, arities differ.
+
+</li>
+</ul>
+
+</li>
+<li><code>foo(foo(X, Y))</code> and <code>foo(Z)</code>
+
+<ul>
+<li>Yes, with <code>X = foo(X, Y)</code>.
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+Suppose we have the following knowledge base:
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">f</span>(a).
+<span style="color: #0000ff;">f</span>(b). 
+
+<span style="color: #0000ff;">g</span>(a, a).
+<span style="color: #0000ff;">g</span>(b, c).
+
+<span style="color: #0000ff;">h</span>(b).
+<span style="color: #0000ff;">h</span>(c).
+
+<span style="color: #0000ff;">k</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>) :- f(<span style="color: #a0522d;">X</span>), g(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>), h(<span style="color: #a0522d;">Y</span>).
+</pre>
+
+
+<p>
+Draw the resolution tree for the first successful proof of <code>k(X, c)</code>.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/prolog-resolution-midterm-1-guide.png"  alt="./images/prolog-resolution-midterm-1-guide.png" />
+</p>
+</div>
+
 
 
 
