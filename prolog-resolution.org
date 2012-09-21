@@ -87,6 +87,11 @@ This is familiar to us from the [[./prolog.html][Prolog]] notes. When we query w
 [[./images/prolog-resolution-ex3.png]]
 #+END_CENTER
 
+When we query with ~member(d, [a, b, c])~ we get failure.
+
+#+BEGIN_CENTER
+[[./images/prolog-resolution-ex4.png]]
+#+END_CENTER
 
 Much of these notes were adapted from [[http://www.learnprolognow.org][Learn Prolog Now!]], a free
 online textbook.

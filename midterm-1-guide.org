@@ -28,8 +28,9 @@ model (i.e., how states connect), and specify a goal criterion for the
 following search problem:
 
 #+BEGIN_QUOTE
-A robot wants to exit a maze. The maze is represented as a square
-grid; open areas and walls are represented by grid squares.
+A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
 #+END_QUOTE
 
 Repeat this exercise for the following search problem:
@@ -41,10 +42,11 @@ needed). But finding the integral of a formula is often challenging,
 and may require a search procedure. Describe this search procedure.
 #+END_QUOTE
 
-Complete the following table (assume a finite search space):
+Complete the following table for weighted, finite search graphs:
 
 | Search algorithm     | Always complete? | Always optimal? | Uses a heuristic? |
 |----------------------+------------------+-----------------+-------------------|
+| Random search        |                  |                 |                   |
 | Breadth-first search | Yes              |                 |                   |
 | Depth-first search   |                  | No              |                   |
 | Hill-climbing search |                  |                 |                   |
@@ -200,6 +202,39 @@ family(person(_, _, born(_, _, Year), _), _, _, _), Year > 1960.
 exists(person(FirstName, LastName, _, X)), X \= unemployed.
 #+END_SRC
 
+Do the following unify, and if so, what are values for the variables
+(one set of values for each question), if any variables are involved,
+that make the unification work?
+
+  - ~foo~ and ~foo~
+
+  - ~foo(X)~ and ~X~
+
+  - ~foo(foo(foo))~ and ~foo(X)~
+
+  - ~foo(X, foo)~ and ~foo(foo, X)~
+
+  - ~foo(X, foo)~ and ~foo(Y)~
+
+  - ~foo(foo(X, Y))~ and ~foo(Z)~
+
+Suppose we have the following knowledge base:
+
+#+BEGIN_SRC prolog
+f(a).
+f(b). 
+
+g(a, a).
+g(b, c).
+
+h(b).
+h(c).
+
+k(X, Y) :- f(X), g(X, Y), h(Y).
+#+END_SRC
+
+Draw the resolution tree for the first successful proof of ~k(X, c)~.
+
 * Answers...
 
 ** Turing test
@@ -241,8 +276,9 @@ model (i.e., how states connect), and specify a goal criterion for the
 following search problem:
 
 #+BEGIN_QUOTE
-A robot wants to exit a maze. The maze is represented as a square
-grid; open areas and walls are represented by grid squares.
+A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
 #+END_QUOTE
 
   - initial state: the robot's starting location
@@ -281,18 +317,16 @@ and may require a search procedure. Describe this search procedure.
     original formula is ~f~, then you want ~dg/dx = f~; every "state"
     (formula) is checked in this way
 
-Complete the following table (assume a finite search space):
+Complete the following table for weighted, finite search graphs:
 
 | Search algorithm     | Always complete? | Always optimal? | Uses a heuristic? |
 |----------------------+------------------+-----------------+-------------------|
-| Breadth-first search | Yes              | No*             | No                |
+| Random search        | Yes              | No              | No                |
+| Breadth-first search | Yes              | No              | No                |
 | Depth-first search   | Yes              | No              | No                |
 | Hill-climbing search | No               | No              | Yes               |
 | Best-first search    | Yes              | No              | Yes               |
 | A* search            | Yes              | Yes             | Yes               |
-
-~*~ I should have clarified: we have weighted graphs; breadth-first
-search /is/ optimal for unweighted graphs.
 
 Recall the Goodale route search problem from [[./search-practice.html][Practice with searching]]
 notes. Answer the following questions for each of breadth-first
@@ -550,6 +584,55 @@ family(person(_, _, born(_, _, Year), _), _, _, _), Year > 1960.
 exists(person(FirstName, LastName, _, X)), X \= unemployed.
 % one answer: FirstName = tom, LastName = fox, X = works(cnn, 152000)
 #+END_SRC
+
+Do the following unify, and if so, what are values for the variables
+(one set of values for each question), if any variables are involved,
+that make the unification work?
+
+  - ~foo~ and ~foo~
+
+    - Yes, they unify (trivially).
+
+  - ~foo(X)~ and ~X~
+
+    - No. There is no value of ~X~ such that ~X = foo(X)~.
+
+  - ~foo(foo(foo))~ and ~foo(X)~
+
+    - Yes, with ~X = foo(foo)~.
+
+  - ~foo(X, foo)~ and ~foo(foo, X)~
+
+    - Yes, with ~X = foo~.
+
+  - ~foo(X, foo)~ and ~foo(Y)~
+
+    - No, arities differ.
+
+  - ~foo(foo(X, Y))~ and ~foo(Z)~
+
+    - Yes, with ~X = foo(X, Y)~.
+
+Suppose we have the following knowledge base:
+
+#+BEGIN_SRC prolog
+f(a).
+f(b). 
+
+g(a, a).
+g(b, c).
+
+h(b).
+h(c).
+
+k(X, Y) :- f(X), g(X, Y), h(Y).
+#+END_SRC
+
+Draw the resolution tree for the first successful proof of ~k(X, c)~.
+
+#+BEGIN_CENTER
+[[./images/prolog-resolution-midterm-1-guide.png]]
+#+END_CENTER
 
 
 #+INCLUDE: footer.org
