@@ -195,7 +195,7 @@ What are the values of each of these queries (write "true" or "false",
 or give one value for each of the variables)?
 
 #+BEGIN_SRC prolog
-family(person(_, _, born(_, _, Year), _), _, _, _), Year > 1960.
+family(_, person(_, _, born(_, _, Year), _), _, _), Year > 1960.
 
 % don't forget to give one value for each variable:
 % FirstName, LastName, and X
@@ -574,7 +574,7 @@ What are the values of each of these queries (write "true" or "false",
 or give one value for each of the variables)?
 
 #+BEGIN_SRC prolog
-family(person(_, _, born(_, _, Year), _), _, _, _), Year > 1960.
+family(_, person(_, _, born(_, _, Year), _), _, _), Year > 1960.
 % answer: false
 #+END_SRC prolog
 
