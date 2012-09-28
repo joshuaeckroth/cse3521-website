@@ -71,9 +71,9 @@ Do the following unify, and if so, what are values for the variables (one set of
 
   - ~parent(X, Y)~ and ~parent(Y, X)~
 
-  - ~head(X, [a, b, c])~ and ~b~
+  - ~head(X, [a, b, c])~ and ~head(b, [a, b, c])~
 
-  - ~head(foo(Y), X)~ and ~[foo(w)]~
+  - ~head(foo(Y), X)~ and ~head(foo(Z), [foo(w)])~
 
   - ~foo(bar(a, b), baz(c))~ and ~foo(bar(X), baz(Y))~
 
