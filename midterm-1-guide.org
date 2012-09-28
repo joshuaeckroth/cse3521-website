@@ -611,7 +611,7 @@ that make the unification work?
 
   - ~foo(foo(X, Y))~ and ~foo(Z)~
 
-    - Yes, with ~X = foo(X, Y)~.
+    - Yes, with ~Z = foo(X, Y)~.
 
 Suppose we have the following knowledge base:
 
