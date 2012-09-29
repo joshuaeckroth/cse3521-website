@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="NetLogo"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-21 12:04:29 EDT"/>
+<meta name="generated" content="2012-09-29 11:40:58 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -145,7 +145,7 @@ Each turtle will have a <code>seen</code> variable that will be a list.
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">turtles-own</span> [ seen ]
+<pre class="src src-netlogo">turtles-own [ seen ]
 </pre>
 
 
@@ -156,7 +156,7 @@ depending on whether the patch is a barrier.
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">patches-own</span> [ barrier? ]
+<pre class="src src-netlogo">patches-own [ barrier? ]
 </pre>
 
 
@@ -168,11 +168,11 @@ procedure <code>clear-all</code> clears the screen. Then, the <code>setup-patche
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">setup</span>
+<pre class="src src-netlogo">to setup
   clear-all
   setup-patches
   setup-turtles
-<span style="color: #a020f0;">end</span>
+end
 </pre>
 
 
@@ -184,17 +184,17 @@ patches by default are not barriers.
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">setup-patches</span>
-  <span style="color: #a020f0;">ask</span> patches <span style="color: #b22222;">;; make each patch do the following</span>
-  [ <span style="color: #a020f0;">set</span> barrier? false <span style="color: #b22222;">;; all start as non-barriers</span>
-    <span style="color: #a020f0;">ifelse</span> random-float 1.0 &lt; red-prob <span style="color: #b22222;">;; possibly turn red</span>
-    [ <span style="color: #a020f0;">set</span> pcolor red ]
-    [ <span style="color: #a020f0;">ifelse</span> random-float 1.0 &lt; (red-prob + green-prob) <span style="color: #b22222;">;; possibly turn green</span>
-      [ <span style="color: #a020f0;">set</span> pcolor green ]
-      [ <span style="color: #a020f0;">ifelse</span> random-float 1.0 &lt; (red-prob + green-prob + blue-prob) <span style="color: #b22222;">;; possibly turn blue</span>
-        [ <span style="color: #a020f0;">set</span> pcolor blue ]
-        [ <span style="color: #a020f0;">set</span> pcolor black ] ] ] ] <span style="color: #b22222;">;; otherwise, not red, green, or blue</span>
-<span style="color: #a020f0;">end</span>
+<pre class="src src-netlogo">to setup-patches
+  ask patches ;; make each patch do the following
+  [ set barrier? false ;; all start as non-barriers
+    ifelse random-float 1.0 &lt; red-prob ;; possibly turn red
+    [ set pcolor red ]
+    [ ifelse random-float 1.0 &lt; (red-prob + green-prob) ;; possibly turn green
+      [ set pcolor green ]
+      [ ifelse random-float 1.0 &lt; (red-prob + green-prob + blue-prob) ;; possibly turn blue
+        [ set pcolor blue ]
+        [ set pcolor black ] ] ] ] ;; otherwise, not red, green, or blue
+end
 </pre>
 
 
@@ -204,13 +204,13 @@ Now we set up the turtles (ants):
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">setup-turtles</span>
-  <span style="color: #a020f0;">create-turtles</span> population <span style="color: #b22222;">;; this is a slider variable</span>
-  <span style="color: #a020f0;">ask</span> turtles 
-  [ setxy 0 0 <span style="color: #b22222;">;; put each turtle (ant) in the middle</span>
-    <span style="color: #a020f0;">set</span> seen [] <span style="color: #b22222;">;; set its "seen" list to the empty list</span>
-    <span style="color: #a020f0;">set</span> color white ] <span style="color: #b22222;">;; make it white</span>
-<span style="color: #a020f0;">end</span>
+<pre class="src src-netlogo">to setup-turtles
+  create-turtles population ;; this is a slider variable
+  ask turtles 
+  [ setxy 0 0 ;; put each turtle (ant) in the middle
+    set seen [] ;; set its <span style="color: #8b2252;">"seen"</span> list to the empty list
+    set color white ] ;; make it white
+end
 </pre>
 
 
@@ -223,13 +223,13 @@ updating the ant&rsquo;s &ldquo;seen&rdquo; list.
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">go</span>
-  <span style="color: #a020f0;">ask</span> turtles
+<pre class="src src-netlogo">to go
+  ask turtles
   [ look
     drop
     pickup
     avoid-barrier ]
-<span style="color: #a020f0;">end</span>
+end
 </pre>
 
 
@@ -240,12 +240,12 @@ set by a slider):
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">look</span>
-  <span style="color: #a020f0;">if</span> pcolor != black <span style="color: #a020f0;">and</span> memory-size &gt; 0 <span style="color: #b22222;">;; if the ant is on a color, and it has a memory</span>
-  [ <span style="color: #a020f0;">if</span> length seen &gt;= memory-size <span style="color: #b22222;">;; if the seen list is full...</span>
-    [ <span style="color: #a020f0;">set</span> seen but-last seen ] <span style="color: #b22222;">;; drop the last item in the list</span>
-    <span style="color: #a020f0;">set</span> seen fput pcolor seen ] <span style="color: #b22222;">;; put the item seen now at the front of the list (fput)</span>
-<span style="color: #a020f0;">end</span>
+<pre class="src src-netlogo">to look
+  if pcolor != black and memory-size &gt; 0 ;; if the ant is on a color, and it has a memory
+  [ if length seen &gt;= memory-size ;; if the seen list is full...
+    [ set seen but-last seen ] ;; drop the last item in the list
+    set seen fput pcolor seen ] ;; put the item seen now at the front of the list (fput)
+end
 </pre>
 
 
@@ -257,22 +257,22 @@ that it &ldquo;picked up.&rdquo;
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">pickup</span>
-  <span style="color: #b22222;">;; if the ant is white (not holding an object),</span>
-  <span style="color: #b22222;">;; and the patch color (pcolor) is not black,</span>
-  <span style="color: #b22222;">;; and the patch color is not white (which is a barrier)</span>
-  <span style="color: #a020f0;">if</span> color = white <span style="color: #a020f0;">and</span> pcolor != black <span style="color: #a020f0;">and</span> pcolor != white
-  <span style="color: #b22222;">;; then let f be the value (number of items in 'seen' list matching this color)</span>
-  <span style="color: #b22222;">;; divided by the size of seen list;</span>
-  <span style="color: #b22222;">;; we use 'filter [? = pcolor] seen' to reduce the 'seen' list to only</span>
-  <span style="color: #b22222;">;; those items that equal the patch color</span>
-  [ <span style="color: #a020f0;">let</span> f (length (filter [? = pcolor] seen)) / (length seen)
-    <span style="color: #b22222;">;; now choose a random number, and see if it is less than</span>
-    <span style="color: #b22222;">;; the value (K+ / (K+ + F))^2 where K+ is a constant set by a slider</span>
-    <span style="color: #a020f0;">if</span> random-float 1.0 &lt; (k-plus / (k-plus + f)) ^ 2
-    [ <span style="color: #a020f0;">set</span> color pcolor <span style="color: #b22222;">;; set ant color to patch color</span>
-      <span style="color: #a020f0;">set</span> pcolor black ] ] <span style="color: #b22222;">;; set patch color to black</span>
-<span style="color: #a020f0;">end</span>
+<pre class="src src-netlogo">to pickup
+  ;; if the ant is white (not holding an object),
+  ;; and the patch color (pcolor) is not black,
+  ;; and the patch color is not white (which is a barrier)
+  if color = white and pcolor != black and pcolor != white
+  ;; then let f be the value (number of items in 'seen' list matching this color)
+  ;; divided by the size of seen list;
+  ;; we use 'filter [? = pcolor] seen' to reduce the 'seen' list to only
+  ;; those items that equal the patch color
+  [ let f (length (filter [? = pcolor] seen)) / (length seen)
+    ;; now choose a random number, and see if it is less than
+    ;; the value (K+ / (K+ + F))^2 where K+ is a constant set by a slider
+    if random-float 1.0 &lt; (k-plus / (k-plus + f)) ^ 2
+    [ set color pcolor ;; set ant color to patch color
+      set pcolor black ] ] ;; set patch color to black
+end
 </pre>
 
 
@@ -282,17 +282,17 @@ Dropping is the opposite:
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">drop</span>
-  <span style="color: #b22222;">;; if the ant is not white (i.e., if it is holding an object),</span>
-  <span style="color: #b22222;">;; and the patch color is black</span>
-  <span style="color: #a020f0;">if</span> color != white <span style="color: #a020f0;">and</span> pcolor = black
-  <span style="color: #b22222;">;; figure out how many seen objects have the same color as the ant</span>
-  [ <span style="color: #a020f0;">let</span> f (length (filter [? = color] seen)) / (length seen)
-    <span style="color: #b22222;">;; calculate (F / (K- + F))^2 where K- is a constant set by a slider</span>
-    <span style="color: #a020f0;">if</span> random-float 1.0 &lt; (f / (k-minus + f)) ^ 2
-    [ <span style="color: #a020f0;">set</span> pcolor color <span style="color: #b22222;">;; set patch color to color of ant</span>
-      <span style="color: #a020f0;">set</span> color white ] ] <span style="color: #b22222;">;; change ant color back to white</span>
-<span style="color: #a020f0;">end</span>
+<pre class="src src-netlogo">to drop
+  ;; if the ant is not white (i.e., if it is holding an object),
+  ;; and the patch color is black
+  if color != white and pcolor = black
+  ;; figure out how many seen objects have the same color as the ant
+  [ let f (length (filter [? = color] seen)) / (length seen)
+    ;; calculate (F / (K- + F))^2 where K- is a constant set by a slider
+    if random-float 1.0 &lt; (f / (k-minus + f)) ^ 2
+    [ set pcolor color ;; set patch color to color of ant
+      set color white ] ] ;; change ant color back to white
+end
 </pre>
 
 
@@ -302,16 +302,16 @@ Now we just need to make the ant move:
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">avoid-barrier</span>
-  <span style="color: #b22222;">;; if there exists a patch ahead (in whatever direction the ant is facing)</span>
-  <span style="color: #b22222;">;; and the patch ahead is not a barrier</span>
-  <span style="color: #b22222;">;; (the code ([barrier?] of patch-ahead 1) gets the value of the barrier?</span>
-  <span style="color: #b22222;">;; variable for the patch)</span>
-  <span style="color: #a020f0;">if</span> (nobody != patch-ahead 1) <span style="color: #a020f0;">and</span> ([barrier?] of patch-ahead 1)
-    [right 90 + random 180] <span style="color: #b22222;">;; then turn 90-degrees plus a random amount more</span>
-  right random 40 <span style="color: #b22222;">;; turn a random amount</span>
-  forward 1 <span style="color: #b22222;">;; move forward; note, we may have turned towards a different barrier; oh well</span>
-<span style="color: #a020f0;">end</span>
+<pre class="src src-netlogo">to avoid-barrier
+  ;; if there exists a patch ahead (in whatever direction the ant is facing)
+  ;; and the patch ahead is not a barrier
+  ;; (the code ([barrier?] of patch-ahead 1) gets the value of the barrier?
+  ;; variable for the patch)
+  if (nobody != patch-ahead 1) and ([barrier?] of patch-ahead 1)
+    [right 90 + random 180] ;; then turn 90-degrees plus a random amount more
+  right random 40 ;; turn a random amount
+  forward 1 ;; move forward; note, we may have turned towards a different barrier; oh well
+end
 </pre>
 
 
@@ -324,21 +324,21 @@ mouse and set the <code>barrier?</code> variable to true/false on those patches
 
 
 
-<pre class="src src-netlogo"><span style="color: #a020f0;">to</span> <span style="color: #0000ff;">make-barrier</span>
-  <span style="color: #a020f0;">if</span> mouse-down? <span style="color: #b22222;">;; continually ask if the mouse is being clicked</span>
-  [ <span style="color: #a020f0;">ask</span> patches <span style="color: #b22222;">;; for all patches that are under the mouse, ...</span>
-    [ <span style="color: #a020f0;">if</span> ((abs (pxcor - mouse-xcor)) &lt; 1) <span style="color: #a020f0;">and</span> ((abs (pycor - mouse-ycor)) &lt; 1)
-      [ <span style="color: #a020f0;">set</span> pcolor white <span style="color: #b22222;">;; turn white</span>
-        <span style="color: #a020f0;">set</span> barrier? true ] ] ] <span style="color: #b22222;">;; and set barrier? to true</span>
-<span style="color: #a020f0;">end</span>
+<pre class="src src-netlogo">to make-barrier
+  if mouse-down? ;; continually ask if the mouse is being clicked
+  [ ask patches ;; for all patches that are under the mouse, ...
+    [ if ((abs (pxcor - mouse-xcor)) &lt; 1) and ((abs (pycor - mouse-ycor)) &lt; 1)
+      [ set pcolor white ;; turn white
+        set barrier? true ] ] ] ;; and set barrier? to true
+end
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">remove-barrier</span>
-  <span style="color: #a020f0;">if</span> mouse-down?
-  [ <span style="color: #a020f0;">ask</span> patches
-    [ <span style="color: #a020f0;">if</span> ((abs (pxcor - mouse-xcor)) &lt; 1) <span style="color: #a020f0;">and</span> ((abs (pycor - mouse-ycor)) &lt; 1)
-      [ <span style="color: #a020f0;">set</span> pcolor black
-        <span style="color: #a020f0;">set</span> barrier? false ] ] ]
-<span style="color: #a020f0;">end</span>
+to remove-barrier
+  if mouse-down?
+  [ ask patches
+    [ if ((abs (pxcor - mouse-xcor)) &lt; 1) and ((abs (pycor - mouse-ycor)) &lt; 1)
+      [ set pcolor black
+        set barrier? false ] ] ]
+end
 </pre>
 
 

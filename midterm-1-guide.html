@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Midterm 1 guide"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-27 22:35:10 EDT"/>
+<meta name="generated" content="2012-09-29 11:41:00 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -510,7 +510,7 @@ or give one value for each of the variables)?
 
 
 
-<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
+<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(<span style="color: #a0522d;">_</span>, person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
 
 <span style="color: #b22222;">% </span><span style="color: #b22222;">don't forget to give one value for each variable:</span>
 <span style="color: #b22222;">% </span><span style="color: #b22222;">FirstName, LastName, and X</span>
@@ -758,7 +758,7 @@ more than one correct answer.
 <li>hill-climbing (only answer): same as best-first
 
 </li>
-<li>A* (only answer): same as best-first
+<li>A* (only answer): <code>Lane &amp; Tuttle</code>, <code>High &amp; Woodruff</code>
 
 </li>
 </ul>
@@ -772,19 +772,19 @@ more than one correct answer.
      already-checked states are not added.
 
 <ul>
-<li>breadth-first (one possible answer): <code>[High &amp; 15th, SR-315 &amp; Lane]</code>
+<li>breadth-first (one possible answer): <code>[SR-315 &amp; Lane, High &amp; 15th]</code>
 
 </li>
 <li>depth-first (one possible answer): <code>[High &amp; Woodruff, SR-315 I-670 offramp, SR-315 &amp; King]</code>
 
 </li>
-<li>best-first: <code>[High &amp; 11th, Lane &amp; Tuttle, US-23 &amp; 15th]</code>
+<li>best-first: <code>[High &amp; 11th, US-23 &amp; 15th, Lane &amp; Tuttle]</code>
 
 </li>
 <li>hill-climbing: <code>[High &amp; 11th, US-23 &amp; 15th]</code>
 
 </li>
-<li>A*: <code>[High &amp; 11th, Lane &amp; Tuttle, US-23 &amp; 15th]</code>
+<li>A*: <code>[High &amp; 15th, SR-315 &amp; Lane]</code>
 </li>
 </ul>
 
@@ -1163,7 +1163,7 @@ or give one value for each of the variables)?
 
 
 
-<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
+<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(<span style="color: #a0522d;">_</span>, person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
 <span style="color: #b22222;">% </span><span style="color: #b22222;">answer: false</span>
 </pre>
 

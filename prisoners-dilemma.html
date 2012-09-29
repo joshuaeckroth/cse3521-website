@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="The prisoner&rsquo;s dilemma"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-21 12:04:27 EDT"/>
+<meta name="generated" content="2012-09-29 11:40:56 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -287,48 +287,48 @@ Wikipedia says this about how to find an optimal strategy for IPD:
 
 
 
-<pre class="src src-netlogo"><span style="color: #b22222;">;;;;;;;;;;;;;;;;;;</span>
-<span style="color: #b22222;">;;; Strategies ;;;</span>
-<span style="color: #b22222;">;;;;;;;;;;;;;;;;;;</span>
+<pre class="src src-netlogo">;;;;;;;;;;;;;;;;;;
+;;; Strategies ;;;
+;;;;;;;;;;;;;;;;;;
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">act-randomly</span> <span style="color: #b22222;">;;Turtle Procedure</span>
-  <span style="color: #a020f0;">ifelse</span> (random 2 = 0)
-    [<span style="color: #a020f0;">set</span> defect-now? false]
-    [<span style="color: #a020f0;">set</span> defect-now? true]
-<span style="color: #a020f0;">end</span>
+to act-randomly ;;Turtle Procedure
+  ifelse (random 2 = 0)
+    [set defect-now? false]
+    [set defect-now? true]
+end
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">cooperate</span>  <span style="color: #b22222;">;;Turtle Procedure</span>
-  <span style="color: #a020f0;">set</span> defect-now? false
-<span style="color: #a020f0;">end</span>
+to cooperate  ;;Turtle Procedure
+  set defect-now? false
+end
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">defect</span> <span style="color: #b22222;">;;Turtle Procedure</span>
-  <span style="color: #a020f0;">set</span> defect-now? true
-<span style="color: #a020f0;">end</span>
+to defect ;;Turtle Procedure
+  set defect-now? true
+end
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">tit-for-tat</span> <span style="color: #b22222;">;;Turtle Procedure</span>
-  <span style="color: #a020f0;">ifelse</span> partner-defected?
-    [ <span style="color: #a020f0;">set</span> defect-now? true ]
-    [ <span style="color: #a020f0;">set</span> defect-now? false ]
-<span style="color: #a020f0;">end</span>
+to tit-for-tat ;;Turtle Procedure
+  ifelse partner-defected?
+    [ set defect-now? true ]
+    [ set defect-now? false ]
+end
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">tit-for-two-tats</span> <span style="color: #b22222;">;;Turtle Procedure</span>
-  <span style="color: #a020f0;">ifelse</span> (partner-defected? <span style="color: #a020f0;">and</span> partner-defected-past?)
-    [<span style="color: #a020f0;">set</span> defect-now? true]
-    [<span style="color: #a020f0;">set</span> defect-now? false]
-<span style="color: #a020f0;">end</span>
+to tit-for-two-tats ;;Turtle Procedure
+  ifelse (partner-defected? and partner-defected-past?)
+    [set defect-now? true]
+    [set defect-now? false]
+end
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">unforgiving</span> <span style="color: #b22222;">;;Turtle Procedure</span>
-  <span style="color: #a020f0;">ifelse</span> (partner-defected? <span style="color: #a020f0;">or</span> defect-now?)
-    [<span style="color: #a020f0;">set</span> defect-now? true]
-    [<span style="color: #a020f0;">set</span> defect-now? false]
-<span style="color: #a020f0;">end</span>
+to unforgiving ;;Turtle Procedure
+  ifelse (partner-defected? or defect-now?)
+    [set defect-now? true]
+    [set defect-now? false]
+end
 
-<span style="color: #a020f0;">to</span> <span style="color: #0000ff;">custom-strategy</span> <span style="color: #b22222;">;;Turtle Procedure</span>
-  <span style="color: #b22222;">;;Currently defaults to tit-for-tat.  Can you do better?</span>
-  <span style="color: #a020f0;">ifelse</span> partner-defected? <span style="color: #b22222;">;;partner defected stores your partner's action last round</span>
-    [<span style="color: #a020f0;">set</span> defect-now? true]
-    [<span style="color: #a020f0;">set</span> defect-now? false]
-<span style="color: #a020f0;">end</span>
+to custom-strategy ;;Turtle Procedure
+  ;;Currently defaults to tit-for-tat.  Can you do better?
+  ifelse partner-defected? ;;partner defected stores your partner's action last round
+    [set defect-now? true]
+    [set defect-now? false]
+end
 </pre>
 
 
