@@ -349,7 +349,7 @@ more than one correct answer.
 
      - hill-climbing (only answer): same as best-first
 
-     - A* (only answer): same as best-first
+     - A* (only answer): ~Lane & Tuttle~, ~High & Woodruff~
 
   2. What does the ~tocheck~ list look like after checking those
      states from question 1? Be sure to order the list by an
@@ -358,15 +358,15 @@ more than one correct answer.
      depth-first will take the next state from the end). Assume
      already-checked states are not added.
 
-     - breadth-first (one possible answer): ~[High & 15th, SR-315 & Lane]~
+     - breadth-first (one possible answer): ~[SR-315 & Lane, High & 15th]~
 
      - depth-first (one possible answer): ~[High & Woodruff, SR-315 I-670 offramp, SR-315 & King]~
 
-     - best-first: ~[High & 11th, Lane & Tuttle, US-23 & 15th]~
+     - best-first: ~[High & 11th, US-23 & 15th, Lane & Tuttle]~
 
      - hill-climbing: ~[High & 11th, US-23 & 15th]~
 
-     - A*: ~[High & 11th, Lane & Tuttle, US-23 & 15th]~
+     - A*: ~[High & 15th, SR-315 & Lane]~
 
 True or false? Iterative deepening depth-first (IDDFS) search is
 complete whenever regular depth-first search is complete for some
