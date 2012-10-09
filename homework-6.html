@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Homework 6</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Homework 6"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-29 11:41:04 EDT"/>
+<meta name="generated" content="2012-10-09 11:59:58 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -103,16 +103,16 @@
 <h2>TOC</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Task 1 (30 pts)</a></li>
-<li><a href="#sec-2">Task 2 (70 pts)</a></li>
-<li><a href="#sec-3">Extra credit 1 (10 pts)</a></li>
-<li><a href="#sec-4">Extra credit 2 (20 pts)</a></li>
+<li><a href="#sec-1">Task 1 (25 pts)</a></li>
+<li><a href="#sec-2">Task 2 (25 pts)</a></li>
+<li><a href="#sec-3">Task 3 (25 pts)</a></li>
+<li><a href="#sec-4">Task 4 (25 pts)</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Task 1 (30 pts)</h2>
+<h2 id="sec-1">Task 1 (25 pts)</h2>
 <div class="outline-text-2" id="text-1">
 
 
@@ -142,81 +142,80 @@ Bonabeau (2000) (<a href="http://jmvidal.cse.sc.edu/lib/kube00a.html">full citat
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2">Task 2 (70 pts)</h2>
+<h2 id="sec-2">Task 2 (25 pts)</h2>
 <div class="outline-text-2" id="text-2">
 
 
 <p>
-Modify the Shepherds model in NetLogo:
+Load the AIDS model in NetLogo. Read about it on the Info tab, play
+with simulations. Then, answer these questions (as found in the
+&ldquo;Things to try&rdquo; section of the Info tab):
 </p>
-<ul>
-<li>Add a new kind of &ldquo;breed&rdquo; called a sheepdog. The sheepdogs will
-    run around dropping &ldquo;chemical&rdquo; (scent) which the sheep will avoid.
+<ol>
+<li>Run a number of experiments with the GO button to find out the
+     effects of different variables on the spread of HIV. Try using
+     good controls in your experiment. Good controls are when only one
+     variable is changed between trials. For instance, to find out
+     what effect the average duration of a relationship has, run four
+     experiments with the AVERAGE-COMMITMENT slider set at 1 the first
+     time, 2 the second time, 10 the third time, and 50 the last. <b>How      much does the prevalence of HIV increase in each case?</b> <b>Does      this match your expectations?</b>
 
 </li>
-<li>Program the sheepdogs to move, much like the sheep do.
-
+<li><b>Are the effects of some slider variables mediated by the effects      of others?</b> For instance, if lower AVERAGE-COMMITMENT values seem
+     to increase the spread of HIV when all other sliders are set at
+     0, does the same thing occur if all other sliders are set at 10?
+     You can run many experiments to test different hypotheses
+     regarding the emergent public health effects associated with
+     individual sexual behaviors.
 </li>
-<li>Every time a sheepdog moves, it should leave chemical on the
-    &ldquo;patch&rdquo; (grid square) that it is currently on.
-
-</li>
-<li>This chemical will diffuse and evaporate. You&rsquo;ll want to look at
-    the Ants model in NetLogo and copy how the diffusion and
-    evaporation works there.
-
-</li>
-<li>Sheep avoid this chemical (they are scared of the
-    sheepdogs). Again, look at the Ants model; in that model, the ants
-    go towards the chemical. The sheep, on the other hand, should
-    avoid the chemical.
-</li>
-</ul>
+</ol>
 
 
-<p>
-Run some experiments by playing with the number of sheepdogs,
-diffusion and evaporation rates, etc. Be sure to add sliders to the
-interface to manipulate these parameters.
-</p>
-<p>
-Turn in your code (the <code>.nlogo</code> file). If you are not able to transfer
-it to Linux, email it to me.
-</p>
 </div>
 
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3">Extra credit 1 (10 pts)</h2>
+<h2 id="sec-3">Task 3 (25 pts)</h2>
 <div class="outline-text-2" id="text-3">
 
 
 <p>
-Load the Wolf Sheep Predation model. Run a BehaviorSpace experiment
-(Tools menu, BehaviorSpace). The goal is to find conditions where the
-populations are stable. Set some parameter ranges and more than one
-repetition. Measure <code>count wolves</code> and <code>count sheep</code>. Be sure to add
-a &ldquo;Stop condition&rdquo; like <code>count turtles &gt; 5000</code> to avoid explosions of
-sheep. Also add a time limit like 3000. Create a spreadsheet of the
-results. Include this spreadsheet in your homework submission as well
-as a written summary of what you observed  (5-7 sentences).
+Load the PD N-Person Iterated model in NetLogo. Answer these
+questions:
 </p>
+<ol>
+<li>Observe the results of running the model with a variety of
+     populations and population sizes. For example, <b>can you get      cooperate’s average payoff to be higher than defect’s?</b> <b>Can you      get Tit-for-Tat’s average payoff higher than cooperate’s?</b> <b>What      do these experiments suggest about an optimal strategy?</b>
+
+</li>
+<li>Relate your observations from this model to real life
+     events. <b>Where might you find yourself in a similar situation?      How might the knowledge obtained from the model influence your      actions in such a situation? Why?</b>
+</li>
+</ol>
+
+
 </div>
 
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">Extra credit 2 (20 pts)</h2>
+<h2 id="sec-4">Task 4 (25 pts)</h2>
 <div class="outline-text-2" id="text-4">
 
 
 <p>
-Create a new strategy for the prisoner&rsquo;s dilemma model called PD Two
-Person Iterated. Find the code that starts <code>to custom-strategy</code> and
-modify it. Experiment with your new strategy and report on how well it
-works (a few sentences). Provide your new code in your report.
+Load the Wolf Sheep Predation model in NetLogo. Run a BehaviorSpace
+experiment (Tools menu, BehaviorSpace). The goal is to find conditions
+where the populations are stable. Set some parameter ranges and more
+than one repetition. Measure <code>count wolves</code> and <code>count sheep</code>. Be sure
+to add a &ldquo;Stop condition&rdquo; like <code>count turtles &gt; 5000</code> to avoid
+explosions of sheep. Also add a time limit like 3000. Create a
+spreadsheet of the results. Include this spreadsheet in your homework
+submission as well as a written summary of what you observed (5-7
+sentences).
 </p>
+
 
 
 <div style="font-size: 80%;">

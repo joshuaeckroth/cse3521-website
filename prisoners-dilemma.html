@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="The prisoner&rsquo;s dilemma"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-09-29 11:40:56 EDT"/>
+<meta name="generated" content="2012-10-08 23:57:11 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -140,14 +140,15 @@ rational self-interest. (<a href="http://plato.stanford.edu/entries/prisoner-dil
 <li><a href="#sec-2-2">Model: PD N-Person Iterated</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">Real life examples</a>
+<li><a href="#sec-3">Press &amp; Dyson&rsquo;s discoveries</a></li>
+<li><a href="#sec-4">Real life examples</a>
 <ul>
-<li><a href="#sec-3-1">Environmental studies</a></li>
-<li><a href="#sec-3-2">Psychology</a></li>
-<li><a href="#sec-3-3">Law</a></li>
+<li><a href="#sec-4-1">Environmental studies</a></li>
+<li><a href="#sec-4-2">Psychology</a></li>
+<li><a href="#sec-4-3">Law</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">One Good Deed Deserves Another (Radiolab, December 14, 2010)</a></li>
+<li><a href="#sec-5">One Good Deed Deserves Another (Radiolab, December 14, 2010)</a></li>
 </ul>
 </div>
 </div>
@@ -284,69 +285,6 @@ Wikipedia says this about how to find an optimal strategy for IPD:
 </p>
 </div>
 
-
-
-
-<pre class="src src-netlogo">;;;;;;;;;;;;;;;;;;
-;;; Strategies ;;;
-;;;;;;;;;;;;;;;;;;
-
-to act-randomly ;;Turtle Procedure
-  ifelse (random 2 = 0)
-    [set defect-now? false]
-    [set defect-now? true]
-end
-
-to cooperate  ;;Turtle Procedure
-  set defect-now? false
-end
-
-to defect ;;Turtle Procedure
-  set defect-now? true
-end
-
-to tit-for-tat ;;Turtle Procedure
-  ifelse partner-defected?
-    [ set defect-now? true ]
-    [ set defect-now? false ]
-end
-
-to tit-for-two-tats ;;Turtle Procedure
-  ifelse (partner-defected? and partner-defected-past?)
-    [set defect-now? true]
-    [set defect-now? false]
-end
-
-to unforgiving ;;Turtle Procedure
-  ifelse (partner-defected? or defect-now?)
-    [set defect-now? true]
-    [set defect-now? false]
-end
-
-to custom-strategy ;;Turtle Procedure
-  ;;Currently defaults to tit-for-tat.  Can you do better?
-  ifelse partner-defected? ;;partner defected stores your partner's action last round
-    [set defect-now? true]
-    [set defect-now? false]
-end
-</pre>
-
-
-</div>
-
-</div>
-
-<div id="outline-container-2-2" class="outline-3">
-<h3 id="sec-2-2">Model: PD N-Person Iterated</h3>
-<div class="outline-text-3" id="text-2-2">
-
-
-
-<div style="text-align: center">
-<p><img src="./images/netlogo-nplayer-ipd.png"  alt="./images/netlogo-nplayer-ipd.png" />
-</p>
-</div>
-
 <blockquote>
 
 <p>The PD TWO PERSON ITERATED model demonstrates an interesting concept:
@@ -372,21 +310,84 @@ information, other strategies do.)
 
 
 </div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">Model: PD N-Person Iterated</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+
+<div style="text-align: center">
+<p><img src="./images/netlogo-nplayer-ipd.png"  alt="./images/netlogo-nplayer-ipd.png" />
+</p>
+</div>
+
+</div>
 </div>
 
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3">Real life examples</h2>
+<h2 id="sec-3">Press &amp; Dyson&rsquo;s discoveries</h2>
 <div class="outline-text-2" id="text-3">
+
+
+<blockquote>
+
+<p>It would be surprising if any significant mathematical feature of [the
+iterated prisoner&rsquo;s dilemma] has remained undescribed, but that
+appears to be the case, as we show in this paper.
+</p>
+</blockquote>
+
+
+<p>
+Consider two players, X (she) and Y (he). Press and Dyson show that,
+</p>
+<ul>
+<li>longer memory of the opponent&rsquo;s previous choices, beyond memory of
+    just the single previous choice, serves no benefit
+
+</li>
+<li>player X can set player Y&rsquo;s final score to any value in the range
+    from the mutual non-cooperation score to the mutual cooperation
+    score, regardless of player Y&rsquo;s strategy; player X can do this
+    with a fixed strategy (i.e., the strategy does not have to change
+    depending on what player Y chooses each round)
+
+</li>
+<li>player X cannot set her own score in the same fashion
+</li>
+</ul>
+
+
+<blockquote>
+
+<p>It is worth contemplating that, though an evolutionary player Y is so
+easily beaten within the confines of the IPD game, it is exactly
+evolution, on the hugely larger canvas of DNA-based life, that
+ultimately has produced X, the player with the mind.
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Real life examples</h2>
+<div class="outline-text-2" id="text-4">
 
 
 
 </div>
 
-<div id="outline-container-3-1" class="outline-3">
-<h3 id="sec-3-1">Environmental studies</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1">Environmental studies</h3>
+<div class="outline-text-3" id="text-4-1">
 
 
 <blockquote>
@@ -406,9 +407,9 @@ impasse concerning climate change. (Wikipedia)
 
 </div>
 
-<div id="outline-container-3-2" class="outline-3">
-<h3 id="sec-3-2">Psychology</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2">Psychology</h3>
+<div class="outline-text-3" id="text-4-2">
 
 
 <blockquote>
@@ -438,9 +439,9 @@ ultimately leading to an endless string of defections. (Wikipedia)
 
 </div>
 
-<div id="outline-container-3-3" class="outline-3">
-<h3 id="sec-3-3">Law</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3">Law</h3>
+<div class="outline-text-3" id="text-4-3">
 
 
 <blockquote>
@@ -455,12 +456,9 @@ guilt. (Wikipedia)
 
 
 
-<div style="text-align: center">
-<p><img src="./images/playitbytrust.jpg"  alt="./images/playitbytrust.jpg" />
-</p>
-<p>
-Play it by Trust, Yoko Ono
-</p>
+<div class="figure">
+<p><img src="./images/playitbytrust.jpg"  alt="./images/playitbytrust.jpg" /></p>
+<p>Play it by Trust, Yoko Ono</p>
 </div>
 
 </div>
@@ -468,9 +466,9 @@ Play it by Trust, Yoko Ono
 
 </div>
 
-<div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">One Good Deed Deserves Another (Radiolab, December 14, 2010)</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">One Good Deed Deserves Another (Radiolab, December 14, 2010)</h2>
+<div class="outline-text-2" id="text-5">
 
 
 

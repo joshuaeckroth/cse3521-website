@@ -1006,3 +1006,19 @@ div#preamble div#plupperButton a img {
     position: absolute;
     top: 4px;
 }
+
+blockquote {
+    background: #fbfbfb;
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+.figure img {
+    background: white;
+    padding: 5px;
+    -moz-box-shadow: 0px 0px 5px #c7c7c7;
+    -webkit-box-shadow: 0px 0px 5px #c7c7c7;
+    box-shadow: 0px 0px 5px #c7c7c7;
+}
+
