@@ -36,12 +36,8 @@ questions about those solutions. If you do not answer those questions
 to my satisfaction, I reserve the right to give you a 0% grade on that
 assignment.
 
-#+BEGIN_CENTER
+#+CAPTION: "Square," Kumi Yamashita, 1995; H36, W53, D15cm; aluminum, single light source, shadow
 [[./images/kumi-yamashita-square.jpg]]
-
-"Square," [[http://www.kumiyamashita.com/portfolio/square/][Kumi Yamashita]], 1995; H36, W53, D15cm; aluminum,
-single light source, shadow
-#+END_CENTER
 
 * Time expectations
 #+INDEX: Hofstadter, D.

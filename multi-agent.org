@@ -1,7 +1,110 @@
 #+SETUPFILE: setup.org
 #+TITLE: Multi-agent systems
 
-http://ccl.northwestern.edu/netlogo/5.0.1/
+* Principles for designing agent-based solutions
+
+  - agents not functions (not functional decomposition)
+
+  - keep agents small in size
+
+#+BEGIN_QUOTE
+The motivation for this principle derives not from our theory of
+multi-agent systems, but from the experience of software engineers
+that the difficulty of designing, implementing, and launching
+computer-based systems increases exponentially with the size of the
+system. Small individual agents are easier to construct and understand
+than large monolithic systems, and the impact of the failure of any
+single agent will be minimal. In addition, a large population of
+agents gives the system a richer overall space of possible behaviors,
+thus providing for a wider scope of emergent behavior. Very roughly,
+the number of agents is a multiplicative factor in determining the
+implementation effort, but an exponent in determining the size of the
+overall system state space. The effort to code $100$ agents with $10$
+behaviors each is on the order of $100*10 = 10^3$, but the resulting
+state space is on the order of $10^{100}$.
+#+END_QUOTE
+
+  - keep agents small in time (forgetful)
+
+#+BEGIN_QUOTE
+Naturally occurring agent systems can forget. Pheromones evaporate,
+and as a result obsolete paths leading to depleted food sources
+disappear rather than misleading members of the colony. The
+probability that a wasp will forage decreases as it successfully
+resists stimulation. Even the death of unsuccessful organisms in an
+ecosystem is an important mechanism for freeing up resources so that
+better adapted organisms can flourish.
+#+END_QUOTE
+
+  - keep agents small in scope (local sensing and action)
+
+#+BEGIN_QUOTE
+Software engineering offers another argument for local agent
+communications. [Dijkstra 1968] warned of the dangers of the Fortran
+GOTO statement, which gave the programmer the ability to jump from
+anywhere to anywhere in a program. This powerful tool led to tangled
+mazes of spaghetti code that were easy to break and almost impossible
+to correct and maintain. More disciplined structures proved to have
+the same expressive power, while supporting modularity and restricted
+interfaces that limited the propagation of faults. Global data
+reference has the same kind of engineering implications that global
+transfer of control does. In both cases, direct remote interactions
+are difficult for humans to understand, maintain, and control. In both
+cases, global effects can be obtained by propagation of local
+influences, much more robustly than by providing global influences.
+#+END_QUOTE
+
+  - decentralizd system control
+
+    - avoids single points of failure
+
+    - avoids performance bottlenecks
+
+    - can grow more
+
+  - support agent diversity
+
+    - diverse agents cover more of the environment and provide better
+      performance
+
+  - provide an entropy leak
+
+#+BEGIN_QUOTE
+Natural agent-based systems do organize themselves with striking
+efficiency. A common explanation is that a system can become more
+organized if energy is added to it from the outside (for example, by
+the metabolism of the food gathered by an insect hive). The addition
+of energy is necessary for self-organization, but hardly
+sufficient. Gasoline in construction equipment can erect a building,
+but the same gasoline in a terrorist's bomb can destroy it.
+
+In natural systems, agents can organize themselves at the macro level
+because their actions are coupled to a dissipative or disorganizing
+process at a micro level. The system can reduce entropy at the macro
+level by generating more than enough entropy at the micro level to pay
+its second-law debt. To adopt another metaphor, it provides an entropy
+leak to drain disorder away from the macro level (where useful work is
+done) to the micro level (where it won't interfere with the system's
+function).
+#+END_QUOTE
+
+
+* Emergence (Radiolab, August 14, 2007)
+
+#+BEGIN_CENTER
+#+BEGIN_HTML
+<embed
+flashvars="file=http://www.radiolab.org/audio/xspf/91500/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/91500/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab021805.mp3"
+quality="high" allowscriptaccess="always" wmode="transparent"
+src="http://www.radiolab.org/media/audioplayer/player5.swf"
+height="300" width="400"></embed><script
+type="text/javascript">(function(){var
+s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTimeout(s,10);};s();})();</script>
+#+END_HTML
+
+1 hour / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab021805.mp3][Download MP3]] / [[http://www.radiolab.org/2007/aug/14/][Radiolab website for this episode]]
+
+#+END_CENTER
 
 #+INCLUDE: footer.org
 

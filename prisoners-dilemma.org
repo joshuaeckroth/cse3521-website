@@ -112,57 +112,6 @@ Wikipedia says this about how to find an optimal strategy for IPD:
 [[./images/netlogo-2player-ipd.png]]
 #+END_CENTER
 
-#+BEGIN_SRC netlogo
-;;;;;;;;;;;;;;;;;;
-;;; Strategies ;;;
-;;;;;;;;;;;;;;;;;;
-
-to act-randomly ;;Turtle Procedure
-  ifelse (random 2 = 0)
-    [set defect-now? false]
-    [set defect-now? true]
-end
-
-to cooperate  ;;Turtle Procedure
-  set defect-now? false
-end
-
-to defect ;;Turtle Procedure
-  set defect-now? true
-end
-
-to tit-for-tat ;;Turtle Procedure
-  ifelse partner-defected?
-    [ set defect-now? true ]
-    [ set defect-now? false ]
-end
-
-to tit-for-two-tats ;;Turtle Procedure
-  ifelse (partner-defected? and partner-defected-past?)
-    [set defect-now? true]
-    [set defect-now? false]
-end
-
-to unforgiving ;;Turtle Procedure
-  ifelse (partner-defected? or defect-now?)
-    [set defect-now? true]
-    [set defect-now? false]
-end
-
-to custom-strategy ;;Turtle Procedure
-  ;;Currently defaults to tit-for-tat.  Can you do better?
-  ifelse partner-defected? ;;partner defected stores your partner's action last round
-    [set defect-now? true]
-    [set defect-now? false]
-end
-#+END_SRC
-
-** Model: PD N-Person Iterated
-
-#+BEGIN_CENTER
-[[./images/netlogo-nplayer-ipd.png]]
-#+END_CENTER
-
 #+BEGIN_QUOTE
 The PD TWO PERSON ITERATED model demonstrates an interesting concept:
 When interacting with someone over time in a prisoner’s dilemma
@@ -181,6 +130,40 @@ strategies wander around randomly until they find another turtle to
 play with. (Note that each turtle remembers their last interaction
 with each other turtle. While some strategies don’t make use of this
 information, other strategies do.)
+#+END_QUOTE
+
+** Model: PD N-Person Iterated
+
+#+BEGIN_CENTER
+[[./images/netlogo-nplayer-ipd.png]]
+#+END_CENTER
+
+* Press & Dyson's discoveries
+
+#+BEGIN_QUOTE
+It would be surprising if any significant mathematical feature of [the
+iterated prisoner's dilemma] has remained undescribed, but that
+appears to be the case, as we show in this paper.
+#+END_QUOTE
+
+Consider two players, X (she) and Y (he). Press and Dyson show that,
+
+  - longer memory of the opponent's previous choices, beyond memory of
+    just the single previous choice, serves no benefit
+
+  - player X can set player Y's final score to any value in the range
+    from the mutual non-cooperation score to the mutual cooperation
+    score, regardless of player Y's strategy; player X can do this
+    with a fixed strategy (i.e., the strategy does not have to change
+    depending on what player Y chooses each round)
+
+  - player X cannot set her own score in the same fashion
+
+#+BEGIN_QUOTE
+It is worth contemplating that, though an evolutionary player Y is so
+easily beaten within the confines of the IPD game, it is exactly
+evolution, on the hugely larger canvas of DNA-based life, that
+ultimately has produced X, the player with the mind.
 #+END_QUOTE
 
 * Real life examples
@@ -229,11 +212,8 @@ against the other prisoner/suspect, regardless of actual
 guilt. (Wikipedia)
 #+END_QUOTE
 
-#+BEGIN_CENTER
+#+CAPTION: Play it by Trust, Yoko Ono
 [[./images/playitbytrust.jpg]]
-
-Play it by Trust, Yoko Ono
-#+END_CENTER
 
 * One Good Deed Deserves Another (Radiolab, December 14, 2010)
 
