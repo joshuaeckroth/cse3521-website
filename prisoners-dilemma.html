@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="The prisoner&rsquo;s dilemma"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-08 23:57:11 EDT"/>
+<meta name="generated" content="2012-10-17 00:07:25 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -334,6 +334,9 @@ information, other strategies do.)
 <div class="outline-text-2" id="text-3">
 
 
+<p>
+<b>Can a player win by manipulating the other player?</b>
+</p>
 <blockquote>
 
 <p>It would be surprising if any significant mathematical feature of [the
@@ -347,20 +350,56 @@ appears to be the case, as we show in this paper.
 Consider two players, X (she) and Y (he). Press and Dyson show that,
 </p>
 <ul>
-<li>longer memory of the opponent&rsquo;s previous choices, beyond memory of
-    just the single previous choice, serves no benefit
+<li>longer memory does not help; for any long-memory strategy that Y
+    could play, X can do just as well with a certain shorter-memory
+    strategy (X&rsquo;s equally-good strategy is calculated based on knowing
+    Y&rsquo;s strategy)
 
 </li>
 <li>player X can set player Y&rsquo;s final score to any value in the range
     from the mutual non-cooperation score to the mutual cooperation
     score, regardless of player Y&rsquo;s strategy; player X can do this
     with a fixed strategy (i.e., the strategy does not have to change
-    depending on what player Y chooses each round)
+    depending on what player Y chooses each round); Y&rsquo;s strategy has
+    to be fixed, however
 
 </li>
-<li>player X cannot set her own score in the same fashion
+<li>player X cannot set her own score to any arbitrary value
 </li>
 </ul>
+
+
+<p>
+They also show something else. Suppose player X wants more than the
+mutual non-cooperation score, which was her limit if she chose to set
+Y&rsquo;s score to a particular value, independent of what Y was doing. She
+can get more reward if she &ldquo;watches&rdquo; or &ldquo;thinks about&rdquo; Y&rsquo;s strategy as
+they play. When X does this, we say X has a &ldquo;theory of mind&rdquo; regarding
+Y.
+</p>
+<p>
+If Y cooperates fully (at every step, the &ldquo;Jesus&rdquo; strategy; as might
+happen if Y&rsquo;s score &ldquo;evolves&rdquo; since we have seen that evolutionary
+approaches to the prisoner&rsquo;s dilemma typically yield cooperating
+strategies), then X can get maximum benefit (maximum
+extortion). However, since Y would be losing so much every time, an
+evolving Y would evolve away from that cooperating strategy.
+</p>
+<p>
+How does X get Y to cooperate fully? If X knows that Y is evolving his
+strategy, then X can force Y to evolve his strategy into one of
+cooperation, by giving little benefits periodically when Y
+cooperates. X cannot achieve maximum score this way, but can still do
+better than Y.
+</p>
+<blockquote>
+
+<p>The extortionate strategies have the peculiar property of sharply
+distinguishing beween &ldquo;sentient&rdquo; players, who have a theory of mind
+about their opponents, and &ldquo;evolutionary&rdquo; players, [&hellip;] but have no
+theory of mind.
+</p>
+</blockquote>
 
 
 <blockquote>

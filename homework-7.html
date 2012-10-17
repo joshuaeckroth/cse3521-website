@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Homework 7"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-09 13:07:01 EDT"/>
+<meta name="generated" content="2012-10-17 09:11:36 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -83,7 +83,47 @@
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
 
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 
@@ -103,159 +143,120 @@
 <h2>TOC</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Task (100 pts)</a>
-<ul>
-<li><a href="#sec-1-1">Possible pseudo-code</a></li>
-</ul>
-</li>
+<li><a href="#sec-1">Task 1 (20 pts)</a></li>
+<li><a href="#sec-2">Task 2 (20 pts)</a></li>
+<li><a href="#sec-3">Task 3 (20 pts)</a></li>
+<li><a href="#sec-4">Task 4 (20 pts)</a></li>
+<li><a href="#sec-5">Task 5 (20 pts)</a></li>
+<li><a href="#sec-6">Extra credit (10 pts)</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Task (100 pts)</h2>
+<h2 id="sec-1">Task 1 (20 pts)</h2>
 <div class="outline-text-2" id="text-1">
 
 
 <p>
-Download the <a href="./downloads/cse630-ai-articles-stemmed.zip">Zip file of all AI articles (stemmed documents)</a>. Or, if
-you do not want to use those documents, gather your own, and define
-new categories. You&rsquo;ll want a handful of training documents (say,
-10-20) and a few test documents (say, 5-10). Also, define at least 3
-or so categories.
+Execute the k-means algorithm by hand on the following data:
 </p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="right" /><col class="right" /><col class="right" /><col class="right" /><col class="right" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">item #</th><th scope="col" class="right">w</th><th scope="col" class="right">x</th><th scope="col" class="right">y</th><th scope="col" class="right">z</th><th scope="col" class="left">true label</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">1</td><td class="right">1.0</td><td class="right">1.0</td><td class="right">0.0</td><td class="right">1.0</td><td class="left">A</td></tr>
+<tr><td class="right">2</td><td class="right">0.0</td><td class="right">0.0</td><td class="right">1.0</td><td class="right">0.0</td><td class="left">B</td></tr>
+<tr><td class="right">3</td><td class="right">2.0</td><td class="right">2.0</td><td class="right">0.0</td><td class="right">2.0</td><td class="left">A</td></tr>
+<tr><td class="right">4</td><td class="right">0.0</td><td class="right">0.0</td><td class="right">1.0</td><td class="right">1.0</td><td class="left">B</td></tr>
+<tr><td class="right">5</td><td class="right">2.0</td><td class="right">2.0</td><td class="right">0.0</td><td class="right">2.0</td><td class="left">A</td></tr>
+<tr><td class="right">6</td><td class="right">0.0</td><td class="right">2.0</td><td class="right">1.0</td><td class="right">1.0</td><td class="left">B</td></tr>
+</tbody>
+</table>
+
+
 <p>
-Perform Bayesian document classification (from the <a href="./bayesian-methods.html">Bayesian methods</a>
-notes). Report the experimental F-score after training on three random
-subsets of the data. Always train with a majority of the data (say,
-90%), test on the remaining set.
+Use \(k=2\). Show the centroids as they change, and give the final
+centroids. You must choose random (or not so random) starting centroid
+values. Finally, give the confusion matrix.
 </p>
+</div>
 
 </div>
 
-<div id="outline-container-1-1" class="outline-3">
-<h3 id="sec-1-1">Possible pseudo-code</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Task 2 (20 pts)</h2>
+<div class="outline-text-2" id="text-2">
 
 
 <p>
-The challenge with this assignment is not the math but getting all the
-data needed to compute. As is often the case in AI research, the
-mathematics are simple but the algorithm, particularly the collection
-and processing of data, is the real challenge. I expect you&rsquo;ll feel
-that in this assignment.
+Run the k-means algorithm in Weka using this dataset: <a href="./iris.arff">iris.arff</a> (iris
+species clustering).
 </p>
 <p>
-In the aim of possibly helping you along, here is some pseudo-code
-(which we developed in class):
+Choose \(k=3\) and \(k=4\). Give the confusion matrix for each value of
+\(k\). Also report the percent of correctly classified instances for
+each class, for each \(k\).
 </p>
+</div>
 
+</div>
 
-
-<pre class="example">Task 1. Set up global variables.
-
-- create a map for di values, with keys = strings and values = ints
-  (this map has words as keys; the value for a word is the number of
-   documents across all categories that have this word anywhere in the
-   document)
-
-- create several maps for dci values (strings -&gt; ints again, like the
-  di map; these maps record the number of documents in a particular
-  category that have a particular word); perhaps you can put these
-  maps in another map, like so: dci[category][word] = #; in C++,
-  that's map&lt;string, map&lt;string, int&gt; &gt;
-             (cat)       (word)  (# of docs)
-
-Task 2. Read the text documents.
-
-- open the listing.txt file (assuming you are using the AI dataset)
-- loop: for each line in the listing.txt file
-  - read the first "word" -- this is a file name (without the .txt)
-  - open the .txt file
-  - create a document map D with keys = strings and values = true/false
-    (this map will represent the document; the strings are words from
-     the document, and the true/false means the document does or does
-     not have that word; of course, we don't need to put words in the
-     map that the document does not have, just words it does, so only
-     true's will be in the map, not false's; you might prefer to use a
-     set of strings rather than a map)
-  - loop: for each word in the document
-    - read the word from the .txt file
-    - record this word in D
-  - close the .txt file
-  - read the rest of the line from the listing.txt file (the
-    number of categories and the categories themselves)
-    - record this category information for the document; how will you
-      do this?
-  - put this document map in a vector
-
-Task 3. Split the vector of document maps into a training and testing
-set.
-
-- shuffle the vector
-- choose a position at about the 90% mark
-- put all doc maps before this position in a training vector
-- put all doc maps after this position in a testing vector
-
-Task 4. Update the di values. This is best done after tasks 2 &amp; 3 are
-done.
-
-- loop: for each document in the training set
-  - loop: for each word in the doc map
-    - increment in the global di map the number of occurrences of
-      documents with this word (because one more document has this
-      word)
-    - loop: for each category that this document is a member of
-      - increment in the global dci map the value for this word in
-        this category
-
-Task 5. Classify each testing document
-
-- set up variables for true positive, false positive, false negative
-  counts
-- loop: for each testing document:
-  - figure out which category (or top 2, top 3, etc.; your choice)
-    maximizes the final formula in the Bayesian methods notes...
-</pre>
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Task 3 (20 pts)</h2>
+<div class="outline-text-2" id="text-3">
 
 
 <p>
-This is a chunk of C++ that you may find useful for Task 2:
+Execute the k-nearest neighbor algorithm by hand on the centroids
+found from task 1 (or make up two random centroids if you did not
+finish task 1). Use \(k = 2\). Classify the data point: \(&lt;1, 3, 0, 2&gt;\).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Task 4 (20 pts)</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Run the k-nearest neighbor in Weka using this dataset: <a href="./letter.arff">letter.arff</a>
+(handwritten letter classification).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Task 5 (20 pts)</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+Explain the differences between k-means and k-nearest neighbor
+algorithms. What does each accomplish, and when/why might you use
+both?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Extra credit (10 pts)</h2>
+<div class="outline-text-2" id="text-6">
+
+
+<p>
+Play around with Weka; report which classifier algorithm performs best
+(or nearly best) for classifying the <a href="./letter.arff">letter.arff</a> data.
 </p>
 
-
-
-<pre class="src src-c++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;fstream&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;string&gt;</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
-
-<span style="color: #228b22;">ifstream</span> <span style="color: #a0522d;">f</span>;
-f.open(<span style="color: #8b2252;">"listing.txt"</span>);
-<span style="color: #a020f0;">while</span>(!f.eof()) { <span style="color: #b22222;">// </span><span style="color: #b22222;">eof() is true if the file is finished</span>
-    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">docfile</span>;
-    f &gt;&gt; docfile;
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">category_count</span>;
-    f &gt;&gt; category_count;
-    <span style="color: #a020f0;">for</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; category_count; i++) {
-        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">category</span>;
-        f &gt;&gt; category;
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">do something with category</span>
-    }
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">open docfile, process it a word at a time</span>
-    <span style="color: #228b22;">ifstream</span> <span style="color: #a0522d;">df</span>;
-    df.open(docfile.c_string()); <span style="color: #b22222;">// </span><span style="color: #b22222;">c_string() is just a funky C++ thing</span>
-    <span style="color: #a020f0;">while</span>(!df.eof()) {
-        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">word</span>;
-        df &gt;&gt; word;
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">do something with word</span>
-    }
-    df.close()
-
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">done with that line of listing.txt</span>
-}
-f.close()
-</pre>
 
 
 <div style="font-size: 80%;">
@@ -273,7 +274,6 @@ f.close()
 <!-- End of Plupper Tracking Code -->
 
 
-</div>
 </div>
 </div>
 </div>

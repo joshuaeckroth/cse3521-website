@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="k-means clustering"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-09 13:06:59 EDT"/>
+<meta name="generated" content="2012-10-17 09:31:53 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -183,10 +183,11 @@ the data.
 <li><a href="#sec-1">Clustering</a></li>
 <li><a href="#sec-2">k-means clustering</a>
 <ul>
-<li><a href="#sec-2-1">Voronoi diagram</a></li>
-<li><a href="#sec-2-2">Benefits of k-means</a></li>
-<li><a href="#sec-2-3">Drawbacks of k-means</a></li>
-<li><a href="#sec-2-4">How to choose k</a></li>
+<li><a href="#sec-2-1">Confusion matrix</a></li>
+<li><a href="#sec-2-2">Voronoi diagram</a></li>
+<li><a href="#sec-2-3">Benefits of k-means</a></li>
+<li><a href="#sec-2-4">Drawbacks of k-means</a></li>
+<li><a href="#sec-2-5">How to choose k</a></li>
 </ul>
 </li>
 </ul>
@@ -292,8 +293,51 @@ graphs show the real clusters.
 </div>
 
 <div id="outline-container-2-1" class="outline-3">
-<h3 id="sec-2-1">Voronoi diagram</h3>
+<h3 id="sec-2-1">Confusion matrix</h3>
 <div class="outline-text-3" id="text-2-1">
+
+
+<p>
+We can think of k-means as a classifier, at least in the sense that it
+is attempting to group same-class data together. An easy way to
+understand exactly how badly, and in what ways, the classifier
+misclassified is to write a confusion matrix:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="right" /><col class="right" /><col class="right" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">0</th><th scope="col" class="right">1</th><th scope="col" class="right">2</th><th scope="col" class="left"></th></tr>
+</thead>
+<tbody>
+<tr><td class="right">0</td><td class="right">28</td><td class="right">22</td><td class="left">Iris-setosa</td></tr>
+<tr><td class="right">47</td><td class="right">3</td><td class="right">0</td><td class="left">Iris-versicolor</td></tr>
+<tr><td class="right">50</td><td class="right">0</td><td class="right">0</td><td class="left">Iris-virginica</td></tr>
+</tbody>
+</table>
+
+
+<p>
+In a confusion matrix, the predicted class labels (0, 1, 2) are
+written along the top (column names). The true class labels
+(Iris-setosa, etc.) are written along the right side. Each cell in the
+matrix is a count of how many instances of a true class where
+classified as each of the predicted classes.
+</p>
+<p>
+With a confusion matrix, we can see at a glance whether some true
+class is very confused. A perfect classification will produce a
+confusion matrix with all zeros except on the diagonal. A confused
+classification will have large values not on the diagonal.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">Voronoi diagram</h3>
+<div class="outline-text-3" id="text-2-2">
 
 
 <p>
@@ -331,9 +375,9 @@ at <a href="http://www.cs.columbia.edu/~pblaer/projects/path_planner/">Robot Pat
 
 </div>
 
-<div id="outline-container-2-2" class="outline-3">
-<h3 id="sec-2-2">Benefits of k-means</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3">Benefits of k-means</h3>
+<div class="outline-text-3" id="text-2-3">
 
 
 <ul>
@@ -349,9 +393,9 @@ at <a href="http://www.cs.columbia.edu/~pblaer/projects/path_planner/">Robot Pat
 
 </div>
 
-<div id="outline-container-2-3" class="outline-3">
-<h3 id="sec-2-3">Drawbacks of k-means</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4">Drawbacks of k-means</h3>
+<div class="outline-text-3" id="text-2-4">
 
 
 <blockquote>
@@ -379,9 +423,9 @@ on others. (<a href="http://en.wikipedia.org/wiki/K-means_clustering">Wikipedia<
 
 </div>
 
-<div id="outline-container-2-4" class="outline-3">
-<h3 id="sec-2-4">How to choose k</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5">How to choose k</h3>
+<div class="outline-text-3" id="text-2-5">
 
 
 <p>
