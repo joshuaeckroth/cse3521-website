@@ -1,5 +1,130 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 8
 
+* Task (100 pts)
+
+Download the [[./downloads/cse630-ai-articles-stemmed.zip][Zip file of all AI articles (stemmed documents)]]. Or, if
+you do not want to use those documents, gather your own, and define
+new categories. You'll want a handful of training documents (say,
+10-20) and a few test documents (say, 5-10). Also, define at least 3
+or so categories.
+
+Perform Bayesian document classification (from the [[./bayesian-methods.html][Bayesian methods]]
+notes). Report the experimental F-score after training on three random
+subsets of the data. Always train with a majority of the data (say,
+90%), test on the remaining set.
+
+** Possible pseudo-code
+
+The challenge with this assignment is not the math but getting all the
+data needed to compute. As is often the case in AI research, the
+mathematics are simple but the algorithm, particularly the collection
+and processing of data, is the real challenge. I expect you'll feel
+that in this assignment.
+
+In the aim of possibly helping you along, here is some pseudo-code
+(which we developed in class):
+
+#+BEGIN_EXAMPLE
+Task 1. Set up global variables.
+
+- create a map for di values, with keys = strings and values = ints
+  (this map has words as keys; the value for a word is the number of
+   documents across all categories that have this word anywhere in the
+   document)
+
+- create several maps for dci values (strings -> ints again, like the
+  di map; these maps record the number of documents in a particular
+  category that have a particular word); perhaps you can put these
+  maps in another map, like so: dci[category][word] = #; in C++,
+  that's map<string, map<string, int> >
+             (cat)       (word)  (# of docs)
+
+Task 2. Read the text documents.
+
+- open the listing.txt file (assuming you are using the AI dataset)
+- loop: for each line in the listing.txt file
+  - read the first "word" -- this is a file name (without the .txt)
+  - open the .txt file
+  - create a document map D with keys = strings and values = true/false
+    (this map will represent the document; the strings are words from
+     the document, and the true/false means the document does or does
+     not have that word; of course, we don't need to put words in the
+     map that the document does not have, just words it does, so only
+     true's will be in the map, not false's; you might prefer to use a
+     set of strings rather than a map)
+  - loop: for each word in the document
+    - read the word from the .txt file
+    - record this word in D
+  - close the .txt file
+  - read the rest of the line from the listing.txt file (the
+    number of categories and the categories themselves)
+    - record this category information for the document; how will you
+      do this?
+  - put this document map in a vector
+
+Task 3. Split the vector of document maps into a training and testing
+set.
+
+- shuffle the vector
+- choose a position at about the 90% mark
+- put all doc maps before this position in a training vector
+- put all doc maps after this position in a testing vector
+
+Task 4. Update the di values. This is best done after tasks 2 & 3 are
+done.
+
+- loop: for each document in the training set
+  - loop: for each word in the doc map
+    - increment in the global di map the number of occurrences of
+      documents with this word (because one more document has this
+      word)
+    - loop: for each category that this document is a member of
+      - increment in the global dci map the value for this word in
+        this category
+
+Task 5. Classify each testing document
+
+- set up variables for true positive, false positive, false negative
+  counts
+- loop: for each testing document:
+  - figure out which category (or top 2, top 3, etc.; your choice)
+    maximizes the final formula in the Bayesian methods notes...
+#+END_EXAMPLE
+
+This is a chunk of C++ that you may find useful for Task 2:
+
+#+BEGIN_SRC c++
+#include <fstream>
+#include <string>
+
+// ...
+
+ifstream f;
+f.open("listing.txt");
+while(!f.eof()) { // eof() is true if the file is finished
+    string docfile;
+    f >> docfile;
+    int category_count;
+    f >> category_count;
+    for(int i = 0; i < category_count; i++) {
+        string category;
+        f >> category;
+        // do something with category
+    }
+    // open docfile, process it a word at a time
+    ifstream df;
+    df.open(docfile.c_string()); // c_string() is just a funky C++ thing
+    while(!df.eof()) {
+        string word;
+        df >> word;
+        // do something with word
+    }
+    df.close()
+
+    // done with that line of listing.txt
+}
+f.close()
+#+END_SRC
 
 #+INCLUDE: footer.org

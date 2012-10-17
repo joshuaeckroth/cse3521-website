@@ -88,6 +88,30 @@ graphs show the real clusters.
 [[./images/iris-true-class-petal.png]]
 #+END_CENTER
 
+** Confusion matrix
+
+We can think of k-means as a classifier, at least in the sense that it
+is attempting to group same-class data together. An easy way to
+understand exactly how badly, and in what ways, the classifier
+misclassified is to write a confusion matrix:
+
+|  0 |  1 |  2 |                 |
+|----+----+----+-----------------|
+|  0 | 28 | 22 | Iris-setosa     |
+| 47 |  3 |  0 | Iris-versicolor |
+| 50 |  0 |  0 | Iris-virginica  |
+
+In a confusion matrix, the predicted class labels (0, 1, 2) are
+written along the top (column names). The true class labels
+(Iris-setosa, etc.) are written along the right side. Each cell in the
+matrix is a count of how many instances of a true class where
+classified as each of the predicted classes.
+
+With a confusion matrix, we can see at a glance whether some true
+class is very confused. A perfect classification will produce a
+confusion matrix with all zeros except on the diagonal. A confused
+classification will have large values not on the diagonal.
+
 ** Voronoi diagram
 
 If we look at a random x,y coordinate in the cluster graph, we will

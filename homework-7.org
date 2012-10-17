@@ -1,130 +1,53 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 7
 
-* Task (100 pts)
+* Task 1 (20 pts)
 
-Download the [[./downloads/cse630-ai-articles-stemmed.zip][Zip file of all AI articles (stemmed documents)]]. Or, if
-you do not want to use those documents, gather your own, and define
-new categories. You'll want a handful of training documents (say,
-10-20) and a few test documents (say, 5-10). Also, define at least 3
-or so categories.
+Execute the k-means algorithm by hand on the following data:
 
-Perform Bayesian document classification (from the [[./bayesian-methods.html][Bayesian methods]]
-notes). Report the experimental F-score after training on three random
-subsets of the data. Always train with a majority of the data (say,
-90%), test on the remaining set.
+| item # |   w |   x |   y |   z | true label |
+|--------+-----+-----+-----+-----+------------|
+|      1 | 1.0 | 1.0 | 0.0 | 1.0 | A          |
+|      2 | 0.0 | 0.0 | 1.0 | 0.0 | B          |
+|      3 | 2.0 | 2.0 | 0.0 | 2.0 | A          |
+|      4 | 0.0 | 0.0 | 1.0 | 1.0 | B          |
+|      5 | 2.0 | 2.0 | 0.0 | 2.0 | A          |
+|      6 | 0.0 | 2.0 | 1.0 | 1.0 | B          |
 
-** Possible pseudo-code
+Use $k=2$. Show the centroids as they change, and give the final
+centroids. You must choose random (or not so random) starting centroid
+values. Finally, give the confusion matrix.
 
-The challenge with this assignment is not the math but getting all the
-data needed to compute. As is often the case in AI research, the
-mathematics are simple but the algorithm, particularly the collection
-and processing of data, is the real challenge. I expect you'll feel
-that in this assignment.
+* Task 2 (20 pts)
 
-In the aim of possibly helping you along, here is some pseudo-code
-(which we developed in class):
+Run the k-means algorithm in Weka using this dataset: [[./iris.arff][iris.arff]] (iris
+species clustering).
 
-#+BEGIN_EXAMPLE
-Task 1. Set up global variables.
+Choose $k=3$ and $k=4$. Give the confusion matrix for each value of
+$k$. Also report the percent of correctly classified instances for
+each class, for each $k$.
 
-- create a map for di values, with keys = strings and values = ints
-  (this map has words as keys; the value for a word is the number of
-   documents across all categories that have this word anywhere in the
-   document)
+* Task 3 (20 pts)
 
-- create several maps for dci values (strings -> ints again, like the
-  di map; these maps record the number of documents in a particular
-  category that have a particular word); perhaps you can put these
-  maps in another map, like so: dci[category][word] = #; in C++,
-  that's map<string, map<string, int> >
-             (cat)       (word)  (# of docs)
+Execute the k-nearest neighbor algorithm by hand on the centroids
+found from task 1 (or make up two random centroids if you did not
+finish task 1). Use $k = 2$. Classify the data point: $<1, 3, 0, 2>$.
 
-Task 2. Read the text documents.
+* Task 4 (20 pts)
 
-- open the listing.txt file (assuming you are using the AI dataset)
-- loop: for each line in the listing.txt file
-  - read the first "word" -- this is a file name (without the .txt)
-  - open the .txt file
-  - create a document map D with keys = strings and values = true/false
-    (this map will represent the document; the strings are words from
-     the document, and the true/false means the document does or does
-     not have that word; of course, we don't need to put words in the
-     map that the document does not have, just words it does, so only
-     true's will be in the map, not false's; you might prefer to use a
-     set of strings rather than a map)
-  - loop: for each word in the document
-    - read the word from the .txt file
-    - record this word in D
-  - close the .txt file
-  - read the rest of the line from the listing.txt file (the
-    number of categories and the categories themselves)
-    - record this category information for the document; how will you
-      do this?
-  - put this document map in a vector
+Run the k-nearest neighbor in Weka using this dataset: [[./letter.arff][letter.arff]]
+(handwritten letter classification).
 
-Task 3. Split the vector of document maps into a training and testing
-set.
+* Task 5 (20 pts)
 
-- shuffle the vector
-- choose a position at about the 90% mark
-- put all doc maps before this position in a training vector
-- put all doc maps after this position in a testing vector
+Explain the differences between k-means and k-nearest neighbor
+algorithms. What does each accomplish, and when/why might you use
+both?
 
-Task 4. Update the di values. This is best done after tasks 2 & 3 are
-done.
+* Extra credit (10 pts)
 
-- loop: for each document in the training set
-  - loop: for each word in the doc map
-    - increment in the global di map the number of occurrences of
-      documents with this word (because one more document has this
-      word)
-    - loop: for each category that this document is a member of
-      - increment in the global dci map the value for this word in
-        this category
+Play around with Weka; report which classifier algorithm performs best
+(or nearly best) for classifying the [[./letter.arff][letter.arff]] data.
 
-Task 5. Classify each testing document
-
-- set up variables for true positive, false positive, false negative
-  counts
-- loop: for each testing document:
-  - figure out which category (or top 2, top 3, etc.; your choice)
-    maximizes the final formula in the Bayesian methods notes...
-#+END_EXAMPLE
-
-This is a chunk of C++ that you may find useful for Task 2:
-
-#+BEGIN_SRC c++
-#include <fstream>
-#include <string>
-
-// ...
-
-ifstream f;
-f.open("listing.txt");
-while(!f.eof()) { // eof() is true if the file is finished
-    string docfile;
-    f >> docfile;
-    int category_count;
-    f >> category_count;
-    for(int i = 0; i < category_count; i++) {
-        string category;
-        f >> category;
-        // do something with category
-    }
-    // open docfile, process it a word at a time
-    ifstream df;
-    df.open(docfile.c_string()); // c_string() is just a funky C++ thing
-    while(!df.eof()) {
-        string word;
-        df >> word;
-        // do something with word
-    }
-    df.close()
-
-    // done with that line of listing.txt
-}
-f.close()
-#+END_SRC
 
 #+INCLUDE: footer.org

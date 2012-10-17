@@ -140,6 +140,8 @@ information, other strategies do.)
 
 * Press & Dyson's discoveries
 
+*Can a player win by manipulating the other player?*
+
 #+BEGIN_QUOTE
 It would be surprising if any significant mathematical feature of [the
 iterated prisoner's dilemma] has remained undescribed, but that
@@ -148,16 +150,46 @@ appears to be the case, as we show in this paper.
 
 Consider two players, X (she) and Y (he). Press and Dyson show that,
 
-  - longer memory of the opponent's previous choices, beyond memory of
-    just the single previous choice, serves no benefit
+  - longer memory does not help; for any long-memory strategy that Y
+    could play, X can do just as well with a certain shorter-memory
+    strategy (X's equally-good strategy is calculated based on knowing
+    Y's strategy)
 
   - player X can set player Y's final score to any value in the range
     from the mutual non-cooperation score to the mutual cooperation
     score, regardless of player Y's strategy; player X can do this
     with a fixed strategy (i.e., the strategy does not have to change
-    depending on what player Y chooses each round)
+    depending on what player Y chooses each round); Y's strategy has
+    to be fixed, however
 
-  - player X cannot set her own score in the same fashion
+  - player X cannot set her own score to any arbitrary value
+
+They also show something else. Suppose player X wants more than the
+mutual non-cooperation score, which was her limit if she chose to set
+Y's score to a particular value, independent of what Y was doing. She
+can get more reward if she "watches" or "thinks about" Y's strategy as
+they play. When X does this, we say X has a "theory of mind" regarding
+Y.
+
+If Y cooperates fully (at every step, the "Jesus" strategy; as might
+happen if Y's score "evolves" since we have seen that evolutionary
+approaches to the prisoner's dilemma typically yield cooperating
+strategies), then X can get maximum benefit (maximum
+extortion). However, since Y would be losing so much every time, an
+evolving Y would evolve away from that cooperating strategy.
+
+How does X get Y to cooperate fully? If X knows that Y is evolving his
+strategy, then X can force Y to evolve his strategy into one of
+cooperation, by giving little benefits periodically when Y
+cooperates. X cannot achieve maximum score this way, but can still do
+better than Y.
+
+#+BEGIN_QUOTE
+The extortionate strategies have the peculiar property of sharply
+distinguishing beween "sentient" players, who have a theory of mind
+about their opponents, and "evolutionary" players, [...] but have no
+theory of mind.
+#+END_QUOTE
 
 #+BEGIN_QUOTE
 It is worth contemplating that, though an evolutionary player Y is so

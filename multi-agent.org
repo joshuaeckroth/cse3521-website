@@ -3,6 +3,16 @@
 
 * Principles for designing agent-based solutions
 
+From '"Go to the ant": Engineering principles from natural multi-agent
+systems' by H.V.D. Parunak, /Annals of Operations Research/ 75 (1997)
+p. 69-101 ([[./gotoant.pdf][PDF]]).
+
+|                                           | Monolithic Program | Structured Programming | Object-Oriented Programming | Agent-Oriented Programming |
+|-------------------------------------------+--------------------+------------------------+-----------------------------+----------------------------|
+| How does a unit behave? (Code)            | External           | *Local*                | *Local*                     | *Local*                    |
+| What does a unit do when it runs? (State) | External           | External               | *Local*                     | *Local*                    |
+| When does a unit run?                     | External           | External (called)      | External (message)          | *Local* (rules, goals)     |
+
   - agents not functions (not functional decomposition)
 
   - keep agents small in size
@@ -70,6 +80,12 @@ influences, much more robustly than by providing global influences.
   - provide an entropy leak
 
 #+BEGIN_QUOTE
+The Second Law of Thermodynamics observes that closed systems
+progressively become more disordered over time. It is not obvious that
+a large collection of agents will organize itself to do useful
+things. The Second Law warns that the result of such an architecture
+may be disorder.
+
 Natural agent-based systems do organize themselves with striking
 efficiency. A common explanation is that a system can become more
 organized if energy is added to it from the outside (for example, by
@@ -86,8 +102,145 @@ its second-law debt. To adopt another metaphor, it provides an entropy
 leak to drain disorder away from the macro level (where useful work is
 done) to the micro level (where it won't interfere with the system's
 function).
+
+In one model of this leakage, micro-level dissipation in the
+environment generates a flow field that the agents can perceive and
+reinforce and to which they can orient themselves. Insect colonies leak
+entropy by depositing pheromones whose molecules, evaporating and
+spreading through the environment under Brownian motion, generate
+entropy. The resulting flow produces a field that the insects can
+perceive and to which they orient themselves in making further
+pheromone deposits.
 #+END_QUOTE
 
+Phrased another way, from "Toward the Specification and Design of
+Industrial Synthetic Ecosystems" by H.V.D. Parunak, John Sauter, and
+Steve Clark, /Proceedings of the Fourth International Workshop on
+Agent Theories, Architectures, and Languages (ATAL'97)/:
+
+#+BEGIN_QUOTE
+Naturally occurring multi-agent systems often use some form of
+currency to achieve global self-organization. The two classical
+examples are the flow of money in a market economy, and the
+evaporation of pheromones in insect communities. These mechanisms
+accomplish two purposes. They provide an "entropy leak" that permits
+self-organization (reduction of entropy) at the macro level without
+violating the second law of thermodynamics overall, and they generate
+a gradient field that agents can perceive and to which they can orient
+their actions, thus becoming more organized. Wherever possible,
+artificial agent communities should include such a currency. It should
+have three characteristics:
+
+  1. It should establish a gradient across the space in which the
+     agents act, either as a potential field or as an actual flow.
+
+  2. The agents should be able to perceive it and orient themselves to
+     this gradient.
+
+  3. The agents' actions should reinforce the gradient (positive feedback).
+#+END_QUOTE
+
+* Simulations
+
+From: From "Appearances Can Be Deceiving: Lessons Learned
+Re-Implementing Axelrod's 'Evolutionary Approach to Norms'" by Jose
+Manuel Galan and Luis R. Izquierdo (2005) ([[http://jasss.soc.surrey.ac.uk/8/3/2.html][HTML]])
+
+#+CAPTION: Comparison of focusing on first 1,000 iterations vs. first 1,000,000.
+[[./images/longer-simulations.gif]]
+
+#+BEGIN_QUOTE
+This paper has provided evidence showing that the results reported by
+Axelrod (1986) are not as reliable as one would desire. We can obtain
+the opposite results by running the model for longer, by using other
+mutation rates, by modifying the payoffs slightly, or by using
+alternative selection mechanisms. These findings should not be
+understood as a critique of Axelrod's work, which was developed when
+the computational power required to undertake a thorough analysis of
+his model was simply not available, but as a clear illustration of the
+necessity to revisit and replicate our models in order to clarify the
+boundaries of validity of our conclusions.
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+This paper has not only illustrated the significance of replication
+but it has also highlighted some best practice guidelines that
+agent-based modellers could find useful when developing their own
+models. In particular we have shown the importance of:
+
+  1. Running simulations with stochastic components several times for
+     several periods, so we can study not only how the system can
+     behave but also how it usually behaves.
+
+  2. Exploring thoroughly the parameter space and analysing the model
+     sensitivity to its parameters.
+
+  3. Complementing simulation with analytical work.
+
+  4. Being aware of the scope of our computer models and of the
+     conclusions obtained with them. The computer model is often only
+     one of many possible instantiations of a more general conceptual
+     model. Therefore the conclusions obtained with the computer model
+     do not necessarily apply to the conceptual model.
+#+END_QUOTE
+
+* Emergence
+
+#+CAPTION: Gala Contemplating the Mediterranean Sea Which at Twenty Meters Becomes the Portrait of Abraham Lincoln - Homage to Rothko (Salvador Dali, 1976, 75.5 by 99.25 inches)
+[[./images/Dali.Gala.Lincoln.20meters.jpg]]
+
+Are the "emergent" properties that are sometimes observed in
+multi-agent systems "real"? Do these properties exist independently,
+do they follow different rules, do they play a "causal" role in the
+system?
+
+Consider Adam Smith's "invisible hand" ("cooperation without coercion"
+--- Milton Friedman). Smith says that when buyers and sellers act in
+their own self-interest, the net effect to all of society is that
+better products are produced more cheaply, which helps everyone. Even
+though there are many actors, there appears to be a independent force
+guiding the society as a whole (the invisible hand).
+
+But is the invisible hand, and macroeconomics generally, a truly
+separate force? Or is it "epiphenomonal," that is, just a shadow of
+something else, and having no impact of its own?
+
+There are two aspects of emergent properties that might lead one to
+think there is something else going on:
+
+  - Emergent properties are often hard or impossible to
+    predict.
+
+    "Hard" to predict is different than "impossible." Chaos theory
+    shows us that some phenomena may be "hard" to predict but that
+    knowing the rules and initial conditions, we can (if nothing else)
+    just simulate each step to find out the final state.
+
+    "Impossible" to predict means that /even given/ the rules and
+    initial state, the outcome could not have been predicted. In other
+    words, even performing a simulation does not produce the actual
+    emergent properties. The prime example of this case:
+    *consciousness*. One might believe that even if all the neurons
+    and their connections of a human brain are set up in software, and
+    a simluation of neuron firings is performed, the simulation still
+    won't have consciousness...
+
+  - Emergent properties seem to follow different laws. Examples can be
+    found in psychology (e.g. Oedipus complex, obsessive
+    compulsiveness, etc.), macroeconomics, group evolution (as opposed
+    to the "selfish gene"), and so on. Moreover, these laws cannot be
+    deduced or explained in terms of the lower-level processes
+    (psychological states cannot be explained by neuron firings,
+    etc.).
+
+    Moreover, these emergent properties and their new laws can
+    actually /cause/ the lower level to act differently. For example,
+    the "invisible hand," as a distinct guiding force, can actually
+    cause individuals to act some particular way. Or conscious states
+    can actually cause neurons to fire a certain way. If this is true,
+    then the invisible hand and consciousness are not just "shadows"
+    of some other causal process, but are in fact doing the causing
+    themselves.
 
 * Emergence (Radiolab, August 14, 2007)
 

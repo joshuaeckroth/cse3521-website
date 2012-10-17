@@ -95,7 +95,7 @@ conclusion from just one instance because abduction typically
 describes causal relationships. "This ball is picked from that urn"
 /causes/ the ball to be red (with background knowledge that they are
 all red in that urn). On the other hand, induction says "they are all
-rved in that urn," which does not /cause/ the picked ball to be
+red in that urn," which does not /cause/ the picked ball to be
 red. This is a subtle point, so we'll move on (for more information,
 read the paper [[http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.6267]["Smart inductive generalizations are abductions"]] by
 Josephson).
