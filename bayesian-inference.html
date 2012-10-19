@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Bayesian inference</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Bayesian inference"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-10-19 13:34:22 EDT"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">Bayesian inference</h1>
+
+<p>Imagine building an expert system for medical diagnosis. You may
+include a rule like,
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">hasToothache</span>(<span style="color: #a0522d;">X</span>) :- hasCavity(<span style="color: #a0522d;">X</span>).
+</pre>
+
+
+<p>
+The problem is that not every toothache is caused by a cavity. You may
+expand it thus,
+</p>
+
+
+
+<pre class="src src-prolog"><span style="color: #0000ff;">hasToothache</span>(<span style="color: #a0522d;">X</span>) :- hasCavity(<span style="color: #a0522d;">X</span>).
+<span style="color: #0000ff;">hasToothache</span>(<span style="color: #a0522d;">X</span>) :- hasGumDisease(<span style="color: #a0522d;">X</span>).
+<span style="color: #0000ff;">hasToothache</span>(<span style="color: #a0522d;">X</span>) :- hasAbscess(<span style="color: #a0522d;">X</span>).
+<span style="color: #0000ff;">hasToothache</span>(<span style="color: #a0522d;">X</span>) :- hadTeethDrilledByAliens(<span style="color: #a0522d;">X</span>).
+...
+</pre>
+
+
+<p>
+Now there are three different possible causes of the toothache. Yet
+still, some are missing. And cavities do not always cause
+toothaches. And a person may have both a cavity and an abscess. How do
+we deal with all these qualifications?
+</p>
+<p>
+One answer is to use probabilistic reasoning. We will be able to say
+that cavities cause toothaches only some percentage of the time, and
+furthermore that having both a toothache and red, swollen gums makes
+gum disease more likely and a cavity less likely (observing swollen
+gums counts against the cavity diagnosis).
+</p>
+<p>
+Russell and Norvig (from the textbook) provide three good reasons why
+we might choose to use probabilistic reasoning rather than logic-based
+reasoning for the medical domain:
+</p>
+<ul>
+<li><b>Laziness</b>: It is too much work to list the complete set of
+    antecedents or consequents needed to ensure an exceptionless rule
+    and too hard to use such rules.
+
+</li>
+<li><b>Theoretical ignorance</b>: Medical science has no complete theory
+    for the domain.
+
+</li>
+<li><b>Practical ignorance</b>: Even if we know all the rules, we might be
+    uncertain about a particular patient because not all the necessary
+    tests have been or can be run.
+</li>
+</ul>
+
+
+
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">The basics</a></li>
+<li><a href="#sec-2">Causal graphs</a></li>
+<li><a href="#sec-3">Bayesian inference</a></li>
+<li><a href="#sec-4">More complicated cases</a></li>
+<li><a href="#sec-5">Some helpful software</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">The basics</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+We&rsquo;ll use <a href="./propositional-logic.html">propositional logic</a> to represent we can be true or
+false. Then, with the \(P()\) notation, we&rsquo;ll be able to talk about the
+probability of whether something is true or false.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Notation</th><th scope="col" class="left">Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(P(a)\)</td><td class="left">The probability that \(a\) (a proposition) is true</td></tr>
+<tr><td class="left">\(P(a \wedge b)\)</td><td class="left">The probability that both \(a\) and \(b\) are true</td></tr>
+<tr><td class="left">\(P(\neg a)\)</td><td class="left">The probability that \(a\) is false</td></tr>
+<tr><td class="left">\(P(a \vert{} b)\)</td><td class="left">The probability that \(a\) is true if \(b\) is assumed to be true</td></tr>
+</tbody>
+</table>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Rule</th><th scope="col" class="left">Explanation</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(0 \leq P(a) \leq 1\)</td><td class="left">A probability is always between \(0\) and \(1\).</td></tr>
+<tr><td class="left">\(P(a) = 1.0 - P(\neg a)\)</td><td class="left">The probability of something being true and the probability of the opposite add up to \(1\).</td></tr>
+<tr><td class="left">\(P(a \wedge b) = P(a \vert{} b) P(b)\)</td><td class="left">The probability of two statements being true simultaneously equals the probability that one is true, assuming the other already is known to be true, times the probability that the other is true (i.e., no longer assuming it is).</td></tr>
+<tr><td class="left">\(P(a \vee b) = P(a) + P(b) - P(a \wedge b)\)</td><td class="left">The probability of either of two statements being true equals the sum of the probabilities that either is true separately minus the probability they are both true simultaneously.</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Causal graphs</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Sometimes, like in medical diagnosis, we want to think about the
+propositions as events or causes. For example,
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Proposition</th><th scope="col" class="left">Interpretation</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(t\)</td><td class="left">This person has a toothache.</td></tr>
+<tr><td class="left">\(c\)</td><td class="left">This person has a cavity.</td></tr>
+<tr><td class="left">\(g\)</td><td class="left">This person has gum disease.</td></tr>
+</tbody>
+</table>
+
+
+<p>
+We can specify how diseases cause symptoms:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/toothache-1.png"  alt="./images/toothache-1.png" />
+</p>
+</div>
+
+<p>
+This graph shows us that having a cavity somehow influences the chance
+that a toothache is also present. This is what we expect (and that&rsquo;s
+why I put the arrows in the graph).
+</p>
+<p>
+This means that it should be the case that,
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Suppose that&hellip;</th><th scope="col" class="left">Interpretation</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(P(t) \neq P(t \vert{} c)\)</td><td class="left">Knowing that a person has a cavity changes the probability that the person has a toothache.</td></tr>
+</tbody>
+</table>
+
+
+<p>
+On the other hand, consider,
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Suppose that&hellip;</th><th scope="col" class="left">Interpretation</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(P(r) = P(r \vert{} c)\)</td><td class="left">Knowing that a person has a cavity does not change the probability that the person has red hair.</td></tr>
+</tbody>
+</table>
+
+
+<p>
+We will say that \(P(c|g) = P(c)\) and likewise \(P(g|c) = P(g)\) &mdash; that
+is, having a cavity does not change the chance of having gum disease,
+and vice versa. We claim that they are independent events.
+</p>
+<p>
+Let&rsquo;s flesh out the probabilities for the toothache:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(T\)</th><th scope="col" class="left">\(C\)</th><th scope="col" class="left">\(G\)</th><th scope="col" class="left">Probability of \(P(T \vert{} C \wedge G)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(t\)</td><td class="left">\(c\)</td><td class="left">\(g\)</td><td class="left">\(P(t \vert{} c \wedge g) = 1.0\) (ouch!)</td></tr>
+<tr><td class="left">\(t\)</td><td class="left">\(c\)</td><td class="left">\(\neg g\)</td><td class="left">\(P(t \vert{} c \wedge \neg g) = 0.6\)</td></tr>
+<tr><td class="left">\(t\)</td><td class="left">\(\neg c\)</td><td class="left">\(g\)</td><td class="left">\(P(t \vert{} \neg c \wedge g) = 0.3\)</td></tr>
+<tr><td class="left">\(t\)</td><td class="left">\(\neg c\)</td><td class="left">\(\neg g\)</td><td class="left">\(P(t \vert{} \neg c \wedge \neg g) = 0.05\)</td></tr>
+<tr><td class="left">\(\neg t\)</td><td class="left">&hellip;</td><td class="left">&hellip;</td><td class="left">(just \(1.0\) minus the other rows)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+We&rsquo;ll also need to know the chance of having a cavity and, separately,
+the chance of having gum disease:
+</p>
+<ul>
+<li>\(P(c) = 0.10\)
+</li>
+<li>\(P(g) = 0.05\)
+</li>
+</ul>
+
+
+<p>
+To calculate \(P(t)\), that is, the probability of having a toothache
+for whatever reason, we have to &ldquo;condition&rdquo; across all the possible
+causes:
+</p>
+
+
+\begin{equation}
+\begin{aligned}
+P(t) =& P(t|c \wedge g)P(c \wedge g) \\
+     &+ P(t|c \wedge \neg g)P(c \wedge \neg g) \\
+     &+ P(t|\neg c \wedge g)P(\neg c \wedge g) \\
+     &+ P(t|\neg c \wedge \neg g)P(\neg c \wedge \neg g) \\
+     =& P(t|c \wedge g)P(c)P(g) \\
+     &+ P(t|c \wedge \neg g)P(c)P(\neg g) \\
+     &+ P(t|\neg c \wedge g)P(\neg c)P(g) \\
+     &+ P(t|\neg c \wedge \neg g)P(\neg c)P(\neg g) \\
+     =& 1.0*0.10*0.05 \\
+     &+ 0.6*0.10*(1.0-0.05) \\
+     &+ 0.3*(1.0-0.10)*0.05 \\
+     &+ 0.05*(1.0-0.10)*(1.0-0.05) \\
+     =& 0.11825
+\end{aligned}
+\end{equation}
+
+<p>
+If our tables are true, then the chance of some random person having a
+toothache, assuming you know nothing about their dental history, is
+11.8%.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Bayesian inference</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+We can derive some other rules using just a little algebra:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Derived</th><th scope="col" class="left">Notes</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(P(a \wedge b) = P(b \wedge a)\)</td><td class="left">Due to normal Boolean logic rules.</td></tr>
+<tr><td class="left">\(P(a \vert{} b) P(b) = P(b \vert{} a) P(a)\)</td><td class="left">Due to rule regarding \(P(a \wedge b)\).</td></tr>
+<tr><td class="left">\(P(a \vert{} b) = \frac{P(b \vert{} a) P(a)}{P(b)}\)</td><td class="left">Bayes&rsquo; formula. Of course, it must be that \(P(b) \neq 0\).</td></tr>
+</tbody>
+</table>
+
+
+<p>
+That last derivation is especially interesting to us. Somebody else
+thought so, too (from <a href="http://en.wikipedia.org/wiki/File:Bayes'_Theorem_MMB_01.jpg">Wikipedia</a>):
+</p>
+
+<div class="figure">
+<p><img src="./images/320px-Bayes_Theorem_MMB_01.jpg"  alt="./images/320px-Bayes_Theorem_MMB_01.jpg" /></p>
+<p>Bayes&rsquo; formula</p>
+</div>
+
+
+<p>
+Why is it interesting? Think about the medical diagnosis problem again.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Probability</th><th scope="col" class="left">Interpretation</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(P(t \vert{} c \wedge \neg g) = 0.6\)</td><td class="left">If someone has a cavity and no gum disease, there is a 60% chance they have a toothache.</td></tr>
+<tr><td class="left">\(P(t \vert{} \neg c \wedge g) = 0.3\)</td><td class="left">If someone has gum disease and no cavities, there is a 30% chance they have a toothache.</td></tr>
+<tr><td class="left">\(P(c \vert{} t) = ??\)</td><td class="left">If somebody has a toothache, what is the chance they have a cavity?</td></tr>
+</tbody>
+</table>
+
+
+<p>
+This last row in the table is a very important question. It&rsquo;s asking
+us to determine the cause, given the effect. (Hey, that looks like
+abduction from the <a href="./other-logics.html">other logics</a> notes!)
+</p>
+<p>
+Here is the calculation, given by Bayes&rsquo; formula:
+</p>
+
+
+\begin{equation}
+\begin{aligned}
+P(c|t)
+ =& P(t|c)P(c) / P(t)\\
+ =& (P(t|c \wedge g)P(g) + P(t|c \wedge \neg g)P(\neg g))P(c) / P(t)
+ \\
+ =& (1.0*0.05 + 0.6*(1.0-0.05))*0.10 / 0.11825 \\
+ =& 0.5243
+\end{aligned}
+\end{equation}
+
+<p>
+Suppose we want to compare this probability with \(P(g|t)\), that is,
+the chance that the person has gum disease.
+</p>
+<p>
+Then we really want to know whether or not,
+</p>
+
+
+\begin{equation}
+P(c|t) > P(g|t)
+ \equiv \frac{P(t|c)P(c)}{P(t)} > \frac{P(t|g)P(g)}{P(t)}
+ \equiv P(t|c)P(c) > P(t|g)P(g)
+\end{equation}
+
+<p>
+Notice the common term, \(P(t)\). This means if we only want to figure
+out which is more likely, cavity or gum disease, given that the person
+has a toothache, we don&rsquo;t care how common toothaches are in general
+(\(P(t)\)).
+</p>
+<p>
+Thus, we often write \(\alpha\) for the denominator and just never
+calculate it:
+</p>
+
+
+\begin{equation}
+P(c|t) > P(g|t) ? \quad
+\begin{aligned}
+P(c|t) =& \alpha P(t|c)P(c) \\
+P(g|t) =& \alpha P(g|c)P(g)
+\end{aligned}
+\end{equation}
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">More complicated cases</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Suppose have the following causal graph:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/causal-graph-1.png"  alt="./images/causal-graph-1.png" />
+</p>
+</div>
+
+<p>
+We&rsquo;ll need to give the conditional probabilities of all the nodes with
+parents, and the unconditional (<i>a priori</i>) probabilities of the node
+without a parent (\(x\)).
+</p>
+<p>
+Table for \(z\):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(Z\)</th><th scope="col" class="left">\(Y\)</th><th scope="col" class="left">\(X\)</th><th scope="col" class="left">Probability of \(P(Z \vert{} Y \wedge X)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(z\)</td><td class="left">\(y\)</td><td class="left">\(x\)</td><td class="left">\(P(z \vert{} y \wedge x) = 0.3\)</td></tr>
+<tr><td class="left">\(z\)</td><td class="left">\(y\)</td><td class="left">\(\neg x\)</td><td class="left">\(P(z \vert{} y \wedge \neg x) = 0.8\)</td></tr>
+<tr><td class="left">\(z\)</td><td class="left">\(\neg y\)</td><td class="left">\(x\)</td><td class="left">\(P(z \vert{} \neg y \wedge x) = 0.4\)</td></tr>
+<tr><td class="left">\(z\)</td><td class="left">\(\neg y\)</td><td class="left">\(\neg x\)</td><td class="left">\(P(z \vert{} \neg y \wedge \neg x) = 0.9\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Table for \(y\):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(Y\)</th><th scope="col" class="left">\(X\)</th><th scope="col" class="left">Probability of \(P(Y \vert{} X)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(y\)</td><td class="left">\(x\)</td><td class="left">\(P(y \vert{} x) = 0.3\)</td></tr>
+<tr><td class="left">\(y\)</td><td class="left">\(\neg x\)</td><td class="left">\(P(y \vert{} \neg x) = 0.1\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Table for \(z\):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(X\)</th><th scope="col" class="left">Probability of \(P(X)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(x\)</td><td class="left">\(P(x) = 0.4\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Now, what is \(P(z \wedge \neg y \wedge x)?\). Basically, you calculate
+the probability of each node <i>given its parents</i>. It&rsquo;s a relatively
+simple process:
+</p>
+
+
+\begin{equation}
+\begin{aligned}
+P(z \wedge \neg y \wedge x)
+ =& P(z | \neg y \wedge x)P(\neg y \wedge x) \\
+ =& P(z | \neg y \wedge x)P(\neg y | x)P(x) \\
+ =& 0.4 * (1.0-0.3) * 0.4 \\
+ =& 0.112
+\end{aligned}
+\end{equation}
+
+<p>
+What if we don&rsquo;t know (or care) about the value of \(x\)? Then we have,
+</p>
+
+
+\begin{equation}
+\begin{aligned}
+P(z \wedge \neg y) 
+ =& P(z \wedge \neg y | x)P(x) + P(z \wedge \neg y | \neg x)P(\neg x) \\
+ =& P(z | \neg y \wedge x)P(\neg y | x)P(x) + P(z | \neg y \wedge \neg
+ x)P(\neg y | \neg x)P(\neg x) \\
+ =& 0.4 * (1.0 - 0.3) * 0.4 + 0.9 * (1.0 - 0.1) * (1.0 - 0.4) \\
+ =& 0.598
+\end{aligned}
+\end{equation}
+
+<p>
+Here&rsquo;s another example. This one models the causes of a possible
+report of a fire alarm and a possible report of smoke.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/firealarm.png"  alt="./images/firealarm.png" />
+</p>
+</div>
+
+<p>
+Table for \(report\) (&ldquo;did somebody report an alarm?&rdquo;):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(report\)</th><th scope="col" class="left">\(leaving\)</th><th scope="col" class="left">\(P(report \vert{} leaving)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">true</td><td class="left">true</td><td class="left">\(0.75\)</td></tr>
+<tr><td class="left">true</td><td class="left">false</td><td class="left">\(0.01\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Table for \(leaving\) (&ldquo;are people leaving the building?&rdquo;):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(leaving\)</th><th scope="col" class="left">\(alarm\)</th><th scope="col" class="left">\(P(leaving \vert{} alarm)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">true</td><td class="left">true</td><td class="left">\(0.88\)</td></tr>
+<tr><td class="left">true</td><td class="left">false</td><td class="left">\(0.0\)</td></tr>
+</tbody>
+</table>
+
+
+<p>  
+Table for \(alarm\) (&ldquo;is there a fire alarm sounding?&rdquo;):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(alarm\)</th><th scope="col" class="left">\(tampering\)</th><th scope="col" class="left">\(fire\)</th><th scope="col" class="left">\(P(alarm \vert{} tampering \wedge fire)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">true</td><td class="left">true</td><td class="left">true</td><td class="left">\(0.50\)</td></tr>
+<tr><td class="left">true</td><td class="left">true</td><td class="left">false</td><td class="left">\(0.85\)</td></tr>
+<tr><td class="left">true</td><td class="left">false</td><td class="left">true</td><td class="left">\(0.99\)</td></tr>
+<tr><td class="left">true</td><td class="left">false</td><td class="left">false</td><td class="left">\(0.0\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Table for \(tampering\) (&ldquo;did somebody tamper with the fire alarm?&rdquo;):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(tampering\)</th><th scope="col" class="left">\(P(tamering)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">true</td><td class="left">\(0.02\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Table for \(fire\) (&ldquo;is there a fire?&rdquo;):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(fire\)</th><th scope="col" class="left">\(P(fire)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">true</td><td class="left">\(0.01\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Table for \(smoke\) (&ldquo;is there smoke?&rdquo;):
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(smoke\)</th><th scope="col" class="left">\(fire\)</th><th scope="col" class="left">\(P(smoke \vert{} fire)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">true</td><td class="left">true</td><td class="left">\(0.90\)</td></tr>
+<tr><td class="left">true</td><td class="left">false</td><td class="left">\(0.01\)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Now, suppose there is a fire and the alarm was not tampered with. What
+is the probability that somebody will report a fire? Notice that
+people have to leave the building before somebody will report the
+fire.
+</p>
+<p>
+Let,
+</p><ul>
+<li>\(report=T \equiv r\), \(report=F \equiv \bar{r}\)
+</li>
+<li>\(leaving=T \equiv l\), \(leaving=F \equiv \bar{l}\)
+</li>
+<li>\(alarm=T \equiv r\), \(alarm=F \equiv \bar{r}\)
+</li>
+<li>\(tampering=T \equiv t\), \(tampering=F \equiv \bar{t}\)
+</li>
+<li>\(fire=T \equiv f\), \(fire=F \equiv \bar{f}\)
+</li>
+</ul>
+
+
+<p>
+Ok, here we go!
+</p>
+
+
+\begin{equation}
+\begin{aligned}
+P(r | \bar{t} \wedge f) 
+ =& P(r | l \wedge \bar{t} \wedge f)P(l | \bar{t} \wedge f) \\
+ &+ P(r | \bar{l} \wedge \bar{t} \wedge f)P(\bar{l} | \bar{t} \wedge f) \\
+ =& P(r | l \wedge \bar{t} \wedge f)(P(l | a \wedge \bar{t} \wedge f)P(a | \bar{t} \wedge f) + P(l | \bar{a} \wedge \bar{t} \wedge f)P(\bar{a} | \bar{t} \wedge f)) \\
+ &+ P(r | \bar{l} \wedge \bar{t} \wedge f)(P(\bar{l} | a \wedge \bar{t} \wedge f)P(a | \bar{t} \wedge f) + P(\bar{l} | \bar{a} \wedge \bar{t} \wedge f)P(\bar{a} | \bar{t} \wedge f)) \\
+ =& P(r | l)(P(l | a)P(a | \bar{t} \wedge f) + P(l | \bar{a})P(\bar{a} | \bar{t} \wedge f)) \\
+ &+ P(r | \bar{l})(P(\bar{l} | a)P(a | \bar{t} \wedge f) + P(\bar{l} | \bar{a})P(\bar{a} | \bar{t} \wedge f)) \\
+ =& 0.75*(0.88*0.99 + 0.0*0.01) + 0.01*(0.12*0.99 + 1.0*0.01) \\
+ =& 0.655
+\end{aligned}
+\end{equation}
+
+<p>
+Wow, that was painful. It could be much worse. We didn&rsquo;t even uses
+Bayes&rsquo; formula in that derivation, because we never needed to
+&ldquo;reverse&rdquo; the causal arrows in the graph.
+</p>
+<p>
+If we asked instead, &ldquo;what is the chance there is a fire when somebody
+reports a fire?&rdquo; then we would need Bayes&rsquo; formula.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Some helpful software</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+Let&rsquo;s use some software to perform these calculations for us. Visit
+<a href="http://www.aispace.org/index.shtml">AISpace</a>, specifically the <a href="http://aispace.org/bayes">Belief and Decision Networks</a> page. Download
+the Java program.
+</p>
+<p>
+Start it up, and you see this:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/aispace-bayes-1.png"  alt="./images/aispace-bayes-1.png" />
+</p>
+</div>
+
+<p>
+Click &ldquo;File &gt; Load Sample Problem&rdquo; and choose &ldquo;Fire Alarm Belief
+Network.&rdquo; Now you have this:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/aispace-bayes-2.png"  alt="./images/aispace-bayes-2.png" />
+</p>
+</div>
+
+<p>
+Click the &ldquo;Solve&rdquo; tab. Choose the &ldquo;Make Observation&rdquo; tool
+button. Then, click the &ldquo;tampering&rdquo; node and choose &ldquo;F&rdquo; (false):
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/aispace-bayes-3.png"  alt="./images/aispace-bayes-3.png" />
+</p>
+</div>
+
+<p>
+Do the same for the &ldquo;fire&rdquo; node but select &ldquo;T&rdquo; (true).
+</p>
+<p>
+We have set the assumed/observed events. Now we want to know, what is
+the chance of a report of a fire? I.e., we want to know,
+\(P(report=T|tampering=F \wedge fire=T)\)?
+</p>
+<p>
+Click the &ldquo;Query&rdquo; tool and then click the &ldquo;report&rdquo; node. Select
+&ldquo;Brief&rdquo;.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/aispace-bayes-4.png"  alt="./images/aispace-bayes-4.png" />
+</p>
+</div>
+
+<p>
+You get \(P(report=T|tampering=F \wedge fire=T) = 0.655\) just as we
+calculated.
+</p>
+<p>
+Next, we&rsquo;ll ask &ldquo;how likely is the observation?&rdquo; I.e., what is
+\(P(tampering=F \wedge fire=T)\)?
+</p>
+<p>
+This is easy. After the observations have been set, just click the
+&ldquo;P(e) Query&rdquo; tool (which means &ldquo;probability of the evidence&rdquo;
+a.k.a. the observations).
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/aispace-bayes-5.png"  alt="./images/aispace-bayes-5.png" />
+</p>
+</div>
+
+<p>
+So, it seems \(P(tampering=F \wedge fire=T)=0.0098\). This is easy to
+verify:
+</p>
+
+
+\(P(tampering=F \wedge fire=T) = P(tampering=F)P(fire=T) =
+(1.0-0.02)*0.01 = 0.0098\).
+
+<p>
+Finally, we&rsquo;ll ask for a Bayesian inference. Clear the observations
+(set the observations to &ldquo;&lt;none&gt;&rdquo; for the &ldquo;tampering&rdquo; and &ldquo;fire&rdquo;
+nodes).
+</p>
+<p>
+Then, make a &ldquo;T&rdquo; observation for &ldquo;report.&rdquo; Then query the &ldquo;fire&rdquo; node.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/aispace-bayes-6.png"  alt="./images/aispace-bayes-6.png" />
+</p>
+</div>
+
+<p>
+It seems that the chance of a fire if somebody reports it is 23.7%.
+</p>
+
+
+<div style="font-size: 80%;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<!-- Plupper Tracking Code -->
+<script src="https://www.google.com/jsapi"></script>
+<script type="text/javascript"
+    src="https://static.plupper.com/js/plupper.js"></script>
+<script type="text/javascript">
+    plupper.init("joshuaeckroth@plupper.com");
+    plupper.enableCobrowsing();
+</script>
+<!-- End of Plupper Tracking Code -->
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -191,6 +191,7 @@ content: "*** "
 
     td {
         border: none;
+        border-left: 1px solid black;
     }
 
     th {
