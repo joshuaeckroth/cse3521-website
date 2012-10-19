@@ -1,5 +1,5 @@
 #+SETUPFILE: setup.org
-#+TITLE: Document classification
+#+TITLE: Text classification
 
 The goal is to take a new text document (an article from a website,
 perhaps) and choose 1, 2, maybe more categories that describe the

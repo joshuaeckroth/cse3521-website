@@ -1,8 +1,5 @@
 #+SETUPFILE: setup.org
-#+TITLE: AI in culture
+#+TITLE: Weka
 
-* Films
-
-** Enthiran
 
 #+INCLUDE: footer.org
