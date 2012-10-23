@@ -1,5 +1,39 @@
 #+SETUPFILE: setup.org
 #+TITLE: Weka
 
+* Clustering
+
+#+CAPTION: Click "Choose" to choose the clustering algorithm.
+[[./images/weka-cluster-1.png]]
+
+#+CAPTION: Choose "SimpleKMeans."
+[[./images/weka-cluster-2.png]]
+
+#+CAPTION: Click the name of the algorithm to get more options.
+[[./images/weka-cluster-3.png]]
+
+#+CAPTION: Possibly change the number of clusters or distance function.
+[[./images/weka-cluster-4.png]]
+
+#+CAPTION: For evaluation (including the confusion matrix), choose Classes to clusters evaluation and make sure "(Nom) class" (nominal variable called "class") is selected for comparison.
+[[./images/weka-cluster-5.png]]
+
+
+* Classification
+
+#+CAPTION: Click "Choose" to choose the classification algorithm.
+[[./images/weka-classify-1.png]]
+
+#+CAPTION: Choose "IBk."
+[[./images/weka-classify-2.png]]
+
+#+CAPTION: Click the name of the algorithm to get more options.
+[[./images/weka-classify-3.png]]
+
+#+CAPTION: Possibly change the number of clusters.
+[[./images/weka-classify-4.png]]
+
+#+CAPTION: For evaluation (including the confusion matrix), choose "Cross-validation" with 10 folds.
+[[./images/weka-classify-5.png]]
 
 #+INCLUDE: footer.org
