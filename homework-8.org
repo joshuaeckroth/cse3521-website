@@ -58,8 +58,7 @@ Report the best (in terms of average F-score) classification algorithm
 and feature vector pairing for the [[./sms-spam.arff][sms-spam.arff]] dataset. Use [[./weka.html][Weka]] to
 do this. Be sure to try:
 
-  - k-nearest neighbor with $k=2$ (since we know there are two
-    classes: ham/spam), and,
+  - k-nearest neighbor with $k=1,2,3$ and,
     - Binary feature vectors
     - Frequency feature vectors
     - tf-idf feature vectors
