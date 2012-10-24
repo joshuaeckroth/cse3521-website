@@ -344,7 +344,8 @@ perform /very/ well:
 However, support vector machine training is very slow: training the
 "la1" dataset (only 2883 documents and 6 categories) took 2.5 hours on
 a quad-core machine (using all cores). Training with the naïve Bayes
-method (described in [[./bayesian-methods.html][Bayesian methods]] notes) takes only a few seconds.
+method (described in [[./naive-bayesian.html][Naïve Bayesian classification]] notes) takes only a
+few seconds.
 
 #+INCLUDE: footer.org
 

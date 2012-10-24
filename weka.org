@@ -1,7 +1,10 @@
 #+SETUPFILE: setup.org
 #+TITLE: Weka
 
-* Clustering
+Download from the [[http://www.cs.waikato.ac.nz/ml/weka/][Weka website]], click "Download" on the left, and
+select one of the "Stable book 3rd ed." versions for your machine.
+
+* k-means clustering
 
 #+CAPTION: Click "Choose" to choose the clustering algorithm.
 [[./images/weka-cluster-1.png]]
@@ -19,7 +22,7 @@
 [[./images/weka-cluster-5.png]]
 
 
-* Classification
+* k-nearest neighbor classification
 
 #+CAPTION: Click "Choose" to choose the classification algorithm.
 [[./images/weka-classify-1.png]]
@@ -35,5 +38,81 @@
 
 #+CAPTION: For evaluation (including the confusion matrix), choose "Cross-validation" with 10 folds.
 [[./images/weka-classify-5.png]]
+
+* Preprocessing text
+
+As discussed in the [[./text-classification.html][text classification]] notes, text files typically
+need to be converted into "feature vectors" before machine learning
+algorithms can be applied. The most common feature vector is a vector
+where each dimension is a different word, and the value in that
+dimension is either 0/1 binary value (yes or no the word is in that
+document), an integer count (the frequency of the word in that
+document), or a real value (often the tf-idf score of that word in
+that document).
+
+The ARFF files we will be working with will always look like this:
+
+#+BEGIN_EXAMPLE
+@relation some-description-of-the-data
+@attribute contents string
+@attribute class {ham,spam}
+
+@data
+'Go until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat...',ham
+'Ok lar... Joking wif u oni...',ham
+'Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&Cs apply 08452810075over18s',spam
+'U dun say so early hor... U c already then say...',ham
+'Nah I dont think he goes to usf, he lives around here though',ham
+...
+#+END_EXAMPLE
+
+Of course, the classes (ham/spam) may change. These files are very
+easy to generate, should you actually wish to use text classification
+for your own purposes.
+
+We'll practice with the [[./sms-spam.arff][sms-spam.arff]] file, which has examples of SMS
+text msg ham and spam.
+
+** Strings to binary feature vectors
+
+#+CAPTION: Load the ARFF file and choose a filter.
+[[./images/weka-preprocess-1.png]]
+
+#+CAPTION: Choose the StringToWordVector filter, in the Unsupervised > Attribute section.
+[[./images/weka-preprocess-2.png]]
+
+#+CAPTION: Click the filter name to get more options.
+[[./images/weka-preprocess-3.png]]
+
+#+CAPTION: Change "attributeIndices" to "1" to just select the first attribute (the contents of the SMS message). Change "attributeNamePrefix" to "word-" so that all the new features look like "word-foo" and "word-bar", etc. Change "wordsToKeep" to "100000" to keep them all.
+[[./images/weka-preprocess-4.png]]
+
+#+CAPTION: Click "Apply"
+[[./images/weka-preprocess-5.png]]
+
+#+CAPTION: Now you'll have lots more attributes. You can click "Undo" if you don't like it.
+[[./images/weka-preprocess-6.png]]
+
+#+CAPTION: Everything works better if the class (ham/spam) is last. After our filter, it's not anymore. Let's fix that. Choose a new filter, "Reorder," under Unsupervised > Attribute. Click the filter name to change its properties. Type "2-last,1" to make the new order the second-to-last attributes followed by the first attribute. This puts the first attribute at the end.
+[[./images/weka-preprocess-7.png]]
+
+#+CAPTION: Click "Apply." Now the class (ham/spam) should be the last attribute again.
+[[./images/weka-preprocess-8.png]]
+
+** Strings to frequency vectors
+
+Follow the steps above ("Strings to binary feature vectors") except
+use the following changes in the StringToWordVector filter:
+
+#+CAPTION: Change "outputWordCounts" to "True."
+[[./images/weka-preprocess-9.png]]
+
+** Strings to tf-idf vectors
+
+Follow the steps above ("Strings to binary feature vectors") except
+use the following changes in the StringToWordVector filter:
+
+#+CAPTION: Change "IDFTransform" to "True" and "TFTransform" to "True," as well as "normalizeDocLength" to "Normalize all data."
+[[./images/weka-preprocess-10.png]]
 
 #+INCLUDE: footer.org

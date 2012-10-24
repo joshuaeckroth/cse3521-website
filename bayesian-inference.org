@@ -213,6 +213,27 @@ P(g|t) =& \alpha P(g|c)P(g)
 \end{aligned}
 \end{equation}
 
+* MAP (maximum a posteriori)
+
+What we just did was find the /posterior/ probability of certain
+propositions, given the observations. The posterior of $c$, after we
+have observed $t$, is $P(c|t)$.
+
+Specifically, we wanted to compare $P(c|t)$ to $P(g|t)$. We find the
+posteriors of both, ignoring the common factor which we'll just call
+$\alpha$. (The "prior" is $P(c)$. Hence, the posterior is $P(c|t)$.)
+We can compare these posteriors and whichever one is larger, we'll
+just say, "that must be what happened!"
+
+This is a common form of inference when you have probabilistic
+cause-effect relationships. Given the effect, what's the most likely
+cause? We call it MAP, or /maximum a posteriori/ (we use Latin because
+we can). It only works if the different causes are mutually exclusive,
+so that you only want to take the best single one.
+
+Thus, the result of MAP inference is a truth-assignment, i.e., a cause
+of the observations, that is most probable.
+
 * More complicated cases
 
 Suppose have the following causal graph:
