@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Bayesian inference</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Bayesian inference"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-19 13:34:22 EDT"/>
+<meta name="generated" content="2012-10-23 22:49:31 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -206,8 +206,9 @@ reasoning for the medical domain:
 <li><a href="#sec-1">The basics</a></li>
 <li><a href="#sec-2">Causal graphs</a></li>
 <li><a href="#sec-3">Bayesian inference</a></li>
-<li><a href="#sec-4">More complicated cases</a></li>
-<li><a href="#sec-5">Some helpful software</a></li>
+<li><a href="#sec-4">MAP (maximum a posteriori)</a></li>
+<li><a href="#sec-5">More complicated cases</a></li>
+<li><a href="#sec-6">Some helpful software</a></li>
 </ul>
 </div>
 </div>
@@ -512,8 +513,40 @@ P(g|t) =& \alpha P(g|c)P(g)
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">More complicated cases</h2>
+<h2 id="sec-4">MAP (maximum a posteriori)</h2>
 <div class="outline-text-2" id="text-4">
+
+
+<p>
+What we just did was find the <i>posterior</i> probability of certain
+propositions, given the observations. The posterior of \(c\), after we
+have observed \(t\), is \(P(c|t)\).
+</p>
+<p>
+Specifically, we wanted to compare \(P(c|t)\) to \(P(g|t)\). We find the
+posteriors of both, ignoring the common factor which we&rsquo;ll just call
+\(\alpha\). (The &ldquo;prior&rdquo; is \(P(c)\). Hence, the posterior is \(P(c|t)\).)
+We can compare these posteriors and whichever one is larger, we&rsquo;ll
+just say, &ldquo;that must be what happened!&rdquo;
+</p>
+<p>
+This is a common form of inference when you have probabilistic
+cause-effect relationships. Given the effect, what&rsquo;s the most likely
+cause? We call it MAP, or <i>maximum a posteriori</i> (we use Latin because
+we can). It only works if the different causes are mutually exclusive,
+so that you only want to take the best single one.
+</p>
+<p>
+Thus, the result of MAP inference is a truth-assignment, i.e., a cause
+of the observations, that is most probable.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">More complicated cases</h2>
+<div class="outline-text-2" id="text-5">
 
 
 <p>
@@ -781,9 +814,9 @@ reports a fire?&rdquo; then we would need Bayes&rsquo; formula.
 
 </div>
 
-<div id="outline-container-5" class="outline-2">
-<h2 id="sec-5">Some helpful software</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Some helpful software</h2>
+<div class="outline-text-2" id="text-6">
 
 
 <p>

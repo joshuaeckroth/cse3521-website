@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Weka"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-23 16:21:42 EDT"/>
+<meta name="generated" content="2012-10-24 00:03:19 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -98,19 +98,29 @@
 <div id="content">
 <h1 class="title">Weka</h1>
 
+<p>Download from the <a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka website</a>, click &ldquo;Download&rdquo; on the left, and
+select one of the &ldquo;Stable book 3rd ed.&rdquo; versions for your machine.
+</p>
 
 <div id="table-of-contents">
 <h2>TOC</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Clustering</a></li>
-<li><a href="#sec-2">Classification</a></li>
+<li><a href="#sec-1">k-means clustering</a></li>
+<li><a href="#sec-2">k-nearest neighbor classification</a></li>
+<li><a href="#sec-3">Preprocessing text</a>
+<ul>
+<li><a href="#sec-3-1">Strings to binary feature vectors</a></li>
+<li><a href="#sec-3-2">Strings to frequency vectors</a></li>
+<li><a href="#sec-3-3">Strings to tf-idf vectors</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Clustering</h2>
+<h2 id="sec-1">k-means clustering</h2>
 <div class="outline-text-2" id="text-1">
 
 
@@ -150,7 +160,7 @@
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2">Classification</h2>
+<h2 id="sec-2">k-nearest neighbor classification</h2>
 <div class="outline-text-2" id="text-2">
 
 
@@ -184,6 +194,148 @@
 <p>For evaluation (including the confusion matrix), choose &ldquo;Cross-validation&rdquo; with 10 folds.</p>
 </div>
 
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Preprocessing text</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+As discussed in the <a href="./text-classification.html">text classification</a> notes, text files typically
+need to be converted into &ldquo;feature vectors&rdquo; before machine learning
+algorithms can be applied. The most common feature vector is a vector
+where each dimension is a different word, and the value in that
+dimension is either 0/1 binary value (yes or no the word is in that
+document), an integer count (the frequency of the word in that
+document), or a real value (often the tf-idf score of that word in
+that document).
+</p>
+<p>
+The ARFF files we will be working with will always look like this:
+</p>
+
+
+
+<pre class="example">@relation some-description-of-the-data
+@attribute contents string
+@attribute class {ham,spam}
+
+@data
+'Go until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat...',ham
+'Ok lar... Joking wif u oni...',ham
+'Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&amp;Cs apply 08452810075over18s',spam
+'U dun say so early hor... U c already then say...',ham
+'Nah I dont think he goes to usf, he lives around here though',ham
+...
+</pre>
+
+
+<p>
+Of course, the classes (ham/spam) may change. These files are very
+easy to generate, should you actually wish to use text classification
+for your own purposes.
+</p>
+<p>
+We&rsquo;ll practice with the <a href="./sms-spam.arff">sms-spam.arff</a> file, which has examples of SMS
+text msg ham and spam.
+</p>
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">Strings to binary feature vectors</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-1.png"  alt="./images/weka-preprocess-1.png" /></p>
+<p>Load the ARFF file and choose a filter.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-2.png"  alt="./images/weka-preprocess-2.png" /></p>
+<p>Choose the StringToWordVector filter, in the Unsupervised &gt; Attribute section.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-3.png"  alt="./images/weka-preprocess-3.png" /></p>
+<p>Click the filter name to get more options.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-4.png"  alt="./images/weka-preprocess-4.png" /></p>
+<p>Change &ldquo;attributeIndices&rdquo; to &ldquo;1&rdquo; to just select the first attribute (the contents of the SMS message). Change &ldquo;attributeNamePrefix&rdquo; to &ldquo;word-&rdquo; so that all the new features look like &ldquo;word-foo&rdquo; and &ldquo;word-bar&rdquo;, etc. Change &ldquo;wordsToKeep&rdquo; to &ldquo;100000&rdquo; to keep them all.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-5.png"  alt="./images/weka-preprocess-5.png" /></p>
+<p>Click &ldquo;Apply&rdquo;</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-6.png"  alt="./images/weka-preprocess-6.png" /></p>
+<p>Now you&rsquo;ll have lots more attributes. You can click &ldquo;Undo&rdquo; if you don&rsquo;t like it.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-7.png"  alt="./images/weka-preprocess-7.png" /></p>
+<p>Everything works better if the class (ham/spam) is last. After our filter, it&rsquo;s not anymore. Let&rsquo;s fix that. Choose a new filter, &ldquo;Reorder,&rdquo; under Unsupervised &gt; Attribute. Click the filter name to change its properties. Type &ldquo;2-last,1&rdquo; to make the new order the second-to-last attributes followed by the first attribute. This puts the first attribute at the end.</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-8.png"  alt="./images/weka-preprocess-8.png" /></p>
+<p>Click &ldquo;Apply.&rdquo; Now the class (ham/spam) should be the last attribute again.</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2">Strings to frequency vectors</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<p>
+Follow the steps above (&ldquo;Strings to binary feature vectors&rdquo;) except
+use the following changes in the StringToWordVector filter:
+</p>
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-9.png"  alt="./images/weka-preprocess-9.png" /></p>
+<p>Change &ldquo;outputWordCounts&rdquo; to &ldquo;True.&rdquo;</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3">Strings to tf-idf vectors</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+<p>
+Follow the steps above (&ldquo;Strings to binary feature vectors&rdquo;) except
+use the following changes in the StringToWordVector filter:
+</p>
+
+<div class="figure">
+<p><img src="./images/weka-preprocess-10.png"  alt="./images/weka-preprocess-10.png" /></p>
+<p>Change &ldquo;IDFTransform&rdquo; to &ldquo;True&rdquo; and &ldquo;TFTransform&rdquo; to &ldquo;True,&rdquo; as well as &ldquo;normalizeDocLength&rdquo; to &ldquo;Normalize all data.&rdquo;</p>
+</div>
+
 
 
 <div style="font-size: 80%;">
@@ -201,6 +353,7 @@
 <!-- End of Plupper Tracking Code -->
 
 
+</div>
 </div>
 </div>
 </div>

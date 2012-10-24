@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Homework 8</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Homework 8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-17 00:07:32 EDT"/>
+<meta name="generated" content="2012-10-24 00:03:26 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -83,7 +83,47 @@
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
 
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 
@@ -103,178 +143,151 @@
 <h2>TOC</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Task (100 pts)</a>
-<ul>
-<li><a href="#sec-1-1">Possible pseudo-code</a></li>
-</ul>
-</li>
+<li><a href="#sec-1">Task 1 (25 pts)</a></li>
+<li><a href="#sec-2">Task 2 (25 pts)</a></li>
+<li><a href="#sec-3">Task 3 (10 pts)</a></li>
+<li><a href="#sec-4">Task 4 (10 pts)</a></li>
+<li><a href="#sec-5">Task 5 (30 pts)</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Task (100 pts)</h2>
+<h2 id="sec-1">Task 1 (25 pts)</h2>
 <div class="outline-text-2" id="text-1">
 
 
 <p>
-Download the <a href="./downloads/cse630-ai-articles-stemmed.zip">Zip file of all AI articles (stemmed documents)</a>. Or, if
-you do not want to use those documents, gather your own, and define
-new categories. You&rsquo;ll want a handful of training documents (say,
-10-20) and a few test documents (say, 5-10). Also, define at least 3
-or so categories.
+Refer to the <a href="./bayesian-inference.html">Bayesian inference notes</a>.
 </p>
-<p>
-Perform Bayesian document classification (from the <a href="./bayesian-methods.html">Bayesian methods</a>
-notes). Report the experimental F-score after training on three random
-subsets of the data. Always train with a majority of the data (say,
-90%), test on the remaining set.
-</p>
+<ul>
+<li>Compute \(P(fire=T|smoke=T)\).
+
+</li>
+<li>Compute \(P(alarm=T|smoke=T)\).
+
+</li>
+<li>Compute the probability that there is a fire if somebody reports
+    it and you are certain the fire alarm has not been tampered with.
+</li>
+</ul>
+
 
 </div>
 
-<div id="outline-container-1-1" class="outline-3">
-<h3 id="sec-1-1">Possible pseudo-code</h3>
-<div class="outline-text-3" id="text-1-1">
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Task 2 (25 pts)</h2>
+<div class="outline-text-2" id="text-2">
 
 
 <p>
-The challenge with this assignment is not the math but getting all the
-data needed to compute. As is often the case in AI research, the
-mathematics are simple but the algorithm, particularly the collection
-and processing of data, is the real challenge. I expect you&rsquo;ll feel
-that in this assignment.
-</p>
-<p>
-In the aim of possibly helping you along, here is some pseudo-code
-(which we developed in class):
+Compute the best explanation in terms of MAP (<i>maximum a posteriori</i>). The observed nodes are \(y=true\), \(x=false\), and
+\(z=true\), and the possible explanations are \(a=true\), \(b=true\), or
+\(c=true\).
 </p>
 
+<div style="text-align: center">
+<p><img src="./images/bayes-map.png"  alt="./images/bayes-map.png" />
+</p>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="right" /><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">\(a\)</th><th scope="col" class="left">\(b\)</th><th scope="col" class="left">\(c\)</th><th scope="col" class="right">\(P(x=true \vert{} a, b, c)\)</th><th scope="col" class="right">\(P(y=true \vert{} a, b, c)\)</th><th scope="col" class="right">\(P(z=true \vert{} a, b, c)\)</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">\(true\)</td><td class="left">\(true\)</td><td class="left">\(true\)</td><td class="right">0.1</td><td class="right">0.2</td><td class="right">0.4</td></tr>
+<tr><td class="left">\(true\)</td><td class="left">\(true\)</td><td class="left">\(false\)</td><td class="right">0.3</td><td class="right">0.2</td><td class="right">0.0</td></tr>
+<tr><td class="left">\(true\)</td><td class="left">\(false\)</td><td class="left">\(true\)</td><td class="right">0.5</td><td class="right">0.3</td><td class="right">0.6</td></tr>
+<tr><td class="left">\(true\)</td><td class="left">\(false\)</td><td class="left">\(false\)</td><td class="right">0.0</td><td class="right">0.4</td><td class="right">0.3</td></tr>
+<tr><td class="left">\(false\)</td><td class="left">\(true\)</td><td class="left">\(true\)</td><td class="right">0.5</td><td class="right">0.2</td><td class="right">0.6</td></tr>
+<tr><td class="left">\(false\)</td><td class="left">\(true\)</td><td class="left">\(false\)</td><td class="right">0.4</td><td class="right">0.0</td><td class="right">0.3</td></tr>
+<tr><td class="left">\(false\)</td><td class="left">\(false\)</td><td class="left">\(true\)</td><td class="right">0.2</td><td class="right">0.0</td><td class="right">0.2</td></tr>
+<tr><td class="left">\(false\)</td><td class="left">\(false\)</td><td class="left">\(false\)</td><td class="right">0.3</td><td class="right">1.0</td><td class="right">0.1</td></tr>
+</tbody>
+</table>
 
 
-<pre class="example">Task 1. Set up global variables.
+</div>
 
-- create a map for di values, with keys = strings and values = ints
-  (this map has words as keys; the value for a word is the number of
-   documents across all categories that have this word anywhere in the
-   document)
+</div>
 
-- create several maps for dci values (strings -&gt; ints again, like the
-  di map; these maps record the number of documents in a particular
-  category that have a particular word); perhaps you can put these
-  maps in another map, like so: dci[category][word] = #; in C++,
-  that's map&lt;string, map&lt;string, int&gt; &gt;
-             (cat)       (word)  (# of docs)
-
-Task 2. Read the text documents.
-
-- open the listing.txt file (assuming you are using the AI dataset)
-- loop: for each line in the listing.txt file
-  - read the first "word" -- this is a file name (without the .txt)
-  - open the .txt file
-  - create a document map D with keys = strings and values = true/false
-    (this map will represent the document; the strings are words from
-     the document, and the true/false means the document does or does
-     not have that word; of course, we don't need to put words in the
-     map that the document does not have, just words it does, so only
-     true's will be in the map, not false's; you might prefer to use a
-     set of strings rather than a map)
-  - loop: for each word in the document
-    - read the word from the .txt file
-    - record this word in D
-  - close the .txt file
-  - read the rest of the line from the listing.txt file (the
-    number of categories and the categories themselves)
-    - record this category information for the document; how will you
-      do this?
-  - put this document map in a vector
-
-Task 3. Split the vector of document maps into a training and testing
-set.
-
-- shuffle the vector
-- choose a position at about the 90% mark
-- put all doc maps before this position in a training vector
-- put all doc maps after this position in a testing vector
-
-Task 4. Update the di values. This is best done after tasks 2 &amp; 3 are
-done.
-
-- loop: for each document in the training set
-  - loop: for each word in the doc map
-    - increment in the global di map the number of occurrences of
-      documents with this word (because one more document has this
-      word)
-    - loop: for each category that this document is a member of
-      - increment in the global dci map the value for this word in
-        this category
-
-Task 5. Classify each testing document
-
-- set up variables for true positive, false positive, false negative
-  counts
-- loop: for each testing document:
-  - figure out which category (or top 2, top 3, etc.; your choice)
-    maximizes the final formula in the Bayesian methods notes...
-</pre>
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Task 3 (10 pts)</h2>
+<div class="outline-text-2" id="text-3">
 
 
 <p>
-This is a chunk of C++ that you may find useful for Task 2:
+Write binary vectors and frequency vectors for the following
+documents:
 </p>
+<blockquote>
 
-
-
-<pre class="src src-c++"><span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;fstream&gt;</span>
-<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">&lt;string&gt;</span>
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
-
-<span style="color: #228b22;">ifstream</span> <span style="color: #a0522d;">f</span>;
-f.open(<span style="color: #8b2252;">"listing.txt"</span>);
-<span style="color: #a020f0;">while</span>(!f.eof()) { <span style="color: #b22222;">// </span><span style="color: #b22222;">eof() is true if the file is finished</span>
-    <span style="color: #228b22;">string</span> <span style="color: #a0522d;">docfile</span>;
-    f &gt;&gt; docfile;
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">category_count</span>;
-    f &gt;&gt; category_count;
-    <span style="color: #a020f0;">for</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span> = 0; i &lt; category_count; i++) {
-        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">category</span>;
-        f &gt;&gt; category;
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">do something with category</span>
-    }
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">open docfile, process it a word at a time</span>
-    <span style="color: #228b22;">ifstream</span> <span style="color: #a0522d;">df</span>;
-    df.open(docfile.c_string()); <span style="color: #b22222;">// </span><span style="color: #b22222;">c_string() is just a funky C++ thing</span>
-    <span style="color: #a020f0;">while</span>(!df.eof()) {
-        <span style="color: #228b22;">string</span> <span style="color: #a0522d;">word</span>;
-        df &gt;&gt; word;
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">do something with word</span>
-    }
-    df.close()
-
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">done with that line of listing.txt</span>
-}
-f.close()
-</pre>
-
-
-<div style="font-size: 80%;">
-<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
-</div>
-
-<!-- Plupper Tracking Code -->
-<script src="https://www.google.com/jsapi"></script>
-<script type="text/javascript"
-    src="https://static.plupper.com/js/plupper.js"></script>
-<script type="text/javascript">
-    plupper.init("joshuaeckroth@plupper.com");
-    plupper.enableCobrowsing();
-</script>
-<!-- End of Plupper Tracking Code -->
+<p>Document 1: &ldquo;the cat in the hat seuss the cat hat hat seuss the hat&rdquo;
+</p>
+<p>
+Document 2: &ldquo;green eggs and ham seuss the ham green and the ham and&rdquo;
+</p>
+<p>
+Document 3: &ldquo;horton hears who seuss and in the horton the who hears&rdquo;
+</p>
+</blockquote>
 
 
 </div>
+
 </div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Task 4 (10 pts)</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Compute (by hand) the <i>tf-idf</i> scores for each of the words in the
+documents from Task 3.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Task 5 (30 pts)</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+Report the best (in terms of average F-score) classification algorithm
+and feature vector pairing for the <a href="./sms-spam.arff">sms-spam.arff</a> dataset. Use <a href="./weka.html">Weka</a> to
+do this. Be sure to try:
+</p>
+<ul>
+<li>k-nearest neighbor with \(k=2\) (since we know there are two
+    classes: ham/spam), and,
+<ul>
+<li>Binary feature vectors
+</li>
+<li>Frequency feature vectors
+</li>
+<li>tf-idf feature vectors
+
+</li>
+</ul>
+
+</li>
+<li>Naïve Bayes with binary feature vectors
+</li>
+</ul>
+
+
+<p>
+Use 10-fold cross-validation.
+</p></div>
 </div>
 </div>
 
