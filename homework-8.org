@@ -14,25 +14,35 @@ Refer to the [[./bayesian-inference.html][Bayesian inference notes]].
 
 * Task 2 (25 pts)
 
-Compute the best explanation in terms of MAP (/maximum a
-posteriori/). The observed nodes are $y=true$, $x=false$, and
-$z=true$, and the possible explanations are $a=true$, $b=true$, or
-$c=true$.
+Using the näive Bayesian assumption, calculate the most likely
+explanation (i.e., which of $a$, $b$, or $c$ is true) given that the
+following has been observed: $x=false$, $y=true$, $z=true$.
+
+Recall that the näive Bayesian assumption says that $x$, $y$, $z$ are
+independent of each other given the cause $a$, $b$, or $c$. In other
+words, $P(x,y,z|a)=P(x|a)P(y|a)P(z|a)$ (for $b$ and $c$ also).
 
 #+BEGIN_CENTER
 [[./images/bayes-map.png]]
 #+END_CENTER
 
-| $a$     | $b$     | $c$     | $P(x=true \vert{} a, b, c)$ | $P(y=true \vert{} a, b, c)$ | $P(z=true \vert{} a, b, c)$ |
-|---------+---------+---------+-----------------------------+-----------------------------+-----------------------------|
-| $true$  | $true$  | $true$  |                         0.1 |                         0.2 |                         0.4 |
-| $true$  | $true$  | $false$ |                         0.3 |                         0.2 |                         0.0 |
-| $true$  | $false$ | $true$  |                         0.5 |                         0.3 |                         0.6 |
-| $true$  | $false$ | $false$ |                         0.0 |                         0.4 |                         0.3 |
-| $false$ | $true$  | $true$  |                         0.5 |                         0.2 |                         0.6 |
-| $false$ | $true$  | $false$ |                         0.4 |                         0.0 |                         0.3 |
-| $false$ | $false$ | $true$  |                         0.2 |                         0.0 |                         0.2 |
-| $false$ | $false$ | $false$ |                         0.3 |                         1.0 |                         0.1 |
+  - $P(x=true|a=true) = 0.1$
+
+  - $P(x=true|b=true) = 0.3$
+
+  - $P(x=true|c=true) = 0.7$
+
+  - $P(y=true|a=true) = 0.3$
+
+  - $P(y=true|b=true) = 0.5$
+
+  - $P(y=true|c=true) = 0.8$
+
+  - $P(z=true|a=true) = 0.6$
+
+  - $P(z=true|b=true) = 0.4$
+
+  - $P(z=true|c=true) = 0.6$
 
   - $P(a) = 0.3$
 
