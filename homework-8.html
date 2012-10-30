@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Homework 8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-27 17:29:39 EDT"/>
+<meta name="generated" content="2012-10-29 21:54:49 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -183,9 +183,14 @@ Refer to the <a href="./bayesian-inference.html">Bayesian inference notes</a>.
 
 
 <p>
-Compute the best explanation in terms of MAP (<i>maximum a posteriori</i>). The observed nodes are \(y=true\), \(x=false\), and
-\(z=true\), and the possible explanations are \(a=true\), \(b=true\), or
-\(c=true\).
+Using the näive Bayesian assumption, calculate the most likely
+explanation (i.e., which of \(a\), \(b\), or \(c\) is true) given that the
+following has been observed: \(x=false\), \(y=true\), \(z=true\).
+</p>
+<p>
+Recall that the näive Bayesian assumption says that \(x\), \(y\), \(z\) are
+independent of each other given the cause \(a\), \(b\), or \(c\). In other
+words, \(P(x,y,z|a)=P(x|a)P(y|a)P(z|a)\) (for \(b\) and \(c\) also).
 </p>
 
 <div style="text-align: center">
