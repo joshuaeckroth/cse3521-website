@@ -4,6 +4,14 @@
 Download from the [[http://www.cs.waikato.ac.nz/ml/weka/][Weka website]], click "Download" on the left, and
 select one of the "Stable book 3rd ed." versions for your machine.
 
+You may need to increase the memory available to Weka. On Windows,
+check out [[http://weka.wikispaces.com/Java+Virtual+Machine][Weka's page on the topic]]. On a Mac, use this command in the
+Terminal:
+
+#+BEGIN_EXAMPLE
+java -Xmx4096m -jar /Applications/weka-3-6-8.app/Contents/Resources/Java/weka.jar
+#+END_EXAMPLE
+
 * k-means clustering
 
 #+CAPTION: Click "Choose" to choose the clustering algorithm.
