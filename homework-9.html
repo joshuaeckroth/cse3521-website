@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Homework 9</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Homework 9"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-26 12:17:00 EDT"/>
+<meta name="generated" content="2012-10-30 22:36:04 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -83,7 +83,47 @@
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
 
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 
@@ -99,6 +139,128 @@
 <h1 class="title">Homework 9</h1>
 
 
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Task 1 (10 pts)</a></li>
+<li><a href="#sec-2">Task 2 (20 pts)</a></li>
+<li><a href="#sec-3">Task 3 (70 pts)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Task 1 (10 pts)</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Draw a single perceptron that computes the OR function.
+</p>
+<p>
+Be sure to give the weights of the two inputs and the bias
+term. Assume the threshold function is that demonstrated in the
+lecture notes (where a sum ≥0.5 causes a 1 to be output, otherwise a
+0).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Task 2 (20 pts)</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+Draw a small perceptron network that computes addition of two one-bit
+numbers. This cannot be done with only one perceptron. Here is the
+table of inputs/outputs:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="right" /><col class="right" /><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">\(x_1\)</th><th scope="col" class="right">\(x_2\)</th><th scope="col" class="right">out 1</th><th scope="col" class="right">out 2 (carry bit)</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">0</td><td class="right">0</td><td class="right">0</td><td class="right">0</td></tr>
+<tr><td class="right">0</td><td class="right">1</td><td class="right">1</td><td class="right">0</td></tr>
+<tr><td class="right">1</td><td class="right">0</td><td class="right">1</td><td class="right">0</td></tr>
+<tr><td class="right">1</td><td class="right">1</td><td class="right">0</td><td class="right">1</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Use this perceptron configuration. Determine all the weights.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/bitsum-perceptron.png"  alt="./images/bitsum-perceptron.png" />
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Task 3 (70 pts)</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Write a single-layer perceptron network learning algorithm. Use the
+perceptron learning rule from the lecture notes.
+</p>
+<p>
+The input file is specified on the command line. Its format is:
+</p>
+
+
+
+<pre class="example">5620 64 10
+0 1 6 15 12 1 0 0 0 7 16 6 6 10 0 0 0 8 16 2 0 11 2 0 0 5 16 3 0 5 7 0 0 7 13 3 0 8 7 0 0 4 12 0 1 13 5 0 0 0 14 9 15 9 0 0 0 0 6 14 7 1 0 0 1 0 0 0 0 0 0 0 0 0 
+0 0 10 16 6 0 0 0 0 7 16 8 16 5 0 0 0 11 16 0 6 14 3 0 0 12 12 0 0 11 11 0 0 12 12 0 0 8 12 0 0 7 15 1 0 13 11 0 0 0 16 8 10 15 3 0 0 0 10 16 15 3 0 0 1 0 0 0 0 0 0 0 0 0 
+...
+</pre>
+
+
+<p>
+The first number, 5620, is the number of examples in the file, with
+one example per line, starting on the second line. The second number,
+64, is the number of inputs (or &ldquo;features&rdquo;) for each example. The
+inputs are floating-point values (which includes integers). The third
+number, 10, is the number of <i>binary</i> outputs for each example.
+</p>
+<p>
+The input file (partially) shown here is from the <a href="./optdigits.dat">optdigits.dat</a>
+(handwritten digits) input file (from <a href="http://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits">UCI</a>). Each example has 64
+integers representing pixels followed by 10 binary numbers (0/1), such
+that the only 1 in this group of binary numbers is in the position N,
+and this N is the true digit of the example. So if the example is the
+digit 2, then the binary numbers are: &ldquo;0 0 1 0 0 0 0 0 0 0 0&rdquo; (first
+binary number indicates digit 0, then 1, then 2, etc.).
+</p>
+<p>
+I have written templates for you to start with: <a href="./perceptron-template.cpp">C++</a> and <a href="./PerceptronTemplate.java">Java</a>. These
+templates load the data file, build the examples data structure, and
+print the weights of the trained network. You need to build the
+network, train it, and finish the code that tests reserved instances
+from the input file.
+</p>
+<p>
+With \(\alpha=0.01\) or so, and about 1000 epochs or so, you should be
+able to achieve ~80% correctness.
+</p>
+<p>
+You can also test, for debugging purposes, the <a href="./and.dat">and.dat</a> and <a href="./or.dat">or.dat</a>
+cases. Your network should be able to learn these with 100%
+correctness.
+</p>
 
 
 <div style="font-size: 80%;">
@@ -116,6 +278,8 @@
 <!-- End of Plupper Tracking Code -->
 
 
+</div>
+</div>
 </div>
 
 </body>

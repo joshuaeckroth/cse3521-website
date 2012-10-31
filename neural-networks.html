@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Neural networks</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Neural networks"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-26 12:16:58 EDT"/>
+<meta name="generated" content="2012-10-31 11:10:04 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -83,7 +83,47 @@
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
 
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
 
@@ -97,6 +137,387 @@
 
 <div id="content">
 <h1 class="title">Neural networks</h1>
+
+
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">The neuron</a></li>
+<li><a href="#sec-2">Neurons as inspiration: The Perceptron</a></li>
+<li><a href="#sec-3">The Perceptron learning algorithm</a></li>
+<li><a href="#sec-4">Single-layer Perceptron networks</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">The neuron</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+
+<div style="clear: both; float: right; width: 450px;">
+<div style="text-align: center">
+<b>The neuron</b><br/>
+<img src="./images/neuron.png" />
+<br/>
+From <a
+href="https://commons.wikimedia.org/wiki/File:Neuron-figure.svg">Wikimedia
+Commons</a> </div></div>
+
+<p>
+The typical neuron consists of a cell body, a nucleus, the axon and
+axon terminals, and dendrites. The dendrites split into complex trees
+and receive signals from other neurons. Signals are sent through the
+axon terminals to other neurons.
+</p>
+<p>
+Neurons are found throughout the nervous system (brain, spinal cord,
+periphery) but are most concentrated in the brain. A human brain has
+about 100 billion neurons. Each neuron has, on average, about 7000
+connections to other neurons.
+</p>
+<p>
+This wouldn&rsquo;t be particularly remarkable except for the
+generally-accepted theory that the brain is an &ldquo;information processing
+machine.&rdquo; That is to say, it is <i>computing</i> something with all those
+neurons. The question is, then, can properties of the brain be the
+reason humans are intelligent, and can those properties be used in
+systems we create?
+</p>
+<p>
+The most intriguing property of the brain, apart from its massive
+connectivity, is that each neuron is more-or-less doing the same
+thing. Most neurons &ldquo;activate&rdquo; (discharges an electrical signal down
+the axon) based on whether or not neurons connected to it have
+recently activated themselves. Each connection to another neuron has a
+certain strength, so that if the connected neuron activates, a signal
+of a certain strength is received. The signals received add up, and
+may cause the receiving neuron itself to activate.
+</p>
+<p>
+The signals have to add up in a certain time frame, otherwise they
+will just dissipate. If the receiving neuron does activate, it
+completely discharges. It is an &ldquo;all or nothing&rdquo; event. More received
+electrical charge does not create greater discharges; the amount of
+received charge only determines <i>if</i> an activation will occur.
+</p>
+<p>
+Some connections among neurons are excitatory, which increase the
+chance of activation by the receiving neuron, and inhibitory which do
+the opposite.
+</p>
+
+
+<div style="clear: both; float: right; width: 450px;">
+<div style="text-align: center">
+<b>Action potential</b><br/>
+<img src="./images/action-potential.png" />
+<br/>
+From <a
+href="http://en.wikipedia.org/wiki/File:Action_potential_vert.png">Wikipedia</a>
+</div></div>
+
+<p>
+The connections among neurons and their strengths are not
+hard-wired. &ldquo;Learning&rdquo; is essentially the process of changing
+connections (&ldquo;synaptic pruning&rdquo;) and their strengths (&ldquo;synaptic
+plasiticity&rdquo;).
+</p>
+<p>
+One important theory about how these changes come about is the Hebbian
+learning rule (from Donald Hebb, 1949). It attempts to explain how
+connections strengthen:
+</p>
+<blockquote>
+
+<p>Let us assume that the persistence or repetition of a reverberatory
+activity (or &ldquo;trace&rdquo;) tends to induce lasting cellular changes that
+add to its stability. [&hellip;] When an axon of cell A is near enough to
+excite a cell B and repeatedly or persistently takes part in firing
+it, some growth process or metabolic change takes place in one or both
+cells such that A&rsquo;s efficiency, as one of the cells firing B, is
+increased.
+</p>
+</blockquote>
+
+
+<p>
+This is often summarized as: &ldquo;Cells that fire together, wire
+together.&rdquo; The theory would basically explain associative memory: if
+you repeatedly hear the birthday song while you are simultaneously
+looking at a birthday cake, eventually whenever you see or think about
+a birthday cake, you are reminded of the song.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Neurons as inspiration: The Perceptron</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<p>
+We want to build systems that exhibit some properties of the
+brain. These properties are:
+</p>
+<ul>
+<li>Simple, nearly-identical components (neurons)
+
+</li>
+<li>Massively-parallel computation
+
+</li>
+<li>A learning mechanism
+</li>
+</ul>
+
+
+<p>
+These properties are important for several reasons. Systems built out
+of many similar (well, let&rsquo;s just say &ldquo;identical&rdquo;) components may be
+more robust if we can be certain the design of the identical
+components is a good design. Massively-parallel computation promises
+that very complex tasks can be done in very little time; accomplishing
+this is still just pie in the sky for most systems built by
+humans. And if we have access to a reliable learning mechanisms,
+systems do not so much have to be designed but rather &ldquo;trained.&rdquo;
+Perhaps we can build systems that begin like children but learn, on
+their own, to be highly capable. Perhaps we can just throw together a
+bunch of simple &ldquo;neurons,&rdquo; show the system lots of training examples,
+and the system will do the rest of the work.
+</p>
+<p>
+The first attempt was by <a href="http://www.rutherfordjournal.org/article040101.html#rosenblatt">Frank Rosenblatt</a> in 1957. He designed the
+&ldquo;Perceptron,&rdquo; a computational unit that can be described by the
+following diagram.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/perceptron.png"  alt="./images/perceptron.png" />
+</p>
+</div>
+
+<p>
+The perceptron is analogous to a single neuron. It receives inputs
+from \(x_1, x_2, x_3\), etc. (any number of inputs). For convenience in
+the learning process, it also receives another input that is always
+the value 1.0. Each of these inputs are multiplied by a weight, to
+emulate the strength of the neural connection and whether it is
+excitatory or inhibitory (excitatory weights are positive, inhibitory
+weights are negative, usually). The inputs multiplied by the weights
+come into the perceptron and are summed. Then, a question has to be
+answered: does this perceptron (neuron) activate? A simple function
+decides this: if the sum is large enough, say above 0.5, then the
+perceptron activates, sending a 1 out the right side. Otherwise, it
+does not, sending a 0 out the right side.
+</p>
+
+
+\begin{equation}
+f\left(\sum_{i=1}^k x_{i} w_{ji} + w_{j0}\right) =
+\begin{cases}
+0 & \text{if sum } < 0.5 \\
+1 & \text{if sum } \geq 0.5
+\end{cases}
+\end{equation}
+
+<p>
+Each perceptron may be connected to others, so that a perceptron&rsquo;s
+output can be other perceptrons&rsquo; inputs. However, it turns out that
+the complexity of the network greatly affects how learning will work.
+</p>
+<p>
+The first property to notice about perceptrons is that a single
+perceptron can compute simple logic functions, assuming we have binary
+inputs. For example,
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/not-perceptron.png"  alt="./images/not-perceptron.png" />
+<img src="./images/and-perceptron.png"  alt="./images/and-perceptron.png" />
+</p>
+</div>
+
+<p>
+Of course, the &ldquo;OR&rdquo; function is also possible (the homework asks you
+to show that). Outputs of perceptrons can become inputs to other
+perceptrons, allowing us to build all possible logic circuits. Thus,
+perceptrons are capable of general computation, putting them in the
+large class of fantastically different systems that are
+Turing-complete. A Turing-complete system is able to compute anything
+that can be computed; examples include electrical logic gates (i.e., a
+typical computer), the Lambda calculus, cellular automata, and now
+neural networks.
+</p>
+<p>
+But can a complex network learn? When we say &ldquo;learn,&rdquo; we mean: can the
+weights be assigned via a training process rather than assigned
+manually? This would be ideal: just put together a bunch of
+perceptrons, give it lots of examples (e.g., examples of prime numbers
+and composite numbers), and let it figure out how to set the weights
+so that it turns into a machine that computes that function (e.g., the
+function to determine if a number is prime or not).
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">The Perceptron learning algorithm</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Look again at the definition of the threshold function:
+</p>
+
+
+\begin{equation}
+f\left(\sum_{i=1}^k x_{i} w_{ji} + w_{j0}\right) =
+\begin{cases}
+0 & \text{if sum } < 0.5 \\
+1 & \text{if sum } \geq 0.5
+\end{cases}
+\end{equation}
+
+<p>
+Suppose we want to train a single perceptron. We want that function to
+be 1 for positive examples and 0 for negative examples. This means we
+want the sum of the inputs to be at least 0.5 for positive examples,
+and less for negative examples.
+</p>
+<p>
+The sum is a linear function. It can be &ldquo;trained&rdquo; using typical
+methods that work on linear functions. One such method is gradient
+descent (or ascent), a.k.a. hill-climbing. Normally, with gradient
+descent, we compute the derivative (gradient) of the objective
+function (the threshold function \(f\)) and determine which direction is
+the greatest gradient, and adjust the weights. However, the threshold
+function is not differentiable (it is a step function, discontinous at
+0.5), but we have a shortcut.
+</p>
+<p>
+Let \(d\) be the true answer for some input vector, and \(y\) but the
+output computed by the perceptron with its current weights \(w_i\). We
+do not want to adjust the weights if the output is correct. If the
+output is 0 and we should have yielded a 1, then the weights are too
+low, and should be adjusted up. If the output is a 1 and we wanted a
+0, the weights are too high. Of course, we only want to adjust a tiny
+bit, so we do not oscillate. Thus, we have the following adjustment
+for each weight:
+</p>
+
+
+$$w'_i = w_i + \alpha (d-y)x_i,$$
+
+<p>
+where \(w'_i\) is the new weight and \(\alpha\) is a small number (0.1, or
+0.01, etc.). Each weight is adjusted based on the input \(x_i\) that
+corresponds to that weight since some inputs are large and others
+small (possibly even negative if we get away from boolean
+inputs). Weights may become large, small, or even negative depending
+on the nature of the function being learned and the nature of the
+inputs. Since each adjustment is so small, the same perceptron may
+need to be shown the same (positive and negative) examples many
+times. When a perceptron is shown all examples once, we say it has
+trained on one &ldquo;epoch.&rdquo; Often we train across hundreds or thousands of
+epochs.
+</p>
+<p>
+A single perceptron can have many inputs; perhaps thousands. What
+kinds of functions can it learn? Recall the sum of the weighted inputs
+is a linear function. The threshold function just says &ldquo;yes&rdquo; or &ldquo;no&rdquo;
+based on this sum. Suppose there are two inputs: then the weighted sum
+describes a line in 2D. The threshold function just says &ldquo;yes&rdquo; if an
+input vector is above (or below) the line, or exactly on the line, and
+&ldquo;no&rdquo; otherwise.
+</p>
+<p>
+Here is a diagram of this threshold line:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/linearly-separable.png"  alt="./images/linearly-separable.png" />
+</p>
+</div>
+
+<p>
+The answer is, therefore, that a perceptron can learn any &ldquo;linearly
+separable&rdquo; function. If the positive examples and negative examples
+can be plotted (possibly in higher dimensions), and there exists a
+line/plane that separates the two classes, then a perceptron can learn
+that line/plane. We know this because the line/plane can be described
+by a weighted sum of the inputs. This fact is why you may find
+perceptrons described in terms of &ldquo;computational geometry&rdquo; &mdash; they
+are effectively learning geometric functions.
+</p>
+<p>
+It turns out that not all functions are linearly separable. The
+simplest case is the XOR function. You can plot it like so:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/xor-plot.png"  alt="./images/xor-plot.png" />
+</p>
+</div>
+
+<p>
+There is simply no line that separates the positive and negative
+examples of the XOR function. A perceptron cannot learn this function.
+</p>
+<p>
+This is such a basic function that, when Minsky and Papert proved in
+1969 that XOR could not be learned, perceptrons took a huge
+hit. Research in neural networks did not fully recover until the
+1980s, when a new learning mechanism was discovered.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Single-layer Perceptron networks</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+Putting lots of perceptrons together in a single-layer network changes
+nothing. They all learn independently. (So XOR still cannot be
+learned.) However, we can get more than 0/1 as an output. We can get
+any number of outputs we wish.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/single-layer-perceptron-network.png"  alt="./images/single-layer-perceptron-network.png" />
+</p>
+</div>
+
+<p>
+These networks are &ldquo;fully connected&rdquo; and &ldquo;feed-forward&rdquo; &mdash; fully
+connected because each input connects to every perceptron, and
+feed-forward because there are no loops. &ldquo;Recurrent&rdquo; networks have
+loops, where the output of some perceptron becomes the input to
+another perceptron earlier in the chain, or an input to
+itself. Recurrent networks are decidedly more complex (they can be
+dynamic non-linear systems) but are able to keep memories and other
+such interesting features.
+</p>
+<p>
+As an example, consider the task of classifying handwritten digits
+with classes 0-9. Here are some examples (intentionally pixelated to
+reduce the input space, i.e., the number of pixels):
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/optdigits.jpg"  alt="./images/optdigits.jpg" />
+</p>
+</div>
+
+
 
 
 
@@ -116,6 +537,8 @@
 <!-- End of Plupper Tracking Code -->
 
 
+</div>
+</div>
 </div>
 
 </body>
