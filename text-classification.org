@@ -187,6 +187,9 @@ all, a term that's appears several times in the document and is
 somewhat unique to the document is a strong indicator (of category
 membership, of relevance to a query containing that term, etc.).
 
+An example of binary, frequency, and tfidf document vectors can be
+found in the [[./doc-vectors.xls][doc-vectors.xls]] spreadsheet.
+
 * k-nearest neighbor
 
 Since we have different ways of representing the document vectors, we

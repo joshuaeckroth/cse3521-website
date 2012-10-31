@@ -66,8 +66,8 @@ from the input file.
 With $\alpha=0.01$ or so, and about 1000 epochs or so, you should be
 able to achieve ~80% correctness.
 
-You can also test, for debugging purposes, the [[./and.dat][and.dat]] and [[./or.dat][or.dat]]
-cases. Your network should be able to learn these with 100%
+You can also test, for debugging purposes, the [[./and.dat][and.dat]], [[./or.dat][or.dat]], and
+[[./not.dat][not.dat]] cases. Your network should be able to learn these with 100%
 correctness.
 
 #+INCLUDE: footer.org
