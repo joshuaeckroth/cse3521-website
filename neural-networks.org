@@ -418,6 +418,6 @@ robustness demonstrated by Dr. Sejnowski's invention. --- [[http://www.nytimes.c
 
 [[http://youtu.be/4gzpd0irP58?t=38m][YouTube]] (38min - 49min)
 
-
+[[http://www.nytimes.com/2012/06/26/technology/in-a-big-network-of-computers-evidence-of-machine-learning.html][Recognizing cats]]
 
 #+INCLUDE: footer.org
