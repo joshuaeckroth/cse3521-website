@@ -10,8 +10,6 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    srand(time(NULL));
-
     ifstream data(argv[1]);
     if(!data.is_open()) {
         cout << "Error opening data file." << endl;
@@ -49,7 +47,7 @@ int main(int argc, char** argv)
 
 
     ............
-    
+
 
     // print network (as a matrix)
     for(int i = 0; i < (input_count + 1); i++) {
