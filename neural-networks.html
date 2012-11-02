@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Neural networks</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Neural networks"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-10-31 11:10:04 EDT"/>
+<meta name="generated" content="2012-11-02 13:46:06 EDT"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -144,9 +144,12 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">The neuron</a></li>
-<li><a href="#sec-2">Neurons as inspiration: The Perceptron</a></li>
-<li><a href="#sec-3">The Perceptron learning algorithm</a></li>
-<li><a href="#sec-4">Single-layer Perceptron networks</a></li>
+<li><a href="#sec-2">Neurons as inspiration: The perceptron</a></li>
+<li><a href="#sec-3">The perceptron learning algorithm</a></li>
+<li><a href="#sec-4">Single-layer perceptron networks</a></li>
+<li><a href="#sec-5">Logistic perceptrons</a></li>
+<li><a href="#sec-6">Multilayer perceptron networks</a></li>
+<li><a href="#sec-7">NetTalk example</a></li>
 </ul>
 </div>
 </div>
@@ -256,7 +259,7 @@ a birthday cake, you are reminded of the song.
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2">Neurons as inspiration: The Perceptron</h2>
+<h2 id="sec-2">Neurons as inspiration: The perceptron</h2>
 <div class="outline-text-2" id="text-2">
 
 
@@ -292,7 +295,7 @@ and the system will do the rest of the work.
 </p>
 <p>
 The first attempt was by <a href="http://www.rutherfordjournal.org/article040101.html#rosenblatt">Frank Rosenblatt</a> in 1957. He designed the
-&ldquo;Perceptron,&rdquo; a computational unit that can be described by the
+&ldquo;perceptron,&rdquo; a computational unit that can be described by the
 following diagram.
 </p>
 
@@ -367,7 +370,7 @@ function to determine if a number is prime or not).
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3">The Perceptron learning algorithm</h2>
+<h2 id="sec-3">The perceptron learning algorithm</h2>
 <div class="outline-text-2" id="text-3">
 
 
@@ -480,7 +483,7 @@ hit. Research in neural networks did not fully recover until the
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">Single-layer Perceptron networks</h2>
+<h2 id="sec-4">Single-layer perceptron networks</h2>
 <div class="outline-text-2" id="text-4">
 
 
@@ -506,6 +509,115 @@ itself. Recurrent networks are decidedly more complex (they can be
 dynamic non-linear systems) but are able to keep memories and other
 such interesting features.
 </p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Logistic perceptrons</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+When the function being learned is not linearly separable, the
+threshold function causes some oscillating (seen in some graphs
+below). This is because points near the separator are continually
+changing classifications as the weights update and move the separator.
+</p>
+<p>
+We also may desire probabilistic answers rather than yes/no
+answers. If the data cannot actually be separated, then
+classifications near boundary should be less confident than
+classifications far from the boundary. It would be nice if the
+perceptrons can report this confidence as a classification
+probability.
+</p>
+<p>
+The threshold function we saw cannot do this for us. We need a
+continuous function that looks the same but gives graded answers.
+</p>
+<p>
+A good choice is the logistic function:
+</p>
+
+
+$$f(s_j) = \frac{1}{1+e^{-s_j}}$$
+
+<p>
+where \(s_j = \sum_{i=1}^k x_{i} w_{ji} + w_{j0}\). This is what it
+looks like:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/logistic-curve.png"  alt="./images/logistic-curve.png" />
+</p>
+<p>
+Standard logistic curve (a.k.a. sigmoid function), from <a href="http://en.wikipedia.org/w/index.php?title=File:Logistic-curve.svg&amp;page=1">Wikipedia</a>
+</p>
+</div>
+
+<p>
+Since we no longer have binary outputs, but rather probabilistic ones,
+we need to change our evaluation function. An output is no longer
+either correct or incorrect. If the true answer is 1.0, and the
+logistic function gives 0.79, then we say the error is 0.21. For the
+sake of easy derivatives, we&rsquo;ll go further and say the error, now
+called the &ldquo;loss,&rdquo; is the square of the difference:
+</p>
+
+
+$$L_j(y_j, p_j) = (y_j - p_j)^2,$$
+
+<p>
+where \(y_j\) is the correct answer (1.0 or 0.0, binary), and
+\(p_j=f(s_j)\) is the probability from the logistic function. We&rsquo;ll say
+the total loss is the sum of the loss from each perceptron. (Recall
+that a single-layer perceptron network is just a collection of
+independent perceptrons, which are essentially trained separately.)
+</p>
+<p>
+Our learning algorithm needs to be revised. Luckily, we can just work
+backwards from the loss function and attempt to walk up/down the
+gradient. Since the logistic function and the loss function are
+differentiable, this gradient is easy to find for each weight
+separately.
+</p>
+
+
+\begin{equation}
+\begin{eqnarray}
+\frac{\partial L_j}{\partial w_{ji}}
+&=& \frac{\partial}{\partial w_{ji}} (y_j - f(s_j))^2 \\
+&=& 2 (y_j - f(s_j)) \frac{\partial}{\partial w_{ji}} (y_j - f(s_j)) \qquad \text{chain rule} \\
+&=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} s_j \qquad \text{chain rule}\\
+&=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} \sum_{i'=1}^k x_{i'} w_{ji'} + w_{j0} \qquad \text{expand } s_j\\
+&=& -2 (y_j - f(s_j)) f'(s_j) x_{i} \qquad \text{picks out } x_{i} w_{ji} \text{, whose derivative is } x_{i}
+\end{eqnarray}
+\end{equation}
+
+<p>
+Note that \(f'(z) = f(z)(1-f(z))\). This makes the logistic function a
+good choice (in addition to its shape, which approximates the
+threshold function). We can push the \(-2\) into the \(\alpha\)
+parameter, yielding:
+</p>
+
+
+$$\frac{\partial L_j}{\partial w_{ji}} = \alpha (y_j - f(s_j)) f(s_j) (1 - f(s_j)) x_{i}$$
+
+<p>
+So our weight update is the following, with \(p_j = f(s_j)\):
+</p>
+
+
+$$w'_{ji} = w_{ji} + \alpha (y_j - p_j) p_j (1 - p_j)) x_{i}$$
+
+
+<div style="text-align: center">
+<p><img src="./images/logic-funcs-logistic-alpha.png"  alt="./images/logic-funcs-logistic-alpha.png" />
+</p>
+</div>
+
 <p>
 As an example, consider the task of classifying handwritten digits
 with classes 0-9. Here are some examples (intentionally pixelated to
@@ -518,6 +630,94 @@ reduce the input space, i.e., the number of pixels):
 </div>
 
 
+<div style="text-align: center">
+<p><img src="./images/optdigits-threshold-alpha.png"  alt="./images/optdigits-threshold-alpha.png" />
+</p>
+</div>
+
+
+<div style="text-align: center">
+<p><img src="./images/optdigits-logistic-alpha.png"  alt="./images/optdigits-logistic-alpha.png" />
+</p>
+</div>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Multilayer perceptron networks</h2>
+<div class="outline-text-2" id="text-6">
+
+
+<p>
+The error gradient at perceptron \(j\) turns out to be,
+</p>
+
+
+\begin{equation}
+\Delta_j = 
+\begin{cases}
+f'(s_j) (y_j - p_j) & \text{if perceptron } j \text{ is an output node} \\
+f'(s_j) \sum_k w_{jk} \Delta_k & \text{if perceptron } j \text{ is hidden}
+\end{cases}
+\end{equation}
+
+<p>
+In other words, \(\Delta_j\) is the normal error gradient if perceptron
+\(j\) is an output perceptron. If perceptron \(j\) is hidden, then the
+error gradient replaces the output error with the weighted error of
+the perceptrons to which \(j\) feeds forward.
+</p>
+<p>
+The result is that the update function changes to:
+</p>
+
+
+$$w'_{ji} = w_{ji} + \alpha p_i \Delta_j$$
+
+<p>
+Note that \(p_i\) is the output of the previous perceptron, attached to
+weight \(w_{ji}\). If the layer is an input layer (which we still say is
+&ldquo;hidden&rdquo;), then \(p_i = x_i\), the actual \(i\)&rsquo;th input to the network.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">NetTalk example</h2>
+<div class="outline-text-2" id="text-7">
+
+
+
+<div style="text-align: center">
+<p><img src="./images/nettalk.gif"  alt="./images/nettalk.gif" />
+</p>
+<p>
+<a href="http://www.cs.trincoll.edu/~ram/cpsc352/notes/learning/ml.nn.html">Source</a>
+</p>
+</div>
+
+<blockquote>
+
+<p>Like a biologist taking a scalpel to a rat, he can ablate his network,
+removing a few cells from the simulation. These &lsquo;&rsquo;lesions&rsquo;&rsquo; might
+cause NetTalk to act a little fuzzy, but it retains its general
+ability to pronounce English.
+</p>
+<p>
+And so it is with humans. If one cuts a few wires in a conventional
+computer the whole system will crash. But brains have the kind of
+robustness demonstrated by Dr. Sejnowski&rsquo;s invention. &mdash; <a href="http://www.nytimes.com/1988/08/16/science/learning-then-talking.html">NY Times, 1988</a>
+</p>
+</blockquote>
+
+
+<p>
+<a href="http://youtu.be/4gzpd0irP58?t=38m">YouTube</a>
+</p>
 
 
 
