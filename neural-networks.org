@@ -86,7 +86,7 @@ you repeatedly hear the birthday song while you are simultaneously
 looking at a birthday cake, eventually whenever you see or think about
 a birthday cake, you are reminded of the song.
 
-* Neurons as inspiration: The Perceptron
+* Neurons as inspiration: The perceptron
 
 We want to build systems that exhibit some properties of the
 brain. These properties are:
@@ -111,7 +111,7 @@ bunch of simple "neurons," show the system lots of training examples,
 and the system will do the rest of the work.
 
 The first attempt was by [[http://www.rutherfordjournal.org/article040101.html#rosenblatt][Frank Rosenblatt]] in 1957. He designed the
-"Perceptron," a computational unit that can be described by the
+"perceptron," a computational unit that can be described by the
 following diagram.
 
 #+BEGIN_CENTER
@@ -170,7 +170,7 @@ and composite numbers), and let it figure out how to set the weights
 so that it turns into a machine that computes that function (e.g., the
 function to determine if a number is prime or not).
 
-* The Perceptron learning algorithm
+* The perceptron learning algorithm
 
 Look again at the definition of the threshold function:
 
@@ -257,7 +257,7 @@ This is such a basic function that, when Minsky and Papert proved in
 hit. Research in neural networks did not fully recover until the
 1980s, when a new learning mechanism was discovered.
 
-* Single-layer Perceptron networks
+* Single-layer perceptron networks
 
 Putting lots of perceptrons together in a single-layer network changes
 nothing. They all learn independently. (So XOR still cannot be
@@ -277,6 +277,83 @@ itself. Recurrent networks are decidedly more complex (they can be
 dynamic non-linear systems) but are able to keep memories and other
 such interesting features.
 
+* Logistic perceptrons
+
+When the function being learned is not linearly separable, the
+threshold function causes some oscillating (seen in some graphs
+below). This is because points near the separator are continually
+changing classifications as the weights update and move the separator.
+
+We also may desire probabilistic answers rather than yes/no
+answers. If the data cannot actually be separated, then
+classifications near boundary should be less confident than
+classifications far from the boundary. It would be nice if the
+perceptrons can report this confidence as a classification
+probability.
+
+The threshold function we saw cannot do this for us. We need a
+continuous function that looks the same but gives graded answers.
+
+A good choice is the logistic function:
+
+$$f(s_j) = \frac{1}{1+e^{-s_j}}$$
+
+where $s_j = \sum_{i=1}^k x_{i} w_{ji} + w_{j0}$. This is what it
+looks like:
+
+#+BEGIN_CENTER
+[[./images/logistic-curve.png]]
+
+Standard logistic curve (a.k.a. sigmoid function), from [[http://en.wikipedia.org/w/index.php?title=File:Logistic-curve.svg&page=1][Wikipedia]]
+#+END_CENTER
+
+Since we no longer have binary outputs, but rather probabilistic ones,
+we need to change our evaluation function. An output is no longer
+either correct or incorrect. If the true answer is 1.0, and the
+logistic function gives 0.79, then we say the error is 0.21. For the
+sake of easy derivatives, we'll go further and say the error, now
+called the "loss," is the square of the difference:
+
+$$L_j(y_j, p_j) = (y_j - p_j)^2,$$
+
+where $y_j$ is the correct answer (1.0 or 0.0, binary), and
+$p_j=f(s_j)$ is the probability from the logistic function. We'll say
+the total loss is the sum of the loss from each perceptron. (Recall
+that a single-layer perceptron network is just a collection of
+independent perceptrons, which are essentially trained separately.)
+
+Our learning algorithm needs to be revised. Luckily, we can just work
+backwards from the loss function and attempt to walk up/down the
+gradient. Since the logistic function and the loss function are
+differentiable, this gradient is easy to find for each weight
+separately.
+
+\begin{equation}
+\begin{eqnarray}
+\frac{\partial L_j}{\partial w_{ji}}
+&=& \frac{\partial}{\partial w_{ji}} (y_j - f(s_j))^2 \\
+&=& 2 (y_j - f(s_j)) \frac{\partial}{\partial w_{ji}} (y_j - f(s_j)) \qquad \text{chain rule} \\
+&=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} s_j \qquad \text{chain rule}\\
+&=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} \sum_{i'=1}^k x_{i'} w_{ji'} + w_{j0} \qquad \text{expand } s_j\\
+&=& -2 (y_j - f(s_j)) f'(s_j) x_{i} \qquad \text{picks out } x_{i} w_{ji} \text{, whose derivative is } x_{i}
+\end{eqnarray}
+\end{equation}
+
+Note that $f'(z) = f(z)(1-f(z))$. This makes the logistic function a
+good choice (in addition to its shape, which approximates the
+threshold function). We can push the $-2$ into the $\alpha$
+parameter, yielding:
+
+$$\frac{\partial L_j}{\partial w_{ji}} = \alpha (y_j - f(s_j)) f(s_j) (1 - f(s_j)) x_{i}$$
+
+So our weight update is the following, with $p_j = f(s_j)$:
+
+$$w'_{ji} = w_{ji} + \alpha (y_j - p_j) p_j (1 - p_j)) x_{i}$$
+
+#+BEGIN_CENTER
+[[./images/logic-funcs-logistic-alpha.png]]
+#+END_CENTER
+
 As an example, consider the task of classifying handwritten digits
 with classes 0-9. Here are some examples (intentionally pixelated to
 reduce the input space, i.e., the number of pixels):
@@ -285,22 +362,62 @@ reduce the input space, i.e., the number of pixels):
 [[./images/optdigits.jpg]]
 #+END_CENTER
 
+#+BEGIN_CENTER
+[[./images/optdigits-threshold-alpha.png]]
+#+END_CENTER
 
-#+BEGIN_COMMENT
+#+BEGIN_CENTER
+[[./images/optdigits-logistic-alpha.png]]
+#+END_CENTER
 
-* Multilayer Perceptron networks
 
-each layer fully connected to the next, feed-forward
+* Multilayer perceptron networks
 
-if activation function is linear, then the multilayer net is equivalent to a single-layer perceptron
+The error gradient at perceptron $j$ turns out to be,
 
-so a nonlinear activation function is used, sort of models real neurons
-- e.g., tanh (-1 to 1)
+\begin{equation}
+\Delta_j = 
+\begin{cases}
+f'(s_j) (y_j - p_j) & \text{if perceptron } j \text{ is an output node} \\
+f'(s_j) \sum_k w_{jk} \Delta_k & \text{if perceptron } j \text{ is hidden}
+\end{cases}
+\end{equation}
 
-neither perceptron nor logistic learning rule works
+In other words, $\Delta_j$ is the normal error gradient if perceptron
+$j$ is an output perceptron. If perceptron $j$ is hidden, then the
+error gradient replaces the output error with the weighted error of
+the perceptrons to which $j$ feeds forward.
 
-backpropagation
+The result is that the update function changes to:
 
-#+END_COMMENT 
+$$w'_{ji} = w_{ji} + \alpha p_i \Delta_j$$
+
+Note that $p_i$ is the output of the previous perceptron, attached to
+weight $w_{ji}$. If the layer is an input layer (which we still say is
+"hidden"), then $p_i = x_i$, the actual $i$'th input to the network.
+
+* NetTalk example
+
+#+BEGIN_CENTER
+[[./images/nettalk.gif]]
+
+[[http://www.cs.trincoll.edu/~ram/cpsc352/notes/learning/ml.nn.html][Source]]
+#+END_CENTER
+
+#+BEGIN_QUOTE
+Like a biologist taking a scalpel to a rat, he can ablate his network,
+removing a few cells from the simulation. These ''lesions'' might
+cause NetTalk to act a little fuzzy, but it retains its general
+ability to pronounce English.
+
+And so it is with humans. If one cuts a few wires in a conventional
+computer the whole system will crash. But brains have the kind of
+robustness demonstrated by Dr. Sejnowski's invention. --- [[http://www.nytimes.com/1988/08/16/science/learning-then-talking.html][NY Times,
+1988]]
+#+END_QUOTE
+
+[[http://youtu.be/4gzpd0irP58?t=38m][YouTube]] (38min - 49min)
+
+
 
 #+INCLUDE: footer.org
