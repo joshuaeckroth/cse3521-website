@@ -22,7 +22,9 @@ def configure():
     except IOError as e:
         print e
         exit(-1)
-    return [f].extend((int(x) for x in f.readline.split()))
+    retval = [f]
+    retval.extend((int(x) for x in f.readline().split()))
+    return retval
 
 
 def read_data(infile, input_count):
@@ -33,15 +35,15 @@ def read_data(infile, input_count):
 
     for line in infile.readlines():
         line = line.split()
-        example_inputs.append(line[:input_count])
-        example_outputs.append(line[input_count:])
-    return example_outputs, example_inputs
+        example_inputs.append([int(x) for x in line[:input_count]])
+        example_outputs.append([int(x) for x in line[input_count:]])
+    return example_inputs, example_outputs
 
 
 def print_weights(network, input_count, output_count):
     """Prints the weight matrix of a single layer perceptron.
     """
-    for neuron_index in xrange(input_count):
+    for neuron_index in xrange(input_count + 1):
         for output_index in xrange(output_count):
             print "%s   " % network[neuron_index][output_index],
         # prints a newline
