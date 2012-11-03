@@ -1,5 +1,7 @@
 #!/usr/bin/python
 import sys
+import random
+# use random to randomly initialize weights and sample data randomly
 
 
 def configure():
