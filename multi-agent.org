@@ -194,6 +194,14 @@ multi-agent systems "real"? Do these properties exist independently,
 do they follow different rules, do they play a "causal" role in the
 system?
 
+#+BEGIN_QUOTE
+Emergent behavior is that which cannot be predicted through analysis
+at any level simpler than that of the system as a whole... Emergent
+behavior, by definition, is what's left after everything else has been
+explained. --- George B. Dyson, /Darwin Among the Machines: The
+Evolution of Global Intelligence/, 1997
+#+END_QUOTE
+
 Consider Adam Smith's "invisible hand" ("cooperation without coercion"
 --- Milton Friedman). Smith says that when buyers and sellers act in
 their own self-interest, the net effect to all of society is that
