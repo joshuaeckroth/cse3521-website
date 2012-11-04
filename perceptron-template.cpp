@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 
 
     ............
-    
+
 
     // print network (as a matrix)
     for(int i = 0; i < (input_count + 1); i++) {
