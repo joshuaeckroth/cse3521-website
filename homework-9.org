@@ -58,10 +58,12 @@ digit 2, then the binary numbers are: "0 0 1 0 0 0 0 0 0 0 0" (first
 binary number indicates digit 0, then 1, then 2, etc.).
 
 I have written templates for you to start with: [[./perceptron-template.cpp][C++]], [[./PerceptronTemplate.java][Java]], and
-[[./perceptron_template.py][Python]]. These templates load the data file, build the examples data
-structure, and print the weights of the trained network. You need to
-build the network, train it, and finish the code that tests reserved
-instances from the input file.
+[[./perceptron_template.py][Python]]. (Words of wisdom: Python is horrendously slow; my experiments
+with this assignment show it to be 30 times slower than Java.) These
+templates load the data file, build the examples data structure, and
+print the weights of the trained network. You need to build the
+network, train it, and finish the code that tests reserved instances
+from the input file.
 
 With $\alpha=0.01$ or so, and about 1000 epochs or so, you should be
 able to achieve ~80% correctness.
