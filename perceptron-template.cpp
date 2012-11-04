@@ -30,11 +30,13 @@ int main(int argc, char** argv)
     double** example_inputs = new double*[example_count];
     bool** example_outputs = new bool*[example_count];
     for(int e = 0; e < example_count; e++) {
-        example_inputs[e] = new double[input_count];
+        example_inputs[e] = new double[input_count+1];
         example_outputs[e] = new bool[output_count];
         for(int i = 0; i < input_count; i++) {
             data >> example_inputs[e][i];
         }
+        // set fixed bias input
+        example_inputs[e][input_count] = 1.0;
         for(int i = 0; i < output_count; i++) {
             data >> example_outputs[e][i];
         }
@@ -49,7 +51,7 @@ int main(int argc, char** argv)
 
 
     ............
-    
+
 
     // print network (as a matrix)
     for(int i = 0; i < (input_count + 1); i++) {
