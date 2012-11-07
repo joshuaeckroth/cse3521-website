@@ -1,5 +1,11 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 10
 
+background subtraction
+
+bounding box
+
+
+
 
 #+INCLUDE: footer.org

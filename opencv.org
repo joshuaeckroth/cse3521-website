@@ -1,0 +1,109 @@
+#+SETUPFILE: setup.org
+#+TITLE: OpenCV examples
+
+link to instructions for installing
+
+* Loading, saving, viewing: Images, videos, cameras
+
+Handling images is quite simple. Full code: [[./opencv/images.cpp][images.cpp]]
+
+#+BEGIN_SRC c++
+// load the image
+Mat img = imread("../lena_std.tif");
+
+// show it in a window
+imshow("Image", img);
+
+// image window will immediately disappear if the program ends, so
+// we'll wait for a keypress, indefinitely
+waitKey();
+
+// do a simple transformation: convert to grayscale
+
+// first copy the image
+Mat img_gray = img.clone();
+// now convert to grayscale
+cvtColor(img, img_gray, CV_RGB2GRAY);
+
+// save the image
+bool ret = imwrite("../lena_std-gray.tif", img_gray);
+if(ret) {
+    cout << "Save worked." << endl;
+} else {
+    cout << "Save failed." << endl;
+}
+#+END_SRC
+
+Amazingly, handling video files is also very simple, and is virtually
+the same as handling cameras! Full code: [[./opencv/videos.cpp][videos.cpp]]
+
+#+BEGIN_SRC c++
+VideoCapture capture(-1); // use webcam
+//VideoCapture capture("output.mpg"); // use input file
+Mat frame;
+
+if(capture.isOpened()) {
+    // if using webcam:
+    int fps = 30;
+    // if using input file:
+    //int fps = capture.get(CV_CAP_PROP_FPS);
+
+    int width = capture.get(CV_CAP_PROP_FRAME_WIDTH);
+    int height = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
+    cout << "FPS: " << fps << ", width: " << width << ", height: " << height << endl;
+
+    VideoWriter writer("input.mpg", CV_FOURCC('P','I','M','1'),
+                       fps, cvSize(width, height), 0); // 0 means gray, 1 means color
+
+    if(writer.isOpened()) {
+        while(true) {
+            capture >> frame;
+
+            if(!frame.empty()) {
+                imshow("Video", frame);
+            }
+
+            Mat frame_gray = frame.clone();
+            cvtColor(frame, frame_gray, CV_RGB2GRAY);
+            writer << frame_gray;
+
+            int key = waitKey(10);
+            if((char)key == 'q') { break; }
+        }
+    }
+}
+#+END_SRC
+
+* Image transformations and filters
+
+** Eroding
+
+** Dilating
+
+** Detecting edges and corners
+
+** Threshold filter
+
+** Differences between two images
+
+* Object tracking
+
+** Background modeling
+
+static image, or updating image; using differences
+
+building MOG model
+
+** Background subtraction
+
+** Finding contours
+
+** Bounding boxes
+
+* Face detection
+
+(not face recognition)
+
+
+
+#+INCLUDE: footer.org

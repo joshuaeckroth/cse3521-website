@@ -1,0 +1,137 @@
+#+SETUPFILE: setup.org
+#+TITLE: Computer vision
+
+* A note about the photo
+
+#+BEGIN_HTML
+<img align="left" src="images/lena.jpg" alt="Lena (Lenna) Söderberg"
+title="Lena (Lenna) Söderberg" style="margin: 0 10px 10px 0;"/>
+#+END_HTML
+
+This photo of Lena (Lenna) Söderberg is the most widely used test
+image for computer vision applications. I have made a conscious
+decision to use this image for examples on this webpage. We should be
+respectful of the woman in the photo and know how this image came to
+be. Read about the photo at [[http://www.cs.cmu.edu/~chuck/lennapg/lenna.shtml][The Lenna story]].
+
+#+BEGIN_HTML
+<div style="clear: both;" />
+#+END_HTML
+
+* Linear filters (convolutions)
+
+$$\text{dst}(x,y) = \sum_{0 \leq x' < kc, \quad 0 \leq y' < kr} K(x',y') * \text{src}(x + x'- ax, y + y' - ay)$$
+
+where $K$ is the kernel, $kc$ is the number of columns in the kernel,
+$kr$ is the number of rows in the kernel, $ax$ is the $x$ position of
+the anchor (in the kernel), and $ay$ is the $y$ position of the
+anchor.
+
+#+BEGIN_CENTER
+[[./images/blur-convolution.png]]
+[[./images/lena-blur.jpg]]
+#+END_CENTER
+
+* Erosion, dilation
+
+Erosion:
+
+$$\text{dst}(x,y) = \min_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
+
+Dilation:
+
+$$\text{dst}(x,y) = \max_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
+
+* Remapping
+
+$$\text{dst}(x,y) = \text{src}(\text{map}_x(x,y), \text{map}_y(x,y))$$
+
+
+* Affine transformations
+
+An affine transformation is any transformation that can be specified
+as a linear transformation (matrix multiplication) plus a translation
+(vector addition).
+
+Affine transformations include: rotations, translations, scaling, and
+combinations of these.
+
+\begin{equation}
+A = \begin{bmatrix} a_{00} & a_{01} \\ a_{10} & a_{11} \end{bmatrix}
+B = \begin{bmatrix} b_{00} \\ b_{10} \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+M = [A;B] = \begin{bmatrix} a_{00} & a_{01} & b_{00} \\ a_{10} & a_{11} & b_{10} \end{bmatrix}
+\end{equation}
+
+Then we take a point, $[x, y]^T$, add an extra $z$ dimension set to $1$, and multiply:
+
+\begin{equation}
+T = M \times [x, y, 1]^T = \begin{bmatrix} a_{00}x + a_{01}y + b_{00} \\ a_{10}x + a_{11}y + b_{10} \end{bmatrix}
+\end{equation}
+
+** Examples
+
+The identity transformation:
+
+\begin{equation}
+A = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{bmatrix}
+\end{equation}
+
+Scale the image to half its size:
+
+\begin{equation}
+A = \begin{bmatrix} 0.5 & 0 & 0 \\ 0 & 0.5 & 0 \end{bmatrix}
+\end{equation}
+
+Here is a 90-degree rotation:
+
+\begin{equation}
+\begin{eqnarray}
+M &=& \begin{bmatrix}
+\cos(\pi/2) & \sin(\pi/2) & (1-\cos(\pi/2))cx - \sin(\pi/2)cy \\
+-\sin(\pi/2) & \cos(\pi/2) & \sin(pi/2)cx + (1-\cos(pi/2))cy
+\end{bmatrix} \\
+&=& \begin{bmatrix}
+0 & 1 & cx - cy \\
+-1 & 0 & cx + cy
+\end{bmatrix}
+\end{eqnarray}
+\end{equation}
+
+where $cx, cy$ is the location of the center of the image.
+
+Here is a 45-degree rotation:
+
+\begin{equation}
+M = \begin{bmatrix}
+\cos(\pi/4) & \sin(\pi/4) & (1-\cos(\pi/4))cx - \sin(\pi/4)cy \\
+-\sin(\pi/4) & \cos(\pi/4) & \sin(pi/4)cx + (1-\cos(pi/4))cy
+\end{bmatrix}
+\end{equation}
+
+
+Because an affine transformation is a $2 \times 3$ matrix, we can
+determine the transformation between any two images with only three 2D
+points. (We have a system of equations with three unknowns for each
+dimension, so we need three examples to uniquely determine the
+unknowns.)
+
+We could, for example, take a skewed view from a surveillance camera,
+and figure out the actual plane being viewed (assuming we are
+monitoring a flat area), by just figuring out the ground coordinates
+of three pixels in the video.
+
+Of course, surveillance videos often have low resolution, so we
+probably cannot pick out the exact ground coordinates of any
+pixels. We can instead approximate the affine transformation; that is,
+we can find the transformation that minimizes the error. Three point
+correspondances is now not enough; we need lots, maybe 50 or 100, the
+more the better. (/Perhaps we can automatically find these./) Then
+different affine transformations can be tested, and we can pick out
+the one that minimizes the error between chosen ground coordinates and
+predicted ground coordinates (from the transformation). This learning
+can be achieved with a single layer neural network.
+
+#+INCLUDE: footer.org
