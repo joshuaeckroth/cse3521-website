@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Homework 7</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Homework 7"/>
+<title>Computer vision</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Computer vision"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-07 14:07:21 EST"/>
+<meta name="generated" content="2012-11-07 14:07:25 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -136,128 +136,233 @@
 </div>
 
 <div id="content">
-<h1 class="title">Homework 7</h1>
+<h1 class="title">Computer vision</h1>
 
 
 <div id="table-of-contents">
 <h2>TOC</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Task 1 (20 pts)</a></li>
-<li><a href="#sec-2">Task 2 (20 pts)</a></li>
-<li><a href="#sec-3">Task 3 (20 pts)</a></li>
-<li><a href="#sec-4">Task 4 (20 pts)</a></li>
-<li><a href="#sec-5">Task 5 (20 pts)</a></li>
-<li><a href="#sec-6">Extra credit (10 pts)</a></li>
+<li><a href="#sec-1">A note about the photo</a></li>
+<li><a href="#sec-2">Linear filters (convolutions)</a></li>
+<li><a href="#sec-3">Erosion, dilation</a></li>
+<li><a href="#sec-4">Remapping</a></li>
+<li><a href="#sec-5">Affine transformations</a>
+<ul>
+<li><a href="#sec-5-1">Examples</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Task 1 (20 pts)</h2>
+<h2 id="sec-1">A note about the photo</h2>
 <div class="outline-text-2" id="text-1">
 
 
-<p>
-Execute the k-means algorithm by hand on the following data:
-</p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="right" /><col class="right" /><col class="right" /><col class="right" /><col class="right" /><col class="left" />
-</colgroup>
-<thead>
-<tr><th scope="col" class="right">item #</th><th scope="col" class="right">w</th><th scope="col" class="right">x</th><th scope="col" class="right">y</th><th scope="col" class="right">z</th><th scope="col" class="left">true label</th></tr>
-</thead>
-<tbody>
-<tr><td class="right">1</td><td class="right">1.0</td><td class="right">1.0</td><td class="right">0.0</td><td class="right">1.0</td><td class="left">A</td></tr>
-<tr><td class="right">2</td><td class="right">0.0</td><td class="right">0.0</td><td class="right">1.0</td><td class="right">0.0</td><td class="left">B</td></tr>
-<tr><td class="right">3</td><td class="right">2.0</td><td class="right">2.0</td><td class="right">0.0</td><td class="right">2.0</td><td class="left">A</td></tr>
-<tr><td class="right">4</td><td class="right">0.0</td><td class="right">0.0</td><td class="right">1.0</td><td class="right">1.0</td><td class="left">B</td></tr>
-<tr><td class="right">5</td><td class="right">2.0</td><td class="right">2.0</td><td class="right">0.0</td><td class="right">2.0</td><td class="left">A</td></tr>
-<tr><td class="right">6</td><td class="right">0.0</td><td class="right">2.0</td><td class="right">1.0</td><td class="right">1.0</td><td class="left">B</td></tr>
-</tbody>
-</table>
 
 
+<img align="left" src="images/lena.jpg" alt="Lena (Lenna) Söderberg"
+title="Lena (Lenna) Söderberg" style="margin: 0 10px 10px 0;"/>
+
 <p>
-Use \(k=2\). Show the centroids as they change, and give the final
-centroids. You must choose random (or not so random) starting centroid
-values. Finally, give the confusion matrix.
+This photo of Lena (Lenna) Söderberg is the most widely used test
+image for computer vision applications. I have made a conscious
+decision to use this image for examples on this webpage. We should be
+respectful of the woman in the photo and know how this image came to
+be. Read about the photo at <a href="http://www.cs.cmu.edu/~chuck/lennapg/lenna.shtml">The Lenna story</a>.
 </p>
+
+
+<div style="clear: both;" />
+
 </div>
 
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2">Task 2 (20 pts)</h2>
+<h2 id="sec-2">Linear filters (convolutions)</h2>
 <div class="outline-text-2" id="text-2">
 
 
+
+
+$$\text{dst}(x,y) = \sum_{0 \leq x' < kc, \quad 0 \leq y' < kr} K(x',y') * \text{src}(x + x'- ax, y + y' - ay)$$
+
 <p>
-Run the k-means algorithm in Weka using this dataset: <a href="./iris.arff">iris.arff</a> (iris
-species clustering).
+where \(K\) is the kernel, \(kc\) is the number of columns in the kernel,
+\(kr\) is the number of rows in the kernel, \(ax\) is the \(x\) position of
+the anchor (in the kernel), and \(ay\) is the \(y\) position of the
+anchor.
 </p>
-<p>
-Choose \(k=3\) and \(k=4\). Give the confusion matrix for each value of
-\(k\). Also report the percent of correctly classified instances for
-each class, for each \(k\).
+
+<div style="text-align: center">
+<p><img src="./images/blur-convolution.png"  alt="./images/blur-convolution.png" />
+<img src="./images/lena-blur.jpg"  alt="./images/lena-blur.jpg" />
 </p>
+</div>
+
 </div>
 
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3">Task 3 (20 pts)</h2>
+<h2 id="sec-3">Erosion, dilation</h2>
 <div class="outline-text-2" id="text-3">
 
 
 <p>
-Execute the k-nearest neighbor algorithm by hand on the clusters found
-from task 1 (or make up random clusters by labeling the points from
-task 1). Use \(k = 2\). Classify the data point: \(&lt;1, 3, 0, 2&gt;\).
+Erosion:
 </p>
+
+
+$$\text{dst}(x,y) = \min_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
+
+<p>
+Dilation:
+</p>
+
+
+$$\text{dst}(x,y) = \max_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
+
 </div>
 
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">Task 4 (20 pts)</h2>
+<h2 id="sec-4">Remapping</h2>
 <div class="outline-text-2" id="text-4">
 
 
-<p>
-Run the k-nearest neighbor in Weka using this dataset: <a href="./letter.arff">letter.arff</a>
-(handwritten letter classification). Find a good value of \(k\). Report
-the accuracy and give the confusion matrix for the best accuracy.
-</p>
+
+
+$$\text{dst}(x,y) = \text{src}(\text{map}_x(x,y), \text{map}_y(x,y))$$
+
+
 </div>
 
 </div>
 
 <div id="outline-container-5" class="outline-2">
-<h2 id="sec-5">Task 5 (20 pts)</h2>
+<h2 id="sec-5">Affine transformations</h2>
 <div class="outline-text-2" id="text-5">
 
 
 <p>
-Explain the differences between k-means and k-nearest neighbor
-algorithms. What does each accomplish, and when/why might you use
-both?
+An affine transformation is any transformation that can be specified
+as a linear transformation (matrix multiplication) plus a translation
+(vector addition).
 </p>
-</div>
+<p>
+Affine transformations include: rotations, translations, scaling, and
+combinations of these.
+</p>
+
+
+\begin{equation}
+A = \begin{bmatrix} a_{00} & a_{01} \\ a_{10} & a_{11} \end{bmatrix}
+B = \begin{bmatrix} b_{00} \\ b_{10} \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+M = [A;B] = \begin{bmatrix} a_{00} & a_{01} & b_{00} \\ a_{10} & a_{11} & b_{10} \end{bmatrix}
+\end{equation}
+
+<p>
+Then we take a point, \([x, y]^T\), add an extra \(z\) dimension set to \(1\), and multiply:
+</p>
+
+
+\begin{equation}
+T = M \times [x, y, 1]^T = \begin{bmatrix} a_{00}x + a_{01}y + b_{00} \\ a_{10}x + a_{11}y + b_{10} \end{bmatrix}
+\end{equation}
+
 
 </div>
 
-<div id="outline-container-6" class="outline-2">
-<h2 id="sec-6">Extra credit (10 pts)</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-5-1" class="outline-3">
+<h3 id="sec-5-1">Examples</h3>
+<div class="outline-text-3" id="text-5-1">
 
 
 <p>
-Play around with Weka; report which classifier algorithm performs best
-(or nearly best) for classifying the <a href="./letter.arff">letter.arff</a> data.
+The identity transformation:
 </p>
 
+
+\begin{equation}
+A = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{bmatrix}
+\end{equation}
+
+<p>
+Scale the image to half its size:
+</p>
+
+
+\begin{equation}
+A = \begin{bmatrix} 0.5 & 0 & 0 \\ 0 & 0.5 & 0 \end{bmatrix}
+\end{equation}
+
+<p>
+Here is a 90-degree rotation:
+</p>
+
+
+\begin{equation}
+\begin{eqnarray}
+M &=& \begin{bmatrix}
+\cos(\pi/2) & \sin(\pi/2) & (1-\cos(\pi/2))cx - \sin(\pi/2)cy \\
+-\sin(\pi/2) & \cos(\pi/2) & \sin(pi/2)cx + (1-\cos(pi/2))cy
+\end{bmatrix} \\
+&=& \begin{bmatrix}
+0 & 1 & cx - cy \\
+-1 & 0 & cx + cy
+\end{bmatrix}
+\end{eqnarray}
+\end{equation}
+
+<p>
+where \(cx, cy\) is the location of the center of the image.
+</p>
+<p>
+Here is a 45-degree rotation:
+</p>
+
+
+\begin{equation}
+M = \begin{bmatrix}
+\cos(\pi/4) & \sin(\pi/4) & (1-\cos(\pi/4))cx - \sin(\pi/4)cy \\
+-\sin(\pi/4) & \cos(\pi/4) & \sin(pi/4)cx + (1-\cos(pi/4))cy
+\end{bmatrix}
+\end{equation}
+
+
+<p>
+Because an affine transformation is a \(2 \times 3\) matrix, we can
+determine the transformation between any two images with only three 2D
+points. (We have a system of equations with three unknowns for each
+dimension, so we need three examples to uniquely determine the
+unknowns.)
+</p>
+<p>
+We could, for example, take a skewed view from a surveillance camera,
+and figure out the actual plane being viewed (assuming we are
+monitoring a flat area), by just figuring out the ground coordinates
+of three pixels in the video.
+</p>
+<p>
+Of course, surveillance videos often have low resolution, so we
+probably cannot pick out the exact ground coordinates of any
+pixels. We can instead approximate the affine transformation; that is,
+we can find the transformation that minimizes the error. Three point
+correspondances is now not enough; we need lots, maybe 50 or 100, the
+more the better. (<i>Perhaps we can automatically find these.</i>) Then
+different affine transformations can be tested, and we can pick out
+the one that minimizes the error between chosen ground coordinates and
+predicted ground coordinates (from the transformation). This learning
+can be achieved with a single layer neural network.
+</p>
 
 
 <div style="font-size: 80%; clear: both;">
@@ -275,6 +380,7 @@ Play around with Weka; report which classifier algorithm performs best
 <!-- End of Plupper Tracking Code -->
 
 
+</div>
 </div>
 </div>
 </div>

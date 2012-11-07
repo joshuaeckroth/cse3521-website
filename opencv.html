@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>OpenCV examples</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="OpenCV examples"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-11-07 14:07:15 EST"/>
+<meta name="author" content="Joshua Eckroth"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+
+</div>
+
+<div id="content">
+<h1 class="title">OpenCV examples</h1>
+
+<p>link to instructions for installing
+</p>
+
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Loading, saving, viewing: Images, videos, cameras</a></li>
+<li><a href="#sec-2">Image transformations and filters</a>
+<ul>
+<li><a href="#sec-2-1">Eroding</a></li>
+<li><a href="#sec-2-2">Dilating</a></li>
+<li><a href="#sec-2-3">Detecting edges and corners</a></li>
+<li><a href="#sec-2-4">Threshold filter</a></li>
+<li><a href="#sec-2-5">Differences between two images</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Object tracking</a>
+<ul>
+<li><a href="#sec-3-1">Background modeling</a></li>
+<li><a href="#sec-3-2">Background subtraction</a></li>
+<li><a href="#sec-3-3">Finding contours</a></li>
+<li><a href="#sec-3-4">Bounding boxes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Face detection</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Loading, saving, viewing: Images, videos, cameras</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Handling images is quite simple. Full code: <a href="./opencv/images.cpp">images.cpp</a>
+</p>
+
+
+
+<pre class="src src-c++"><span style="color: #b22222;">// </span><span style="color: #b22222;">load the image</span>
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img</span> = imread(<span style="color: #8b2252;">"../lena_std.tif"</span>);
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">show it in a window</span>
+imshow(<span style="color: #8b2252;">"Image"</span>, img);
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">image window will immediately disappear if the program ends, so</span>
+<span style="color: #b22222;">// </span><span style="color: #b22222;">we'll wait for a keypress, indefinitely</span>
+waitKey();
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">do a simple transformation: convert to grayscale</span>
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">first copy the image</span>
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_gray</span> = img.clone();
+<span style="color: #b22222;">// </span><span style="color: #b22222;">now convert to grayscale</span>
+cvtColor(img, img_gray, CV_RGB2GRAY);
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">save the image</span>
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">ret</span> = imwrite(<span style="color: #8b2252;">"../lena_std-gray.tif"</span>, img_gray);
+<span style="color: #a020f0;">if</span>(ret) {
+    cout &lt;&lt; <span style="color: #8b2252;">"Save worked."</span> &lt;&lt; endl;
+} <span style="color: #a020f0;">else</span> {
+    cout &lt;&lt; <span style="color: #8b2252;">"Save failed."</span> &lt;&lt; endl;
+}
+</pre>
+
+
+<p>
+Amazingly, handling video files is also very simple, and is virtually
+the same as handling cameras! Full code: <a href="./opencv/videos.cpp">videos.cpp</a>
+</p>
+
+
+
+<pre class="src src-c++"><span style="color: #228b22;">VideoCapture</span> <span style="color: #0000ff;">capture</span>(-1); <span style="color: #b22222;">// </span><span style="color: #b22222;">use webcam</span>
+<span style="color: #b22222;">//</span><span style="color: #b22222;">VideoCapture capture("output.mpg"); // use input file</span>
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">frame</span>;
+
+<span style="color: #a020f0;">if</span>(capture.isOpened()) {
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">if using webcam:</span>
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">fps</span> = 30;
+    <span style="color: #b22222;">// </span><span style="color: #b22222;">if using input file:</span>
+    <span style="color: #b22222;">//</span><span style="color: #b22222;">int fps = capture.get(CV_CAP_PROP_FPS);</span>
+
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">width</span> = capture.get(CV_CAP_PROP_FRAME_WIDTH);
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">height</span> = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
+    cout &lt;&lt; <span style="color: #8b2252;">"FPS: "</span> &lt;&lt; fps &lt;&lt; <span style="color: #8b2252;">", width: "</span> &lt;&lt; width &lt;&lt; <span style="color: #8b2252;">", height: "</span> &lt;&lt; height &lt;&lt; endl;
+
+    <span style="color: #228b22;">VideoWriter</span> <span style="color: #a0522d;">writer</span>(<span style="color: #8b2252;">"input.mpg"</span>, CV_FOURCC(<span style="color: #8b2252;">'P'</span>,<span style="color: #8b2252;">'I'</span>,<span style="color: #8b2252;">'M'</span>,<span style="color: #8b2252;">'1'</span>),
+                       fps, cvSize(width, height), 0); <span style="color: #b22222;">// </span><span style="color: #b22222;">0 means gray, 1 means color</span>
+
+    <span style="color: #a020f0;">if</span>(writer.isOpened()) {
+        <span style="color: #a020f0;">while</span>(<span style="color: #008b8b;">true</span>) {
+            capture &gt;&gt; frame;
+
+            <span style="color: #a020f0;">if</span>(!frame.empty()) {
+                imshow(<span style="color: #8b2252;">"Video"</span>, frame);
+            }
+
+            <span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">frame_gray</span> = frame.clone();
+            cvtColor(frame, frame_gray, CV_RGB2GRAY);
+            writer &lt;&lt; frame_gray;
+
+            <span style="color: #228b22;">int</span> <span style="color: #a0522d;">key</span> = waitKey(10);
+            <span style="color: #a020f0;">if</span>((<span style="color: #228b22;">char</span>)key == <span style="color: #8b2252;">'q'</span>) { <span style="color: #a020f0;">break</span>; }
+        }
+    }
+}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Image transformations and filters</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">Eroding</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">Dilating</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3">Detecting edges and corners</h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4">Threshold filter</h3>
+<div class="outline-text-3" id="text-2-4">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5">Differences between two images</h3>
+<div class="outline-text-3" id="text-2-5">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Object tracking</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">Background modeling</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<p>
+static image, or updating image; using differences
+</p>
+<p>
+building MOG model
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2">Background subtraction</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3">Finding contours</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4">Bounding boxes</h3>
+<div class="outline-text-3" id="text-3-4">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Face detection</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+(not face recognition)
+</p>
+
+
+
+
+<div style="font-size: 80%; clear: both;">
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<!-- Plupper Tracking Code -->
+<script src="https://www.google.com/jsapi"></script>
+<script type="text/javascript"
+    src="https://static.plupper.com/js/plupper.js"></script>
+<script type="text/javascript">
+    plupper.init("joshuaeckroth@plupper.com");
+    plupper.enableCobrowsing();
+</script>
+<!-- End of Plupper Tracking Code -->
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
