@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="OpenCV examples"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-07 14:07:15 EST"/>
+<meta name="generated" content="2012-11-08 11:17:21 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -98,7 +98,8 @@
 <div id="content">
 <h1 class="title">OpenCV examples</h1>
 
-<p>link to instructions for installing
+<p>The OpenCV homepage is <a href="http://opencv.org">opencv.org</a>; you&rsquo;ll want to look at their
+<a href="http://docs.opencv.org/2.4.3/modules/refman.html">reference manual</a> and <a href="http://docs.opencv.org/doc/tutorials/tutorials.html">tutorials</a>, in particular <a href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">tutorials about installation</a>.
 </p>
 
 <div id="table-of-contents">
@@ -110,9 +111,6 @@
 <ul>
 <li><a href="#sec-2-1">Eroding</a></li>
 <li><a href="#sec-2-2">Dilating</a></li>
-<li><a href="#sec-2-3">Detecting edges and corners</a></li>
-<li><a href="#sec-2-4">Threshold filter</a></li>
-<li><a href="#sec-2-5">Differences between two images</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">Object tracking</a>
@@ -140,7 +138,7 @@ Handling images is quite simple. Full code: <a href="./opencv/images.cpp">images
 
 
 <pre class="src src-c++"><span style="color: #b22222;">// </span><span style="color: #b22222;">load the image</span>
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img</span> = imread(<span style="color: #8b2252;">"../lena_std.tif"</span>);
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img</span> = imread(<span style="color: #8b2252;">"lena.jpg"</span>);
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">show it in a window</span>
 imshow(<span style="color: #8b2252;">"Image"</span>, img);
@@ -157,7 +155,7 @@ waitKey();
 cvtColor(img, img_gray, CV_RGB2GRAY);
 
 <span style="color: #b22222;">// </span><span style="color: #b22222;">save the image</span>
-<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">ret</span> = imwrite(<span style="color: #8b2252;">"../lena_std-gray.tif"</span>, img_gray);
+<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">ret</span> = imwrite(<span style="color: #8b2252;">"lena.jpg"</span>, img_gray);
 <span style="color: #a020f0;">if</span>(ret) {
     cout &lt;&lt; <span style="color: #8b2252;">"Save worked."</span> &lt;&lt; endl;
 } <span style="color: #a020f0;">else</span> {
@@ -227,6 +225,35 @@ the same as handling cameras! Full code: <a href="./opencv/videos.cpp">videos.cp
 <div class="outline-text-3" id="text-2-1">
 
 
+
+
+
+<pre class="src src-c++"><span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img</span> = imread(<span style="color: #8b2252;">"lena.jpg"</span>);
+
+imshow(<span style="color: #8b2252;">"Image"</span>, img);
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">convert to grayscale</span>
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_gray</span> = img.clone();
+cvtColor(img, img_gray, CV_RGB2GRAY);
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">convert to binary with a gray threshold</span>
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_binary</span> = img_gray.clone();
+threshold(img_gray, img_binary, 128.0, 255.0, THRESH_BINARY);
+imshow(<span style="color: #8b2252;">"Binary"</span>, img_binary);
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">make a kernel of 4x4, all 1's</span>
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">kernel</span> = <span style="color: #008b8b;">Mat</span>::ones(Size(4, 4), CV_8U);
+
+<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_binary_erode4x4</span> = img_binary.clone();
+
+<span style="color: #b22222;">// </span><span style="color: #b22222;">do the erosion</span>
+erode(img_binary, img_binary_erode4x4, kernel);
+
+imshow(<span style="color: #8b2252;">"Erode binary 4x4"</span>, img_binary_erode4x4);
+</pre>
+
+
+
 </div>
 
 </div>
@@ -236,31 +263,14 @@ the same as handling cameras! Full code: <a href="./opencv/videos.cpp">videos.cp
 <div class="outline-text-3" id="text-2-2">
 
 
-</div>
-
-</div>
-
-<div id="outline-container-2-3" class="outline-3">
-<h3 id="sec-2-3">Detecting edges and corners</h3>
-<div class="outline-text-3" id="text-2-3">
+<p>
+Same code as erosion, even same kernel, except for this minor change:
+</p>
 
 
-</div>
 
-</div>
-
-<div id="outline-container-2-4" class="outline-3">
-<h3 id="sec-2-4">Threshold filter</h3>
-<div class="outline-text-3" id="text-2-4">
-
-
-</div>
-
-</div>
-
-<div id="outline-container-2-5" class="outline-3">
-<h3 id="sec-2-5">Differences between two images</h3>
-<div class="outline-text-3" id="text-2-5">
+<pre class="src src-c++">dilate(img_binary, img_binary_dilate4x4, kernel);
+</pre>
 
 
 </div>
@@ -344,6 +354,7 @@ building MOG model
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
 
 
 </div>

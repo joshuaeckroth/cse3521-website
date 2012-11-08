@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Computer vision"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-07 14:07:25 EST"/>
+<meta name="generated" content="2012-11-08 11:17:36 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -83,7 +83,7 @@
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+<script type="text/javascript" src="MathJax/MathJax.js">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -145,11 +145,12 @@
 <ul>
 <li><a href="#sec-1">A note about the photo</a></li>
 <li><a href="#sec-2">Linear filters (convolutions)</a></li>
-<li><a href="#sec-3">Erosion, dilation</a></li>
-<li><a href="#sec-4">Remapping</a></li>
-<li><a href="#sec-5">Affine transformations</a>
+<li><a href="#sec-3">Erosion</a></li>
+<li><a href="#sec-4">Dilation</a></li>
+<li><a href="#sec-5">Remapping</a></li>
+<li><a href="#sec-6">Affine transformations</a>
 <ul>
-<li><a href="#sec-5-1">Examples</a></li>
+<li><a href="#sec-6-1">Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -188,6 +189,10 @@ be. Read about the photo at <a href="http://www.cs.cmu.edu/~chuck/lennapg/lenna.
 
 
 
+<img align="left" src="images/blur-convolution.png" style="margin: 0 10px 10px 0;"/>
+
+
+
 $$\text{dst}(x,y) = \sum_{0 \leq x' < kc, \quad 0 \leq y' < kr} K(x',y') * \text{src}(x + x'- ax, y + y' - ay)$$
 
 <p>
@@ -197,42 +202,78 @@ the anchor (in the kernel), and \(ay\) is the \(y\) position of the
 anchor.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/blur-convolution.png"  alt="./images/blur-convolution.png" />
-<img src="./images/lena-blur.jpg"  alt="./images/lena-blur.jpg" />
-</p>
-</div>
+
+<div style="clear: both;"/>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left"><img src="./images/lena-blur10x10.jpg"  alt="./images/lena-blur10x10.jpg" /></td><td class="left"><img src="./images/lena-blur20x20.jpg"  alt="./images/lena-blur20x20.jpg" /></td><td class="left"><img src="./images/lena-blur20x1.jpg"  alt="./images/lena-blur20x1.jpg" /></td></tr>
+<tr><td class="left">Kernel is 10x10, all values equal to 0.01</td><td class="left">Kernel is 20x20, all values equal to 0.0025</td><td class="left">Kernel is 20x1, all values equal to 0.05</td></tr>
+</tbody>
+</table>
+
+
 
 </div>
 
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3">Erosion, dilation</h2>
+<h2 id="sec-3">Erosion</h2>
 <div class="outline-text-2" id="text-3">
 
 
-<p>
-Erosion:
-</p>
 
 
 $$\text{dst}(x,y) = \min_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
 
-<p>
-Dilation:
-</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left"><img src="./images/lena-erode4x4.jpg"  alt="./images/lena-erode4x4.jpg" /></td><td class="left"><img src="./images/lena-binary.jpg"  alt="./images/lena-binary.jpg" /></td><td class="left"><img src="./images/lena-binary-erode4x4.jpg"  alt="./images/lena-binary-erode4x4.jpg" /></td></tr>
+<tr><td class="left">Erosion with a 4x4 kernel of 1&rsquo;s</td><td class="left">Lena in binary</td><td class="left">Binary image eroded by 4x4 kernel of 1&rsquo;s</td></tr>
+</tbody>
+</table>
 
 
-$$\text{dst}(x,y) = \max_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
 
 </div>
 
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">Remapping</h2>
+<h2 id="sec-4">Dilation</h2>
 <div class="outline-text-2" id="text-4">
+
+
+
+
+$$\text{dst}(x,y) = \max_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left"><img src="./images/lena-dilate4x4.jpg"  alt="./images/lena-dilate4x4.jpg" /></td><td class="left"><img src="./images/lena-binary.jpg"  alt="./images/lena-binary.jpg" /></td><td class="left"><img src="./images/lena-binary-dilate4x4.jpg"  alt="./images/lena-binary-dilate4x4.jpg" /></td></tr>
+<tr><td class="left">Dilation with a 4x4 kernel of 1&rsquo;s</td><td class="left">Lena in binary</td><td class="left">Binary image dilated by 4x4 kernel of 1&rsquo;s</td></tr>
+</tbody>
+</table>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Remapping</h2>
+<div class="outline-text-2" id="text-5">
 
 
 
@@ -244,9 +285,9 @@ $$\text{dst}(x,y) = \text{src}(\text{map}_x(x,y), \text{map}_y(x,y))$$
 
 </div>
 
-<div id="outline-container-5" class="outline-2">
-<h2 id="sec-5">Affine transformations</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Affine transformations</h2>
+<div class="outline-text-2" id="text-6">
 
 
 <p>
@@ -281,9 +322,9 @@ T = M \times [x, y, 1]^T = \begin{bmatrix} a_{00}x + a_{01}y + b_{00} \\ a_{10}x
 
 </div>
 
-<div id="outline-container-5-1" class="outline-3">
-<h3 id="sec-5-1">Examples</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-6-1" class="outline-3">
+<h3 id="sec-6-1">Examples</h3>
+<div class="outline-text-3" id="text-6-1">
 
 
 <p>
@@ -309,7 +350,6 @@ Here is a 90-degree rotation:
 </p>
 
 
-\begin{equation}
 \begin{eqnarray}
 M &=& \begin{bmatrix}
 \cos(\pi/2) & \sin(\pi/2) & (1-\cos(\pi/2))cx - \sin(\pi/2)cy \\
@@ -320,7 +360,6 @@ M &=& \begin{bmatrix}
 -1 & 0 & cx + cy
 \end{bmatrix}
 \end{eqnarray}
-\end{equation}
 
 <p>
 where \(cx, cy\) is the location of the center of the image.

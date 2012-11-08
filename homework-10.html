@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Homework 10"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-07 14:07:23 EST"/>
+<meta name="generated" content="2012-11-08 11:17:32 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -98,14 +98,53 @@
 <div id="content">
 <h1 class="title">Homework 10</h1>
 
-<p>background subtraction
+
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Task (100 pts)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Task (100 pts)</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Download the visual color &ldquo;sequence 04&rdquo; video from the <a href="http://www.cdvp.dcu.ie/datasets/thermo_visual/">Thermo-Visual Datasets</a> webpage, from Dublin City University. Direct link to video
+file: <a href="http://www.cdvp.dcu.ie/datasets/thermo_visual/balcony4/Balcony4_Vis.mpg">Balcony4_Vis.mpg</a> (74MB MPEG file).
 </p>
 <p>
-bounding box
+Load this video with OpenCV, perform background subtraction, find the
+contours, and their bounding boxes.
 </p>
-
-
-
+<p>
+This has all been done for you: <a href="./opencv/track.cpp">track-cpp.zip</a> (C++ code and CMake
+file), <a href="./opencv/track.py">track.py</a> (Python code), and <a href="./opencv/track-java.zip">track-java.zip</a> (Java project for
+Eclipse; requires <a href="http://code.google.com/p/javacv/">JavaCV</a>).
+</p>
+<p>
+Your primary task, apart from installing OpenCV and making the code
+work, is to identify the moving entities with labels like 1, 2, 3,
+&hellip; You should make a good attempt at connecting the detected blobs
+with the correct identities, so that the lady with the purse, for
+example, is tracked from the point she enters the scene to when she
+leaves.
+</p>
+<p>
+You won&rsquo;t be able to get perfect tracks. Just make a good attempt. One
+approach would be to associate the entity with the nearest identified
+entity from the prior frame, and if there is no entity close enough
+(and recently enough), make a new id.
+</p>
+<p>
+Submit your source code to CSE server. You will not be able to test on
+the CSE server. Just test on your own machine. Let me know if you
+cannot install OpenCV on your own machine.
+</p>
 
 
 <div style="font-size: 80%; clear: both;">
@@ -123,6 +162,8 @@ bounding box
 <!-- End of Plupper Tracking Code -->
 
 
+</div>
+</div>
 </div>
 
 </body>

@@ -21,7 +21,8 @@ int main()
         int height = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
         cout << "FPS: " << fps << ", width: " << width << ", height: " << height << endl;
 
-        VideoWriter writer("output.mpg", CV_FOURCC('P','I','M','1'),
+        VideoWriter writer("output.mpg",
+                           CV_FOURCC('P','I','M','1'),
                            fps, cvSize(width, height), 0); // 0 means gray, 1 means color
 
         if(writer.isOpened()) {
