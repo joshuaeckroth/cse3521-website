@@ -1,7 +1,9 @@
 #+SETUPFILE: setup.org
 #+TITLE: OpenCV examples
 
-link to instructions for installing
+The OpenCV homepage is [[http://opencv.org][opencv.org]]; you'll want to look at their
+[[http://docs.opencv.org/2.4.3/modules/refman.html][reference manual]] and [[http://docs.opencv.org/doc/tutorials/tutorials.html][tutorials]], in particular [[http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction][tutorials about
+installation]].
 
 * Loading, saving, viewing: Images, videos, cameras
 
@@ -9,7 +11,7 @@ Handling images is quite simple. Full code: [[./opencv/images.cpp][images.cpp]]
 
 #+BEGIN_SRC c++
 // load the image
-Mat img = imread("../lena_std.tif");
+Mat img = imread("lena.jpg");
 
 // show it in a window
 imshow("Image", img);
@@ -26,7 +28,7 @@ Mat img_gray = img.clone();
 cvtColor(img, img_gray, CV_RGB2GRAY);
 
 // save the image
-bool ret = imwrite("../lena_std-gray.tif", img_gray);
+bool ret = imwrite("lena.jpg", img_gray);
 if(ret) {
     cout << "Save worked." << endl;
 } else {
@@ -78,13 +80,39 @@ if(capture.isOpened()) {
 
 ** Eroding
 
+#+BEGIN_SRC c++
+Mat img = imread("lena.jpg");
+
+imshow("Image", img);
+
+// convert to grayscale
+Mat img_gray = img.clone();
+cvtColor(img, img_gray, CV_RGB2GRAY);
+
+// convert to binary with a gray threshold
+Mat img_binary = img_gray.clone();
+threshold(img_gray, img_binary, 128.0, 255.0, THRESH_BINARY);
+imshow("Binary", img_binary);
+
+// make a kernel of 4x4, all 1's
+Mat kernel = Mat::ones(Size(4, 4), CV_8U);
+
+Mat img_binary_erode4x4 = img_binary.clone();
+
+// do the erosion
+erode(img_binary, img_binary_erode4x4, kernel);
+
+imshow("Erode binary 4x4", img_binary_erode4x4);
+#+END_SRC
+
+
 ** Dilating
 
-** Detecting edges and corners
+Same code as erosion, even same kernel, except for this minor change:
 
-** Threshold filter
-
-** Differences between two images
+#+BEGIN_SRC c++
+dilate(img_binary, img_binary_dilate4x4, kernel);
+#+END_SRC
 
 * Object tracking
 
@@ -107,3 +135,4 @@ building MOG model
 
 
 #+INCLUDE: footer.org
+

@@ -20,6 +20,10 @@ be. Read about the photo at [[http://www.cs.cmu.edu/~chuck/lennapg/lenna.shtml][
 
 * Linear filters (convolutions)
 
+#+BEGIN_HTML
+<img align="left" src="images/blur-convolution.png" style="margin: 0 10px 10px 0;"/>
+#+END_HTML
+
 $$\text{dst}(x,y) = \sum_{0 \leq x' < kc, \quad 0 \leq y' < kr} K(x',y') * \text{src}(x + x'- ax, y + y' - ay)$$
 
 where $K$ is the kernel, $kc$ is the number of columns in the kernel,
@@ -27,20 +31,29 @@ $kr$ is the number of rows in the kernel, $ax$ is the $x$ position of
 the anchor (in the kernel), and $ay$ is the $y$ position of the
 anchor.
 
-#+BEGIN_CENTER
-[[./images/blur-convolution.png]]
-[[./images/lena-blur.jpg]]
-#+END_CENTER
+#+BEGIN_HTML
+<div style="clear: both;"/>
+#+END_HTML
 
-* Erosion, dilation
+| [[./images/lena-blur10x10.jpg]]               | [[./images/lena-blur20x20.jpg]]                 | [[./images/lena-blur20x1.jpg]]               |
+| Kernel is 10x10, all values equal to 0.01 | Kernel is 20x20, all values equal to 0.0025 | Kernel is 20x1, all values equal to 0.05 |
 
-Erosion:
+
+* Erosion
 
 $$\text{dst}(x,y) = \min_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
 
-Dilation:
+| [[./images/lena-erode4x4.jpg]]         | [[./images/lena-binary.jpg]] | [[./images/lena-binary-erode4x4.jpg]]          |
+| Erosion with a 4x4 kernel of 1's   | Lena in binary           | Binary image eroded by 4x4 kernel of 1's   |
+
+
+* Dilation
 
 $$\text{dst}(x,y) = \max_{(x',y'): K(x',y') \neq 0} \text{src}(x+x', y+y')$$
+
+| [[./images/lena-dilate4x4.jpg]]        | [[./images/lena-binary.jpg]] | [[./images/lena-binary-dilate4x4.jpg]]         |
+| Dilation with a 4x4 kernel of 1's  | Lena in binary           | Binary image dilated by 4x4 kernel of 1's  |
+
 
 * Remapping
 
@@ -87,7 +100,6 @@ A = \begin{bmatrix} 0.5 & 0 & 0 \\ 0 & 0.5 & 0 \end{bmatrix}
 
 Here is a 90-degree rotation:
 
-\begin{equation}
 \begin{eqnarray}
 M &=& \begin{bmatrix}
 \cos(\pi/2) & \sin(\pi/2) & (1-\cos(\pi/2))cx - \sin(\pi/2)cy \\
@@ -98,7 +110,6 @@ M &=& \begin{bmatrix}
 -1 & 0 & cx + cy
 \end{bmatrix}
 \end{eqnarray}
-\end{equation}
 
 where $cx, cy$ is the location of the center of the image.
 
