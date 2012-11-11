@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Computer vision"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-08 11:17:36 EST"/>
+<meta name="generated" content="2012-11-09 13:33:37 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -153,6 +153,7 @@
 <li><a href="#sec-6-1">Examples</a></li>
 </ul>
 </li>
+<li><a href="#sec-7">Perspective transformations</a></li>
 </ul>
 </div>
 </div>
@@ -215,6 +216,32 @@ anchor.
 </tbody>
 </table>
 
+
+
+<p>
+We can also achieve a sharpening effect.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left"><img src="./images/sharpen-convolution.png"  alt="./images/sharpen-convolution.png" /></td><td class="left"><img src="./images/lena-sharpen.jpg"  alt="./images/lena-sharpen.jpg" /></td></tr>
+</tbody>
+</table>
+
+
+<p>
+And we can achieve an edge effect.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left"><img src="./images/edge-convolution.png"  alt="./images/edge-convolution.png" /></td><td class="left"><img src="./images/lena-edges.jpg"  alt="./images/lena-edges.jpg" /></td></tr>
+</tbody>
+</table>
 
 
 </div>
@@ -311,7 +338,8 @@ M = [A;B] = \begin{bmatrix} a_{00} & a_{01} & b_{00} \\ a_{10} & a_{11} & b_{10}
 \end{equation}
 
 <p>
-Then we take a point, \([x, y]^T\), add an extra \(z\) dimension set to \(1\), and multiply:
+Then we take a point, \([x, y]^T\), add an extra \(z\) dimension set to
+\(1\) (&ldquo;homogeneous coordinates&rdquo;), and multiply:
 </p>
 
 
@@ -376,29 +404,84 @@ M = \begin{bmatrix}
 \end{bmatrix}
 \end{equation}
 
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left"><img src="./images/lena-scaled.jpg"  alt="./images/lena-scaled.jpg" /></td><td class="left"><img src="./images/lena-scaled-trans.jpg"  alt="./images/lena-scaled-trans.jpg" /></td><td class="left"><img src="./images/lena-45-rotate.jpg"  alt="./images/lena-45-rotate.jpg" /></td></tr>
+<tr><td class="left">Scaled, no translation</td><td class="left">Scaled, with translation</td><td class="left">45-degree rotation plus translation</td></tr>
+</tbody>
+</table>
+
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">Perspective transformations</h2>
+<div class="outline-text-2" id="text-7">
+
+
+
+
+<img align="left" src="images/lena-perspective.jpg" style="margin: 0 10px 10px 0;"/>
+
+
+
+\begin{equation}
+M = \begin{bmatrix} a_{00} & a_{01} & a_{02} \\ a_{10} & a_{11} & a_{12} \\ a_{20} & a_{21} & 1.0 \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+[x', y', w]^T = M \times [x, y, 1]^T =
+\begin{bmatrix}
+a_{00}x + a_{01}y + a_{02} \\
+a_{10}x + a_{11}y + a_{12} \\
+a_{20}x + a_{21}y + 1.0
+\end{bmatrix}
+\end{equation}
 
 <p>
-Because an affine transformation is a \(2 \times 3\) matrix, we can
-determine the transformation between any two images with only three 2D
-points. (We have a system of equations with three unknowns for each
-dimension, so we need three examples to uniquely determine the
-unknowns.)
+Then we divide out \(w\), yielding: \([\frac{x'}{w}, \frac{y'}{w},
+1]^T\). We therefore draw the point \((\frac{x'}{w}, \frac{y'}{w})\).
+</p>
+<p>
+The example on the left uses this kernel:
+</p>
+
+
+\begin{equation}
+M = \begin{bmatrix}
+0.53009 & -0.47993 & 79.0 \\
+-0.31048 & 0.50159 & 59.0 \\
+-0.00094 & -0.00131 & 1.0
+\end{bmatrix}
+\end{equation}
+
+<p>
+Because an perspective transformation is a \(3 \times 3\) matrix with
+eight unknowns, we can determine the transformation between any two
+images with only four 2D points.
 </p>
 <p>
 We could, for example, take a skewed view from a surveillance camera,
 and figure out the actual plane being viewed (assuming we are
 monitoring a flat area), by just figuring out the ground coordinates
-of three pixels in the video.
+of four pixels in the video.
 </p>
 <p>
 Of course, surveillance videos often have low resolution, so we
 probably cannot pick out the exact ground coordinates of any
 pixels. We can instead approximate the affine transformation; that is,
-we can find the transformation that minimizes the error. Three point
+we can find the transformation that minimizes the error. Four point
 correspondances is now not enough; we need lots, maybe 50 or 100, the
 more the better. (<i>Perhaps we can automatically find these.</i>) Then
-different affine transformations can be tested, and we can pick out
-the one that minimizes the error between chosen ground coordinates and
+different transformations can be tested, and we can pick out the one
+that minimizes the error between chosen ground coordinates and
 predicted ground coordinates (from the transformation). This learning
 can be achieved with a single layer neural network.
 </p>
@@ -419,7 +502,6 @@ can be achieved with a single layer neural network.
 <!-- End of Plupper Tracking Code -->
 
 
-</div>
 </div>
 </div>
 </div>
