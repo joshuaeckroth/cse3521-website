@@ -14,6 +14,9 @@ This has all been done for you: [[./opencv/track-cpp.zip][track-cpp.zip]] (C++ c
 file), [[./opencv/track.py][track.py]] (Python code), and [[./opencv/track-java.zip][track-java.zip]] (Java project for
 Eclipse; requires [[http://code.google.com/p/javacv/][JavaCV]]).
 
+[Note: for JavaCV, you may want to watch these two videos, which cover
+installation and creating a simple program: [[http://www.youtube.com/watch?v=b3WUItRh6k8&feature=plcp][Video 1]], [[http://www.youtube.com/watch?v=-RqompUUX2o&feature=relmfu][Video 2]]]
+
 Your primary task, apart from installing OpenCV and making the code
 work, is to identify the moving entities with labels like 1, 2, 3,
 ... You should make a good attempt at connecting the detected blobs
