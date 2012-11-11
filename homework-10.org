@@ -10,7 +10,7 @@ file: [[http://www.cdvp.dcu.ie/datasets/thermo_visual/balcony4/Balcony4_Vis.mpg]
 Load this video with OpenCV, perform background subtraction, find the
 contours, and their bounding boxes.
 
-This has all been done for you: [[./opencv/track.cpp][track-cpp.zip]] (C++ code and CMake
+This has all been done for you: [[./opencv/track-cpp.zip][track-cpp.zip]] (C++ code and CMake
 file), [[./opencv/track.py][track.py]] (Python code), and [[./opencv/track-java.zip][track-java.zip]] (Java project for
 Eclipse; requires [[http://code.google.com/p/javacv/][JavaCV]]).
 
