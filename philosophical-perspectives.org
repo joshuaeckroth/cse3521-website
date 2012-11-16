@@ -1,6 +1,142 @@
 #+SETUPFILE: setup.org
 #+TITLE: Philosophical perspectives
 
+#+BEGIN_COMMENT
+The beliefs and practices that have been described as part of the
+canon and enterprises of Artificial Intelligence are too numerous to
+provide a distinct philosophical perspective. Instead of striving to
+represent the various perspectives, I'll offer just one thread that I
+consider important.
+
+*Rather than attempt to define AI*, we can orient the discussion
+around a condundrum: humans possess a range of abilities, collectively
+called "intelligence," that other animals do not possess. E.g.,
+language, tool building, complex culture, problem solving and game
+playing, etc.
+
+Whether or not other animals have these abilities, and to what
+"degree," is a question that can be entertained. However, the seed is
+planted: something is *different* about humans. What is it?
+
+This question is not new, yet the term "artificial intelligence" is
+only 60 years old. Of course, the explanation is that starting in the
+1950s, electronic computers became viable experimental devices. There
+were plenty of theories about intelligence prior to the advent of
+computers, but none of the theories could be *implemented*. A theory
+of intelligence is impotent unless it is externalized, autonomous, and
+artificial, where by "artificial" I mean designed and built by humans,
+in a way that humans can understand and replicate.
+
+Perhaps it is better left unsaid but, of course, humans create
+intelligent beings by sexual reproduction. Yet, this observation does
+not entirely miss the point. There must be some reason the study of
+natural intelligence is not enough. Is it too messy? To unpredictable?
+Just a shadow of an ideal Platonic form? (This all smacks of
+[[http://en.wikipedia.org/wiki/Phallogocentrism][phallagocentrism]].) Natural intelligence cannot be "possessed." It is
+outside our grasp --- while we may be able to assist our children in
+their development, we must just accept whatever happens. But artifacts
+of our own making can be created, destroyed, and manipulated in
+whatever ways we desire.
+
+So the machine is a clean slate with which to investigate human
+intelligence. However, it proves to be /too/ clean. It is, at the
+first approach, impotent, just like a philosophical or psychological
+theory of intelligence. Initial "successes," such as shape
+recognition, basic chess playing, canned conversations, and so on
+could only be said to approximate human intelligence by either proud
+or naïve researchers. Something was missing. The simplest tasks of
+human intelligence, such as recognizing your grandmother's face,
+proves to be outside the reach of computational systems built /ex
+nihilo/.
+
+The Platonic ideal of the /computing machine/, of which actual
+computers are good enough realizations, continually reasserts its
+centrality in the pursuit of artificial intelligence. This is because
+the machine can do anything that can be described. What is known as
+the Church-Turing thesis (see below) claims that any reasonable
+mechanical process can be realized on a computer. Essentially, any
+process that can be described and does not require infinite time or
+memory, appeals to "creativity," and so on is a process that can
+realized (or simulated) on a machine.
+
+Thus, if we are unable to write a program that recognizes your
+grandmother, maybe we just need to try harder. Our programs can be
+built with more sophistication/complexity.
+
+#+END_COMMENT
+
+* The Church-Turing thesis
+
+Any reasonable mechanical process can be realized on a Turing
+machine. What's a reasonable mechanical process? It must be a process
+that requires only finitely-many steps and finite time to follow
+through them; it must not require special (human-like) ingenuity,
+cleverness, or creativity to follow the steps; it must give the right
+answer every time.
+
+Apart from the challenge of translating a mechanical process either
+witnessed in operation or represented in some kind of communication
+(perhaps a verbal description), that is, apart from the challenge of
+programming a computer, the Church-Turing Thesis states that any
+reasonable mechanical process that can be /described/ or /implemented/
+can be programmed and realized in a computer. So if some expert, such
+as a medical doctor, can describe how she comes to a diagnosis, then
+her process (her /thinking/) can be realized on a computer (or in a
+robot or whatever). However, after many expert interviews and much
+programming, there is still something /missing/ in every 'artificially
+intelligent' system produced over the decades.
+
+Thus the challenge to the field of artificial intelligence is not the
+programming, although at times that can be quite hard. The challenge
+is not limited computational resources (time and space); those are
+non-issues if the right algorithm or heuristics (shortcuts) are
+used. The challenge is rather that /we are unable to reasonably
+mechanize intelligence/. We just cannot /figure out/ how to describe a
+reasonable, mechanical process for recognizing your grandmother.
+
+How do /you/ recognize your grandmother? Do you just match a visual
+pattern from your memory to visual image of the face of the person
+standing in front of you, and if there is a high-confidence match you
+declare, "this is my grandmother" ? What if she turns her head? That
+visual pattern is useless now. What if you cannot see her, but smell
+her perfume? What if your grandmother is physically far away, but you
+just get that /sense/ that she's nearby? Can all these senses, these
+forms of intelligence be reasonably mechanized; that is, can they be
+described simply and clearly, without resorting to vague abilities
+like "intuition" or "just knowing" ?
+
+The magic of the machine is not /in/ the machine or /the/ machine
+itself. The machine is just a stupid automaton; it does whatever and
+only what it is told. The /magic/, the /soul of the machine/ is rather
+that what the machine is doing /is mechanical at all/. If a machine is
+programmed to recognize your grandmother, or hold conversations about
+interesting topics with everyday language, the magic is not /that the
+machine does so/, but rather that, demonstrably, shockingly, the act
+of recognizing your grandmother or conversing in everyday language
+requires no ingenuity, cleverness, or creativity.
+
+Well, that's the challenge, anyway. Researchers in artificial
+intelligence seek to find a reasonable mechanical process for
+recognizing your grandmother, among other tasks. If such recognition
+requires 'creativity,' then the researcher is challenged to find a
+reasonable mechanical process that /does/ 'creativity.' It is not
+usually relevant whether or not the mechanical process is equivalent
+to the way a human brain does creativity. However, a researcher does
+not accept that creativity cannot be reasonably mechanically
+realized. Why should it be so, that creativity cannot be mechanized
+reasonably? If the reply is, "because creativity requires
+inventiveness," then the researcher is challenged to reasonably
+mechanize inventiveness. If the reply is, "but inventiveness requires
+creativity!" then the researcher shall cry, "foul play!"
+
+#+BEGIN_COMMENT
+
+#+BEGIN_CENTER
+[[./images/observe-analyze-predict-control.png]]
+#+END_CENTER
+
+#+END_COMMENT
+
 #+BEGIN_QUOTE
 The machine represents the paradoxes of our very existence as
 thinking, rational, civilized beings capable of expression. On the one
@@ -11,10 +147,7 @@ the other hand it is an expression of our inventiveness and
 freedom. --- David Porush, /The Soft Machine: Cybernetic Fiction/
 #+END_QUOTE
 
-#+BEGIN_CENTER
+#+CAPTION: Dice Sculptures, Tony Cragg
 [[./images/dicesculptures.jpg]]
-
-Dice Sculptures, [[http://www.tony-cragg.com/][Tony Cragg]]
-#+END_CENTER
 
 #+INCLUDE: footer.org
