@@ -1,13 +1,7 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 11
 
-* Task 1 (50 pts)
-
-Given an intelligent response to the [[./chinese-room.html][Chinese Room argument]]. Try not to
-fall into one of the several replies Searle has already addressed. (1
-paragraph)
-
-* Task 2 (50 pts)
+* Task 1 (100 pts)
 
 These are Asimov's "Three Laws of Robotics":
 
@@ -21,7 +15,7 @@ These are Asimov's "Three Laws of Robotics":
    does not conflict with the First or Second Laws.
 
 Give your opinion about whether these are good "laws," how they might
-be improved, and whether we could build systems that respect them. (1
-paragraph)
+be improved, and whether we could build systems that respect
+them. (1-2 paragraphs)
 
 #+INCLUDE: footer.org
