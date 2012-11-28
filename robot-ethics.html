@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Robot ethics</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Robot ethics"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:58:46 EST"/>
+<meta name="generated" content="2012-11-28 13:47:57 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -99,7 +99,6 @@
 <h1 class="title">Robot ethics</h1>
 
 
-
 <div style="text-align: center">
 <p><img src="./images/robotethics.jpg"  alt="./images/robotethics.jpg" />
 </p>
@@ -109,6 +108,917 @@
 </div>
 
 
+<p>
+Your self-driving car is speeding along the highway. A school bus
+suddenly stops in your path. Does your car hit the school bus or
+swerve into nearby traffic?
+</p>
+<p>
+I believe the following questions need to be answered about this
+scenario:
+</p>
+<ul>
+<li>How are ethical situations observed and measured? What kinds of
+  sensors are required, and what kind of software is needed to make
+  sense of the data? (e.g., how is a cardboard box in the street
+  differentiated from a child?)
+
+</li>
+<li>What&rsquo;s the right choice? How can we be sure? Is it <i>computable</i>?
+
+</li>
+<li>How do we program the car so that it more-or-less reliably makes the
+  right choice?
+
+</li>
+<li>After your car has made the choice, and supposing it kills someone,
+  and supposing there is an argument that nobody had to die, how do we
+  determine who is responsible? Who goes to prison?
+
+</li>
+<li>Assuming there is a human in the car or able to teleoperate the car,
+  how do we ensure the car gives the human updates about the current
+  situation, and enable the human to take over the driving when
+  the computer goes wonky or the human detects a terrible situation?
+
+</li>
+<li>Are any of these questions new? What are the ethical dimensions of
+  an elevator door?
+</li>
+</ul>
+
+
+
+<p>
+Asimov&rsquo;s three laws of robotics are often mentioned in these
+discussions due to their popularity:
+</p>
+<ol>
+<li>A robot may not injure a human being or, through inaction, allow a
+   human being to come to harm.
+
+</li>
+<li>A robot must obey the orders given to it by human beings, except
+   where such orders would conflict with the First Law.
+
+</li>
+<li>A robot must protect its own existence as long as such protection
+   does not conflict with the First or Second Laws.
+</li>
+</ol>
+
+
+<p>
+Notice that these &ldquo;laws&rdquo; do not actually address any of the above
+questions. Of course, Asimov used these laws as literary devices. He
+explored instances when they are actually the source of confusion
+rather than clarity.
+</p>
+
+<div id="table-of-contents">
+<h2>TOC</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Elevator doors</a></li>
+<li><a href="#sec-2">Responses to the three laws</a>
+<ul>
+<li><a href="#sec-2-1">Moor&rsquo;s response</a></li>
+<li><a href="#sec-2-2">Three laws of responsible robotics</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Machine ethics</a>
+<ul>
+<li><a href="#sec-3-1">Implicit ethical agents</a></li>
+<li><a href="#sec-3-2">Explicit ethical agents</a></li>
+<li><a href="#sec-3-3">Full ethical agents</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Is ethics computable?</a>
+<ul>
+<li><a href="#sec-4-1">Bentham&rsquo;s utilitarianism</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Nevada&rsquo;s actual laws regarding autonomous vehicles</a></li>
+<li><a href="#sec-6">Autonomous killers</a></li>
+<li><a href="#sec-7">Robots in practice</a></li>
+<li><a href="#sec-8">Robots in joint systems</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Elevator doors</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+In case you were curious, here are the regulations relating to
+elevator doors:
+</p>
+<blockquote>
+
+<p>2.13.3 Power Closing
+</p>
+<p>
+2.13.3.1 Power Closing or Automatic Self-Closing of Car Doors or Gates
+Wlhere Used With Manually Operated or Self-Closing Hoistway Doors
+</p>
+<p>
+2.13.3.1.1 Where a car door or gate of an automatic or
+continuous-pressure operation passenger elevator is closed by power,
+or is of the automatically released self-closing type, and faces a
+manually operated or self-closing hoistway door, the closing of the
+car door or gate shall not be initiated unless the hoistway door is in
+the closed position, and <b>the closing mechanism shall be so designed that the force necessary to prevent closing of a horizontally sliding car door or gate from rest is not more than 135 N (30 lbf)</b>.
+</p>
+<p>
+2.13.3.1.2 Requirement 2.13.3.1.1 <b>does not apply</b> where a car door or
+gate is <b>closed by power through continuous pressure of a door closing switch</b>, or of the car operating device, <b>and where the release of the closing switch or operating device will cause the car door or gate to stop or to stop and reopen</b>.
+</p>
+<p>
+&mdash; ASME A17.1 (2004): Safety Code for Elevators and Escalators
+    (<a href="http://archive.org/details/gov.law.asme.a17.1.2004">Download from archive.org</a>) (emphasis added)
+</p>
+</blockquote>
+
+
+<p>
+These are operational requirements. They make no reference to
+&ldquo;artificial intelligence,&rdquo; &ldquo;software,&rdquo; or even &ldquo;autonomy.&rdquo; I suppose
+that means that regardless of how it all works, these requirements
+must be met.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Responses to the three laws</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1">Moor&rsquo;s response</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<blockquote>
+
+<p>The first law seems to require too much. A robot through inaction is
+not allowed to let a human being to come to harm. Because humans
+around the world are always getting in harm&rsquo;s way, robots following
+this law would have an unending job of seeking out potential collision
+courses and intercepting humans before disasters occurred. So much for
+keeping the robot at home doing the dishes. Even if ordered to stay at
+home (second law), the robot would depart for an eternity of
+supererogatory service (priority of the first law).
+</p>
+<p>
+The first law is contradictory within some situations. Consider a
+situation in which a robot must harm someone in order to prevent harm.
+For example, a robot surgeon must operate and replace a patient&rsquo;s heart
+in order to prevent a fatal heart attack, but in order to perform the
+operation the robot must first harm the patient by taking out his heart.
+The subordinate status of the second law eliminates the possibility of
+giving consent to violations of the first law. Suppose someone orders a
+robot dentist to repair a cavity in her teeth. Consent should justify the
+harm done, but the robot can&rsquo;t follow her order because drilling her
+teeth or even giving Novocain will cause discomfort and the first law
+takes precedence over the second.
+</p>
+<p>
+Had Asimov&rsquo;s robots been instructed not harm a human, neglect a duty,
+or violate a right unless such an action were based on a policy that
+could be impartially universalized, they would have gotten into much
+less trouble.
+</p>
+<p>
+&mdash; J.H. Moor, &ldquo;Is Ethics Computable?&rdquo; <i>Metaphilosophy</i>
+26(1&amp;2), 1995. (<a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1467-9973.1995.tb00553.x/abstract">link</a>)
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2">Three laws of responsible robotics</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<blockquote>
+
+<ol>
+<li>A human may not deploy a robot without the human&ndash;robot work system
+   meeting the highest legal and professional standards of safety and
+   ethics.
+
+</li>
+<li>A robot must respond to humans as appropriate for their roles.
+
+</li>
+<li>A robot must be endowed with sufficient situated autonomy to
+   protect its own existence as long as such protection provides
+   smooth transfer of control to other agents consistent with the
+   first and second laws.
+</li>
+</ol>
+
+
+<p>
+&mdash; R.R. Murphy and D.D. Woods, &ldquo;Beyond Asimov: The Three Laws of
+    Responsible Robotics,&rdquo; <i>IEEE Intelligent Systems</i> 24(4), 2009
+    (<a href="http://www.eng.auburn.edu/~troppel/courses/5530 2011C Robots Fall 11/literature/Article_BeyondAsimov.pdf">PDF</a>)
+</p>
+</blockquote>
+
+
+
+<blockquote>
+
+<p>&ldquo;Robots exist in an open world where you can&rsquo;t predict everything
+that&rsquo;s going to happen. The robot has to have some autonomy in order
+to act and react in a real situation. It needs to make decisions to
+protect itself, but it also needs to transfer control to humans when
+appropriate. You don&rsquo;t want a robot to drive off a ledge, for instance
+&mdash; unless a human needs the robot to drive off the ledge. When those
+situations happen, you need to have smooth transfer of control from
+the robot to the appropriate human,&rdquo; Woods said.
+</p>
+<p>
+&ldquo;The bottom line is, robots need to be responsive and resilient. They
+have to be able to protect themselves and also smoothly transfer
+control to humans when necessary.&rdquo; &mdash; David Woods, quoted <a href="http://researchnews.osu.edu/archive/roblaw.htm">here</a>
+</p>
+</blockquote>
+
+
+
+
+<div style="text-align: center">
+<object id="flashObj" width="595" height="390"
+classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,47,0"><param
+name="movie"
+value="http://c.brightcove.com/services/viewer/federated_f9?isVid=1"
+/><param name="bgcolor" value="#FFFFFF" /><param name="flashVars"
+value="videoId=1667618101001&linkBaseURL=http%3A%2F%2Fwww.economist.com%2Fblogs%2Fbabbage%2F2012%2F06%2Frobot-ethics%3Fbclid%3D0%26bctid%3D1667618101001&playerID=1425961410001&playerKey=AQ~~,AAABDH-R__E~,dB4S9tmhdOo20g03jDsDgNBGDcclfHEU&domain=embed&dynamicStreaming=true"
+/><param name="base" value="http://admin.brightcove.com" /><param
+name="seamlesstabbing" value="false" /><param name="allowFullScreen"
+value="true" /><param name="swLiveConnect" value="true" /><param
+name="allowScriptAccess" value="always" /><embed
+src="http://c.brightcove.com/services/viewer/federated_f9?isVid=1"
+bgcolor="#FFFFFF"
+flashVars="videoId=1667618101001&linkBaseURL=http%3A%2F%2Fwww.economist.com%2Fblogs%2Fbabbage%2F2012%2F06%2Frobot-ethics%3Fbclid%3D0%26bctid%3D1667618101001&playerID=1425961410001&playerKey=AQ~~,AAABDH-R__E~,dB4S9tmhdOo20g03jDsDgNBGDcclfHEU&domain=embed&dynamicStreaming=true"
+base="http://admin.brightcove.com" name="flashObj" width="595"
+height="390" seamlesstabbing="false"
+type="application/x-shockwave-flash" allowFullScreen="true"
+swLiveConnect="true" allowScriptAccess="always"
+pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed></object>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Machine ethics</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">Implicit ethical agents</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<blockquote>
+
+<p>If you wish to put ethics into a machine, how would you do it? One way
+is to constrain the machine&rsquo;s actions to avoid unethical outcomes. You
+might satisfy machine ethics in this sense by creating software that
+implicitly supports ethical behavior, rather than by writing code
+containing explicit ethical maxims. The machine acts ethically because
+its internal functions implicitly promote ethical behavior&mdash;or at
+least avoid unethical behavior. Ethical behavior is the machine&rsquo;s
+nature.  It has, to a limited extent, virtues.
+</p>
+<p>
+[An ATM] must be carefully constructed to give out or transfer the
+correct amount of money every time a banking transaction occurs. A
+line of code telling the computer to be honest won&rsquo;t accomplish this.
+</p>
+<p>
+Machines&rsquo; capability to be implicit ethical agents doesn&rsquo;t demonstrate
+their ability to be full-fledged ethical agents. Nevertheless, it
+illustrates an important sense of machine ethics.
+</p>
+<p>
+&mdash; J.H. Moor, &ldquo;The Nature, Importance, and Difficulty of Machine
+Ethics,&rdquo; <i>IEEE Intelligent Systems</i> 21(4), 2006 (<a href="http://www.psy.vanderbilt.edu/courses/hon182/The_Nature_Importance_and_Difficulty_of_Machine_Ethics.pdf">PDF</a>)
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2">Explicit ethical agents</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<blockquote>
+
+<p>Can ethics exist explicitly in a machine?  Can a machine represent
+ethical categories and perform analysis in the sense that a computer
+can represent and analyze inventory or tax information? Can a machine
+&ldquo;do&rdquo; ethics like a computer can play chess?
+</p>
+<p>
+Although clear examples of machines acting as explicit ethical agents
+are elusive, some current developments suggest interesting movements
+in that direction. [goes on to discuss various logical approaches to
+representing and reasoning about ethical dilemmas] &mdash; op. cit.
+</p>
+</blockquote>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3">Full ethical agents</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+<blockquote>
+
+<p>A full ethical agent can make explicit ethical judgments and generally
+is competent to reasonably justify them. An average adult human is a
+full ethical agent. [&hellip;] an a machine be a full ethical agent? It&rsquo;s
+here that the debate about machine ethics becomes most heated. Many
+believe a bright line exists between the senses of machine ethics
+discussed so far and a full ethical agent. For them, a machine can&rsquo;t
+cross this line. The bright line marks a crucial ontological
+difference between humans and whatever machines might be in the
+future. &mdash; op. cit.
+</p>
+</blockquote>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Is ethics computable?</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<blockquote>
+
+<p>The suggestion that ethical decision making is a matter of calculation
+is not new and, indeed, has had a profound influence on the
+development of ethical theory.
+</p>
+<p>
+&mdash; J.H. Moor, &ldquo;Is Ethics Computable?&rdquo; <i>Metaphilosophy</i>
+26(1&amp;2), 1995. (<a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1467-9973.1995.tb00553.x/abstract">link</a>)
+</p>
+</blockquote>
+
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1">Bentham&rsquo;s utilitarianism</h3>
+<div class="outline-text-3" id="text-4-1">
+
+
+<blockquote>
+
+<p>Bentham&rsquo;s theory is the epitome of the use of calculation in ethics
+and is worth examining in some detail because it reveals what is
+promising and what is’troubling about ethical calculations. ---
+op. cit.
+</p>
+</blockquote>
+
+
+<blockquote>
+
+<p>According to Bentham, utility is a property of an object whereby it
+tends to produce pleasure or prevent pain. The utility of any action
+can be measured in terms of the amount of pleasure it tends to produce
+and pain it tends to prevent. Hence, determining what should be done
+is a matter of calculating the utility of actions. The higher the
+utility; the better the action.
+</p>
+</blockquote>
+
+
+<p>
+Moor&rsquo;s description of Bentham&rsquo;s &ldquo;procedure&rdquo;:
+</p>
+<p>
+Begin with someone whose interests seem immediately affected by the
+act.
+</p>
+<ol>
+<li>Determine the amount of the initial pleasures produced by the act.
+
+</li>
+<li>Determine the amount of the initial pains produced by the act.
+
+</li>
+<li>Determine the amount of the subsequent pleasures produced by the
+   act.
+
+</li>
+<li>Determine the amount of the subsequent pains produced by the act.
+
+</li>
+<li>Sum the amount of the pleasures and sum the amount of the pains.
+
+</li>
+<li>Repeat the process for each individual affected by the action and
+   then
+
+<ul>
+<li>Sum the sums for the individual pleasures.
+
+</li>
+<li>Sum the sums of the individual pains.
+
+</li>
+<li>If sum of pleasure is greater than sum of pain, the difference is
+     the general good tendency of the act; and if sum of pain is
+     greater than sum of pleasure, the difference is the general evil
+     tendency of the act.
+</li>
+</ul>
+
+</li>
+</ol>
+
+
+<blockquote>
+
+<p>Notice that Bentham&rsquo;s routine is incomplete as it stands. The
+procedure instructs us to calculate the good tendency or evil tendency
+of an action but does not explicitly furnish instructions for
+determining how many actions to consider.
+</p>
+<p>
+[&hellip;]
+</p>
+<p>
+The strong interpretation is that all possible actions must be
+considered and the action with the greatest good tendency (or least
+evil tendency) on the basis of utility should be chosen. [&hellip;] This
+strong interpretation, though probably the most popular view of
+utilitarianism, undercuts one of its greatest strengths &mdash; its
+computational foundation.
+</p>
+<p>
+[&hellip;]
+</p>
+<p>
+Another problem of an infinite or at least an impractically large
+number of calculations arises in considering the consequences of an
+action. Consequences of actions go on and on.
+</p>
+</blockquote>
+
+
+<blockquote>
+
+<p>Yet, as impressive as Bentham&rsquo;s theory is from a computational point of
+view, it is vulnerable to some well-known philosophical objections.
+First, Bentham&rsquo;s hedonistic theory seems too narrow because it
+considers pleasure as the only good and pain as the only evil. Second,
+his theory downplays and even ignores important ethical concepts such
+as the notions of rights and duties. Both of these objections point to
+flaws in Bentham&rsquo;s theory, but, of course, they do not establish that
+better ethical theories cannot be computational in nature.
+</p>
+</blockquote>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Nevada&rsquo;s actual laws regarding autonomous vehicles</h2>
+<div class="outline-text-2" id="text-5">
+
+
+
+<div style="text-align: center">
+<p><img src="./images/google_car.jpg"  alt="./images/google_car.jpg" />
+</p>
+<p>
+(<a href="http://www.dmvnv.com/news/12005-autonomous-vehicle-licensed.htm">source</a>)
+</p>
+</div>
+
+<blockquote>
+
+<p>As a Nevada Autonomous Vehicle Testing Company, I affirm to the best
+of my knowledge and belief, each vehicle to be tested in Nevada: [&hellip;]
+</p>
+<ul>
+<li>has a switch to engage and disengage the autonomous vehicle that is
+  easily accessible to the operator and is not likely to distract the
+  operator from focusing on the road while engaging or disengaging the
+  autonomous vehicle;
+
+</li>
+<li>has a system to safely alert the operator to take control of the
+  autonomous vehicle if a technology failure is detected;
+
+</li>
+<li>is equipped with autonomous technology which does not adversely
+  affect any other safety features of the vehicle which are subject to
+  federal regulation.
+</li>
+</ul>
+
+
+<p>
+&mdash; Nevada DMV, Autonomous Vehicle Business License Application Packet
+(OBL 326) (<a href="http://www.dmvnv.com/pdfforms/obl326.pdf">PDF</a>); <a href="http://www.dmvnv.com/autonomous.htm">more info</a>
+</p>
+</blockquote>
+
+
+<blockquote>
+
+<p>If the certificate of compliance certifies that the autonomous vehicle
+is capable of being operated in autonomous mode without the physical
+presence of the operator in the vehicle, the person may <b>operate</b> the
+vehicle in this State <b>without being physically present</b> in the
+autonomous vehicle.
+</p>
+<p>
+For the purpose of enforcing the traffic laws and other laws
+applicable to drivers and motor vehicles operated in this State, the
+<b>operator</b> of an autonomous vehicle that is operated in autonomous
+mode shall be deemed the driver of the autonomous vehicle <b>regardless</b>
+of whether the person is <b>physically present</b> in the autonomous
+vehicle while it is engaged.
+</p>
+<p>
+&mdash; Nevada DMV, Administrative Regulations - LCB File R-084-11 (<a href="http://www.leg.state.nv.us/register/RegsReviewed/$R084-11_ADOPTED.pdf">PDF</a>);
+<a href="http://www.dmvnv.com/autonomous.htm">more info</a> (emphasis added)
+</p>
+</blockquote>
+
+
+<p>
+During testing (before Nevada issues the final approval for the
+vehicle),
+</p>
+<blockquote>
+
+<p>Unless otherwise approved in advance by the Department, a licensee
+shall ensure that at least two persons are physically present in an
+autonomous vehicle at all times that the autonomous vehicle is being
+tested on a highway in this State, one of whom is the operator and
+must at all times be seated in a position which allows the person to
+take complete control of the vehicle, including, without limitation,
+control of the steering, throttle and brakes.
+</p>
+<p>
+The two persons who are required to be physically present in an
+autonomous vehicle while it is tested on a highway in this State:
+</p>
+<ul>
+<li>Must each hold a valid driver’s license that has been issued in the
+  state in which the person resides, but are not required to have a
+  driver’s license endorsement to operate the autonomous vehicle as
+  provided in section 5 of this regulation;
+
+</li>
+<li>Must be trained in the operation of the autonomous vehicle and have
+  received instruction concerning the capabilities and limitations of
+  the autonomous vehicle; and
+
+</li>
+<li>Shall each actively monitor for any aberration in the functioning of
+  the autonomous vehicle while it is engaged.
+</li>
+</ul>
+
+
+<p>
+&mdash; Nevada DMV, Administrative Regulations - LCB File R-084-11
+</p>
+</blockquote>
+
+
+<p>
+The license can be revoked/suspended/etc. if (among other typical
+reasons),
+</p>
+<blockquote>
+
+<p>[&hellip;] the Department has reasonable cause to believe that any model of
+autonomous vehicle or artificial intelligence and technology used in
+an autonomous vehicle of the licensee presents an unsafe condition for
+operation on the highways of this State.
+</p>
+<p>
+&mdash; Nevada DMV, Administrative Regulations - LCB File R-084-11
+</p>
+</blockquote>
+
+
+<p>
+Before an autonomous vehicle can be sold by a dealer, a certificate is
+required that states (in part),
+</p>
+<blockquote>
+
+<p>A certificate of compliance [&hellip;] must certify that the autonomous
+technology installed on the autonomous vehicle:
+</p>
+<ul>
+<li>[has a black box like an airplane]
+
+</li>
+<li>Has a switch to engage and disengage the autonomous vehicle that is
+  easily accessible to the operator of the autonomous vehicle and is
+  not likely to distract the operator from focusing on the road while
+  engaging or disengaging the autonomous vehicle.
+
+</li>
+<li>Has a visual indicator inside the autonomous vehicle which indicates
+  when the autonomous vehicle is engaged in autonomous mode.
+
+</li>
+<li>Has a visual indicator inside the autonomous vehicle which indicates
+  when the autonomous vehicle is engaged in autonomous mode.
+
+</li>
+<li>Has a system to safely alert the operator of the autonomous vehicle
+  if a technology failure is detected while the autonomous vehicle is
+  engaged in autonomous mode, and when such an alert is given, either:
+
+<ul>
+<li>Requires the operator to take control of the autonomous vehicle;
+    or
+
+</li>
+<li>If the operator is unable to take control of or is not physically
+    present in the autonomous vehicle, is equipped with technology to
+    cause the autonomous vehicle to safely move out of traffic and
+    come to a stop. Nothing in this subparagraph shall be construed to
+    authorize or require the modification of a system installed in
+    compliance with the Federal Motor Vehicle Safety Standards and
+    Regulations unless the modification can be performed without
+    adversely affecting the autonomous vehicle’s compliance with the
+    federal standards and regulations.
+
+</li>
+</ul>
+
+</li>
+<li>Does not adversely affect any other safety features of the
+  autonomous vehicle which are subject to federal regulation.
+
+</li>
+<li>Is capable of being operated in compliance with the applicable
+  traffic laws of this State and must indicate whether the autonomous
+  vehicle may be operated with or without the physical presence of an
+  operator.
+
+</li>
+<li>If it is necessary for the operator of the autonomous vehicle to be
+  physically present in the autonomous vehicle when it is engaged,
+  allows the operator to take control of the autonomous vehicle in
+  multiple manners, including, without limitation, through the use of
+  the brake, the accelerator pedal and the steering wheel and alerts
+  the operator that the autonomous mode has been disengaged.
+
+</li>
+<li>In addition to the requirements set forth in subsection 2, the
+  certificate of compliance must certify that an owner&rsquo;s manual has
+  been prepared for the autonomous vehicle which describes any
+  limitations and capabilities of the autonomous vehicle, including,
+  without limitation, whether the operator of the autonomous vehicle
+  must be physically present in the autonomous vehicle while the
+  vehicle is engaged in autonomous mode. A licensed vehicle dealer or
+  a licensed autonomous technology certification facility shall ensure
+  that a copy of such a manual is provided to the purchaser of an
+  autonomous vehicle.
+</li>
+</ul>
+
+
+<p>
+&mdash; Nevada DMV, Administrative Regulations - LCB File R-084-11
+</p>
+</blockquote>
+
+
+<p>
+Additionally, the DMV can revoke/suspend/etc. the license if &ldquo;the
+Director or authorized representative finds that the action is
+necessary and in the public interest.&rdquo; Furthermore, to make sure the
+reason is a good one, &ldquo;In any such case, a hearing must be held and a
+final decision rendered within 30 days after notice of the temporary
+suspension.&rdquo;
+</p>
+
+<p>
+&ldquo;It turns out the issues around &lsquo;autonomy,&rsquo; adding to what the
+machines can do by themselves, are not about autonomy but about
+interaction. The more you can do by yourself, the more important your
+interactions with others who would utilize or interact with what you
+can do by yourself becomes important.&rdquo; &mdash; David Woods, ISE 773 at
+OSU, Autumn 2006 (<a href="http://csel.eng.ohio-state.edu/courses/ise773/class/F9F43990-C009-4D78-9945-2CC87FDC442C.html">recording</a>)
+</p>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Autonomous killers</h2>
+<div class="outline-text-2" id="text-6">
+
+
+<p>
+Quoting from &ldquo;<a href="http://www.hrw.org/reports/2012/11/19/losing-humanity-0">Losing Humanity: The Case Against Killer Robots</a>,&rdquo; Human
+Rights Watch, released Nov. 19, 2012.
+</p>
+<ul>
+<li><b>Human-in-the-Loop Weapons</b>: Robots that can select targets and
+  deliver force only with a human command;
+
+</li>
+<li><b>Human-on-the-Loop Weapons</b>: Robots that can select targets and
+  deliver force under the oversight of a human operator who can
+  override the robot&rsquo;s actions; and
+
+</li>
+<li><b>Human-out-of-the-Loop Weapons</b>: Robots that are capable of
+  selecting targets and delivering force without any human input or
+  interaction.
+</li>
+</ul>
+
+
+<blockquote>
+
+<p>Fully autonomous weapons, [&hellip;] do not yet exist, but technology is
+moving in the direction of their development and precursors are
+already in use. [&hellip;] Militaries value these weapons because they
+require less manpower, reduce the risks to their own soldiers, and can
+expedite response time. &mdash; op. cit.
+</p>
+</blockquote>
+
+
+<blockquote>
+
+<p>[R]obots with complete autonomy would be incapable of meeting
+international humanitarian law standards. The rules of distinction,
+proportionality, and military necessity are especially important tools
+for protecting civilians from the effects of war, and fully autonomous
+weapons would not be able to abide by those rules. &mdash; op. cit.
+</p>
+</blockquote>
+
+
+<blockquote>
+
+<p>[D]istinguishing between a fearful civilian and a threatening enemy
+combatant requires a soldier to understand the intentions behind a
+human&rsquo;s actions, something a robot could not do. In addition, fully
+autonomous weapons would likely contravene the Martens Clause, which
+prohibits weapons that run counter to the &ldquo;dictates of public
+conscience.&rdquo; &mdash; op. cit.
+</p>
+</blockquote>
+
+
+<blockquote>
+
+<p>Given that such a robot could identify a target and launch an attack
+on its own power, it is unclear who should be held responsible for any
+unlawful actions it commits. Options include the military commander
+that deployed it, the programmer, the manufacturer, and the robot
+itself, but all are unsatisfactory. &mdash; op. cit.
+</p>
+</blockquote>
+
+
+
+
+<div style="text-align: center">
+<iframe width="640" height="360" src="http://www.youtube.com/embed/AlRIcZRoLq8" frameborder="0" allowfullscreen></iframe>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">Robots in practice</h2>
+<div class="outline-text-2" id="text-7">
+
+
+
+
+<!-- Anderson -->
+<div style="text-align: center">
+<iframe width="640" height="360"
+src="http://www.youtube.com/embed/pajCoSTGvas" frameborder="0"
+allowfullscreen></iframe>
+</div>
+
+<p>
+Walk through an example: a &ldquo;take your medicine&rdquo; robot
+</p>
+<ul>
+<li>define the use cases, etc.
+
+</li>
+<li>why would we make such a robot?
+
+</li>
+<li>what are the ethical concerns?
+
+</li>
+<li>what are good standards to require of the robots?
+
+</li>
+<li>how do we codify the standards to ensure minimal ambiguity?
+
+</li>
+<li>how do we build robots that meet the standards?
+</li>
+</ul>
+
+
+
+
+<div style="text-align: center">
+<iframe width="640" height="360"
+src="http://www.youtube.com/embed/-G3RoBHMu-o" frameborder="0"
+allowfullscreen></iframe>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8">Robots in joint systems</h2>
+<div class="outline-text-2" id="text-8">
+
+
+<p>
+Robots are not stakeholders, regardless of the degree of
+autonomy. Robots are stand-ins for distant groups; they are extenders
+of human scope. They are at the &ldquo;sharp end&rdquo; of the system, the ones
+that can act in the hotzone. We do not necessarily need to teleoperate
+them, not exercise absolute control. Rather, there is benefit in
+giving them some autonomy and reasoning capabilities. But the
+challenge is to ensure the whole team is working towards the same
+goals. The challenge is coordination: hand-off of control, signaling
+and displaying relevant information, maintaining common ground.
+</p>
+<p>
+The questions should not be &ldquo;how can we reduce the numbers of humans
+in the hotzone and increase the numbers of autonomous robots?&rdquo; but
+rather &ldquo;how can we use robots, as extenders of our interests, as team
+members, and enhance our capabilities while maintaining coordination?&rdquo;
+</p>
+<p>
+David Woods: &ldquo;We have a track record of engineering success when we
+focus on expanding human perception via remote perception (bringing
+the world at different scales into the human perceptual scale), rather
+than developing reasoning capabilities.&rdquo;
+</p>
 
 
 <div style="font-size: 80%; clear: both;">
@@ -126,6 +1036,8 @@
 <!-- End of Plupper Tracking Code -->
 
 
+</div>
+</div>
 </div>
 
 </body>
