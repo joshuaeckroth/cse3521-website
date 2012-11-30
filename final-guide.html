@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="title" content="Final guide"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:59:08 EST"/>
+<meta name="generated" content="2012-11-30 12:45:46 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -149,8 +149,7 @@ max) with notes or whatnot.
 <li><a href="#sec-1">Multi-agent systems</a>
 <ul>
 <li><a href="#sec-1-1">Ant intelligence</a></li>
-<li><a href="#sec-1-2">NetLogo</a></li>
-<li><a href="#sec-1-3">Prisoner&rsquo;s dilemma</a></li>
+<li><a href="#sec-1-2">Prisoner&rsquo;s dilemma</a></li>
 </ul>
 </li>
 <li><a href="#sec-2">Learning</a>
@@ -159,29 +158,42 @@ max) with notes or whatnot.
 <li><a href="#sec-2-2">k-nearest neighbor</a></li>
 <li><a href="#sec-2-3">Document classification</a></li>
 <li><a href="#sec-2-4">Probability and Bayesian methods</a></li>
+<li><a href="#sec-2-5">Neural networks</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">The &ldquo;Chinese room&rdquo; argument</a></li>
+<li><a href="#sec-3">Philosophy</a>
+<ul>
+<li><a href="#sec-3-1">The &ldquo;Chinese room&rdquo; argument</a></li>
+<li><a href="#sec-3-2">The &ldquo;Norvig - Chomsky&rdquo; debate</a></li>
+<li><a href="#sec-3-3">Robot ethics</a></li>
+</ul>
+</li>
 <li><a href="#sec-4">Answers</a>
 <ul>
 <li><a href="#sec-4-1">Multi-agent systems</a>
 <ul>
 <li><a href="#sec-4-1-1">Ant intelligence</a></li>
-<li><a href="#sec-4-1-2">NetLogo</a></li>
-<li><a href="#sec-4-1-3">Prisoner&rsquo;s dilemma</a></li>
+<li><a href="#sec-4-1-2">Prisoner&rsquo;s dilemma</a></li>
 </ul>
 </li>
 <li><a href="#sec-4-2">Learning</a>
 <ul>
 <li><a href="#sec-4-2-1">k-means clustering</a></li>
+<li><a href="#sec-4-2-2">k-nearest neighbor</a></li>
+<li><a href="#sec-4-2-3">Document classification</a></li>
+<li><a href="#sec-4-2-4">Probability and Bayesian methods</a></li>
+<li><a href="#sec-4-2-5">Neural networks</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-3">k-nearest neighbor</a></li>
-<li><a href="#sec-4-4">Document classification</a></li>
-<li><a href="#sec-4-5">Probability and Bayesian methods</a></li>
+<li><a href="#sec-4-3">Philosophy</a>
+<ul>
+<li><a href="#sec-4-3-1">The &ldquo;Chinese room&rdquo; argument</a></li>
+<li><a href="#sec-4-3-2">The &ldquo;Norvig - Chomsky&rdquo; debate</a></li>
+<li><a href="#sec-4-3-3">Robot ethics</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">The &ldquo;Chinese room&rdquo; argument</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -224,7 +236,7 @@ Which of the following features are in the &ldquo;ant brood sorting&rdquo; model
 
 <p>
 (The question on the Final will ask about ant transport that you read
-for Homework 7.)
+for Homework 6.)
 </p>
 <p>
 Why is it important that the chemical ants leave behind when they are
@@ -235,23 +247,8 @@ carrying food slowly evaporates?
 </div>
 
 <div id="outline-container-1-2" class="outline-3">
-<h3 id="sec-1-2">NetLogo</h3>
+<h3 id="sec-1-2">Prisoner&rsquo;s dilemma</h3>
 <div class="outline-text-3" id="text-1-2">
-
-
-<p>
-What is a &ldquo;turtle&rdquo; in NetLogo?
-</p>
-<p>
-What is a &ldquo;patch&rdquo; in NetLogo?
-</p>
-</div>
-
-</div>
-
-<div id="outline-container-1-3" class="outline-3">
-<h3 id="sec-1-3">Prisoner&rsquo;s dilemma</h3>
-<div class="outline-text-3" id="text-1-3">
 
 
 <p>
@@ -294,6 +291,9 @@ non-Tit-for-tat strategy or strategies facing each other?
 Describe the difference between &ldquo;supervised&rdquo; and &ldquo;unsupervised&rdquo;
 learning.
 </p>
+<p>
+What does &ldquo;10-fold cross validation&rdquo; mean?
+</p>
 
 </div>
 
@@ -307,6 +307,9 @@ k-means clustering is an unsupervised or supervised learning strategy?
 </p>
 <p>
 What does the choice of \(k\) represent?
+</p>
+<p>
+How does the choice of initial clusters affect the outcome?
 </p>
 </div>
 
@@ -368,26 +371,14 @@ or down or remain unchanged? Does recall go up or down or remain
 unchanged?
 </p>
 <p>
-If the true categories for a document are [Applications, Robots,
-Interfaces, Speech] and the predicted categories are [Applications,
-Games, Speech], what are the true positive, false positive, and false
-negative counts?
-</p>
-<p>
-If the true categories for document 1 are [Applications, Robots,
-Interfaces, Speech], for document 2 are [Games], for document 3 are
-[Ethics, Philosophy, Robots], and for document 4 are [Applications,
-Vision, ScienceFiction], then what are the precision, recall, and
-f-score if the predicted categories for document 1 are [Applications,
-Games, Speech], for document 2 are [Games], for document 3 are
-[MachineLearning, Vision], and for document 4 are [ScienceFiction]?
-</p>
-<p>
 Give a possible result of stemming each of the following words:
 &ldquo;linguistic,&rdquo; &ldquo;dog,&rdquo; &ldquo;jumping,&rdquo; &ldquo;philosophy.&rdquo;
 </p>
 <p>
 Describe a &ldquo;binary feature vector&rdquo; for a text document.
+</p>
+<p>
+Calculate the tf-idf scores for a set of documents (as in Homework 8).
 </p>
 <p>
 Why do you suppose tf-idf feature vectors perform better (in terms of
@@ -398,11 +389,8 @@ A common word (most documents have many occurrences of this word)
 would have a high or low tf-idf score?
 </p>
 <p>
-What is a centroid (in terms of document vectors)?
-</p>
-<p>
-What is one way a centroid approach to classification is better than
-k-nearest neighbor?
+Given doc A as \(&lt;0, 3, 1, 0, 5&gt;\), is doc X \(&lt;0, 3, 0, 2, 3&gt;\) or doc Y
+\(&lt;1, 4, 0, 0, 5&gt;\) closer to doc A in terms of &ldquo;cosine similarity&rdquo;?
 </p>
 </div>
 
@@ -427,11 +415,19 @@ If events \(A\) and \(B\) are independent, and \(P(A) = 0.25\), \(P(B) =
 0.10\), what is \(P(A,B)\)? What is \(P(B,A)\)?
 </p>
 <p>
+In the toothache graph from the <a href="./bayesian-inference.html">Bayesian inference</a> notes (the graph
+with just c, g, and t), what is \(P(t|g)\)?
+</p>
+<p>
 Write Bayes&rsquo; theorem.
 </p>
 <p>
 Suppose I know that \(P(B|A)=0.1, P(A)=0.9, P(B)=0.25\), what is
 \(P(A|B)\)?
+</p>
+<p>
+In the toothache graph from the <a href="./bayesian-inference.html">Bayesian inference</a> notes (the graph
+with just c, g, and t), is \(P(g|t) &gt; P(c|t)\)?
 </p>
 <p>
 What is the outcome of computing \(\arg\max X (P(x))\) where \(X\) is an
@@ -443,20 +439,6 @@ Suppose I know that \(P(B|A)=0.1, P(A)=0.9, P(B|C)=0.2, P(C)=0.8\), what
 is \(\arg\max X (P(X|B))\)?
 </p>
 <p>
-As described in the naïve Bayesian classification notes, what does
-\(d_i\) represent for some word \(i\)? What does \(d_{ci}\) represent for
-some word \(i\) and category \(c\)?
-</p>
-<p>
-Why do we use logarithms for naïve Bayesian classification
-calculations?
-</p>
-<p>
-What is the outcome of computing \(\arg\max x P(x)\) where \(x\) is an
-event? (If \(\arg\max x P(x)\) was a function, what would the output of
-the function be?) Describe in English.
-</p>
-<p>
 Give one benefit of naïve Bayesian classification (as compared to
 other classification methods like k-nearest neighbor).
 </p>
@@ -465,13 +447,57 @@ Give one drawback of naïve Bayesian classification (as compared to
 other classification methods like support vector machines).
 </p>
 </div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5">Neural networks</h3>
+<div class="outline-text-3" id="text-2-5">
+
+
+<p>
+What does &ldquo;all or nothing&rdquo; mean when we talk about neurons in the
+brain?
+</p>
+<p>
+Generate the input/output table for this perceptron:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/arbitrary-perceptron.png"  alt="./images/arbitrary-perceptron.png" />
+</p>
+</div>
+
+<p>
+Draw perceptron and define inputs for the NAND function.
+</p>
+<p>
+Define the word &ldquo;epoch.&rdquo;
+</p>
+<p>
+Write the perceptron learning rule for a single weight. Define the
+variables you use.
+</p>
+<p>
+True or false: a single-layer perceptron network can compute any
+function.
+</p>
+</div>
 </div>
 
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3">The &ldquo;Chinese room&rdquo; argument</h2>
+<h2 id="sec-3">Philosophy</h2>
 <div class="outline-text-2" id="text-3">
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1">The &ldquo;Chinese room&rdquo; argument</h3>
+<div class="outline-text-3" id="text-3-1">
 
 
 <p>
@@ -485,6 +511,31 @@ If you believe the Chinese room argument, can you also (reasonably)
 believe that passing the Turing test gives proof that a machine
 possesses a mind (i.e., can be said to truly understand things)?
 </p>
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2">The &ldquo;Norvig - Chomsky&rdquo; debate</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<p>
+Give a 2-3 sentence summary of the debate.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3">Robot ethics</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+<p>
+Give two ethical issues related to the &ldquo;take your medicine robot.&rdquo;
+</p>
+</div>
 </div>
 
 </div>
@@ -565,29 +616,8 @@ carrying food slowly evaporates?
 </div>
 
 <div id="outline-container-4-1-2" class="outline-4">
-<h4 id="sec-4-1-2">NetLogo</h4>
+<h4 id="sec-4-1-2">Prisoner&rsquo;s dilemma</h4>
 <div class="outline-text-4" id="text-4-1-2">
-
-
-<p>
-What is a &ldquo;turtle&rdquo; in NetLogo?
-</p>
-<p>
-<b>A turtle is a single agent that acts independently of all other turtles (agents).</b>
-</p>
-<p>
-What is a &ldquo;patch&rdquo; in NetLogo?
-</p>
-<p>
-<b>A patch is a square on the map; the patch can have a color or other properties like a chemical. Patches do not move but they can have actions (such as changing one of their properties).</b>
-</p>
-</div>
-
-</div>
-
-<div id="outline-container-4-1-3" class="outline-4">
-<h4 id="sec-4-1-3">Prisoner&rsquo;s dilemma</h4>
-<div class="outline-text-4" id="text-4-1-3">
 
 
 <p>
@@ -633,6 +663,12 @@ learning.
 <p>
 <b>Supervised learning uses information about the truth when training. Unsupervised learning does not have the truth (ever) so obviously cannot use this information.</b>
 </p>
+<p>
+What does &ldquo;10-fold cross validation&rdquo; mean?
+</p>
+<p>
+<b>This happens 10 times, and the results are averaged: Take 90% of the input data and train the learning algorithm on it; test the learning algorithm on the remaining 10%. For each of the 10 iterations, separate the input data into a different 90/10 split.</b>
+</p>
 
 </div>
 
@@ -648,14 +684,16 @@ k-means clustering is an unsupervised or supervised learning strategy?
 <p>
 What does the choice of \(k\) represent? <b>The number of clusters.</b>
 </p>
-</div>
+<p>
+How does the choice of initial clusters affect the outcome? <b>The resulting clusters may be different. Initial clusters near outliers may result in small clusters around the outliers (which is usually a bad thing).</b>
+</p>
 </div>
 
 </div>
 
-<div id="outline-container-4-3" class="outline-3">
-<h3 id="sec-4-3">k-nearest neighbor</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2">k-nearest neighbor</h4>
+<div class="outline-text-4" id="text-4-2-2">
 
 
 <p>
@@ -677,21 +715,21 @@ What problem may a very large value of \(k\) cause? <b>The more common category 
 </p>
 <p>
 Is there one value for \(k\) that works best for nearly all data sets?
-If so, what is it? <b>There is not one best value; need to experiment with different values to find the best for your dataset.</b>
+If so, what is it? <b>There is not one best value; you need to experiment with different values to find the best for your dataset.</b>
 </p>
 <p>
 Give one benefit of k-nearest neighbor learning. <b>It is a very simple algorithm and can work quite well in some cases.</b>
 </p>
 <p>
-Give one drawback of k-nearest neighbor learning. <b>It is very slow because it checks every item in the database. It also requires one to retain all the training examples in the database.</b>
+Give one drawback of k-nearest neighbor learning. <b>It is very slow because it checks every item in the database (unless KD-trees are used). It also requires one to retain all the training examples in the database.</b>
 </p>
 </div>
 
 </div>
 
-<div id="outline-container-4-4" class="outline-3">
-<h3 id="sec-4-4">Document classification</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3">Document classification</h4>
+<div class="outline-text-4" id="text-4-2-3">
 
 
 <p>
@@ -728,44 +766,15 @@ or down or remain unchanged? Does recall go up or down or remain
 unchanged? <b>Precision goes up because there are fewer \(fp\). Recall goes down because there are more \(fn\).</b>
 </p>
 <p>
-If the true categories for a document are [Applications, Robots,
-Interfaces, Speech] and the predicted categories are [Applications,
-Games, Speech], what are the true positive, false positive, and false
-negative counts? <b>TP: 2, FP: 1, FN: 2</b>
-</p>
-<p>
-If the true categories for document 1 are [Applications, Robots,
-Interfaces, Speech], for document 2 are [Games], for document 3 are
-[Ethics, Philosophy, Robots], and for document 4 are [Applications,
-Vision, ScienceFiction], then what are the precision, recall, and
-f-score if the predicted categories for document 1 are [Applications,
-Games, Speech], for document 2 are [Games], for document 3 are
-[MachineLearning, Vision], and for document 4 are [ScienceFiction]?
-</p>
-<p>
-<b>For doc 1: TP: 2, FP: 1, FN: 2.</b>
-</p>
-<p>
-<b>For doc 2: TP: 1, FP: 0, FN: 0.</b>
-</p>
-<p>
-<b>For doc 3: TP: 0, FP: 2, FN: 3.</b>
-</p>
-<p>
-<b>For doc 4: TP: 1, FP: 0, FN: 2.</b>
-</p>
-<p>
-<b>Sums: TP: 4, FP: 3, FN: 7.</b>
-</p>
-<p>
-<b>Thus, precision: \(4/(4+3)=0.57\), recall: \(4/(4+7)=0.36\), f-score:  \(2*0.57*0.36/(0.57+0.36)=0.44\).</b>
-</p>
-<p>
 Give a possible result of stemming each of the following words:
 &ldquo;linguistic,&rdquo; &ldquo;dog,&rdquo; &ldquo;jumping,&rdquo; &ldquo;philosophy.&rdquo; <b>Maybe: &ldquo;linguist&rdquo; &ldquo;dog&rdquo; &ldquo;jump&rdquo; &ldquo;philos&rdquo;. &ldquo;Dog&rdquo; won&rsquo;t be stemmed, for example.</b>
 </p>
 <p>
 Describe a &ldquo;binary feature vector&rdquo; for a text document. <b>Each unique word is a &ldquo;dimension,&rdquo; and the value for that dimension is 1 or 0. It is 1 if the word is present in the document, 0 otherwise.</b>
+</p>
+<p>
+Calculate the tf-idf scores for a set of documents (as in Homework
+8). *See an example in the <a href="./doc-vectors.xls">./doc-vectors.xls</a> file.*
 </p>
 <p>
 Why do you suppose tf-idf feature vectors perform better (in terms of
@@ -776,19 +785,19 @@ A common word (most documents have many occurrences of this word)
 would have a high or low tf-idf score? <b>A low tf-idf score.</b>
 </p>
 <p>
-What is a centroid (in terms of document vectors)? <b>A vector that is the average of the vectors of all documents in some category.</b>
+Given doc A as \(&lt;0, 3, 1, 0, 5&gt;\), is doc X \(&lt;0, 3, 0, 2, 3&gt;\) or doc Y
+\(&lt;1, 4, 0, 0, 5&gt;\) closer to doc A in terms of &ldquo;cosine similarity&rdquo;?
 </p>
 <p>
-What is one way a centroid approach to classification is better than
-k-nearest neighbor? <b>Only need to keep the centroids in memory, not every individual training document.</b>
+<b>doc A has magnitude 5.916, doc X has magnitude 4.69, doc Y has magnitude 6.48; doc A dot-product doc X is 24, doc A dot-product doc Y is 37; cosine similarity of doc A and doc X is 0.865, cosine similarity of doc A with doc Y is 0.965. So doc Y is closer.</b>
 </p>
 </div>
 
 </div>
 
-<div id="outline-container-4-5" class="outline-3">
-<h3 id="sec-4-5">Probability and Bayesian methods</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-4-2-4" class="outline-4">
+<h4 id="sec-4-2-4">Probability and Bayesian methods</h4>
+<div class="outline-text-4" id="text-4-2-4">
 
 
 <p>
@@ -806,11 +815,42 @@ If events \(A\) and \(B\) are independent, and \(P(A) = 0.25\), \(P(B) =
 <b>Same.</b>
 </p>
 <p>
+In the toothache graph from the <a href="./bayesian-inference.html">Bayesian inference</a> notes (the graph
+with just c, g, and t), what is \(P(t|g)\)?
+</p>
+
+
+$$P(t|g) = P(t|g,c)P(c) + P(t|g,\neg c)P(\neg c) = 1.0*0.10 + 0.3*0.9
+= 0.37$$
+
+<p>
 Write Bayes&rsquo; theorem. <b>\(P(B|A) = P(A|B)P(B)/P(A)\) or equivalently \(P(A|B) = P(B|A)P(A)/P(B)\).</b>
 </p>
 <p>
 Suppose I know that \(P(B|A)=0.1, P(A)=0.9, P(B)=0.25\), what is
 \(P(A|B)\)? <b>\(P(A|B)=0.1*0.9/0.25=0.36\).</b>
+</p>
+<p>
+In the toothache graph from the <a href="./bayesian-inference.html">Bayesian inference</a> notes (the graph
+with just c, g, and t), is \(P(g|t) &gt; P(c|t)\)?
+</p>
+
+
+\begin{eqnarray}
+
+P(g|t) = P(t|g)P(g)/P(t) &=& (P(t|g,c)P(c) + P(t|g,\neg c)P(\neg c))P(g)/P(t) \\
+ &=& (1.0*0.10 + 0.3*0.9)*0.05/P(t)\\
+ &=& 0.0185/P(t) \\
+
+P(c|t) = P(t|c)P(c)/P(t) &=& (P(t|c,g)P(g) + P(t|c,\neg g)P(\neg
+g))P(c)/P(t) \\
+ &=& (1.0*0.05 + 0.6*0.95)*0.10/P(t) \\
+ &=& 0.062/P(t)
+
+\end{eqnarray}
+
+<p>
+<b>So \(P(c|t) &gt; P(g|t)\).</b>
 </p>
 <p>
 What is the outcome of computing \(\arg\max X (P(X))\) where \(X\) is an
@@ -827,10 +867,6 @@ As described in the naïve Bayesian classification notes, what does
 <b>\(d_{ci}\) is the number of documents in category \(c\) that contain at least one occurrence of word \(i\).</b>
 </p>
 <p>
-Why do we use logarithms for naïve Bayesian classification
-calculations? <b>To avoid &ldquo;underflow&rdquo; with our numbers; after multiplying a lot of probabilities (one probability per word), we get very small values.</b>
-</p>
-<p>
 Give one benefit of naïve Bayesian classification (as compared to
 other classification methods like k-nearest neighbor). <b>It is fast.</b>
 </p>
@@ -839,13 +875,86 @@ Give one drawback of naïve Bayesian classification (as compared to
 other classification methods like support vector machines). <b>It is not always highly accurate.</b>
 </p>
 </div>
+
+</div>
+
+<div id="outline-container-4-2-5" class="outline-4">
+<h4 id="sec-4-2-5">Neural networks</h4>
+<div class="outline-text-4" id="text-4-2-5">
+
+
+<p>
+What does &ldquo;all or nothing&rdquo; mean when we talk about neurons in the
+brain? <b>A neuron either fires (discharges) completely or does not fire.</b>
+</p>
+<p>
+Generate the input/output table for this perceptron:
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/arbitrary-perceptron.png"  alt="./images/arbitrary-perceptron.png" />
+</p>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="right" /><col class="right" /><col class="right" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="right">\(x_1\)</th><th scope="col" class="right">\(x_2\)</th><th scope="col" class="right">output</th></tr>
+</thead>
+<tbody>
+<tr><td class="right">0</td><td class="right">0</td><td class="right">0</td></tr>
+<tr><td class="right">0</td><td class="right">1</td><td class="right">0</td></tr>
+<tr><td class="right">1</td><td class="right">0</td><td class="right">1</td></tr>
+<tr><td class="right">1</td><td class="right">1</td><td class="right">0</td></tr>
+</tbody>
+</table>
+
+
+<p>
+Draw perceptron and define inputs for the NAND function.
+</p>
+
+<div style="text-align: center">
+<p><img src="./images/nand-perceptron.png"  alt="./images/nand-perceptron.png" />
+</p>
+</div>
+
+<p>
+Define the word &ldquo;epoch.&rdquo; <b>An epoch is a single pass (of weight updates) through every example in the training set.</b>
+</p>
+<p>
+Write the perceptron learning rule for a single weight. Define the
+variables you use.
+</p>
+
+
+$$w'_i = w_i + \alpha (d-y)x_i,$$
+
+<p>
+<b>where \(w'_i\) is the new weight value, \(w_i\) is the old weight value, \(\alpha\) is a &ldquo;learning rate&rdquo; parameter, \(d\) is the value spit out by this perceptron, \(y\) is the correct value, and \(x_i\) is the input on this weight.</b>
+</p>
+<p>
+True or false: a single-layer perceptron network can compute any
+function. <b>False: it can only compute linearly-separable functions, which does not include, e.g., XOR.</b>
+</p>
+</div>
 </div>
 
 </div>
 
-<div id="outline-container-5" class="outline-2">
-<h2 id="sec-5">The &ldquo;Chinese room&rdquo; argument</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3">Philosophy</h3>
+<div class="outline-text-3" id="text-4-3">
+
+
+
+</div>
+
+<div id="outline-container-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1">The &ldquo;Chinese room&rdquo; argument</h4>
+<div class="outline-text-4" id="text-4-3-1">
 
 
 <p>
@@ -860,6 +969,58 @@ If you believe the Chinese room argument, can you also (reasonably)
 believe that passing the Turing test gives proof that a machine
 possesses a mind (i.e., can be said to truly understand things)? <b>No.</b>
 </p>
+</div>
+
+</div>
+
+<div id="outline-container-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2">The &ldquo;Norvig - Chomsky&rdquo; debate</h4>
+<div class="outline-text-4" id="text-4-3-2">
+
+
+<p>
+Give a 2-3 sentence summary of the debate.
+</p>
+<p>
+<b>Chomsky thinks statistical methods in AI don&rsquo;t lead to any scientific kinds of insights about intelligence. Norvig says that we have good reason to believe intelligence is statistical in nature (at least for some things like hearing words), and besides, the statistical methods work.</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-3-3" class="outline-4">
+<h4 id="sec-4-3-3">Robot ethics</h4>
+<div class="outline-text-4" id="text-4-3-3">
+
+
+<p>
+Give two ethical issues related to the &ldquo;take your medicine robot.&rdquo;
+</p>
+<p>
+<b>Some possible answers:</b>
+</p>
+<ul>
+<li><b>Ensure it gives medicine to the right person</b>
+</li>
+<li><b>Ensure it gives the right medicine</b>
+</li>
+<li><b>Detect responses like &ldquo;no,&rdquo; no response, etc.</b>
+</li>
+<li><b>Define an ethical strategy for responding to &ldquo;no,&rdquo; to no response,   etc.</b>
+</li>
+<li><b>Figure out if it matters whether or not the robot knows the person   actually took the medicine</b>
+</li>
+<li><b>Ensure reliability of operation</b>
+</li>
+<li><b>Keep records private</b>
+</li>
+<li><b>Develop a mechanism for updating the robot and changing its   instructions.</b>
+</li>
+<li><b>Define a &ldquo;hand off of control&rdquo; mechanism that&rsquo;s possibly more   complicated than a big red button.</b>
+</li>
+</ul>
+
+
 
 
 <div style="font-size: 80%; clear: both;">
@@ -878,6 +1039,8 @@ possesses a mind (i.e., can be said to truly understand things)? <b>No.</b>
 
 
 
+</div>
+</div>
 </div>
 </div>
 </div>
