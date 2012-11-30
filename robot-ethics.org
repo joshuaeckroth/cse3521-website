@@ -579,13 +579,6 @@ Walk through an example: a "take your medicine" robot
 
 - how do we build robots that meet the standards?
 
-#+BEGIN_HTML
-<div style="text-align: center">
-<iframe width="640" height="360"
-src="http://www.youtube.com/embed/-G3RoBHMu-o" frameborder="0"
-allowfullscreen></iframe>
-</div>
-#+END_HTML
 
 * Robots in joint systems
 
@@ -608,5 +601,16 @@ David Woods: "We have a track record of engineering success when we
 focus on expanding human perception via remote perception (bringing
 the world at different scales into the human perceptual scale), rather
 than developing reasoning capabilities."
+
+* Fear, Uncertainty, Doubt
+
+#+BEGIN_HTML
+<div style="text-align: center">
+<iframe width="640" height="360"
+src="http://www.youtube.com/embed/-G3RoBHMu-o" frameborder="0"
+allowfullscreen></iframe>
+</div>
+#+END_HTML
+
 
 #+INCLUDE: footer.org
