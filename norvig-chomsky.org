@@ -229,7 +229,7 @@ follows:
 - *Chomsky's point*: Statistical methods have had engineering success,
   but that is irrelevant to science.
 
-  - *Norvig's reply*: He agrees, but engineering sucess often
+  - *Norvig's reply*: He agrees, but engineering success often
     facilitates scientific success.
 
 - *Chomsky's point*: Accurate modeling of language (e.g. statistical
