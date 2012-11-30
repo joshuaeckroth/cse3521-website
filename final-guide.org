@@ -21,16 +21,10 @@ Which of the following features are in the "ant brood sorting" model?
   - Communicate directly with other ants
 
 (The question on the Final will ask about ant transport that you read
-for Homework 7.)
+for Homework 6.)
 
 Why is it important that the chemical ants leave behind when they are
 carrying food slowly evaporates?
-
-** NetLogo
-
-What is a "turtle" in NetLogo?
-
-What is a "patch" in NetLogo?
 
 ** Prisoner's dilemma
 
@@ -58,11 +52,15 @@ non-Tit-for-tat strategy or strategies facing each other?
 Describe the difference between "supervised" and "unsupervised"
 learning.
 
+What does "10-fold cross validation" mean?
+
 ** k-means clustering
 
 k-means clustering is an unsupervised or supervised learning strategy?
 
 What does the choice of $k$ represent?
+
+How does the choice of initial clusters affect the outcome?
 
 ** k-nearest neighbor
 
@@ -98,23 +96,12 @@ is less likely overall to predict any category. Does precision go up
 or down or remain unchanged? Does recall go up or down or remain
 unchanged?
 
-If the true categories for a document are [Applications, Robots,
-Interfaces, Speech] and the predicted categories are [Applications,
-Games, Speech], what are the true positive, false positive, and false
-negative counts?
-
-If the true categories for document 1 are [Applications, Robots,
-Interfaces, Speech], for document 2 are [Games], for document 3 are
-[Ethics, Philosophy, Robots], and for document 4 are [Applications,
-Vision, ScienceFiction], then what are the precision, recall, and
-f-score if the predicted categories for document 1 are [Applications,
-Games, Speech], for document 2 are [Games], for document 3 are
-[MachineLearning, Vision], and for document 4 are [ScienceFiction]?
-
 Give a possible result of stemming each of the following words:
 "linguistic," "dog," "jumping," "philosophy."
 
 Describe a "binary feature vector" for a text document.
+
+Calculate the tf-idf scores for a set of documents (as in Homework 8).
 
 Why do you suppose tf-idf feature vectors perform better (in terms of
 F-score) than, say, frequency count feature vectors?
@@ -122,10 +109,8 @@ F-score) than, say, frequency count feature vectors?
 A common word (most documents have many occurrences of this word)
 would have a high or low tf-idf score?
 
-What is a centroid (in terms of document vectors)?
-
-What is one way a centroid approach to classification is better than
-k-nearest neighbor?
+Given doc A as $<0, 3, 1, 0, 5>$, is doc X $<0, 3, 0, 2, 3>$ or doc Y
+$<1, 4, 0, 0, 5>$ closer to doc A in terms of "cosine similarity"?
 
 ** Probability and Bayesian methods
 
@@ -138,10 +123,16 @@ Describe what $P(A|B)$ means (in words).
 If events $A$ and $B$ are independent, and $P(A) = 0.25$, $P(B) =
 0.10$, what is $P(A,B)$? What is $P(B,A)$?
 
+In the toothache graph from the [[./bayesian-inference.html][Bayesian inference]] notes (the graph
+with just c, g, and t), what is $P(t|g)$?
+
 Write Bayes' theorem.
 
 Suppose I know that $P(B|A)=0.1, P(A)=0.9, P(B)=0.25$, what is
 $P(A|B)$?
+
+In the toothache graph from the [[./bayesian-inference.html][Bayesian inference]] notes (the graph
+with just c, g, and t), is $P(g|t) > P(c|t)$?
 
 What is the outcome of computing $\arg\max X (P(x))$ where $X$ is an
 event? (If $\arg\max X (P(X))$ was a function, what would the output
@@ -150,24 +141,36 @@ of the function be?) Describe in English.
 Suppose I know that $P(B|A)=0.1, P(A)=0.9, P(B|C)=0.2, P(C)=0.8$, what
 is $\arg\max X (P(X|B))$?
 
-As described in the naïve Bayesian classification notes, what does
-$d_i$ represent for some word $i$? What does $d_{ci}$ represent for
-some word $i$ and category $c$?
-
-Why do we use logarithms for naïve Bayesian classification
-calculations?
-
-What is the outcome of computing $\arg\max x P(x)$ where $x$ is an
-event? (If $\arg\max x P(x)$ was a function, what would the output of
-the function be?) Describe in English.
-
 Give one benefit of naïve Bayesian classification (as compared to
 other classification methods like k-nearest neighbor).
 
 Give one drawback of naïve Bayesian classification (as compared to
 other classification methods like support vector machines).
 
-* The "Chinese room" argument
+** Neural networks
+
+What does "all or nothing" mean when we talk about neurons in the
+brain?
+
+Generate the input/output table for this perceptron:
+
+#+BEGIN_CENTER
+[[./images/arbitrary-perceptron.png]]
+#+END_CENTER
+
+Draw perceptron and define inputs for the NAND function.
+
+Define the word "epoch."
+
+Write the perceptron learning rule for a single weight. Define the
+variables you use.
+
+True or false: a single-layer perceptron network can compute any
+function.
+
+* Philosophy
+
+** The "Chinese room" argument
 
 What is the essential goal of "strong AI?"
 
@@ -176,6 +179,14 @@ What is the most critical assumption in the Chinese room argument?
 If you believe the Chinese room argument, can you also (reasonably)
 believe that passing the Turing test gives proof that a machine
 possesses a mind (i.e., can be said to truly understand things)?
+
+** The "Norvig - Chomsky" debate
+
+Give a 2-3 sentence summary of the debate.
+
+** Robot ethics
+
+Give two ethical issues related to the "take your medicine robot."
 
 * Answers
 
@@ -212,19 +223,6 @@ carrying food slowly evaporates?
 to walk to a food source that no longer exists. The ants need to
 "forget" (one of the principles of agent design).*
 
-*** NetLogo
-
-What is a "turtle" in NetLogo?
-
-*A turtle is a single agent that acts independently of all other
-turtles (agents).*
-
-What is a "patch" in NetLogo?
-
-*A patch is a square on the map; the patch can have a color or other
-properties like a chemical. Patches do not move but they can have
-actions (such as changing one of their properties).*
-
 *** Prisoner's dilemma
 
 True or false? "Defecting" means confessing to the crime so that you
@@ -259,6 +257,13 @@ learning.
 training. Unsupervised learning does not have the truth (ever) so
 obviously cannot use this information.*
 
+What does "10-fold cross validation" mean?
+
+*This happens 10 times, and the results are averaged: Take 90% of the
+input data and train the learning algorithm on it; test the learning
+algorithm on the remaining 10%. For each of the 10 iterations,
+separate the input data into a different 90/10 split.*
+
 *** k-means clustering
 
 k-means clustering is an unsupervised or supervised learning strategy?
@@ -266,7 +271,12 @@ k-means clustering is an unsupervised or supervised learning strategy?
 
 What does the choice of $k$ represent? *The number of clusters.*
 
-** k-nearest neighbor
+How does the choice of initial clusters affect the outcome? *The
+resulting clusters may be different. Initial clusters near outliers
+may result in small clusters around the outliers (which is usually a
+bad thing).*
+
+*** k-nearest neighbor
 
 What does k-nearest neighbor allow us to do with a new, unknown data
 point? *Determine its category (class, label, tag, etc.).*
@@ -285,17 +295,18 @@ What problem may a very large value of $k$ cause? *The more common
 category will be chosen more often than it should.*
 
 Is there one value for $k$ that works best for nearly all data sets?
-If so, what is it? *There is not one best value; need to experiment
-with different values to find the best for your dataset.*
+If so, what is it? *There is not one best value; you need to
+experiment with different values to find the best for your dataset.*
 
 Give one benefit of k-nearest neighbor learning. *It is a very simple
 algorithm and can work quite well in some cases.*
 
 Give one drawback of k-nearest neighbor learning. *It is very slow
-because it checks every item in the database. It also requires one
-to retain all the training examples in the database.*
+because it checks every item in the database (unless KD-trees are
+used). It also requires one to retain all the training examples in the
+database.*
 
-** Document classification
+*** Document classification
 
 What is the goal of document classification? *Determine the category
 (class) or categories for a new document.*
@@ -323,32 +334,6 @@ or down or remain unchanged? Does recall go up or down or remain
 unchanged? *Precision goes up because there are fewer $fp$. Recall
 goes down because there are more $fn$.*
 
-If the true categories for a document are [Applications, Robots,
-Interfaces, Speech] and the predicted categories are [Applications,
-Games, Speech], what are the true positive, false positive, and false
-negative counts? *TP: 2, FP: 1, FN: 2*
-
-If the true categories for document 1 are [Applications, Robots,
-Interfaces, Speech], for document 2 are [Games], for document 3 are
-[Ethics, Philosophy, Robots], and for document 4 are [Applications,
-Vision, ScienceFiction], then what are the precision, recall, and
-f-score if the predicted categories for document 1 are [Applications,
-Games, Speech], for document 2 are [Games], for document 3 are
-[MachineLearning, Vision], and for document 4 are [ScienceFiction]?
-
-*For doc 1: TP: 2, FP: 1, FN: 2.*
-
-*For doc 2: TP: 1, FP: 0, FN: 0.*
-
-*For doc 3: TP: 0, FP: 2, FN: 3.*
-
-*For doc 4: TP: 1, FP: 0, FN: 2.*
-
-*Sums: TP: 4, FP: 3, FN: 7.*
-
-*Thus, precision: $4/(4+3)=0.57$, recall: $4/(4+7)=0.36$, f-score:
- $2*0.57*0.36/(0.57+0.36)=0.44$.*
-
 Give a possible result of stemming each of the following words:
 "linguistic," "dog," "jumping," "philosophy." *Maybe: "linguist" "dog"
 "jump" "philos". "Dog" won't be stemmed, for example.*
@@ -356,6 +341,9 @@ Give a possible result of stemming each of the following words:
 Describe a "binary feature vector" for a text document. *Each unique
 word is a "dimension," and the value for that dimension is 1 or 0. It
 is 1 if the word is present in the document, 0 otherwise.*
+
+Calculate the tf-idf scores for a set of documents (as in Homework
+8). *See an example in the [[./doc-vectors.xls]] file.*
 
 Why do you suppose tf-idf feature vectors perform better (in terms of
 F-score) than, say, frequency count feature vectors? *The
@@ -368,14 +356,15 @@ same word.*
 A common word (most documents have many occurrences of this word)
 would have a high or low tf-idf score? *A low tf-idf score.*
 
-What is a centroid (in terms of document vectors)? *A vector that is
-the average of the vectors of all documents in some category.*
+Given doc A as $<0, 3, 1, 0, 5>$, is doc X $<0, 3, 0, 2, 3>$ or doc Y
+$<1, 4, 0, 0, 5>$ closer to doc A in terms of "cosine similarity"?
 
-What is one way a centroid approach to classification is better than
-k-nearest neighbor? *Only need to keep the centroids in memory, not
-every individual training document.*
+*doc A has magnitude 5.916, doc X has magnitude 4.69, doc Y has
+magnitude 6.48; doc A dot-product doc X is 24, doc A dot-product doc Y
+is 37; cosine similarity of doc A and doc X is 0.865, cosine
+similarity of doc A with doc Y is 0.965. So doc Y is closer.*
 
-** Probability and Bayesian methods
+*** Probability and Bayesian methods
 
 Describe what $P(A)$ means (in words). *The probability that some
 event $A$ occurs.*
@@ -391,11 +380,35 @@ If events $A$ and $B$ are independent, and $P(A) = 0.25$, $P(B) =
 0.10$, what is $P(A,B)$? *$0.25 * 0.10 = 0.025$* What is $P(B,A)$?
 *Same.*
 
+In the toothache graph from the [[./bayesian-inference.html][Bayesian inference]] notes (the graph
+with just c, g, and t), what is $P(t|g)$?
+
+$$P(t|g) = P(t|g,c)P(c) + P(t|g,\neg c)P(\neg c) = 1.0*0.10 + 0.3*0.9
+= 0.37$$
+
 Write Bayes' theorem. *$P(B|A) = P(A|B)P(B)/P(A)$ or equivalently
 $P(A|B) = P(B|A)P(A)/P(B)$.*
 
 Suppose I know that $P(B|A)=0.1, P(A)=0.9, P(B)=0.25$, what is
 $P(A|B)$? *$P(A|B)=0.1*0.9/0.25=0.36$.*
+
+In the toothache graph from the [[./bayesian-inference.html][Bayesian inference]] notes (the graph
+with just c, g, and t), is $P(g|t) > P(c|t)$?
+
+\begin{eqnarray}
+
+P(g|t) = P(t|g)P(g)/P(t) &=& (P(t|g,c)P(c) + P(t|g,\neg c)P(\neg c))P(g)/P(t) \\
+ &=& (1.0*0.10 + 0.3*0.9)*0.05/P(t)\\
+ &=& 0.0185/P(t) \\
+
+P(c|t) = P(t|c)P(c)/P(t) &=& (P(t|c,g)P(g) + P(t|c,\neg g)P(\neg
+g))P(c)/P(t) \\
+ &=& (1.0*0.05 + 0.6*0.95)*0.10/P(t) \\
+ &=& 0.062/P(t)
+
+\end{eqnarray}
+
+*So $P(c|t) > P(g|t)$.*
 
 What is the outcome of computing $\arg\max X (P(X))$ where $X$ is an
 event? (If $\arg\max X (P(x))$ was a function, what would the output
@@ -413,11 +426,6 @@ $i$.* What does $d_{ci}$ represent for some word $i$ and category $c$?
 *$d_{ci}$ is the number of documents in category $c$ that contain at
 least one occurrence of word $i$.*
 
-Why do we use logarithms for naïve Bayesian classification
-calculations? *To avoid "underflow" with our numbers; after
-multiplying a lot of probabilities (one probability per word), we get
-very small values.*
-
 Give one benefit of naïve Bayesian classification (as compared to
 other classification methods like k-nearest neighbor). *It is fast.*
 
@@ -425,7 +433,51 @@ Give one drawback of naïve Bayesian classification (as compared to
 other classification methods like support vector machines). *It is not
 always highly accurate.*
 
-* The "Chinese room" argument
+*** Neural networks
+
+What does "all or nothing" mean when we talk about neurons in the
+brain? *A neuron either fires (discharges) completely or does not
+fire.*
+
+Generate the input/output table for this perceptron:
+
+#+BEGIN_CENTER
+[[./images/arbitrary-perceptron.png]]
+#+END_CENTER
+
+| $x_1$ | $x_2$ | output |
+|-------+-------+--------|
+| 0     | 0     | 0      |
+| 0     | 1     | 0      |
+| 1     | 0     | 1      |
+| 1     | 1     | 0      |
+
+Draw perceptron and define inputs for the NAND function.
+
+#+BEGIN_CENTER
+[[./images/nand-perceptron.png]]
+#+END_CENTER
+
+Define the word "epoch." *An epoch is a single pass (of weight
+updates) through every example in the training set.*
+
+Write the perceptron learning rule for a single weight. Define the
+variables you use.
+
+$$w'_i = w_i + \alpha (d-y)x_i,$$
+
+*where $w'_i$ is the new weight value, $w_i$ is the old weight value,
+$\alpha$ is a "learning rate" parameter, $d$ is the value spit out by
+this perceptron, $y$ is the correct value, and $x_i$ is the input on
+this weight.*
+
+True or false: a single-layer perceptron network can compute any
+function. *False: it can only compute linearly-separable functions,
+which does not include, e.g., XOR.*
+
+** Philosophy
+
+*** The "Chinese room" argument
 
 What is the essential goal of "strong AI?" *Create a true "mind,"
 i.e., an intelligent thinking machine. It may even be conscious.*
@@ -436,6 +488,36 @@ What is the most critical assumption in the Chinese room argument?
 If you believe the Chinese room argument, can you also (reasonably)
 believe that passing the Turing test gives proof that a machine
 possesses a mind (i.e., can be said to truly understand things)? *No.*
+
+*** The "Norvig - Chomsky" debate
+
+Give a 2-3 sentence summary of the debate.
+
+*Chomsky thinks statistical methods in AI don't lead to any scientific
+kinds of insights about intelligence. Norvig says that we have good
+reason to believe intelligence is statistical in nature (at least for
+some things like hearing words), and besides, the statistical methods
+work.*
+
+*** Robot ethics
+
+Give two ethical issues related to the "take your medicine robot."
+
+*Some possible answers:*
+
+- *Ensure it gives medicine to the right person*
+- *Ensure it gives the right medicine*
+- *Detect responses like "no," no response, etc.*
+- *Define an ethical strategy for responding to "no," to no response,
+  etc.*
+- *Figure out if it matters whether or not the robot knows the person
+  actually took the medicine*
+- *Ensure reliability of operation*
+- *Keep records private*
+- *Develop a mechanism for updating the robot and changing its
+  instructions.*
+- *Define a "hand off of control" mechanism that's possibly more
+  complicated than a big red button.*
 
 #+INCLUDE: footer.org
 
