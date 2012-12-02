@@ -15,7 +15,7 @@
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="nand-perceptron.svg"
-   inkscape:export-filename="/home/josh/t/cse3521/website/src/images/arbitrary-perceptron.png"
+   inkscape:export-filename="/home/josh/t/cse3521/website/src/images/nand-perceptron.png"
    inkscape:export-xdpi="40.939999"
    inkscape:export-ydpi="40.939999">
   <defs
@@ -33,10 +33,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1155"
+     inkscape:window-width="1022"
      inkscape:window-height="632"
-     inkscape:window-x="259"
-     inkscape:window-y="63"
+     inkscape:window-x="0"
+     inkscape:window-y="50"
      inkscape:window-maximized="0"
      fit-margin-top="10"
      fit-margin-left="10"

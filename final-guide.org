@@ -343,7 +343,7 @@ word is a "dimension," and the value for that dimension is 1 or 0. It
 is 1 if the word is present in the document, 0 otherwise.*
 
 Calculate the tf-idf scores for a set of documents (as in Homework
-8). *See an example in the [[./doc-vectors.xls]] file.*
+8). *See an example in the* [[./doc-vectors.xls][doc-vectors.xls]] *file.*
 
 Why do you suppose tf-idf feature vectors perform better (in terms of
 F-score) than, say, frequency count feature vectors? *The
@@ -418,13 +418,6 @@ event, not a probability.*
 Suppose I know that $P(B|A)=0.1, P(A)=0.9, P(B|C)=0.2, P(C)=0.8$, what
 is $\arg\max X (P(X|B))$? *The answer is $C$ because $P(B|A)P(A) <
 P(B|C)P(C)$.*
-
-As described in the naïve Bayesian classification notes, what does
-$d_i$ represent for some word $i$? *$d_i$ is the number of documents
-(in the whole database) that contain at least one occurrence of word
-$i$.* What does $d_{ci}$ represent for some word $i$ and category $c$?
-*$d_{ci}$ is the number of documents in category $c$ that contain at
-least one occurrence of word $i$.*
 
 Give one benefit of naïve Bayesian classification (as compared to
 other classification methods like k-nearest neighbor). *It is fast.*
