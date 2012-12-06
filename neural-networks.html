@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Neural networks"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:58:54 EST"/>
+<meta name="generated" content="2012-12-05 20:24:09 EST"/>
 <meta name="author" content="Joshua Eckroth"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -584,7 +584,6 @@ separately.
 </p>
 
 
-\begin{equation}
 \begin{eqnarray}
 \frac{\partial L_j}{\partial w_{ji}}
 &=& \frac{\partial}{\partial w_{ji}} (y_j - f(s_j))^2 \\
@@ -593,7 +592,6 @@ separately.
 &=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} \sum_{i'=1}^k x_{i'} w_{ji'} + w_{j0} \qquad \text{expand } s_j\\
 &=& -2 (y_j - f(s_j)) f'(s_j) x_{i} \qquad \text{picks out } x_{i} w_{ji} \text{, whose derivative is } x_{i}
 \end{eqnarray}
-\end{equation}
 
 <p>
 Note that \(f'(z) = f(z)(1-f(z))\). This makes the logistic function a
