@@ -328,7 +328,6 @@ gradient. Since the logistic function and the loss function are
 differentiable, this gradient is easy to find for each weight
 separately.
 
-\begin{equation}
 \begin{eqnarray}
 \frac{\partial L_j}{\partial w_{ji}}
 &=& \frac{\partial}{\partial w_{ji}} (y_j - f(s_j))^2 \\
@@ -337,7 +336,6 @@ separately.
 &=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} \sum_{i'=1}^k x_{i'} w_{ji'} + w_{j0} \qquad \text{expand } s_j\\
 &=& -2 (y_j - f(s_j)) f'(s_j) x_{i} \qquad \text{picks out } x_{i} w_{ji} \text{, whose derivative is } x_{i}
 \end{eqnarray}
-\end{equation}
 
 Note that $f'(z) = f(z)(1-f(z))$. This makes the logistic function a
 good choice (in addition to its shape, which approximates the
