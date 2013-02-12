@@ -79,7 +79,11 @@ easy to generate, should you actually wish to use text classification
 for your own purposes.
 
 We'll practice with the [[./sms-spam.arff][sms-spam.arff]] file, which has examples of SMS
-text msg ham and spam.
+text msg ham and spam. This collection was produced by Tiago
+A. Almeida from the Federal University of Sao Carlos and José María
+Gómez Hidalgo from the R&D Department of Optenet. More information
+[[http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/][available here]]. You may find [[http://dl.acm.org/citation.cfm?id=2034742][their paper]] interesting; it examines the
+performance of various machine learning algorithms on this data set.
 
 ** Strings to binary feature vectors
 
