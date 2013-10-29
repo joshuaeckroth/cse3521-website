@@ -1,1 +1,3 @@
-#+STYLE: <link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+#+HTML_HEAD: <link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+
+
