@@ -147,15 +147,15 @@ Suppose we have the following knowledge base:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(a). 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(b). 
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(a). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(b). 
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(a). 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(b). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(a). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(b). 
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">h</span>(b). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(b). 
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">k</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- f(<span style="color: #000000; background-color: #ffffff;">X</span>), g(<span style="color: #000000; background-color: #ffffff;">X</span>), h(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">k</span>(<span style="color: #999999; background-color: #000000;">X</span>) :- f(<span style="color: #999999; background-color: #000000;">X</span>), g(<span style="color: #999999; background-color: #000000;">X</span>), h(<span style="color: #999999; background-color: #000000;">X</span>).
 </pre>
 </div>
 
@@ -220,9 +220,9 @@ Now we'll switch to this knowledge base:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(vincent, mia).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(marcellus, mia).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">jealous</span>(<span style="color: #000000; background-color: #ffffff;">A</span>, <span style="color: #000000; background-color: #ffffff;">B</span>) :- loves(<span style="color: #000000; background-color: #ffffff;">A</span>, <span style="color: #000000; background-color: #ffffff;">C</span>), loves(<span style="color: #000000; background-color: #ffffff;">B</span>, <span style="color: #000000; background-color: #ffffff;">C</span>).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">loves</span>(vincent, mia).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">loves</span>(marcellus, mia).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">jealous</span>(<span style="color: #999999; background-color: #000000;">A</span>, <span style="color: #999999; background-color: #000000;">B</span>) :- loves(<span style="color: #999999; background-color: #000000;">A</span>, <span style="color: #999999; background-color: #000000;">C</span>), loves(<span style="color: #999999; background-color: #000000;">B</span>, <span style="color: #999999; background-color: #000000;">C</span>).
 </pre>
 </div>
 
@@ -252,8 +252,8 @@ Finally, let's look at a list predicate.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">T</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">T</span>).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">T</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- member(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">T</span>).
 </pre>
 </div>
 
@@ -311,6 +311,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

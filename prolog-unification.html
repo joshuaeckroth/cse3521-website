@@ -200,9 +200,9 @@ For example, suppose our knowledge base is:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">woman</span>(mia).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(vincent, angela).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(franklin, mia).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">woman</span>(mia).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">loves</span>(vincent, angela).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">loves</span>(franklin, mia).
 </pre>
 </div>
 
@@ -323,7 +323,7 @@ Yes, from rule 1.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog">?- mia = <span style="color: #000000; background-color: #ffffff;">X</span>.
+<pre class="src src-prolog">?- mia = <span style="color: #999999; background-color: #000000;">X</span>.
 </pre>
 </div>
 
@@ -337,7 +337,7 @@ Yes, from rule 2.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog">?- <span style="color: #000000; background-color: #ffffff;">X</span> = <span style="color: #000000; background-color: #ffffff;">Y</span>.
+<pre class="src src-prolog">?- <span style="color: #999999; background-color: #000000;">X</span> = <span style="color: #999999; background-color: #000000;">Y</span>.
 </pre>
 </div>
 
@@ -351,7 +351,7 @@ Yes, from rule 2.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog">?- k(s(g), <span style="color: #000000; background-color: #ffffff;">Y</span>) = k(<span style="color: #000000; background-color: #ffffff;">X</span>, t(k)).
+<pre class="src src-prolog">?- k(s(g), <span style="color: #999999; background-color: #000000;">Y</span>) = k(<span style="color: #999999; background-color: #000000;">X</span>, t(k)).
 </pre>
 </div>
 
@@ -366,7 +366,7 @@ set to <code>s(g)</code> and <code>Y</code> set to <code>t(k)</code>).
 
 <div class="org-src-container">
 
-<pre class="src src-prolog">?- k(s(g), <span style="color: #000000; background-color: #ffffff;">Y</span>) = k(s(g, <span style="color: #000000; background-color: #ffffff;">X</span>), <span style="color: #000000; background-color: #ffffff;">Y</span>).
+<pre class="src src-prolog">?- k(s(g), <span style="color: #999999; background-color: #000000;">Y</span>) = k(s(g, <span style="color: #999999; background-color: #000000;">X</span>), <span style="color: #999999; background-color: #000000;">Y</span>).
 </pre>
 </div>
 
@@ -405,6 +405,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

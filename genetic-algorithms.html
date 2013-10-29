@@ -214,37 +214,37 @@ approach.
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">for</span> generation <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(MAX_GENERATIONS):
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">calculate fitness values and put these values, along with</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">the individuals, in a new "weighted" list</span>
-    <span style="color: #000000; background-color: #ffffff;">weighted_population</span> = []
-    <span style="color: #004dd0; background-color: #ffffff;">for</span> individual <span style="color: #004dd0; background-color: #ffffff;">in</span> population:
-        <span style="color: #000000; background-color: #ffffff;">fitness_val</span> = fitness(individual)
+<pre class="src src-python"><span style="color: #999999; background-color: #000000; font-weight: bold;">for</span> generation <span style="color: #999999; background-color: #000000; font-weight: bold;">in</span> <span style="color: #999999; background-color: #000000; font-weight: bold;">range</span>(MAX_GENERATIONS):
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">calculate fitness values and put these values, along with</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">the individuals, in a new "weighted" list</span>
+    <span style="color: #999999; background-color: #000000;">weighted_population</span> = []
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">for</span> individual <span style="color: #999999; background-color: #000000; font-weight: bold;">in</span> population:
+        <span style="color: #999999; background-color: #000000;">fitness_val</span> = fitness(individual)
         weighted_population.append((individual, fitness_val))
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">select two individuals to breed; individuals with higher</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">fitness values are more likely to be selected</span>
-    <span style="color: #000000; background-color: #ffffff;">ind1</span> = weighted_choice(weighted_population)
-    <span style="color: #000000; background-color: #ffffff;">ind2</span> = weighted_choice(weighted_population)
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">select two individuals to breed; individuals with higher</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">fitness values are more likely to be selected</span>
+    <span style="color: #999999; background-color: #000000;">ind1</span> = weighted_choice(weighted_population)
+    <span style="color: #999999; background-color: #000000;">ind2</span> = weighted_choice(weighted_population)
 
-    <span style="color: #000000; background-color: #ffffff;">ind3</span> = crossover(ind1, ind2) <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">breed, creating a new individual</span>
-    mutate(ind3) <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do some random mutating</span>
+    <span style="color: #999999; background-color: #000000;">ind3</span> = crossover(ind1, ind2) <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">breed, creating a new individual</span>
+    mutate(ind3) <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">do some random mutating</span>
     population.append(ind3)
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">maybe the parents die? this is just one of many parameters in a</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">GA algorithm</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">maybe the parents die? this is just one of many parameters in a</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">GA algorithm</span>
     population.remove(ind1)
     population.remove(ind2)
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">generations are completed; find maximum fitness individual</span>
-<span style="color: #000000; background-color: #ffffff;">max_fit</span> = fitness(population[0])
-<span style="color: #000000; background-color: #ffffff;">max_fit_individual</span> = population[0]
-<span style="color: #004dd0; background-color: #ffffff;">for</span> individual <span style="color: #004dd0; background-color: #ffffff;">in</span> population:
-    <span style="color: #000000; background-color: #ffffff;">fitness_val</span> = fitness(individual)
-    <span style="color: #004dd0; background-color: #ffffff;">if</span> fitness_val &gt; max_fit:
-        <span style="color: #000000; background-color: #ffffff;">max_fit</span> = fitness_val
-        <span style="color: #000000; background-color: #ffffff;">max_fit_individual</span> = individual
-<span style="color: #004dd0; background-color: #ffffff;">print</span> max_fit_individual
+<span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">generations are completed; find maximum fitness individual</span>
+<span style="color: #999999; background-color: #000000;">max_fit</span> = fitness(population[0])
+<span style="color: #999999; background-color: #000000;">max_fit_individual</span> = population[0]
+<span style="color: #999999; background-color: #000000; font-weight: bold;">for</span> individual <span style="color: #999999; background-color: #000000; font-weight: bold;">in</span> population:
+    <span style="color: #999999; background-color: #000000;">fitness_val</span> = fitness(individual)
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">if</span> fitness_val &gt; max_fit:
+        <span style="color: #999999; background-color: #000000;">max_fit</span> = fitness_val
+        <span style="color: #999999; background-color: #000000;">max_fit_individual</span> = individual
+<span style="color: #999999; background-color: #000000; font-weight: bold;">print</span> max_fit_individual
 </pre>
 </div>
 
@@ -271,6 +271,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

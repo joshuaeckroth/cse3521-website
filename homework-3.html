@@ -332,22 +332,22 @@ Assume we have the following Prolog database:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(tom, liz).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(tim, bob).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(bob, ann).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(bob, pat).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(pat, jim).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">parent</span>(tom, liz).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">parent</span>(tim, bob).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">parent</span>(bob, ann).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">parent</span>(bob, pat).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">parent</span>(pat, jim).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(tim).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(tom).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(bob).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(jim).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(pam).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(liz).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(pat).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(ann).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">male</span>(tim).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">male</span>(tom).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">male</span>(bob).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">male</span>(jim).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">female</span>(pam).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">female</span>(liz).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">female</span>(pat).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">female</span>(ann).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">mother</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">mother</span>(<span style="color: #999999; background-color: #000000;">X</span>) :- parent(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">_</span>), female(<span style="color: #999999; background-color: #000000;">X</span>).
 </pre>
 </div>
 
@@ -510,99 +510,99 @@ Start with this code. Pay special attention to the "TODO" comments.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog">:- <span style="color: #000000; background-color: #ffffff; font-weight: bold;">use_module</span>(library(readln)).
+<pre class="src src-prolog">:- <span style="color: #999999; background-color: #000000; font-weight: bold;">use_module</span>(library(readln)).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">these allow us to use assertz with these two predicates</span>
-:- <span style="color: #000000; background-color: #ffffff; font-weight: bold;">dynamic</span>(<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">learned_isa/2</span>).
-:- <span style="color: #000000; background-color: #ffffff; font-weight: bold;">dynamic</span>(<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">learned_smaller/2</span>).
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">these allow us to use assertz with these two predicates</span>
+:- <span style="color: #999999; background-color: #000000; font-weight: bold;">dynamic</span>(<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">learned_isa/2</span>).
+:- <span style="color: #999999; background-color: #000000; font-weight: bold;">dynamic</span>(<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">learned_smaller/2</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #000000; background-color: #ffffff; font-style: italic; text-decoration: underline;">strip_puncation/2</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;"> &amp; </span><span style="color: #000000; background-color: #ffffff; font-style: italic; text-decoration: underline;">read_sentence/1</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;"> from The Art of Prolog 2nd Ed. (Sterling &amp; Shaprio)</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">strip_puncation/2</span><span style="color: #444444; background-color: #000000;"> &amp; </span><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">read_sentence/1</span><span style="color: #444444; background-color: #000000;"> from The Art of Prolog 2nd Ed. (Sterling &amp; Shaprio)</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">strip_punctuation</span>(<span style="color: #004dd0; background-color: #ffffff;">[]</span>, <span style="color: #004dd0; background-color: #ffffff;">[]</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">strip_punctuation</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Word</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Word</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Result</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    \+(member(<span style="color: #000000; background-color: #ffffff;">Word</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'.'</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">','</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'?'</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'!'</span><span style="color: #004dd0; background-color: #ffffff;">]</span>)),
-    strip_punctuation(<span style="color: #000000; background-color: #ffffff;">Tail</span>, <span style="color: #000000; background-color: #ffffff;">Result</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">strip_punctuation</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #000000; background-color: #ffffff;">Result</span>) :-
-    strip_punctuation(<span style="color: #000000; background-color: #ffffff;">Tail</span>, <span style="color: #000000; background-color: #ffffff;">Result</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">strip_punctuation</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[]</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">strip_punctuation</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">Word</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">Word</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Result</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    \+(member(<span style="color: #999999; background-color: #000000;">Word</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'.'</span>, <span style="color: #666666; background-color: #000000;">','</span>, <span style="color: #666666; background-color: #000000;">'?'</span>, <span style="color: #666666; background-color: #000000;">'!'</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>)),
+    strip_punctuation(<span style="color: #999999; background-color: #000000;">Tail</span>, <span style="color: #999999; background-color: #000000;">Result</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">strip_punctuation</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>, <span style="color: #999999; background-color: #000000;">Result</span>) :-
+    strip_punctuation(<span style="color: #999999; background-color: #000000;">Tail</span>, <span style="color: #999999; background-color: #000000;">Result</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">read_sentence</span>(<span style="color: #000000; background-color: #ffffff;">Input</span>) :-
-    readln(<span style="color: #000000; background-color: #ffffff;">Input1</span>),
-    strip_punctuation(<span style="color: #000000; background-color: #ffffff;">Input1</span>, <span style="color: #000000; background-color: #ffffff;">Input</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">read_sentence</span>(<span style="color: #999999; background-color: #000000;">Input</span>) :-
+    readln(<span style="color: #999999; background-color: #000000;">Input1</span>),
+    strip_punctuation(<span style="color: #999999; background-color: #000000;">Input1</span>, <span style="color: #999999; background-color: #000000;">Input</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">reply</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Head</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- write(<span style="color: #000000; background-color: #ffffff;">Head</span>), write(<span style="color: #670088; background-color: #ffffff; font-style: italic;">' '</span>), reply(<span style="color: #000000; background-color: #ffffff;">Tail</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">reply</span>(<span style="color: #004dd0; background-color: #ffffff;">[]</span>) :- nl.
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">reply</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">Head</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- write(<span style="color: #999999; background-color: #000000;">Head</span>), write(<span style="color: #666666; background-color: #000000;">' '</span>), reply(<span style="color: #999999; background-color: #000000;">Tail</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">reply</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[]</span>) :- nl.
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">TODO: code </span><span style="color: #000000; background-color: #ffffff; font-style: italic; text-decoration: underline;">reply_list/1</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">TODO: code </span><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">reply_list/1</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">run</span> :- read_sentence(<span style="color: #000000; background-color: #ffffff;">Input</span>), run(<span style="color: #000000; background-color: #ffffff;">Input</span>), <span style="color: #004dd0; background-color: #ffffff;">!</span>.
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">run</span> :- read_sentence(<span style="color: #999999; background-color: #000000;">Input</span>), run(<span style="color: #999999; background-color: #000000;">Input</span>), <span style="color: #999999; background-color: #000000; font-weight: bold;">!</span>.
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">run</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'quit'</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- reply(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'Ok we\'</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">re done!'</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">run</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'quit'</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- reply(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'Ok we\'</span><span style="color: #666666; background-color: #000000;">re done!'</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">run</span>(<span style="color: #000000; background-color: #ffffff;">Input</span>) :-
-    process_sentence(<span style="color: #000000; background-color: #ffffff;">Input</span>),
-    read_sentence(<span style="color: #000000; background-color: #ffffff;">NextInput</span>),
-    <span style="color: #004dd0; background-color: #ffffff;">!</span>, run(<span style="color: #000000; background-color: #ffffff;">NextInput</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">run</span>(<span style="color: #999999; background-color: #000000;">Input</span>) :-
+    process_sentence(<span style="color: #999999; background-color: #000000;">Input</span>),
+    read_sentence(<span style="color: #999999; background-color: #000000;">NextInput</span>),
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">!</span>, run(<span style="color: #999999; background-color: #000000;">NextInput</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span>what, is, bigger, than, <span style="color: #000000; background-color: #ffffff;">Object</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% TODO: code findall using Object and creating Things</span>
-    reply(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'These are bigger:'</span><span style="color: #004dd0; background-color: #ffffff;">]</span>),
-    reply_list(<span style="color: #000000; background-color: #ffffff;">Things</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>what, is, bigger, than, <span style="color: #999999; background-color: #000000;">Object</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    <span style="color: #444444; background-color: #000000;">% TODO: code findall using Object and creating Things</span>
+    reply(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'These are bigger:'</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>),
+    reply_list(<span style="color: #999999; background-color: #000000;">Things</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span>what, is, smaller, than, <span style="color: #000000; background-color: #ffffff;">Object</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% TODO: finish predicate</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>what, is, smaller, than, <span style="color: #999999; background-color: #000000;">Object</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    <span style="color: #444444; background-color: #000000;">% TODO: finish predicate</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span>what, is <span style="color: #004dd0; background-color: #ffffff;">|</span> <span style="color: #000000; background-color: #ffffff;">Math</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    math(<span style="color: #000000; background-color: #ffffff;">Math</span>, <span style="color: #000000; background-color: #ffffff;">Z</span>),
-    reply(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Z</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>what, is <span style="color: #999999; background-color: #000000; font-weight: bold;">|</span> <span style="color: #999999; background-color: #000000;">Math</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    math(<span style="color: #999999; background-color: #000000;">Math</span>, <span style="color: #999999; background-color: #000000;">Z</span>),
+    reply(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">Z</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span>what, is, <span style="color: #000000; background-color: #ffffff;">Object</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% TODO: finish predicate</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>what, is, <span style="color: #999999; background-color: #000000;">Object</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    <span style="color: #444444; background-color: #000000;">% TODO: finish predicate</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span>what, is, <span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    reply(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'I'</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'m not sure! Care to tell me?'</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>what, is, <span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    reply(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'I'</span><span style="color: #666666; background-color: #000000;">'m not sure! Care to tell me?'</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span>is, <span style="color: #000000; background-color: #ffffff;">Subject</span>, <span style="color: #000000; background-color: #ffffff;">Object</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% TODO: put a line of code here</span>
-    reply(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'Yes'</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>is, <span style="color: #999999; background-color: #000000;">Subject</span>, <span style="color: #999999; background-color: #000000;">Object</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    <span style="color: #444444; background-color: #000000;">% TODO: put a line of code here</span>
+    reply(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'Yes'</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">TODO: handle case where </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">"is xyz abc"</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;"> says </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">"No"</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">(i.e., above predicate failed)</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">TODO: handle case where </span><span style="color: #444444; background-color: #000000;">"is xyz abc"</span><span style="color: #444444; background-color: #000000;"> says </span><span style="color: #444444; background-color: #000000;">"No"</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">(i.e., above predicate failed)</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Subject</span>, is, <span style="color: #000000; background-color: #ffffff;">Object</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
-    assertz(learned_isa(<span style="color: #000000; background-color: #ffffff;">Subject</span>, <span style="color: #000000; background-color: #ffffff;">Object</span>)),
-    reply(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'Ok, I learned that'</span>, <span style="color: #000000; background-color: #ffffff;">Subject</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'is a/an'</span>, <span style="color: #000000; background-color: #ffffff;">Object</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">Subject</span>, is, <span style="color: #999999; background-color: #000000;">Object</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :-
+    assertz(learned_isa(<span style="color: #999999; background-color: #000000;">Subject</span>, <span style="color: #999999; background-color: #000000;">Object</span>)),
+    reply(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'Ok, I learned that'</span>, <span style="color: #999999; background-color: #000000;">Subject</span>, <span style="color: #666666; background-color: #000000;">'is a/an'</span>, <span style="color: #999999; background-color: #000000;">Object</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">TODO: handle </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">"x is bigger than y"</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;"> and </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">"x is smaller than y"</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">similarly to how </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">"is"</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;"> is handled above,</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">using assertz(learned_smaller(...))</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">TODO: handle </span><span style="color: #444444; background-color: #000000;">"x is bigger than y"</span><span style="color: #444444; background-color: #000000;"> and </span><span style="color: #444444; background-color: #000000;">"x is smaller than y"</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">similarly to how </span><span style="color: #444444; background-color: #000000;">"is"</span><span style="color: #444444; background-color: #000000;"> is handled above,</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">using assertz(learned_smaller(...))</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">process_sentence</span>(<span style="color: #000000; background-color: #ffffff;">_</span>) :-
-    reply(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #670088; background-color: #ffffff; font-style: italic;">'Huh?'</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">process_sentence</span>(<span style="color: #999999; background-color: #000000;">_</span>) :-
+    reply(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #666666; background-color: #000000;">'Huh?'</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">right-associative math</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">right-associative math</span>
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">default math case (an atom)</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">math</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Z</span>) :-
-    number(<span style="color: #000000; background-color: #ffffff;">X</span>),
-    <span style="color: #000000; background-color: #ffffff;">Z</span> = <span style="color: #000000; background-color: #ffffff;">X</span>.
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">default math case (an atom)</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">math</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Z</span>) :-
+    number(<span style="color: #999999; background-color: #000000;">X</span>),
+    <span style="color: #999999; background-color: #000000;">Z</span> = <span style="color: #999999; background-color: #000000;">X</span>.
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">default math case (a list)</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">math</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #000000; background-color: #ffffff;">Z</span>) :-
-    number(<span style="color: #000000; background-color: #ffffff;">X</span>),
-    <span style="color: #000000; background-color: #ffffff;">Z</span> = <span style="color: #000000; background-color: #ffffff;">X</span>.
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">default math case (a list)</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">math</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>, <span style="color: #999999; background-color: #000000;">Z</span>) :-
+    number(<span style="color: #999999; background-color: #000000;">X</span>),
+    <span style="color: #999999; background-color: #000000;">Z</span> = <span style="color: #999999; background-color: #000000;">X</span>.
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">math</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span>, + <span style="color: #004dd0; background-color: #ffffff;">|</span> <span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #000000; background-color: #ffffff;">Z</span>) :-
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% TODO: finish predicate</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">math</span>(<span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span>, + <span style="color: #999999; background-color: #000000; font-weight: bold;">|</span> <span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>, <span style="color: #999999; background-color: #000000;">Z</span>) :-
+    <span style="color: #444444; background-color: #000000;">% TODO: finish predicate</span>
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">TODO: code rest of math</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">TODO: code rest of math</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">isa</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- learned_isa(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">isa</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>) :- learned_isa(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">TODO: code transitive isa</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">TODO: code transitive isa</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">smaller</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- learned_smaller(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">smaller</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>) :- learned_smaller(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">TODO: code transitive smaller</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">TODO: code transitive smaller</span>
 </pre>
 </div>
 
@@ -629,6 +629,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

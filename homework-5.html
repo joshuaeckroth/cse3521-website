@@ -297,35 +297,35 @@ learning.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">#include</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">&lt;fstream&gt;</span>
-<span style="color: #000000; background-color: #ffffff; font-weight: bold;">#include</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">&lt;string&gt;</span>
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000; font-weight: bold;">#include</span> <span style="color: #666666; background-color: #000000;">&lt;fstream&gt;</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold;">#include</span> <span style="color: #666666; background-color: #000000;">&lt;string&gt;</span>
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">...</span>
 
-<span style="color: #004dd0; background-color: #ffffff;">string</span> <span style="color: #000000; background-color: #ffffff;">docfile</span>, <span style="color: #000000; background-color: #ffffff;">category</span>, <span style="color: #000000; background-color: #ffffff;">word</span>;
-<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">category_count</span>;
-<span style="color: #004dd0; background-color: #ffffff;">ifstream</span> <span style="color: #000000; background-color: #ffffff;">f</span>, <span style="color: #000000; background-color: #ffffff;">df</span>;
-f.open(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"listing.txt"</span>);
-<span style="color: #004dd0; background-color: #ffffff;">while</span>(!f.eof()) { <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">eof() is true if the file is finished</span>
+<span style="color: #999999; background-color: #000000;">string</span> <span style="color: #999999; background-color: #000000;">docfile</span>, <span style="color: #999999; background-color: #000000;">category</span>, <span style="color: #999999; background-color: #000000;">word</span>;
+<span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">category_count</span>;
+<span style="color: #999999; background-color: #000000;">ifstream</span> <span style="color: #999999; background-color: #000000;">f</span>, <span style="color: #999999; background-color: #000000;">df</span>;
+f.open(<span style="color: #666666; background-color: #000000;">"listing.txt"</span>);
+<span style="color: #999999; background-color: #000000; font-weight: bold;">while</span>(!f.eof()) { <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">eof() is true if the file is finished</span>
     f &gt;&gt; docfile;
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">maybe more than 1 category; not in the spam data, but in other</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">datasets...; the file gives the category count next (an int)</span>
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">maybe more than 1 category; not in the spam data, but in other</span>
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">datasets...; the file gives the category count next (an int)</span>
     f &gt;&gt; category_count;
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">now get each category for this docfile</span>
-    <span style="color: #004dd0; background-color: #ffffff;">for</span>(<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">i</span> = 0; i &lt; category_count; i++) {
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">now get each category for this docfile</span>
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">for</span>(<span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">i</span> = 0; i &lt; category_count; i++) {
         f &gt;&gt; category;
-        <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do something with category</span>
+        <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">do something with category</span>
     }
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">open docfile, process it a word at a time</span>
-    df.open(docfile.c_str()); <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">c_str() is just a funky C++ thing</span>
-    <span style="color: #004dd0; background-color: #ffffff;">while</span>(!df.eof()) {
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">open docfile, process it a word at a time</span>
+    df.open(docfile.c_str()); <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">c_str() is just a funky C++ thing</span>
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">while</span>(!df.eof()) {
         df &gt;&gt; word;
-        <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do something with word</span>
+        <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">do something with word</span>
     }
     df.close()
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">done with that line of listing.txt</span>
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">done with that line of listing.txt</span>
 }
 f.close()
 </pre>
@@ -377,6 +377,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

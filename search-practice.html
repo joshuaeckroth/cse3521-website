@@ -608,36 +608,36 @@ a measure of miles between them:
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">from: http://www.johndcook.com/python_longitude_latitude.html</span>
-<span style="color: #004dd0; background-color: #ffffff;">import</span> math
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">dist</span>((long1, lat1), (long2, lat2)):
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Convert latitude and longitude to </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">spherical coordinates in radians.</span>
-    <span style="color: #000000; background-color: #ffffff;">degrees_to_radians</span> = math.pi/180.0
+<pre class="src src-python"><span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">from: http://www.johndcook.com/python_longitude_latitude.html</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold;">import</span> math
+<span style="color: #999999; background-color: #000000; font-weight: bold;">def</span> <span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">dist</span>((long1, lat1), (long2, lat2)):
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">Convert latitude and longitude to </span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">spherical coordinates in radians.</span>
+    <span style="color: #999999; background-color: #000000;">degrees_to_radians</span> = math.pi/180.0
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">phi = 90 - latitude</span>
-    <span style="color: #000000; background-color: #ffffff;">phi1</span> = (90.0 - lat1)*degrees_to_radians
-    <span style="color: #000000; background-color: #ffffff;">phi2</span> = (90.0 - lat2)*degrees_to_radians
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">phi = 90 - latitude</span>
+    <span style="color: #999999; background-color: #000000;">phi1</span> = (90.0 - lat1)*degrees_to_radians
+    <span style="color: #999999; background-color: #000000;">phi2</span> = (90.0 - lat2)*degrees_to_radians
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">theta = longitude</span>
-    <span style="color: #000000; background-color: #ffffff;">theta1</span> = long1*degrees_to_radians
-    <span style="color: #000000; background-color: #ffffff;">theta2</span> = long2*degrees_to_radians
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">theta = longitude</span>
+    <span style="color: #999999; background-color: #000000;">theta1</span> = long1*degrees_to_radians
+    <span style="color: #999999; background-color: #000000;">theta2</span> = long2*degrees_to_radians
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Compute spherical distance from spherical coordinates.</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">Compute spherical distance from spherical coordinates.</span>
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">For two locations in spherical coordinates </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">(1, theta, phi) and (1, theta, phi)</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">cosine( arc length ) = </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">#    </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">sin phi sin phi' cos(theta-theta') + cos phi cos phi'</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">distance = rho * arc length</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">For two locations in spherical coordinates </span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">(1, theta, phi) and (1, theta, phi)</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">cosine( arc length ) = </span>
+    <span style="color: #444444; background-color: #000000;">#    </span><span style="color: #444444; background-color: #000000;">sin phi sin phi' cos(theta-theta') + cos phi cos phi'</span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">distance = rho * arc length</span>
 
-    <span style="color: #000000; background-color: #ffffff;">cos</span> = (math.sin(phi1)*math.sin(phi2)*math.cos(theta1 - theta2) + 
+    <span style="color: #999999; background-color: #000000;">cos</span> = (math.sin(phi1)*math.sin(phi2)*math.cos(theta1 - theta2) + 
            math.cos(phi1)*math.cos(phi2))
-    <span style="color: #000000; background-color: #ffffff;">arc</span> = math.acos( cos )
+    <span style="color: #999999; background-color: #000000;">arc</span> = math.acos( cos )
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Remember to multiply arc by the radius of the earth </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">in your favorite set of units to get length.</span>
-    <span style="color: #004dd0; background-color: #ffffff;">return</span> (arc * 3960.0)
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">Remember to multiply arc by the radius of the earth </span>
+    <span style="color: #444444; background-color: #000000;"># </span><span style="color: #444444; background-color: #000000;">in your favorite set of units to get length.</span>
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">return</span> (arc * 3960.0)
 </pre>
 </div>
 </div>
@@ -737,6 +737,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

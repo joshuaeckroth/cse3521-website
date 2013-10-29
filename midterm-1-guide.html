@@ -265,21 +265,21 @@ Modify the following "program" so that GPS can find the solution.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #000000; background-color: #ffffff;">problem</span> = {
-    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"start"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>],
-    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"finish"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
-    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"ops"</span>: [
+<pre class="src src-python"><span style="color: #999999; background-color: #000000;">problem</span> = {
+    <span style="color: #666666; background-color: #000000;">"start"</span>: [<span style="color: #666666; background-color: #000000;">"door locked"</span>],
+    <span style="color: #666666; background-color: #000000;">"finish"</span>: [<span style="color: #666666; background-color: #000000;">"door open"</span>],
+    <span style="color: #666666; background-color: #000000;">"ops"</span>: [
         {
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"open door"</span>,
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door unlocked"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>]
+            <span style="color: #666666; background-color: #000000;">"action"</span>: <span style="color: #666666; background-color: #000000;">"open door"</span>,
+            <span style="color: #666666; background-color: #000000;">"preconds"</span>: [<span style="color: #666666; background-color: #000000;">"door unlocked"</span>, <span style="color: #666666; background-color: #000000;">"door closed"</span>],
+            <span style="color: #666666; background-color: #000000;">"add"</span>: [<span style="color: #666666; background-color: #000000;">"door open"</span>],
+            <span style="color: #666666; background-color: #000000;">"delete"</span>: [<span style="color: #666666; background-color: #000000;">"door closed"</span>]
             },
         {
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"unlock door"</span>,
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [],
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>]
+            <span style="color: #666666; background-color: #000000;">"action"</span>: <span style="color: #666666; background-color: #000000;">"unlock door"</span>,
+            <span style="color: #666666; background-color: #000000;">"preconds"</span>: [<span style="color: #666666; background-color: #000000;">"door closed"</span>],
+            <span style="color: #666666; background-color: #000000;">"add"</span>: [],
+            <span style="color: #666666; background-color: #000000;">"delete"</span>: [<span style="color: #666666; background-color: #000000;">"door locked"</span>]
             }
         ]
     }
@@ -571,10 +571,10 @@ Given,
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Tail</span>).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- member(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Tail</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">foobar</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">List</span>) :- member(<span style="color: #000000; background-color: #ffffff;">Y</span>, <span style="color: #000000; background-color: #ffffff;">List</span>), <span style="color: #000000; background-color: #ffffff;">X</span> \= <span style="color: #000000; background-color: #ffffff;">Y</span>.
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">List</span>) :- member(<span style="color: #999999; background-color: #000000;">Y</span>, <span style="color: #999999; background-color: #000000;">List</span>), <span style="color: #999999; background-color: #000000;">X</span> \= <span style="color: #999999; background-color: #000000;">Y</span>.
 </pre>
 </div>
 
@@ -585,10 +585,10 @@ What are the values of each of these queries? (Write "true" or
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(5, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 1, 1<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(5, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 1, 1<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 </pre>
 </div>
 
@@ -598,17 +598,17 @@ Given,
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">family</span>(10392,
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(10392,
        person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
        person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
-       <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% here are the children...</span>
-       <span style="color: #004dd0; background-color: #ffffff;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+       <span style="color: #444444; background-color: #000000;">% here are the children...</span>
+       <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
         person(jim, fox, born(1, june, 1986), unemployed),
-        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>), member(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Children</span>), member(<span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">Children</span>).
 </pre>
 </div>
 
@@ -619,11 +619,11 @@ or give one value for each of the variables)?
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">family</span>(<span style="color: #000000; background-color: #ffffff;">_</span>, person(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, born(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>), <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">Year</span> &gt; 1960.
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(<span style="color: #999999; background-color: #000000;">_</span>, person(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, born(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Year</span>), <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">Year</span> &gt; 1960.
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">don't forget to give one value for each variable:</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">FirstName, LastName, and X</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(person(<span style="color: #000000; background-color: #ffffff;">FirstName</span>, <span style="color: #000000; background-color: #ffffff;">LastName</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">X</span>)), <span style="color: #000000; background-color: #ffffff;">X</span> \= unemployed.
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">don't forget to give one value for each variable:</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">FirstName, LastName, and X</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(person(<span style="color: #999999; background-color: #000000;">FirstName</span>, <span style="color: #999999; background-color: #000000;">LastName</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">X</span>)), <span style="color: #999999; background-color: #000000;">X</span> \= unemployed.
 </pre>
 </div>
 
@@ -659,16 +659,16 @@ Suppose we have the following knowledge base:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(a).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(b). 
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(b). 
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(a, a).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(b, c).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(a, a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(b, c).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">h</span>(b).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">h</span>(c).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(b).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(c).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">k</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- f(<span style="color: #000000; background-color: #ffffff;">X</span>), g(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), h(<span style="color: #000000; background-color: #ffffff;">Y</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">k</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>) :- f(<span style="color: #999999; background-color: #000000;">X</span>), g(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>), h(<span style="color: #999999; background-color: #000000;">Y</span>).
 </pre>
 </div>
 
@@ -738,22 +738,22 @@ Modify the following "program" so that GPS can find the solution.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #000000; background-color: #ffffff;">problem</span> = {
-    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"start"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>],
-    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"finish"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
-    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"ops"</span>: [
+<pre class="src src-python"><span style="color: #999999; background-color: #000000;">problem</span> = {
+    <span style="color: #666666; background-color: #000000;">"start"</span>: [<span style="color: #666666; background-color: #000000;">"door closed"</span>, <span style="color: #666666; background-color: #000000;">"door locked"</span>],
+    <span style="color: #666666; background-color: #000000;">"finish"</span>: [<span style="color: #666666; background-color: #000000;">"door open"</span>],
+    <span style="color: #666666; background-color: #000000;">"ops"</span>: [
         {
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"open door"</span>,
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door unlocked"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
+            <span style="color: #666666; background-color: #000000;">"action"</span>: <span style="color: #666666; background-color: #000000;">"open door"</span>,
+            <span style="color: #666666; background-color: #000000;">"preconds"</span>: [<span style="color: #666666; background-color: #000000;">"door unlocked"</span>, <span style="color: #666666; background-color: #000000;">"door closed"</span>],
 
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>]
+            <span style="color: #666666; background-color: #000000;">"add"</span>: [<span style="color: #666666; background-color: #000000;">"door open"</span>],
+            <span style="color: #666666; background-color: #000000;">"delete"</span>: [<span style="color: #666666; background-color: #000000;">"door closed"</span>]
             },
         {
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"unlock door"</span>,
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door unlocked"</span>],
-            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>]
+            <span style="color: #666666; background-color: #000000;">"action"</span>: <span style="color: #666666; background-color: #000000;">"unlock door"</span>,
+            <span style="color: #666666; background-color: #000000;">"preconds"</span>: [<span style="color: #666666; background-color: #000000;">"door closed"</span>],
+            <span style="color: #666666; background-color: #000000;">"add"</span>: [<span style="color: #666666; background-color: #000000;">"door unlocked"</span>],
+            <span style="color: #666666; background-color: #000000;">"delete"</span>: [<span style="color: #666666; background-color: #000000;">"door locked"</span>]
             }
         ]
     }
@@ -1398,10 +1398,10 @@ Given,
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Tail</span>).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- member(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Tail</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">foobar</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">List</span>) :- member(<span style="color: #000000; background-color: #ffffff;">Y</span>, <span style="color: #000000; background-color: #ffffff;">List</span>), <span style="color: #000000; background-color: #ffffff;">X</span> \= <span style="color: #000000; background-color: #ffffff;">Y</span>.
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">List</span>) :- member(<span style="color: #999999; background-color: #000000;">Y</span>, <span style="color: #999999; background-color: #000000;">List</span>), <span style="color: #999999; background-color: #000000;">X</span> \= <span style="color: #999999; background-color: #000000;">Y</span>.
 </pre>
 </div>
 
@@ -1412,10 +1412,10 @@ What are the values of each of these queries? (Write "true" or
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(5, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; false</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; X = 1 or 2 or 3</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; true</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 1, 1<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; false</span>
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(5, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; false</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; X = 1 or 2 or 3</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; true</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 1, 1<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; false</span>
 </pre>
 </div>
 
@@ -1425,17 +1425,17 @@ Given,
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">family</span>(10392,
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(10392,
        person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
        person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
-       <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% here are the children...</span>
-       <span style="color: #004dd0; background-color: #ffffff;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+       <span style="color: #444444; background-color: #000000;">% here are the children...</span>
+       <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
         person(jim, fox, born(1, june, 1986), unemployed),
-        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>), member(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Children</span>), member(<span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">Children</span>).
 </pre>
 </div>
 
@@ -1446,8 +1446,8 @@ or give one value for each of the variables)?
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">family</span>(<span style="color: #000000; background-color: #ffffff;">_</span>, person(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, born(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>), <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">Year</span> &gt; 1960.
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">answer: false</span>
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(<span style="color: #999999; background-color: #000000;">_</span>, person(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, born(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Year</span>), <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">Year</span> &gt; 1960.
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">answer: false</span>
 </pre>
 </div>
 
@@ -1513,16 +1513,16 @@ Suppose we have the following knowledge base:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(a).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(b). 
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(b). 
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(a, a).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(b, c).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(a, a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(b, c).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">h</span>(b).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">h</span>(c).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(b).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(c).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">k</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- f(<span style="color: #000000; background-color: #ffffff;">X</span>), g(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), h(<span style="color: #000000; background-color: #ffffff;">Y</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">k</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>) :- f(<span style="color: #999999; background-color: #000000;">X</span>), g(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>), h(<span style="color: #999999; background-color: #000000;">Y</span>).
 </pre>
 </div>
 
@@ -1562,6 +1562,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

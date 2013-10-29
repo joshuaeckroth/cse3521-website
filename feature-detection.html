@@ -224,9 +224,9 @@ SURF: "Speeded-Up Robust Features"
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">SurfFeatureDetector</span> <span style="color: #000000; background-color: #ffffff;">detector</span>;
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">SurfFeatureDetector</span> <span style="color: #999999; background-color: #000000;">detector</span>;
 
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;KeyPoint&gt; <span style="color: #000000; background-color: #ffffff;">keypoints_object</span>, <span style="color: #000000; background-color: #ffffff;">keypoints_scene</span>;
+<span style="color: #999999; background-color: #000000;">std</span>::<span style="color: #999999; background-color: #000000;">vector</span>&lt;KeyPoint&gt; <span style="color: #999999; background-color: #000000;">keypoints_object</span>, <span style="color: #999999; background-color: #000000;">keypoints_scene</span>;
 
 detector.detect(img_object, keypoints_object);
 detector.detect(img_scene, keypoints_scene);
@@ -243,9 +243,9 @@ detector.detect(img_scene, keypoints_scene);
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">SurfDescriptorExtractor</span> <span style="color: #000000; background-color: #ffffff;">extractor</span>;
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">SurfDescriptorExtractor</span> <span style="color: #999999; background-color: #000000;">extractor</span>;
 
-<span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">descriptors_object</span>, <span style="color: #000000; background-color: #ffffff;">descriptors_scene</span>;
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">descriptors_object</span>, <span style="color: #999999; background-color: #000000;">descriptors_scene</span>;
 
 extractor.compute(img_object, keypoints_object, descriptors_object);
 extractor.compute(img_scene, keypoints_scene, descriptors_scene);
@@ -263,8 +263,8 @@ object image keypoint based on the keypoints' descriptor vectors)
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">FlannBasedMatcher</span> <span style="color: #000000; background-color: #ffffff;">matcher</span>;
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;DMatch&gt; <span style="color: #000000; background-color: #ffffff;">matches</span>;
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">FlannBasedMatcher</span> <span style="color: #999999; background-color: #000000;">matcher</span>;
+<span style="color: #999999; background-color: #000000;">std</span>::<span style="color: #999999; background-color: #000000;">vector</span>&lt;DMatch&gt; <span style="color: #999999; background-color: #000000;">matches</span>;
 matcher.match(descriptors_object, descriptors_scene, matches);
 </pre>
 </div>
@@ -279,14 +279,14 @@ First, find the minimum and maximum distances between keypoints.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">double</span> <span style="color: #000000; background-color: #ffffff;">max_dist</span> = 0;
-<span style="color: #004dd0; background-color: #ffffff;">double</span> <span style="color: #000000; background-color: #ffffff;">min_dist</span> = 100;
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">double</span> <span style="color: #999999; background-color: #000000;">max_dist</span> = 0;
+<span style="color: #999999; background-color: #000000;">double</span> <span style="color: #999999; background-color: #000000;">min_dist</span> = 100;
 
-<span style="color: #004dd0; background-color: #ffffff;">for</span>( <span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">i</span> = 0; i &lt; descriptors_object.rows; i++ )
+<span style="color: #999999; background-color: #000000; font-weight: bold;">for</span>( <span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">i</span> = 0; i &lt; descriptors_object.rows; i++ )
 {
-    <span style="color: #004dd0; background-color: #ffffff;">double</span> <span style="color: #000000; background-color: #ffffff;">dist</span> = matches[i].distance;
-    <span style="color: #004dd0; background-color: #ffffff;">if</span>(dist &lt; min_dist) min_dist = dist;
-    <span style="color: #004dd0; background-color: #ffffff;">if</span>(dist &gt; max_dist) max_dist = dist;
+    <span style="color: #999999; background-color: #000000;">double</span> <span style="color: #999999; background-color: #000000;">dist</span> = matches[i].distance;
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>(dist &lt; min_dist) min_dist = dist;
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>(dist &gt; max_dist) max_dist = dist;
 }
 </pre>
 </div>
@@ -297,11 +297,11 @@ Get the "good" matches.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;DMatch&gt; <span style="color: #000000; background-color: #ffffff;">good_matches</span>;
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">std</span>::<span style="color: #999999; background-color: #000000;">vector</span>&lt;DMatch&gt; <span style="color: #999999; background-color: #000000;">good_matches</span>;
 
-<span style="color: #004dd0; background-color: #ffffff;">for</span>(<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">i</span> = 0; i &lt; descriptors_object.rows; i++)
+<span style="color: #999999; background-color: #000000; font-weight: bold;">for</span>(<span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">i</span> = 0; i &lt; descriptors_object.rows; i++)
 {
-    <span style="color: #004dd0; background-color: #ffffff;">if</span>(matches[i].distance &lt; 3*min_dist)
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>(matches[i].distance &lt; 3*min_dist)
     {
         good_matches.push_back(matches[i]);
     }
@@ -315,7 +315,7 @@ Draw the matches on top of the images.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img_matches</span>; <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">resulting image</span>
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">img_matches</span>; <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">resulting image</span>
 drawMatches(img_object, keypoints_object, img_scene, keypoints_scene,
             good_matches, img_matches, Scalar(0, 0, 255));
 </pre>
@@ -327,13 +327,13 @@ drawMatches(img_object, keypoints_object, img_scene, keypoints_scene,
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff;">obj</span>;
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff;">scene</span>;
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">std</span>::<span style="color: #999999; background-color: #000000;">vector</span>&lt;Point2f&gt; <span style="color: #999999; background-color: #000000;">obj</span>;
+<span style="color: #999999; background-color: #000000;">std</span>::<span style="color: #999999; background-color: #000000;">vector</span>&lt;Point2f&gt; <span style="color: #999999; background-color: #000000;">scene</span>;
 
-<span style="color: #004dd0; background-color: #ffffff;">for</span>(<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">i</span> = 0; i &lt; good_matches.size(); i++)
+<span style="color: #999999; background-color: #000000; font-weight: bold;">for</span>(<span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">i</span> = 0; i &lt; good_matches.size(); i++)
 {
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">queryIdx and trainIdx allow us to get the original points</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">of our good matches by referring back to the keypoints arrays</span>
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">queryIdx and trainIdx allow us to get the original points</span>
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">of our good matches by referring back to the keypoints arrays</span>
     obj.push_back(keypoints_object[good_matches[i].queryIdx].pt);
     scene.push_back(keypoints_scene[good_matches[i].trainIdx].pt);
 }
@@ -409,7 +409,7 @@ error is lower than the last saved model.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">H</span> = findHomography(obj, scene, CV_RANSAC);
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">H</span> = findHomography(obj, scene, CV_RANSAC);
 </pre>
 </div>
 
@@ -420,12 +420,12 @@ the homography.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">obj_corners</span>(4);
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">std</span>::<span style="color: #999999; background-color: #000000;">vector</span>&lt;Point2f&gt; <span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">obj_corners</span>(4);
 obj_corners[0] = cvPoint(0,0);
 obj_corners[1] = cvPoint(img_object.cols, 0);
 obj_corners[2] = cvPoint(img_object.cols, img_object.rows);
 obj_corners[3] = cvPoint(0, img_object.rows);
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">scene_corners</span>(4);
+<span style="color: #999999; background-color: #000000;">std</span>::<span style="color: #999999; background-color: #000000;">vector</span>&lt;Point2f&gt; <span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">scene_corners</span>(4);
 
 perspectiveTransform(obj_corners, scene_corners, H);
 </pre>
@@ -479,6 +479,17 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
