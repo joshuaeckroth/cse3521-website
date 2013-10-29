@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>General Problem Solver (GPS)</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<a href="index.html">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id="plupperButton" style="display: inline;"></div>
+          <!-- End of Plupper Button Code -->
+</div>
+<div id="content">
+<h1 class="title">General Problem Solver (GPS)</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Means-ends analysis</a></li>
+<li><a href="#sec-2">Basic structuring of a problem</a></li>
+<li><a href="#sec-3">The driving to school problem</a></li>
+<li><a href="#sec-4">Description of the search process</a></li>
+<li><a href="#sec-5">The monkey and banana problem</a></li>
+<li><a href="#sec-6">Problems</a>
+<ul>
+<li><a href="#sec-6-1">"Prerequisite clobbers sibling goal"</a></li>
+<li><a href="#sec-6-2">"Leaping before you look"</a></li>
+<li><a href="#sec-6-3">Recursive subgoals</a></li>
+<li><a href="#sec-6-4">Lack of intermediate information</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">Epilogue</a></li>
+</ul>
+</div>
+</div>
+<blockquote>
+<p>
+<b>We deliberate not about ends, but about means.</b> For a doctor does not
+deliberate whether he shall heal, nor an orator whether he shall
+persuade, nor a statesman whether he shall produce law and order, nor
+does any one else deliberate about his end. <b>They assume the end and
+consider how and by what means it is attained</b>; and if it seems to be
+produced by several means they consider by which it is most easily and
+best produced, while if it is achieved by one only they consider how
+it will be achieved by this and by what means <i>this</i> will be achieved,
+<b>till they come to the first cause, which in the order of discovery is
+last</b>&#x2026; and what is last in the order of analysis seems to be first
+in the order of becoming. <b>And if we come on an impossibility, we give
+up the search</b>, e.g., if we need money and this cannot be got; but if
+a thing appears possible we try to do it. &#x2014; Aristotle, <i>Nicomachean
+Ethics</i> (<a href="http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0054%3Abekker%20page%3D1112b%3Abekker%20line%3D1">Book III.3,1112b</a>)
+</p>
+</blockquote>
+
+<p>
+The General Problem Solver (GPS) was the first useful AI program,
+written by Simon, Shaw, and Newell in 1959. As the name implies, it
+was intended to solve nearly any problem. This is important to note.
+Obviously, GPS was not the first software ever written; but software
+was previously written with very specific goals. The software solved
+one problem. GPS, however, was designed to solve lots of kinds of
+problems, using the same "reasoning" mechanism (i.e., algorithm) for
+every problem.
+</p>
+
+<p>
+Of course, at the time, programming was very difficult. The authors
+created a new language (IPL) in order to more efficiently program GPS.
+Even so, GPS was a very complicated piece of software. Today we can
+rewrite the essential pieces of GPS in very simple code using modern
+languages (such as Python). As we shall see, GPS is actually very
+limited as far as "generality" is concerned (or even as far as
+"problem solving" is concerned); perhaps the complexity of the
+original implementation hid some of these limitations to the authors,
+or made improvements too difficult. Modern AI software is
+substantially more complex than GPS, yet (sometimes) simpler and
+better understood than GPS was at the time.
+</p>
+
+<p>
+Incidentally, GPS evolved into SOAR, which is still highly influential
+as a system that purports to model cognition. It solves complex
+problems in a manner similar to human cognition, and in similar
+timeframes.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Means-ends analysis</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Simon and Newell studied how humans solved problems, and realized that we often perform means-ends analysis. Here is one of their examples:
+</p>
+
+<blockquote>
+<p>
+I want to take my son to nursery school. What's the difference between
+what I have and what I want? One of distance. What changes distance?
+My automobile. My automobile won't work.  What is needed to make it
+work? A new battery. What has new batteries? An auto repair shop. I
+want the repair shop to put in a new battery; but the shop doesn't
+know I need one. What is the difficulty? One of communication. What
+allows communication?  A telephone&#x2026; and so on. &#x2014; Newell and
+Simon's example from their 1972 book <i>Human Problem Solving</i>
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Basic structuring of a problem</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>define the goals
+
+<ul class="org-ul">
+<li>e.g., take my son to nursery school 
+</li>
+</ul>
+</li>
+
+<li>define preconditions for the goals
+
+<ul class="org-ul">
+<li>e.g., the precondition for dropping my son off at nursery school
+is that my son is at home and the car works
+</li>
+</ul>
+</li>
+
+<li>define the means ("operators") for turning one set of conditions
+into another
+
+<ul class="org-ul">
+<li>e.g., to ensure the car repair shop has my money, we can define an
+operator "give shop money" that changes the world so that "shop
+has money" is true and "I have money" is false.
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+We'll say that an operator is made up of:
+</p>
+
+<ul class="org-ul">
+<li>the action (e.g., "give shop money")
+</li>
+
+<li>the preconditions (e.g., "have money")
+</li>
+
+<li>the change of conditions resulting from taking the action; we
+specify this as conditions added and conditions deleted:
+
+<ul class="org-ul">
+<li>giving the shop money adds the condition "shop has money"
+</li>
+
+<li>giving the shop money deletes the condition "have money" (which is
+also the precondition)
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+GPS can solve any problem that can be posed in this way. However, as
+we shall see, it employs a kind of search process that would require
+far too much time to solve complex problems (such as chess playing).
+It can suffer from a "combinatorial explosion" of possibilities.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">The driving to school problem</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Consider again the driving to school problem quoted above. Let's write
+the goal, starting conditions, and some operators in a more symbolic
+form:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #000000; background-color: #ffffff;">problem</span> = {
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"start"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"son at home"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"have money"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"have phone book"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"car needs battery"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"finish"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"son at school"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"ops"</span>: [
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"drive son to school"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"son at home"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"car works"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"son at school"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"son at home"</span>]
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"shop installs battery"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"car needs battery"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"shop knows problem"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"shop has money"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"car works"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: []
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"tell shop problem"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"in communication with shop"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"shop knows problem"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: []
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"telephone shop"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"know phone number"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"in communication with shop"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: []
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"look up number"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"have phone book"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"know phone number"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: []
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"give shop money"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"have money"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"shop has money"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"have money"</span>]
+        }
+    ]
+}
+</pre>
+</div>
+
+<div style="text-align: center">
+<OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+WIDTH="523" HEIGHT="738"
+CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0">
+<PARAM NAME="MOVIE" VALUE="./flash/school-gps.swf">
+<PARAM NAME="PLAY" VALUE="true">
+<PARAM NAME="QUALITY" VALUE="best">
+<PARAM NAME="LOOP" VALUE="true">
+<EMBED SRC="./flash/school-gps.swf" WIDTH="523" HEIGHT="738" PLAY="true" LOOP="true" QUALITY="best" 
+PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"> 
+</EMBED>
+</OBJECT>
+<br/>
+<a href="./images/school-gps.png">View final image</a>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Description of the search process</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The basic algorithm of the GPS search process is as follows:
+</p>
+
+<pre class="example">
+begin:
+- save initial conditions as "current state"
+- try to achieve all goals
+
+how to achieve all goals:
+- for each goal:
+  - try to achieve the goal
+- if all goals were achieved, return success
+
+how to achieve a goal:
+- if goal is already met (in current state), return success (it's achieved)
+- else, for each operator:
+  - if operator's "add list" contains the goal,
+    - try to apply the operator
+    - if successful, return success
+- if no operators were successful,
+  - return failure
+
+how to apply an operator:
+- try to achieve all of the operator's preconditions (treat them as goals)
+- if successful (all preconditions met),
+  - mark the operator as "applied"
+  - add conditions in the operator's "add list" to the current state
+  - delete conditions in the operator's "delete list" from the current state
+  - return success
+- else,
+  - return failure
+</pre>
+
+<p>
+This algorithm is clearly a means-ends search process. The ultimate goals are first considered; if they are already achieved, then we're done. Otherwise, one or more goals can only be achieved by applying some operators. Appropriate operators are identified (those that achieve the goals), but each operator may itself require certain goals (preconditions) to be achieved first. So then those are investigated. Etc. This is just what Aristotle said in the quote above:
+</p>
+
+<blockquote>
+<p>
+They assume the end and consider how and by what means it is attained; [&#x2026;] if it is achieved by one only they consider how it will be achieved by this and by what means <i>this</i> will be achieved, till they come to the first cause, which in the order of discovery is last [&#x2026;] And if we come on an impossibility, we give up the search [&#x2026;] &#x2014; Aristotle
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">The monkey and banana problem</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Here is another famous problem.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #000000; background-color: #ffffff;">problem</span> = {
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"start"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"at door"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"on floor"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"has ball"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"hungry"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"chair at door"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"finish"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"not hungry"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"ops"</span>: [
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"climb on chair"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"chair at middle room"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"at middle room"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"on floor"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"at bananas"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"on chair"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"at middle room"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"on floor"</span>]
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"push chair from door to middle room"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"chair at door"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"at door"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"chair at middle room"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"at middle room"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"chair at door"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"at door"</span>]
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"walk from door to middle room"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"at door"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"on floor"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"at middle room"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"at door"</span>]
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"grasp bananas"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"at bananas"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"empty handed"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"has bananas"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"empty handed"</span>]
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"drop ball"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"has ball"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"empty handed"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"has ball"</span>]
+        },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"eat bananas"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"has bananas"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"empty handed"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"not hungry"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"has bananas"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"hungry"</span>]
+        }
+    ]
+}
+</pre>
+</div>
+
+<div style="text-align: center">
+<OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+WIDTH="668" HEIGHT="672"
+CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0">
+<PARAM NAME="MOVIE" VALUE="./flash/monkey-gps.swf">
+<PARAM NAME="PLAY" VALUE="true">
+<PARAM NAME="QUALITY" VALUE="best">
+<PARAM NAME="LOOP" VALUE="true">
+<EMBED SRC="./flash/monkey-gps.swf" WIDTH="668" HEIGHT="672" PLAY="true" LOOP="true" QUALITY="best" 
+PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"> 
+</EMBED>
+</OBJECT>
+<br/>
+<a href="./images/monkey-gps.png">View final image</a>
+</div>
+
+<p>
+Maybe it should be called the pigeon and banana problem.
+</p>
+
+<div style="text-align: center">
+<iframe width="420" height="315"
+src="http://www.youtube.com/embed/mDntbGRPeEU?rel=0" frameborder="0"
+allowfullscreen></iframe>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Problems</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Our GPS algorithm is very simplistic. There are ways to improve it. However, we'll stay with the simple version and look at some of its inadequacies. These problems and their examples come from Norvig's book <i>Paradigms of artificial intelligence programming</i>, 1992.
+</p>
+</div>
+
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">"Prerequisite clobbers sibling goal"</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Since each goal is achieved in a certain order, we might find that achieving a subsequent goal erases the gains we made with a prior goal. For example, if we have:
+</p>
+
+<ul class="org-ul">
+<li>initial states: son at home, have money, car works
+</li>
+<li>goal states: have money, son at school
+</li>
+</ul>
+
+<p>
+Then the solution is:
+</p>
+
+<ol class="org-ol">
+<li>drive son to school
+</li>
+</ol>
+
+<p>
+However, if we have:
+</p>
+
+<ul class="org-ul">
+<li>initial states: son at home, car needs battery, have money, have phone book
+</li>
+<li>goal states: have money, son at school
+</li>
+</ul>
+
+<p>
+Then our simple GPS search finds the solution to be:
+</p>
+
+<ol class="org-ol">
+<li>look up number
+</li>
+<li>telephone shop
+</li>
+<li>tell shop problem
+</li>
+<li>give shop money
+</li>
+<li>shop installs battery
+</li>
+<li>drive son to school
+</li>
+</ol>
+
+<p>
+However, the result is we don't have any money, because it was spent at the shop. GPS saw "have money" as the first goal, and considered it already achieved (it was an initial state). So then it moved on to the next goal, which actually spent all the money. But GPS did not go back and reconsider whether the first goal was still met.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">"Leaping before you look"</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+One could reorder the goals from the prior example to be "son at school, have money." In this case, GPS will indicate to us that there is no solution. However, it will still apply operators in its doomed search for a solution. If this was real life, a GPS robot would repair the car, drive the son to school, and then discover it had no money!
+</p>
+
+<p>
+In a simpler example, consider the goals:
+</p>
+
+<ul class="org-ul">
+<li>jump off cliff, land safely
+</li>
+</ul>
+
+<p>
+GPS will first find a way to achieve "jump off cliff," but only once achieved, figure out how to "land safely." The problem, of course, is that in our algorithm planning to take an action is interleaved with taking other actions (applying operators). Our algorithm has no way to only think about actions without doing them, and "back up" its search process if those actions turn out to be bad ideas.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3">Recursive subgoals</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Suppose we had a goal like "call shop" which required "know phone number" which can be achieved by "ask friend for a phone number." Further suppose asking a friend for a phone number requires "know phone number." Then GPS will get stuck in a loop trying to figure out how to get the friend's phone number from another friend in order to call the shop, even if other operators are available for finding a phone number (such as looking in a phone book).
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4">Lack of intermediate information</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+Our simplistic GPS algorithm does not indicate why it failed to achieve its goals. It just says "nope, can't do it." It would be useful to know which goals could not be achieved and, perhaps, what are the best options for us (as humans) in order to make progress.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Epilogue</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<b>It must be noted that the "problems" listed above are not necessarily those of the real GPS program.</b> Those problems were more about our simplistic algorithm. However, GPS still failed to live up to its name. In the early days, many grandiose AI programs failed to deliver their full promises. Of course, all that has changed today is that the wise researchers avoid naming their programs "general problem solver."
+</p>
+
+<blockquote>
+<p>
+Remember GPS? By now, "GPS" is a colorless term denoting a
+particularly stupid program to solve puzzles. But it originally meant
+"General Problem Solver," which caused everybody a lot of needless
+excitement and distraction. It should have been called LFGNS &#x2014;
+"Local-Feature-Guided Network Searcher." &#x2014; Drew McDermott,
+<i>Artificial Intelligence Meets Natural Stupidity</i>
+</p>
+</blockquote>
+
+
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<!-- Plupper Tracking Code -->
+<script src="https://www.google.com/jsapi"></script>
+<script type="text/javascript"
+    src="https://static.plupper.com/js/plupper.js"></script>
+<script type="text/javascript">
+    plupper.init("joshuaeckroth@plupper.com");
+    plupper.enableCobrowsing();
+</script>
+<!-- End of Plupper Tracking Code -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
+</div>
+</div>
+</div>
+</body>
+</html>

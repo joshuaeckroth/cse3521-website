@@ -118,10 +118,12 @@ lonlat["SR-315 & King"] = (-83.02511, 39.99084)
 lonlat["High & King"] = (-83.00610, 39.99019)
 lonlat["High & 11th"] = (-83.00712, 39.99528)
 
+import math
+
 # from: http://www.johndcook.com/python_longitude_latitude.html
-def dist(state):
-    (long1, lat1) = lonlat[state]
-    (long2, lat2) = lonlat["Goodale parking lot"]
+def dist(state1, state2):
+    (long1, lat1) = lonlat[state1]
+    (long2, lat2) = lonlat[state2]
     # Convert latitude and longitude to 
     # spherical coordinates in radians.
     degrees_to_radians = math.pi/180.0

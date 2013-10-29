@@ -145,181 +145,227 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Task 1 (30 pts)</a></li>
-<li><a href="#sec-2">Task 2 (50 pts)</a></li>
-<li><a href="#sec-3">Task 3 (10 pts)</a></li>
-<li><a href="#sec-4">Task 4 (10 pts)</a></li>
-<li><a href="#sec-5">Extra credit (10 pts)</a></li>
-<li><a href="#sec-6">Extra credit (10 pts)</a></li>
+<li><a href="#sec-1">Task 1 (10 pts)</a></li>
+<li><a href="#sec-2">Task 2 (10 pts)</a></li>
+<li><a href="#sec-3">Task 3 (80 pts)</a>
+<ul>
+<li><a href="#sec-3-1">Possible pseudo-code</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Extra credit (30 pts)</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Task 1 (30 pts)</h2>
+<h2 id="sec-1">Task 1 (10 pts)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Assume we have the following Prolog database:
+Refer to the <a href="./bayesian-inference.html">Bayesian inference notes</a>. Calculate whether it is more
+probable that a patient has a cavity or gum disease given he/she has a
+toothache. Show your work.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Task 2 (10 pts)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Using the "helpful software" at the bottom of the <a href="./bayesian-inference.html">Bayesian inference
+notes</a>, load the fire alarm network problem, and determine which is
+more probable, given that a fire has been reported: the smoke detector
+was tampered with, or there is a fire. Give the probabilities of these
+two events.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Task 3 (80 pts)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Perform <a href="./naive-bayesian.html">naïve Bayesian classification</a> on a spam/ham dataset. Report
+the average experimental f-score after training/testing on 10 random
+subsamples, where a random 90% serves as the training set and the
+remainder serves as the test set.
+</p>
+
+<p>
+Use the lemmatized, stopword-removed "Ling-Spam" dataset available in
+<a href="./downloads/lingspam_lemm_stop.zip">lingspam_lemm_stop.zip</a>. Original source:
+<a href="http://csmining.org/index.php/ling-spam-datasets.html">http://csmining.org/index.php/ling-spam-datasets.html</a>
+</p>
+
+<p>
+Submit your code to the dropbox. <b>Do not include the dataset in your
+submission!</b> If your program is non-typical Java or C++ code, explain
+in a <code>README.TXT</code> how to compile and run it. 
+</p>
+
+<p>
+<b>Important</b>: Your code must open the <code>listing.txt</code> and other data
+files from a folder called <code>data</code>.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Possible pseudo-code</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The challenge with this assignment is not the math but getting all the
+data needed to compute. As is often the case in AI research, the
+mathematics are simple but the algorithm, particularly the collection
+and processing of data, is the real challenge.
+</p>
+
+<p>
+In the aim of possibly helping you along, here is some pseudo-code:
+</p>
+
+<pre class="example">
+Task 1. Set up global variables.
+
+- create a map for di values, with keys = strings and values = ints
+  (this map has words as keys; the value for a word is the number of
+  documents across all categories that have this word anywhere in the
+  document)
+
+- create several maps for dci values (strings -&gt; ints again, like the
+  di map; these maps record the number of documents in a particular
+  category that have a particular word); perhaps you can put these
+  maps in another map, like so: dci[category][word] = #; in C++,
+  that's map&lt;string, map&lt;string, int&gt; &gt;
+             (cat)       (word)  (# of docs)
+
+Task 2. Read the text documents.
+
+- open the listing.txt file
+- loop: for each line in the listing.txt file
+  - read the first "word" -- this is a file name (without the .txt)
+  - read the rest of the line from the listing.txt file (the
+    number of categories and the categories themselves)
+    - record this category information for the document; how will you
+      do this?
+  - open the document .txt file
+  - create a document map D with keys = strings and values =
+    true/false or 1/0 (this map will represent the document; the
+    strings are words from the document, and the true/false means the
+    document does or does not have that word; of course, we don't need
+    to put words in the map that the document does not have, just
+    words it does, so only true's will be in the map, not false's; you
+    might prefer to use a set of strings rather than a map)
+  - loop: for each word in the document
+    - read the next word from the .txt file
+    - record this word in the document map D
+  - close the .txt file
+  - put this document map D in a vector to collect all such D's
+
+Task 3. Separate the docs into a test set and a training set. Do this
+10 times, always taking a random 90% of the documents to serve as a
+training set, the other 10% to serve as the testing set.
+
+*Do all of the following 10 times, once for each random
+subsample. Average the f-scores.*
+
+Task 4. Reset di and dci values.
+
+- loop: for each document in the training set
+  - loop: for each word in the doc map
+    - increment in the global di map the number of occurrences of
+      documents with this word (because one more document has this
+      word)
+    - loop: for each category that this document is a member of
+      - increment in the global dci map the value for this word in
+        this category
+
+Task 5. Classify each testing document
+
+- set up variables for true positive, false positive, false negative
+  counts
+- loop: for each testing document:
+  - figure out which category maximizes the final formula in the
+    Bayesian methods notes...
+- collect the f-score for this testing set
+
+Task 6. Report the average f-score across the 10 random subsamples.
+</pre>
+
+<p>
+This is a chunk of C++ that you may find useful for this task. It only
+processes the <code>listing.txt</code> file, and does not do any machine
+learning.
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(tom, liz).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(tim, bob).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(bob, ann).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(bob, pat).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(pat, jim).
+<pre class="src src-c++"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">#include</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">&lt;fstream&gt;</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">#include</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">&lt;string&gt;</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(pam).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(tim).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(tom).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(bob).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(liz).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(pat).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(ann).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(jim).
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">mother</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<span style="color: #004dd0; background-color: #ffffff;">string</span> <span style="color: #000000; background-color: #ffffff;">docfile</span>, <span style="color: #000000; background-color: #ffffff;">category</span>, <span style="color: #000000; background-color: #ffffff;">word</span>;
+<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">category_count</span>;
+<span style="color: #004dd0; background-color: #ffffff;">ifstream</span> <span style="color: #000000; background-color: #ffffff;">f</span>, <span style="color: #000000; background-color: #ffffff;">df</span>;
+f.open(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"listing.txt"</span>);
+<span style="color: #004dd0; background-color: #ffffff;">while</span>(!f.eof()) { <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">eof() is true if the file is finished</span>
+    f &gt;&gt; docfile;
+
+    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">maybe more than 1 category; not in the spam data, but in other</span>
+    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">datasets...; the file gives the category count next (an int)</span>
+    f &gt;&gt; category_count;
+    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">now get each category for this docfile</span>
+    <span style="color: #004dd0; background-color: #ffffff;">for</span>(<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">i</span> = 0; i &lt; category_count; i++) {
+        f &gt;&gt; category;
+        <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do something with category</span>
+    }
+    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">open docfile, process it a word at a time</span>
+    df.open(docfile.c_str()); <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">c_str() is just a funky C++ thing</span>
+    <span style="color: #004dd0; background-color: #ffffff;">while</span>(!df.eof()) {
+        df &gt;&gt; word;
+        <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do something with word</span>
+    }
+    df.close()
+
+    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">done with that line of listing.txt</span>
+}
+f.close()
 </pre>
 </div>
-
-<ol class="org-ol">
-<li>Write Prolog queries for the following questions:
-
-<ol class="org-ol">
-<li>Who is Ann's parent?
-</li>
-
-<li>Is Jim Bob's child?
-</li>
-
-<li>Who is Jim's grandparent?
-</li>
-</ol>
-</li>
-
-<li>Write a rule that describes a child, so that <code>child(X, Y)</code> means
-<code>X</code> is the child of <code>Y</code>. Don't allow a person to be his or her
-own child.
-</li>
-
-<li>Define an ancestor rule. An ancestor is a parent of a person, a
-grandparent, a great-grandparent, etc. Naturally, this rule is
-recursive (like the <code>member</code> predicate in the notes).
-</li>
-
-<li>Define a descendant rule. This rule is the opposite of the ancestor
-rule. A child is a descendant; so is a grandchild, great-grandchild,
-etc.
-</li>
-</ol>
 </div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Task 2 (50 pts)</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-Copy-paste the family database from the notes and the various predicates
-created to operate on that database. Now, look at the guidelines regarding
-poverty at the <a href="http://aspe.hhs.gov/poverty/12poverty.shtml">Dept. of
-Health &amp; Human Services</a> website (for the 48 states). These guidelines
-define the minimum amount of income, for a given household size, to be
-considered outside of poverty. Define a <code>family_in_poverty(FamilyID)</code>
-predicate that is only true when the family designated by <code>FamilyID</code>
-is in poverty according to the guidelines. Also, add some more family
-data so you have examples of families in poverty.
-</p>
-
-<p>
-Additionally, provide a query or define a predicate that tells you the
-average household income of families in poverty.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Task 3 (10 pts)</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Do the following unify, and if so, what are values for the variables (one set of values for each question), if any variables are involved, that make the unification work?
-</p>
-
-<ul class="org-ul">
-<li><code>parent(tom, liz)</code> and <code>parent(tom, X)</code>
-</li>
-
-<li><code>parent(X, liz)</code> and <code>parent(liz, X)</code>
-</li>
-
-<li><code>parent(X, Y)</code> and <code>parent(Y, X)</code>
-</li>
-
-<li><code>head(X, [a, b, c])</code> and <code>head(b, [a, b, c])</code>
-</li>
-
-<li><code>head(foo(Y), X)</code> and <code>head(foo(Z), [foo(w)])</code>
-</li>
-
-<li><code>foo(bar(a, b), baz(c))</code> and <code>foo(bar(X), baz(Y))</code>
-</li>
-</ul>
 </div>
 </div>
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Task 4 (10 pts)</h2>
+<h2 id="sec-4">Extra credit (30 pts)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-Draw a resolution tree for <code>mother(X)</code>. Note that there is a particular
-order by which Prolog creates subgoals (that is, the order that facts/rules
-are written in the knowledge base). You only need to show the tree
-until the first time the predicate is proved.
+Make a copy of your code, rename it, and modify it so it trains on all
+the documents. Then, save the resulting data (the "model") to a
+file. Write another program (or expand this original program) so that
+a user can predict the category (spam/ham) on a new, unseen document
+which is specified on the command line. Usage should be like this:
 </p>
-</div>
-</div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">Extra credit (10 pts)</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-Combine some of your predicates about grandparents, ancestors, friends,
-enemies, etc. into the family database. Add some predicates that
-utilize this information; for example, do children in families below the
-poverty level make friends or enemies with children in families above
-the poverty level?
-</p>
+
+<pre class="example">
+bayes-train.exe mymodel                  ;; saves the model
+bayes-predict.ext mymodel mydoc.txt      ;; predicts using the model
+</pre>
 
 <p>
-Or, instead, define more predicates/queries about families and
-poverty. Which people working at OSU are in poverty? Are unemployed
-people more likely to be in families that are below the poverty line?
-(You can answer this by finding the length of the list of unemployed
-people in families that are below the poverty line, and compare that
-length (using <code>Length1 &gt; Length2</code>) to the length of the list of employed
-people in families that are below the poverty line.)
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">Extra credit (10 pts)</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-Look at the <a href="./prolog-examples.html">Prolog examples</a> notes,
-specifically at the second example (the maze program). Extend the program
-in the following way.
+There should be no output from <code>bayes-train.exe</code> and the only output
+from <code>bayes-predict.exe</code> should be the predicted category (spam/ham).
 </p>
 
-<ul class="org-ul">
-<li>Create another room that can only be accessed if switch 1 is toggled.
-</li>
-
-<li>Put a constraint on switch 1 so that it can only be toggled in the garden.
-</li>
-</ul>
-
-
-<div style="font-size: 80%; clear: both;">
-<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
@@ -331,6 +377,16 @@ in the following way.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
 </div>
 </div>
 </div>

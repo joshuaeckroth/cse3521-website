@@ -200,6 +200,23 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
+<div class="summary"><h2>Summary</h2>
+<ul class="org-ul">
+<li>Clustering is used for finding groups or "clusters" of data for
+which the true groups/labels are unknown.
+</li>
+<li>k-means is an iterative algorithm which assigns cluster "centroids"
+(an average of the points that make up a cluster) and then reassigns
+points to the new cluster-centroids. The algorithm stops when points
+don't change their cluster assignments.
+</li>
+<li>k-means requires deciding upfront the value of \(k\).
+</li>
+<li>k-means effectively creates a Voronoi diagram of the space.
+</li>
+</ul>
+</div>
+
 <p>
 Suppose we measure some properties of flowers, species of iris to be
 precise (data available from <a href="http://archive.ics.uci.edu/ml/datasets/Iris">UCI</a>). We have a table like the following:
@@ -544,8 +561,18 @@ can start at \(k=1\) and increase it until we find a max silhouette (or
 at least a "local" max).
 </p>
 
-<div style="font-size: 80%; clear: both;">
-<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
@@ -557,6 +584,16 @@ at least a "local" max).
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
 </div>
 </div>
 </div>

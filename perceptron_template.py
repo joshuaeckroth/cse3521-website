@@ -38,6 +38,7 @@ def read_data(infile, input_count):
     return example_inputs, example_outputs
 
 
+# optional
 def print_weights(network, input_count, output_count):
     """Prints the weight matrix of a single layer perceptron."""
     for neuron_index in xrange(input_count + 1):
@@ -52,7 +53,7 @@ def main():
     # take the first 90% of the examples
     train_count = int(0.9 * example_count)
 
-    alpha = 0.01
+    alpha = 0.0000001
 
     pred_outputs = [0 for _ in xrange(output_count)]
 
@@ -63,18 +64,21 @@ def main():
 
     .............
 
-    # uncomment this to print the network to the terminal
+    # optional: print the network
     # print_weights(network, input_count, output_count)
 
     # try some predictions
-    correct = 0
     for e in xrange(train_count, example_count):
 
         .............
 
-        if all(map(lambda x, y: x == y, pred_outputs, example_outputs[e])):
-            correct += 1
-    print "Correct: %f" % (float(correct) / (example_count - train_count))
+        # compute loss
+
+        .............
+
+    # print total loss
+
+    ............
 
 if __name__ == "__main__":
     main()

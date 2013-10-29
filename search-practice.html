@@ -247,8 +247,7 @@ to the next intersection.
 <h3 id="sec-1-1">Map data</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-This map data is encoded in <a href="./Goodale.java">Java</a> and <a href="./goodale.py">Python</a> source code if you would
-like to use it in a program.
+This map data is encoded in <a href="./Goodale.java">Java</a> and <a href="./goodale.py">Python</a> source code if you would like to use it in a program.
 </p>
 
 
@@ -257,12 +256,10 @@ like to use it in a program.
 </p>
 </div>
 
-<div class="center">
 
 <div class="figure">
 <p><img src="./images/goodale-route-map.png" alt="goodale-route-map.png" />
 </p>
-</div>
 </div>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -460,8 +457,6 @@ like to use it in a program.
 <div id="outline-container-sec-1-1-1" class="outline-4">
 <h4 id="sec-1-1-1">Longitude / latitude information</h4>
 <div class="outline-text-4" id="text-1-1-1">
-<div style="float: right; width: 25em;">
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -475,8 +470,8 @@ like to use it in a program.
 <thead>
 <tr>
 <th scope="col" class="left">Location</th>
-<th scope="col" class="right">Lon (W°)</th>
-<th scope="col" class="right">Lat (N°)</th>
+<th scope="col" class="right">Lon</th>
+<th scope="col" class="right">Lat</th>
 </tr>
 </thead>
 <tbody>
@@ -602,7 +597,9 @@ like to use it in a program.
 </tbody>
 </table>
 
-</div>
+<p>
+The distance (as the crow flies) from each location to each other is collected in the <a href="./goodale-distances.txt">goodale-distances.txt</a> file.
+</p>
 
 <p>
 Here is some Python code for converting two long/lat coordinates into
@@ -612,6 +609,7 @@ a measure of miles between them:
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">from: http://www.johndcook.com/python_longitude_latitude.html</span>
+<span style="color: #004dd0; background-color: #ffffff;">import</span> math
 <span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">dist</span>((long1, lat1), (long2, lat2)):
     <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Convert latitude and longitude to </span>
     <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">spherical coordinates in radians.</span>
@@ -716,8 +714,18 @@ jammed route and their solution cost will suffer as a result.
 </div>
 
 
-<div style="font-size: 80%; clear: both;">
-<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
@@ -729,6 +737,16 @@ jammed route and their solution cost will suffer as a result.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
 </div>
 </div>
 </div>

@@ -218,24 +218,23 @@ base as well, so go with <code>_G34 = b</code>.
 Now we'll switch to this knowledge base:
 </p>
 
-<div class="prolog">
-<p>
-loves(vincent, mia).
-loves(marcellus, mia).
-jealous(A, B) :- loves(A, C), loves(B, C).
-</p>
+<div class="org-src-container">
 
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(vincent, mia).
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(marcellus, mia).
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">jealous</span>(<span style="color: #000000; background-color: #ffffff;">A</span>, <span style="color: #000000; background-color: #ffffff;">B</span>) :- loves(<span style="color: #000000; background-color: #ffffff;">A</span>, <span style="color: #000000; background-color: #ffffff;">C</span>), loves(<span style="color: #000000; background-color: #ffffff;">B</span>, <span style="color: #000000; background-color: #ffffff;">C</span>).
+</pre>
 </div>
 
 <p>
-How is the proof for <code>jealous(X, Y)</code> found, and what values to the
-variables take?
+How does Prolog find the proof for <code>jealous(X, Y)</code>, and what values to
+the variables take?
 </p>
 
 <p>
 The proof tree is shown below. Note that there are four smiley-face
-leaves in tree. This means there are four different ways to get a
-proof, which in this case means there are four different variable
+leaves in the tree. This means there are four different ways to get a
+proof, which means there are four different sets of variable
 assignments.
 </p>
 
@@ -289,8 +288,18 @@ online textbook.
 </p>
 
 
-<div style="font-size: 80%; clear: both;">
-<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
@@ -302,6 +311,16 @@ online textbook.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
 </div>
 </body>
 </html>

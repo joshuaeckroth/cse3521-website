@@ -199,6 +199,24 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-2">Remarks</a></div>
 </div>
+<div class="summary"><h2>Summary</h2>
+<ul class="org-ul">
+<li>Classification is used for predicting the label on a new data point,
+using a model built from a set of training examples where the true
+labels were known.
+</li>
+<li>k-nearest neighbor determines the predicted label by asking the
+\(k\)-nearest neighbor points in the training set to "vote" for the
+label.
+</li>
+<li>k-nearest neighbor requires deciding upfront the value of \(k\).
+</li>
+<li>This method is very simple but requires retaining all the training
+examples and searching through it.
+</li>
+</ul>
+</div>
+
 <p>
 Suppose we measure some properties of flowers, species of iris to be
 precise. <b>But this time</b>, we also know their true "labels"
@@ -359,7 +377,7 @@ larger than the other. They write in their conclusion,
 
 <blockquote>
 <p>
-Nearest neighbour supervised classification methods have many
+Nearest neighbor supervised classification methods have many
 attractive properties. However, many of these are based on asymptotic
 arguments. In problems where the classification threshold lies near 0
 or 1, as generally is the case in situations where one class is much
@@ -500,8 +518,8 @@ These are rather high accuracies for such a <i>simple</i> algorithm.
 <p>
 Some of the labeled training examples may be surround by the examples
 from the other classes. Such a situation may arise by plenty of
-reasons: (i) as a resut of a random mistake, (ii) because insufficient
-number of traning example of this class (an isolated example appears
+reasons: (i) as a result of a random mistake, (ii) because insufficient
+number of training example of this class (an isolated example appears
 instead of cluster), (iii) because incomplete system of features (the
 classes are separated in other dimensions which we do not know), (iv)
 because there are too many training examples of other classes
@@ -538,18 +556,18 @@ Ensure that the parameters are at default settings
 </p>
 
 <ol class="org-ol">
-<li>Create a class with green colour by clicking at the top left
+<li>Create a class with green color by clicking at the top left
 corner of the work desk and also click on random to create some
 outliers
 </li>
 
-<li>Create a second class with blue colour by clicking at the bottom
+<li>Create a second class with blue color by clicking at the bottom
 right corner of the work desk and also click on random to create
 some outliers
 </li>
 
-<li>Test a query example at the centre. (Hint: click on handle test
-menu, ensure the method is KNN and click at the centre of the
+<li>Test a query example at the center. (Hint: click on handle test
+menu, ensure the method is KNN and click at the center of the
 work desk. Example screen shot is shown below)
 </li>
 </ol>
@@ -565,7 +583,7 @@ work desk. Example screen shot is shown below)
 <ol class="org-ol">
 <li>Classify the test query using different values of \(k\) = 3, 5, 10
 and 20. (To change \(k\), Go to Parameter menu, change the Number
-of Nearest Neighbour, click Handle test Menu and click the point
+of Nearest Neighbor, click Handle test Menu and click the point
 you want to classify, i.e., center of the work desk)
 </li>
 
@@ -636,8 +654,18 @@ selected attributes of \(x_q\).
 </blockquote>
 
 
-<div style="font-size: 80%; clear: both;">
-<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
@@ -649,6 +677,16 @@ selected attributes of \(x_q\).
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
 </div>
 </div>
 </div>
