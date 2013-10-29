@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Norvig - Chomsky debate</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="The Norvig - Chomsky debate"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-29 18:21:27 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,7 +130,8 @@
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="MathJax/MathJax.js">
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -126,30 +174,17 @@
 </script>
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">The Norvig - Chomsky debate</h1>
-
-
-
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Science vs. pseudoscience (the demarcation problem)</a></li>
 <li><a href="#sec-2">What is an explanation?</a></li>
 <li><a href="#sec-3">The debate</a></li>
 <li><a href="#sec-4">Science: modeling or insight?</a></li>
-<li><a href="#sec-5">Case in point? &ldquo;i before e except after c&rdquo;</a></li>
+<li><a href="#sec-5">Case in point? "i before e except after c"</a></li>
 <li><a href="#sec-6">Are statistical models ok?</a></li>
 <li><a href="#sec-7">A statistical model for an aspect of language acquisition</a>
 <ul>
@@ -165,129 +200,150 @@
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-2">
+
+
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Science vs. pseudoscience (the demarcation problem)</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <blockquote>
-
-<p>According to Paul Thagard, a theory or discipline is pseudoscientific
+<p>
+According to Paul Thagard, a theory or discipline is pseudoscientific
 if it satisfies two criteria. One of these is that the theory fails to
-progress, and the other that &ldquo;the community of practitioners makes
+progress, and the other that "the community of practitioners makes
 little attempt to develop the theory towards solutions of the
 problems, shows no concern for attempts to evaluate the theory in
 relation to others, and is selective in considering confirmations and
-disconfirmations&rdquo; (Thagard 1978, 228). &mdash; <a href="http://plato.stanford.edu/entries/pseudo-science/">Stanford Encyclopedia of Philosophy</a>
+disconfirmations" (Thagard 1978, 228). &#x2014; <a href="http://plato.stanford.edu/entries/pseudo-science/">Stanford Encyclopedia of
+Philosophy</a>
 </p>
 </blockquote>
 
-
 <p>
 Again, from the <a href="http://plato.stanford.edu/entries/pseudo-science/">Stanford Encyclopedia of Philosophy</a>, another list of
-criteria for applying the label &ldquo;pseudoscience&rdquo; are,
+criteria for applying the label "pseudoscience" are,
 </p>
-<ol>
+
+<ol class="org-ol">
 <li><i>Belief in authority</i>: It is contended that some person or persons
-   have a special ability to determine what is true or false. Others
-   have to accept their judgments.
-
+have a special ability to determine what is true or false. Others
+have to accept their judgments.
 </li>
+
 <li><i>Nonrepeatable experiments</i>: Reliance is put on experiments that
-   cannot be repeated by others with the same outcome.
-
+cannot be repeated by others with the same outcome.
 </li>
+
 <li><i>Handpicked examples</i>: Handpicked examples are used although they
-   are not representative of the general category that the
-   investigation refers to.
-
+are not representative of the general category that the
+investigation refers to.
 </li>
+
 <li><i>Unwillingness to test</i>: A theory is not tested although it is
-   possible to test it.
-
+possible to test it.
 </li>
+
 <li><i>Disregard of refuting information</i>: Observations or experiments
-   that conflict with a theory are neglected.
-
+that conflict with a theory are neglected.
 </li>
+
 <li><i>Built-in subterfuge</i>: The testing of a theory is so arranged that
-   the theory can only be confirmed, never disconfirmed, by the
-   outcome.
-
+the theory can only be confirmed, never disconfirmed, by the
+outcome.
 </li>
+
 <li><i>Explanations are abandoned without replacement.</i> Tenable
-   explanations are given up without being replaced, so that the new
-   theory leaves much more unexplained than the previous
-   one. (Hansson 1983)
+explanations are given up without being replaced, so that the new
+theory leaves much more unexplained than the previous
+one. (Hansson 1983)
 </li>
 </ol>
 
-
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="left" /><col class="left" />
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
 </colgroup>
 <tbody>
-<tr><td class="left">astrology</td><td class="left">astronomy</td></tr>
-<tr><td class="left">creationism</td><td class="left">evolution</td></tr>
-<tr><td class="left">homeopathy</td><td class="left">modern medicine</td></tr>
-<tr><td class="left">Holocaust denialism</td><td class="left">history</td></tr>
+<tr>
+<td class="left">astrology</td>
+<td class="left">astronomy</td>
+</tr>
+
+<tr>
+<td class="left">creationism</td>
+<td class="left">evolution</td>
+</tr>
+
+<tr>
+<td class="left">homeopathy</td>
+<td class="left">modern medicine</td>
+</tr>
+
+<tr>
+<td class="left">Holocaust denialism</td>
+<td class="left">history</td>
+</tr>
 </tbody>
 </table>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">What is an explanation?</h2>
 <div class="outline-text-2" id="text-2">
-
-
 <p>
 Knowing what makes an explanation is important to knowing what makes a
 pursuit scientific. Generally, science seeks explanations, and
 explanations give understanding.
 </p>
+
 <p>
 The deductive-nomological model of explanation has been highly
 influential (from Hempel and Oppenheim, 1948). It says that an
 explanation requires a pairing of a law with the facts of a case,
 which together imply what needs to be explained.
 </p>
+
 <p>
-For example, an explanation of &ldquo;why is Maisy sneezing?&rdquo; could be &ldquo;any
+For example, an explanation of "why is Maisy sneezing?" could be "any
 person with an allergy to grass and exposure to grass will sneeze;
-plus, Maisy has an allergy to grass and was exposed to grass.&rdquo; The
+plus, Maisy has an allergy to grass and was exposed to grass." The
 thing to be explained can be deduced from the explanation.
 </p>
+
 <p>
 The problem with this model is it seems not every explanation has to
 imply the thing to be explained. For example, I might explain the fact
 I have a broken arm with a story about a car accident. However, I do
-not mention any &ldquo;laws&rdquo; and furthermore there is no natural law that
+not mention any "laws" and furthermore there is no natural law that
 says car accidents cause broken arms.
 </p>
+
 <p>
 In another example, a law may be present and deduction may work but
-the &ldquo;explanation&rdquo; may not at all be explanatory. Consider the shadow
+the "explanation" may not at all be explanatory. Consider the shadow
 from a flag pole. The shadow is caused by the position of the sun and
 the height of the pole. There relation can be described
-mathematically, so that the shadow&rsquo;s length is the result of a
-function applied to the sun&rsquo;s position and the pole height. The shadow
+mathematically, so that the shadow's length is the result of a
+function applied to the sun's position and the pole height. The shadow
 would be explained (in a deductive-nomological sense). However, we
 could use algebra to rewrite the equation so that the height of the
 pole depends on the length of the shadow. We still have a
-deductive-nomological &ldquo;explanation&rdquo; but it makes no sense to say that
+deductive-nomological "explanation" but it makes no sense to say that
 the length of the shadow <i>explains</i> the height of the pole. The
 shadow is an effect, an outcome, of the height of the pole, so the
 shadow cannot explain the height.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/moon-flagpole-shadows.jpg"  alt="./images/moon-flagpole-shadows.jpg" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/moon-flagpole-shadows.jpg" alt="moon-flagpole-shadows.jpg" />
 </p>
+</div>
+
 <p>
 Was the moon landing a hoax? From <a href="http://www.clavius.org/shadlen.html">Clavius.org</a>
 </p>
@@ -295,103 +351,112 @@ Was the moon landing a hoax? From <a href="http://www.clavius.org/shadlen.html">
 
 <p>
 Most useful explanations describe or hint at a causal story. This is
-why the flag pole&rsquo;s height explains the shadow but not vice
+why the flag pole's height explains the shadow but not vice
 versa. Likewise, a car accident explains a broken arm, and allergies
-explain sneezing. Furthermore, most &ldquo;good&rdquo; explanations give us an
+explain sneezing. Furthermore, most "good" explanations give us an
 <i>understanding</i> of what happened and why.
 </p>
+
 <p>
 There are lots of theories about what consitutes an explanation,
-what exactly is causation, and whether &ldquo;understanding&rdquo; is necessary
+what exactly is causation, and whether "understanding" is necessary
 for something to be explanatory. However, for the purposes of this
-discussion, we&rsquo;ll just work with our intuition about what an
+discussion, we'll just work with our intuition about what an
 explanation is, what makes something explanatory, what it is like to
 understand an explanation.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">The debate</h2>
 <div class="outline-text-2" id="text-3">
-
-
 <p>
 Recently, Peter Norvig took the time to <a href="http://norvig.com/chomsky.html">write a response</a> to a comment
 Noam Chomsky made at a conference (not a comment made to Norvig, but
 to an entire research community of which Norvig considers himself a
-part). (Chomsky has a new <a href="http://www.theatlantic.com/technology/archive/2012/11/noam-chomsky-on-where-artificial-intelligence-went-wrong/261637/?single_page=true&amp;">reply</a> to Norvig.) Chomsky said at the
+part). (Chomsky has a new <a href="http://www.theatlantic.com/technology/archive/2012/11/noam-chomsky-on-where-artificial-intelligence-went-wrong/261637/?single_page=true&">reply</a> to Norvig.) Chomsky said at the
 conference,
 </p>
-<blockquote>
 
-<p>It&rsquo;s true there&rsquo;s been a lot of work on trying to apply statistical
+<blockquote>
+<p>
+It's true there's been a lot of work on trying to apply statistical
 models to various linguistic problems. I think there have been some
-successes, but a lot of failures. There is a notion of success&hellip;
+successes, but a lot of failures. There is a notion of success&#x2026;
 which I think is novel in the history of science. It interprets
 success as approximating unanalyzed data.
 </p>
 </blockquote>
 
-
 <p>
-In Chomsky&rsquo;s recent interview in which he replies to Norvig, he makes
+In Chomsky's recent interview in which he replies to Norvig, he makes
 a similar point (emphasis added):
 </p>
-<blockquote>
 
-<p>I thought [early attempts at AI] was first of all way too optimistic,
+<blockquote>
+<p>
+I thought [early attempts at AI] was first of all way too optimistic,
 it was assuming you could achieve things that required real
-understanding of systems that were barely understood, and <b>you just can&rsquo;t get to that understanding by throwing a complicated machine at it</b>. If you try to do that you are led to a conception of success,
+understanding of systems that were barely understood, and *you just
+can't get to that understanding by throwing a complicated machine at
+it*. If you try to do that you are led to a conception of success,
 which is self-reinforcing, because you do get success in terms of this
-conception, but <b>it&rsquo;s very different from what&rsquo;s done in the sciences</b>. So for example, take an extreme case, suppose that somebody
+conception, but <b>it's very different from what's done in the
+sciences</b>. So for example, take an extreme case, suppose that somebody
 says he wants to eliminate the physics department and do it the right
-way. The &ldquo;right&rdquo; way is to take endless numbers of videotapes of
-what&rsquo;s happening outside the video, and feed them into the biggest and
+way. The "right" way is to take endless numbers of videotapes of
+what's happening outside the video, and feed them into the biggest and
 fastest computer, gigabytes of data, and do complex statistical
-analysis &mdash; you know, Bayesian this and that &mdash; and you&rsquo;ll get some
-kind of prediction about what&rsquo;s gonna happen outside the window
-next. In fact, <b>you get a much better prediction than the physics department will ever give</b>. Well, if success is defined as getting a
-fair approximation to a mass of chaotic unanalyzed data, then it&rsquo;s way
+analysis &#x2014; you know, Bayesian this and that &#x2014; and you'll get some
+kind of prediction about what's gonna happen outside the window
+next. In fact, <b>you get a much better prediction than the physics
+department will ever give</b>. Well, if success is defined as getting a
+fair approximation to a mass of chaotic unanalyzed data, then it's way
 better to do it this way than to do it the way the physicists do, you
 know, no thought experiments about frictionless planes and so on and
-so forth. <b>But you won&rsquo;t get the kind of understanding that the sciences have always been aimed at</b> &mdash; what you&rsquo;ll get at is an
-approximation to what&rsquo;s happening.
+so forth. <b>But you won't get the kind of understanding that the
+sciences have always been aimed at</b> &#x2014; what you'll get at is an
+approximation to what's happening.
 </p>
+
 <p>
-[&hellip;]
+[&#x2026;]
 </p>
+
 <p>
 A very different approach, which I think is the right approach, is to
 try to see if you can understand what the <b>fundamental principles</b> are
 that deal with the core properties, and recognize that in the actual
-usage, there&rsquo;s going to be a thousand other variables intervening ---
-kind of like what&rsquo;s happening outside the window, and you&rsquo;ll sort of
-tack those on later on if you want better approximations, that&rsquo;s a
+usage, there's going to be a thousand other variables intervening &#x2014;
+kind of like what's happening outside the window, and you'll sort of
+tack those on later on if you want better approximations, that's a
 different approach. These are just two different concepts of
-science. The second one is what science has been since Galileo, that&rsquo;s
-modern science. <b>The approximating unanalyzed data kind is sort of a new approach</b>, not totally, there&rsquo;s things like it in the past. It&rsquo;s
-basically a new approach that has been <b>accelerated by the existence of massive memories, very rapid processing</b>, which enables you to do
-things like this that you couldn&rsquo;t have done by hand. But I think,
+science. The second one is what science has been since Galileo, that's
+modern science. <b>The approximating unanalyzed data kind is sort of a
+new approach</b>, not totally, there's things like it in the past. It's
+basically a new approach that has been <b>accelerated by the existence
+of massive memories, very rapid processing</b>, which enables you to do
+things like this that you couldn't have done by hand. But I think,
 myself, that it is leading subjects like computational cognitive
-science into a direction of maybe some practical applicability&hellip;
+science into a direction of maybe some practical applicability&#x2026;
 </p>
+
 <p>
-Interviewer: &ldquo;&hellip; in engineering?&rdquo;
+Interviewer: "&#x2026; in engineering?"
 </p>
+
 <p>
-Chomsky: &hellip; <b>But away from understanding</b>.
+Chomsky: &#x2026; <b>But away from understanding</b>.
 </p>
 </blockquote>
 
-
 <p>
 Norvig has been successful building AI systems that use statistical
-learning and statistical inferencing. He takes issue with Chomsky&rsquo;s
+learning and statistical inferencing. He takes issue with Chomsky's
 claim that, essentially, what modern AI research is doing is not
 science.
 </p>
+
 <p>
 Chomsky is (in)famous for hypothesizing and arguing that all humans
 have a tacit but unlearned knowledge of linguistic structure, a
@@ -403,15 +468,15 @@ mental structures needed, and do not learn these structures from
 experience. An important structure, for example, is the ability to
 understand recursive utterances, such as:
 </p>
-<blockquote>
 
-<p>My homework assignment, which is worth 100 points in my CSE 3521
+<blockquote>
+<p>
+My homework assignment, which is worth 100 points in my CSE 3521
 class, which is not required for my major but I wanted to take it
 anyway, which has turned out to be quite interesting as it happens, is
 due Thursday.
 </p>
 </blockquote>
-
 
 <p>
 Although that sentence is a bit contrived, we can understand it
@@ -419,6 +484,7 @@ Although that sentence is a bit contrived, we can understand it
 we can keep in our short-term memory, but there is clearly (or not?) a
 logic to it. How does a child learn this logic?
 </p>
+
 <p>
 Another phenomenon that Chomsky points out is that adverbs, pronouns,
 and the like do not always modify or connect to the nearest candidate
@@ -428,18 +494,18 @@ hypothesizes that the understanding of language in the brain does not
 take the same form as language as written or spoken (the structures in
 the brain are not linear, he believes).
 </p>
-<blockquote>
 
-<p>Take a simple sentence like &ldquo;Instinctively, eagles that fly swim&rdquo;,
-well, &ldquo;instinctively&rdquo; goes with swim, it doesn&rsquo;t go with fly, even
-though it doesn&rsquo;t make sense. And that&rsquo;s reflexive. &ldquo;Instinctively&rdquo;,
-the adverb, isn&rsquo;t looking for the nearest verb, it&rsquo;s looking for the
-structurally most prominent one. That&rsquo;s a much harder computation. But
-that&rsquo;s the only computation which is ever used. Linear order is a very
-easy computation, but it&rsquo;s never used.
+<blockquote>
+<p>
+Take a simple sentence like "Instinctively, eagles that fly swim",
+well, "instinctively" goes with swim, it doesn't go with fly, even
+though it doesn't make sense. And that's reflexive. "Instinctively",
+the adverb, isn't looking for the nearest verb, it's looking for the
+structurally most prominent one. That's a much harder computation. But
+that's the only computation which is ever used. Linear order is a very
+easy computation, but it's never used.
 </p>
 </blockquote>
-
 
 <p>
 However, linear order is a surface-level phenomenon that, supposedly,
@@ -449,144 +515,126 @@ linear order of an utterance but, Chomsky argues, the linear order
 and the statistics provide no understanding about the sentence. The
 linear order is just a side-effect, a shadow of the true structure.
 </p>
+
 <p>
-Norvig&rsquo;s estimation of Chomsky&rsquo;s points, and Norvig&rsquo;s replies, are as
+Norvig's estimation of Chomsky's points, and Norvig's replies, are as
 follows:
 </p>
-<ul>
-<li><b>Chomsky&rsquo;s point</b>: Statistical methods have had engineering success,
-  but that is irrelevant to science.
 
-<ul>
-<li><b>Norvig&rsquo;s reply</b>: He agrees, but engineering success often
-    facilitates scientific success.
+<ul class="org-ul">
+<li><b>Chomsky's point</b>: Statistical methods have had engineering success,
+but that is irrelevant to science.
 
+<ul class="org-ul">
+<li><b>Norvig's reply</b>: He agrees, but engineering success often
+facilitates scientific success.
 </li>
 </ul>
-
 </li>
-<li><b>Chomsky&rsquo;s point</b>: Accurate modeling of language (e.g. statistical
-  models) is just building descriptions, not explanations.
 
-<ul>
-<li><b>Norvig&rsquo;s reply</b>: Science is both description and explanation; you
-    can&rsquo;t have one without the other; in the history of science, the
-    laborious accumulation of data is the usual mode of operation.
+<li><b>Chomsky's point</b>: Accurate modeling of language (e.g. statistical
+models) is just building descriptions, not explanations.
 
-</li>
-</ul>
-
-</li>
-<li><b>Chomsky&rsquo;s point</b>: Language is generated from internal structures,
-  and understood by transforming what&rsquo;s heard or read into these
-  structures; language is not generated or understood in the same form
-  as it comes out (in linear form). The way language is spoken or
-  written is just a peripheral after-effect, not the
-  essence.
-
-<ul>
-<li><b>Norvig&rsquo;s reply</b>: People who work in language interpretation
-    (presumably, in the AI field) see it as a statistical inference;
-    people actually generate and understand language in some rich
-    statistical sense (maybe with statistical models several layers
-    deep, like the modern AI models of speech recognition).
-
+<ul class="org-ul">
+<li><b>Norvig's reply</b>: Science is both description and explanation; you
+can't have one without the other; in the history of science, the
+laborious accumulation of data is the usual mode of operation.
 </li>
 </ul>
-
 </li>
-<li><b>Chomsky&rsquo;s point</b>: Statistical models are incapable of learning all
-  the richness of natural language.
 
-<ul>
-<li><b>Norvig&rsquo;s reply</b>: Certain advances in statistical learning methods
-    provide reason to believe that such learning methods will be able
-    to do the job.
+<li><b>Chomsky's point</b>: Language is generated from internal structures,
+and understood by transforming what's heard or read into these
+structures; language is not generated or understood in the same form
+as it comes out (in linear form). The way language is spoken or
+written is just a peripheral after-effect, not the
+essence.
+
+<ul class="org-ul">
+<li><b>Norvig's reply</b>: People who work in language interpretation
+(presumably, in the AI field) see it as a statistical inference;
+people actually generate and understand language in some rich
+statistical sense (maybe with statistical models several layers
+deep, like the modern AI models of speech recognition).
 </li>
 </ul>
+</li>
 
+<li><b>Chomsky's point</b>: Statistical models are incapable of learning all
+the richness of natural language.
+
+<ul class="org-ul">
+<li><b>Norvig's reply</b>: Certain advances in statistical learning methods
+provide reason to believe that such learning methods will be able
+to do the job.
 </li>
 </ul>
-
+</li>
+</ul>
 
 
 <div class="figure">
-<p><img src="./images/kumi-yamashita-building-blocks.jpg"  alt="./images/kumi-yamashita-building-blocks.jpg" /></p>
-<p>&ldquo;Building Blocks,&rdquo; Kumi Yamashita, 1997; H230, W400, D5cm; wood, single light source, shadow</p>
+<p><img src="./images/kumi-yamashita-building-blocks.jpg" alt="kumi-yamashita-building-blocks.jpg" />
+</p>
+<p><span class="figure-number">Figure 1:</span> "Building Blocks," Kumi Yamashita, 1997; H230, W400, D5cm; wood, single light source, shadow</p>
 </div>
-
 </div>
-
 </div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Science: modeling or insight?</h2>
 <div class="outline-text-2" id="text-4">
-
-
 <p>
-Norvig argues that when Chomsky says &ldquo;[Just accurately modeling the
-world is] a notion of [scientific] success that&rsquo;s very novel. I don&rsquo;t
-know of anything like it in the history of science,&rdquo; he is
+Norvig argues that when Chomsky says "[Just accurately modeling the
+world is] a notion of [scientific] success that's very novel. I don't
+know of anything like it in the history of science," he is
 wrong. Norvig scanned issues of <i>Science</i>, <i>Cell</i>, and looked at the
 2010 Nobel Prizes in science. He then writes,
 </p>
-<blockquote>
 
-<p>My conclusion is that 100% of these articles and awards are more about
-&ldquo;accurately modeling the world&rdquo; than they are about &ldquo;providing
-insight,&rdquo; although they all have some theoretical insight component as
+<blockquote>
+<p>
+My conclusion is that 100% of these articles and awards are more about
+"accurately modeling the world" than they are about "providing
+insight," although they all have some theoretical insight component as
 well.
 </p>
 </blockquote>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-5" class="outline-2">
-<h2 id="sec-5">Case in point? &ldquo;i before e except after c&rdquo;</h2>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Case in point? "i before e except after c"</h2>
 <div class="outline-text-2" id="text-5">
-
-
 <p>
 Norvig illustrates that rules about language do not always capture the
 right phenomena.
 </p>
 
-
-
-<pre class="example">P(IE) = 0.0177         P(CIE) = 0.0014        P(*IE) = 0.163
+<pre class="example">
+P(IE) = 0.0177         P(CIE) = 0.0014        P(*IE) = 0.163
 P(EI) = 0.0046         P(CEI) = 0.0005        P(*EI) = 0.0041
 </pre>
-
 
 <p>
 This model comes from statistics on a corpus of a trillion words of
 English text. The notation P(IE) is the probability that a word
-sampled from this corpus contains the consecutive letters &ldquo;IE.&rdquo; P(CIE)
-is the probability that a word contains the consecutive letters &ldquo;CIE&rdquo;,
+sampled from this corpus contains the consecutive letters "IE." P(CIE)
+is the probability that a word contains the consecutive letters "CIE",
 and P(*IE) is the probability of any letter other than C followed by
 IE. The statistical data confirms that IE is in fact more common than
 EI, and that the dominance of IE lessens when following a C, but
 contrary to the rule, CIE is still more common than CEI. Examples of
-&ldquo;CIE&rdquo; words include &ldquo;science,&rdquo; &ldquo;society,&rdquo; &ldquo;ancient&rdquo; and &ldquo;species.&rdquo; The
-disadvantage of the &ldquo;I before E except after C&rdquo; model is that it is
+"CIE" words include "science," "society," "ancient" and "species." The
+disadvantage of the "I before E except after C" model is that it is
 not very accurate.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-6" class="outline-2">
+<div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Are statistical models ok?</h2>
 <div class="outline-text-2" id="text-6">
-
-
 <blockquote>
-
-<p>Norvig: Every probabilistic model is a superset of a deterministic
+<p>
+Norvig: Every probabilistic model is a superset of a deterministic
 model (because the deterministic model could be seen as a
 probabilistic model where the probabilities are restricted to be 0 or
 1), so any valid criticism of probabilistic models would have to be
@@ -594,7 +642,6 @@ because they are too expressive, not because they are not expressive
 enough.
 </p>
 </blockquote>
-
 
 <p>
 I feel that this is a bit disingenuous. Probabilisitic models rarely
@@ -605,35 +652,36 @@ complex and deep rules (because, apparently, sometimes such rules are
 necessary), which are made possible by the fact that a human is
 creating them.
 </p>
-<blockquote>
 
-<p>Norvig: And yes, it seems clear that an adult speaker of English does
-know billions of language facts (for example, that one says &ldquo;big game&rdquo;
-rather than &ldquo;large game&rdquo; when talking about an important football
+<blockquote>
+<p>
+Norvig: And yes, it seems clear that an adult speaker of English does
+know billions of language facts (for example, that one says "big game"
+rather than "large game" when talking about an important football
 game). These facts must somehow be encoded in the brain.
 </p>
 </blockquote>
-
 
 <p>
 Fair enough. There does seem to be a statistical bias in language
 generation, like the feeling of a word just rolling off the tongue,
 before you have thought about it. That effect is probably what
-produces &ldquo;big game&rdquo; rather than &ldquo;large game.&rdquo;
+produces "big game" rather than "large game."
 </p>
-<blockquote>
 
-<p>Norvig: For example, the verb <i>quake</i> is listed as intransitive in
+<blockquote>
+<p>
+Norvig: For example, the verb <i>quake</i> is listed as intransitive in
 dictionaries, meaning that (1) below is grammatical, and (2) is not,
 according to a categorical theory of grammar.
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>The earth quaked.
 </li>
 <li>? It quaked her bowels. 
 </li>
 </ol>
-
 
 <p>
 But (2) actually appears as a sentence of English. This poses a
@@ -641,33 +689,33 @@ dilemma for the categorical theory.
 </p>
 </blockquote>
 
-
 <p>
 Norvig also says that interpretation is different than generation:
 </p>
-<blockquote>
 
-<p>Norvig: From the beginning, Chomsky has focused on the generative side
+<blockquote>
+<p>
+Norvig: From the beginning, Chomsky has focused on the generative side
 of language. From this side, it is reasonable to tell a
 non-probabilistic story: I know definitively the idea I want to
-express&mdash;I&rsquo;m starting from a single semantic form&mdash;thus all I have
-to do is choose the words to say it; why can&rsquo;t that be a
+express&#x2014;I'm starting from a single semantic form&#x2014;thus all I have
+to do is choose the words to say it; why can't that be a
 deterministic, categorical process? If Chomsky had focused on the
 other side, interpretation, as Claude Shannon did, he may have changed
 his tune. In interpretation (such as speech recognition) the listener
 receives a noisy, ambiguous signal and needs to decide which of many
 possible intended messages is most likely. Thus, it is obvious that
-this is inherently a probabilistic problem[&hellip;]
+this is inherently a probabilistic problem[&#x2026;]
 </p>
 </blockquote>
-
 
 <p>
 But why the distinction?
 </p>
-<blockquote>
 
-<p>Norvig: We also now know that language is like that as well: languages
+<blockquote>
+<p>
+Norvig: We also now know that language is like that as well: languages
 are complex, random, contingent biological processes that are subject
 to the whims of evolution and cultural change. What constitutes a
 language is not an eternal ideal form, represented by the settings of
@@ -688,7 +736,6 @@ works.
 </p>
 </blockquote>
 
-
 <p>
 But is it not equally true that a statistical conception of language
 likewise requires a fantastically rich and sophisticated model in
@@ -697,112 +744,105 @@ carefully-crafted utterances that intelligent humans are known for?
 Again, there is a missing link, no proof-by-demonstration.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-7" class="outline-2">
+<div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">A statistical model for an aspect of language acquisition</h2>
 <div class="outline-text-2" id="text-7">
-
-
 <p>
 How do statistical models for language acquisition perform? Here is a
 historical case in point, along with a critique.
 </p>
-<blockquote>
 
-<p>On the evidence that what we will and won&rsquo;t say and what we will and
-won&rsquo;t accept can be characterized by rules, it has been argued that,
-in some sene, we &ldquo;know&rdquo; the rules of our language. The sense in which
+<blockquote>
+<p>
+On the evidence that what we will and won't say and what we will and
+won't accept can be characterized by rules, it has been argued that,
+in some sene, we "know" the rules of our language. The sense in which
 we know them is not the same as the sense in which we know such
-&ldquo;rules&rdquo; as &ldquo;<i>i</i> before <i>e</i> except after <i>c</i>,&rdquo; however, since we need
+"rules" as "<i>i</i> before <i>e</i> except after <i>c</i>," however, since we need
 not necessarily be able to state the rules explicitly. We know them in
 a way that allows us to use them to make judgments of grammaticality,
 it is often said, or to speak and understand, but this knowledge is
 not in a form or location that permits it to be encoded into a
-communicable verbal statement. &mdash; &ldquo;On Learning the Past Tenses of
-English Verbs,&rdquo; Rumelhart and McClelland, 1986 (<a href="http://psych.stanford.edu/~jlm/papers/PDP/Chapter18.pdf">PDF</a>)
+communicable verbal statement. &#x2014; "On Learning the Past Tenses of
+English Verbs," Rumelhart and McClelland, 1986 (<a href="http://psych.stanford.edu/~jlm/papers/PDP/Chapter18.pdf">PDF</a>)
 </p>
 </blockquote>
-
-
-
 </div>
 
-<div id="outline-container-7-1" class="outline-3">
+<div id="outline-container-sec-7-1" class="outline-3">
 <h3 id="sec-7-1">The phenomenon</h3>
 <div class="outline-text-3" id="text-7-1">
-
-
 <blockquote>
-
-<p>In Stage 1, children use only a small number of verbs in the past
+<p>
+In Stage 1, children use only a small number of verbs in the past
 tense. Such verbs tend to be very high-frequency words, and the
 majority of these are irregular. At this stage, children tend to get
 the past tenses of these words correct if they use the past tense at
 all.
 </p>
+
 <p>
-[&hellip;]
+[&#x2026;]
 </p>
+
 <p>
 In Stage 2, evidence of implicit knowledge of a linguistic rule
 emerges. At this stage, children use a much larger number of verbs in
 the past tense. These verbs include a few more irregular items, but it
 turns out that the majority of the words at this stage are examples of
-the <i>regular</i> past tense in English. [&hellip;]
+the <i>regular</i> past tense in English. [&#x2026;]
 </p>
-<ul>
-<li>The child can now generate a past tense for an invented word.
 
+<ul class="org-ul">
+<li>The child can now generate a past tense for an invented word.
 </li>
+
 <li>Children now <i>incorrectly</i> supply regular past-tense endings for
-    words which they used correctly in Stage 1. These errors may
-    involve either adding <i>ed</i> to the root as in <i>comed</i>, or adding
-    <i>ed</i> to the irregular past tense form as in <i>camed</i>.
+words which they used correctly in Stage 1. These errors may
+involve either adding <i>ed</i> to the root as in <i>comed</i>, or adding
+<i>ed</i> to the irregular past tense form as in <i>camed</i>.
 </li>
 </ul>
 
-
 <p>
-[&hellip;]
+[&#x2026;]
 </p>
+
 <p>
 In Stage 3, the regular and irregular forms coexist. That is, children
 have regained the use of the correct irregular forms of the past
 tense, while they continue to apply the regular form to new words they
-learn. Regularization persists into adulthood [&hellip;]
+learn. Regularization persists into adulthood [&#x2026;]
 </p>
 </blockquote>
-
 
 <p>
 The authors further add that the stages are not well-delineated, and
 that the acquisition process is gradual.
 </p>
+
 <p>
 They develop a statistical neural network model that, when given
 example verbs (like a child hearing them used), produces behavior
 exactly like that described in the three stages (above).
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/verb-past-tense-response-rate.png"  alt="./images/verb-past-tense-response-rate.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/verb-past-tense-response-rate.png" alt="verb-past-tense-response-rate.png" />
 </p>
 </div>
-
 </div>
-
 </div>
-
-<div id="outline-container-7-2" class="outline-3">
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2">A critique</h3>
 <div class="outline-text-3" id="text-7-2">
-
-
 <blockquote>
-
-<p>Classical models [&hellip;] account for this [phenomenon] in an intuitively
+<p>
+Classical models [&#x2026;] account for this [phenomenon] in an intuitively
 obvious way. They posit an initial stage in which the child has
 effectively memorized a small set of forms in a totally unsystematic
 and unconnected way. This is stage one. At stage two, according to
@@ -811,64 +851,68 @@ number of cases. But the rule is now mistakenly deployed to generate
 <i>all</i> past tenses. At the final stage this is put right. Now the child
 uses lexical, memorized, item-indexed resources to handle irregular
 cases and non-lexical, rule-based resources to handle regular
-ones. &mdash; &ldquo;Critique of Rumelhart and McClelland,&rdquo; Andy Clark, 1989
-(<a href="http://books.google.com/books?id=mv2vGDT-6KIC&amp;lpg=PR9&amp;ots=4DiaSlw07A&amp;dq="Critique of Rumelhart and McClelland" "Andy Clark"&amp;lr&amp;pg=PA553#v=onepage&amp;q&amp;f=false">Google Books link</a>)
+ones. &#x2014; "Critique of Rumelhart and McClelland," Andy Clark, 1989
+(<a href="http://books.google.com/books?id=mv2vGDT-6KIC&lpg=PR9&ots=4DiaSlw07A&dq=%22Critique%20of%20Rumelhart%20and%20McClelland%22%20%22Andy%20Clark%22&lr&pg=PA553#v=onepage&q&f=false">Google Books link</a>)
 </p>
 </blockquote>
 
-
 <p>
 There are problems with the statistical neural network model
-(according to Clark, who is summarizing &ldquo;<a href="http://users.ecs.soton.ac.uk/harnad/Papers/Py104/pinker.conn.html">On language and connectionism</a>,&rdquo; Pinker and Prince, 1988):
+(according to Clark, who is summarizing "<a href="http://users.ecs.soton.ac.uk/harnad/Papers/Py104/pinker.conn.html">On language and
+connectionism</a>," Pinker and Prince, 1988):
 </p>
-<ul>
+
+<ul class="org-ul">
 <li><b>Overreliance on the environment</b>: the stage 1 to stage 2
-    transition of the model was achieved solely because only irregular
-    verbs were presented to it first, followed by a &ldquo;massive influx&rdquo;
-    of regular verbs. Generally, neural nets can learn virtually
-    anything (approximate any function), but their ability to do so
-    depends highly on the nature of the inputs. &ldquo;Given a different set
-    of inputs, these models might go straight to stage 2, or even
-    regress from stage 2 to stage 1. It is at least not obvious that
-    human infants enjoy the same degree of freedom.&rdquo;
-
+transition of the model was achieved solely because only irregular
+verbs were presented to it first, followed by a "massive influx"
+of regular verbs. Generally, neural nets can learn virtually
+anything (approximate any function), but their ability to do so
+depends highly on the nature of the inputs. "Given a different set
+of inputs, these models might go straight to stage 2, or even
+regress from stage 2 to stage 1. It is at least not obvious that
+human infants enjoy the same degree of freedom."
 </li>
+
 <li><b>The power of learning algorithms</b>: statistical approaches are
-    often too good. Humans do a poor job detecting statistical
-    correlations. For example, we have a hard time learning how to
-    efficiently match words to their reverse images, yet a statistical
-    model could learn that perfectly. A good model of language
-    acquisition should also explain what we cannot learn.
-
+often too good. Humans do a poor job detecting statistical
+correlations. For example, we have a hard time learning how to
+efficiently match words to their reverse images, yet a statistical
+model could learn that perfectly. A good model of language
+acquisition should also explain what we cannot learn.
 </li>
+
 <li><b>Microfeature representations</b>: humans do not seem to treat all
-    features of an observation equally. We do not see a word as a
-    sequence of equally-important letters. Pinker and Prince give the
-    example, &ldquo;an animal that looks exactly like a skunk will
-    nonetheless be treated as a raccoon if one is told that the stripe
-    was painted onto an animal that had raccoon parents and raccoon
-    babies.&rdquo;
+features of an observation equally. We do not see a word as a
+sequence of equally-important letters. Pinker and Prince give the
+example, "an animal that looks exactly like a skunk will
+nonetheless be treated as a raccoon if one is told that the stripe
+was painted onto an animal that had raccoon parents and raccoon
+babies."
 </li>
 </ul>
 
-
 <blockquote>
-
-<p>The single most obvious phenomenon about the meanings of words is the
+<p>
+The single most obvious phenomenon about the meanings of words is the
 difficulty of focusing consciousness upon them. If I ask you what
-does the verb &ldquo;sight&rdquo; mean in the sentence:
+does the verb "sight" mean in the sentence:
 </p>
+
 <p>
 He sighted a herd of elephants on the plain
 </p>
+
 <p>
 then you are immediately aware that you know the meaning of the word,
 and that you understand the sentence with no difficulty. You should
 also be able to offer a paraphrase of the word, such as:
 </p>
+
 <p>
 to see something at a distance.
 </p>
+
 <p>
 But the formulation of this paraphrase is not an immediate and
 automatic process. You cannot turn to the appropriate definition in a
@@ -880,97 +924,92 @@ a word, but you have no direct introspect access to the representation
 of its meaning.
 </p>
 </blockquote>
-
-
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-8" class="outline-2">
+<div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">What if k-nearest neighbor was a scientific theory about irises?</h2>
 <div class="outline-text-2" id="text-8">
-
-
 <p>
 Clearly, we have to make this question about irises and not
 classification in general. Now, our examples with <a href="./k-nn.html">k-nn</a> on irises used
 four iris measurements: sepal width and length, and petal width and
 length.
 </p>
+
 <p>
 Suppose k-nn with \(k=3\) works well on our test data. Now, if it was a
 scientific theory, what would it be saying?
 </p>
-<blockquote>
 
-<p>Supposing the only requirement to be a species is that only the
+<blockquote>
+<p>
+Supposing the only requirement to be a species is that only the
 members of the same species can interbreed and produce fertile
 offspring, the species of the iris plant is determined by sepal width
 and length and petal width and length.
 </p>
 </blockquote>
 
-
 <p>
 Curiously, the fact that \(k=3\) worked best in our tests, and not, say,
 \(k=100\), never appears in this description of the theory. Maybe k-nn
 is actually saying,
 </p>
-<blockquote>
 
-<p>Supposing the only requirement&hellip;, the species of the iris plant is
+<blockquote>
+<p>
+Supposing the only requirement&#x2026;, the species of the iris plant is
 determined by taking a large sample (how large?) of iris plants and
 measuring their sepal width and length and petal width and length. The
 species of an iris plant not in the sample is determined by the most
-common species among the three &ldquo;closest&rdquo; samples (where closeness is
-defined as a Euclidean &ldquo;distance&rdquo; between the four measurements of the
+common species among the three "closest" samples (where closeness is
+defined as a Euclidean "distance" between the four measurements of the
 irises).
 </p>
 </blockquote>
 
-
 <p>
-This formulation is much less scientific since it&rsquo;s too specific. It
-doesn&rsquo;t sound like a very good law.
+This formulation is much less scientific since it's too specific. It
+doesn't sound like a very good law.
 </p>
+
 <p>
 If either of these theories is correct, what would they offer in terms
-of &ldquo;explanation&rdquo; of iris species distinctions?
+of "explanation" of iris species distinctions?
 </p>
+
 <p>
-In what sense are &ldquo;species&rdquo; explanatory anyway?
+In what sense are "species" explanatory anyway?
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-9" class="outline-2">
+<div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">Pandora vs. Netflix</h2>
 <div class="outline-text-2" id="text-9">
-
-
 <p>
-Pandora is rule-driven (see: <a href="http://en.wikipedia.org/wiki/List_of_Music_Genome_Project_attributes">&ldquo;music genome&rdquo; attributes</a>), while Netflix
+Pandora is rule-driven (see: <a href="http://en.wikipedia.org/wiki/List_of_Music_Genome_Project_attributes">"music genome" attributes</a>), while Netflix
 is not. Which performs better?
 </p>
-<blockquote>
 
-<p>Each song in the Music Genome Project is analyzed using up to 450
+<blockquote>
+<p>
+Each song in the Music Genome Project is analyzed using up to 450
 distinct musical characteristics by a trained music analyst. These
 attributes capture not only the musical identity of a song, but also
 the many significant qualities that are relevant to understanding the
 musical preferences of listeners.
 </p>
+
 <p>
-[&hellip;]
+[&#x2026;]
 </p>
+
 <p>
 Pandora does not use machine-listening or other forms of automated
-data extraction. &mdash; From Pandora&rsquo;s <a href="http://www.pandora.com/about/mgp">&ldquo;About&rdquo; page</a>
+data extraction. &#x2014; From Pandora's <a href="http://www.pandora.com/about/mgp">"About" page</a>
 </p>
 </blockquote>
-
 
 <p>
 During their Netflix prize competition, Netflix briefly described
@@ -978,27 +1017,29 @@ their machine learning task and the kind of data they used. From a
 2007 paper (<a href="http://reference.kfupm.edu.sa/content/n/e/the_netflix_prize_67297.pdf">PDF</a>) describing the Netflix prize, before the competition
 ended:
 </p>
-<blockquote>
 
-<p>In October, 2006 Netflix released a dataset containing 100 million
+<blockquote>
+<p>
+In October, 2006 Netflix released a dataset containing 100 million
 anonymous movie ratings and challenged the data mining, machine
 learning and computer science communities to develop systems that
 could beat the accuracy of its recommendation system, Cinematch.
 </p>
 </blockquote>
 
-
 <p>
-Movie recommendations are based only on the user&rsquo;s ratings and others&rsquo;
+Movie recommendations are based only on the user's ratings and others'
 ratings.
 </p>
-<blockquote>
 
-<p>The company reported the [root mean square error (RMSE)] performance of
+<blockquote>
+<p>
+The company reported the [root mean square error (RMSE)] performance of
 Cinematch trained on the Prize dataset against the quiz subset as
 0.9514, a 9.6% improvement over simply predicting individual movie
 averages [which was 1.0540 RMSE]).
 </p>
+
 <p>
 The company will award a Grand Prize to the team with a system that
 can improve on that accuracy by an additional 10%. In addition,
@@ -1007,107 +1048,103 @@ teams that make sufficient accuracy improvements.
 </p>
 </blockquote>
 
+<div class="center">
 
-
-<div style="text-align: center">
-<p><img src="./images/netflix-results.png"  alt="./images/netflix-results.png" />
+<div class="figure">
+<p><img src="./images/netflix-results.png" alt="netflix-results.png" />
 </p>
+</div>
 </div>
 
 <p>
 In 2009, a team did win the prize, with a 10.1% improvement over
-Netflix&rsquo;s algorithm.
+Netflix's algorithm.
 </p>
+
 <p>
 Although I have not provided any information about the algorithms, the
-question related to this discussion is, &ldquo;Ok, so what do these
+question related to this discussion is, "Ok, so what do these
 statistical models and methods tell us about why humans like the
-movies they do?&rdquo;
+movies they do?"
 </p>
+
 <p>
-The same question can be asked about Pandora&rsquo;s approach. Which
-technique is more &ldquo;explanatory?&rdquo;
+The same question can be asked about Pandora's approach. Which
+technique is more "explanatory?"
 </p>
+
 
 <div class="figure">
-<p><img src="./images/dicesculptures-2.jpg"  alt="./images/dicesculptures-2.jpg" /></p>
-<p>Dice Sculptures, Tony Cragg</p>
+<p><img src="./images/dicesculptures-2.jpg" alt="dicesculptures-2.jpg" />
+</p>
+<p><span class="figure-number">Figure 2:</span> Dice Sculptures, Tony Cragg</p>
 </div>
-
 </div>
-
 </div>
-
-<div id="outline-container-10" class="outline-2">
+<div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10">Some difficult cases</h2>
 <div class="outline-text-2" id="text-10">
-
-
-
-
-
-<pre class="example">colorless green ideas sleep furiously
+<pre class="example">
+colorless green ideas sleep furiously
 
 --- Noam Chomsky
 </pre>
 
-
 <p>
 Chomsky says about this sentence:
 </p>
-<blockquote>
 
-<p>Neither (a) &lsquo;colorless green ideas sleep furiously&rsquo; nor (b) &lsquo;furiously
-sleep ideas green colorless&rsquo;, nor any of their parts, has ever
+<blockquote>
+<p>
+Neither (a) 'colorless green ideas sleep furiously' nor (b) 'furiously
+sleep ideas green colorless', nor any of their parts, has ever
 occurred in the past linguistic experience of an English speaker. But
 (a) is grammatical, while (b) is not.
 </p>
 </blockquote>
 
-
 <p>
 Norvig replies,
 </p>
-<blockquote>
 
-<p>Chomsky appears to be correct that neither sentence appeared in the
-published literature before 1955. I&rsquo;m not sure what he meant by &ldquo;any
-of their parts,&rdquo; but certainly every two-word part had occurred, for
-example: &ldquo;It is neutral green, colorless green, like the glaucous
-water lying in a cellar.&rdquo; The Paris we remember, Elisabeth Finley
-Thomas (1942).  &ldquo;To specify those green ideas is hardly necessary, but
+<blockquote>
+<p>
+Chomsky appears to be correct that neither sentence appeared in the
+published literature before 1955. I'm not sure what he meant by "any
+of their parts," but certainly every two-word part had occurred, for
+example: "It is neutral green, colorless green, like the glaucous
+water lying in a cellar." The Paris we remember, Elisabeth Finley
+Thomas (1942).  "To specify those green ideas is hardly necessary, but
 you may observe Mr. [D. H.] Lawrence in the role of the satiated
-aesthete.&rdquo; The New Republic: Volume 29 p. 184, William White (1922).
-&ldquo;Ideas sleep in books.&rdquo; Current Opinion: Volume 52, (1912).
+aesthete." The New Republic: Volume 29 p. 184, William White (1922).
+"Ideas sleep in books." Current Opinion: Volume 52, (1912).
 </p>
 </blockquote>
-
 
 <p>
 Furthermore, Norvig says,
 </p>
-<blockquote>
 
-<p>[&hellip;] a statistically-trained finite-state model can in fact
+<blockquote>
+<p>
+[&#x2026;] a statistically-trained finite-state model can in fact
 distinguish between these two sentences. Pereira (2001) showed that
 such a model, augmented with word categories and trained by
 expectation maximization on newspaper text, computes that (a) is
 200,000 times more probable than (b).
 </p>
+
 <p>
 Furthermore, the statistical models are capable of delivering the
 judgment that both sentences are extremely improbable, when compared
-to, say, &ldquo;Effective green products sell well.&rdquo; Chomsky&rsquo;s theory, being
+to, say, "Effective green products sell well." Chomsky's theory, being
 categorical, cannot make this distinction; all it can distinguish is
 grammatical/ungrammatical.
 </p>
 </blockquote>
 
-
-
-
-
-<pre class="example">Every farmer who owns a donkey beats it.
+<pre class="example">
+Every farmer who owns a donkey beats it.
 
 Every farmer who owns a tractor uses it to drive to church on Sundays.
 
@@ -1116,44 +1153,49 @@ Some farmers who own a donkey beat it.
 --- infamous "donkey sentence" and variants
 </pre>
 
-
 <p>
-These &ldquo;donkey sentences&rdquo; are used as test cases for theories about
-anaphora (&ldquo;anaphora&rdquo; is the use of terms like &ldquo;it,&rdquo; &ldquo;her,&rdquo; &ldquo;himself,&rdquo;
+These "donkey sentences" are used as test cases for theories about
+anaphora ("anaphora" is the use of terms like "it," "her," "himself,"
 etc. which refer to another part of the sentence).
 </p>
+
 <p>
-In the first sentence, for example, how do we know that &ldquo;it&rdquo; refers to
-the donkey that each farmer owns? Does &ldquo;it&rdquo; also refer to all donkeys
+In the first sentence, for example, how do we know that "it" refers to
+the donkey that each farmer owns? Does "it" also refer to all donkeys
 owned by a single farmer?
 </p>
+
 <p>
 What is the correct translation of this first sentence into predicate
 logic?
 </p>
 
-
+<p>
 $$(\forall x)((farmer(x) \wedge (\exists y)(donkey(y) \wedge
 owns(x,y))) \rightarrow beat(x,y))$$
+</p>
 
 <p>
-That can&rsquo;t be right; \(y\) on the right side is not bound to any
-value. It doesn&rsquo;t properly refer to the donkey.
+That can't be right; \(y\) on the right side is not bound to any
+value. It doesn't properly refer to the donkey.
 </p>
+
 <p>
 How about,
 </p>
 
-
+<p>
 $$(\forall x)(\exists y)((farmer(x) \wedge donkey(y) \wedge owns(x,y))
 \rightarrow beat(x,y))$$
+</p>
 
 <p>
 From <a href="http://en.wikipedia.org/wiki/Donkey_sentence">Wikipedia</a>:
 </p>
-<blockquote>
 
-<p>In this case, the logical translation fails to give correct truth
+<blockquote>
+<p>
+In this case, the logical translation fails to give correct truth
 conditions to donkey sentences: Imagine a situation where there is a
 farmer owning a donkey and a pig, and not beating any of them. The
 formula will be true in that situation, because for each farmer we
@@ -1164,32 +1206,25 @@ sentence will be [vaccuously] true in that situation.
 </p>
 </blockquote>
 
-
 <p>
-Etc&hellip;
+Etc&#x2026;
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-11" class="outline-2">
+<div id="outline-container-sec-11" class="outline-2">
 <h2 id="sec-11">The edge of understanding</h2>
 <div class="outline-text-2" id="text-11">
-
-
 <blockquote>
-
-<p>Outside a psychological laboratory, the recognition of words is
+<p>
+Outside a psychological laboratory, the recognition of words is
 seldom an end in itself, because listeners want to understand what
-they hear. &mdash; Johnson-Laird
+they hear. &#x2014; Johnson-Laird
 </p>
 </blockquote>
-
 
 <p>
 Perhaps the same can be said about the written word.
 </p>
-
 
 <pre class="example">
 
@@ -1247,8 +1282,8 @@ in
 --- Aram Saroyan
 </pre>
 
-
-<pre class="example">"Gamut"
+<pre class="example">
+"Gamut"
 
 Much ado about trees lichen
 hugs alga and fungus live
@@ -1258,7 +1293,6 @@ money sunday coffee poorjoe snow
 
 --- Louis Zukofsky
 </pre>
-
 
 <pre class="example">
 
@@ -1272,11 +1306,10 @@ lighght
 
 
 <div class="figure">
-<p><img src="./images/kumi-yamashita-lovers.jpg"  alt="./images/kumi-yamashita-lovers.jpg" /></p>
-<p>&ldquo;Lovers,&rdquo; Kumi Yamashita, 1999; H190, W240, D15cm; cut aluminum plate, single light source, shadow</p>
+<p><img src="./images/kumi-yamashita-lovers.jpg" alt="kumi-yamashita-lovers.jpg" />
+</p>
+<p><span class="figure-number">Figure 3:</span> "Lovers," Kumi Yamashita, 1999; H190, W240, D15cm; cut aluminum plate, single light source, shadow</p>
 </div>
-
-
 
 <div style="font-size: 80%; clear: both;">
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
@@ -1291,11 +1324,12 @@ lighght
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Prolog resolution</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Prolog resolution"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:58:50 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,100 +130,101 @@
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">Prolog resolution</h1>
-
-<p>Suppose we have the following knowledge base:
+<p>
+Suppose we have the following knowledge base:
 </p>
 
+<div class="org-src-container">
 
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(a). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(b). 
 
-<pre class="src src-prolog"><span style="color: #0000ff;">f</span>(a). 
-<span style="color: #0000ff;">f</span>(b). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(a). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(b). 
 
-<span style="color: #0000ff;">g</span>(a). 
-<span style="color: #0000ff;">g</span>(b). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(b). 
 
-<span style="color: #0000ff;">h</span>(b). 
-
-<span style="color: #0000ff;">k</span>(<span style="color: #a0522d;">X</span>) :- f(<span style="color: #a0522d;">X</span>), g(<span style="color: #a0522d;">X</span>), h(<span style="color: #a0522d;">X</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">k</span>(<span style="color: #999999; background-color: #000000;">X</span>) :- f(<span style="color: #999999; background-color: #000000;">X</span>), g(<span style="color: #999999; background-color: #000000;">X</span>), h(<span style="color: #999999; background-color: #000000;">X</span>).
 </pre>
-
+</div>
 
 <p>
 How does Prolog determine whether <code>k(Y)</code> is true (provable)? That is,
 how does Prolog determine the value for <code>Y</code> that makes the query true?
 </p>
+
 <p>
 Its search process can be see in this graphic. The process is as
 follows:
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>Create a temporary variable <code>_G34</code> (randomly-named) to stand in
-     for <code>Y</code>. This is an implementation detail, so that if some other
-     rule uses <code>Y</code> (a completely different variable), then the
-     variable names don&rsquo;t collide.
-
+for <code>Y</code>. This is an implementation detail, so that if some other
+rule uses <code>Y</code> (a completely different variable), then the
+variable names don't collide.
 </li>
-<li>The goal is to prove <code>k(_G34)</code>. To do so, proving <code>f(_G34),      g(_G34), h(_G34)</code> will be enough. This is the new goal.
 
+<li>The goal is to prove <code>k(_G34)</code>. To do so, proving <code>f(_G34),
+     g(_G34), h(_G34)</code> will be enough. This is the new goal.
 </li>
+
 <li>To satisfy the first part of the new goal, <code>f(_G34)</code>, the
-     knowledge base is searched. There is no rule for <code>f/1</code> (the
-     predicate with arity one) but there is a fact: <code>f(a)</code>. <b>The first      matching fact/rule is tried first.</b> Thus, <code>_G34</code> gets set to
-     <code>a</code> (from unification).
-
+knowledge base is searched. There is no rule for <code>f/1</code> (the
+predicate with arity one) but there is a fact: <code>f(a)</code>. <b>The first
+matching fact/rule is tried first.</b> Thus, <code>_G34</code> gets set to
+<code>a</code> (from unification).
 </li>
+
 <li>Now, <code>g(a), h(a)</code> is the new goal. <code>g(a)</code> is satisfied just fine,
-     because exactly that term is found in the knowledge base (trivial
-     unification).
-
+because exactly that term is found in the knowledge base (trivial
+unification).
 </li>
+
 <li>Now, <code>h(a)</code> is the new goal. But, nothing in the knowledge base
-     unifies with <code>h(a)</code> and there is no <code>h/1</code> rule, so there is a
-     problem.
-
+unifies with <code>h(a)</code> and there is no <code>h/1</code> rule, so there is a
+problem.
 </li>
+
 <li>Go to the last decision point. This was when <code>_G34</code> was set to
-     <code>a</code>. Try to set it to something else. <code>f(b)</code> is in the knowledge
-     base as well, so go with <code>_G34 = b</code>.
-
+<code>a</code>. Try to set it to something else. <code>f(b)</code> is in the knowledge
+base as well, so go with <code>_G34 = b</code>.
 </li>
-<li>The new goal is <code>g(b), h(b)</code>, etc&hellip; (which ultimately works).
+
+<li>The new goal is <code>g(b), h(b)</code>, etc&#x2026; (which ultimately works).
 </li>
 </ol>
 
+<div class="center">
 
-
-<div style="text-align: center">
-<p><img src="./images/prolog-resolution-ex1.png"  alt="./images/prolog-resolution-ex1.png" />
+<div class="figure">
+<p><img src="./images/prolog-resolution-ex1.png" alt="prolog-resolution-ex1.png" />
 </p>
+</div>
 </div>
 
 <p>
-Now we&rsquo;ll switch to this knowledge base:
+Now we'll switch to this knowledge base:
 </p>
+
+<div class="prolog">
 <p>
 loves(vincent, mia).
 loves(marcellus, mia).
 jealous(A, B) :- loves(A, C), loves(B, C).
 </p>
+
+</div>
+
 <p>
 How is the proof for <code>jealous(X, Y)</code> found, and what values to the
 variables take?
 </p>
+
 <p>
 The proof tree is shown below. Note that there are four smiley-face
 leaves in tree. This means there are four different ways to get a
@@ -184,46 +232,54 @@ proof, which in this case means there are four different variable
 assignments.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/prolog-resolution-ex2.png"  alt="./images/prolog-resolution-ex2.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/prolog-resolution-ex2.png" alt="prolog-resolution-ex2.png" />
 </p>
+</div>
 </div>
 
 <p>
-Finally, let&rsquo;s look at a list predicate.
+Finally, let's look at a list predicate.
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
-<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">T</span><span style="color: #a020f0;">]</span>) :- member(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">T</span>).
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">T</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- member(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">T</span>).
 </pre>
-
+</div>
 
 <p>
 This is familiar to us from the <a href="./prolog.html">Prolog</a> notes. When we query with
 <code>member(X, [a, b, c])</code> we get that <code>X = a</code>.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/prolog-resolution-ex3.png"  alt="./images/prolog-resolution-ex3.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/prolog-resolution-ex3.png" alt="prolog-resolution-ex3.png" />
 </p>
+</div>
 </div>
 
 <p>
 When we query with <code>member(d, [a, b, c])</code> we get failure.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/prolog-resolution-ex4.png"  alt="./images/prolog-resolution-ex4.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/prolog-resolution-ex4.png" alt="prolog-resolution-ex4.png" />
 </p>
+</div>
 </div>
 
 <p>
 Much of these notes were adapted from <a href="http://www.learnprolognow.org">Learn Prolog Now!</a>, a free
 online textbook.
 </p>
-
 
 
 <div style="font-size: 80%; clear: both;">
@@ -239,9 +295,10 @@ online textbook.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

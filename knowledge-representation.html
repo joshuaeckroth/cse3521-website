@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Knowledge representation</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Knowledge representation"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-08 11:17:26 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,24 +130,12 @@
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">Knowledge representation</h1>
-
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">What is KR?</a>
@@ -129,82 +164,79 @@
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">What is KR?</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 The majority of the following discussion comes from Davis et al.,
-&ldquo;<a href="http://www.aaai.org/ojs/index.php/aimagazine/article/viewArticle/1029">What is a knowledge representation?</a>&ldquo;
+"<a href="http://www.aaai.org/ojs/index.php/aimagazine/article/viewArticle/1029">What is a knowledge representation?</a>"
 </p>
+
 <p>
 A knowledge representation is:
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>a <i>surrogate</i> for real-world entities
-
 </li>
+
 <li>an <i>ontological commitment</i> about what kinds of entities are
-    relevant
-
+relevant
 </li>
+
 <li>a <i>fragmentary theory of intelligent reasoning</i>, expressed in
-    terms of three components: (1) the KR&rsquo;s idea of what makes
-    intelligent reasoning, (2) the inferences that are possible in the
-    KR, and (3) the inferences that it &ldquo;recommends&rdquo;
-
+terms of three components: (1) the KR's idea of what makes
+intelligent reasoning, (2) the inferences that are possible in the
+KR, and (3) the inferences that it "recommends"
 </li>
+
 <li>a <i>medium for pragmatically efficient computation</i>; the KR offers
-    guidance for organizing information to facilitate making the
-    recommended inferences
-
+guidance for organizing information to facilitate making the
+recommended inferences
 </li>
+
 <li>a <i>medium for human expression</i>
 </li>
 </ul>
-
-
-
 </div>
 
-<div id="outline-container-1-1" class="outline-3">
+<div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1">A surrogate</h3>
 <div class="outline-text-3" id="text-1-1">
-
-
 <p>
 Reasoning about the world is an internal process. If an agent wishes
-to plan how to assemble a bike then the agent must &ldquo;think&rdquo; about
+to plan how to assemble a bike then the agent must "think" about
 wheels, chains, handle bars, and so on. These entities must exist in
-the agent&rsquo;s &ldquo;mind&rdquo; if it is to think about them. We expect the agent
+the agent's "mind" if it is to think about them. We expect the agent
 to be able to <i>plan</i> how to assemble a bicycle without needing to
 physically manipulate bicycle parts.
 </p>
+
 <p>
 Thus, the knowledge representation provides a surrogate for real-world
 entities. If the KR is useful, the actions that can be performed
-internally (as the agent is &ldquo;thinking&rdquo;) will more-or-less match what
+internally (as the agent is "thinking") will more-or-less match what
 the corresponding real-world actions do to real-world entities. For
-example, the agent&rsquo;s understanding of what &ldquo;lock the wheel into the
-frame&rdquo; does to a wheel and a frame should match the real world (the
+example, the agent's understanding of what "lock the wheel into the
+frame" does to a wheel and a frame should match the real world (the
 wheel is now stuck to the frame, and if the frame is lifted, the wheel
 comes with it, etc.).
 </p>
+
 <p>
 For any entity (surrogate) in the knowledge representation, we have to
 be sure we have a good argument for:
 </p>
-<ul>
-<li>&ldquo;correspondence&rdquo;: what does this entity in the KR represent in
-    reality?
 
+<ul class="org-ul">
+<li>"correspondence": what does this entity in the KR represent in
+reality?
 </li>
-<li>&ldquo;fidelity&rdquo;: how well does it match what it is supposed to
-    represent?
+
+<li>"fidelity": how well does it match what it is supposed to
+represent?
 </li>
 </ul>
-
 
 <p>
 All representations are imperfect; some detail is always left out (for
@@ -213,14 +245,10 @@ wheel into the frame may not work on some occasion (say, the frame is
 bent). We will never be able to represent all possibilities.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-1-2" class="outline-3">
+<div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">An ontological commitment</h3>
 <div class="outline-text-3" id="text-1-2">
-
-
 <p>
 All representations are imperfect, and details must inevitably be left
 out; furthermore we typically do not attempt to represent every
@@ -232,14 +260,16 @@ presumably has no use for facts about the Napoleonic Wars. So to the
 bicycle-fixing agent, those historical facts simply do not exist. It
 has no way of thinking about them.
 </p>
+
 <p>
-Davis, et al. describe this feature of KRs as the &ldquo;focusing&rdquo; or
-&ldquo;glasses&rdquo; effect, because the agent is effectively wearing glasses
+Davis, et al. describe this feature of KRs as the "focusing" or
+"glasses" effect, because the agent is effectively wearing glasses
 that limit its focus.
 </p>
-<blockquote>
 
-<p>The focusing effect is an essential part of what a representation
+<blockquote>
+<p>
+The focusing effect is an essential part of what a representation
 offers because the complexity of the natural world is overwhelming.
 We (and our reasoning machines) need guidance in deciding what in the
 world to attend to and what to ignore. The glasses supplied by a
@@ -249,124 +279,113 @@ complexity and detail. (<i>op cit.</i>)
 </p>
 </blockquote>
 
-
 <p>
 Figuring out what ontological commitments to make, that is, what is
 relevant to the agent, is a big problem. Also a problem is giving the
 agent an understanding of what is <i>not</i> represented. Assembling a
 bicycle in zero gravity is likely much more difficult; so can the
 agent just assume it is operating in Earth-like gravity? Why can it
-make that assumption? Where <i>is</i> that assumption in the agent&rsquo;s
+make that assumption? Where <i>is</i> that assumption in the agent's
 programming and knowledge?
 </p>
+
 <p>
 These problems are elucidated by John McCarthy, by way of an example:
 </p>
-<blockquote>
 
-<p>Three missionaries and three cannibals come to a river. A rowboat that
+<blockquote>
+<p>
+Three missionaries and three cannibals come to a river. A rowboat that
 seats two is available. If the cannibals ever outnumber the
 missionaries on either bank of the river, the missionaries will be
 eaten. How shall they cross the river?
 </p>
+
 <p>
 Obviously the puzzler is expected to devise a strategy of rowing the
 boat back and forth that gets them all across and avoids disaster
-[&hellip;]
+[&#x2026;]
 </p>
+
 <p>
 Imagine giving someone the problem, and after he puzzles for a while,
-he suggests going upstream half a mile and crossing on a bridge. &lsquo;What
-bridge?&rsquo; you say. &lsquo;No bridge is mentioned in the statement of the
-problem.&rsquo; And this dunce replies, &lsquo;Well, they don&rsquo;t say there isn&rsquo;t a
-bridge.&rsquo; You look at the English and even at the translation of the
-English into first order logic, and you must admit that &lsquo;they don&rsquo;t
-say&rsquo; there is no bridge. So you modify the problem to exclude bridges
+he suggests going upstream half a mile and crossing on a bridge. 'What
+bridge?' you say. 'No bridge is mentioned in the statement of the
+problem.' And this dunce replies, 'Well, they don't say there isn't a
+bridge.' You look at the English and even at the translation of the
+English into first order logic, and you must admit that 'they don't
+say' there is no bridge. So you modify the problem to exclude bridges
 and pose it again, and the dunce proposes a helicopter, and after you
 exclude that, he proposes a winged horse or that the other hang onto
 the outside of the boat while two row.
 </p>
+
 <p>
 You now see that while a dunce, he is an inventive dunce. Despairing
-of getting him to accept the problem in the proper puzzler&rsquo;s spirit,
+of getting him to accept the problem in the proper puzzler's spirit,
 you tell him the solution. To your further annoyance, he attacks your
 solution on the grounds that the boat might have a leak or lack
 oars. After you rectify that omission from the statement of the
 problem, he suggests that a sea monster may swim up the river and may
 swallow the boat. Again you are frustrated, and you look for a mode of
-reasoning that will settle his hash once and for all. &mdash; J. McCarthy,
-&ldquo;<a href="http://cogprints.org/410/">Circumscription&mdash;A form of non-monotonic reasoning</a>,&rdquo; 1980
+reasoning that will settle his hash once and for all. &#x2014; J. McCarthy,
+"<a href="http://cogprints.org/410/">Circumscription&#x2014;A form of non-monotonic reasoning</a>," 1980
 </p>
 </blockquote>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-1-3" class="outline-3">
+<div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">A fragmentary theory of intelligent reasoning</h3>
 <div class="outline-text-3" id="text-1-3">
-
-
 <p>
 The reason we build and employ knowledge representations is to
-facilitate inferencing or reasoning that&rsquo;s intelligent. The KR embeds
+facilitate inferencing or reasoning that's intelligent. The KR embeds
 a theory of intelligent reasoning. This theory is fragmentary because
 we have (so far) been unable to build a KR, with an accompanying
 inferencing procedure, that captures all intelligent reasoning. One
 might be able to argue that, in principle, building such a complete
 theory is impossible.
 </p>
+
 <p>
-There are three fundamental questions related to a KR&rsquo;s embedded
+There are three fundamental questions related to a KR's embedded
 theory of intelligent reasoning:
 </p>
-
 </div>
 
-<div id="outline-container-1-3-1" class="outline-4">
+<div id="outline-container-sec-1-3-1" class="outline-4">
 <h4 id="sec-1-3-1">What is intelligent reasoning?</h4>
 <div class="outline-text-4" id="text-1-3-1">
-
-
 <p>
 The field of AI has discovered/invented many varieties of intelligent
-reasoning. We have deduction (which is what we&rsquo;ll study), induction,
+reasoning. We have deduction (which is what we'll study), induction,
 abduction, reasoning by analogy, probabilistic reasoning, case-based
 reasoning, etc. Each of these are closely related to certain knowledge
 representation data structures.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-1-3-2" class="outline-4">
+<div id="outline-container-sec-1-3-2" class="outline-4">
 <h4 id="sec-1-3-2">What can we infer from what we know?</h4>
 <div class="outline-text-4" id="text-1-3-2">
-
-
 <p>
 Deduction famously cannot yield any new facts; a deductive conclusion
 does not state anything more than what was already present in the
 premises. However, inducation and abduction, for example, are
-&ldquo;ampliative&rdquo; forms of reasoning because they offer new facts (which
+"ampliative" forms of reasoning because they offer new facts (which
 may be wrong; deduction, on the other hand, is never wrong).
 </p>
+
 <p>
 If we want ampliative inference, we have to keep this in mind as we
 build the knowledge representation. In this case, deduction cannot be
 our only inference tool.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-1-3-3" class="outline-4">
+<div id="outline-container-sec-1-3-3" class="outline-4">
 <h4 id="sec-1-3-3">What should we infer from what we know?</h4>
 <div class="outline-text-4" id="text-1-3-3">
-
-
 <p>
 Often the set of inferences available to use is enormous. Which just a
 handful of premises and the method of deduction, we can often deduce
@@ -375,37 +394,29 @@ so that it can meet certain goals?
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-1-4" class="outline-3">
+<div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4">A medium for pragmatically efficient computation</h3>
 <div class="outline-text-3" id="text-1-4">
-
-
 <p>
 AI systems must eventually <i>do</i> something; they must compute. So, we
 need our knowledge representation to be computationally
-pragmatic. It&rsquo;s easy to think up knowledge representations that are
-simple, beautiful, precise, and&hellip; unwieldy. The tricks for making a
-KR useful but also pragmatic can be quite sophisticated. We&rsquo;ll avoid
+pragmatic. It's easy to think up knowledge representations that are
+simple, beautiful, precise, and&#x2026; unwieldy. The tricks for making a
+KR useful but also pragmatic can be quite sophisticated. We'll avoid
 dealing with this issue. However, when we look at <a href="./prolog.html">Prolog</a>, it is
 important for us to keep in mind that Prolog is useful precisely
 because it limits the expressivitiy of the KR in order to keep the
 inferencing computationally efficient.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-1-5" class="outline-3">
+<div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5">A medium for human expression</h3>
 <div class="outline-text-3" id="text-1-5">
-
-
 <blockquote>
-
-<p>If the representation makes things possible but not easy, then as real
+<p>
+If the representation makes things possible but not easy, then as real
 users we might never know whether we misunderstood the representation
 and just do not know how to use it or whether it truly cannot express
 some things that we would like to say. A representation is the
@@ -413,40 +424,32 @@ language in which we communicate; hence, we must be able to speak it
 without heroic effort.
 </p>
 </blockquote>
-
-
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Making it happen</h2>
 <div class="outline-text-2" id="text-2">
-
-
 <p>
 Recall that AI problems are best designed and studied at the
-&ldquo;knowledge level&rdquo; (see related <a href="./knowledge-level.html">lecture notes</a>). This is because AI
+"knowledge level" (see related <a href="./knowledge-level.html">lecture notes</a>). This is because AI
 problems are knowledge problems (how to know what to do). Whether an
 AI problem is solved primarily with array operations coded in Java or
 list operations coded in Lisp is not highly relevant at the knowledge
 level.
 </p>
+
 <p>
 However, when we actually create systems that solve AI problems, we do
 have to decide how everything is coded (assuming we are solving the
 problem with software). There are at least two ways to represent
 knowledge.
 </p>
-
 </div>
 
-<div id="outline-container-2-1" class="outline-3">
+<div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1">Procedural knowledge</h3>
 <div class="outline-text-3" id="text-2-1">
-
-
 <p>
 This is the form of knowledge with which you are probably most
 familiar. Procedural knowledge is, essentially, a program. If you want
@@ -455,49 +458,50 @@ code to navigate a maze. This code will probably first find the
 locations of nearby walls and exits, and make a choice about where to
 move based on criteria embedded in the algorithm.
 </p>
+
 <p>
 In another case, an industrial robot may be programmed to perform a
 certain sequence of actions (maybe with a few variations depending on
-context), such as assembling part of a car. The &ldquo;knowledge&rdquo; is
+context), such as assembling part of a car. The "knowledge" is
 embedded in the procedure (the algorithm).
 </p>
+
 <p>
 Compare this description of procedural knowledge with the way
 cognitive pyschologists describe procedural knowledge: they say that
 procedural knowledge includes recognition of a face or reacting to a
-joke. For them, it is &ldquo;tacit&rdquo; knowledge because it cannot be described
+joke. For them, it is "tacit" knowledge because it cannot be described
 by the person who has it; exactly what knowledge is brought to bear is
 not conscious to the agent. This is similar to our description because
 knowledge that is embedded in an algorithm likewise is very difficult
 to extract and explicate outside of its active use.
 </p>
+
 <p>
 Note that our prior work with the 8-puzzle used procedural knowledge:
 the board states were generated based on an algorithm; there was no
-separate &ldquo;description of a board&rdquo; that we consulted.
+separate "description of a board" that we consulted.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2-2" class="outline-3">
+<div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">Declarative knowledge</h3>
 <div class="outline-text-3" id="text-2-2">
-
-
 <p>
 Knowledge that is explicitly represented separately of its use is
-declarative knowledge. &ldquo;I declare that such-and-such is the case!&rdquo; It
+declarative knowledge. "I declare that such-and-such is the case!" It
 is knowledge that is true independently of how it happens to be used
 in some context.
 </p>
+
 <p>
 Procedural knowledge is generally specific to the algorithm in which
 it is embedded. Thus, there has been less of a drive to create
-&ldquo;universal&rdquo; ways of representing procedural knowledge (well, perhaps
+"universal" ways of representing procedural knowledge (well, perhaps
 we can think of programming languages as universal representations of
 procedural knowledge).
 </p>
+
 <p>
 On the other hand, declarative knowledge, being essentially universal
 in nature (not tied to a particular active context like procedural
@@ -505,36 +509,37 @@ knowledge is), has experienced centuries of formalization. If we want
 to say something universal, perhaps we should have a universal way of
 saying it!
 </p>
+
 <p>
-We&rsquo;ll look at four ways of &ldquo;saying&rdquo; declarative knowledge, each more
-sophisticated than the last. We&rsquo;ll explicitly note that these forms of
+We'll look at four ways of "saying" declarative knowledge, each more
+sophisticated than the last. We'll explicitly note that these forms of
 logic have nothing to do with programming (nothing to do with
 procedures). However, in order to actually build software with
-declarative knowledge, we&rsquo;ll next look at a programming language that
+declarative knowledge, we'll next look at a programming language that
 sort-of approximates a certain logical formalism.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2-3" class="outline-3">
+<div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3">Our own ontological commitment</h3>
 <div class="outline-text-3" id="text-2-3">
-
-
 <p>
 Although we will be using logic (specifically, Boolean, propositional,
 and first order logics) for our knowledge representations,
 this is not the only approach we could have taken. For example, we
-could instead have looked at &ldquo;connectionist&rdquo; representations, which
+could instead have looked at "connectionist" representations, which
 store knowledge in artificial neural networks (arguably like how our
 brains store knowledge). Or, we could have used probabilistic
 represenations such as Bayesian networks. The logic approach, however,
 is the oldest in AI and generally the easiest to understand.
-</p></div>
+</p>
 </div>
 </div>
 </div>
-
+</div>
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

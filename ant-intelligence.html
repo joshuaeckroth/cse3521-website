@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Ant intelligence</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Ant intelligence"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:59:12 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,26 +130,12 @@
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">Ant intelligence</h1>
-
-<p>And, termite intelligence.
-</p>
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Building a termite nest</a></li>
@@ -111,124 +144,114 @@
 </ul>
 </div>
 </div>
+<p>
+And, termite intelligence.
+</p>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Building a termite nest</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 How termites do it:
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>use pheromones
-
 </li>
+
 <li>metabolize bodily waste, which contains pheromones; this waste is
-    what the mound is constructed of
-
+what the mound is constructed of
 </li>
+
 <li>wander randomly, but prefer the direction of the strongest local
-    pheromone concentration
-
+pheromone concentration
 </li>
+
 <li>at each step, decide stochastically whether to deposit the current
-    load of waste
+load of waste
 
-<ul>
+<ul class="org-ul">
 <li>the probability of deposit increases with the local pheromone
-      density and the amount of waste it is carrying
-
+density and the amount of waste it is carrying
 </li>
+
 <li>a full termite will drop its waste even if there is no deposit
-      nearby
-
+nearby
 </li>
+
 <li>a termite that senses very high local concentration of
-      pheromones will deposit whatever waste it is carrying (even a
-      small amount)
+pheromones will deposit whatever waste it is carrying (even a
+small amount)
 </li>
 </ul>
-
 </li>
 </ul>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Ants finding food</h2>
 <div class="outline-text-2" id="text-2">
-
-
 <p>
 How ants do it:
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>five rules
-
 </li>
+
 <li>avoid obstacles (ants will not aimlessly push against a wall)
-
 </li>
+
 <li>wander randomly, in the general direction of nearby pheromones
 
-<ul>
+<ul class="org-ul">
 <li>if no pheromones are sensed, execute Brownian motion (uniform
-      distribution of choices)
-
+distribution of choices)
 </li>
 </ul>
-
 </li>
+
 <li>if holding food, drop pheromone at constant rate as it walks
 
-<ul>
-<li>maybe follow a &ldquo;nest beacon&rdquo;
-
+<ul class="org-ul">
+<li>maybe follow a "nest beacon"
 </li>
 </ul>
-
 </li>
+
 <li>if not holding food and finds food, pick it up
-
 </li>
+
 <li>if holding food and finds nest, drop food
 </li>
 </ul>
 
-
 <blockquote>
-
-<p>The initial path will not be straight, but the tendency of ants to
+<p>
+The initial path will not be straight, but the tendency of ants to
 wander even in the presence of pheromones will generate short-cuts
 across initial meanders. Because pheromone paths have some breadth,
 they tend to merge together into a trace that becomes straighter the
 more it is used.
 </p>
 </blockquote>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Ants sorting things in a nest</h2>
 <div class="outline-text-2" id="text-3">
-
-
 <p>
-This model is described in the article <a href="http://ww.perada.eu/documents/articles-perspectives/go-to-the-ants-engineering-principles-from-natural-agent-systems.pdf">&ldquo;Go to the ant&rdquo;: Engineering principles from natural multi-agent systems</a> (PDF) by Parunak (1997).
+This model is described in the article <a href="http://ww.perada.eu/documents/articles-perspectives/go-to-the-ants-engineering-principles-from-natural-agent-systems.pdf">"Go to the ant": Engineering
+principles from natural multi-agent systems</a> (PDF) by Parunak (1997).
 </p>
+
 <p>
 This is the description from the article:
 </p>
-<blockquote>
 
-<p><b>System Behavior</b> An ant hill houses different kinds of things,
+<blockquote>
+<p>
+<b>System Behavior</b> An ant hill houses different kinds of things,
 including larvae, eggs, cocoons, and food. The ant colony keeps these
 entities sorted by kind. For example, when an egg hatches, the larva
 does not stay with other eggs, but is moved to the area for
@@ -236,43 +259,47 @@ larvae. Computer scientists have developed a number of algorithms for
 sorting things, but no ant in the ant hill is executing a sorting
 algorithm.
 </p>
+
 <p>
 <b>Responsibilities</b> The individual ant algorithm that yields
 system-level sorting behavior contains some behaviors similar to those
 in the path-planning problem.
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>Wander randomly around the nest.
-
 </li>
+
 <li>Sense nearby objects, and maintain a short memory (about ten
-     steps) of what has been seen.
-
+steps) of what has been seen.
 </li>
+
 <li>If an ant is not carrying anything when it encounters an object,
-     decide stochastically whether or not to pick up the object. The
-     probability of picking up an object decreases if the ant has
-     recently encountered similar objects.
+decide stochastically whether or not to pick up the object. The
+probability of picking up an object decreases if the ant has
+recently encountered similar objects.
 
 <p>
-     In the emulation, the probability of picking up an object is <code>P =      (K+ /(K+ + F))^2</code> where <code>F</code> is the fraction of positions in
-     short-term memory occupied by objects of the same type as the
-     object sensed and <code>K+</code> is a constant. As <code>F</code> becomes small
-     compared with <code>K+</code>, the probability that the ant will pick up the
-     object approaches certainty.
+In the emulation, the probability of picking up an object is <code>P =
+     (K+ /(K+ + F))^2</code> where <code>F</code> is the fraction of positions in
+short-term memory occupied by objects of the same type as the
+object sensed and <code>K+</code> is a constant. As <code>F</code> becomes small
+compared with <code>K+</code>, the probability that the ant will pick up the
+object approaches certainty.
 </p>
 </li>
+
 <li>If an ant is carrying something, at each time step decide
-   stochastically whether or not to drop it, where the probability of
-   dropping a carried object increases if the ant has recently
-   encountered similar items in the environment. In the emulation, <code>P    = (F / (K- + F))^2</code> where <code>F</code> is the fraction of positions in
-   short-term memory occupied by objects of the same type as the
-   object carried, and <code>K-</code> is another constant. As <code>F</code> becomes large
-   compared with <code>K-</code>, the probability that the carried object will be
-   put down approaches certainty.
+stochastically whether or not to drop it, where the probability of
+dropping a carried object increases if the ant has recently
+encountered similar items in the environment. In the emulation, <code>P
+   = (F / (K- + F))^2</code> where <code>F</code> is the fraction of positions in
+short-term memory occupied by objects of the same type as the
+object carried, and <code>K-</code> is another constant. As <code>F</code> becomes large
+compared with <code>K-</code>, the probability that the carried object will be
+put down approaches certainty.
 </li>
 </ol>
-
 
 <p>
 <b>Integration</b> As in path planning, the Brownian walk eventually brings
@@ -285,19 +312,17 @@ drop behaviors enables multiple concentrations to merge, since ants
 occasionally pick up items from one existing concentration and
 transport them to another.
 </p>
+
 <p>
 The put-down constant <code>K-</code> must be stronger than the pick-up constant
 <code>K+</code>, or else clusters will dissolve faster than they form. Typically,
 <code>K+</code> is about 1 and <code>K-</code> is about 3. The length of short-term memory
-and the length of the ant&rsquo;s step in each time period determine the
+and the length of the ant's step in each time period determine the
 radius within which the ant compares objects. If the memory is too
 long, the ant sees the entire nest as a single location, and sorting
 will not take place.
 </p>
 </blockquote>
-
-
-
 
 
 <div style="font-size: 80%; clear: both;">
@@ -313,11 +338,12 @@ will not take place.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

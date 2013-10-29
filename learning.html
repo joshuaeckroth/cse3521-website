@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Learning</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Learning"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:58:59 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,40 +130,12 @@
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">Learning</h1>
-
-<blockquote>
-
-<p>The idea of a learning machine may appear paradoxical to some
-readers. How can the rules of operation of the machine change? They
-should describe completely how the machine will react, whatever its
-history might be, whatever changes it might undergo. The rules are
-quite time-invariant. This is quite true. The explanation of the
-paradox is that the rules which get changed in the learning process
-are of a rather less pretentious kind, claiming only an ephermal
-validity. The reader may draw a parallel with the Constitution of the
-United States. &mdash; &ldquo;Computing Machinery and Intelligence,&rdquo; Alan Turing
-(1950)
-</p>
-</blockquote>
-
-
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Nomic</a></li>
@@ -133,21 +152,35 @@ United States. &mdash; &ldquo;Computing Machinery and Intelligence,&rdquo; Alan 
 </ul>
 </div>
 </div>
+<blockquote>
+<p>
+The idea of a learning machine may appear paradoxical to some
+readers. How can the rules of operation of the machine change? They
+should describe completely how the machine will react, whatever its
+history might be, whatever changes it might undergo. The rules are
+quite time-invariant. This is quite true. The explanation of the
+paradox is that the rules which get changed in the learning process
+are of a rather less pretentious kind, claiming only an ephermal
+validity. The reader may draw a parallel with the Constitution of the
+United States. &#x2014; "Computing Machinery and Intelligence," Alan Turing
+(1950)
+</p>
+</blockquote>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Nomic</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 <a href="http://en.wikipedia.org/wiki/Nomic">Wikipedia entry</a>
 </p>
+
 <p>
 <a href="http://www.earlham.edu/~peters/writing/nomic.htm">http://www.earlham.edu/~peters/writing/nomic.htm</a>
 </p>
-<blockquote>
 
-<p>The paradox on which I will focus arises from the question whether the
+<blockquote>
+<p>
+The paradox on which I will focus arises from the question whether the
 clause of a constitution that authorizes amendments may authorize its
 own amendment or repeal. May a rule that permits the change of other
 rules also permit its own change, especially its irrevocable change
@@ -156,89 +189,64 @@ have a strict counterpart in logic, for it pertains to changing the
 rules of the system by means of a rule within the system. In logic
 rules are traditionally thought to be either immutable and eternal, or
 arbitrary postulates changeable by logicians but not by the
-postulates&rsquo; own authority. (<a href="http://www.earlham.edu/~peters/writing/psa/">http://www.earlham.edu/~peters/writing/psa/</a>)
+postulates' own authority. (<a href="http://www.earlham.edu/~peters/writing/psa/">http://www.earlham.edu/~peters/writing/psa/</a>)
 </p>
 </blockquote>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Unsupervised learning</h2>
 <div class="outline-text-2" id="text-2">
-
-
-<ul>
+<ul class="org-ul">
 <li>No feedback about true labels; only (often imperfect) measurements
-
 </li>
+
 <li>Often group entities by their similarities to each other
-
 </li>
-<li>Not easy to evaluate performance (since we don&rsquo;t have any true
-    labels)
+
+<li>Not easy to evaluate performance (since we don't have any true
+labels)
 </li>
 </ul>
-
-
-
 </div>
 
-<div id="outline-container-2-1" class="outline-3">
+<div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1">Methods</h3>
 <div class="outline-text-3" id="text-2-1">
-
-
-<ul>
+<ul class="org-ul">
 <li><a href="./k-means.html">k-means clustering</a>
 </li>
 </ul>
-
-
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Supervised learning</h2>
 <div class="outline-text-2" id="text-3">
-
-
-<ul>
+<ul class="org-ul">
 <li>A set of data is labeled with true labels; this is the
-    &ldquo;training&rdquo; set
-
+"training" set
 </li>
+
 <li>Learning is based on measurements and true labels; how do certain
-    measures provide evidence for certain labels?
-
+measures provide evidence for certain labels?
 </li>
+
 <li>Easy to evaluate performance: % of correctly-labeled cases on a
-    &ldquo;test&rdquo; set (which is distinct from the &ldquo;training&rdquo; set; possibly,
-    the original training set is split, with one small subset saved
-    for testing purposes)
+"test" set (which is distinct from the "training" set; possibly,
+the original training set is split, with one small subset saved
+for testing purposes)
 </li>
 </ul>
-
-
-
 </div>
 
-<div id="outline-container-3-1" class="outline-3">
+<div id="outline-container-sec-3-1" class="outline-3">
 <h3 id="sec-3-1">Methods</h3>
 <div class="outline-text-3" id="text-3-1">
-
-
-<ul>
+<ul class="org-ul">
 <li><a href="./k-nn.html">k-nearest neighbor</a>
 </li>
 </ul>
-
-
-
 
 <div style="font-size: 80%; clear: both;">
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
@@ -253,13 +261,13 @@ postulates&rsquo; own authority. (<a href="http://www.earlham.edu/~peters/writin
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
-
 </div>
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

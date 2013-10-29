@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Uninformed search</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Uninformed search"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-02-12 15:53:41 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,52 +130,12 @@
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">Uninformed search</h1>
-
-<p>We learned in the <a href="./search.html">Search</a> lecture notes that search problems have the
-following components: a starting state, possible actions, a transition
-model that describes how actions change one state to another, a goal
-criteria, and a way of calculating the cost of a sequence of actions
-(a &ldquo;path&rdquo; cost). We do not use the path cost when executing uninformed
-search.
-</p>
-<p>
-The transition model defines a state space, which can be represented
-as a directed graph (vertices are states, edges are actions).
-</p>
-<p>
-For example, consider the 8-puzzle game, which requires that tokens
-are shifted around until a particular goal state is reached.
-</p>
-
-<div style="text-align: center">
-<p><img src="./images/8puzzle-simple.png"  alt="./images/8puzzle-simple.png" />
-</p>
-</div>
-
-<p>
-Each &ldquo;state&rdquo; is a configuration of the puzzle. Each state can be
-followed by at most four other states, resulting from moving a
-neighboring token left, right, up, or down into the space (thus
-shifting the space). If the space is on an edge or in a corner, fewer
-than four movements are possible.
-</p>
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Generic search algorithm</a></li>
@@ -143,17 +150,50 @@ than four movements are possible.
 </ul>
 </div>
 </div>
-
-<div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Generic search algorithm</h2>
-<div class="outline-text-2" id="text-1">
-
-<p>All searches essentially follow the same algorithm:
+<p>
+We learned in the <a href="./search.html">Search</a> lecture notes that search problems have the
+following components: a starting state, possible actions, a transition
+model that describes how actions change one state to another, a goal
+criteria, and a way of calculating the cost of a sequence of actions
+(a "path" cost). We do not use the path cost when executing uninformed
+search.
 </p>
 
+<p>
+The transition model defines a state space, which can be represented
+as a directed graph (vertices are states, edges are actions).
+</p>
 
+<p>
+For example, consider the 8-puzzle game, which requires that tokens
+are shifted around until a particular goal state is reached.
+</p>
 
-<pre class="example">1. create an empty list called "closedset"; this list will contain
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/8puzzle-simple.png" alt="8puzzle-simple.png" />
+</p>
+</div>
+</div>
+
+<p>
+Each "state" is a configuration of the puzzle. Each state can be
+followed by at most four other states, resulting from moving a
+neighboring token left, right, up, or down into the space (thus
+shifting the space). If the space is on an edge or in a corner, fewer
+than four movements are possible.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Generic search algorithm</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+All searches essentially follow the same algorithm:
+</p>
+
+<pre class="example">
+1. create an empty list called "closedset"; this list will contain
    states that have been visited
 
 2. create a list called "openset" that contains just the starting
@@ -187,21 +227,18 @@ than four movements are possible.
 5. if the openset is empty and we never found the goal, oops!
 </pre>
 
-
 <p>
-Step <code>4.a.</code> is a key step. The &ldquo;algorithm&rdquo; above gives no guidance
+Step <code>4.a.</code> is a key step. The "algorithm" above gives no guidance
 about how to choose the next state to evaluate. You can imagine that
-some choices are better (closer to the goal) than others&hellip;
+some choices are better (closer to the goal) than others&#x2026;
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Random search</h2>
 <div class="outline-text-2" id="text-2">
-
-<p>A random search, while never practical as far as I know, is
+<p>
+A random search, while never practical as far as I know, is
 nevertheless interesting to consider as a worst case search. To
 program this search, modify step <code>4.a.</code> so that a <i>random</i> state is
 chosen. Given enough time, the goal state should be found, but a
@@ -209,24 +246,24 @@ random search will probably take more time (more states are checked)
 than any other method.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Breadth-first search</h2>
 <div class="outline-text-2" id="text-3">
-
-<p>In breadth-first search (BFS), we want to check all states (which
-we&rsquo;ll call &ldquo;children states&rdquo;) accessible from the previous state (the
-&ldquo;parent state&rdquo;) before we check states accessible from the
+<p>
+In breadth-first search (BFS), we want to check all states (which
+we'll call "children states") accessible from the previous state (the
+"parent state") before we check states accessible from the
 children. So if some state is to be checked, say state X, and there
 are 15 children of state X, then we will check all of those 15
 children before checking any of their children.
 </p>
+
 <p>
 Breadth-first search appears to search a tree horizontally before
 searching vertically.
 </p>
+
 <p>
 To implement BFS, modify step <code>4.a.</code> to pick out of the <code>openset</code> the
 state that was added <i>earliest</i> (in time). For example, the children
@@ -234,10 +271,10 @@ of a state are checked before the their children, because the children
 of the original state are discovered earlier. The <code>openset</code> in BFS is
 essentially a queue.
 </p>
+
 <p>
 Here is an example of BFS operating on the 8-puzzle:
 </p>
-
 
 <div style="text-align: center">
 <OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
@@ -252,18 +289,11 @@ PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Vers
 </EMBED>
 </OBJECT>
 </div>
-
 </div>
-
 </div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Depth-first search</h2>
 <div class="outline-text-2" id="text-4">
-
-
-
-
 <div style="float: right; width: 145;">
 <OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
 WIDTH="145" HEIGHT="800" 
@@ -282,22 +312,19 @@ PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Vers
 A trivial change to breadth-first search gives us depth-first search
 (DFS). For DFS, modify step <code>4.a.</code> to pick out of the <code>openset</code> the
 state that was added <i>last</i> (in time). So in DFS, the <code>openset</code> is
-essentially a stack. The purpose is to check the a state&rsquo;s first
-discovered child, and then that child&rsquo;s first child, etc. before
-checking the original state&rsquo;s second child. DFS appears to search a
+essentially a stack. The purpose is to check the a state's first
+discovered child, and then that child's first child, etc. before
+checking the original state's second child. DFS appears to search a
 tree vertically before it searches horizontally.
 </p>
-
 </div>
 
-<div id="outline-container-4-1" class="outline-3">
+<div id="outline-container-sec-4-1" class="outline-3">
 <h3 id="sec-4-1">Iterative-deepening depth-first search</h3>
 <div class="outline-text-3" id="text-4-1">
-
-
 <p>
 Depending on the search problem, DFS may go off into
-&ldquo;never-never-land,&rdquo; seemingly never arriving at a goal state, while
+"never-never-land," seemingly never arriving at a goal state, while
 say, BFS, arrives at the solution rather quickly. We see this behavior
 in the 8-puzzle problem because DFS just keeps trying moves that are
 built off prior moves until it either repeats a state (somewhat
@@ -306,13 +333,15 @@ true goal is only five moves away from the starting state, then BFS
 will find this goal in less than 1024 checks while DFS may require,
 well, 362,880 checks.
 </p>
+
 <p>
-To solve the problem of DFS going to &ldquo;deep&rdquo; into &ldquo;never-never-land,&rdquo;
+To solve the problem of DFS going to "deep" into "never-never-land,"
 we can put a limit on the depth of DFS. Step <code>4.c.</code> is modified so
 that only states that have depth less than some constant are added to
 the <code>openset</code>. The depth is calculated as the number of actions or
 moves that have been applied to the starting state.
 </p>
+
 <p>
 Because it is often difficult to know what the correct depth limit is,
 the <i>iterative-deepening depth-first search</i> (IDDFS if you like) first
@@ -321,27 +350,23 @@ again with depth limit 2; and so on, until the goal state is found.
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-5" class="outline-2">
+<div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Breadth-first versus depth-first search</h2>
 <div class="outline-text-2" id="text-5">
-
-
 <p>
 Breadth-first search is a good choice when you want to evaluate every
 possible choice before moving forward. BFS ensures that the shortest
 path to the goal will be found (shortest in terms of number of moves
-or number of &ldquo;hops&rdquo;), because no path is left unchecked. However, BFS
+or number of "hops"), because no path is left unchecked. However, BFS
 suffers when, at each state, there is an enormous number of choices to
 consider.
 </p>
+
 <p>
 On the other hand, depth-first search seems a bit block-headed and
 just pushes forward whenever it has a next possible move.
 </p>
-
 
 <div style="font-size: 80%; clear: both;">
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
@@ -356,11 +381,12 @@ just pushes forward whenever it has a next possible move.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

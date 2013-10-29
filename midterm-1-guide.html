@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Midterm 1 guide</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Midterm 1 guide"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:58:57 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,7 +130,8 @@
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="MathJax/MathJax.js">
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -126,24 +174,10 @@
 </script>
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">Midterm 1 guide</h1>
-
-<p>Answers on the bottom. Also, you can <b>bring a notecard</b> (5in x 7in
-max) with notes or whatnot.
-</p>
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Turing test</a></li>
@@ -161,7 +195,7 @@ max) with notes or whatnot.
 <li><a href="#sec-3-4">Prolog</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">Answers&hellip;</a>
+<li><a href="#sec-4">Answers&#x2026;</a>
 <ul>
 <li><a href="#sec-4-1">Turing test</a></li>
 <li><a href="#sec-4-2">Search</a>
@@ -183,157 +217,203 @@ max) with notes or whatnot.
 </ul>
 </div>
 </div>
+<p>
+Answers on the bottom. Also, you can <b>bring a notecard</b> (5in x 7in
+max) with notes or whatnot.
+</p>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Turing test</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 True or false? Turing first described a test between a monkey and a
 human before describing a test between a human and a machine.
 </p>
+
 <p>
 True or false? The goal of the machine is to convince the judge that
 the human is a machine.
 </p>
+
 <p>
 True or false? To pass the Turing test, the machine should be expected
 to fool the judge (convince the judge that the machine is a human)
 nearly 100% of the time; or, maybe just 70% of the time.
 </p>
+
 <p>
 True or false? Dennett thinks that winning a chess championship is
 just as strong a test for computer intelligence as the Turing test.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Search</h2>
 <div class="outline-text-2" id="text-2">
-
-
-
-</div>
-
-<div id="outline-container-2-1" class="outline-3">
+</div><div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1">General search</h3>
 <div class="outline-text-3" id="text-2-1">
-
-
 <p>
 Give an initial state, describe possible actions and the transition
 model (i.e., how states connect), and specify a goal criterion for the
 following search problem:
 </p>
-<blockquote>
 
-<p>A robot wants a path to exit a maze. The maze is represented as a
+<blockquote>
+<p>
+A robot wants a path to exit a maze. The maze is represented as a
 square grid; open areas are represented by white grid cells, and walls
 are represented by black grid cells.
 </p>
 </blockquote>
 
-
 <p>
 Repeat this exercise for the following search problem:
 </p>
-<blockquote>
 
-<p>Recall from calculus that the derivative is the inverse of the
+<blockquote>
+<p>
+Recall from calculus that the derivative is the inverse of the
 integral. Finding the derivative of a formula is easy (no search
 needed). But finding the integral of a formula is often challenging,
 and may require a search procedure. Describe this search procedure.
 </p>
 </blockquote>
 
-
 <p>
 Complete the following table for weighted, finite search graphs:
 </p>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
 </colgroup>
 <thead>
-<tr><th scope="col" class="left">Search algorithm</th><th scope="col" class="left">Always complete?</th><th scope="col" class="left">Always optimal?</th><th scope="col" class="left">Uses a heuristic?</th></tr>
+<tr>
+<th scope="col" class="left">Search algorithm</th>
+<th scope="col" class="left">Always complete?</th>
+<th scope="col" class="left">Always optimal?</th>
+<th scope="col" class="left">Uses a heuristic?</th>
+</tr>
 </thead>
 <tbody>
-<tr><td class="left">Random search</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
-<tr><td class="left">Breadth-first search</td><td class="left">Yes</td><td class="left"></td><td class="left"></td></tr>
-<tr><td class="left">Depth-first search</td><td class="left"></td><td class="left">No</td><td class="left"></td></tr>
-<tr><td class="left">Hill-climbing search</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
-<tr><td class="left">Best-first search</td><td class="left"></td><td class="left"></td><td class="left"></td></tr>
-<tr><td class="left">A* search</td><td class="left"></td><td class="left"></td><td class="left">Yes</td></tr>
+<tr>
+<td class="left">Random search</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Breadth-first search</td>
+<td class="left">Yes</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Depth-first search</td>
+<td class="left">&#xa0;</td>
+<td class="left">No</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Hill-climbing search</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Best-first search</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">A* search</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">Yes</td>
+</tr>
 </tbody>
 </table>
-
 
 <p>
 Recall the Goodale route search problem from <a href="./search-practice.html">Practice with searching</a>
 notes. Answer the following questions for each of breadth-first
 search, depth-first search, best-first search (using distances),
 hill-climbing search, and A* search (using some heuristic like
-distance &ldquo;as the crow flies&rdquo;). Assume we start at <code>Woodruff &amp; Tuttle</code>
+distance "as the crow flies"). Assume we start at <code>Woodruff &amp; Tuttle</code>
 and the goal is <code>Goodale parking lot</code>. For each question, there may be
 more than one correct answer.
 </p>
-<ol>
-<li>What are the first two states (beyond <code>Woodruff &amp; Tuttle</code>) that
-     will be checked?
 
+<ol class="org-ol">
+<li>What are the first two states (beyond <code>Woodruff &amp; Tuttle</code>) that
+will be checked?
 </li>
+
 <li>What does the <code>tocheck</code> list look like after checking those
-     states from question 1? Be sure to order the list by an
-     appropriate sort order (breadth-first, hill-climbing, best-first,
-     and A* will take the next state from the front of the list;
-     depth-first will take the next state from the end).
+states from question 1? Be sure to order the list by an
+appropriate sort order (breadth-first, hill-climbing, best-first,
+and A* will take the next state from the front of the list;
+depth-first will take the next state from the end).
 </li>
 </ol>
-
 
 <p>
 True or false? Iterative deepening depth-first search is complete
 whenever regular depth-first search is complete for some search
 problem.
 </p>
+
 <p>
 True or false? Iterative deepening depth-first search can usually be
 expected to find a shorter path to the goal than regular depth-first
 search.
 </p>
+
 <p>
 What is the singular requirement for a heuristic to be called
-&ldquo;admissible?&rdquo;
+"admissible?"
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2-2" class="outline-3">
+<div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">Adversarial search</h3>
 <div class="outline-text-3" id="text-2-2">
-
-
 <p>
 Describe a utility function for an adversarial search procedure (e.g.,
 minimax) for playing chess.
 </p>
+
 <p>
 True or false? Minimax is an appropriate search procedure for
-single-player games (like a solitaire card game or a Rubik&rsquo;s cube)?
+single-player games (like a solitaire card game or a Rubik's cube)?
 </p>
+
 <p>
 True or false? Alpha-beta pruning, as applied to the minimax
 procedure, produces more optimal solutions (e.g., produces game moves
 that allow the computer to win in fewer moves).
 </p>
+
 <p>
 True or false? Alpha-beta pruning (applied to minimax) uses different
 utility functions than regular minimax.
 </p>
+
 <p>
 True or false? Alpha-beta pruning (applied to minimax) is the same
 algorithm as minimax, just faster because irrelevant computations are
@@ -341,932 +421,1039 @@ omitted.
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Knowledge representation</h2>
 <div class="outline-text-2" id="text-3">
-
-
-
-</div>
-
-<div id="outline-container-3-1" class="outline-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
 <h3 id="sec-3-1">Boolean logic</h3>
 <div class="outline-text-3" id="text-3-1">
-
-
 <p>
-Simplify the following expression using Boole&rsquo;s and De Morgan&rsquo;s laws:
+Simplify the following expression using Boole's and De Morgan's laws:
 $$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
-
-</p></div>
-
+</p>
 </div>
-
-<div id="outline-container-3-2" class="outline-3">
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">Propositional logic</h3>
 <div class="outline-text-3" id="text-3-2">
-
-
 <p>
 Build a truth-table for:
 $$\neg A \vee (B \leftrightarrow A)$$
+</p>
 
+<p>
 Find a satisfying assignment (if any exists) for:
 $$\neg A \wedge (A \rightarrow (B \wedge C))$$
+</p>
 
+<p>
 Given,
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>\((S \vee T) \wedge (A \vee B)\)
-
 </li>
+
 <li>\(S \rightarrow Q\)
-
 </li>
+
 <li>\(\neg Q\)
-
 </li>
+
 <li>\(\neg C \vee Q\)
 </li>
 </ol>
 
-
 <p>
 Prove (and state the rules and premises you utilize):
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>\(\neg S\)
-
 </li>
+
 <li>\(T\)
-
 </li>
+
 <li>\(\neg C \vee W\)
 </li>
 </ol>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-3-3" class="outline-3">
+<div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">First-order logic</h3>
 <div class="outline-text-3" id="text-3-3">
-
-
 <p>
 Rewrite the following statements in first-order logic:
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>Tony is a tiger.
-
 </li>
+
 <li>All tigers have stripes.
-
 </li>
+
 <li>Some tigers are white.
-
 </li>
+
 <li>If any tiger is white, then we know it lives in the snow (but not
-     necessarily vice versa).
-
+necessarily vice versa).
 </li>
+
 <li>A tiger is not both white and orange.
 </li>
 </ol>
 
-
 <p>
 Rewrite the following without using \(\forall\) (hint: use negation):
 $$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+</p>
 
+<p>
 Rewrite the following without using \(\exists\):
 $$(\exists x)(W(x) \vee \neg Q(x))$$
-
-</p></div>
-
+</p>
 </div>
-
-<div id="outline-container-3-4" class="outline-3">
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">Prolog</h3>
 <div class="outline-text-3" id="text-3-4">
+<p>
+Given,
+</p>
 
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- member(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Tail</span>).
+
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">List</span>) :- member(<span style="color: #999999; background-color: #000000;">Y</span>, <span style="color: #999999; background-color: #000000;">List</span>), <span style="color: #999999; background-color: #000000;">X</span> \= <span style="color: #999999; background-color: #000000;">Y</span>.
+</pre>
+</div>
+
+<p>
+What are the values of each of these queries? (Write "true" or
+"false", or give one value of the variable X.)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(5, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 1, 1<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+</pre>
+</div>
 
 <p>
 Given,
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
-<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Tail</span><span style="color: #a020f0;">]</span>) :- member(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Tail</span>).
-
-<span style="color: #0000ff;">foobar</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">List</span>) :- member(<span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">List</span>), <span style="color: #a0522d;">X</span> \= <span style="color: #a0522d;">Y</span>.
-</pre>
-
-
-<p>
-What are the values of each of these queries? (Write &ldquo;true&rdquo; or
-&ldquo;false&rdquo;, or give one value of the variable X.)
-</p>
-
-
-
-<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(5, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>).
-<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>).
-<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>).
-<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 1, 1<span style="color: #a020f0;">]</span>).
-</pre>
-
-
-<p>
-Given,
-</p>
-
-
-
-<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(10392,
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(10392,
        person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
        person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
-       <span style="color: #b22222;">% here are the children...</span>
-       <span style="color: #a020f0;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+       <span style="color: #444444; background-color: #000000;">% here are the children...</span>
+       <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
         person(jim, fox, born(1, june, 1986), unemployed),
-        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #a020f0;">]</span>).
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>).
-<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>).
-<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Children</span>), member(<span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">Children</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Children</span>), member(<span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">Children</span>).
 </pre>
-
+</div>
 
 <p>
-What are the values of each of these queries (write &ldquo;true&rdquo; or &ldquo;false&rdquo;,
+What are the values of each of these queries (write "true" or "false",
 or give one value for each of the variables)?
 </p>
 
+<div class="org-src-container">
 
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(<span style="color: #999999; background-color: #000000;">_</span>, person(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, born(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Year</span>), <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">Year</span> &gt; 1960.
 
-<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(<span style="color: #a0522d;">_</span>, person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
-
-<span style="color: #b22222;">% </span><span style="color: #b22222;">don't forget to give one value for each variable:</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">FirstName, LastName, and X</span>
-<span style="color: #0000ff;">exists</span>(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">X</span>)), <span style="color: #a0522d;">X</span> \= unemployed.
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">don't forget to give one value for each variable:</span>
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">FirstName, LastName, and X</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(person(<span style="color: #999999; background-color: #000000;">FirstName</span>, <span style="color: #999999; background-color: #000000;">LastName</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">X</span>)), <span style="color: #999999; background-color: #000000;">X</span> \= unemployed.
 </pre>
-
+</div>
 
 <p>
 Do the following unify, and if so, what are values for the variables
 (one set of values for each question), if any variables are involved,
 that make the unification work?
 </p>
-<ul>
+
+<ul class="org-ul">
 <li><code>foo</code> and <code>foo</code>
-
 </li>
+
 <li><code>foo(X)</code> and <code>X</code>
-
 </li>
+
 <li><code>foo(foo(foo))</code> and <code>foo(X)</code>
-
 </li>
+
 <li><code>foo(X, foo)</code> and <code>foo(foo, X)</code>
-
 </li>
+
 <li><code>foo(X, foo)</code> and <code>foo(Y)</code>
-
 </li>
+
 <li><code>foo(foo(X, Y))</code> and <code>foo(Z)</code>
 </li>
 </ul>
-
 
 <p>
 Suppose we have the following knowledge base:
 </p>
 
+<div class="org-src-container">
 
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(b). 
 
-<pre class="src src-prolog"><span style="color: #0000ff;">f</span>(a).
-<span style="color: #0000ff;">f</span>(b). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(a, a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(b, c).
 
-<span style="color: #0000ff;">g</span>(a, a).
-<span style="color: #0000ff;">g</span>(b, c).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(b).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(c).
 
-<span style="color: #0000ff;">h</span>(b).
-<span style="color: #0000ff;">h</span>(c).
-
-<span style="color: #0000ff;">k</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>) :- f(<span style="color: #a0522d;">X</span>), g(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>), h(<span style="color: #a0522d;">Y</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">k</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>) :- f(<span style="color: #999999; background-color: #000000;">X</span>), g(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>), h(<span style="color: #999999; background-color: #000000;">Y</span>).
 </pre>
-
+</div>
 
 <p>
 Draw the resolution tree for the first successful proof of <code>k(X, c)</code>.
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-4" class="outline-2">
-<h2 id="sec-4">Answers&hellip;</h2>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Answers&#x2026;</h2>
 <div class="outline-text-2" id="text-4">
-
-
-
-</div>
-
-<div id="outline-container-4-1" class="outline-3">
+</div><div id="outline-container-sec-4-1" class="outline-3">
 <h3 id="sec-4-1">Turing test</h3>
 <div class="outline-text-3" id="text-4-1">
-
-
 <p>
 True or false? Turing first described a test between a monkey and a
 human before describing a test between a human and a machine.
 </p>
+
 <p>
-<b>False</b> &mdash; the original test was between a man and a woman; the man
+<b>False</b> &#x2014; the original test was between a man and a woman; the man
 was supposed to impersonate the woman.
 </p>
+
 <p>
 True or false? The goal of the machine is to convince the judge that
 the human is a machine.
 </p>
+
 <p>
-<b>True</b> &mdash; or, <b>False</b> &mdash; my fault, both answers are true: the
+<b>True</b> &#x2014; or, <b>False</b> &#x2014; my fault, both answers are true: the
 machine is supposed to convince the judge that it is a human, which is
 equivalent to convincing the judge that the human is a machine.
 </p>
+
 <p>
 True or false? To pass the Turing test, the machine should be expected
 to fool the judge (convince the judge that the machine is a human)
 nearly 100% of the time; or, maybe just 70% of the time.
 </p>
+
 <p>
-<b>False</b> &mdash; the machine should not be expected to be &ldquo;more human than
-human,&rdquo; so convincing the judge just 25% of the time seems
-sufficient. Over 50% may well change our definition of humanity&hellip;
+<b>False</b> &#x2014; the machine should not be expected to be "more human than
+human," so convincing the judge just 25% of the time seems
+sufficient. Over 50% may well change our definition of humanity&#x2026;
 </p>
+
 <p>
 True or false? Dennett thinks that winning a chess championship is
 just as strong a test for computer intelligence as the Turing test. 
 </p>
+
 <p>
-<b>False</b> &mdash; beating humans in chess is not sufficient because chess
+<b>False</b> &#x2014; beating humans in chess is not sufficient because chess
 requires only a narrow kind of intelligence, more calculation than
 anything
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-4-2" class="outline-3">
+<div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">Search</h3>
 <div class="outline-text-3" id="text-4-2">
-
-
-
-</div>
-
-<div id="outline-container-4-2-1" class="outline-4">
+</div><div id="outline-container-sec-4-2-1" class="outline-4">
 <h4 id="sec-4-2-1">General search</h4>
 <div class="outline-text-4" id="text-4-2-1">
-
-
 <p>
 Give an initial state, describe possible actions and the transition
 model (i.e., how states connect), and specify a goal criterion for the
 following search problem:
 </p>
-<blockquote>
 
-<p>A robot wants a path to exit a maze. The maze is represented as a
+<blockquote>
+<p>
+A robot wants a path to exit a maze. The maze is represented as a
 square grid; open areas are represented by white grid cells, and walls
 are represented by black grid cells.
 </p>
 </blockquote>
 
-
-<ul>
-<li>initial state: the robot&rsquo;s starting location
-
+<ul class="org-ul">
+<li>initial state: the robot's starting location
 </li>
+
 <li>possible actions: move north, south, east, west (not all movements
-    are always possible)
-
+are always possible)
 </li>
+
 <li>transition model: look at the map, connect grid locations via
-    north/south/east/west links
-
+north/south/east/west links
 </li>
+
 <li>goal criterion: finding the exit from the maze
 </li>
 </ul>
 
-
 <p>
 Repeat this exercise for the following search problem:
 </p>
-<blockquote>
 
-<p>Recall from calculus that the derivative is the inverse of the
+<blockquote>
+<p>
+Recall from calculus that the derivative is the inverse of the
 integral. Finding the derivative of a formula is easy (no search
 needed). But finding the integral of a formula is often challenging,
 and may require a search procedure. Describe this search procedure.
 </p>
 </blockquote>
 
-
-<ul>
+<ul class="org-ul">
 <li>initial state: the starting formula that needs a symbolic integral
-    to be found
-
+to be found
 </li>
+
 <li>possible actions / transition model: create a database like this:
 
-<ul>
+<ul class="org-ul">
 <li><code>sin(x) --&gt; -cos(x)</code>
-
 </li>
+
 <li><code>cx --&gt; cx^2/2</code>
-
 </li>
+
 <li><code>x^n --&gt; (x^(n+1)/(n+1))</code>
-
 </li>
-<li>&hellip;
 
+<li>&#x2026;
 </li>
 </ul>
-
 </li>
+
 <li>goal criterion: say you are looking at a new formula <code>g</code>, and the
-    original formula is <code>f</code>, then you want <code>dg/dx = f</code>; every &ldquo;state&rdquo;
-    (formula) is checked in this way
+original formula is <code>f</code>, then you want <code>dg/dx = f</code>; every "state"
+(formula) is checked in this way
 </li>
 </ul>
-
 
 <p>
 Complete the following table for weighted, finite search graphs:
 </p>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
 </colgroup>
 <thead>
-<tr><th scope="col" class="left">Search algorithm</th><th scope="col" class="left">Always complete?</th><th scope="col" class="left">Always optimal?</th><th scope="col" class="left">Uses a heuristic?</th></tr>
+<tr>
+<th scope="col" class="left">Search algorithm</th>
+<th scope="col" class="left">Always complete?</th>
+<th scope="col" class="left">Always optimal?</th>
+<th scope="col" class="left">Uses a heuristic?</th>
+</tr>
 </thead>
 <tbody>
-<tr><td class="left">Random search</td><td class="left">Yes</td><td class="left">No</td><td class="left">No</td></tr>
-<tr><td class="left">Breadth-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">No</td></tr>
-<tr><td class="left">Depth-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">No</td></tr>
-<tr><td class="left">Hill-climbing search</td><td class="left">No</td><td class="left">No</td><td class="left">Yes</td></tr>
-<tr><td class="left">Best-first search</td><td class="left">Yes</td><td class="left">No</td><td class="left">Yes</td></tr>
-<tr><td class="left">A* search</td><td class="left">Yes</td><td class="left">Yes</td><td class="left">Yes</td></tr>
+<tr>
+<td class="left">Random search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">Breadth-first search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">Depth-first search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">Hill-climbing search</td>
+<td class="left">No</td>
+<td class="left">No</td>
+<td class="left">Yes</td>
+</tr>
+
+<tr>
+<td class="left">Best-first search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">Yes</td>
+</tr>
+
+<tr>
+<td class="left">A* search</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+</tr>
 </tbody>
 </table>
-
 
 <p>
 Recall the Goodale route search problem from <a href="./search-practice.html">Practice with searching</a>
 notes. Answer the following questions for each of breadth-first
 search, depth-first search, best-first search (using distances),
 hill-climbing search, and A* search (using some heuristic like
-distance &ldquo;as the crow flies&rdquo;). Assume we start at <code>Woodruff &amp; Tuttle</code>
+distance "as the crow flies"). Assume we start at <code>Woodruff &amp; Tuttle</code>
 and the goal is <code>Goodale parking lot</code>. For each question, there may be
 more than one correct answer.
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>What are the first two states (beyond <code>Woodruff &amp; Tuttle</code>) that
-     will be checked?
+will be checked?
 
-<ul>
-<li>breadth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>High &amp;        Woodruff</code>
-
+<ul class="org-ul">
+<li>breadth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>High &amp;
+       Woodruff</code>
 </li>
-<li>depth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>SR-315 &amp;        Lane</code>
 
+<li>depth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>SR-315 &amp;
+       Lane</code>
 </li>
+
 <li>best-first (only answer): <code>High &amp; Woodruff</code>, <code>High &amp; 15th</code>
-
 </li>
+
 <li>hill-climbing (only answer): same as best-first
-
 </li>
-<li>A* (only answer): <code>Lane &amp; Tuttle</code>, <code>High &amp; Woodruff</code>
 
+<li>A* (only answer): <code>Lane &amp; Tuttle</code>, <code>High &amp; Woodruff</code>
 </li>
 </ul>
-
 </li>
+
 <li>What does the <code>tocheck</code> list look like after checking those
-     states from question 1? Be sure to order the list by an
-     appropriate sort order (breadth-first, hill-climbing, best-first,
-     and A* will take the next state from the front of the list;
-     depth-first will take the next state from the end). Assume
-     already-checked states are not added.
+states from question 1? Be sure to order the list by an
+appropriate sort order (breadth-first, hill-climbing, best-first,
+and A* will take the next state from the front of the list;
+depth-first will take the next state from the end). Assume
+already-checked states are not added.
 
-<ul>
+<ul class="org-ul">
 <li>breadth-first (one possible answer): <code>[SR-315 &amp; Lane, High &amp; 15th]</code>
-
 </li>
+
 <li>depth-first (one possible answer): <code>[High &amp; Woodruff, SR-315 I-670 offramp, SR-315 &amp; King]</code>
-
 </li>
+
 <li>best-first: <code>[High &amp; 11th, US-23 &amp; 15th, Lane &amp; Tuttle]</code>
-
 </li>
+
 <li>hill-climbing: <code>[High &amp; 11th, US-23 &amp; 15th]</code>
-
 </li>
+
 <li>A*: <code>[High &amp; 15th, SR-315 &amp; Lane]</code>
 </li>
 </ul>
-
 </li>
 </ol>
-
 
 <p>
 True or false? Iterative deepening depth-first (IDDFS) search is
 complete whenever regular depth-first search is complete for some
 search problem.
 </p>
+
 <p>
-<b>True</b> &mdash; DFS is complete when the search space is not
+<b>True</b> &#x2014; DFS is complete when the search space is not
 infinite. Since IDDFS performs repeated DFS (with greater depth
 limits), it too will be complete if DFS is.
 </p>
+
 <p>
 True or false? Iterative deepening depth-first search can usually be
 expected to find a shorter path to the goal than regular depth-first
 search.
 </p>
+
 <p>
-<b>True</b> &mdash; The purpose of IDDFS is to not get lost in deep searches by
+<b>True</b> &#x2014; The purpose of IDDFS is to not get lost in deep searches by
 putting a limit on the DFS depth (which causes more breadth to be
 searched because it hits the depth limit).
 </p>
+
 <p>
 What is the singular requirement for a heuristic to be called
-&ldquo;admissible?&rdquo;
+"admissible?"
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>The heuristic must always <i>underestimate</i> (or exactly match) the
-    true cost from the current state to the goal state.
+true cost from the current state to the goal state.
 </li>
 </ul>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-4-2-2" class="outline-4">
+<div id="outline-container-sec-4-2-2" class="outline-4">
 <h4 id="sec-4-2-2">Adversarial search</h4>
 <div class="outline-text-4" id="text-4-2-2">
-
-
 <p>
 Describe a utility function for an adversarial search procedure (e.g.,
 minimax) for playing chess.
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>One possible answer: Number of captured pieces, maybe with a
-    weight for each piece (so a queen will have a large weight, a pawn
-    not so much)
+weight for each piece (so a queen will have a large weight, a pawn
+not so much)
 </li>
 </ul>
 
-
 <p>
 True or false? Minimax is an appropriate search procedure for
-single-player games (like a solitaire card game or a Rubik&rsquo;s cube)?
+single-player games (like a solitaire card game or a Rubik's cube)?
 </p>
+
 <p>
-<b>False</b> &mdash; there is no adversary to simulate and minimize, thus no
+<b>False</b> &#x2014; there is no adversary to simulate and minimize, thus no
 minimax
 </p>
+
 <p>
 True or false? Alpha-beta pruning, as applied to the minimax
 procedure, produces more optimal solutions (e.g., produces game moves
 that allow the computer to win in fewer moves).
 </p>
+
 <p>
-<b>False</b> &mdash; alpha-beta does not change the solutions.
+<b>False</b> &#x2014; alpha-beta does not change the solutions.
 </p>
+
 <p>
 True or false? Alpha-beta pruning (applied to minimax) uses different
 utility functions than regular minimax.
 </p>
+
 <p>
-<b>False</b> &mdash; the utility functions are not changed, just which parts of
+<b>False</b> &#x2014; the utility functions are not changed, just which parts of
 the search space are actually searched.
 </p>
+
 <p>
 True or false? Alpha-beta pruning (applied to minimax) is the same
 algorithm as minimax, just faster because irrelevant computations are
 omitted.
 </p>
+
 <p>
-<b>True</b> &mdash; that&rsquo;s all alpha-beta pruning is; it still does minimax.
+<b>True</b> &#x2014; that's all alpha-beta pruning is; it still does minimax.
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-4-3" class="outline-3">
+<div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3">Knowledge representation</h3>
 <div class="outline-text-3" id="text-4-3">
-
-
-
-</div>
-
-<div id="outline-container-4-3-1" class="outline-4">
+</div><div id="outline-container-sec-4-3-1" class="outline-4">
 <h4 id="sec-4-3-1">Boolean logic</h4>
 <div class="outline-text-4" id="text-4-3-1">
-
-
 <p>
-Simplify the following expression using Boole&rsquo;s and De Morgan&rsquo;s laws:
+Simplify the following expression using Boole's and De Morgan's laws:
 $$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
+</p>
 
-</p><ul>
+<ul class="org-ul">
 <li>Change \(y \vee \neg y\) to \(T\), yielding: \(\neg(\neg x \vee \neg y)
     \wedge (x \wedge T)\)
-
 </li>
+
 <li>Change \(x \wedge T\) to \(x\), yielding: \(\neg(\neg x \vee \neg y)
     \wedge x\)
-
 </li>
+
 <li>Distribute the negative, yielding: \((x \wedge y) \wedge x\)
-
 </li>
+
 <li>Get rid of parentheses, reduce redundancy, yielding \(x \wedge y\)
 </li>
 </ul>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-4-3-2" class="outline-4">
+<div id="outline-container-sec-4-3-2" class="outline-4">
 <h4 id="sec-4-3-2">Propositional logic</h4>
 <div class="outline-text-4" id="text-4-3-2">
-
-
 <p>
 Build a truth-table for:
 $$\neg A \vee (B \leftrightarrow A)$$
+</p>
 
-</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
 </colgroup>
 <thead>
-<tr><th scope="col" class="left">\(A\)</th><th scope="col" class="left">\(B\)</th><th scope="col" class="left">\(B \leftrightarrow A\)</th><th scope="col" class="left">\(\neg A \vee (B \leftrightarrow A)\)</th></tr>
+<tr>
+<th scope="col" class="left">\(A\)</th>
+<th scope="col" class="left">\(B\)</th>
+<th scope="col" class="left">\(B \leftrightarrow A\)</th>
+<th scope="col" class="left">\(\neg A \vee (B \leftrightarrow A)\)</th>
+</tr>
 </thead>
 <tbody>
-<tr><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td></tr>
-<tr><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
-<tr><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">T</td></tr>
-<tr><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
 </tbody>
 </table>
-
 
 <p>
 Find a satisfying assignment (if any exists) for:
 $$\neg A \wedge (A \rightarrow (B \wedge C))$$
+</p>
 
+<p>
 Build a truth table to find this:
 </p>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
 </colgroup>
 <thead>
-<tr><th scope="col" class="left">\(A\)</th><th scope="col" class="left">\(B\)</th><th scope="col" class="left">\(C\)</th><th scope="col" class="left">\(B \wedge C\)</th><th scope="col" class="left">\(A \rightarrow (B \wedge C)\)</th><th scope="col" class="left">\(\neg A \wedge (A \rightarrow (B \wedge C))\)</th></tr>
+<tr>
+<th scope="col" class="left">\(A\)</th>
+<th scope="col" class="left">\(B\)</th>
+<th scope="col" class="left">\(C\)</th>
+<th scope="col" class="left">\(B \wedge C\)</th>
+<th scope="col" class="left">\(A \rightarrow (B \wedge C)\)</th>
+<th scope="col" class="left">\(\neg A \wedge (A \rightarrow (B \wedge C))\)</th>
+</tr>
 </thead>
 <tbody>
-<tr><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">F</td></tr>
-<tr><td class="left">T</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
-<tr><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
-<tr><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td></tr>
-<tr><td class="left">F</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td><td class="left">T</td></tr>
-<tr><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
-<tr><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
-<tr><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">F</td><td class="left">T</td><td class="left">T</td></tr>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
 </tbody>
 </table>
-
 
 <p>
 The last four rows will provide satisfying assignments.  
 </p>
+
 <p>
 Given,
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>\((S \vee T) \wedge (A \vee B)\)
-
 </li>
+
 <li>\(S \rightarrow Q\)
-
 </li>
+
 <li>\(\neg Q\)
-
 </li>
+
 <li>\(\neg C \vee Q\)
 </li>
 </ol>
 
-
 <p>
 Prove (and state the rules and premises you utilize):
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>\(\neg S\)
 
-<ol>
+<ol class="org-ol">
 <li>From 2, 3 and modus tollens.
-
 </li>
 </ol>
-
 </li>
+
 <li>\(T\)
 
-<ol>
+<ol class="org-ol">
 <li>From \(\neg S\) (above) and 1, simplification, and disjunctive
-        syllogism.
-
+syllogism.
 </li>
 </ol>
-
 </li>
+
 <li>\(\neg C \vee W\)
 
-<ol>
+<ol class="org-ol">
 <li>From 3, 4 and disjunctive syllogism (which gives us \(\neg C\));
-        now apply addition plus introduce the arbitrary symbol \(W\)
-        (which is allowed with the addition rule)
+now apply addition plus introduce the arbitrary symbol \(W\)
+(which is allowed with the addition rule)
 </li>
 </ol>
-
 </li>
 </ol>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-4-3-3" class="outline-4">
+<div id="outline-container-sec-4-3-3" class="outline-4">
 <h4 id="sec-4-3-3">First-order logic</h4>
 <div class="outline-text-4" id="text-4-3-3">
-
-
 <p>
 Rewrite the following statements in first-order logic:
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>Tony is a tiger.
 
-<ul>
+<ul class="org-ul">
 <li>\(Tiger(Tony)\)
-
 </li>
 </ul>
-
 </li>
+
 <li>All tigers have stripes.
 
-<ul>
+<ul class="org-ul">
 <li>\((\forall x)(Tiger(x) \rightarrow Striped(x))\)
-
 </li>
 </ul>
-
 </li>
+
 <li>Some tigers are white.
 
-<ul>
+<ul class="org-ul">
 <li>\((\exists x)(Tiger(x) \wedge White(x))\)
-
 </li>
 </ul>
-
 </li>
+
 <li>If any tiger is white, then we know it lives in the snow (but not
-     necessarily vice versa).
+necessarily vice versa).
 
-<ul>
+<ul class="org-ul">
 <li>\((\forall x)((Tiger(x) \wedge White(x)) \rightarrow LivesInSnow(x))\)
-
 </li>
 </ul>
-
 </li>
+
 <li>A tiger is not both white and orange.
 
-<ul>
+<ul class="org-ul">
 <li>\((\forall x)(Tiger(x) \rightarrow (\neg White(x) \vee \neg Orange(x)))\)
 </li>
 </ul>
-
 </li>
 </ol>
-
 
 <p>
 Rewrite the following without using \(\forall\) (hint: use negation):
 $$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+</p>
 
+<p>
 $$\neg(\exists x)((P(x) \vee (A(x) \wedge B(x))) \wedge (\neg P(x)
 \vee \neg(A(x) \wedge B(x))))$$
+</p>
 
+<p>
 Rewrite the following without using \(\exists\):
 $$(\exists x)(W(x) \vee \neg Q(x))$$
+</p>
 
+<p>
 $$\neg (\forall x)(\neg W(x) \wedge Q(x))$$
-
-</p></div>
-
+</p>
 </div>
-
-<div id="outline-container-4-3-4" class="outline-4">
+</div>
+<div id="outline-container-sec-4-3-4" class="outline-4">
 <h4 id="sec-4-3-4">Prolog</h4>
 <div class="outline-text-4" id="text-4-3-4">
+<p>
+Given,
+</p>
 
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">Tail</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- member(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Tail</span>).
+
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">List</span>) :- member(<span style="color: #999999; background-color: #000000;">Y</span>, <span style="color: #999999; background-color: #000000;">List</span>), <span style="color: #999999; background-color: #000000;">X</span> \= <span style="color: #999999; background-color: #000000;">Y</span>.
+</pre>
+</div>
+
+<p>
+What are the values of each of these queries? (Write "true" or
+"false", or give one value of the variable X.)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(5, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; false</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; X = 1 or 2 or 3</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 2, 3<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; true</span>
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">foobar</span>(1, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>1, 1, 1<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>). <span style="color: #444444; background-color: #000000;">% --&gt; false</span>
+</pre>
+</div>
 
 <p>
 Given,
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">X</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">]</span>).
-<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span><span style="color: #a0522d;">_</span><span style="color: #a020f0;">|</span><span style="color: #a0522d;">Tail</span><span style="color: #a020f0;">]</span>) :- member(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Tail</span>).
-
-<span style="color: #0000ff;">foobar</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">List</span>) :- member(<span style="color: #a0522d;">Y</span>, <span style="color: #a0522d;">List</span>), <span style="color: #a0522d;">X</span> \= <span style="color: #a0522d;">Y</span>.
-</pre>
-
-
-<p>
-What are the values of each of these queries? (Write &ldquo;true&rdquo; or
-&ldquo;false&rdquo;, or give one value of the variable X.)
-</p>
-
-
-
-<pre class="src src-prolog"><span style="color: #0000ff;">member</span>(5, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; false</span>
-<span style="color: #0000ff;">member</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; X = 1 or 2 or 3</span>
-<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 2, 3<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; true</span>
-<span style="color: #0000ff;">foobar</span>(1, <span style="color: #a020f0;">[</span>1, 1, 1<span style="color: #a020f0;">]</span>). <span style="color: #b22222;">% --&gt; false</span>
-</pre>
-
-
-<p>
-Given,
-</p>
-
-
-
-<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(10392,
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(10392,
        person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
        person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
-       <span style="color: #b22222;">% here are the children...</span>
-       <span style="color: #a020f0;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+       <span style="color: #444444; background-color: #000000;">% here are the children...</span>
+       <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
         person(jim, fox, born(1, june, 1986), unemployed),
-        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #a020f0;">]</span>).
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
 
-<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>).
-<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">_</span>).
-<span style="color: #0000ff;">exists</span>(<span style="color: #a0522d;">Person</span>) :- family(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Children</span>), member(<span style="color: #a0522d;">Person</span>, <span style="color: #a0522d;">Children</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">_</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">exists</span>(<span style="color: #999999; background-color: #000000;">Person</span>) :- family(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Children</span>), member(<span style="color: #999999; background-color: #000000;">Person</span>, <span style="color: #999999; background-color: #000000;">Children</span>).
 </pre>
-
+</div>
 
 <p>
-What are the values of each of these queries (write &ldquo;true&rdquo; or &ldquo;false&rdquo;,
+What are the values of each of these queries (write "true" or "false",
 or give one value for each of the variables)?
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="src src-prolog"><span style="color: #0000ff;">family</span>(<span style="color: #a0522d;">_</span>, person(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, born(<span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">Year</span>), <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">_</span>), <span style="color: #a0522d;">Year</span> &gt; 1960.
-<span style="color: #b22222;">% </span><span style="color: #b22222;">answer: false</span>
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">family</span>(<span style="color: #999999; background-color: #000000;">_</span>, person(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, born(<span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">Year</span>), <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">_</span>, <span style="color: #999999; background-color: #000000;">_</span>), <span style="color: #999999; background-color: #000000;">Year</span> &gt; 1960.
+<span style="color: #444444; background-color: #000000;">% </span><span style="color: #444444; background-color: #000000;">answer: false</span>
 </pre>
-
-
-
-<pre class="src src-prolog"><span style="color: #b22222;">% </span><span style="color: #b22222;">don't forget to give one value for each variable:</span>
-<span style="color: #b22222;">% </span><span style="color: #b22222;">FirstName, LastName, and X</span>
-<span style="color: #0000ff;">exists</span>(person(<span style="color: #a0522d;">FirstName</span>, <span style="color: #a0522d;">LastName</span>, <span style="color: #a0522d;">_</span>, <span style="color: #a0522d;">X</span>)), <span style="color: #a0522d;">X</span> \= unemployed.
-<span style="color: #b22222;">% </span><span style="color: #b22222;">one answer: FirstName = tom, LastName = fox, X = works(cnn, 152000)</span>
-</pre>
-
+</div>
 
 <p>
 Do the following unify, and if so, what are values for the variables
 (one set of values for each question), if any variables are involved,
 that make the unification work?
 </p>
-<ul>
+
+<ul class="org-ul">
 <li><code>foo</code> and <code>foo</code>
 
-<ul>
+<ul class="org-ul">
 <li>Yes, they unify (trivially).
-
 </li>
 </ul>
-
 </li>
+
 <li><code>foo(X)</code> and <code>X</code>
 
-<ul>
+<ul class="org-ul">
 <li>No. There is no value of <code>X</code> such that <code>X = foo(X)</code>.
-
 </li>
 </ul>
-
 </li>
+
 <li><code>foo(foo(foo))</code> and <code>foo(X)</code>
 
-<ul>
+<ul class="org-ul">
 <li>Yes, with <code>X = foo(foo)</code>.
-
 </li>
 </ul>
-
 </li>
+
 <li><code>foo(X, foo)</code> and <code>foo(foo, X)</code>
 
-<ul>
+<ul class="org-ul">
 <li>Yes, with <code>X = foo</code>.
-
 </li>
 </ul>
-
 </li>
+
 <li><code>foo(X, foo)</code> and <code>foo(Y)</code>
 
-<ul>
+<ul class="org-ul">
 <li>No, arities differ.
-
 </li>
 </ul>
-
 </li>
+
 <li><code>foo(foo(X, Y))</code> and <code>foo(Z)</code>
 
-<ul>
+<ul class="org-ul">
 <li>Yes, with <code>Z = foo(X, Y)</code>.
 </li>
 </ul>
-
 </li>
 </ul>
-
 
 <p>
 Suppose we have the following knowledge base:
 </p>
 
+<div class="org-src-container">
 
+<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(b). 
 
-<pre class="src src-prolog"><span style="color: #0000ff;">f</span>(a).
-<span style="color: #0000ff;">f</span>(b). 
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(a, a).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(b, c).
 
-<span style="color: #0000ff;">g</span>(a, a).
-<span style="color: #0000ff;">g</span>(b, c).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(b).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(c).
 
-<span style="color: #0000ff;">h</span>(b).
-<span style="color: #0000ff;">h</span>(c).
-
-<span style="color: #0000ff;">k</span>(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>) :- f(<span style="color: #a0522d;">X</span>), g(<span style="color: #a0522d;">X</span>, <span style="color: #a0522d;">Y</span>), h(<span style="color: #a0522d;">Y</span>).
+<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">k</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>) :- f(<span style="color: #999999; background-color: #000000;">X</span>), g(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">Y</span>), h(<span style="color: #999999; background-color: #000000;">Y</span>).
 </pre>
-
+</div>
 
 <p>
 Draw the resolution tree for the first successful proof of <code>k(X, c)</code>.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/prolog-resolution-midterm-1-guide.png"  alt="./images/prolog-resolution-midterm-1-guide.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/prolog-resolution-midterm-1-guide.png" alt="prolog-resolution-midterm-1-guide.png" />
 </p>
 </div>
-
-
+</div>
 
 
 <div style="font-size: 80%; clear: both;">
@@ -1282,13 +1469,14 @@ Draw the resolution tree for the first successful proof of <code>k(X, c)</code>.
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

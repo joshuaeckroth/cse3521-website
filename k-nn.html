@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>k-nearest neighbor classification</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="k-nearest neighbor classification"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:59:00 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,7 +130,8 @@
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="MathJax/MathJax.js">
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -126,83 +174,15 @@
 </script>
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">k-nearest neighbor classification</h1>
-
-<p>Suppose we measure some properties of flowers, species of iris to be
-precise. <b>But this time</b>, we also know their true &ldquo;labels&rdquo;
-(species). We have a table like the following:
-</p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="right" /><col class="right" /><col class="right" /><col class="right" /><col class="left" />
-</colgroup>
-<thead>
-<tr><th scope="col" class="right">Sepal length (cm)</th><th scope="col" class="right">Sepal width (cm)</th><th scope="col" class="right">Petal length (cm)</th><th scope="col" class="right">Petal width (cm)</th><th scope="col" class="left">Species</th></tr>
-</thead>
-<tbody>
-<tr><td class="right">5.1</td><td class="right">3.5</td><td class="right">1.4</td><td class="right">0.2</td><td class="left">iris setosa</td></tr>
-<tr><td class="right">4.9</td><td class="right">3.0</td><td class="right">1.4</td><td class="right">0.2</td><td class="left">iris setosa</td></tr>
-<tr><td class="right">4.7</td><td class="right">3.2</td><td class="right">1.3</td><td class="right">0.2</td><td class="left">iris setosa</td></tr>
-<tr><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="left"></td></tr>
-<tr><td class="right">7.0</td><td class="right">3.2</td><td class="right">4.7</td><td class="right">1.4</td><td class="left">iris versicolor</td></tr>
-<tr><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="left">&hellip;</td></tr>
-<tr><td class="right">6.3</td><td class="right">3.3</td><td class="right">6.0</td><td class="right">2.5</td><td class="left">iris virginica</td></tr>
-<tr><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="right">&hellip;</td><td class="left">&hellip;</td></tr>
-</tbody>
-</table>
-
-
-<p>
-Since we know the true labels, we do not need to use <a href="./k-means.html">k-means clustering</a> to find (approximate) the species clusters.
-</p>
-<p>
-If we get a new set of measurements from a new plant, we can predict
-(approximate, guess) which species it is by calculating the mean of
-each species cluster and finding which mean is closest.
-</p>
-<p>
-However, instead of calculating means we typically use a different
-approach. (Perhaps the two approaches are equivalent; I am not sure.)
-</p>
-<p>
-Given a new set of measurements, perform the following test:
-</p>
-<ol>
-<li>Find (using Euclidean distance, for example), the \(k\) nearest
-     entities from the training set. These entities have known labels. The
-     choice of \(k\) is left to us.
-
-</li>
-<li>Among these \(k\) entities, which label is most common? That is the
-     label for the unknown entity.
-</li>
-</ol>
-
-
-<p>
-What we have is a voting mechanism, where the most votes
-wins. Sometimes it is a good idea to give each vote a weight, such as
-the inverse of the entity&rsquo;s distant from the unknown entity (so more
-distance votes count for less).
-</p>
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Choosing k</a></li>
-<li><a href="#sec-2">Handwritten digit recognition</a></li>
-<li><a href="#sec-3">How to handle noise</a></li>
+<li><a href="#sec-0-1">Choosing k</a></li>
+<li><a href="#sec-0-2">Handwritten digit recognition</a></li>
+<li><a href="#sec-0-3">How to handle noise</a></li>
 </ul>
 </li>
 <li><a href="#sec-1">Applet</a>
@@ -212,16 +192,150 @@ distance votes count for less).
 </li>
 <li><a href="#sec-2">Remarks</a></div>
 </div>
-
-<div id="outline-container-1" class="outline-3">
-<h3 id="sec-1">Choosing k</h3>
-<div class="outline-text-3" id="text-1">
-
-
-
-<div style="text-align: center">
-<p><img src="./images/effect-of-k.png"  alt="./images/effect-of-k.png" />
+<p>
+Suppose we measure some properties of flowers, species of iris to be
+precise. <b>But this time</b>, we also know their true "labels"
+(species). We have a table like the following:
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">Sepal length (cm)</th>
+<th scope="col" class="right">Sepal width (cm)</th>
+<th scope="col" class="right">Petal length (cm)</th>
+<th scope="col" class="right">Petal width (cm)</th>
+<th scope="col" class="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="right">5.1</td>
+<td class="right">3.5</td>
+<td class="right">1.4</td>
+<td class="right">0.2</td>
+<td class="left">iris setosa</td>
+</tr>
+
+<tr>
+<td class="right">4.9</td>
+<td class="right">3.0</td>
+<td class="right">1.4</td>
+<td class="right">0.2</td>
+<td class="left">iris setosa</td>
+</tr>
+
+<tr>
+<td class="right">4.7</td>
+<td class="right">3.2</td>
+<td class="right">1.3</td>
+<td class="right">0.2</td>
+<td class="left">iris setosa</td>
+</tr>
+
+<tr>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="right">7.0</td>
+<td class="right">3.2</td>
+<td class="right">4.7</td>
+<td class="right">1.4</td>
+<td class="left">iris versicolor</td>
+</tr>
+
+<tr>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="left">&#x2026;</td>
+</tr>
+
+<tr>
+<td class="right">6.3</td>
+<td class="right">3.3</td>
+<td class="right">6.0</td>
+<td class="right">2.5</td>
+<td class="left">iris virginica</td>
+</tr>
+
+<tr>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+<td class="left">&#x2026;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Since we know the true labels, we do not need to use <a href="./k-means.html">k-means
+clustering</a> to find (approximate) the species clusters.
+</p>
+
+<p>
+If we get a new set of measurements from a new plant, we can predict
+(approximate, guess) which species it is by calculating the mean of
+each species cluster and finding which mean is closest.
+</p>
+
+<p>
+However, instead of calculating means we typically use a different
+approach. (Perhaps the two approaches are equivalent; I am not sure.)
+</p>
+
+<p>
+Given a new set of measurements, perform the following test:
+</p>
+
+<ol class="org-ol">
+<li>Find (using Euclidean distance, for example), the \(k\) nearest
+entities from the training set. These entities have known labels. The
+choice of \(k\) is left to us.
+</li>
+
+<li>Among these \(k\) entities, which label is most common? That is the
+label for the unknown entity.
+</li>
+</ol>
+
+<p>
+What we have is a voting mechanism, where the most votes
+wins. Sometimes it is a good idea to give each vote a weight, such as
+the inverse of the entity's distant from the unknown entity (so more
+distance votes count for less).
+</p>
+
+<div id="outline-container-sec-0-1" class="outline-3">
+<h3 id="sec-0-1">Choosing k</h3>
+<div class="outline-text-3" id="text-0-1">
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/effect-of-k.png" alt="effect-of-k.png" />
+</p>
+</div>
+
 <p>
 From:
 <a href="http://classes.engr.oregonstate.edu/eecs/fall2007/cs434/notes/knn-3.pdf">http://classes.engr.oregonstate.edu/eecs/fall2007/cs434/notes/knn-3.pdf</a>
@@ -229,14 +343,16 @@ From:
 </div>
 
 <p>
-The article &ldquo;<a href="http://www.sciencedirect.com/science/article/pii/S016786550200394X">Choosing \(k\) for two-class nearest neighbour classifiers with unbalanced classes</a>&ldquo; by Hand and Vinciotti provides more
+The article "<a href="http://www.sciencedirect.com/science/article/pii/S016786550200394X">Choosing \(k\) for two-class nearest neighbour classifiers
+with unbalanced classes</a>" by Hand and Vinciotti provides more
 information and solutions for choosing \(k\) when performing two-class
 assignment (i.e., Yes/No assignments) when one class is substantially
 larger than the other. They write in their conclusion,
 </p>
-<blockquote>
 
-<p>Nearest neighbour supervised classification methods have many
+<blockquote>
+<p>
+Nearest neighbour supervised classification methods have many
 attractive properties. However, many of these are based on asymptotic
 arguments. In problems where the classification threshold lies near 0
 or 1, as generally is the case in situations where one class is much
@@ -247,20 +363,15 @@ larger \(k\) may not yield better performance than smaller \(k\).
 </p>
 </blockquote>
 
-
 <p>
 An example of how the choice of \(k\) affects performance may be found
 in the <a href="./document-classification.html">document classification</a> notes.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-3">
-<h3 id="sec-2">Handwritten digit recognition</h3>
-<div class="outline-text-3" id="text-2">
-
-
+<div id="outline-container-sec-0-2" class="outline-3">
+<h3 id="sec-0-2">Handwritten digit recognition</h3>
+<div class="outline-text-3" id="text-0-2">
 <p>
 Consider the following dataset, available from <a href="http://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits">UCI</a>. Thirty people
 wrote 3823 digits (0-9), which were then scanned as images and
@@ -269,22 +380,26 @@ a 32x32 pixel black-and-white image, which was divided into 4x4 pixel
 blocks (64 of them); the number of black pixels in each 4x4 block was
 counted. These counts constitute the 64 features.
 </p>
+
 <p>
 The plot below shows each of the 3823 entities in the testing
 set. Because the feature vector of each entity has 64 dimensions, we
 cannot simply plot the feature vectors themselves. Instead, I reduced
-the dimensionality to 2D using &ldquo;multidimensional scaling.&rdquo; This
+the dimensionality to 2D using "multidimensional scaling." This
 technique calculates the distance from each entity to each other
 entity, creating a 3823x3823 matrix of distances. Then these distances
 are reduced to two dimensions by finding an x,y pair for each entity
 that respects its distances to the other entities. The scaling is not
 perfect, but generally serves as a good approximation of how
-&ldquo;different&rdquo; each entity is from each other entity.
+"different" each entity is from each other entity.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/optdigits-true-class-mds.png"  alt="./images/optdigits-true-class-mds.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/optdigits-true-class-mds.png" alt="optdigits-true-class-mds.png" />
 </p>
+</div>
 </div>
 
 <p>
@@ -293,6 +408,7 @@ some overlap. The overlap may well be an artifact of the
 multidimensional scaling; perhaps there is no overlap if the data were
 to be graphed in more dimensions.
 </p>
+
 <p>
 The k-nearest neighbor algorithm can be visualized using this
 plot. Say we get a new image, and we want our software to figure out
@@ -302,147 +418,171 @@ examples. Looking at the plot, we can imagine that if the new entity
 would be placed in the bottom-middle area, that most of its nearest
 neighbors would be green, representing the digit 4.
 </p>
+
 <p>
 In fact, tests with this dataset have shown that the following \(k\)
 values produce the corresponding recognition accuracies:
 </p>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-<caption></caption>
-<colgroup><col class="right" /><col class="right" />
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
 </colgroup>
 <thead>
-<tr><th scope="col" class="right">k value</th><th scope="col" class="right">accuracy</th></tr>
+<tr>
+<th scope="col" class="right">k value</th>
+<th scope="col" class="right">accuracy</th>
+</tr>
 </thead>
 <tbody>
-<tr><td class="right">1</td><td class="right">98.00</td></tr>
-<tr><td class="right">2</td><td class="right">97.38</td></tr>
-<tr><td class="right">3</td><td class="right">97.83</td></tr>
-<tr><td class="right">4</td><td class="right">97.61</td></tr>
-<tr><td class="right">5</td><td class="right">97.89</td></tr>
-<tr><td class="right">6</td><td class="right">97.77</td></tr>
-<tr><td class="right">7</td><td class="right">97.66</td></tr>
-<tr><td class="right">&hellip;</td><td class="right">&hellip;</td></tr>
+<tr>
+<td class="right">1</td>
+<td class="right">98.00</td>
+</tr>
+
+<tr>
+<td class="right">2</td>
+<td class="right">97.38</td>
+</tr>
+
+<tr>
+<td class="right">3</td>
+<td class="right">97.83</td>
+</tr>
+
+<tr>
+<td class="right">4</td>
+<td class="right">97.61</td>
+</tr>
+
+<tr>
+<td class="right">5</td>
+<td class="right">97.89</td>
+</tr>
+
+<tr>
+<td class="right">6</td>
+<td class="right">97.77</td>
+</tr>
+
+<tr>
+<td class="right">7</td>
+<td class="right">97.66</td>
+</tr>
+
+<tr>
+<td class="right">&#x2026;</td>
+<td class="right">&#x2026;</td>
+</tr>
 </tbody>
 </table>
-
 
 <p>
 These are rather high accuracies for such a <i>simple</i> algorithm.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-3">
-<h3 id="sec-3">How to handle noise</h3>
-<div class="outline-text-3" id="text-3">
-
-
+<div id="outline-container-sec-0-3" class="outline-3">
+<h3 id="sec-0-3">How to handle noise</h3>
+<div class="outline-text-3" id="text-0-3">
 <blockquote>
-
-<p>Some of the labeled training examples may be surround by the examples
+<p>
+Some of the labeled training examples may be surround by the examples
 from the other classes. Such a situation may arise by plenty of
 reasons: (i) as a resut of a random mistake, (ii) because insufficient
 number of traning example of this class (an isolated example appears
 instead of cluster), (iii) because incomplete system of features (the
 classes are separated in other dimensions which we do not know), (iv)
 because there are too many training examples of other classes
-(unbalanced classes) that create too dense &ldquo;hostile&rdquo; background for
+(unbalanced classes) that create too dense "hostile" background for
 the given small class and many other reasons. (<a href="http://www.math.le.ac.uk/people/ag153/homepage/KNN/KNN3.html">source</a>)
 </p>
 </blockquote>
 
-
 <p>
 We can handle outliers by just removing them from the dataset. They
-won&rsquo;t contribute any useful information for classification. Outliers
-can be detected by defining two values \(q \geq r &gt; 0\) and say that a
+won't contribute any useful information for classification. Outliers
+can be detected by defining two values \(q \geq r > 0\) and say that a
 point is an outlier with respect to some class if, among its \(q\)
 nearest neighbors, there are more than \(r\) examples from other
 classes.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Applet</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 From
 <a href="http://www.math.le.ac.uk/people/ag153/homepage/KNN/KNNexcercise.htm">http://www.math.le.ac.uk/people/ag153/homepage/KNN/KNNexcercise.htm</a>
 (and corresponding <a href="http://www.math.le.ac.uk/people/ag153/homepage/KNN/KNN3.html">applet</a>)
 </p>
-
 </div>
 
-<div id="outline-container-1-1" class="outline-3">
+<div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1">Example exercise</h3>
 <div class="outline-text-3" id="text-1-1">
-
-
 <p>
 Ensure that the parameters are at default settings
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>Create a class with green colour by clicking at the top left
-     corner of the work desk and also click on random to create some
-     outliers
-
+corner of the work desk and also click on random to create some
+outliers
 </li>
+
 <li>Create a second class with blue colour by clicking at the bottom
-     right corner of the work desk and also click on random to create
-     some outliers
-
+right corner of the work desk and also click on random to create
+some outliers
 </li>
+
 <li>Test a query example at the centre. (Hint: click on handle test
-     menu, ensure the method is KNN and click at the centre of the
-     work desk. Example screen shot is shown below)
+menu, ensure the method is KNN and click at the centre of the
+work desk. Example screen shot is shown below)
 </li>
 </ol>
 
+<div class="center">
 
-
-<div style="text-align: center">
-<p><img src="./images/knn-applet-screenshot-1.jpg"  alt="./images/knn-applet-screenshot-1.jpg" />
+<div class="figure">
+<p><img src="./images/knn-applet-screenshot-1.jpg" alt="knn-applet-screenshot-1.jpg" />
 </p>
 </div>
+</div>
 
-<ol>
+<ol class="org-ol">
 <li>Classify the test query using different values of \(k\) = 3, 5, 10
-     and 20. (To change \(k\), Go to Parameter menu, change the Number
-     of Nearest Neighbour, click Handle test Menu and click the point
-     you want to classify, i.e., center of the work desk)
-
+and 20. (To change \(k\), Go to Parameter menu, change the Number
+of Nearest Neighbour, click Handle test Menu and click the point
+you want to classify, i.e., center of the work desk)
 </li>
+
 <li>Does varying the value of \(k\) affect the classification and which
      \(k\) gives a better classification?
-
 </li>
+
 <li>Calculate the map at the various \(k\). What can you observe?
 </li>
 </ol>
-
-
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Remarks</h2>
 <div class="outline-text-2" id="text-2">
-
-
 <blockquote>
-
-<p>What is the inductive bias of k-nearest neighbor? The inductive bias
+<p>
+What is the inductive bias of k-nearest neighbor? The inductive bias
 corresponds to an assumption that the classification of an instance
 \(x\), will be most similar to the classification of other instances
 that are nearby in Euclidean distance. 
 </p>
+
 <p>
 One practical issue in applying k-nearest neighbor algorithms is that
 the distance between instances is calculated based on all attributes
@@ -456,7 +596,7 @@ these attributes are relevant to determining the classification for
 the particular target function. In this case, instances that have
 identical values for the 2 relevant attributes may nevertheless be
 distant from one another in the 20-dimensional instance space.  As a
-result, the similarity metric used by k-nearest neighbor &mdash; depending
+result, the similarity metric used by k-nearest neighbor &#x2014; depending
 on all 20 attributes-will be misleading. The distance between
 neighbors will be dominated by the large number of irrelevant
 attributes. This difficulty, which arises when many irrelevant
@@ -464,9 +604,11 @@ attributes are present, is sometimes referred to as the curse of
 dimensionality. Nearest-neighbor approaches are especially sensitive
 to this problem.
 </p>
+
 <p>
-[&hellip;]
+[&#x2026;]
 </p>
+
 <p>
 One additional practical issue in applying k-nearest neighbor is
 efficient memory indexing. Because this algorithm delays all
@@ -480,13 +622,11 @@ instances stored at the same or nearby nodes. The internal nodes of
 the tree sort the new query \(x_q\), to the relevant leaf by testing
 selected attributes of \(x_q\).
 </p>
+
 <p>
-&mdash; <i>Machine Learning</i> by Tom Mitchell, page 234.
+&#x2014; <i>Machine Learning</i> by Tom Mitchell, page 234.
 </p>
 </blockquote>
-
-
-
 
 
 <div style="font-size: 80%; clear: both;">
@@ -502,11 +642,12 @@ selected attributes of \(x_q\).
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

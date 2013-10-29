@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>OpenCV examples</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="OpenCV examples"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-08 11:17:21 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,27 +130,12 @@
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">OpenCV examples</h1>
-
-<p>The OpenCV homepage is <a href="http://opencv.org">opencv.org</a>; you&rsquo;ll want to look at their
-<a href="http://docs.opencv.org/2.4.3/modules/refman.html">reference manual</a> and <a href="http://docs.opencv.org/doc/tutorials/tutorials.html">tutorials</a>, in particular <a href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">tutorials about installation</a>.
-</p>
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Loading, saving, viewing: Images, videos, cameras</a></li>
@@ -125,219 +157,176 @@
 </ul>
 </div>
 </div>
+<p>
+The OpenCV homepage is <a href="http://opencv.org">opencv.org</a>; you'll want to look at their
+<a href="http://docs.opencv.org/2.4.3/modules/refman.html">reference manual</a> and <a href="http://docs.opencv.org/doc/tutorials/tutorials.html">tutorials</a>, in particular <a href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">tutorials about
+installation</a>.
+</p>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Loading, saving, viewing: Images, videos, cameras</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 Handling images is quite simple. Full code: <a href="./opencv/images.cpp">images.cpp</a>
 </p>
 
+<div class="org-src-container">
 
+<pre class="src src-c++"><span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">load the image</span>
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">img</span> = imread(<span style="color: #666666; background-color: #000000;">"lena.jpg"</span>);
 
-<pre class="src src-c++"><span style="color: #b22222;">// </span><span style="color: #b22222;">load the image</span>
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img</span> = imread(<span style="color: #8b2252;">"lena.jpg"</span>);
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">show it in a window</span>
+imshow(<span style="color: #666666; background-color: #000000;">"Image"</span>, img);
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">show it in a window</span>
-imshow(<span style="color: #8b2252;">"Image"</span>, img);
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">image window will immediately disappear if the program ends, so</span>
-<span style="color: #b22222;">// </span><span style="color: #b22222;">we'll wait for a keypress, indefinitely</span>
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">image window will immediately disappear if the program ends, so</span>
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">we'll wait for a keypress, indefinitely</span>
 waitKey();
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">do a simple transformation: convert to grayscale</span>
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">do a simple transformation: convert to grayscale</span>
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">first copy the image</span>
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_gray</span> = img.clone();
-<span style="color: #b22222;">// </span><span style="color: #b22222;">now convert to grayscale</span>
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">first copy the image</span>
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">img_gray</span> = img.clone();
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">now convert to grayscale</span>
 cvtColor(img, img_gray, CV_RGB2GRAY);
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">save the image</span>
-<span style="color: #228b22;">bool</span> <span style="color: #a0522d;">ret</span> = imwrite(<span style="color: #8b2252;">"lena.jpg"</span>, img_gray);
-<span style="color: #a020f0;">if</span>(ret) {
-    cout &lt;&lt; <span style="color: #8b2252;">"Save worked."</span> &lt;&lt; endl;
-} <span style="color: #a020f0;">else</span> {
-    cout &lt;&lt; <span style="color: #8b2252;">"Save failed."</span> &lt;&lt; endl;
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">save the image</span>
+<span style="color: #999999; background-color: #000000;">bool</span> <span style="color: #999999; background-color: #000000;">ret</span> = imwrite(<span style="color: #666666; background-color: #000000;">"lena.jpg"</span>, img_gray);
+<span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>(ret) {
+    cout &lt;&lt; <span style="color: #666666; background-color: #000000;">"Save worked."</span> &lt;&lt; endl;
+} <span style="color: #999999; background-color: #000000; font-weight: bold;">else</span> {
+    cout &lt;&lt; <span style="color: #666666; background-color: #000000;">"Save failed."</span> &lt;&lt; endl;
 }
 </pre>
-
+</div>
 
 <p>
 Amazingly, handling video files is also very simple, and is virtually
 the same as handling cameras! Full code: <a href="./opencv/videos.cpp">videos.cpp</a>
 </p>
 
+<div class="org-src-container">
 
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">VideoCapture</span> <span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">capture</span>(-1); <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">use webcam</span>
+<span style="color: #444444; background-color: #000000;">//</span><span style="color: #444444; background-color: #000000;">VideoCapture capture("output.mpg"); // use input file</span>
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">frame</span>;
 
-<pre class="src src-c++"><span style="color: #228b22;">VideoCapture</span> <span style="color: #0000ff;">capture</span>(-1); <span style="color: #b22222;">// </span><span style="color: #b22222;">use webcam</span>
-<span style="color: #b22222;">//</span><span style="color: #b22222;">VideoCapture capture("output.mpg"); // use input file</span>
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">frame</span>;
+<span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>(capture.isOpened()) {
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">if using webcam:</span>
+    <span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">fps</span> = 30;
+    <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">if using input file:</span>
+    <span style="color: #444444; background-color: #000000;">//</span><span style="color: #444444; background-color: #000000;">int fps = capture.get(CV_CAP_PROP_FPS);</span>
 
-<span style="color: #a020f0;">if</span>(capture.isOpened()) {
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">if using webcam:</span>
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">fps</span> = 30;
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">if using input file:</span>
-    <span style="color: #b22222;">//</span><span style="color: #b22222;">int fps = capture.get(CV_CAP_PROP_FPS);</span>
+    <span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">width</span> = capture.get(CV_CAP_PROP_FRAME_WIDTH);
+    <span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">height</span> = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
+    cout &lt;&lt; <span style="color: #666666; background-color: #000000;">"FPS: "</span> &lt;&lt; fps &lt;&lt; <span style="color: #666666; background-color: #000000;">", width: "</span> &lt;&lt; width &lt;&lt; <span style="color: #666666; background-color: #000000;">", height: "</span> &lt;&lt; height &lt;&lt; endl;
 
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">width</span> = capture.get(CV_CAP_PROP_FRAME_WIDTH);
-    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">height</span> = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
-    cout &lt;&lt; <span style="color: #8b2252;">"FPS: "</span> &lt;&lt; fps &lt;&lt; <span style="color: #8b2252;">", width: "</span> &lt;&lt; width &lt;&lt; <span style="color: #8b2252;">", height: "</span> &lt;&lt; height &lt;&lt; endl;
+    <span style="color: #999999; background-color: #000000;">VideoWriter</span> <span style="color: #999999; background-color: #000000;">writer</span>(<span style="color: #666666; background-color: #000000;">"input.mpg"</span>, CV_FOURCC(<span style="color: #666666; background-color: #000000;">'P'</span>,<span style="color: #666666; background-color: #000000;">'I'</span>,<span style="color: #666666; background-color: #000000;">'M'</span>,<span style="color: #666666; background-color: #000000;">'1'</span>),
+                       fps, cvSize(width, height), 0); <span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">0 means gray, 1 means color</span>
 
-    <span style="color: #228b22;">VideoWriter</span> <span style="color: #a0522d;">writer</span>(<span style="color: #8b2252;">"input.mpg"</span>, CV_FOURCC(<span style="color: #8b2252;">'P'</span>,<span style="color: #8b2252;">'I'</span>,<span style="color: #8b2252;">'M'</span>,<span style="color: #8b2252;">'1'</span>),
-                       fps, cvSize(width, height), 0); <span style="color: #b22222;">// </span><span style="color: #b22222;">0 means gray, 1 means color</span>
-
-    <span style="color: #a020f0;">if</span>(writer.isOpened()) {
-        <span style="color: #a020f0;">while</span>(<span style="color: #008b8b;">true</span>) {
+    <span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>(writer.isOpened()) {
+        <span style="color: #999999; background-color: #000000; font-weight: bold;">while</span>(<span style="color: #999999; background-color: #000000;">true</span>) {
             capture &gt;&gt; frame;
 
-            <span style="color: #a020f0;">if</span>(!frame.empty()) {
-                imshow(<span style="color: #8b2252;">"Video"</span>, frame);
+            <span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>(!frame.empty()) {
+                imshow(<span style="color: #666666; background-color: #000000;">"Video"</span>, frame);
             }
 
-            <span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">frame_gray</span> = frame.clone();
+            <span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">frame_gray</span> = frame.clone();
             cvtColor(frame, frame_gray, CV_RGB2GRAY);
             writer &lt;&lt; frame_gray;
 
-            <span style="color: #228b22;">int</span> <span style="color: #a0522d;">key</span> = waitKey(10);
-            <span style="color: #a020f0;">if</span>((<span style="color: #228b22;">char</span>)key == <span style="color: #8b2252;">'q'</span>) { <span style="color: #a020f0;">break</span>; }
+            <span style="color: #999999; background-color: #000000;">int</span> <span style="color: #999999; background-color: #000000;">key</span> = waitKey(10);
+            <span style="color: #999999; background-color: #000000; font-weight: bold;">if</span>((<span style="color: #999999; background-color: #000000;">char</span>)key == <span style="color: #666666; background-color: #000000;">'q'</span>) { <span style="color: #999999; background-color: #000000; font-weight: bold;">break</span>; }
         }
     }
 }
 </pre>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+</div>
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Image transformations and filters</h2>
 <div class="outline-text-2" id="text-2">
-
-
-
-</div>
-
-<div id="outline-container-2-1" class="outline-3">
+</div><div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1">Eroding</h3>
 <div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
 
+<pre class="src src-c++"><span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">img</span> = imread(<span style="color: #666666; background-color: #000000;">"lena.jpg"</span>);
 
+imshow(<span style="color: #666666; background-color: #000000;">"Image"</span>, img);
 
-
-
-<pre class="src src-c++"><span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img</span> = imread(<span style="color: #8b2252;">"lena.jpg"</span>);
-
-imshow(<span style="color: #8b2252;">"Image"</span>, img);
-
-<span style="color: #b22222;">// </span><span style="color: #b22222;">convert to grayscale</span>
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_gray</span> = img.clone();
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">convert to grayscale</span>
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">img_gray</span> = img.clone();
 cvtColor(img, img_gray, CV_RGB2GRAY);
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">convert to binary with a gray threshold</span>
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_binary</span> = img_gray.clone();
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">convert to binary with a gray threshold</span>
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">img_binary</span> = img_gray.clone();
 threshold(img_gray, img_binary, 128.0, 255.0, THRESH_BINARY);
-imshow(<span style="color: #8b2252;">"Binary"</span>, img_binary);
+imshow(<span style="color: #666666; background-color: #000000;">"Binary"</span>, img_binary);
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">make a kernel of 4x4, all 1's</span>
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">kernel</span> = <span style="color: #008b8b;">Mat</span>::ones(Size(4, 4), CV_8U);
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">make a kernel of 4x4, all 1's</span>
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">kernel</span> = <span style="color: #999999; background-color: #000000;">Mat</span>::ones(Size(4, 4), CV_8U);
 
-<span style="color: #228b22;">Mat</span> <span style="color: #a0522d;">img_binary_erode4x4</span> = img_binary.clone();
+<span style="color: #999999; background-color: #000000;">Mat</span> <span style="color: #999999; background-color: #000000;">img_binary_erode4x4</span> = img_binary.clone();
 
-<span style="color: #b22222;">// </span><span style="color: #b22222;">do the erosion</span>
+<span style="color: #444444; background-color: #000000;">// </span><span style="color: #444444; background-color: #000000;">do the erosion</span>
 erode(img_binary, img_binary_erode4x4, kernel);
 
-imshow(<span style="color: #8b2252;">"Erode binary 4x4"</span>, img_binary_erode4x4);
+imshow(<span style="color: #666666; background-color: #000000;">"Erode binary 4x4"</span>, img_binary_erode4x4);
 </pre>
-
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-2-2" class="outline-3">
+<div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2">Dilating</h3>
 <div class="outline-text-3" id="text-2-2">
-
-
 <p>
 Same code as erosion, even same kernel, except for this minor change:
 </p>
 
-
+<div class="org-src-container">
 
 <pre class="src src-c++">dilate(img_binary, img_binary_dilate4x4, kernel);
 </pre>
-
-
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+</div>
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Object tracking</h2>
 <div class="outline-text-2" id="text-3">
-
-
-
-</div>
-
-<div id="outline-container-3-1" class="outline-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
 <h3 id="sec-3-1">Background modeling</h3>
 <div class="outline-text-3" id="text-3-1">
-
-
 <p>
 static image, or updating image; using differences
 </p>
+
 <p>
 building MOG model
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-3-2" class="outline-3">
+<div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2">Background subtraction</h3>
-<div class="outline-text-3" id="text-3-2">
-
-
 </div>
 
-</div>
-
-<div id="outline-container-3-3" class="outline-3">
+<div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3">Finding contours</h3>
-<div class="outline-text-3" id="text-3-3">
-
-
 </div>
 
-</div>
-
-<div id="outline-container-3-4" class="outline-3">
+<div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4">Bounding boxes</h3>
-<div class="outline-text-3" id="text-3-4">
-
-
 </div>
 </div>
-
-</div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Face detection</h2>
 <div class="outline-text-2" id="text-4">
-
-
 <p>
 (not face recognition)
 </p>
-
 
 
 
@@ -354,12 +343,12 @@ building MOG model
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
-
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

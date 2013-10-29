@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>First-order logic</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="First-order logic"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:59:07 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,7 +130,8 @@
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="MathJax/MathJax.js">
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -126,30 +174,10 @@
 </script>
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">First-order logic</h1>
-
-<p>Propositional logic is limited in a very significant way: for every
-individual object or idea we want to describe, we have to create a new
-variable. We have no way of saying all objects of some type share
-certain properties.
-</p>
-<p>
-We&rsquo;ll introduce a few new logical constructs, and arrive at what is
-called first-order or predicate logic.
-</p>
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Constant symbols</a></li>
@@ -167,69 +195,69 @@ called first-order or predicate logic.
 </ul>
 </div>
 </div>
-
-<div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Constant symbols</h2>
-<div class="outline-text-2" id="text-1">
-
+<p>
+Propositional logic is limited in a very significant way: for every
+individual object or idea we want to describe, we have to create a new
+variable. We have no way of saying all objects of some type share
+certain properties.
+</p>
 
 <p>
-An constant symbol is a single object, like &ldquo;my cat Tony&rdquo; or
-&ldquo;President Obama.&rdquo;  Note that propositional logic does not have
-constant symbols that represent objects; instead, propositional logic
-only has statements like &ldquo;President Obama is a Democrat.&rdquo;
+We'll introduce a few new logical constructs, and arrive at what is
+called first-order or predicate logic.
 </p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Constant symbols</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+An constant symbol is a single object, like "my cat Tony" or
+"President Obama."  Note that propositional logic does not have
+constant symbols that represent objects; instead, propositional logic
+only has statements like "President Obama is a Democrat."
+</p>
+
 <p>
 We use upper-case for constant symbols: my cat Tony is \(Tony\),
 President Obama is \(Obama\), etc.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Predicates</h2>
 <div class="outline-text-2" id="text-2">
-
-
 <p>
-We&rsquo;ll also add new relations among objects that are called
+We'll also add new relations among objects that are called
 predicates. A predicate is true or false. So, the predicate \(IsACat\)
 is true when apply to Tony: \(IsACat(Tony) = T\). On the other hand,
 \(IsACat(Obama) = F\).
 </p>
+
 <p>
 Predicates may have more than one argument: \(Eats(Tony, CatFood) = T\),
 \(TastesLike(YellowCandy, Banana) = T\), or \(ParentsOf(Isabelle,
 Penelope, Rene) = F\).
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Variables</h2>
 <div class="outline-text-2" id="text-3">
-
-
 <p>
 Sometimes we want to find out for what values of, say, the second
 argument of a predicate, makes the predicate true. For example, for
 what values of \(x\) make this true: \(Eats(Tony, x)\)
 </p>
+
 <p>
 It turns out that when \(x\) equals any of \(CatFood, Bugs, CatNip,
 MashedPotatoes\) (etc.) then the predicate is true.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Operators</h2>
 <div class="outline-text-2" id="text-4">
-
-
 <p>
 We have the same operators as before: \(\wedge\), \(\vee\), \(\neg\),
 \(\rightarrow\), \(\leftrightarrow\). Thus, we can write \(Fish(Jenny)
@@ -237,209 +265,190 @@ We have the same operators as before: \(\wedge\), \(\vee\), \(\neg\),
 fish, then she has gills.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-5" class="outline-2">
+<div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Quantifiers</h2>
 <div class="outline-text-2" id="text-5">
-
-
 <p>
 We can combine variables, predicates, and relations to make statements
-like &ldquo;all fish have gills&rdquo; and &ldquo;at least one cat eats mashed
-potatoes.&rdquo; Two new symbols are introduced to build these statements:
-\(\forall\) (read &ldquo;for all&rdquo;) and \(\exists\) (read &ldquo;exists&rdquo;).
+like "all fish have gills" and "at least one cat eats mashed
+potatoes." Two new symbols are introduced to build these statements:
+\(\forall\) (read "for all") and \(\exists\) (read "exists").
 </p>
+
 <p>
 For example, \((\forall x)(Fish(x) \rightarrow HasGills(x))\) is read
-&ldquo;for all \(x\), if \(x\) is a fish then \(x\) has gills.&rdquo; That statement may
+"for all \(x\), if \(x\) is a fish then \(x\) has gills." That statement may
 be true or false; it depends on whether it is true that all fish have
-gills (we&rsquo;ll see how to answer that question in the next section).
+gills (we'll see how to answer that question in the next section).
 </p>
+
 <p>
 Another example: \((\exists x)(Cat(x) \wedge Eats(x, MashedPotatoes))\),
-which is read &ldquo;there exists an \(x\) such that \(x\) is a cat and \(x\) eats
-mashed potatoes.&rdquo; Again, we need to ask, how do we know if this is
+which is read "there exists an \(x\) such that \(x\) is a cat and \(x\) eats
+mashed potatoes." Again, we need to ask, how do we know if this is
 true?
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-6" class="outline-2">
+<div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Possible worlds (semantics)</h2>
 <div class="outline-text-2" id="text-6">
-
-
 <p>
 How do we know if \((\forall x)(Fish(x) \rightarrow HasGills(x))\) is
-true? It depends from what &ldquo;world&rdquo; we pull our \(x\) values. A &ldquo;world,&rdquo;
-or &ldquo;possible world,&rdquo; is simply a set of objects and truth-values for
+true? It depends from what "world" we pull our \(x\) values. A "world,"
+or "possible world," is simply a set of objects and truth-values for
 predicates. In one possible world, the set of objects may be \(Tony\),
 \(Jenny\), \(Obama\), \(Isabelle\), \(Penelope\), \(Rene\), \(YellowCandy\),
 \(Banana\), etc. The truth values for the predicates are \(Cat(Tony) = T,
 Fish(Tony) = F, Cat(Jenny) = F, Fish(Jenny) = F, Eats(Tony, Jenny) =
 F, Eats(Jenny, Tony) = F\), etc. Every predicate must be true or false
 for every object or combination of objects (in other words, no
-predicate&rsquo;s truth for any inputs is &ldquo;unknown&rdquo;).
+predicate's truth for any inputs is "unknown").
 </p>
+
 <p>
 Now if we want to know if some statement is true, we just use the
 following rules:
 </p>
-<ul>
-<li>If the statement has a \(\forall\) in front, we just check if every
-    object makes the statement true.
 
+<ul class="org-ul">
+<li>If the statement has a \(\forall\) in front, we just check if every
+object makes the statement true.
 </li>
+
 <li>If the statement has a \(\exists\) in front, we just check if there
-    is at least one object that makes the statement true.
+is at least one object that makes the statement true.
 </li>
 </ul>
-
 
 <p>
 Notice that the negation of a \(\forall\) statement is an \(\exists\)
 statement and vice versa:
 </p>
 
-
+<p>
 $$\neg (\forall x) (P(x)) \equiv (\exists x) (\neg P(x))$$
+</p>
 
+<p>
 $$\neg (\exists x) (P(x)) \equiv (\forall x) (\neg P(x))$$
-
+</p>
 </div>
-
 </div>
-
-<div id="outline-container-7" class="outline-2">
+<div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">Building a knowledge database</h2>
 <div class="outline-text-2" id="text-7">
-
-
 <p>
 Here is a very simple (and common) example of a database of
 first-order logic statements:
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>\((\forall m)(\forall c)(Mother(m, c) \leftrightarrow (Female(m)
     \wedge Parent(m, c)))\)
 
-<ul>
+<ul class="org-ul">
 <li>(mothers are female parents and vice versa)
-
 </li>
 </ul>
-
 </li>
+
 <li>\((\forall f)(\forall c)(Father(f, c) \leftrightarrow (Male(f)
     \wedge Parent(f, c)))\)
 
-<ul>
+<ul class="org-ul">
 <li>(fathers are male parents and vice versa)
-
 </li>
 </ul>
-
 </li>
+
 <li>\((\forall x)(Male(x) \leftrightarrow \neg Female(x))\)
 
-<ul>
+<ul class="org-ul">
 <li>(males are not females and vice versa, and there are only two
-      sexes; this statement recalls our discussion about the
-      &ldquo;violence&rdquo; of knowledge engineering)
-
+sexes; this statement recalls our discussion about the
+"violence" of knowledge engineering)
 </li>
 </ul>
-
 </li>
+
 <li>\((\forall x)(\forall y)(Brother(x, y) \leftrightarrow Brother(y,
     x))\)
 
-<ul>
+<ul class="org-ul">
 <li>(being a brother is a symmetric relationship)
-
 </li>
 </ul>
-
 </li>
+
 <li>\((\forall x)(\forall y)(\forall c)((Parent(x, c) \wedge Brother(x,
     y)) \leftrightarrow Uncle(y, c))\)
 
-<ul>
-<li>(uncles are brothers of one&rsquo;s parent and vice versa)
-
+<ul class="org-ul">
+<li>(uncles are brothers of one's parent and vice versa)
 </li>
 </ul>
-
 </li>
+
 <li>\((\forall c)((\forall x)(\forall y)((Parent(x, c) \wedge
     BiologicalParent(y, c)) \rightarrow x \neq y) \leftrightarrow
     Adopted(c))\)
 
-<ul>
+<ul class="org-ul">
 <li>(adopted children all (both) of their biological parents
-      different from their &ldquo;regular&rdquo; (everyday) parents)
+different from their "regular" (everyday) parents)
 </li>
 </ul>
-
 </li>
 </ul>
-
 
 <p>
-And so on&hellip;
+And so on&#x2026;
 </p>
+
 <p>
 We also need to know about our objects and predicates. Our world is:
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>\(\{Frank, John, Kathy, Susan, Gabrielle, Male(Frank) = T,
     Male(Susan) = F, \dots\)
-
 </li>
+
 <li>\(BiologicalParent(John, Gabrielle) = T, Father(Frank, Gabrielle)
     = T, \dots\)
-
 </li>
+
 <li>\(Parent(Kathy, Gabrielle) = T, BiologicalParent(Susan,
     Gabrielle) = T, \dots \}\)
 </li>
 </ul>
-
-
-
 </div>
 
-<div id="outline-container-7-1" class="outline-3">
+<div id="outline-container-sec-7-1" class="outline-3">
 <h3 id="sec-7-1">Inferencing with a knowledge database</h3>
 <div class="outline-text-3" id="text-7-1">
-
-
 <p>
-Let&rsquo;s make a query: Is Gabrielle adopted? \(Adopted(Gabrielle)\)? How do
+Let's make a query: Is Gabrielle adopted? \(Adopted(Gabrielle)\)? How do
 we answer this question using our knowledge database?
 </p>
+
 <p>
 First we look at the statements in the database and ask, which ones
 refer to adoption? Only the last statement listed above refers to
 adoption; it says that for Gabrielle to be adopted, all objects \(x\)
-and \(y\) where \(x\) is Gabrielle&rsquo;s parent and \(y\) is Gabrielle&rsquo;s
+and \(y\) where \(x\) is Gabrielle's parent and \(y\) is Gabrielle's
 biological parent, must have the further property that \(x \neq y\) in
 order for Gabrielle to be adopted. If, after checking all objects in
 our world, the relations described hold, then Gabrielle is adopted.
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-8" class="outline-2">
+<div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">Declarative vs. procedural knowledge</h2>
 <div class="outline-text-2" id="text-8">
-
-
 <p>
 First-order logic provides a way of writing declarative knowledge. But
 when we ask a query, we need some kind of procedure for determining if
@@ -450,50 +459,52 @@ procedures. Actually, we can apply depth-first search (say), to
 evaluate queries. <a href="./prolog.html">Prolog</a> will do this search for us, as long as we
 properly provide the declarative knowledge we care about.
 </p>
+
 <p>
 As an example, consider the following knowledge database:
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>\((\forall x)((List(x) \wedge Empty(x)) \rightarrow Sorted(x, x))\)
 
-<ul>
+<ul class="org-ul">
 <li>(an empty list is a sorted list; the \(Sorted(a, b)\) predicate
-      means \(b\) is the sorted version of \(a\))
-
+means \(b\) is the sorted version of \(a\))
 </li>
 </ul>
-
 </li>
+
 <li>\((\forall x)(\forall y)(\forall z)((List(x) \wedge FirstElement(y,
     x) \wedge RestOfList(x, z) \wedge Empty(z)) \rightarrow
     Sorted(x, x))\)
 
-<ul>
+<ul class="org-ul">
 <li>(a list with one element is a sorted list)
-
 </li>
 </ul>
-
 </li>
+
 <li>\((\forall x)(\forall x')(\forall y)(\forall y')(\forall z)(\forall
     z')((List(x) \wedge Permutation(x, x') \wedge FirstElement(y, x')\)
 
-    \(\wedge RestOfList(z, x') \wedge Sorted(z, z') \wedge
+<p>
+\(\wedge RestOfList(z, x') \wedge Sorted(z, z') \wedge
     FirstElement(y', z') \wedge LessThan(y, y'))\)
+</p>
 
-    \(\rightarrow Sorted(x, x'))\)
+<p>
+\(\rightarrow Sorted(x, x'))\)
+</p>
 
-<ul>
+<ul class="org-ul">
 <li>(\(x'\), a permutation of a list \(x\), is the sorted version \(x\)
-      when the first two elements of the list \(x'\) are \(y\) and \(y'\),
-      and \(z'\) is the sorted remainder of the list (which includes
-      \(y'\) at the front), and \(y &lt; y'\))
+when the first two elements of the list \(x'\) are \(y\) and \(y'\),
+and \(z'\) is the sorted remainder of the list (which includes
+\(y'\) at the front), and \(y < y'\))
 </li>
 </ul>
-
 </li>
 </ul>
-
 
 <p>
 This is the declarative knowledge about sorted lists. The query
@@ -505,7 +516,6 @@ consider all \(x'\) that satisfy the predicate \(Permutation(x, x')\) (we
 are assuming the world contains the sorted permutations of all known
 lists, and may well contain many more permutations of those lists).
 </p>
-
 
 <div style="font-size: 80%; clear: both;">
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
@@ -520,11 +530,12 @@ lists, and may well contain many more permutations of those lists).
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

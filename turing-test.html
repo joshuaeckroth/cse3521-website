@@ -1,67 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Turing test</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="title" content="The Turing test"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-02-12 15:53:42 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,7 +130,8 @@
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="MathJax/MathJax.js">
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -126,44 +174,15 @@
 </script>
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">The Turing test</h1>
-
-
-
-
-<div style="float: right; width: 200px; margin-left: 5px; padding:
-5px; border: 1px solid #ccc;">
-<img src="./images/turing.jpg" width=200 height=268 />
-<br/>
-Turing looking appropriately mischievious.
-</div>
-
-<p>
-The Turing test is the name given to Alan Turing&rsquo;s test for mechanical
-intelligence. He called it the &ldquo;Imitation game,&rdquo; which is described
-below. We also look at variations suggested by Daniel Dennett to
-support his claim that the Turing test is actually very
-strong. Turing&rsquo;s original description can be found in his 1950 paper,
-&ldquo;<a href="http://www.loebner.net/Prizef/TuringArticle.html">Computing machinery and intelligence</a>.&rdquo;
-</p>
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">The imitation game</a>
 <ul>
-<li><a href="#sec-1-1">What&rsquo;s happening?</a></li>
+<li><a href="#sec-1-1">What's happening?</a></li>
 <li><a href="#sec-1-2">Replace the man with a machine!</a></li>
 <li><a href="#sec-1-3">Two philosophical points</a></li>
 </ul>
@@ -175,7 +194,8 @@ strong. Turing&rsquo;s original description can be found in his 1950 paper,
 <li><a href="#sec-2-1-1">Candidate 1</a></li>
 <li><a href="#sec-2-1-2">Candidate 2</a></li>
 <li><a href="#sec-2-1-3">Candidate 3</a></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-3">We have a long way to go</a></li>
@@ -188,12 +208,25 @@ strong. Turing&rsquo;s original description can be found in his 1950 paper,
 </ul>
 </div>
 </div>
+<div style="float: right; width: 200px; margin-left: 5px; padding:
+5px; border: 1px solid #ccc;">
+<img src="./images/turing.jpg" width=200 height=268 />
+<br/>
+Turing looking appropriately mischievious.
+</div>
 
-<div id="outline-container-1" class="outline-2">
+<p>
+The Turing test is the name given to Alan Turing's test for mechanical
+intelligence. He called it the "Imitation game," which is described
+below. We also look at variations suggested by Daniel Dennett to
+support his claim that the Turing test is actually very
+strong. Turing's original description can be found in his 1950 paper,
+"<a href="http://www.loebner.net/Prizef/TuringArticle.html">Computing machinery and intelligence</a>."
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">The imitation game</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 The game is played by three people: a man (<i>A</i>), a woman (<i>B</i>), and an
 interrogator (<i>C</i>) who may be of either sex. The interrogator stays in
@@ -201,81 +234,83 @@ a separate room. The object of the game is for the interrogator to
 determine who of <i>A</i> and <i>B</i> (known to the interrogator as <i>X</i> and
 <i>Y</i>) is the man and who is the woman.
 </p>
+
 <p>
 The interrogator asks questions of <i>A</i> and <i>B</i> such as: Will <i>X</i>
 please tell me the length of his or her hair?
 </p>
+
 <p>
 <i>A</i> wants <i>C</i> (the interrogator) to come to the wrong
 conclusion. Thus, <i>A</i> may say his hair is long (which, we are
 supposing, gives <i>C</i> reason to think that <i>A</i> is a woman, i.e. that
 <i>A</i> is <i>B</i>).
 </p>
+
 <p>
 Clearly, some measures must be taken so that <i>C</i> cannot simply see or
 hear who is the man and who is the woman. So conversation happens
 through a typewriter.
 </p>
+
 <p>
 <i>B</i>, unlike <i>A</i>, wants <i>C</i> to come to the right conclusion. So, <i>B</i>
-may say, &ldquo;I am the woman!&rdquo; But so might <i>A</i>.
+may say, "I am the woman!" But so might <i>A</i>.
 </p>
-
 </div>
 
-<div id="outline-container-1-1" class="outline-3">
-<h3 id="sec-1-1">What&rsquo;s happening?</h3>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">What's happening?</h3>
 <div class="outline-text-3" id="text-1-1">
-
-
 <p>
 Before we talk about replacing one of these players with a machine, we
-should try to understand what Turing is doing here. Let&rsquo;s take it for
+should try to understand what Turing is doing here. Let's take it for
 granted (as I suppose he did) that men and women are quite different;
 that there is some <i>fundamental</i> distinction and a sophisticated
 interrogator might have a chance of telling them apart. (This must be
-Turing&rsquo;s belief because the imitation game is pointless if there is no
+Turing's belief because the imitation game is pointless if there is no
 reasonable way to distinguish the players, for example distinguishing
 identical twins with similar life experiences, neither of whom you
 know closely.)
 </p>
+
 <p>
 So, given that men and women are very different, person <i>A</i> would
 succeed in confusing the interrogator (making <i>C</i> believe that <i>X</i> is
 <i>B</i> rather than the true answer, <i>A</i>), and similarly, person <i>B</i> would
 fail in convincing <i>C</i> of the truth, if <i>A</i> is a better imitator of a
-woman than <i>B</i> is, and furthermore that <i>B</i>&rsquo;s arguments to the
+woman than <i>B</i> is, and furthermore that <i>B</i>'s arguments to the
 contrary fail.
 </p>
+
 <p>
 Thus, <i>B</i> may win (expose <i>A</i> as a man) if <i>A</i> is a bad imitator or
 <i>B</i> has really strong arguments.
 </p>
+
 <p>
 Suppose <i>C</i> gets the right answer only p% of the time (perhaps with
 different interrogators but the same <i>A</i> and <i>B</i> players; Turing is
 unclear here). This performance p% is important to keep in mind.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-1-2" class="outline-3">
+<div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2">Replace the man with a machine!</h3>
 <div class="outline-text-3" id="text-1-2">
-
-
 <p>
 Now we are ready to understand why Turing set up this game to test
 machine intelligence. If we replace <i>A</i> with a machine (perhaps <i>B</i> is
 still a woman, perhaps not, but of course is a human), then we have a
 test for machine intelligence.
 </p>
+
 <p>
 Now, the machine is trying to convince the interrogator that it is a
 human, but the human is not. The human is trying to convince the
 interrogator that he or she is a human, but the machine is not.
 </p>
+
 <p>
 Just as, supposedly, a man would find it difficult to immitate a
 woman, a machine would probably find it difficult to immitate a
@@ -283,6 +318,7 @@ human. Yet, if the machine is not only able to act like a human but
 also (or alternatively?) to counteract the arguments produced by the
 human, then the machine is quite intelligent indeed.
 </p>
+
 <p>
 Some interrogator may be naive. Thus, I believe this performance p%
 is relevant. If the same machine and human players (or perhaps
@@ -292,37 +328,34 @@ machine need not achieve perfect performance (p = 100%), just has to
 beat human performance. (Because, presumably, humans are the most
 intelligent creatures that can be used in this test.)
 </p>
+
 <p>
-I don&rsquo;t believe there is any reason to suppose a man can successfully
+I don't believe there is any reason to suppose a man can successfully
 convince a judge he is a woman and the woman is a man more than 50% of
 the time. If a man could do this, then he acts like a woman better
 than most other women, and furthermore can counteract their arguments
 to the contrary. Because the woman is arguing as well, maximum
 performance near 25% is probably more appropriate. Anyway, the
-machine&rsquo;s goal is to beat that figure, not achieve perfect
+machine's goal is to beat that figure, not achieve perfect
 convincing. The existence of a machine that can consistently convince
 a judge that it is human and the human is a machine, even though the
 human is begging for mercy, is an amazing thought!
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-1-3" class="outline-3">
+<div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3">Two philosophical points</h3>
 <div class="outline-text-3" id="text-1-3">
-
-
-
 <p>
-Firstly, Descartes somewhat &ldquo;predicted&rdquo; the usefulness of such a test,
+Firstly, Descartes somewhat "predicted" the usefulness of such a test,
 even though he believed machines would never be able to pass it, in
 principle (because he thought machines could never respond to their
 environments):
 </p>
-<blockquote>
 
-<p>If there were machines which bore a resemblance to our bodies and
+<blockquote>
+<p>
+If there were machines which bore a resemblance to our bodies and
 imitated our actions as closely as possible for all practical
 purposes, we should still have two very certain means of recognizing
 that they were not real men. The first is that they could never use
@@ -341,18 +374,17 @@ whereas reason is a universal instrument, which can be used in all
 kinds of situations, these organs need some particular action; hence
 it is for all practical purposes impossible for a machine to have
 enough different organs to make it act in all the contingencies of
-life in the way in which our reason makes us act. &mdash; <a href="http://plato.stanford.edu/entries/turing-test/">Source</a>
+life in the way in which our reason makes us act. &#x2014; <a href="http://plato.stanford.edu/entries/turing-test/">Source</a>
 </p>
 </blockquote>
 
-
-
 <p>
-Secondly, Leibniz investigated what he called the &ldquo;identity of
-indiscernibles,&rdquo; (<a href="http://plato.stanford.edu/entries/identity-indiscernible/">source</a>) which is essentially the statement that two
+Secondly, Leibniz investigated what he called the "identity of
+indiscernibles," (<a href="http://plato.stanford.edu/entries/identity-indiscernible/">source</a>) which is essentially the statement that two
 objects, \(x\) and \(y\), are identical if there does not exist any
 property that \(x\) has but \(y\) does not and vice versa.
 </p>
+
 <p>
 The Turing test is essentially making a similar, though weaker,
 statement: machine intelligence and human intelligence are equivalent
@@ -364,52 +396,51 @@ forms of intelligence, then they are identical.
 </p>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">The Turing test is quite strong</h2>
 <div class="outline-text-2" id="text-2">
-
-
-
 <p>
-All quotes are from Dennett, &ldquo;Can Machines Think?&rdquo; (1985)
+All quotes are from Dennett, "Can Machines Think?" (1985)
 </p>
-<blockquote>
 
-<p>Remember, failure on the Turing test does not predict failure on those
+<blockquote>
+<p>
+Remember, failure on the Turing test does not predict failure on those
 others, but success would surely predict success. His test was so
 severe, he thought, that nothing that could pass it fair and square
 would disappoint us in other quarters. Maybe it wouldn’t do everything
-we hoped&mdash;maybe it wouldn&rsquo;t appreciate ballet, understand quantum
-physics, or have a good plan far world peace, but we&rsquo;d all see that it
+we hoped&#x2014;maybe it wouldn't appreciate ballet, understand quantum
+physics, or have a good plan far world peace, but we'd all see that it
 was surely one of the intelligent, thinking entities in the
 neighborhood.
 </p>
+
 <p>
-[&hellip;]
+[&#x2026;]
 </p>
 
 <p>
 Terry Winograd, a leader in AI efforts to produce conversational
 ability in a computer, draws our attention to a pair of sentences.
-They differ in only one word. The first sentence is this: &ldquo;The
+They differ in only one word. The first sentence is this: "The
 committee denied the group a parade permit because they advocated
-violence.&rdquo; Here&rsquo;s the second sentence: &ldquo;The committee denied the group
-a parade permit because they feared violence.&rdquo;
+violence." Here's the second sentence: "The committee denied the group
+a parade permit because they feared violence."
 </p>
+
 <p>
-The difference is just in the verb&mdash;"advocated&rdquo; or &ldquo;feared.&rdquo; As
-Winograd points out, the pronoun &ldquo;they&rdquo; in each sentence is officially
+The difference is just in the verb&#x2014;"advocated" or "feared." As
+Winograd points out, the pronoun "they" in each sentence is officially
 ambiguous. Both readings of the pronoun are always legal. Thus, we can
 imagine a world in which governmental committees in charge of parade
 permits advocate violence in the streets and, for some strange reason,
 use this as their pretext for denying a parade permit. But the
 natural, reasonable, intelligent reading of the first sentence is that
-it&rsquo;s the group that advocated violence, and of the second, that it&rsquo;s
+it's the group that advocated violence, and of the second, that it's
 the committee that feared the violence.
 </p>
+
 <p>
 Now sentences like this are embedded in a conversation, the computer
 must figure out which reading of the pronoun is meant, it is to
@@ -420,9 +451,11 @@ attitudes, groups that want to parade, how they tend to behave, and
 the like. One must know about the world, in short, to make sense of
 such a sentence.
 </p>
+
 <p>
-[&hellip;]
+[&#x2026;]
 </p>
+
 <p>
 The only way, it appears, for a computer to disambiguate that
 sentence and keep up its end of a conversation that uses that sentence
@@ -433,133 +466,95 @@ such abilities, are good quick probes. That is, they test for a wider
 competence.
 </p>
 </blockquote>
-
-
-
 </div>
 
-<div id="outline-container-2-1" class="outline-3">
+<div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1">Weaker varieties</h3>
 <div class="outline-text-3" id="text-2-1">
-
-
-
-</div>
-
-<div id="outline-container-2-1-1" class="outline-4">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
 <h4 id="sec-2-1-1">Candidate 1</h4>
 <div class="outline-text-4" id="text-2-1-1">
-
-
 <blockquote>
-
-<p>A computer is intelligent; it wins the World Chess Championship.
-</p>
 <p>
-That&rsquo;s not a good test, it turns out. Chess prowess has proven to be
+A computer is intelligent; it wins the World Chess Championship.
+</p>
+
+<p>
+That's not a good test, it turns out. Chess prowess has proven to be
 an isolatable talent. There are programs today that can play fine
 chess but do nothing else. So the quick-probe assumption is false far
 the test of playing winning chess.
 </p>
 </blockquote>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-2-1-2" class="outline-4">
+<div id="outline-container-sec-2-1-2" class="outline-4">
 <h4 id="sec-2-1-2">Candidate 2</h4>
 <div class="outline-text-4" id="text-2-1-2">
-
-
 <blockquote>
-
-<p>The computer is intelligent; it solves the Arab-Israeli conflict.
-</p>
 <p>
-This is surely a more severe test than Turing&rsquo;s. But it has some
+The computer is intelligent; it solves the Arab-Israeli conflict.
+</p>
+
+<p>
+This is surely a more severe test than Turing's. But it has some
 defects: passed once, it is unrepeatable; it is slow, no doubt; and it
-is not crisply clear what would count as passing it. Here&rsquo;s another
+is not crisply clear what would count as passing it. Here's another
 prospect, then:
 </p>
 </blockquote>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-2-1-3" class="outline-4">
+<div id="outline-container-sec-2-1-3" class="outline-4">
 <h4 id="sec-2-1-3">Candidate 3</h4>
 <div class="outline-text-4" id="text-2-1-3">
-
-
 <blockquote>
-
-<p>A computer is intelligent; it succeeds in stealing the British crown
+<p>
+A computer is intelligent; it succeeds in stealing the British crown
 jewels without the use of force or violence.
 </p>
+
 <p>
 Now this is better. First, it could be repeated again and again,
 though of course each repeat test would presumably be harder, but this
 is a feature it shares with the Turing test. Second, the mark of
-success is clear: either you&rsquo;ve got the jewels to show for your
-efforts or you don&rsquo;t. But it is expensive and slow, a socially dubious
+success is clear: either you've got the jewels to show for your
+efforts or you don't. But it is expensive and slow, a socially dubious
 caper at best, and no doubt luck would play too great a role.
 </p>
 </blockquote>
-
-
 </div>
 </div>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">We have a long way to go</h2>
 <div class="outline-text-2" id="text-3">
-
-
-
 <p>
-Nobody actually practices with a real Turing test. It&rsquo;s too hard for
+Nobody actually practices with a real Turing test. It's too hard for
 the machine. Instead, the yearly <a href="http://www.loebner.net/Prizef/loebner-prize.html">Loebner Prize</a> experiments with a
-reduced form of this test. The judges simply estimate how &ldquo;closely&rdquo; a
+reduced form of this test. The judges simply estimate how "closely" a
 computer imitates a human, and judges are not allowed to attempt
 trickery (such as typing random symbols) or delve into deep
 conversation.
 </p>
-
 
 <div style="text-align: center">
 <iframe width="640" height="360"
 src="http://www.youtube.com/embed/3PiwEQQNnBk?rel=0" frameborder="0"
 allowfullscreen></iframe>
 </div>
-
 </div>
-
 </div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Podcasts</h2>
 <div class="outline-text-2" id="text-4">
-
-
-
-
 </div>
 
-<div id="outline-container-4-1" class="outline-3">
+<div id="outline-container-sec-4-1" class="outline-3">
 <h3 id="sec-4-1">Talking to machines (Radiolab, May 31, 2011)</h3>
 <div class="outline-text-3" id="text-4-1">
-
-
-
-<div style="text-align: center">
-
+<div class="center">
 <embed
 flashvars="file=http://www.radiolab.org/audio/xspf/137407/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/137407/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab053111.mp3"
 quality="high" allowscriptaccess="always" wmode="transparent"
@@ -571,21 +566,13 @@ s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTi
 <p>
 1 hour / <a href="http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab053111.mp3">Download MP3</a> / <a href="http://www.radiolab.org/2011/may/31/">Radiolab website for this episode</a>
 </p>
-
 </div>
-
 </div>
-
 </div>
-
-<div id="outline-container-4-2" class="outline-3">
+<div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">The Turing Problem (Radiolab, March 19, 2012)</h3>
 <div class="outline-text-3" id="text-4-2">
-
-
-
-<div style="text-align: center">
-
+<div class="center">
 <embed
 flashvars="file=http://www.radiolab.org/audio/xspf/193037/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/193037/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab_podcast/radiolab_podcast12turing.mp3"
 quality="high" allowscriptaccess="always" wmode="transparent"
@@ -597,10 +584,7 @@ s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTi
 <p>
 23 minutes / <a href="http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab_podcast/radiolab_podcast12turing.mp3">Download MP3</a> / <a href="http://www.radiolab.org/blogs/radiolab-blog/2012/mar/19/turing-problem/">Radiolab website for this episode</a>
 </p>
-
 </div>
-
-
 
 <div style="font-size: 80%; clear: both;">
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
@@ -615,13 +599,13 @@ s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTi
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
-
 </div>
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>

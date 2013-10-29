@@ -1,67 +1,114 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Neural networks</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Neural networks"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-12-05 20:24:09 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,7 +130,8 @@
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="MathJax/MathJax.js">
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
         // Only one of the two following lines, depending on user settings
@@ -126,21 +174,10 @@
 </script>
 </head>
 <body>
-
-<div id="preamble">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
-          <!-- End of Plupper Button Code -->
-
-</div>
-
 <div id="content">
 <h1 class="title">Neural networks</h1>
-
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">The neuron</a></li>
@@ -154,13 +191,9 @@
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">The neuron</h2>
 <div class="outline-text-2" id="text-1">
-
-
-
-
 <div style="clear: both; float: right; width: 450px;">
 <div style="text-align: center">
 <b>The neuron</b><br/>
@@ -176,43 +209,47 @@ axon terminals, and dendrites. The dendrites split into complex trees
 and receive signals from other neurons. Signals are sent through the
 axon terminals to other neurons.
 </p>
+
 <p>
 Neurons are found throughout the nervous system (brain, spinal cord,
 periphery) but are most concentrated in the brain. A human brain has
 about 100 billion neurons. Each neuron has, on average, about 7000
 connections to other neurons.
 </p>
+
 <p>
-This wouldn&rsquo;t be particularly remarkable except for the
-generally-accepted theory that the brain is an &ldquo;information processing
-machine.&rdquo; That is to say, it is <i>computing</i> something with all those
+This wouldn't be particularly remarkable except for the
+generally-accepted theory that the brain is an "information processing
+machine." That is to say, it is <i>computing</i> something with all those
 neurons. The question is, then, can properties of the brain be the
 reason humans are intelligent, and can those properties be used in
 systems we create?
 </p>
+
 <p>
 The most intriguing property of the brain, apart from its massive
 connectivity, is that each neuron is more-or-less doing the same
-thing. Most neurons &ldquo;activate&rdquo; (discharges an electrical signal down
+thing. Most neurons "activate" (discharges an electrical signal down
 the axon) based on whether or not neurons connected to it have
 recently activated themselves. Each connection to another neuron has a
 certain strength, so that if the connected neuron activates, a signal
 of a certain strength is received. The signals received add up, and
 may cause the receiving neuron itself to activate.
 </p>
+
 <p>
 The signals have to add up in a certain time frame, otherwise they
 will just dissipate. If the receiving neuron does activate, it
-completely discharges. It is an &ldquo;all or nothing&rdquo; event. More received
+completely discharges. It is an "all or nothing" event. More received
 electrical charge does not create greater discharges; the amount of
 received charge only determines <i>if</i> an activation will occur.
 </p>
+
 <p>
 Some connections among neurons are excitatory, which increase the
 chance of activation by the receiving neuron, and inhibitory which do
 the opposite.
 </p>
-
 
 <div style="clear: both; float: right; width: 450px;">
 <div style="text-align: center">
@@ -225,83 +262,84 @@ href="http://en.wikipedia.org/wiki/File:Action_potential_vert.png">Wikipedia</a>
 
 <p>
 The connections among neurons and their strengths are not
-hard-wired. &ldquo;Learning&rdquo; is essentially the process of changing
-connections (&ldquo;synaptic pruning&rdquo;) and their strengths (&ldquo;synaptic
-plasiticity&rdquo;).
+hard-wired. "Learning" is essentially the process of changing
+connections ("synaptic pruning") and their strengths ("synaptic
+plasiticity").
 </p>
+
 <p>
 One important theory about how these changes come about is the Hebbian
 learning rule (from Donald Hebb, 1949). It attempts to explain how
 connections strengthen:
 </p>
-<blockquote>
 
-<p>Let us assume that the persistence or repetition of a reverberatory
-activity (or &ldquo;trace&rdquo;) tends to induce lasting cellular changes that
-add to its stability. [&hellip;] When an axon of cell A is near enough to
+<blockquote>
+<p>
+Let us assume that the persistence or repetition of a reverberatory
+activity (or "trace") tends to induce lasting cellular changes that
+add to its stability. [&#x2026;] When an axon of cell A is near enough to
 excite a cell B and repeatedly or persistently takes part in firing
 it, some growth process or metabolic change takes place in one or both
-cells such that A&rsquo;s efficiency, as one of the cells firing B, is
+cells such that A's efficiency, as one of the cells firing B, is
 increased.
 </p>
 </blockquote>
 
-
 <p>
-This is often summarized as: &ldquo;Cells that fire together, wire
-together.&rdquo; The theory would basically explain associative memory: if
+This is often summarized as: "Cells that fire together, wire
+together." The theory would basically explain associative memory: if
 you repeatedly hear the birthday song while you are simultaneously
 looking at a birthday cake, eventually whenever you see or think about
 a birthday cake, you are reminded of the song.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Neurons as inspiration: The perceptron</h2>
 <div class="outline-text-2" id="text-2">
-
-
 <p>
 We want to build systems that exhibit some properties of the
 brain. These properties are:
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>Simple, nearly-identical components (neurons)
-
 </li>
+
 <li>Massively-parallel computation
-
 </li>
+
 <li>A learning mechanism
 </li>
 </ul>
 
-
 <p>
 These properties are important for several reasons. Systems built out
-of many similar (well, let&rsquo;s just say &ldquo;identical&rdquo;) components may be
+of many similar (well, let's just say "identical") components may be
 more robust if we can be certain the design of the identical
 components is a good design. Massively-parallel computation promises
 that very complex tasks can be done in very little time; accomplishing
 this is still just pie in the sky for most systems built by
 humans. And if we have access to a reliable learning mechanisms,
-systems do not so much have to be designed but rather &ldquo;trained.&rdquo;
+systems do not so much have to be designed but rather "trained."
 Perhaps we can build systems that begin like children but learn, on
 their own, to be highly capable. Perhaps we can just throw together a
-bunch of simple &ldquo;neurons,&rdquo; show the system lots of training examples,
+bunch of simple "neurons," show the system lots of training examples,
 and the system will do the rest of the work.
 </p>
+
 <p>
 The first attempt was by <a href="http://www.rutherfordjournal.org/article040101.html#rosenblatt">Frank Rosenblatt</a> in 1957. He designed the
-&ldquo;perceptron,&rdquo; a computational unit that can be described by the
+"perceptron," a computational unit that can be described by the
 following diagram.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/perceptron.png"  alt="./images/perceptron.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/perceptron.png" alt="perceptron.png" />
 </p>
+</div>
 </div>
 
 <p>
@@ -319,7 +357,6 @@ perceptron activates, sending a 1 out the right side. Otherwise, it
 does not, sending a 0 out the right side.
 </p>
 
-
 \begin{equation}
 f\left(\sum_{i=1}^k x_{i} w_{ji} + w_{j0}\right) =
 \begin{cases}
@@ -329,24 +366,26 @@ f\left(\sum_{i=1}^k x_{i} w_{ji} + w_{j0}\right) =
 \end{equation}
 
 <p>
-Each perceptron may be connected to others, so that a perceptron&rsquo;s
-output can be other perceptrons&rsquo; inputs. However, it turns out that
+Each perceptron may be connected to others, so that a perceptron's
+output can be other perceptrons' inputs. However, it turns out that
 the complexity of the network greatly affects how learning will work.
 </p>
+
 <p>
 The first property to notice about perceptrons is that a single
 perceptron can compute simple logic functions, assuming we have binary
 inputs. For example,
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/not-perceptron.png"  alt="./images/not-perceptron.png" />
-<img src="./images/and-perceptron.png"  alt="./images/and-perceptron.png" />
+<div class="center">
+<p>
+<img src="./images/not-perceptron.png" alt="not-perceptron.png" />
+<img src="./images/and-perceptron.png" alt="and-perceptron.png" />
 </p>
 </div>
 
 <p>
-Of course, the &ldquo;OR&rdquo; function is also possible (the homework asks you
+Of course, the "OR" function is also possible (the homework asks you
 to show that). Outputs of perceptrons can become inputs to other
 perceptrons, allowing us to build all possible logic circuits. Thus,
 perceptrons are capable of general computation, putting them in the
@@ -356,8 +395,9 @@ that can be computed; examples include electrical logic gates (i.e., a
 typical computer), the Lambda calculus, cellular automata, and now
 neural networks.
 </p>
+
 <p>
-But can a complex network learn? When we say &ldquo;learn,&rdquo; we mean: can the
+But can a complex network learn? When we say "learn," we mean: can the
 weights be assigned via a training process rather than assigned
 manually? This would be ideal: just put together a bunch of
 perceptrons, give it lots of examples (e.g., examples of prime numbers
@@ -366,18 +406,13 @@ so that it turns into a machine that computes that function (e.g., the
 function to determine if a number is prime or not).
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">The perceptron learning algorithm</h2>
 <div class="outline-text-2" id="text-3">
-
-
 <p>
 Look again at the definition of the threshold function:
 </p>
-
 
 \begin{equation}
 f\left(\sum_{i=1}^k x_{i} w_{ji} + w_{j0}\right) =
@@ -393,8 +428,9 @@ be 1 for positive examples and 0 for negative examples. This means we
 want the sum of the inputs to be at least 0.5 for positive examples,
 and less for negative examples.
 </p>
+
 <p>
-The sum is a linear function. It can be &ldquo;trained&rdquo; using typical
+The sum is a linear function. It can be "trained" using typical
 methods that work on linear functions. One such method is gradient
 descent (or ascent), a.k.a. hill-climbing. Normally, with gradient
 descent, we compute the derivative (gradient) of the objective
@@ -403,6 +439,7 @@ the greatest gradient, and adjust the weights. However, the threshold
 function is not differentiable (it is a step function, discontinous at
 0.5), but we have a shortcut.
 </p>
+
 <p>
 Let \(d\) be the true answer for some input vector, and \(y\) but the
 output computed by the perceptron with its current weights \(w_i\). We
@@ -414,8 +451,9 @@ bit, so we do not oscillate. Thus, we have the following adjustment
 for each weight:
 </p>
 
-
+<p>
 $$w'_i = w_i + \alpha (d-y)x_i,$$
+</p>
 
 <p>
 where \(w'_i\) is the new weight and \(\alpha\) is a small number (0.1, or
@@ -427,51 +465,61 @@ on the nature of the function being learned and the nature of the
 inputs. Since each adjustment is so small, the same perceptron may
 need to be shown the same (positive and negative) examples many
 times. When a perceptron is shown all examples once, we say it has
-trained on one &ldquo;epoch.&rdquo; Often we train across hundreds or thousands of
+trained on one "epoch." Often we train across hundreds or thousands of
 epochs.
 </p>
+
 <p>
 A single perceptron can have many inputs; perhaps thousands. What
 kinds of functions can it learn? Recall the sum of the weighted inputs
-is a linear function. The threshold function just says &ldquo;yes&rdquo; or &ldquo;no&rdquo;
+is a linear function. The threshold function just says "yes" or "no"
 based on this sum. Suppose there are two inputs: then the weighted sum
-describes a line in 2D. The threshold function just says &ldquo;yes&rdquo; if an
+describes a line in 2D. The threshold function just says "yes" if an
 input vector is above (or below) the line, or exactly on the line, and
-&ldquo;no&rdquo; otherwise.
+"no" otherwise.
 </p>
+
 <p>
 Here is a diagram of this threshold line:
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/linearly-separable.png"  alt="./images/linearly-separable.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/linearly-separable.png" alt="linearly-separable.png" />
 </p>
+</div>
 </div>
 
 <p>
-The answer is, therefore, that a perceptron can learn any &ldquo;linearly
-separable&rdquo; function. If the positive examples and negative examples
+The answer is, therefore, that a perceptron can learn any "linearly
+separable" function. If the positive examples and negative examples
 can be plotted (possibly in higher dimensions), and there exists a
 line/plane that separates the two classes, then a perceptron can learn
 that line/plane. We know this because the line/plane can be described
 by a weighted sum of the inputs. This fact is why you may find
-perceptrons described in terms of &ldquo;computational geometry&rdquo; &mdash; they
+perceptrons described in terms of "computational geometry" &#x2014; they
 are effectively learning geometric functions.
 </p>
+
 <p>
 It turns out that not all functions are linearly separable. The
 simplest case is the XOR function. You can plot it like so:
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/xor-plot.png"  alt="./images/xor-plot.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/xor-plot.png" alt="xor-plot.png" />
 </p>
+</div>
 </div>
 
 <p>
 There is simply no line that separates the positive and negative
 examples of the XOR function. A perceptron cannot learn this function.
 </p>
+
 <p>
 This is such a basic function that, when Minsky and Papert proved in
 1969 that XOR could not be learned, perceptrons took a huge
@@ -479,14 +527,10 @@ hit. Research in neural networks did not fully recover until the
 1980s, when a new learning mechanism was discovered.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Single-layer perceptron networks</h2>
 <div class="outline-text-2" id="text-4">
-
-
 <p>
 Putting lots of perceptrons together in a single-layer network changes
 nothing. They all learn independently. (So XOR still cannot be
@@ -494,15 +538,18 @@ learned.) However, we can get more than 0/1 as an output. We can get
 any number of outputs we wish.
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/single-layer-perceptron-network.png"  alt="./images/single-layer-perceptron-network.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/single-layer-perceptron-network.png" alt="single-layer-perceptron-network.png" />
 </p>
+</div>
 </div>
 
 <p>
-These networks are &ldquo;fully connected&rdquo; and &ldquo;feed-forward&rdquo; &mdash; fully
+These networks are "fully connected" and "feed-forward" &#x2014; fully
 connected because each input connects to every perceptron, and
-feed-forward because there are no loops. &ldquo;Recurrent&rdquo; networks have
+feed-forward because there are no loops. "Recurrent" networks have
 loops, where the output of some perceptron becomes the input to
 another perceptron earlier in the chain, or an input to
 itself. Recurrent networks are decidedly more complex (they can be
@@ -510,20 +557,17 @@ dynamic non-linear systems) but are able to keep memories and other
 such interesting features.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-5" class="outline-2">
+<div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Logistic perceptrons</h2>
 <div class="outline-text-2" id="text-5">
-
-
 <p>
 When the function being learned is not linearly separable, the
 threshold function causes some oscillating (seen in some graphs
 below). This is because points near the separator are continually
 changing classifications as the weights update and move the separator.
 </p>
+
 <p>
 We also may desire probabilistic answers rather than yes/no
 answers. If the data cannot actually be separated, then
@@ -532,27 +576,34 @@ classifications far from the boundary. It would be nice if the
 perceptrons can report this confidence as a classification
 probability.
 </p>
+
 <p>
 The threshold function we saw cannot do this for us. We need a
 continuous function that looks the same but gives graded answers.
 </p>
+
 <p>
 A good choice is the logistic function:
 </p>
 
-
+<p>
 $$f(s_j) = \frac{1}{1+e^{-s_j}}$$
+</p>
 
 <p>
 where \(s_j = \sum_{i=1}^k x_{i} w_{ji} + w_{j0}\). This is what it
 looks like:
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/logistic-curve.png"  alt="./images/logistic-curve.png" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/logistic-curve.png" alt="logistic-curve.png" />
 </p>
+</div>
+
 <p>
-Standard logistic curve (a.k.a. sigmoid function), from <a href="http://en.wikipedia.org/w/index.php?title=File:Logistic-curve.svg&amp;page=1">Wikipedia</a>
+Standard logistic curve (a.k.a. sigmoid function), from <a href="http://en.wikipedia.org/w/index.php?title=File:Logistic-curve.svg&page=1">Wikipedia</a>
 </p>
 </div>
 
@@ -561,20 +612,22 @@ Since we no longer have binary outputs, but rather probabilistic ones,
 we need to change our evaluation function. An output is no longer
 either correct or incorrect. If the true answer is 1.0, and the
 logistic function gives 0.79, then we say the error is 0.21. For the
-sake of easy derivatives, we&rsquo;ll go further and say the error, now
-called the &ldquo;loss,&rdquo; is the square of the difference:
+sake of easy derivatives, we'll go further and say the error, now
+called the "loss," is the square of the difference:
 </p>
 
-
+<p>
 $$L_j(y_j, p_j) = (y_j - p_j)^2,$$
+</p>
 
 <p>
 where \(y_j\) is the correct answer (1.0 or 0.0, binary), and
-\(p_j=f(s_j)\) is the probability from the logistic function. We&rsquo;ll say
+\(p_j=f(s_j)\) is the probability from the logistic function. We'll say
 the total loss is the sum of the loss from each perceptron. (Recall
 that a single-layer perceptron network is just a collection of
 independent perceptrons, which are essentially trained separately.)
 </p>
+
 <p>
 Our learning algorithm needs to be revised. Luckily, we can just work
 backwards from the loss function and attempt to walk up/down the
@@ -582,7 +635,6 @@ gradient. Since the logistic function and the loss function are
 differentiable, this gradient is easy to find for each weight
 separately.
 </p>
-
 
 \begin{eqnarray}
 \frac{\partial L_j}{\partial w_{ji}}
@@ -600,20 +652,24 @@ threshold function). We can push the \(-2\) into the \(\alpha\)
 parameter, yielding:
 </p>
 
-
+<p>
 $$\frac{\partial L_j}{\partial w_{ji}} = \alpha (y_j - f(s_j)) f(s_j) (1 - f(s_j)) x_{i}$$
+</p>
 
 <p>
 So our weight update is the following, with \(p_j = f(s_j)\):
 </p>
 
-
+<p>
 $$w'_{ji} = w_{ji} + \alpha (y_j - p_j) p_j (1 - p_j)) x_{i}$$
-
-
-<div style="text-align: center">
-<p><img src="./images/logic-funcs-logistic-alpha.png"  alt="./images/logic-funcs-logistic-alpha.png" />
 </p>
+
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/logic-funcs-logistic-alpha.png" alt="logic-funcs-logistic-alpha.png" />
+</p>
+</div>
 </div>
 
 <p>
@@ -622,37 +678,38 @@ with classes 0-9. Here are some examples (intentionally pixelated to
 reduce the input space, i.e., the number of pixels):
 </p>
 
-<div style="text-align: center">
-<p><img src="./images/optdigits.jpg"  alt="./images/optdigits.jpg" />
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/optdigits.jpg" alt="optdigits.jpg" />
 </p>
 </div>
+</div>
 
+<div class="center">
 
-<div style="text-align: center">
-<p><img src="./images/optdigits-threshold-alpha.png"  alt="./images/optdigits-threshold-alpha.png" />
+<div class="figure">
+<p><img src="./images/optdigits-threshold-alpha.png" alt="optdigits-threshold-alpha.png" />
 </p>
 </div>
+</div>
 
+<div class="center">
 
-<div style="text-align: center">
-<p><img src="./images/optdigits-logistic-alpha.png"  alt="./images/optdigits-logistic-alpha.png" />
+<div class="figure">
+<p><img src="./images/optdigits-logistic-alpha.png" alt="optdigits-logistic-alpha.png" />
 </p>
 </div>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-6" class="outline-2">
+<div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Multilayer perceptron networks</h2>
 <div class="outline-text-2" id="text-6">
-
-
 <p>
 The error gradient at perceptron \(j\) turns out to be,
 </p>
-
 
 \begin{equation}
 \Delta_j = 
@@ -668,58 +725,60 @@ In other words, \(\Delta_j\) is the normal error gradient if perceptron
 error gradient replaces the output error with the weighted error of
 the perceptrons to which \(j\) feeds forward.
 </p>
+
 <p>
 The result is that the update function changes to:
 </p>
 
-
+<p>
 $$w'_{ji} = w_{ji} + \alpha p_i \Delta_j$$
+</p>
 
 <p>
 Note that \(p_i\) is the output of the previous perceptron, attached to
 weight \(w_{ji}\). If the layer is an input layer (which we still say is
-&ldquo;hidden&rdquo;), then \(p_i = x_i\), the actual \(i\)&rsquo;th input to the network.
+"hidden"), then \(p_i = x_i\), the actual \(i\)'th input to the network.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-7" class="outline-2">
+<div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">NetTalk example</h2>
 <div class="outline-text-2" id="text-7">
+<div class="center">
 
-
-
-<div style="text-align: center">
-<p><img src="./images/nettalk.gif"  alt="./images/nettalk.gif" />
+<div class="figure">
+<p><img src="./images/nettalk.gif" alt="nettalk.gif" />
 </p>
+</div>
+
 <p>
 <a href="http://www.cs.trincoll.edu/~ram/cpsc352/notes/learning/ml.nn.html">Source</a>
 </p>
 </div>
 
 <blockquote>
-
-<p>Like a biologist taking a scalpel to a rat, he can ablate his network,
-removing a few cells from the simulation. These &lsquo;&rsquo;lesions&rsquo;&rsquo; might
+<p>
+Like a biologist taking a scalpel to a rat, he can ablate his network,
+removing a few cells from the simulation. These ''lesions'' might
 cause NetTalk to act a little fuzzy, but it retains its general
 ability to pronounce English.
 </p>
+
 <p>
 And so it is with humans. If one cuts a few wires in a conventional
 computer the whole system will crash. But brains have the kind of
-robustness demonstrated by Dr. Sejnowski&rsquo;s invention. &mdash; <a href="http://www.nytimes.com/1988/08/16/science/learning-then-talking.html">NY Times, 1988</a>
+robustness demonstrated by Dr. Sejnowski's invention. &#x2014; <a href="http://www.nytimes.com/1988/08/16/science/learning-then-talking.html">NY Times,
+1988</a>
 </p>
 </blockquote>
-
 
 <p>
 <a href="http://youtu.be/4gzpd0irP58?t=38m">YouTube</a> (38min - 49min)
 </p>
+
 <p>
 <a href="http://www.nytimes.com/2012/06/26/technology/in-a-big-network-of-computers-evidence-of-machine-learning.html">Recognizing cats</a>
 </p>
-
 
 <div style="font-size: 80%; clear: both;">
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
@@ -734,11 +793,12 @@ robustness demonstrated by Dr. Sejnowski&rsquo;s invention. &mdash; <a href="htt
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
-
+<div id="postamble" class="status">
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.1)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>
