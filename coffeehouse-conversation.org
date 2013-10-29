@@ -1271,3 +1271,5 @@ and say, "How wonderful machines are!"
  in the Turing Test, what would it be?"
 
 -----
+
+#+INCLUDE: footer.org
