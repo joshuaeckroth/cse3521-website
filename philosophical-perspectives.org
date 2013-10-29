@@ -9,7 +9,7 @@ represent the various perspectives, I'll offer just one thread that I
 consider important.
 
 *Rather than attempt to define AI*, we can orient the discussion
-around a condundrum: humans possess a range of abilities, collectively
+around a conundrum: humans possess a range of abilities, collectively
 called "intelligence," that other animals do not possess. E.g.,
 language, tool building, complex culture, problem solving and game
 playing, etc.

@@ -1,40 +1,110 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 2
 
-* Task 1 (70 pts)
+* Task 1 (20 pts)
 
-  Code either breadth-first search or depth-first search in whatever
-  programming language you wish. Solve the "Routing from Dreese Labs
-  to Goodale Park" problem on the [[./search-practice.html][search practice]] notes. Ask the user
-  for a starting location and ending (goal) location, and print out
-  the path from the start to the end.
+Define a GPS-type problem. Give the goal condition, initial conditions, and operations. For each operation, define the action, preconditions, "add" conditions, and "delete" conditions. At least five operators must be defined.
 
-  Because I'm asking you to code BFS or DFS, which don't consider edge
-  weights (distance between road intersections in the map), you do not
-  need to include edge weights in your representation of the search
-  graph.
+Then, list a sequence of actions (in the correct order) that solve the problem. At least three operators must be used.
 
-* Task 2 (10 pts)
+* Task 2 (15 pts)
 
-  The "Routing from Dreese Labs to Goodale Park" used road
-  intersection distance to find the minimal-time route (when informed
-  search was used). However, this distance ("as the crow flies") is
-  only one aspect of what makes one route better than another. What
-  other information should we use to find the truly minimal-time route
-  between these two locations?
+Give the sequence of states visited (states evaluated) in a hill-climbing search applied to the [[./search-practice.html][Goodale routing problem]], starting at Woodruff & Tuttle and ending at Goodale parking lot. You'll find the [[./goodale-distances.txt][goodale-distances.txt]] file useful.
 
-* Task 3 (10 pts)
+For each "choice" that the algorithm faces, list the options, the computed scores, and indicate the best choice.
 
-  What are some /admissible/ heuristics for the 8-puzzle problem? Give
-  at least two.
+Note, give the sequence of states visited, not just the states that make up the final route. There may (or may not) be some backtracking so the states visited may differ from the route.
 
-* Task 4 (10 pts)
+Assume hill-climbing does not reconsider previously-visited states.
 
-  For unweighted search graphs (equivalently, all weights equal 1.0),
-  which of the following search algorithms are complete? Which are
-  optimal?  What about weighted graphs?
+Your answer should look like this:
 
-  - Breadth-first search, depth-first search, random search,
-    best-first search, hill-climbing search, A* search
+#+BEGIN_EXAMPLE
+Best choice is indicated by a *
+
+- Woodruff & Tuttle
+  - choices: Lane & Tuttle (2.318), High & Woodruff (2.103)*
+- High & Woodruff
+  - choices: ...
+...
+- Goodale parking lot
+#+END_EXAMPLE
+
+* Task 3 (25 pts)
+
+Repeat task 2 but for A* search.
+
+Like before, for each "choice" that the algorithm faces, list the options, the computed scores, and indicate the best choice. Since A* may "jump around," indicate the prior (connecting) state for each choice. Also give the current path cost for each state when that state is visited.
+
+Assume A* does not reconsider previously-visited states.
+
+Your answer should look like this:
+
+#+BEGIN_EXAMPLE
+Best choice is indicated by a *
+
+Format of arithmetic in parentheses:
+  (old path cost + cost of next step + distance from next step to goal = ...)
+
+- Woodruff & Tuttle (cost: 0.000)
+  - choices:
+    - Woodruff & Tuttle -> Lane & Tuttle (0.000 + 0.170 + 2.318 = 2.488)*
+    - Woodruff & Tuttle -> High & Woodruff (0.000 + 0.460 + 2.103 = 2.563)
+- Lane & Tuttle (cost: 0.170)
+  - choices:
+    - Woodruff & Tuttle -> High & Woodruff (0.000 + 0.460 + 2.103 = 2.563)*
+    - Lane & Tuttle -> SR-315 & Lane (0.170 + 0.740 + 2.605 = 3.515)
+- High & Woodruff (cost: 0.460)
+  - choices:
+    ...
+...
+- Goodale parking lot (cost: 2.760)
+#+END_EXAMPLE
+
+* Task 4 (5 pts)
+
+The Goodale routing problem used road intersection distance to find
+the routes (when informed search was used). However, this distance
+("as the crow flies") is only one aspect of what makes one route
+better than another. What other information should we use to find the
+truly minimal-time route between these two locations?
+
+* Task 5 (5 pts)
+
+What are some /admissible/ heuristics for the 8-puzzle problem? Give
+at least two.
+
+* Task 6 (15 pts)
+
+Define breadth-first search in terms of the cost function $f(s) = g(s) + h(s)$
+where $g(s)$ is the cost of arriving at state $s$ and $h(s)$
+is the (estimated) cost of getting from $s$ to the goal state. That is
+to say, give simple definitions for $g(s)$ and $h(s)$ so that the
+[[./informed-search.html#sec-6][A search algorithm]] acts like
+breadth-first search.
+
+Also define depth-first search in terms of $f(s) = g(s) + h(s)$.
+
+* Task 7 (15 pts)
+
+Show a graph of minimax operation for this tic-tac-toe board, where
+'x' is to make a move (and 'o' is the opponent). The graph should look
+similar to those in the [[./adversarial-search.html][adversarial
+search]] notes.
+
+#+BEGIN_HTML
+<table class="full">
+<tr>
+<td>x</td><td>o</td><td>x</td>
+</tr>
+<tr>
+<td></td><td></td><td>x</td>
+</tr>
+<tr>
+<td></td><td>o</td><td>o</td>
+</tr>
+</table>
+#+END_HTML
+
 
 #+INCLUDE: footer.org

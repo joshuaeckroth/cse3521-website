@@ -1,0 +1,33 @@
+graph G {
+	rankdir="LR";
+        node [fontname="DejaVu Sans", fontsize=14];
+        edge [fontname="DejaVu Sans", fontsize=14];
+        graph [size="4,10", overlap="false"];
+        
+"Goodale parking lot" [style="filled"];
+"High & Goodale" -- "Goodale parking lot" [label="0.22"];
+"High & 5th" -- "High & Goodale" [label="0.93"];
+"I-71 5th offramp" -- "High & 5th" [label="1.07"];
+"I-71 11th offramp" -- "I-71 5th offramp" [label="0.52"];
+"I-71 17th offramp" -- "I-71 11th offramp" [label="0.47"];
+"US-23 & 17th" -- "I-71 17th offramp" [label="0.75"];
+"US-23 & 15th" -- "US-23 & 17th" [label="0.12"];
+"High & 15th" -- "US-23 & 15th" [label="0.49"];
+"High & Woodruff" -- "High & 15th" [label="0.26"];
+"Woodruff & Tuttle" [style="filled"];
+"Woodruff & Tuttle" -- "High & Woodruff" [label="0.46"];
+"Lane & Tuttle" -- "Woodruff & Tuttle" [label="0.17"];
+"SR-315 & Lane" -- "Lane & Tuttle" [label="0.74"];
+"SR-315 I-670 offramp" -- "SR-315 & Lane" [label="2.05"];
+"Park & Vine" -- "SR-315 I-670 offramp" [label="0.99"];
+"Park & Goodale" -- "Park & Vine" [label="0.15"];
+"Goodale parking lot" -- "Park & Goodale" [label="0.13"];
+"US-23 & Goodale" -- "US-23 & 15th" [label="1.76"];
+"SR-315 & King" -- "SR-315 & Lane" [label="1.10"];
+"High & King" -- "SR-315 & King" [label="1.02"];
+"High & 11th" -- "I-71 11th offramp" [label="1.15"];
+"US-23 & Goodale" -- "Goodale parking lot" [label="0.41"];
+"High & 15th" -- "High & 11th" [label="0.37"];
+"High & 11th" -- "High & King" [label="0.31"];
+"High & King" -- "High & 5th" [label="0.21"];
+}

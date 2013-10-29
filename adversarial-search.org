@@ -2,6 +2,7 @@
 #+TITLE: Adversarial search
 
 #+BEGIN_QUOTE
+
 "It was a watershed event, but it doesn't have to do with computers
 becoming intelligent," said Douglas Hofstadter, a professor of
 computer science at Indiana University and author of several books
@@ -9,12 +10,14 @@ about human intelligence, including /Gödel, Escher, Bach/, which won a
 Pulitzer Prize in 1980, with its witty argument about the connecting
 threads of intellect in various fields of expression. "They're just
 overtaking humans in certain intellectual activities that we thought
-required intelligence. My God, I used to think chess required
-thought. Now, I realize it doesn't. It doesn't mean Kasparov isn't a
-deep thinker, just that you can bypass deep thinking in playing chess,
-the way you can fly without flapping your wings." --- Bruce Weber,
-"[[http://www.rci.rutgers.edu/~cfs/472_html/Intro/NYT_Intro/ChessMatch/MeanChessPlaying.html][Mean Chess-Playing Computer Tears at Meaning of Thought]]," The New
-York Times, Feb 19, 1996
+required intelligence. My God, I used to think chess required thought.
+Now, I realize it doesn't. It doesn't mean Kasparov isn't a deep
+thinker, just that you can bypass deep thinking in playing chess, the
+way you can fly without flapping your wings." --- Bruce Weber,
+"[[http://www.rci.rutgers.edu/~cfs/472_html/Intro/NYT_Intro/ChessMatch/MeanChessPlaying.html][Mean
+Chess-Playing Computer Tears at Meaning of Thought]]," The New York
+Times, Feb 19, 1996
+
 #+END_QUOTE
 
 Chess, tic-tac-toe, connect-four, checkers, go, etc. etc. are
@@ -132,6 +135,8 @@ CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0">
 PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"> 
 </EMBED>
 </OBJECT>
+<br/>
+<a href="./images/ttt-minimax-example.png">View final image</a>
 </div>
 #+END_HTML
 
@@ -300,6 +305,11 @@ It's very important to realize that the alpha-beta pruning procedure
 does not produce different answers than minimax. Alpha-beta pruning
 simply does not bother checking subtrees when it is certain those
 subtrees will not change the answer produced by minimax.
+
+Check out the [[./images/ttt-alphabeta-example.png][final search
+graph]] of another tic-tac-toe example, this time with alpha-beta
+pruning. For comparison, [[./images/ttt-minimax-example-2.png][this is
+the search graph without alpha-beta pruning]].
 
 Alpha-beta pruning performs /much/ better than vanilla minimax:
 

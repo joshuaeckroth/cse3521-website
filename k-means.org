@@ -1,6 +1,17 @@
 #+SETUPFILE: setup.org
 #+TITLE: k-means clustering
 
+{{{begin-summary}}}
+- Clustering is used for finding groups or "clusters" of data for
+  which the true groups/labels are unknown.
+- k-means is an iterative algorithm which assigns cluster "centroids"
+  (an average of the points that make up a cluster) and then reassigns
+  points to the new cluster-centroids. The algorithm stops when points
+  don't change their cluster assignments.
+- k-means requires deciding upfront the value of $k$.
+- k-means effectively creates a Voronoi diagram of the space.
+{{{end-summary}}}
+
 Suppose we measure some properties of flowers, species of iris to be
 precise (data available from [[http://archive.ics.uci.edu/ml/datasets/Iris][UCI]]). We have a table like the following:
 

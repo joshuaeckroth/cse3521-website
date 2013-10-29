@@ -149,7 +149,7 @@ representation data structures.
 
 Deduction famously cannot yield any new facts; a deductive conclusion
 does not state anything more than what was already present in the
-premises. However, inducation and abduction, for example, are
+premises. However, induction and abduction, for example, are
 "ampliative" forms of reasoning because they offer new facts (which
 may be wrong; deduction, on the other hand, is never wrong).
 
@@ -173,7 +173,7 @@ simple, beautiful, precise, and... unwieldy. The tricks for making a
 KR useful but also pragmatic can be quite sophisticated. We'll avoid
 dealing with this issue. However, when we look at [[./prolog.html][Prolog]], it is
 important for us to keep in mind that Prolog is useful precisely
-because it limits the expressivitiy of the KR in order to keep the
+because it limits the expressiveness of the KR in order to keep the
 inferencing computationally efficient.
 
 ** A medium for human expression
@@ -216,7 +216,7 @@ context), such as assembling part of a car. The "knowledge" is
 embedded in the procedure (the algorithm).
 
 Compare this description of procedural knowledge with the way
-cognitive pyschologists describe procedural knowledge: they say that
+cognitive psychologists describe procedural knowledge: they say that
 procedural knowledge includes recognition of a face or reacting to a
 joke. For them, it is "tacit" knowledge because it cannot be described
 by the person who has it; exactly what knowledge is brought to bear is
@@ -262,5 +262,5 @@ this is not the only approach we could have taken. For example, we
 could instead have looked at "connectionist" representations, which
 store knowledge in artificial neural networks (arguably like how our
 brains store knowledge). Or, we could have used probabilistic
-represenations such as Bayesian networks. The logic approach, however,
+representations such as Bayesian networks. The logic approach, however,
 is the oldest in AI and generally the easiest to understand.

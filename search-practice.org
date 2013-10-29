@@ -24,15 +24,11 @@ intersections (in miles).
 
 ** Map data
 
-This map data is encoded in [[./Goodale.java][Java]] and [[./goodale.py][Python]] source code if you would
-like to use it in a program.
+This map data is encoded in [[./Goodale.java][Java]] and [[./goodale.py][Python]] source code if you would like to use it in a program.
 
-#+ATTR_HTML: alt="Goodale parking lot routes" align="right"
 [[./images/goodale-route.png]]
 
-#+BEGIN_CENTER
 [[./images/goodale-route-map.png]]
-#+END_CENTER
 
 | Marker | Start                | End                  | Distance (mi) |
 |--------+----------------------+----------------------+---------------|
@@ -63,11 +59,7 @@ like to use it in a program.
 
 *** Longitude / latitude information
 
-#+BEGIN_HTML
-<div style="float: right; width: 25em;">
-#+END_HTML
-
-| Location             |  Lon (W°) | Lat (N°) |
+| Location             |       Lon |      Lat |
 |----------------------+-----------+----------|
 | High & Goodale       | -83.00286 | 39.97384 |
 | High & 5th           | -83.00551 | 39.98710 |
@@ -90,15 +82,14 @@ like to use it in a program.
 | High & King          | -83.00610 | 39.99019 |
 | High & 11th          | -83.00712 | 39.99528 |
 
-#+BEGIN_HTML
-</div>
-#+END_HTML
+The distance (as the crow flies) from each location to each other is collected in the [[./goodale-distances.txt][goodale-distances.txt]] file.
 
 Here is some Python code for converting two long/lat coordinates into
 a measure of miles between them:
 
 #+BEGIN_SRC python
 # from: http://www.johndcook.com/python_longitude_latitude.html
+import math
 def dist((long1, lat1), (long2, lat2)):
     # Convert latitude and longitude to 
     # spherical coordinates in radians.

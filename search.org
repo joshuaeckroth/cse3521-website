@@ -16,7 +16,6 @@ answer," or "he didn't have to think; he did it by rote."
 
 *Why search for the answer if you can just know it instead?*
 
-#+INDEX: lookup table
 No matter how an algorithm is coded, it can be reduced to a series of
 if-then statements in a loop. The if-then statements can be
 represented in a lookup table, where each row in the table is a
@@ -81,12 +80,6 @@ possibly intelligent.
 
 * Definition of a search problem
 
-#+INDEX: initial state
-#+INDEX: possible actions
-#+INDEX: transition model
-#+INDEX: goal criteria
-#+INDEX: path cost
-
 A problem may be solvable by a search technique if the problem has
 each of the following features:
 
@@ -111,7 +104,6 @@ each of the following features:
                calculate a path cost by adding the number of driving
                minutes between each city in its route
 
-#+INDEX: ceteris paribus
 
 Of course, each of these components assumes a liberal abstraction away
 from most of the details that the agent will be facing in reality. For
@@ -120,5 +112,49 @@ driving north on some street results in arriving at the center of
 town. Of course, this is a /ceteris paribus/ assumption ("everything
 else being equal"); if something bad happens, like a flat tire, this
 transition model is useless.
+
+* Comparisons of search algorithms
+
+In computer science, we typically compare algorithms based on two criteria: "time complexity" and "space complexity."
+
+** Time complexity
+
+The time complexity of an algorithm is generally the number of operations required (e.g., basic CPU operations such as addition, subtraction, tests for equality, memory reads and writes, etc.).
+
+For example, suppose we have a ~min~ algorithm that finds the smallest
+value in any list. The algorithm checks every element in the list, so
+its "time complexity" is $O(n)$ where $O()$ means "on the order of"
+and $n$ we'll say is the size of the list. This can also be read
+"linear time" because the algorithm requires about $n$ steps (linear),
+not $n^2$ steps (quadratic) or $2^n$ steps (exponential). Regardless
+how long each step takes, a linear "growth" of the problem (i.e.,
+bigger and bigger lists) causes the time to grow linearly.
+
+On the other hand, inefficient sorting algorithms have $O(n^2)$ time
+complexity because they compare every element in a list of size $n$
+with every other element; this is about $n^2$ comparisons.
+
+** Space complexity
+
+Normally, we can make an algorithm faster by using more memory. We
+could, for example, save the answers of some computations to avoid
+computing them again. The ~min~ function has $O(1)$ space complexity
+("constant space complexity") because it only uses one or two
+variables (the current min, and a pointer to its position in the
+list). Some sorting algorithms, on the other hand, have linear
+($O(n)$) space complexity because they make a copy of the list as they
+sort it.
+
+** Search-specific analysis
+
+For comparing search algorithms in particular, we'll often want to talk about the following values:
+
+- $n$, the total number of possible states
+
+- $b$, the branching factor; this is the maximum number of possible actions or branches we might expect from any state in the search space.
+
+- $d$, the depth in the search tree of the least-cost path, i.e., the minimum number of steps required to reach the goal
+
+- $m$, the maximum search depth, if we choose to make it a finite number (so that the algorithm might stop looking deeper and instead choose to backtrack to an earlier state), or $\infty$ otherwise
 
 #+INCLUDE: footer.org

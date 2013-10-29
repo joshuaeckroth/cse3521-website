@@ -1,0 +1,22 @@
+#+SETUPFILE: setup.org
+#+TITLE: Face detection
+
+* Haar-like features
+
+From [[http://en.wikipedia.org/wiki/Haar-like_features][Wikipedia]]:
+
+#+BEGIN_QUOTE
+A Haar-like feature considers adjacent rectangular regions at a
+specific location in a detection window, sums up the pixel intensities
+in each region and calculates the difference between these sums. This
+difference is then used to categorize subsections of an image. For
+example, let us say we have an image database with human faces. It is
+a common observation that among all faces the region of the eyes is
+darker than the region of the cheeks. Therefore a common haar feature
+for face detection is a set of two adjacent rectangles that lie above
+the eye and the cheek region. The position of these rectangles is
+defined relative to a detection window that acts like a bounding box
+to the target object (the face in this case).
+#+END_QUOTE
+
+#+INCLUDE: footer.org

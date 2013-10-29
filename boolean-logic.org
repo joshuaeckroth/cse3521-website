@@ -59,7 +59,7 @@ table.
 | F   | F   | T   | F        | F                 | F                          | T                                 |
 | F   | F   | F   | T        | F                 | F                          | T                                 |
 
-We see that there are three variable assignements that make the whole
+We see that there are three variable assignments that make the whole
 expression true: $x$ is false, $y$ is true, and $z$ is true; $x$ is
 false, $y$ is false, and $z$ is true; and $x$ is false, $y$ is false,
 and $z$ is false.

@@ -31,53 +31,6 @@ performance is robust).
 are the same as above, but every word in the text has been "stemmed"
 (see below). This is the document set we will be working with.
 
-* Evaluation criteria
-
-Because each document may belong to more than one category, we cannot
-just count how many categories chosen by our AI algorithm are true
-categories (chosen by a human). This metric would not penalize cases
-where false categories were chosen by the algorithm. We actually have
-three cases:
-
-  - True positive (tp) :: chosen categories that are true categories
-
-  - False positive (fp) :: chosen categories that are not true
-       categories
-
-  - False negatives (fn) :: true categories that are not chosen
-
-Since these measures depend on the number of categories (chosen and
-true), and that differs per document, we calculate the following
-normalized scores:
-
-  - Precision :: $tp/(tp+fp)$ --- higher precision means the
-                 categories that were chosen were more often true
-                 categories
-
-  - Recall :: $tp/(tp+fn)$ --- higher recall means more of the true
-              categories were chosen
-
-We can achieve very high precision by only choosing categories for
-which we have very high confidence (until we nearly choose no
-categories at all); this would decrease recall, however. We can
-achieve high recall by choosing every category; this would decrease
-precision, however.
-
-Best would be high precision and high recall. We can measure this by
-combining precision and recall into a single formula, called the
-"F-score":
-
-  - F-score :: $2*precision*recall / (precision + recall)$
-
-Notice that precision and recall are treated equally in this
-calcuation. Technically, the F-score is the harmonic mean of precision
-and recall.
-
-We typically have multiple documents to classify (possibly each into
-multiple categories). So the global precision/recall/f-score is
-calculated at the end, after adding the TP/FP/FN values per document
-into a global TP/FP/FN.
-
 * Word stemming
 
 #+BEGIN_QUOTE
@@ -109,7 +62,7 @@ dimensions ($c$ dimensions).
 
 ** Binary features
 
-$$x_{ji} = \cases{1 & \quad \text{if $j$ is in $i$} \cr 0 & \quad \text{otherwise}}$$
+$$x_{ji} = \cases{1 & \text{if $j$ is in $i$} \cr 0 & \text{otherwise}}$$
 
 ** Frequency count features
 

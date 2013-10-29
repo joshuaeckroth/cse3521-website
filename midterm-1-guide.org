@@ -19,6 +19,31 @@ nearly 100% of the time; or, maybe just 70% of the time.
 True or false? Dennett thinks that winning a chess championship is
 just as strong a test for computer intelligence as the Turing test.
 
+* General Problem Solver
+
+Modify the following "program" so that GPS can find the solution.
+
+#+BEGIN_SRC python
+problem = {
+    "start": ["door locked"],
+    "finish": ["door open"],
+    "ops": [
+        {
+            "action": "open door",
+            "preconds": ["door unlocked", "door closed"],
+            "add": ["door open"],
+            "delete": ["door closed"]
+            },
+        {
+            "action": "unlock door",
+            "preconds": ["door closed"],
+            "add": [],
+            "delete": ["door locked"]
+            }
+        ]
+    }
+#+END_SRC
+
 * Search
 
 ** General search
@@ -55,11 +80,11 @@ Complete the following table for weighted, finite search graphs:
 
 Recall the Goodale route search problem from [[./search-practice.html][Practice with searching]]
 notes. Answer the following questions for each of breadth-first
-search, depth-first search, best-first search (using distances),
-hill-climbing search, and A* search (using some heuristic like
-distance "as the crow flies"). Assume we start at ~Woodruff & Tuttle~
-and the goal is ~Goodale parking lot~. For each question, there may be
-more than one correct answer.
+search, depth-first search, hill-climbing search, best-first search,
+and A* search (using some heuristic like distance "as the crow
+flies"). Assume we start at ~Woodruff & Tuttle~ and the goal is
+~Goodale parking lot~. For each question, there may be more than one
+correct answer.
 
   1. What are the first two states (beyond ~Woodruff & Tuttle~) that
      will be checked?
@@ -69,14 +94,6 @@ more than one correct answer.
      appropriate sort order (breadth-first, hill-climbing, best-first,
      and A* will take the next state from the front of the list;
      depth-first will take the next state from the end).
-
-True or false? Iterative deepening depth-first search is complete
-whenever regular depth-first search is complete for some search
-problem.
-
-True or false? Iterative deepening depth-first search can usually be
-expected to find a shorter path to the goal than regular depth-first
-search.
 
 What is the singular requirement for a heuristic to be called
 "admissible?"
@@ -99,6 +116,23 @@ utility functions than regular minimax.
 True or false? Alpha-beta pruning (applied to minimax) is the same
 algorithm as minimax, just faster because irrelevant computations are
 omitted.
+
+What is the best move, according to a minimax procedure, for 'x' to
+make in the following tic-tac-toe board?
+
+#+BEGIN_HTML
+<table class="full">
+<tr>
+<td>o</td><td>o</td><td>x</td>
+</tr>
+<tr>
+<td></td><td></td><td>x</td>
+</tr>
+<tr>
+<td></td><td>x</td><td>o</td>
+</tr>
+</table>
+#+END_HTML
 
 * Knowledge representation
 
@@ -267,6 +301,32 @@ just as strong a test for computer intelligence as the Turing test.
 requires only a narrow kind of intelligence, more calculation than
 anything
 
+** General Problem Solver
+
+Modify the following "program" so that GPS can find the solution.
+
+#+BEGIN_SRC python
+problem = {
+    "start": ["door closed", "door locked"],
+    "finish": ["door open"],
+    "ops": [
+        {
+            "action": "open door",
+            "preconds": ["door unlocked", "door closed"],
+
+            "add": ["door open"],
+            "delete": ["door closed"]
+            },
+        {
+            "action": "unlock door",
+            "preconds": ["door closed"],
+            "add": ["door unlocked"],
+            "delete": ["door locked"]
+            }
+        ]
+    }
+#+END_SRC
+
 ** Search
 
 *** General search
@@ -330,11 +390,11 @@ Complete the following table for weighted, finite search graphs:
 
 Recall the Goodale route search problem from [[./search-practice.html][Practice with searching]]
 notes. Answer the following questions for each of breadth-first
-search, depth-first search, best-first search (using distances),
-hill-climbing search, and A* search (using some heuristic like
-distance "as the crow flies"). Assume we start at ~Woodruff & Tuttle~
-and the goal is ~Goodale parking lot~. For each question, there may be
-more than one correct answer.
+search, depth-first search, hill-climbing search, best-first search,
+and A* search (using some heuristic like distance "as the crow
+flies"). Assume we start at ~Woodruff & Tuttle~ and the goal is
+~Goodale parking lot~. For each question, there may be more than one
+correct answer.
 
   1. What are the first two states (beyond ~Woodruff & Tuttle~) that
      will be checked?
@@ -367,22 +427,6 @@ more than one correct answer.
      - hill-climbing: ~[High & 11th, US-23 & 15th]~
 
      - A*: ~[High & 15th, SR-315 & Lane]~
-
-True or false? Iterative deepening depth-first (IDDFS) search is
-complete whenever regular depth-first search is complete for some
-search problem.
-
-*True* --- DFS is complete when the search space is not
-infinite. Since IDDFS performs repeated DFS (with greater depth
-limits), it too will be complete if DFS is.
-
-True or false? Iterative deepening depth-first search can usually be
-expected to find a shorter path to the goal than regular depth-first
-search.
-
-*True* --- The purpose of IDDFS is to not get lost in deep searches by
-putting a limit on the DFS depth (which causes more breadth to be
-searched because it hits the depth limit).
 
 What is the singular requirement for a heuristic to be called
 "admissible?"
@@ -422,6 +466,30 @@ algorithm as minimax, just faster because irrelevant computations are
 omitted.
 
 *True* --- that's all alpha-beta pruning is; it still does minimax.
+
+What is the best move, according to a minimax procedure, for 'x' to
+make in the following tic-tac-toe board?
+
+#+BEGIN_HTML
+<table class="full">
+<tr>
+<td>o</td><td>o</td><td>x</td>
+</tr>
+<tr>
+<td></td><td></td><td>x</td>
+</tr>
+<tr>
+<td></td><td>x</td><td>o</td>
+</tr>
+</table>
+#+END_HTML
+
+The answer is that 'x' should move in the exact middle, as proved by
+this minimax search tree:
+
+#+BEGIN_CENTER
+[[./images/midterm-1-guide-ttt-solution.png]]
+#+END_CENTER
 
 ** Knowledge representation
 

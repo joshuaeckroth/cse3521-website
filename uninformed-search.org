@@ -25,6 +25,7 @@ shifting the space). If the space is on an edge or in a corner, fewer
 than four movements are possible.
 
 * Generic search algorithm
+
 All searches essentially follow the same algorithm:
 
 #+BEGIN_EXAMPLE
@@ -67,6 +68,7 @@ about how to choose the next state to evaluate. You can imagine that
 some choices are better (closer to the goal) than others...
 
 * Random search
+
 A random search, while never practical as far as I know, is
 nevertheless interesting to consider as a worst case search. To
 program this search, modify step ~4.a.~ so that a /random/ state is
@@ -75,6 +77,7 @@ random search will probably take more time (more states are checked)
 than any other method.
 
 * Breadth-first search
+
 In breadth-first search (BFS), we want to check all states (which
 we'll call "children states") accessible from the previous state (the
 "parent state") before we check states accessible from the
@@ -106,6 +109,8 @@ CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0">
 PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"> 
 </EMBED>
 </OBJECT>
+<br/>
+<a href="./images/8puzzle-bfs.png">View final image</a>
 </div>
 #+END_HTML
 
@@ -148,8 +153,8 @@ will find this goal in less than 1024 checks while DFS may require,
 well, 362,880 checks.
 
 To solve the problem of DFS going to "deep" into "never-never-land,"
-we can put a limit on the depth of DFS. Step ~4.c.~ is modified so
-that only states that have depth less than some constant are added to
+we can put a limit $m$ on the depth of DFS. Step ~4.c.~ is modified so
+that only states that have depth less than the finite constant $m$ are added to
 the ~openset~. The depth is calculated as the number of actions or
 moves that have been applied to the starting state.
 
@@ -161,13 +166,23 @@ again with depth limit 2; and so on, until the goal state is found.
 * Breadth-first versus depth-first search
 
 Breadth-first search is a good choice when you want to evaluate every
-possible choice before moving forward. BFS ensures that the shortest
+possible choice before deciding an action. BFS ensures that the shortest
 path to the goal will be found (shortest in terms of number of moves
-or number of "hops"), because no path is left unchecked. However, BFS
+or number of "hops"), because no shorter path is left unchecked. However, BFS
 suffers when, at each state, there is an enormous number of choices to
-consider.
+consider (a high branching factor $b$).
 
-On the other hand, depth-first search seems a bit block-headed and
-just pushes forward whenever it has a next possible move.
+On the other hand, depth-first search might be better if the solution is very "deep," such as in mazes.
+
+* Comparison of uninformed search algorithms
+
+Refer to the [[./search.html][search notes]] (at the bottom) for an explanation of the variables $n$ (total possible states), $b$ (branch factor), $d$ (search depth of least-cost solution), and $m$ (maximum search depth, which may be $\infty$).
+
+| Metric | Random | Breadth-first | Depth-first | IDDFS |
+|--------+---------------+---------------------+-------------------|
+| Complete? | Yes        | Yes  | Yes | Yes |
+| Always optimal? (uninformed search) | No | Yes       | No   | Yes |
+| Time complexity | $O(n)$ | $O(b^d)$ | $O(b^d)$ | $O(b^d)$ |
+| Space complexity | $O(n)$ | $O(b^d)$ | $O(m)$ if $m$ finite, $O(n)$ otherwise | $O(bd)$ |
 
 #+INCLUDE: footer.org

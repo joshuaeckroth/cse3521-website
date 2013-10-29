@@ -152,15 +152,14 @@ inputs. For example,
 [[./images/and-perceptron.png]]
 #+END_CENTER
 
-Of course, the "OR" function is also possible (the homework asks you
-to show that). Outputs of perceptrons can become inputs to other
-perceptrons, allowing us to build all possible logic circuits. Thus,
-perceptrons are capable of general computation, putting them in the
-large class of fantastically different systems that are
-Turing-complete. A Turing-complete system is able to compute anything
-that can be computed; examples include electrical logic gates (i.e., a
-typical computer), the Lambda calculus, cellular automata, and now
-neural networks.
+Outputs of perceptrons can become inputs to other perceptrons,
+allowing us to build all possible logic circuits. Thus, perceptrons
+are capable of general computation, putting them in the large class of
+fantastically different systems that are Turing-complete. A
+Turing-complete system is able to compute anything that can be
+computed; examples include electrical logic gates (i.e., a typical
+computer), the Lambda calculus, cellular automata, and now neural
+networks.
 
 But can a complex network learn? When we say "learn," we mean: can the
 weights be assigned via a training process rather than assigned
@@ -196,19 +195,20 @@ the greatest gradient, and adjust the weights. However, the threshold
 function is not differentiable (it is a step function, discontinous at
 0.5), but we have a shortcut.
 
-Let $d$ be the true answer for some input vector, and $y$ but the
-output computed by the perceptron with its current weights $w_i$. We
-do not want to adjust the weights if the output is correct. If the
-output is 0 and we should have yielded a 1, then the weights are too
-low, and should be adjusted up. If the output is a 1 and we wanted a
-0, the weights are too high. Of course, we only want to adjust a tiny
-bit, so we do not oscillate. Thus, we have the following adjustment
-for each weight:
+Let $d_j$ be the true ($d$ for "desired") answer for some input
+vector, and $y_j$ but the output computed by the $j$'th perceptron
+with its current weights $w_{ij}$ (weight from input $i$ to this
+perceptron $j$). We do not want to adjust the weights if the output is
+correct. If the output is 0 and we should have yielded a 1, then the
+weights are too low, and should be adjusted up. If the output is a 1
+and we wanted a 0, the weights are too high. Of course, we only want
+to adjust a tiny bit, so we do not oscillate. Thus, we have the
+following adjustment for each weight:
 
-$$w'_i = w_i + \alpha (d-y)x_i,$$
+$$w'_{ij} = w_{ij} + \alpha (d_j-y_j)x_i,$$
 
-where $w'_i$ is the new weight and $\alpha$ is a small number (0.1, or
-0.01, etc.). Each weight is adjusted based on the input $x_i$ that
+where $w'_{ij}$ is the new weight and $\alpha$ is a small number (0.1,
+or 0.01, etc.). Each weight is adjusted based on the input $x_i$ that
 corresponds to that weight since some inputs are large and others
 small (possibly even negative if we get away from boolean
 inputs). Weights may become large, small, or even negative depending
@@ -280,9 +280,9 @@ such interesting features.
 * Logistic perceptrons
 
 When the function being learned is not linearly separable, the
-threshold function causes some oscillating (seen in some graphs
-below). This is because points near the separator are continually
-changing classifications as the weights update and move the separator.
+threshold function causes some oscillating. This is because points
+near the separator are continually changing classifications as the
+weights update and move the separator.
 
 We also may desire probabilistic answers rather than yes/no
 answers. If the data cannot actually be separated, then
@@ -298,7 +298,7 @@ A good choice is the logistic function:
 
 $$f(s_j) = \frac{1}{1+e^{-s_j}}$$
 
-where $s_j = \sum_{i=1}^k x_{i} w_{ji} + w_{j0}$. This is what it
+where $s_j = \sum_{i=1}^k x_{i} w_{ij} + w_{0j}$. This is what it
 looks like:
 
 #+BEGIN_CENTER
@@ -314,9 +314,9 @@ logistic function gives 0.79, then we say the error is 0.21. For the
 sake of easy derivatives, we'll go further and say the error, now
 called the "loss," is the square of the difference:
 
-$$L_j(y_j, p_j) = (y_j - p_j)^2,$$
+$$L_j(d_j, p_j) = (d_j - p_j)^2,$$
 
-where $y_j$ is the correct answer (1.0 or 0.0, binary), and
+where $d_j$ is the correct answer (1.0 or 0.0, binary), and
 $p_j=f(s_j)$ is the probability from the logistic function. We'll say
 the total loss is the sum of the loss from each perceptron. (Recall
 that a single-layer perceptron network is just a collection of
@@ -329,28 +329,25 @@ differentiable, this gradient is easy to find for each weight
 separately.
 
 \begin{eqnarray}
-\frac{\partial L_j}{\partial w_{ji}}
-&=& \frac{\partial}{\partial w_{ji}} (y_j - f(s_j))^2 \\
-&=& 2 (y_j - f(s_j)) \frac{\partial}{\partial w_{ji}} (y_j - f(s_j)) \qquad \text{chain rule} \\
-&=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} s_j \qquad \text{chain rule}\\
-&=& -2 (y_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ji}} \sum_{i'=1}^k x_{i'} w_{ji'} + w_{j0} \qquad \text{expand } s_j\\
-&=& -2 (y_j - f(s_j)) f'(s_j) x_{i} \qquad \text{picks out } x_{i} w_{ji} \text{, whose derivative is } x_{i}
+\frac{\partial L_j}{\partial w_{ij}}
+&=& \frac{\partial}{\partial w_{ij}} (d_j - f(s_j))^2 \\
+&=& 2 (d_j - f(s_j)) \frac{\partial}{\partial w_{ij}} (d_j - f(s_j)) \qquad \text{chain rule} \\
+&=& -2 (d_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ij}} s_j \qquad \text{chain rule}\\
+&=& -2 (d_j - f(s_j)) f'(s_j) \frac{\partial}{\partial w_{ij}} \sum_{i'=1}^k x_{i'} w_{ij'} + w_{j0} \qquad \text{expand } s_j\\
+&=& -2 (d_j - f(s_j)) f'(s_j) x_{i} \qquad \text{picks out } x_{i} w_{ij} \text{, whose derivative is } x_{i}
 \end{eqnarray}
 
 Note that $f'(z) = f(z)(1-f(z))$. This makes the logistic function a
 good choice (in addition to its shape, which approximates the
-threshold function). We can push the $-2$ into the $\alpha$
+threshold function). We can push the $2$ into the $\alpha$
 parameter, yielding:
 
-$$\frac{\partial L_j}{\partial w_{ji}} = \alpha (y_j - f(s_j)) f(s_j) (1 - f(s_j)) x_{i}$$
+$$\frac{\partial L_j}{\partial w_{ij}} = -\alpha (d_j - f(s_j)) f(s_j) (1 - f(s_j)) x_{i}$$
 
-So our weight update is the following, with $p_j = f(s_j)$:
+We want to update our weights in the opposite direction of the loss
+gradient. So our weight update is the following, with $p_j = f(s_j)$:
 
-$$w'_{ji} = w_{ji} + \alpha (y_j - p_j) p_j (1 - p_j)) x_{i}$$
-
-#+BEGIN_CENTER
-[[./images/logic-funcs-logistic-alpha.png]]
-#+END_CENTER
+$$w'_{ij} = w_{ij} + \alpha (d_j - p_j) p_j (1 - p_j)) x_{i}$$
 
 As an example, consider the task of classifying handwritten digits
 with classes 0-9. Here are some examples (intentionally pixelated to
@@ -361,38 +358,113 @@ reduce the input space, i.e., the number of pixels):
 #+END_CENTER
 
 #+BEGIN_CENTER
-[[./images/optdigits-threshold-alpha.png]]
-#+END_CENTER
-
-#+BEGIN_CENTER
 [[./images/optdigits-logistic-alpha.png]]
 #+END_CENTER
 
 
 * Multilayer perceptron networks
 
-The error gradient at perceptron $j$ turns out to be,
+#+BEGIN_CENTER
+[[./images/multi-layer-perceptron-network.png]]
+#+END_CENTER
 
-\begin{equation}
-\Delta_j = 
-\begin{cases}
-f'(s_j) (y_j - p_j) & \text{if perceptron } j \text{ is an output node} \\
-f'(s_j) \sum_k w_{jk} \Delta_k & \text{if perceptron } j \text{ is hidden}
-\end{cases}
-\end{equation}
+** Some definitions
 
-In other words, $\Delta_j$ is the normal error gradient if perceptron
-$j$ is an output perceptron. If perceptron $j$ is hidden, then the
-error gradient replaces the output error with the weighted error of
-the perceptrons to which $j$ feeds forward.
+For convenience later, we define the output node error gradient as:
 
-The result is that the update function changes to:
+$$\Delta_k = -2 (d_k - p_k)f'(s_k)$$
 
-$$w'_{ji} = w_{ji} + \alpha p_i \Delta_j$$
+And the hidden node error gradient (contribution of error of next node $k$ on
+this node $j$):
 
-Note that $p_i$ is the output of the previous perceptron, attached to
-weight $w_{ji}$. If the layer is an input layer (which we still say is
-"hidden"), then $p_i = x_i$, the actual $i$'th input to the network.
+$$\Delta_{jk} = \Delta_k w_{jk} f'(s_j)$$
+
+And the total error on hidden node $j$:
+
+$$\Delta_j = \sum_k \Delta_k w_{jk} f'(s_j),$$
+
+i.e., the sum across all nodes $k$ to which the node $j$ is connected.
+
+** Derivation of learning rule
+
+For an output node $k$:
+
+\begin{eqnarray}
+\frac{\partial L_k}{\partial w_{jk}}
+&=& -2(d_k - p_k) \frac{\partial p_k}{\partial w_{jk}} \\
+&=& -2(d_k - p_k) \frac{\partial f(s_k)}{\partial w_{jk}} \\
+&=& -2(d_k - p_k) f'(s_k) \frac{\partial s_k}{\partial w_{jk}} \\
+&=& -2(d_k - p_k) f'(s_k) \frac{\partial}{\partial w_{jk}}\Big( \sum_j
+w_{jk} p_j + w_{0k} \Big) \\
+&=& -2(d_k - p_k) f'(s_k) p_j \\
+&=& p_j \Delta_k
+\end{eqnarray}
+
+For a hidden node $j$, connected (only) to output node $k$:
+
+\begin{eqnarray}
+\frac{\partial L_k}{\partial w_{ij}}
+&=& -2(d_k - p_k) \frac{\partial p_k}{\partial w_{ij}} \\
+&=& -2(d_k - p_k) \frac{\partial f(s_k)}{\partial w_{ij}} \\
+&=& -2(d_k - p_k) f'(s_k) \frac{\partial s_k}{\partial w_{ij}} \\
+&=& \Delta_k \frac{\partial}{\partial w_{ij}} \Big( \sum_j w_{jk} p_j + w_{0k} \Big) \\
+&=& \Delta_k w_{jk} \frac{\partial p_j}{\partial w_{ij}} \\
+&=& \Delta_k w_{jk} \frac{\partial f(s_j)}{\partial w_{ij}} \\
+&=& \Delta_k w_{jk} f'(s_j) \frac{\partial s_j}{\partial w_{ij}} \\
+&=& \Delta_k w_{jk} f'(s_j) \frac{\partial}{\partial w_{ij}} \Big( \sum_i w_{ij} p_i + w_{0j} \Big) \\
+&=& \Delta_k w_{jk} f'(s_j) p_i \\
+&=& p_i \Delta_{jk}
+\end{eqnarray}
+
+If $j$ is connected to more nodes, we would use $\Delta_j$ instead of
+$\Delta_{jk}$ at the end.
+
+For input hidden node, $p_i = x_i$.
+
+** Performance of multilayer perceptron on optdigits
+
+#+BEGIN_EXAMPLE
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances         551               98.0427 %
+Incorrectly Classified Instances        11                1.9573 %
+Kappa statistic                          0.9782
+Mean absolute error                      0.0058
+Root mean squared error                  0.0612
+Relative absolute error                  3.2483 %
+Root relative squared error             20.4131 %
+Total Number of Instances              562     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.962     0          1         0.962     0.981      0.999    0
+                 0.957     0.002      0.978     0.957     0.968      0.998    1
+                 1         0.002      0.982     1         0.991      1        2
+                 0.939     0.004      0.969     0.939     0.954      1        3
+                 1         0.002      0.984     1         0.992      1        4
+                 0.982     0.008      0.931     0.982     0.956      0.999    5
+                 1         0.002      0.982     1         0.991      1        6
+                 0.984     0.002      0.984     0.984     0.984      1        7
+                 0.983     0          1         0.983     0.991      0.999    8
+                 1         0          1         1         1          1        9
+Weighted Avg.    0.98      0.002      0.981     0.98      0.98       1    
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h  i  j   <-- classified as
+ 51  0  1  0  0  0  1  0  0  0 |  a = 0
+  0 45  0  0  1  0  0  1  0  0 |  b = 1
+  0  0 55  0  0  0  0  0  0  0 |  c = 2
+  0  0  0 62  0  4  0  0  0  0 |  d = 3
+  0  0  0  0 63  0  0  0  0  0 |  e = 4
+  0  0  0  1  0 54  0  0  0  0 |  f = 5
+  0  0  0  0  0  0 56  0  0  0 |  g = 6
+  0  0  0  1  0  0  0 62  0  0 |  h = 7
+  0  1  0  0  0  0  0  0 58  0 |  i = 8
+  0  0  0  0  0  0  0  0  0 45 |  j = 9
+#+END_EXAMPLE
 
 * NetTalk example
 

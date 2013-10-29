@@ -3,103 +3,78 @@
 
 For those new to the field of AI, the terminology may be somewhat
 abstract. We talk about "*goals*," "*actions*," "*perceptions*," and
-"*knowledge*." But what are these concepts? How do they work, where do
-they live?
+"*knowledge*." But what are these concepts? How do they relate to more familiar terms?
 
 New terminology is often a feature of a field of study; perhaps,
 terminology is partly what defines a field of study as separate from
 others. But the terminology is not just a way for a field to
 differentiate itself. The terminology is necessary to properly
-understand what is being studied.
+understand what is being investigated and explained.
 
 In the philosophy of science, there is much interest in figuring out
 what constitutes an /explanation/. What is generally agreed upon is
 that an explanation should tell a "causal story" by including
-specifics about how various components effect each other. This causal
-story should enable one to imagine how different system configurations
+specifics about how events effect others. This causal
+story should enable one to imagine how different configurations
 could cause different outcomes (i.e., the causal story should support
-a mental model). An explanation should be non-obvious and should hide
+a mental model). An explanation also should be non-obvious and hide
 irrelevant details. In short, an explanation should be at a certain
 "level" of description; not too high-level as to be completely vague,
-and not too low-level as to make the mental model, the causal story,
-so complex that alternative causal stories cannot be worked out in
-one's mind.
+and not too low-level as to make the mental model or causal story
+so complex that alternative outcomes cannot be easily imagined.
 
 Imagine trying to explain the role of a four-chambered heart while
 being restricted only to the concepts and terminology of molecular
 chemistry. The role of the heart, what it does for the animal, cannot
-possibly be described with such terminology.
+possibly be described with such terminology. Molecular chemistry plays a role in every organ, every cell, of the animal, so the language of chemistry is not capable of explaining why a heart is special.
 
-Now, imagine trying to describe how to sort a list of integers (in
-software) by using only concepts and terminology about logic gates,
+Now, imagine trying to describe how a computer program sorts a list of numbers by using only concepts and terminology about logic gates,
 resistors, capacitors, etc. While it could be done, the explanation of
 the sorting procedure would be extraordinarily complex and, frankly,
-completely unexplanatory.
+completely non-explanatory. We could not answer the question, if this logic gate was instead wired to that logic gate, how would the sorting algorithm change? No one is capable of holding a mental model with such complexity.
 
-Likewise, *imagine trying to explain the Oedipus complex (from Freud)
-in terms of neurons and synaptic plasticity...*
+Likewise, *imagine trying to explain Freud's Oedipus complex (boy loves his mother, wants to kill his father) in terms of neurons, dopamine, synaptic plasticity, ...*
 
 Explanations that are too "high level" are also worthless. We will not
-gain any understanding of the heart, how it works and why we have one,
+understanding the human heart, how it works and why we each have one,
 if we speak at the level of societies and nation-states (whose
-constituents all have hearts).
+constituents all have hearts). Again, there is no causal story, so there is no explanation.
 
-The point is that *there are more-or-less natural levels of
+The point is that *there are more-or-less natural and obvious levels of
 explanation*. The heart is best explained in terms of its role in
-blood circulation and relation to other organs. How to sort a list of
-integers is best explained in terms of programming language constructs
-(such as lists, comparison operators, etc.). And the Oedipus complex
-is best explained in terms of the id/ego/superego and childhood
-experiences.
+blood circulation and the body's need for oxygen (simplifying a bit). A sorting algorithm is best explained in terms of programming language constructs
+(such as lists, loops, comparison operators, etc.). And the Oedipus complex
+is best explained in terms of the id/ego/superego, castration anxiety, and so on.
 
 * A hierarchy of levels
 
-These levels of explanation form hierarchies. Here is a hierarchy for
-computer systems:
+These levels of explanation form hierarchies. Here is a basic hierarchy for
+computer systems and food:
 
 #+BEGIN_CENTER
 [[./images/first-two-levels.png]]
 #+END_CENTER
 
-A feature of hierarchical levels is that *each higher level may be
-implemented by any next-lower level*. For example, the Java language
-(that is to say, the Java compiler and runtime environment) may be
-implemented on any computational device. All computational devices
-(pencil and paper plus a list of rules, or hydraulics and tubes, or
-artificial neural networks, or cellular automata, etc.) support the
-same computations. The symbol and algorithm level can be implemented
-on any device from the processor and memory level.
+A higher-level layer is an *specialization* of its next-lower layer. In these examples, a particular set of programming language instructions specialize the electronic circuitry; the instructions make a particular use of the circuits. Similarly, various foodstuffs combine basic molecules in particular ways.
 
-Additionally, a higher level such as Java or Turing machines is a
-*specialization* of the lower level. A lower level (say, electronic
-circuits) can have many more higher-level specializations than the
-ones listed. Electronic circuits can do much more than run Java code
-or carry out the operations of Turing machines.
+Likewise, each lower-level layer is an *implementation* of the next-higher layer. Foodstuffs are "implemented" in physical form with glucose, dextrose, etc. And computer software is implemented in electrical circuits. Perhaps there are different possible implementations. Software, at least, could be "executed" by hand (pencil & paper). In the past, programmers executed their code by hand, when computers were not available for every person all the time.
 
-Finally, *each level can be defined independently of higher and lower
-levels*. We can define exactly what electronic circuits are; it does
-not matter how they will be used (maybe to build a computer, maybe
-not), nor does it matter (mostly) how they are implemented (with
-transistors or vacuum tubes). Similarly, programmers rarely need to
-care, on a daily basis, about processors and memory. Unless the
-programmer is working on a low-level system program or a very
-high-performance program like a game, the details about computer
-hardware are irrelevant.
+Finally, *each level can be defined independently of its higher and lower
+levels*. We can define exactly what transistors are; it does
+not matter how they will be used (maybe to build a familiar computer, maybe
+not), nor does it matter how they are implemented. Programmers generally never concern themselves with transistors and capacitors. A programmer can think about a problem in terms of data structures and algorithms and get along just fine.
 
 * A new level
 
 When we design and build AI systems, we find that *explanations stuck
-at the symbol and algorithm level are too verbose*. Usually, it makes
-no difference whether Java or Python or ... is used to implement the
-systems we are designing. AI systems have something /more/; they
-require a higher level of description than descriptions like "how to
-sort a list of integers."
+at the symbol and algorithm level are too verbose*. For many larger software systems, it makes no difference how it is coded nor in what language. This is especially true for AI systems. There is something else about them. They
+require a higher level of description than descriptions like "this is how we
+sort a list of numbers." Why sort the numbers? What do the numbers represent?
 
-In AI, we talk about "*goals*," "*actions*," "*perceptions*," and
+In AI, we find it more useful to talk about "*goals*," "*actions*," "*perceptions*," and
 "*knowledge*." A goal is something the system (the agent) wants to
-accomplish. An action is something the agent can do (in order to
-change its environment). Perceptions are observations that the agent
-makes about its environment. And knowledge is consulted in order to
+accomplish. A perception is information the agent obtains about its environment. An action is something the agent can do in order to
+change its environment. And knowledge is consulted in order to
 choose the right actions, based on perceptions, in order to achieve
 goals.
 
@@ -107,7 +82,7 @@ Exactly how goals, actions, perceptions, and knowledge are implemented
 (realized in code) is not important if we are only describing what the
 goals, actions, perceptions, and knowledge /are/. Their descriptions,
 their explanations, exist in a level above the symbol and algorithm
-level. Allen Newell calls this level the "*Knowledge level*."
+level. Allen Newell calls this level the "*Knowledge level*." Perhaps we can define a similar level in the food domain, which I call the "diner" level, i.e., the level of description that restaurant patrons care about.
 
 #+BEGIN_CENTER
 [[./images/knowledge-level.png]]
@@ -116,7 +91,7 @@ level. Allen Newell calls this level the "*Knowledge level*."
 We can explain how AI systems work using only the terminology from the
 knowledge level. This is what gives AI its own set of terminology, and
 partly what makes AI a separate field of study (separate from software
-engineering, for example).
+engineering and electrical engineering, for example).
 
 #+INCLUDE: footer.org
 

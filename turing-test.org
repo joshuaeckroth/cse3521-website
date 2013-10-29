@@ -1,10 +1,6 @@
 #+SETUPFILE: setup.org
 #+TITLE: The Turing test
 
-#+INDEX: Turing, A.
-#+INDEX: imitation game
-#+INDEX: Dennett, D.
-
 #+BEGIN_HTML
 <div style="float: right; width: 200px; margin-left: 5px; padding:
 5px; border: 1px solid #ccc;">
@@ -81,8 +77,8 @@ Now, the machine is trying to convince the interrogator that it is a
 human, but the human is not. The human is trying to convince the
 interrogator that he or she is a human, but the machine is not.
 
-Just as, supposedly, a man would find it difficult to immitate a
-woman, a machine would probably find it difficult to immitate a
+Just as, supposedly, a man would find it difficult to imitate a
+woman, a machine would probably find it difficult to imitate a
 human. Yet, if the machine is not only able to act like a human but
 also (or alternatively?) to counteract the arguments produced by the
 human, then the machine is quite intelligent indeed.
@@ -106,11 +102,9 @@ convincing. The existence of a machine that can consistently convince
 a judge that it is human and the human is a machine, even though the
 human is begging for mercy, is an amazing thought!
 
-** Two philosophical points
+** A historical note
 
-#+INDEX: Descartes, R.
-
-Firstly, Descartes somewhat "predicted" the usefulness of such a test,
+Descartes somewhat "predicted" the usefulness of such a test,
 even though he believed machines would never be able to pass it, in
 principle (because he thought machines could never respond to their
 environments):
@@ -135,27 +129,11 @@ whereas reason is a universal instrument, which can be used in all
 kinds of situations, these organs need some particular action; hence
 it is for all practical purposes impossible for a machine to have
 enough different organs to make it act in all the contingencies of
-life in the way in which our reason makes us act. --- [[http://plato.stanford.edu/entries/turing-test/][Source]]
+life in the way in which our reason makes us act. ---
+[[http://plato.stanford.edu/entries/turing-test/][Source]]
 #+END_QUOTE
 
-#+INDEX: Leibniz, G.
-
-Secondly, Leibniz investigated what he called the "identity of
-indiscernibles," ([[http://plato.stanford.edu/entries/identity-indiscernible/][source]]) which is essentially the statement that two
-objects, $x$ and $y$, are identical if there does not exist any
-property that $x$ has but $y$ does not and vice versa.
-
-The Turing test is essentially making a similar, though weaker,
-statement: machine intelligence and human intelligence are equivalent
-if there does not exist any observable property (observable via a
-typewriter, and observable by a singular human interrogator) that
-differentiates machine and human intelligence. In other words, if
-there does not exist any tell-tale question that separates the two
-forms of intelligence, then they are identical.
-
 * The Turing test is quite strong
-
-#+INDEX: Dennett, D.
 
 All quotes are from Dennett, "Can Machines Think?" (1985)
 
@@ -163,15 +141,13 @@ All quotes are from Dennett, "Can Machines Think?" (1985)
 Remember, failure on the Turing test does not predict failure on those
 others, but success would surely predict success. His test was so
 severe, he thought, that nothing that could pass it fair and square
-would disappoint us in other quarters. Maybe it wouldn’t do everything
+would disappoint us in other quarters. Maybe it wouldn't do everything
 we hoped---maybe it wouldn't appreciate ballet, understand quantum
 physics, or have a good plan far world peace, but we'd all see that it
 was surely one of the intelligent, thinking entities in the
 neighborhood.
 
 [...]
-
-#+INDEX: Winograd, T.
 
 Terry Winograd, a leader in AI efforts to produce conversational
 ability in a computer, draws our attention to a pair of sentences.
@@ -248,16 +224,78 @@ efforts or you don't. But it is expensive and slow, a socially dubious
 caper at best, and no doubt luck would play too great a role.
 #+END_QUOTE
 
+* Bringsjord's strategies
+
+Selmer Bringsjord, in an article titled "[[http://link.springer.com/chapter/10.1007/978-1-4020-6710-5_6][If I Were Judge]]," in the
+book [[http://link.springer.com/book/10.1007/978-1-4020-6710-5/page/1][Parsing the Turing Test]] (2009), described some strategies he
+would take if he believed the Turing test was valid (which he does
+not):
+
+** Strategy 1
+
+Require that each contestant pass an array of standardized IQ tests.
+
+** Strategy 2
+
+Give each contestant problems like this one:
+
+#+BEGIN_QUOTE
+
+- If there is a king in the hand, then there is an ace, or else if
+  there is not a king in the hand, then there is an ace.
+
+- There is a king in the hand.
+
+- Therefore, what?
+
+#+END_QUOTE
+
+The answer is that there is not an ace in the hand. (/I bet you got
+that wrong./)
+
+If the contestant gets the right answer, that probably tells us the
+contestant is a human. A computer program, on the other hand, can
+easily derive the logically correct answer.
+
+But a very intelligent machine, so intelligent it can appear stupid,
+may therefore be able to solve very difficult problems like logical
+paradoxes.
+
+** Strategy 3
+
+Give each contestant supposed logical paradoxes, and ask them to solve
+the puzzle. Certain paradoxes fool machine reasoning but (very
+intelligent) mathematicians can solve them.
+
+** Strategy 4
+
+Finally, if both contestants solve the paradoxes, resort to asking
+each contestant to write short stories based on a prompt like, "As
+Gregor Samsa awoke one morning from uneasy dreams he found himself
+transformed in his bed into a gigantic insect."
+
+#+CAPTION: Metamorphosis of Kafka by James LeGros. Acrylic on Watercolor Board.
+[[./images/metamorphosis-of-kafka-james-legros.jpg]]
+
 * We have a long way to go
 
-#+INDEX: Loebner Prize
-
 Nobody actually practices with a real Turing test. It's too hard for
-the machine. Instead, the yearly [[http://www.loebner.net/Prizef/loebner-prize.html][Loebner Prize]] experiments with a
-reduced form of this test. The judges simply estimate how "closely" a
-computer imitates a human, and judges are not allowed to attempt
-trickery (such as typing random symbols) or delve into deep
-conversation.
+the machine. Instead, the yearly
+[[http://www.loebner.net/Prizef/loebner-prize.html][Loebner Prize]]
+experiments with a reduced form of this test. The judges simply
+estimate how "closely" a computer imitates a human, and judges are not
+allowed to attempt trickery (such as typing random symbols) or delve
+into deep conversation.
+
+"Computers take the Turing Test in Reading in October 2008 to see if judges believe the machines are human during instant message conversations." ([[http://news.bbc.co.uk/2/hi/technology/8249792.stm][Source]])
+
+#+BEGIN_HTML
+<div style="text-align: center">
+<iframe width="480" height="360" src="http://www.youtube.com/embed/e8vZy8a9lSc?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+#+END_HTML
+
+* The Turing test in culture
 
 #+BEGIN_HTML
 <div style="text-align: center">
@@ -267,6 +305,45 @@ allowfullscreen></iframe>
 </div>
 #+END_HTML
 
+#+BEGIN_HTML
+<div style="text-align: center">
+<iframe width="640" height="360" src="http://www.youtube.com/embed/QkNA7sy5M5s?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+#+END_HTML
+
+#+BEGIN_QUOTE
+Seated where he could catch the readings on the two gauges of the Voigt-Kampff testing
+apparatus, Rick Deckard said, "I'm going to outline a number of social situations. You are to
+express your reaction to each as quickly as possible. You will be timed, of course."
+
+"And of course," Rachael said distantly, "my verbal responses won't count. It's solely the
+eye-muscle and capillary reaction that you'll use as indices. But I'll answer; I want to go
+through this and --- " She broke off. "Go ahead, Mr. Deckard."
+
+Rick, selecting question three, said, "You are given a calfskin wallet on your birthday."
+Both gauges immediately registered past the green and onto the red; the needles swung
+violently and then subsided.
+
+"I wouldn't accept it," Rachael said. "Also I'd report the person who gave it to me to the
+police."
+
+After making a jot of notation Rick continued, turning to the eighth question of the Voigt-
+Kampff profile scale. "You have a little boy and he shows you his butterfly collection, including
+his killing jar."
+
+"I'd take him to the doctor." Rachael's voice was low but firm. Again the twin gauges
+registered, but this time not so far. He made a note of that, too.
+
+"You're sitting watching TV," he continued, "and suddenly you discover a wasp crawling on
+your wrist."
+
+Rachael said, "I'd kill it." The gauges, this time, registered almost nothing: only a feeble
+and momentary tremor. He noted that and hunted cautiously for the next question.
+
+--- from /Do Androids Dream of Electric Sheep?/, Phillip K. Dick
+#+END_QUOTE
+
+
 * Podcasts
 
 #+INDEX: Radiolab
@@ -275,16 +352,14 @@ allowfullscreen></iframe>
 
 #+BEGIN_CENTER
 #+BEGIN_HTML
-<embed
-flashvars="file=http://www.radiolab.org/audio/xspf/137407/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/137407/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab053111.mp3"
-quality="high" allowscriptaccess="always" wmode="transparent"
-src="http://www.radiolab.org/media/audioplayer/player5.swf"
-height="300" width="400"></embed><script
-type="text/javascript">(function(){var
-s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTimeout(s,10);};s();})();</script>
+<div class="figure">
+<img src="./images/wire_head.jpg" />
+</div>
+<iframe width="474" height="54" frameborder="0" src="http://www.radiolab.org/widgets/ondemand_player/#file=http%3A%2F%2Fwww.radiolab.org%2Faudio%2Fxspf%2F137407%2F;containerClass=radiolab"></iframe>
 #+END_HTML
 
-1 hour / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab053111.mp3][Download MP3]] / [[http://www.radiolab.org/2011/may/31/][Radiolab website for this episode]]
+1 hour / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab053111.mp3][Download MP3]] / [[http://www.radiolab.org/2011/may/31/][Radiolab website for this episode]] / Image:
+[[http://www.flickr.com/photos/paulmoody/314897848/][Paul Moody]]
 
 #+END_CENTER
 
@@ -292,16 +367,14 @@ s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTi
 
 #+BEGIN_CENTER
 #+BEGIN_HTML
-<embed
-flashvars="file=http://www.radiolab.org/audio/xspf/193037/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/193037/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab_podcast/radiolab_podcast12turing.mp3"
-quality="high" allowscriptaccess="always" wmode="transparent"
-src="http://www.radiolab.org/media/audioplayer/player5.swf"
-height="300" width="400"></embed><script
-type="text/javascript">(function(){var
-s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTimeout(s,10);};s();})();</script>
+<div class="figure">
+<img src="./images/turing_sculpture.jpg" />
+</div>
+<iframe width="474" height="54" frameborder="0" src="http://www.radiolab.org/widgets/ondemand_player/#file=http%3A%2F%2Fwww.radiolab.org%2Faudio%2Fxspf%2F193037%2F;containerClass=radiolab"></iframe>
 #+END_HTML
 
-23 minutes / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab_podcast/radiolab_podcast12turing.mp3][Download MP3]] / [[http://www.radiolab.org/blogs/radiolab-blog/2012/mar/19/turing-problem/][Radiolab website for this episode]]
+23 minutes / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab_podcast/radiolab_podcast12turing.mp3][Download MP3]] / [[http://www.radiolab.org/blogs/radiolab-blog/2012/mar/19/turing-problem/][Radiolab website for this episode]] / Image:
+[[http://www.flickr.com/photos/ell-r-brown/5118274331/][Elliot Brown]]
 
 #+END_CENTER
 

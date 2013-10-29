@@ -9,25 +9,30 @@ computation, philosophy, technology
 #+END_HTML
 
 * Text book
-The text book is not required. [[http://www.amazon.com/Artificial-Intelligence-Modern-Approach-Edition/dp/0136042597/ref=sr_1_1?s=books&ie=UTF8&qid=1332257784&sr=1-1][Artificial Intelligence: A Modern
-Approach]], by Russell and Norvig.
+
+The text book is not required. Everything you need to know is on this
+site. However, the official text book is
+[[http://www.amazon.com/Artificial-Intelligence-Modern-Approach-Edition/dp/0136042597/ref=sr_1_1?s=books&ie=UTF8&qid=1332257784&sr=1-1][Artificial
+Intelligence: A Modern Approach]], by Russell and Norvig.
 
 * Homework
 
-Homework must be submitted on the CSE Linux servers, using the
-~submit~ command. All programs must compile and execute without error
-on the Linux servers. Thus, be sure to test your code on those servers
-before submitting it.
+*Homework is submitted on paper.* We have an assistant grader and I
+want to make his/her task as easy as possible. Answers should be
+*type-written* except when the answers involve graphs, diagrams,
+special symbols, etc.
 
-Instructions about the Linux servers are available in [[./linux.html][lecture notes]].
+Sometimes, code or large files must be submitted with the homework.
+These files can be submitted in the Carmen Dropbox.
 
 * Grading
 
-  - Homeworks: 40%
-  - Midterm: 30%
-  - Final: 30%
+  - Homeworks: 50%
+  - Midterm: 20%
+  - Final: 25%
+  - Attendance: 5%
 
-Late work is penalized 20 points, no matter how late it is. The last
+Late work is penalized 40 points, no matter how late it is. The last
 day to turn in late work is the day of the Final.
 
 Note that if I suspect you copied your homework solutions from someone
@@ -35,6 +40,9 @@ Note that if I suspect you copied your homework solutions from someone
 questions about those solutions. If you do not answer those questions
 to my satisfaction, I reserve the right to give you a 0% grade on that
 assignment.
+
+Attendance is calculated as the percent of days you attend class
+(ignoring excused absences).
 
 #+CAPTION: "Square," Kumi Yamashita, 1995; H36, W53, D15cm; aluminum, single light source, shadow
 [[./images/kumi-yamashita-square.jpg]]

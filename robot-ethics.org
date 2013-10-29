@@ -1,11 +1,16 @@
 #+SETUPFILE: setup.org
 #+TITLE: Robot ethics
 
-#+BEGIN_CENTER
-[[./images/robotethics.jpg]]
+#+BEGIN_HTML
+<div style="text-align: center">
+<div class="figure">
+<img src="./images/robotethics.jpg" />
+</div>
 
-[[http://phys.org/news/2012-03-ethical-robots.html][How to make ethical robots]], Phys.org, March 12, 2012
-#+END_CENTER
+<a href="http://phys.org/news/2012-03-ethical-robots.html">How to make
+ethical robots</a>, Phys.org, March 12, 2012
+</div>
+#+END_HTML
 
 
 Your self-driving car is speeding along the highway. A school bus
@@ -64,7 +69,7 @@ elevator doors:
 2.13.3 Power Closing
 
 2.13.3.1 Power Closing or Automatic Self-Closing of Car Doors or Gates
-Wlhere Used With Manually Operated or Self-Closing Hoistway Doors
+Where Used With Manually Operated or Self-Closing Hoistway Doors
 
 2.13.3.1.1 Where a car door or gate of an automatic or
 continuous-pressure operation passenger elevator is closed by power,
@@ -254,7 +259,7 @@ development of ethical theory.
 #+BEGIN_QUOTE
 Bentham's theory is the epitome of the use of calculation in ethics
 and is worth examining in some detail because it reveals what is
-promising and what is’troubling about ethical calculations. ---
+promising and what is troubling about ethical calculations. ---
 op. cit.
 #+END_QUOTE
 
@@ -330,11 +335,15 @@ better ethical theories cannot be computational in nature.
 
 * Nevada's actual laws regarding autonomous vehicles
 
-#+BEGIN_CENTER
-[[./images/google_car.jpg]]
-
-([[http://www.dmvnv.com/news/12005-autonomous-vehicle-licensed.htm][source]])
-#+END_CENTER
+#+BEGIN_HTML
+<div style="text-align: center">
+<div class="figure">
+<img src="./images/google_car.jpg" />
+</div>
+(<a
+href="http://www.dmvnv.com/news/12005-autonomous-vehicle-licensed.htm">source</a>)
+</div>
+#+END_HTML
 
 #+BEGIN_QUOTE
 As a Nevada Autonomous Vehicle Testing Company, I affirm to the best

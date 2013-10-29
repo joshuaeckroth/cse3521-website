@@ -4,9 +4,7 @@
 You'll find the [[http://ccl.northwestern.edu/netlogo/docs/][NetLogo Manual]] to be useful.
 
 
-[[http://ccl.northwestern.edu/netlogo/5.0.2/][Download NetLogo 5.0.2]] (Windows, Linux, OS X)
-
-[[http://ccl.northwestern.edu/netlogo/mountain-lion.shtml][Note for OS X 10.8 (Mountain Lion) users.]]
+[[http://ccl.northwestern.edu/netlogo/5.0.4/][Download NetLogo 5.0.4]] (Windows, Linux, OS X)
 
 
 * Building the "ant brood sorting" model

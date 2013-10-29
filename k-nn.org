@@ -1,6 +1,18 @@
 #+SETUPFILE: setup.org
 #+TITLE: k-nearest neighbor classification
 
+{{{begin-summary}}}
+- Classification is used for predicting the label on a new data point,
+  using a model built from a set of training examples where the true
+  labels were known.
+- k-nearest neighbor determines the predicted label by asking the
+  $k$-nearest neighbor points in the training set to "vote" for the
+  label.
+- k-nearest neighbor requires deciding upfront the value of $k$.
+- This method is very simple but requires retaining all the training
+  examples and searching through it.
+{{{end-summary}}}
+
 Suppose we measure some properties of flowers, species of iris to be
 precise. *But this time*, we also know their true "labels"
 (species). We have a table like the following:
@@ -56,7 +68,7 @@ assignment (i.e., Yes/No assignments) when one class is substantially
 larger than the other. They write in their conclusion,
 
 #+BEGIN_QUOTE
-Nearest neighbour supervised classification methods have many
+Nearest neighbor supervised classification methods have many
 attractive properties. However, many of these are based on asymptotic
 arguments. In problems where the classification threshold lies near 0
 or 1, as generally is the case in situations where one class is much
@@ -127,8 +139,8 @@ These are rather high accuracies for such a /simple/ algorithm.
 #+BEGIN_QUOTE
 Some of the labeled training examples may be surround by the examples
 from the other classes. Such a situation may arise by plenty of
-reasons: (i) as a resut of a random mistake, (ii) because insufficient
-number of traning example of this class (an isolated example appears
+reasons: (i) as a result of a random mistake, (ii) because insufficient
+number of training example of this class (an isolated example appears
 instead of cluster), (iii) because incomplete system of features (the
 classes are separated in other dimensions which we do not know), (iv)
 because there are too many training examples of other classes
@@ -153,16 +165,16 @@ http://www.math.le.ac.uk/people/ag153/homepage/KNN/KNNexcercise.htm
 
 Ensure that the parameters are at default settings
 
-  1. Create a class with green colour by clicking at the top left
+  1. Create a class with green color by clicking at the top left
      corner of the work desk and also click on random to create some
      outliers
 
-  2. Create a second class with blue colour by clicking at the bottom
+  2. Create a second class with blue color by clicking at the bottom
      right corner of the work desk and also click on random to create
      some outliers
 
-  3. Test a query example at the centre. (Hint: click on handle test
-     menu, ensure the method is KNN and click at the centre of the
+  3. Test a query example at the center. (Hint: click on handle test
+     menu, ensure the method is KNN and click at the center of the
      work desk. Example screen shot is shown below)
 
 #+BEGIN_CENTER
@@ -171,7 +183,7 @@ Ensure that the parameters are at default settings
 
   1. Classify the test query using different values of $k$ = 3, 5, 10
      and 20. (To change $k$, Go to Parameter menu, change the Number
-     of Nearest Neighbour, click Handle test Menu and click the point
+     of Nearest Neighbor, click Handle test Menu and click the point
      you want to classify, i.e., center of the work desk)
 
   2. Does varying the value of $k$ affect the classification and which

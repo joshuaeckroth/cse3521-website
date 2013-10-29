@@ -59,7 +59,7 @@ heuristic is a "rule of thumb," or some kind of rule that's "usually a
 good idea." BFS and DFS have their own heuristics but their heuristics
 (how to choose the next states to check) do not change depending on
 the problem. Normally, we talk about heuristics in a more
-problem-specific sense. A heuristic would be applied in step ~2.b.~,
+problem-specific sense. A heuristic would be applied in step ~4.b.~,
 in which we choose the next state to check.
 
 * Heuristics for 8-puzzle
@@ -100,16 +100,18 @@ search arrives at a local maximum rather than a global maximum, it has
 no way of fixing that error.
 
 Our general search algorithm can be modified to support hill-climbing
-search by modifying step ~2.b.ii.~ so that the entire "tocheck" list
+search by modifying step ~4.b.ii.~ so that the entire "tocheck" list
 is deleted and replaced with only those states accessible from the
-current state. Also, step ~2.b.~ is modified to choose the best state
+current state. Also, step ~4.b.~ is modified to choose the best state
 in terms of the chosen heuristic ("climb up the hill" means "maximize
 the heuristic function").
+
+*Note*: hill-climbing may be your best option, /if you are actually climbing a hill./ You can't use breadth-first search, for example, if you are a robot physically navigating around a world, because you can't simply teleport yourself back to a different state that you visited earlier. Instead, you would have to walk back to that earlier state, and the cost might be so high it is better for you to keep climbing from where you are.
 
 * Best-first search
 
 Best-first retains a record of every state that has been visited as
-well as the heuristic value of that state. At step ~2.b.~, the best
+well as the heuristic value of that state. At step ~4.b.~, the best
 state ever visited is retrieved and search continues from there. This
 makes best-first search appear to jump around the search tree, like a
 random search, but of course best-first search is not random. The
@@ -194,9 +196,42 @@ If $h$ overestimates the true cost to the goal, then our search
 algorithm will obviously make the wrong choices. It will move the
 robot farther from the end of the maze rather than towards the end.
 
+* IDA* (Iterative Deepening A*)
+
+The A* algorithm has very bad space complexity (see below) because it
+might, in the worst case, keep a memory of every state ever
+visited. An alternative approach is to use an iterative deepening
+strategy, just like IDDFS, except that we bring over the complex
+heuristic $f(s) = g(s) + h(s)$. IDA* is IDDFS except that the search
+stops looking deeper if $f(s) > t$ for some threshold $t$. This
+threshold is increased (by $1$, say) for every iteration. Thus, IDA*
+is the same as IDDFS except that IDDFS use a "depth" threshold while
+IDA* uses a heuristic cost threshold. Similar to how IDDFS improves on
+BFS, IDA* can reach "deep" solutions faster than A* but also find just
+as optimal solutions since it uses the same estimator function $f(s)$
+as A*.
+
 * Comparisons
 
-Here we have the results of some experiments with the 8-puzzle
+Refer to the [[./search.html][search notes]] (at the bottom) for an explanation of the variables $n$ (total possible states), $b$ (branch factor), $d$ (search depth of least-cost solution), and $m$ (maximum search depth, which may be $\infty$).
+
+| Metric | BFS | DFS | Hill-climbing | Best-first | A* |
+|--------+---------------+---------------------+-------------------|
+| Complete? | Yes  | Yes  | No | Yes | Yes |
+| Always optimal? (informed search) | No | No | No | No | Yes |
+| Time complexity | $O(b^d)$ | $O(b^d)$ | $O(m)$ | $O(b^d)$ | $O(b^d)$ |
+| Space complexity | $O(b^d)$ | $O(m)$ or $O(n)$ | $O(m)$ | $O(b^d)$ | $O(b^d)$ |
+
+Note that A* is, in the worst case, just as bad as BFS in terms for
+time complexity. But, we can give A* a good heuristic function and its
+time complexity will decrease, while BFS will stay the same. Also, we
+know that A* is optimally efficient for some heuristic function; that
+is to say, no other algorithm can use the same heuristic function to
+find the goal faster. A* makes the best use of a heuristic function.
+
+* Experiments
+
+Now we'll look at the results of experiments with the 8-puzzle
 problem. The breadth-first search (BFS) results are the 0
 line. Results from other searches are shown as how far they differ
 from BFS. So, if a search is higher than the 0 line in these results,
@@ -263,7 +298,7 @@ solution. Interestingly, random search finds near-optimal solutions,
 possibly because it is more likely it will look at a shallow node
 (there are up to four from each state) than a deep node.
 
-* More comparisons
+* More experiments
 
 ** 8-puzzle
 
@@ -273,7 +308,7 @@ possibly because it is more likely it will look at a shallow node
 | Search type  | Resulting path length | Largest closedset | Largest openset |
 |--------------+-----------------------+-------------------+-----------------|
 | A*           |                   0.0 |             -24.7 |           -15.6 |
-| Hillclimbing |                  +4.9 |             -13.6 |           -18.1 |
+| Hill-climbing |                  +4.9 |             -13.6 |           -18.1 |
 | Best-first   |                  +1.5 |             -10.8 |            -6.3 |
 
 *** Discussion
@@ -293,7 +328,7 @@ possibly because it is more likely it will look at a shallow node
 | Search type  | Resulting path length | Largest closedset | Largest openset |
 |--------------+-----------------------+-------------------+-----------------|
 | A*           |                  -1.9 |              -4.5 |            -1.1 |
-| Hillclimbing |                 +17.4 |              -1.0 |            -1.9 |
+| Hill-climbing |                 +17.4 |              -1.0 |            -1.9 |
 | Best-first   |                  -1.9 |              +0.7 |            +0.1 |
 | Depth-first  |                  +8.6 |              +1.6 |            +0.7 |
 
@@ -310,7 +345,7 @@ possibly because it is more likely it will look at a shallow node
 | Search type  | Resulting path length | Largest closedset | Largest openset |
 |--------------+-----------------------+-------------------+-----------------|
 | A*           |                   0.0 |            -524.8 |            -0.1 |
-| Hillclimbing |                +213.0 |           -2166.9 |           -17.9 |
+| Hill-climbing |                +213.0 |           -2166.9 |           -17.9 |
 | Best-first   |                   0.0 |              +0.8 |            +0.2 |
 | Depth-first  |                +505.4 |             -83.5 |           +43.6 |
 
@@ -320,8 +355,8 @@ possibly because it is more likely it will look at a shallow node
     better than those found by breadth-first, since all movements cost
     the same.
 
-    However, A* considers far fewer states. Hillclimbing likewise, but
-    hillclimbing is terrible for finding optimal paths (in this case).
+    However, A* considers far fewer states. Hill-climbing likewise, but
+    hill-climbing is terrible for finding optimal paths (in this case).
 
     As expected, depth-first also does not find short paths.
 

@@ -1,0 +1,67 @@
+#+SETUPFILE: setup.org
+#+TITLE: Object tracking
+
+* Background subtraction
+
+** Trivial background subtraction
+
+$$B = F - F_\text{prior}$$
+
+#+BEGIN_SRC c++
+frame_binary = frame_gray.clone();
+threshold(frame_gray, frame_binary, 128.0, 255.0, THRESH_BINARY);
+frame_old_binary = frame_old.clone();
+threshold(frame_old, frame_old_binary, 128.0, 255.0, THRESH_BINARY);
+frame_sub = frame_binary - frame_old_binary;
+#+END_SRC
+
+#+BEGIN_CENTER
+#+BEGIN_HTML
+<iframe src="http://player.vimeo.com/video/70559329" width="745" height="280" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+#+END_HTML
+#+END_CENTER
+
+** Mixture of Gaussians
+
+#+BEGIN_SRC c++
+BackgroundSubtractorMOG2 backsub;
+
+// and for each frame:
+fgmask = frame.clone();
+backsub(frame, fgmask, 0.1);
+backsub.getBackgroundImage(bg);
+#+END_SRC
+
+#+BEGIN_CENTER
+#+BEGIN_HTML
+<iframe src="http://player.vimeo.com/video/70559328" width="700" height="280" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+#+END_HTML
+#+END_CENTER
+
+* Finding bounding boxes
+
+...by finding contours, then bounding boxes
+
+#+BEGIN_SRC c++
+vector<Rect> boxes;
+vector<vector<Point> > contours;
+Mat fgmask_contours = fgmask.clone();
+findContours(fgmask_contours, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+vector<vector<Point> >::const_iterator it = contours.begin();
+while(it != contours.end()) {
+    Rect box = boundingRect(Mat(*it));
+    if(box.width > 5 && box.height > 5) {
+        boxes.push_back(box);
+    }
+    ++it;
+}
+// visualize the contours
+drawContours(frame, contours, -1, Scalar(255), 1);
+#+END_SRC
+
+* Connecting detections over time
+
+Kalman filter?
+
+
+#+INCLUDE: footer.org

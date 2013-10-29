@@ -1,151 +1,318 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 3
 
-* Task (100 pts)
+*Note:* Put your solution for Task 9 in the Carmen Dropbox. It's code,
+ afterall, and the grader should be able to execute it.
 
-Code the minimax algorithm, as applied to connect-4. Here are the
-rules of connect-4:
+* Task 1 (5 pts)
 
-  - The board is 6 rows by 7 columns.
+Build truth tables for the following formulas:
 
-  - Two players, say H (human) and C (computer).
+1. $(\neg A \wedge B) \vee C$
 
-  - On a player's move, he/she/it can choose to put a token in one of
-    the 7 columns. The token falls to the lowest row that is
-    unoccupied in that column. A column is full and unplayable when it
-    has all rows filled (6 tokens).
+2. $(A \leftrightarrow \neg B) \vee B$
 
-Winning condition:
+* Task 2 (5 pts)
 
-  - A player wins when he/she/it gets four tokens in a row:
-    diagonally, vertically, or horizontally.
+Express the following statements in propositional logic:
 
-  - A tie occurs when there are no free moves and neither player won.
+1. $B$ and $C$ are both true should $A$ be true.
 
-Be sure to provide a simple user interface. Ask the human for a move,
-then show the board after the move. You can choose if the human or
-computer moves first.
+2. $B$ is known to be true when $A$ is true and not otherwise.
 
-*Note:* This game has a huge search space. You cannot /just/ use
-minimax, and even alpha-beta pruning won't help you enough. You have
-to also *limit the search depth*. Recall that minimax is a recursive
-algorithm. You can keep track of the depth of your recursive calls by
-giving the depth as an input to each recursive function call. Each
-call gives the current depth + 1. Add a depth-limit parameter, or
-hard-code one. I found that a depth-limit of 6 works ok. Don't call
-the next recursive function if the depth would exceed this
-depth-limit.
+3. At most one of $R$, $S$, and $T$ can be true.
 
+4. The grass is wet if either it rained or the sprinkler was
+   on. (Create propositional symbols, and give their
+   definitions.)
 
-* Extra credit (20 pts)
+* Task 3 (10 pts)
 
-Code the alpha-beta pruning modification of the minimax algorithm
-(instead of just the minimax algorithm) for the same task described
-above. This extra credit gives you 120 pts overall. You do not have to
-code the game twice.
+We have a knowledge base that contains:
 
-* Example code
+a. $(R \rightarrow S) \wedge Q$
 
-To help you focus more on the interesting bits, here is some C++ code
-for checking diagonals (only down-left and down-right are required
-since up-right and up-left are equivalent), printing the grid, etc.
+b. $(J \wedge Q) \rightarrow P$
 
-#+BEGIN_SRC c++
-char grid[6][7];
+c. $Q \rightarrow Z$
 
-void initializeGrid()
-{
-    for(int i = 0; i < 6; i++)
-    {
-        for(int j = 0; j < 7; j++)
-        {
-            grid[i][j] = ' ';
-        }
-    }
-}
+d. $P \rightarrow \neg Q$
 
-void printGrid()
-{
-    for(int i = 0; i < 6; i++)
-    {
-        for(int j = 0; j < 7; j++)
-        {
-            cout << "--";
-        }
-        cout << "-" << endl;
+e. $(R \rightarrow S) \rightarrow (\neg H \rightarrow J)$
 
-        for(int j = 0; j < 7; j++)
-        {
-            cout << "|" << grid[i][j];
-        }
-        cout << "|" << endl;
-    }
-    for(int j = 0; j < 7; j++)
-    {
-        cout << "--";
-    }
-    cout << "-" << endl;
-    for(int j = 1; j <= 7; j++)
-    {
-        cout << " " << j;
-    }
-    cout << endl;
-}
+Derive each of the following using inference rules for
+propositional logic. Indicate the rule used (i.e., MP for modus
+ponens) and the propositions used with the rule. You can use
+propositions you have already proved but were not in the initial
+knowledge base.
 
-bool checkDownLeft(int col, int row, char player)
-{
-    int count = 0;
-    for(int i = row, j = col; i < 6 && j >= 0; i++, j--)
-    {
-        if(grid[i][j] == player) count++;
-        else count = 0;
+1. $Z$
 
-        if(count == 4) break;
-    }
-    return (count == 4);
-}
+2. $\neg P$
 
-bool checkDownRight(int col, int row, char player)
-{
-    int count = 0;
-    for(int i = row, j = col; i < 6 && j < 7; i++, j++)
-    {
-        if(grid[i][j] == player) count++;
-        else count = 0;
+3. $\neg (J \wedge Q)$
 
-        if(count == 4) break;
-    }
-    return (count == 4);
-}
+4. $\neg J$
 
-bool checkHorizontal(int row, char player)
-{
-    // omitted
-}
+* Task 5 (5 pts)
 
-bool checkVertical(int col, char player)
-{
-    // omitted
-}
+Rewrite the following statements in first-order logic, stating
+definitions for the predicates you use. (Note, one of these is
+exceedingly hard; make an attempt...)
 
-bool won(char player)
-{
-    for(int j = 0; j < 7; j++)
-    {
-        if(checkVertical(j, player)) return true;
-    }
-    for(int i = 0; i < 6; i++)
-    {
-        if(checkHorizontal(i, player)) return true;
+1. James is a dolphin.
 
-        for(int j = 0; j < 7; j++)
-        {
-            if(checkDownLeft(j, i, player)) return true;
-            if(checkDownRight(j, i, player)) return true;
-        }
-    }
-    return false;
-}
+2. Dolphins are mammals.
+
+3. Mammals have hair and three middle ear bones.
+
+4. Not all dolphins live in the ocean.
+
+5. Some mammals have sweat glands and specialized teeth.
+
+6. This sentence cannot be proved.
+
+* Task 6 (10 pts)
+
+Assume we have the following Prolog database:
+
+#+BEGIN_SRC prolog
+parent(tom, liz).
+parent(tim, bob).
+parent(bob, ann).
+parent(bob, pat).
+parent(pat, jim).
+
+male(tim).
+male(tom).
+male(bob).
+male(jim).
+female(pam).
+female(liz).
+female(pat).
+female(ann).
+
+mother(X) :- parent(X, _), female(X).
+#+END_SRC
+
+1. Write Prolog queries for the following questions:
+
+   1. Who is Ann's parent?
+
+   2. Is Jim Bob's child?
+
+   3. Who is Jim's grandparent?
+
+2. Write a rule that describes a child, so that ~child(X, Y)~ means
+   ~X~ is the child of ~Y~. Don't allow a person to be his or her
+   own child.
+
+4. Define an ancestor rule. An ancestor is a parent of a person, a
+   grandparent, a great-grandparent, etc. Naturally, this rule is
+   recursive (like the ~member~ predicate in the notes).
+
+5. Define a "has no parents" rule. Use negation ("negation as
+   failure").
+
+* Task 7 (5 pts)
+
+Do the following unify, and if so, what are values for the variables
+that make the unification work? Note: Each pair of terms has new
+variable assignments.
+
+1. ~parent(tom, liz)~ and ~parent(tom, X)~
+
+2. ~parent(X, liz)~ and ~parent(liz, X)~
+
+3. ~parent(X, Y)~ and ~parent(Y, X)~
+
+4. ~head(X, [a, b, c])~ and ~head(b, [a, b, c])~
+
+5. ~head(foo(Y), X)~ and ~head(foo(Z), [foo(w)])~
+
+6. ~foo(bar(a, b), baz(c))~ and ~foo(bar(X), baz(Y))~
+
+* Task 8 (10 pts)
+
+Draw a resolution tree for ~mother(X)~, refering back to the database
+above. Note that there is a particular order by which Prolog creates
+subgoals (that is, the order that facts/rules are written in the
+knowledge base). You only need to show the tree until the first time
+the predicate is proved.
+
+* Task 9 (50 pts)
+
+Extend the Prolog program at the bottom of this page to support the
+following interactions. (The user types the stuff after the ~|:~)
+
+#+BEGIN_EXAMPLE
+?- consult('nldb.pl').
+%    library(error) compiled into error 0.00 sec, 18,352 bytes
+%   library(lists) compiled into lists 0.01 sec, 46,096 bytes
+%  library(readln) compiled into readln 0.01 sec, 60,696 bytes
+% nldb.pl compiled 0.01 sec, 78,560 bytes
+true.
+
+?- run.
+|: quit.
+Ok we're done! 
+true.
+
+?- run.
+|: anteater is bigger than ant.
+Ok, I learned that ant is smaller than anteater 
+|: ant is smaller than foot.
+Ok, I learned that ant is smaller than foot 
+|: what is bigger than ant?
+These are bigger: 
+anteater, foot.
+|: what is smaller than anteater?
+These are smaller: 
+ant.
+|: what is smaller than ant?
+These are smaller: 
+
+|: godzilla is bigger than anteater.
+Ok, I learned that anteater is smaller than godzilla 
+|: what is bigger than ant?
+These are bigger: 
+anteater, foot, godzilla.
+|: what is smaller than godzilla?
+These are smaller: 
+anteater, ant.
+|: today is thursday.
+Ok, I learned that today is a/an thursday 
+|: socrates is mortal.
+Ok, I learned that socrates is a/an mortal 
+|: what is socrates?
+socrates is a/an: 
+mortal.
+|: what is today?
+today is a/an: 
+thursday.
+|: what is xyz?
+I'm not sure! Care to tell me? 
+|: is xyz abc?
+No 
+|: xyz is abc.
+Ok, I learned that xyz is a/an abc 
+|: is xyz abc?
+Yes
+|: what is 15?
+15 
+|: what is 2 + 2?
+4 
+|: what is 2 - 3 * 5?
+-13 
+|: what is 2 * 3 - 2?
+2 
+|: what is 4 / 3?
+1.3333333333333333 
+|: wow, you are very smart!
+Huh? 
+|: quit.
+Ok we're done! 
+true.
+
+?- 
+#+END_EXAMPLE
+
+Start with this code. Pay special attention to the "TODO" comments.
+
+#+BEGIN_SRC prolog
+:- use_module(library(readln)).
+
+% these allow us to use assertz with these two predicates
+:- dynamic(learned_isa/2).
+:- dynamic(learned_smaller/2).
+
+% strip_puncation/2 & read_sentence/1 from The Art of Prolog 2nd Ed. (Sterling & Shaprio)
+
+strip_punctuation([], []).
+strip_punctuation([Word|Tail], [Word|Result]) :-
+    \+(member(Word, ['.', ',', '?', '!'])),
+    strip_punctuation(Tail, Result).
+strip_punctuation([_|Tail], Result) :-
+    strip_punctuation(Tail, Result).
+
+read_sentence(Input) :-
+    readln(Input1),
+    strip_punctuation(Input1, Input).
+
+reply([Head|Tail]) :- write(Head), write(' '), reply(Tail).
+reply([]) :- nl.
+
+% TODO: code reply_list/1
+
+run :- read_sentence(Input), run(Input), !.
+
+run(['quit']) :- reply(['Ok we\'re done!']).
+
+run(Input) :-
+    process_sentence(Input),
+    read_sentence(NextInput),
+    !, run(NextInput).
+
+process_sentence([what, is, bigger, than, Object]) :-
+    % TODO: code findall using Object and creating Things
+    reply(['These are bigger:']),
+    reply_list(Things).
+
+process_sentence([what, is, smaller, than, Object]) :-
+    % TODO: finish predicate
+
+process_sentence([what, is | Math]) :-
+    math(Math, Z),
+    reply([Z]).
+
+process_sentence([what, is, Object]) :-
+    % TODO: finish predicate
+
+process_sentence([what, is, _]) :-
+    reply(['I''m not sure! Care to tell me?']).
+
+process_sentence([is, Subject, Object]) :-
+    % TODO: put a line of code here
+    reply(['Yes']).
+
+% TODO: handle case where "is xyz abc" says "No"
+% (i.e., above predicate failed)
+
+process_sentence([Subject, is, Object]) :-
+    assertz(learned_isa(Subject, Object)),
+    reply(['Ok, I learned that', Subject, 'is a/an', Object]).
+
+% TODO: handle "x is bigger than y" and "x is smaller than y"
+% similarly to how "is" is handled above,
+% using assertz(learned_smaller(...))
+
+process_sentence(_) :-
+    reply(['Huh?']).
+
+% right-associative math
+
+% default math case (an atom)
+math(X, Z) :-
+    number(X),
+    Z = X.
+
+% default math case (a list)
+math([X], Z) :-
+    number(X),
+    Z = X.
+
+math([X, + | Tail], Z) :-
+    % TODO: finish predicate
+
+% TODO: code rest of math
+
+isa(X, Y) :- learned_isa(X, Y).
+
+% TODO: code transitive isa
+
+smaller(X, Y) :- learned_smaller(X, Y).
+
+% TODO: code transitive smaller
 #+END_SRC
 
 #+INCLUDE: footer.org

@@ -1,6 +1,19 @@
 #+SETUPFILE: setup.org
 #+TITLE: Bayesian inference
 
+{{{begin-summary}}}
+- $P(a|b) = P(b|a)P(a)/P(b)$ is Bayes' formula ("Bayes' rule", "Bayes'
+  theorem"); it is just a rewrite of the rules of probability. It is
+  required that $P(b) \neq 0$.
+- Sometimes, we only want to know if $P(h_1|e) > P(h_2|e)$
+  (probability of hypothesis 1 is greater than probability of
+  hypothesis 2, given the evidence). Then we only have to compare
+  $\alpha P(e|h_1)P(h_1)$ vs. $\alpha P(e|h_2)P(h_2)$, where $\alpha =
+  1/P(e)$, which we never need to calculate.
+- $P(h)$ is the "prior" of a hypothesis (cause/explanation) $h$.
+- $P(h|e)$ is the "posterior" of $h$, given evidence $e$ is observed.
+{{{end-summary}}}
+
 Imagine building an expert system for medical diagnosis. You may
 include a rule like,
 
@@ -170,8 +183,7 @@ Why is it interesting? Think about the medical diagnosis problem again.
 | $P(c \vert{} t) = ??$                | If somebody has a toothache, what is the chance they have a cavity?                      |
 
 This last row in the table is a very important question. It's asking
-us to determine the cause, given the effect. (Hey, that looks like
-abduction from the [[./other-logics.html][other logics]] notes!)
+us to determine the cause, given the effect.
 
 Here is the calculation, given by Bayes' formula:
 
@@ -209,30 +221,9 @@ calculate it:
 P(c|t) > P(g|t) ? \quad
 \begin{aligned}
 P(c|t) =& \alpha P(t|c)P(c) \\
-P(g|t) =& \alpha P(g|c)P(g)
+P(g|t) =& \alpha P(t|g)P(g)
 \end{aligned}
 \end{equation}
-
-* MAP (maximum a posteriori)
-
-What we just did was find the /posterior/ probability of certain
-propositions, given the observations. The posterior of $c$, after we
-have observed $t$, is $P(c|t)$.
-
-Specifically, we wanted to compare $P(c|t)$ to $P(g|t)$. We find the
-posteriors of both, ignoring the common factor which we'll just call
-$\alpha$. (The "prior" is $P(c)$. Hence, the posterior is $P(c|t)$.)
-We can compare these posteriors and whichever one is larger, we'll
-just say, "that must be what happened!"
-
-This is a common form of inference when you have probabilistic
-cause-effect relationships. Given the effect, what's the most likely
-cause? We call it MAP, or /maximum a posteriori/ (we use Latin because
-we can). It only works if the different causes are mutually exclusive,
-so that you only want to take the best single one.
-
-Thus, the result of MAP inference is a truth-assignment, i.e., a cause
-of the observations, that is most probable.
 
 * More complicated cases
 
@@ -327,7 +318,7 @@ Table for $alarm$ ("is there a fire alarm sounding?"):
 
 Table for $tampering$ ("did somebody tamper with the fire alarm?"):
 
-| $tampering$ | $P(tamering)$ |
+| $tampering$ | $P(tampering)$ |
 |-------------+---------------|
 | true        | $0.02$        |
 

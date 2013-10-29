@@ -1,8 +1,6 @@
 #+SETUPFILE: setup.org
 #+TITLE: The Norvig - Chomsky debate
 
-
-
 * Science vs. pseudoscience (the demarcation problem)
 
 #+BEGIN_QUOTE
@@ -98,7 +96,7 @@ versa. Likewise, a car accident explains a broken arm, and allergies
 explain sneezing. Furthermore, most "good" explanations give us an
 /understanding/ of what happened and why.
 
-There are lots of theories about what consitutes an explanation,
+There are lots of theories about what constitutes an explanation,
 what exactly is causation, and whether "understanding" is necessary
 for something to be explanatory. However, for the purposes of this
 discussion, we'll just work with our intuition about what an
@@ -217,7 +215,7 @@ easy computation, but it's never used.
 #+END_QUOTE
 
 However, linear order is a surface-level phenomenon that, supposedly,
-is among the phenomenon that stastical approaches will utilize. A
+is among the phenomenon that statistical approaches will utilize. A
 statistical approach may get good results, usually, by exploiting the
 linear order of an utterance but, Chomsky argues, the linear order
 and the statistics provide no understanding about the sentence. The
@@ -310,7 +308,7 @@ because they are too expressive, not because they are not expressive
 enough.
 #+END_QUOTE
 
-I feel that this is a bit disingenuous. Probabilisitic models rarely
+I feel that this is a bit disingenuous. Probabilistic models rarely
 express complex, deep relationships among data because such
 relationships are hard to discover via a hands-off training
 process. On the other hand, rule-based systems often have quite
@@ -395,7 +393,7 @@ historical case in point, along with a critique.
 #+BEGIN_QUOTE
 On the evidence that what we will and won't say and what we will and
 won't accept can be characterized by rules, it has been argued that,
-in some sene, we "know" the rules of our language. The sense in which
+in some sense, we "know" the rules of our language. The sense in which
 we know them is not the same as the sense in which we know such
 "rules" as "/i/ before /e/ except after /c/," however, since we need
 not necessarily be able to state the rules explicitly. We know them in
@@ -556,6 +554,14 @@ of "explanation" of iris species distinctions?
 
 In what sense are "species" explanatory anyway?
 
+#+BEGIN_CENTER
+#+BEGIN_HTML
+<iframe width="640" height="360"
+src="http://www.youtube.com/embed/yvDCzhbjYWs?rel=0" frameborder="0"
+allowfullscreen></iframe>
+#+END_HTML
+#+END_CENTER
+
 * Pandora vs. Netflix
 
 Pandora is rule-driven (see: [[http://en.wikipedia.org/wiki/List_of_Music_Genome_Project_attributes]["music genome" attributes]]), while Netflix
@@ -708,7 +714,7 @@ formula will be true in that situation, because for each farmer we
 need to find at least one object that either is not a donkey owned by
 this farmer [making the left side of $\rightarrow$ false], or is
 beaten by the farmer. Hence, if this object denotes the pig, the
-sentence will be [vaccuously] true in that situation.
+sentence will be [vacuously] true in that situation.
 #+END_QUOTE
 
 Etc...

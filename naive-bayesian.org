@@ -1,12 +1,43 @@
 #+SETUPFILE: setup.org
 #+TITLE: Naïve Bayesian classification
 
-** Feature vectors
+{{{begin-summary}}}
+- The "naïve assumption" is that the presence of a word does not give
+  any information about the probability of the presence of any other
+  word. This assumption gives us $P(w_1, w_2, \dots|C_c) = \prod_i
+  P(w_i|C_c)$.
+- $d_i$ is the number of documents (in the training set, of course)
+  with word $i$.
+- $d_{ci}$ is the number of documents in category $C_c$ with the word
+  $i$.
+- $n_c$ is the number of documents in the category $C_c$.
+- $n$ is the number of documents.
+- $|C|$ is the number of categories.
+- $P(C_c) = \frac{n_c + 1}{n + |C|}$ is the probability of any random
+  document having category $C_c$.
+- $\hat{X} = <w_1, w_2, \dots, w_k>$ is a binary document vector where
+  each $w_i \in \{0,1\}$.
+- $P(\hat{X}|C_c) = P(w_1, w_2, \dots, w_k | C_c) = \prod_i
+  P(w_i|C_c)$ is the probability of the document having the words
+  that it does assuming that the document comes from category $C_c$.
+- $P(w_i|C_c) = \frac{d_{ci} + 1}{d_i + n_c}$ is the probability of a
+  document from category $C_c$ having word $w_i$.
+- $\arg\max_{C_c} P(\hat{X}|C_c) P(C_c)$ is the question: which
+  category $C_c$ maximizes the probability that the document has these
+  words?
+- $\arg\max_{C_c} \sum_i \log P(w_i|C_c) + \log P(C_c)$ is the new
+  question using log-probability to avoid "underflow" in the
+  floating-point values.
+{{{end-summary}}}
 
-Documents are simply binary word vectors. No tf-idf transformation is
-done.
+* Feature vectors
 
-** Category vectors
+Documents are simply binary word vectors. Each dimension in the vector
+represents a unique word. The value in this dimension is 0 or 1
+depending on whether the document has at least one occurrence of that
+word.
+
+* Category vectors
 
 Each category vector is represented as a series of probabilities, one
 probability per word (each vector dimension represents a word, just
@@ -15,15 +46,16 @@ probability of this word being present in a document that is a member
 of this category." Thus, the category vector has terms $C_c = (p_{c1},
 p_{c2}, \dots, p_{ck})$, and
 
-$$p_{ci} = P(w_i|C_c) = \frac{d_{ci}+1}{d_{i}+|C|},$$
+$$p_{ci} = P(w_i|C_c) = \frac{d_{ci}+1}{d_i+n_c},$$
 
 where $d_{ci}$ is the number of documents in $C_c$ that have word $i$
 (anywhere in the document, any number of occurrences), $d_i$ is the
-number of documents in /any/ category that have word $i$, and $|C|$ is
-the number of categories. We add 1 and add $|C|$ so that $P(w_i|C_c)$
-is never equal to 0. (This is called [[http://en.wikipedia.org/wiki/Additive_smoothing][Laplace smoothing]].)
+number of documents in /any/ category that have word $i$, and $n_c$ is
+the number of documents in category $C_c$. We add 1 and add $n_c$ so
+that $P(w_i|C_c)$ is never equal to 0. (This is called [[http://en.wikipedia.org/wiki/Additive_smoothing][Laplace
+smoothing]].)
 
-** Algorithm
+* Algorithm
 
 We assume, for simplicity, that the occurrences of words in documents
 are completely independent (this is what makes the method
@@ -65,7 +97,7 @@ $$\arg\max_{C_c} P(C_c|\hat{X}) = \arg\max_{C_c} P(\hat{X}|C_c)P(C_c)$$
 
 We just check all the categories, and choose the single best or top $N$.
 
-** A problem with tiny values
+* A problem with tiny values
 
 With a lot of unique words, we create very small values by multiplying
 many $p_{ci}$ terms. On a computer, the values may become so small
@@ -81,24 +113,9 @@ $$\log P(\hat{X}|C_c) = \log \prod_i P(w_i|C_c) = \sum_i \log P(w_i|C_c)$$
 So our multiplications turn to sums, and we avoid the underflow
 problem. Rewriting again, we ultimately have this problem:
 
-$$\arg\max_{C_c} (\sum_i \log P(w_i|C_c)) + \log P(C_c)$$
+$$\arg\max_{C_c} \sum_i \log P(w_i|C_c) + \log P(C_c)$$
 
-** Evaluation
-
-These graphs show the performance of the naïve Bayes approach on
-various datasets (compare with results from the [[./document-classification.html][document
-classification]] notes). The calculations described above are
-represented as the "binary" algorithm in the graphs. The "tfidf"
-algorithm, as applied in a naïve Bayes context, uses slightly
-different calculations that have not been described in these notes.
-
-#+BEGIN_CENTER
-[[./images/naivebayes-fscore-datasets.png]]
-#+END_CENTER
-
-#+BEGIN_CENTER
-[[./images/naivebayes-fscore-ai.png]]
-#+END_CENTER
+* Evaluation
 
 The book [[http://nlp.stanford.edu/IR-book/html/htmledition/irbook.html][Introduction to Information Retrieval]] gathered some published
 results for classification tasks. We can see that naïve Bayes is
@@ -120,10 +137,7 @@ nor support vector machines (which we didn't learn about).
 | corn     |        0.65 |               0.78 |                    0.90 |
 #+END_CENTER
 
-I also performed a Spam detection experiment, using the [[http://archive.ics.uci.edu/ml/datasets/Spambase][Spambase]]
-dataset. With naïve Bayes I was able to achieve ~80% accuracy.
-
-** Benefits of naïve Bayes
+* Benefits of naïve Bayes
 
   - It is very fast. In the table above, while naïve Bayes does not
     perform as well, it is significantly more efficient than either
@@ -131,7 +145,7 @@ dataset. With naïve Bayes I was able to achieve ~80% accuracy.
     vector machines, are /painfully/ slow (at least in the training
     phase).
 
-** Drawbacks of naïve Bayes
+* Drawbacks of naïve Bayes
 
   - Accuracy is low, as seen in the table above.
 

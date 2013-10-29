@@ -1,0 +1,351 @@
+#+SETUPFILE: setup.org
+#+TITLE: General Problem Solver (GPS)
+
+#+BEGIN_QUOTE
+*We deliberate not about ends, but about means.* For a doctor does not
+deliberate whether he shall heal, nor an orator whether he shall
+persuade, nor a statesman whether he shall produce law and order, nor
+does any one else deliberate about his end. *They assume the end and
+consider how and by what means it is attained*; and if it seems to be
+produced by several means they consider by which it is most easily and
+best produced, while if it is achieved by one only they consider how
+it will be achieved by this and by what means /this/ will be achieved,
+*till they come to the first cause, which in the order of discovery is
+last*... and what is last in the order of analysis seems to be first
+in the order of becoming. *And if we come on an impossibility, we give
+up the search*, e.g., if we need money and this cannot be got; but if
+a thing appears possible we try to do it. --- Aristotle, /Nicomachean
+Ethics/ ([[http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0054%3Abekker%20page%3D1112b%3Abekker%20line%3D1][Book III.3,1112b]])
+
+#+END_QUOTE
+
+The General Problem Solver (GPS) was the first useful AI program,
+written by Simon, Shaw, and Newell in 1959. As the name implies, it
+was intended to solve nearly any problem. This is important to note.
+Obviously, GPS was not the first software ever written; but software
+was previously written with very specific goals. The software solved
+one problem. GPS, however, was designed to solve lots of kinds of
+problems, using the same "reasoning" mechanism (i.e., algorithm) for
+every problem.
+
+Of course, at the time, programming was very difficult. The authors
+created a new language (IPL) in order to more efficiently program GPS.
+Even so, GPS was a very complicated piece of software. Today we can
+rewrite the essential pieces of GPS in very simple code using modern
+languages (such as Python). As we shall see, GPS is actually very
+limited as far as "generality" is concerned (or even as far as
+"problem solving" is concerned); perhaps the complexity of the
+original implementation hid some of these limitations to the authors,
+or made improvements too difficult. Modern AI software is
+substantially more complex than GPS, yet (sometimes) simpler and
+better understood than GPS was at the time.
+
+Incidentally, GPS evolved into SOAR, which is still highly influential
+as a system that purports to model cognition. It solves complex
+problems in a manner similar to human cognition, and in similar
+timeframes.
+
+* Means-ends analysis
+
+Simon and Newell studied how humans solved problems, and realized that we often perform means-ends analysis. Here is one of their examples:
+
+#+BEGIN_QUOTE
+I want to take my son to nursery school. What's the difference between
+what I have and what I want? One of distance. What changes distance?
+My automobile. My automobile won't work.  What is needed to make it
+work? A new battery. What has new batteries? An auto repair shop. I
+want the repair shop to put in a new battery; but the shop doesn't
+know I need one. What is the difficulty? One of communication. What
+allows communication?  A telephone... and so on. --- Newell and
+Simon's example from their 1972 book /Human Problem Solving/
+
+#+END_QUOTE
+
+* Basic structuring of a problem
+
+- define the goals
+
+  - e.g., take my son to nursery school 
+
+- define preconditions for the goals
+
+  - e.g., the precondition for dropping my son off at nursery school
+    is that my son is at home and the car works
+
+- define the means ("operators") for turning one set of conditions
+  into another
+
+  - e.g., to ensure the car repair shop has my money, we can define an
+    operator "give shop money" that changes the world so that "shop
+    has money" is true and "I have money" is false.
+
+We'll say that an operator is made up of:
+
+- the action (e.g., "give shop money")
+
+- the preconditions (e.g., "have money")
+
+- the change of conditions resulting from taking the action; we
+  specify this as conditions added and conditions deleted:
+
+  - giving the shop money adds the condition "shop has money"
+
+  - giving the shop money deletes the condition "have money" (which is
+    also the precondition)
+
+GPS can solve any problem that can be posed in this way. However, as
+we shall see, it employs a kind of search process that would require
+far too much time to solve complex problems (such as chess playing).
+It can suffer from a "combinatorial explosion" of possibilities.
+
+* The driving to school problem
+
+Consider again the driving to school problem quoted above. Let's write
+the goal, starting conditions, and some operators in a more symbolic
+form:
+
+#+BEGIN_SRC python
+problem = {
+    "start": ["son at home", "have money", "have phone book", "car needs battery"],
+    "finish": ["son at school"],
+    "ops": [
+	{
+	    "action": "drive son to school",
+	    "preconds": ["son at home", "car works"],
+	    "add": ["son at school"],
+	    "delete": ["son at home"]
+	},
+	{
+	    "action": "shop installs battery",
+	    "preconds": ["car needs battery", "shop knows problem", "shop has money"],
+	    "add": ["car works"],
+	    "delete": []
+	},
+	{
+	    "action": "tell shop problem",
+	    "preconds": ["in communication with shop"],
+	    "add": ["shop knows problem"],
+	    "delete": []
+	},
+	{
+	    "action": "telephone shop",
+	    "preconds": ["know phone number"],
+	    "add": ["in communication with shop"],
+	    "delete": []
+	},
+	{
+	    "action": "look up number",
+	    "preconds": ["have phone book"],
+	    "add": ["know phone number"],
+	    "delete": []
+	},
+	{
+	    "action": "give shop money",
+	    "preconds": ["have money"],
+	    "add": ["shop has money"],
+	    "delete": ["have money"]
+	}
+    ]
+}
+#+END_SRC
+
+#+BEGIN_HTML
+<div style="text-align: center">
+<OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+WIDTH="523" HEIGHT="738"
+CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0">
+<PARAM NAME="MOVIE" VALUE="./flash/school-gps.swf">
+<PARAM NAME="PLAY" VALUE="true">
+<PARAM NAME="QUALITY" VALUE="best">
+<PARAM NAME="LOOP" VALUE="true">
+<EMBED SRC="./flash/school-gps.swf" WIDTH="523" HEIGHT="738" PLAY="true" LOOP="true" QUALITY="best" 
+PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"> 
+</EMBED>
+</OBJECT>
+<br/>
+<a href="./images/school-gps.png">View final image</a>
+</div>
+#+END_HTML
+
+* Description of the search process
+
+The basic algorithm of the GPS search process is as follows:
+
+#+BEGIN_EXAMPLE
+begin:
+- save initial conditions as "current state"
+- try to achieve all goals
+
+how to achieve all goals:
+- for each goal:
+  - try to achieve the goal
+- if all goals were achieved, return success
+
+how to achieve a goal:
+- if goal is already met (in current state), return success (it's achieved)
+- else, for each operator:
+  - if operator's "add list" contains the goal,
+    - try to apply the operator
+    - if successful, return success
+- if no operators were successful,
+  - return failure
+
+how to apply an operator:
+- try to achieve all of the operator's preconditions (treat them as goals)
+- if successful (all preconditions met),
+  - mark the operator as "applied"
+  - add conditions in the operator's "add list" to the current state
+  - delete conditions in the operator's "delete list" from the current state
+  - return success
+- else,
+  - return failure
+#+END_EXAMPLE
+
+This algorithm is clearly a means-ends search process. The ultimate goals are first considered; if they are already achieved, then we're done. Otherwise, one or more goals can only be achieved by applying some operators. Appropriate operators are identified (those that achieve the goals), but each operator may itself require certain goals (preconditions) to be achieved first. So then those are investigated. Etc. This is just what Aristotle said in the quote above:
+
+#+BEGIN_QUOTE
+They assume the end and consider how and by what means it is attained; [...] if it is achieved by one only they consider how it will be achieved by this and by what means /this/ will be achieved, till they come to the first cause, which in the order of discovery is last [...] And if we come on an impossibility, we give up the search [...] --- Aristotle
+#+END_QUOTE
+
+* The monkey and banana problem
+
+Here is another famous problem.
+
+#+BEGIN_SRC python
+problem = {
+    "start": ["at door", "on floor", "has ball", "hungry", "chair at door"],
+    "finish": ["not hungry"],
+    "ops": [
+	{
+	    "action": "climb on chair",
+	    "preconds": ["chair at middle room", "at middle room", "on floor"],
+	    "add": ["at bananas", "on chair"],
+	    "delete": ["at middle room", "on floor"]
+	},
+	{
+	    "action": "push chair from door to middle room",
+	    "preconds": ["chair at door", "at door"],
+	    "add": ["chair at middle room", "at middle room"],
+	    "delete": ["chair at door", "at door"]
+	},
+	{
+	    "action": "walk from door to middle room",
+	    "preconds": ["at door", "on floor"],
+	    "add": ["at middle room"],
+	    "delete": ["at door"]
+	},
+	{
+	    "action": "grasp bananas",
+	    "preconds": ["at bananas", "empty handed"],
+	    "add": ["has bananas"],
+	    "delete": ["empty handed"]
+	},
+	{
+	    "action": "drop ball",
+	    "preconds": ["has ball"],
+	    "add": ["empty handed"],
+	    "delete": ["has ball"]
+	},
+	{
+	    "action": "eat bananas",
+	    "preconds": ["has bananas"],
+	    "add": ["empty handed", "not hungry"],
+	    "delete": ["has bananas", "hungry"]
+	}
+    ]
+}
+#+END_SRC
+
+#+BEGIN_HTML
+<div style="text-align: center">
+<OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+WIDTH="668" HEIGHT="672"
+CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0">
+<PARAM NAME="MOVIE" VALUE="./flash/monkey-gps.swf">
+<PARAM NAME="PLAY" VALUE="true">
+<PARAM NAME="QUALITY" VALUE="best">
+<PARAM NAME="LOOP" VALUE="true">
+<EMBED SRC="./flash/monkey-gps.swf" WIDTH="668" HEIGHT="672" PLAY="true" LOOP="true" QUALITY="best" 
+PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"> 
+</EMBED>
+</OBJECT>
+<br/>
+<a href="./images/monkey-gps.png">View final image</a>
+</div>
+#+END_HTML
+
+Maybe it should be called the pigeon and banana problem.
+
+#+BEGIN_HTML
+<div style="text-align: center">
+<iframe width="420" height="315"
+src="http://www.youtube.com/embed/mDntbGRPeEU?rel=0" frameborder="0"
+allowfullscreen></iframe>
+</div>
+#+END_HTML
+
+* Problems
+
+Our GPS algorithm is very simplistic. There are ways to improve it. However, we'll stay with the simple version and look at some of its inadequacies. These problems and their examples come from Norvig's book /Paradigms of artificial intelligence programming/, 1992.
+
+** "Prerequisite clobbers sibling goal"
+
+Since each goal is achieved in a certain order, we might find that achieving a subsequent goal erases the gains we made with a prior goal. For example, if we have:
+
+- initial states: son at home, have money, car works
+- goal states: have money, son at school
+
+Then the solution is:
+
+1. drive son to school
+
+However, if we have:
+
+- initial states: son at home, car needs battery, have money, have phone book
+- goal states: have money, son at school
+
+Then our simple GPS search finds the solution to be:
+
+1. look up number
+2. telephone shop
+3. tell shop problem
+4. give shop money
+5. shop installs battery
+6. drive son to school
+
+However, the result is we don't have any money, because it was spent at the shop. GPS saw "have money" as the first goal, and considered it already achieved (it was an initial state). So then it moved on to the next goal, which actually spent all the money. But GPS did not go back and reconsider whether the first goal was still met.
+
+** "Leaping before you look"
+
+One could reorder the goals from the prior example to be "son at school, have money." In this case, GPS will indicate to us that there is no solution. However, it will still apply operators in its doomed search for a solution. If this was real life, a GPS robot would repair the car, drive the son to school, and then discover it had no money!
+
+In a simpler example, consider the goals:
+
+- jump off cliff, land safely
+
+GPS will first find a way to achieve "jump off cliff," but only once achieved, figure out how to "land safely." The problem, of course, is that in our algorithm planning to take an action is interleaved with taking other actions (applying operators). Our algorithm has no way to only think about actions without doing them, and "back up" its search process if those actions turn out to be bad ideas.
+
+** Recursive subgoals
+
+Suppose we had a goal like "call shop" which required "know phone number" which can be achieved by "ask friend for a phone number." Further suppose asking a friend for a phone number requires "know phone number." Then GPS will get stuck in a loop trying to figure out how to get the friend's phone number from another friend in order to call the shop, even if other operators are available for finding a phone number (such as looking in a phone book).
+
+** Lack of intermediate information
+
+Our simplistic GPS algorithm does not indicate why it failed to achieve its goals. It just says "nope, can't do it." It would be useful to know which goals could not be achieved and, perhaps, what are the best options for us (as humans) in order to make progress.
+
+* Epilogue
+
+*It must be noted that the "problems" listed above are not necessarily those of the real GPS program.* Those problems were more about our simplistic algorithm. However, GPS still failed to live up to its name. In the early days, many grandiose AI programs failed to deliver their full promises. Of course, all that has changed today is that the wise researchers avoid naming their programs "general problem solver."
+
+#+BEGIN_QUOTE
+Remember GPS? By now, "GPS" is a colorless term denoting a
+particularly stupid program to solve puzzles. But it originally meant
+"General Problem Solver," which caused everybody a lot of needless
+excitement and distraction. It should have been called LFGNS ---
+"Local-Feature-Guided Network Searcher." --- Drew McDermott,
+/Artificial Intelligence Meets Natural Stupidity/
+#+END_QUOTE
+
+
+#+INCLUDE: footer.org
+

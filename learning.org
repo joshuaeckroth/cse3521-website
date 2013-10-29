@@ -1,6 +1,14 @@
 #+SETUPFILE: setup.org
 #+TITLE: Learning
 
+{{{begin-summary}}}
+- "Unsupervised" learning takes unlabeled data and attempts to find
+  relationships among the data.
+- "Supervised" learning takes labeled data (the training set), builds
+  a model, and uses this model on new data to predict unknown
+  properties (such as class labels).
+{{{end-summary}}}
+
 #+BEGIN_QUOTE
 The idea of a learning machine may appear paradoxical to some
 readers. How can the rules of operation of the machine change? They
@@ -13,6 +21,38 @@ validity. The reader may draw a parallel with the Constitution of the
 United States. --- "Computing Machinery and Intelligence," Alan Turing
 (1950)
 #+END_QUOTE
+
+* Unsupervised learning
+
+  - No feedback about true labels; only (often imperfect) measurements
+
+  - Often group entities by their similarities to each other
+
+  - Not easy to evaluate performance (since we don't have any true
+    labels)
+
+** Methods
+
+  - [[./k-means.html][k-means clustering]]
+
+* Supervised learning
+
+  - A set of data is labeled with true labels; this is the "training"
+    set
+
+  - Learning is based on measurements and true labels; how do certain
+    measures provide evidence for certain labels?
+
+  - Easy to evaluate performance: % of correctly-labeled cases on a
+    "test" set (which is distinct from the "training" set; possibly,
+    the original training set is split, with one small subset saved
+    for testing purposes)
+
+** Methods
+
+  - [[./k-nn.html][k-nearest neighbor]]
+  - [[./naive-bayesian.html][Naïve Bayesian classification]]
+  - [[./neural-networks.html][Neural networks]]
 
 * Nomic
 
@@ -32,36 +72,6 @@ rules are traditionally thought to be either immutable and eternal, or
 arbitrary postulates changeable by logicians but not by the
 postulates' own authority. (http://www.earlham.edu/~peters/writing/psa/)
 #+END_QUOTE
-
-* Unsupervised learning
-
-  - No feedback about true labels; only (often imperfect) measurements
-
-  - Often group entities by their similarities to each other
-
-  - Not easy to evaluate performance (since we don't have any true
-    labels)
-
-** Methods
-
-  - [[./k-means.html][k-means clustering]]
-
-* Supervised learning
-
-  - A set of data is labeled with true labels; this is the
-    "training" set
-
-  - Learning is based on measurements and true labels; how do certain
-    measures provide evidence for certain labels?
-
-  - Easy to evaluate performance: % of correctly-labeled cases on a
-    "test" set (which is distinct from the "training" set; possibly,
-    the original training set is split, with one small subset saved
-    for testing purposes)
-
-** Methods
-
-  - [[./k-nn.html][k-nearest neighbor]]
 
 #+INCLUDE: footer.org
 

@@ -693,4 +693,12 @@ Result = [217000, 198500],
 Avg = 207750.
 #+END_SRC
 
+* Prolog by other names
+
+- [[http://pyke.sourceforge.net/][Python Pyke]]
+- [[https://github.com/clojure/core.logic][core.logic]] for Clojure
+- [[http://docs.racket-lang.org/racklog/][Racklog]], logic programming for Racket (Scheme)
+- [[http://sourceforge.net/projects/cs-prolog/][C# Prolog]] --- use Prolog inside your C# programs
+- Translate your Prolog code to Java with [[http://kaminari.istc.kobe-u.ac.jp/PrologCafe/][PrologCafe]]
+
 #+INCLUDE: footer.org

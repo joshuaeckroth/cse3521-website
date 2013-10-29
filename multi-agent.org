@@ -64,7 +64,7 @@ cases, global effects can be obtained by propagation of local
 influences, much more robustly than by providing global influences.
 #+END_QUOTE
 
-  - decentralizd system control
+  - decentralized system control
 
     - avoids single points of failure
 
@@ -165,14 +165,14 @@ boundaries of validity of our conclusions.
 #+BEGIN_QUOTE
 This paper has not only illustrated the significance of replication
 but it has also highlighted some best practice guidelines that
-agent-based modellers could find useful when developing their own
+agent-based modelers could find useful when developing their own
 models. In particular we have shown the importance of:
 
   1. Running simulations with stochastic components several times for
      several periods, so we can study not only how the system can
      behave but also how it usually behaves.
 
-  2. Exploring thoroughly the parameter space and analysing the model
+  2. Exploring thoroughly the parameter space and analyzing the model
      sensitivity to its parameters.
 
   3. Complementing simulation with analytical work.
@@ -230,7 +230,7 @@ think there is something else going on:
     emergent properties. The prime example of this case:
     *consciousness*. One might believe that even if all the neurons
     and their connections of a human brain are set up in software, and
-    a simluation of neuron firings is performed, the simulation still
+    a simulation of neuron firings is performed, the simulation still
     won't have consciousness...
 
   - Emergent properties seem to follow different laws. Examples can be
@@ -254,16 +254,16 @@ think there is something else going on:
 
 #+BEGIN_CENTER
 #+BEGIN_HTML
-<embed
-flashvars="file=http://www.radiolab.org/audio/xspf/91500/&repeat=list&autostart=false&popurl=http://www.radiolab.org/audio/xspf/91500/%3Fdownload%3Dhttp%3A//www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab021805.mp3"
-quality="high" allowscriptaccess="always" wmode="transparent"
-src="http://www.radiolab.org/media/audioplayer/player5.swf"
-height="300" width="400"></embed><script
-type="text/javascript">(function(){var
-s=function(){__flash__removeCallback=function(i,n){if(i)i[n]=null;};window.setTimeout(s,10);};s();})();</script>
+<img src="./images/emergence.jpg" /></br>
+<iframe width="474" height="54" frameborder="0"
+src="//www.radiolab.org/widgets/ondemand_player/#file=http%3A%2F%2Fwww.radiolab.org%2Faudio%2Fxspf%2F91500%2F;containerClass=radiolab"></iframe>
 #+END_HTML
 
-1 hour / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab021805.mp3][Download MP3]] / [[http://www.radiolab.org/2007/aug/14/][Radiolab website for this episode]]
+1 hour /
+[[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab021805.mp3][Download
+MP3]] / [[http://www.radiolab.org/2007/aug/14/][Radiolab website for
+this episode]] / Image:
+[[http://www.flickr.com/photos/modomatic/3588491628/][Mo Riza]]
 
 #+END_CENTER
 

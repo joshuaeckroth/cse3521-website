@@ -11,7 +11,7 @@ class PerceptronTemplate
 
         Random rgen = new Random();
 
-        double alpha = 0.01;
+        double alpha = 0.0000001;
         int example_count = 0;
         int input_count = 0, output_count = 0;
         int train_count = 0;
@@ -56,7 +56,7 @@ class PerceptronTemplate
         ............
 
 
-        // print network (as a matrix)
+        // optional: print network (as a matrix)
         for(int i = 0; i < (input_count + 1); i++) {
             for(int j = 0; j < output_count; j++) {
                 System.out.print(network[i][j]);
@@ -66,7 +66,6 @@ class PerceptronTemplate
         }
 
         // try some predictions
-        int count_correct = 0;
         for(int e = train_count; e < example_count; e++) {
             // compute prediction
 
@@ -74,17 +73,14 @@ class PerceptronTemplate
             ............
 
 
+            // compute loss
 
-            boolean correct = true;
-            for(int j = 0; j < output_count; j++) {
-                if(pred_outputs[j] != example_outputs[e][j]) {
-                    correct = false;
-                    break;
-                }
-            }
-            if(correct) { count_correct++; }
+
+            ............
+
         }
-        System.out.println("Correct: " + ((double)count_correct / (example_count - train_count)));
+
+        // report total loss
 
     }
 }

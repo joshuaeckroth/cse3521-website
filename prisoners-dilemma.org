@@ -186,7 +186,7 @@ better than Y.
 
 #+BEGIN_QUOTE
 The extortionate strategies have the peculiar property of sharply
-distinguishing beween "sentient" players, who have a theory of mind
+distinguishing between "sentient" players, who have a theory of mind
 about their opponents, and "evolutionary" players, [...] but have no
 theory of mind.
 #+END_QUOTE
@@ -221,7 +221,7 @@ present and future selves of the addict. In this case, defecting means
 relapsing, and it is easy to see that not defecting both today and in
 the future is by far the best outcome, and that defecting both today
 and in the future is the worst outcome. The case where one abstains
-today but relapses in the future is clearly a bad outcome—in some
+today but relapses in the future is clearly a bad outcome---in some
 sense the discipline and self-sacrifice involved in abstaining today
 have been "wasted" because the future relapse means that the addict is
 right back where he started and will have to start over (which is
@@ -251,12 +251,17 @@ guilt. (Wikipedia)
 
 #+BEGIN_CENTER
 #+BEGIN_HTML
+<div class="figure">
+<img src="./images/one-good-deed.jpg" />
+</div>
 <iframe width="474" height="54" frameborder="0"
 src="http://www.radiolab.org/widgets/ondemand_player/#file=%2Faudio%2Fxspf%2F104010%2F;containerClass=radiolab"></iframe>
 #+END_HTML
 
 25 min / [[http://www.podtrac.com/pts/redirect.mp3/audio.wnyc.org/radiolab/radiolab121410c.mp3][Download MP3]] / [[http://www.radiolab.org/2010/dec/14/one-good-deed-deserves-another/][Radiolab website for this segment]]; this is
-from the episode [[http://www.radiolab.org/2010/dec/14/][The Good Show]].
+from the episode [[http://www.radiolab.org/2010/dec/14/][The Good
+Show]] / Image:
+[[http://www.flickr.com/photos/edri/3212445507/][Luca]]
 
 #+END_CENTER
 

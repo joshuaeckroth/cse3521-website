@@ -3,7 +3,7 @@
 
 (Disclaimer: All this talk of Chinese, as a language that is not
 understood by certain parties involved, is clearly ethnocentric; but
-the use of Chinese in this argument is engrained in the culture of the
+the use of Chinese in this argument is ingrained in the culture of the
 philosophy of AI.)
 
 Quoted from [[http://cogprints.org/7150/1/10.1.1.83.5248.pdf]["Minds, Brains, and Programs"]] (PDF) ([[http://scholar.google.com/scholar.bib?q=info:HYbsea2E9v4J:scholar.google.com/&output=citation&hl=en&as_sdt=0,36&ct=citation&cd=0][full cite]]) by John
@@ -84,7 +84,7 @@ program) is not only simulating a human ability but also:
   2. that what the machine and its program do explains the human
      ability to understand the story and answer questions about it.
 
-Searle says both claims are unsupported by Schanks work (viz., the
+Searle says both claims are unsupported by Schank's work (viz., the
 program he wrote).
 
 So, to prove this, Searle chooses to investigate what it would be like

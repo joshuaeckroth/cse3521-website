@@ -18,7 +18,7 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    double alpha = 0.01;
+    double alpha = 0.0000001;
 
     int example_count;
     int input_count, output_count;
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
     ............
 
 
-    // print network (as a matrix)
+    // optional: print network (as a matrix)
     for(int i = 0; i < (input_count + 1); i++) {
         for(int j = 0; j < output_count; j++) {
             cout << network[i][j] << "\t";
@@ -63,7 +63,6 @@ int main(int argc, char** argv)
     cout << endl << endl;
 
     // try some predictions
-    int count_correct = 0;
     for(int e = train_count; e < example_count; e++) {
 
         // compute prediction
@@ -72,16 +71,14 @@ int main(int argc, char** argv)
         ............
 
 
-        bool correct = true;
-        for(int j = 0; j < output_count; j++) {
-            if(pred_outputs[j] != example_outputs[e][j]) {
-                correct = false;
-                break;
-            }
-        }
-        if(correct) { count_correct++; }
+        // compute loss
+
+
+        ............
+
     }
-    cout << "Correct: " << ((double)count_correct / (example_count - train_count)) << endl;
+
+    // report total loss
 
     return 0;
 }
