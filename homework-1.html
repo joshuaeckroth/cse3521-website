@@ -1,67 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Homework 1</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="title" content="Homework 1"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2012-11-16 13:59:06 EST"/>
-<meta name="author" content="Joshua Eckroth"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
 <script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
  {
@@ -83,24 +131,18 @@
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
+<div id="preamble" class="status">
 <a href="index.html">Home</a> &nbsp; &nbsp;
           <!-- Plupper Button -->
           <div id="plupperButton" style="display: inline;"></div>
           <!-- End of Plupper Button Code -->
-
 </div>
-
 <div id="content">
 <h1 class="title">Homework 1</h1>
-
-
 <div id="table-of-contents">
-<h2>TOC</h2>
+<h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">Task 1 (20 pts)</a></li>
@@ -111,11 +153,9 @@
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Task 1 (20 pts)</h2>
 <div class="outline-text-2" id="text-1">
-
-
 <p>
 Read about what I call the <a href="./what-is-ai.html">AI archetype</a>. Argue (in a few sentences)
 that a particular AI system does <i>not</i> meet one or more criteria of
@@ -123,133 +163,125 @@ the AI archetype as described. Be sure to describe the AI system you
 have in mind if it is not well-known.
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-2" class="outline-2">
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Task 2 (60 pts)</h2>
 <div class="outline-text-2" id="text-2">
-
-
 <p>
 Read <a href="./coffeehouse-conversation.html">A coffeehouse conversation</a>, and answer the following questions:
 </p>
-<ul>
-<li>Why is the &ldquo;simulated hurricane&rdquo; discussed so much? It is an
-    analogy, but an analogy for what?
 
+<ul class="org-ul">
+<li>Why is the "simulated hurricane" discussed so much? It is an
+analogy, but an analogy for what?
 </li>
-<li>Why is it important that the definition of &ldquo;hurricane&rdquo; is a bit
-    elusive?
 
+<li>Why is it important that the definition of "hurricane" is a bit
+elusive?
 </li>
+
 <li>Why is it relevant that we only know the nature of electrons and
-    quarks by performing experiments like &ldquo;scattering accelerated
-    particles off a target and observing their behavior.&rdquo;
-
+quarks by performing experiments like "scattering accelerated
+particles off a target and observing their behavior."
 </li>
+
 <li>Do you think the Turing test would effectively test for artificial
-    intelligence? Why or why not?
+intelligence? Why or why not?
 </li>
 </ul>
-
-
 </div>
-
 </div>
-
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Task 3 (20 pts)</h2>
 <div class="outline-text-2" id="text-3">
-
-
 <p>
-Read about the <a href="./knowledge-level.html">knowledge level</a>. Write a &ldquo;knowledge level&rdquo; description
+Read about the <a href="./knowledge-level.html">knowledge level</a>. Write a "knowledge level" description
 of the Roomba robot (the robot that vacuums your floor).
 </p>
 </div>
-
 </div>
-
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Extra credit (40 pts)</h2>
 <div class="outline-text-2" id="text-4">
-
-
 <p>
-Listen to the &ldquo;Talking to machines&rdquo; podcast near the bottom of the
+Listen to the "Talking to machines" podcast near the bottom of the
 <a href="./turing-test.html">Turing test</a> lecture notes, and answer the following questions:
 </p>
-<ul>
-<li>Chatbots don&rsquo;t perform well when subjected to even a limited
-    version of the Turing test. However, chatbots seem to be able to
-    mislead people on, say, dating websites. How can you account for
-    this difference?
 
+<ul class="org-ul">
+<li>Chatbots don't perform well when subjected to even a limited
+version of the Turing test. However, chatbots seem to be able to
+mislead people on, say, dating websites. How can you account for
+this difference?
 </li>
+
 <li>Children were slightly more reluctant to hold a Furbie upside down
-    than a Barbie. But they clearly knew the difference between a
-    Furbie and a hamster. What will it take to make robots more, well,
-    hamster-like? What will it take to increase a child&rsquo;s
-    unwillingness to hold a robot upside down?
-
+than a Barbie. But they clearly knew the difference between a
+Furbie and a hamster. What will it take to make robots more, well,
+hamster-like? What will it take to increase a child's
+unwillingness to hold a robot upside down?
 </li>
+
 <li>Were you impressed by the description of the robot Bina48? Were
-    you moved by Bina&rsquo;s recollection of her brother? (some context
-    quoted below) The creators of Bina seem to believe that she&rsquo;s very
-    close to human-like intelligence. What do you think?
+you moved by Bina's recollection of her brother? (some context
+quoted below) The creators of Bina seem to believe that she's very
+close to human-like intelligence. What do you think?
 </li>
 </ul>
 
-
 <blockquote>
-
-<p>I can feel my heart pound. Talking to Bina48 has just become
-extraordinary. This woman who won&rsquo;t meet the media is talking with me,
+<p>
+I can feel my heart pound. Talking to Bina48 has just become
+extraordinary. This woman who won't meet the media is talking with me,
 compellingly, through her robot doppelgänger, and it is a fluid
 insight into a remarkable, if painful, family life.
 </p>
+
 <p>
-&ldquo;He&rsquo;d been a medic in Vietnam, and he was on the ground for over a
-year before they pulled him out,&rdquo; Bina48 says. &ldquo;He saw friends get
+"He'd been a medic in Vietnam, and he was on the ground for over a
+year before they pulled him out," Bina48 says. "He saw friends get
 killed. He was such a great, nice, charismatic person. Just fun. But
 after ten years, he was a homeless person on the street. All he did
 was carry a beer with him. He just went kooky with the drugs the
 hospital gave him. The only time he ever calls is to ask for
-money. &lsquo;Send it to me Western Union!&rsquo; After twenty years, all of us
+money. 'Send it to me Western Union!' After twenty years, all of us
 are just sick and tired of it. My mother got bankrupted twice from
-him&hellip;.&rdquo;
+him&#x2026;."
 </p>
+
 <p>
 And then she zones out, becoming random and confused again. She
-descends into a weird loop. &ldquo;Doesn&rsquo;t everyone have a solar?&rdquo; she
-says. &ldquo;I have a plan for a robot body. Doesn&rsquo;t everyone have a solar?
+descends into a weird loop. "Doesn't everyone have a solar?" she
+says. "I have a plan for a robot body. Doesn't everyone have a solar?
 I have a plan for a robot body. I love Martine Rothblatt. Martine is
 my timeless love, my soul mate. I love Martine Rothblatt. Martine is
-my timeless love, my soul mate&hellip;.&rdquo;
+my timeless love, my soul mate&#x2026;."
 </p>
+
 <p>
-After the clarity, it&rsquo;s a little disturbing.
+After the clarity, it's a little disturbing.
 </p>
+
 <p>
-&ldquo;I need to go now,&rdquo; I say.
+"I need to go now," I say.
 </p>
+
 <p>
-&ldquo;Good-bye,&rdquo; says Bina48.
+"Good-bye," says Bina48.
 </p>
+
 <p>
-&ldquo;Did you enjoy talking to me?&rdquo; I say.
+"Did you enjoy talking to me?" I say.
 </p>
+
 <p>
-&ldquo;No, I didn&rsquo;t enjoy it,&rdquo; she says.
+"No, I didn't enjoy it," she says.
 </p>
+
 <p>
-Bruce turns her off. &mdash; From the <a href="http://www.gq.com/news-politics/big-issues/201103/robots-say-the-damnedest-things?printable=true&amp;currentPage=1">GQ article</a> by Jon Ronson
+Bruce turns her off. &#x2014; From the <a href="http://www.gq.com/news-politics/big-issues/201103/robots-say-the-damnedest-things?printable=true&currentPage=1">GQ article</a> by Jon Ronson
 </p>
 </blockquote>
-
-
-
 
 <div style="font-size: 80%; clear: both;">
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">CSE 3521 material</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://cse3521.artifice.cc" property="cc:attributionName" rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. Source code for this website available at <a href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
@@ -264,11 +296,8 @@ Bruce turns her off. &mdash; From the <a href="http://www.gq.com/news-politics/b
     plupper.enableCobrowsing();
 </script>
 <!-- End of Plupper Tracking Code -->
-
-
 </div>
 </div>
 </div>
-
 </body>
 </html>
