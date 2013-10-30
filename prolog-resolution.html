@@ -147,15 +147,15 @@ Suppose we have the following knowledge base:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(a). 
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">f</span>(b). 
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(a). 
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">f</span>(b). 
 
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(a). 
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">g</span>(b). 
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(a). 
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">g</span>(b). 
 
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">h</span>(b). 
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">h</span>(b). 
 
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">k</span>(<span style="color: #999999; background-color: #000000;">X</span>) :- f(<span style="color: #999999; background-color: #000000;">X</span>), g(<span style="color: #999999; background-color: #000000;">X</span>), h(<span style="color: #999999; background-color: #000000;">X</span>).
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">k</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- f(<span style="color: #000000; background-color: #ffffff;">X</span>), g(<span style="color: #000000; background-color: #ffffff;">X</span>), h(<span style="color: #000000; background-color: #ffffff;">X</span>).
 </pre>
 </div>
 
@@ -220,9 +220,9 @@ Now we'll switch to this knowledge base:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">loves</span>(vincent, mia).
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">loves</span>(marcellus, mia).
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">jealous</span>(<span style="color: #999999; background-color: #000000;">A</span>, <span style="color: #999999; background-color: #000000;">B</span>) :- loves(<span style="color: #999999; background-color: #000000;">A</span>, <span style="color: #999999; background-color: #000000;">C</span>), loves(<span style="color: #999999; background-color: #000000;">B</span>, <span style="color: #999999; background-color: #000000;">C</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(vincent, mia).
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">loves</span>(marcellus, mia).
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">jealous</span>(<span style="color: #000000; background-color: #ffffff;">A</span>, <span style="color: #000000; background-color: #ffffff;">B</span>) :- loves(<span style="color: #000000; background-color: #ffffff;">A</span>, <span style="color: #000000; background-color: #ffffff;">C</span>), loves(<span style="color: #000000; background-color: #ffffff;">B</span>, <span style="color: #000000; background-color: #ffffff;">C</span>).
 </pre>
 </div>
 
@@ -252,8 +252,8 @@ Finally, let's look at a list predicate.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">X</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>).
-<span style="color: #999999; background-color: #000000; font-weight: bold; text-decoration: underline;">member</span>(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000; font-weight: bold;">[</span><span style="color: #999999; background-color: #000000;">_</span><span style="color: #999999; background-color: #000000; font-weight: bold;">|</span><span style="color: #999999; background-color: #000000;">T</span><span style="color: #999999; background-color: #000000; font-weight: bold;">]</span>) :- member(<span style="color: #999999; background-color: #000000;">X</span>, <span style="color: #999999; background-color: #000000;">T</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">T</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">T</span>).
 </pre>
 </div>
 
