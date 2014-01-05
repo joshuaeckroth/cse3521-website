@@ -90,7 +90,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -136,7 +136,7 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <a href="index.html">Home</a> &nbsp; &nbsp;
           <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
+          <!-- <div id="plupperButton" style="display: inline;"></div> -->
           <!-- End of Plupper Button Code -->
 </div>
 <div id="content">
@@ -226,7 +226,7 @@ SURF: "Speeded-Up Robust Features"
 
 <pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">SurfFeatureDetector</span> <span style="color: #000000; background-color: #ffffff;">detector</span>;
 
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;KeyPoint&gt; <span style="color: #000000; background-color: #ffffff;">keypoints_object</span>, <span style="color: #000000; background-color: #ffffff;">keypoints_scene</span>;
+<span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;KeyPoint&gt; <span style="color: #000000; background-color: #ffffff;">keypoints_object</span>, <span style="color: #000000; background-color: #ffffff;">keypoints_scene</span>;
 
 detector.detect(img_object, keypoints_object);
 detector.detect(img_scene, keypoints_scene);
@@ -264,7 +264,7 @@ object image keypoint based on the keypoints' descriptor vectors)
 <div class="org-src-container">
 
 <pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">FlannBasedMatcher</span> <span style="color: #000000; background-color: #ffffff;">matcher</span>;
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;DMatch&gt; <span style="color: #000000; background-color: #ffffff;">matches</span>;
+<span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;DMatch&gt; <span style="color: #000000; background-color: #ffffff;">matches</span>;
 matcher.match(descriptors_object, descriptors_scene, matches);
 </pre>
 </div>
@@ -297,7 +297,7 @@ Get the "good" matches.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;DMatch&gt; <span style="color: #000000; background-color: #ffffff;">good_matches</span>;
+<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;DMatch&gt; <span style="color: #000000; background-color: #ffffff;">good_matches</span>;
 
 <span style="color: #004dd0; background-color: #ffffff;">for</span>(<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">i</span> = 0; i &lt; descriptors_object.rows; i++)
 {
@@ -315,7 +315,7 @@ Draw the matches on top of the images.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img_matches</span>; <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">resulting image</span>
+<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img_matches</span>; <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">resulting image</span>
 drawMatches(img_object, keypoints_object, img_scene, keypoints_scene,
             good_matches, img_matches, Scalar(0, 0, 255));
 </pre>
@@ -327,13 +327,13 @@ drawMatches(img_object, keypoints_object, img_scene, keypoints_scene,
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff;">obj</span>;
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff;">scene</span>;
+<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff;">obj</span>;
+<span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff;">scene</span>;
 
 <span style="color: #004dd0; background-color: #ffffff;">for</span>(<span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">i</span> = 0; i &lt; good_matches.size(); i++)
 {
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">queryIdx and trainIdx allow us to get the original points</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">of our good matches by referring back to the keypoints arrays</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">queryIdx and trainIdx allow us to get the original points</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">of our good matches by referring back to the keypoints arrays</span>
     obj.push_back(keypoints_object[good_matches[i].queryIdx].pt);
     scene.push_back(keypoints_scene[good_matches[i].trainIdx].pt);
 }
@@ -420,12 +420,12 @@ the homography.
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">obj_corners</span>(4);
+<pre class="src src-c++"><span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">obj_corners</span>(4);
 obj_corners[0] = cvPoint(0,0);
 obj_corners[1] = cvPoint(img_object.cols, 0);
 obj_corners[2] = cvPoint(img_object.cols, img_object.rows);
 obj_corners[3] = cvPoint(0, img_object.rows);
-<span style="color: #0000f1; background-color: #ffffff;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">scene_corners</span>(4);
+<span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">std</span>::<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point2f&gt; <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">scene_corners</span>(4);
 
 perspectiveTransform(obj_corners, scene_corners, H);
 </pre>
@@ -471,6 +471,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
+<!--
 <script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript"
     src="https://static.plupper.com/js/plupper.js"></script>
@@ -478,6 +479,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.init("joshuaeckroth@plupper.com");
     plupper.enableCobrowsing();
 </script>
+-->
 <!-- End of Plupper Tracking Code -->
 
 <script>

@@ -90,7 +90,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -136,7 +136,7 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <a href="index.html">Home</a> &nbsp; &nbsp;
           <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
+          <!-- <div id="plupperButton" style="display: inline;"></div> -->
           <!-- End of Plupper Button Code -->
 </div>
 <div id="content">
@@ -215,28 +215,28 @@ approach.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">for</span> generation <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(MAX_GENERATIONS):
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">calculate fitness values and put these values, along with</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">the individuals, in a new "weighted" list</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">calculate fitness values and put these values, along with</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">the individuals, in a new "weighted" list</span>
     <span style="color: #000000; background-color: #ffffff;">weighted_population</span> = []
     <span style="color: #004dd0; background-color: #ffffff;">for</span> individual <span style="color: #004dd0; background-color: #ffffff;">in</span> population:
         <span style="color: #000000; background-color: #ffffff;">fitness_val</span> = fitness(individual)
         weighted_population.append((individual, fitness_val))
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">select two individuals to breed; individuals with higher</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">fitness values are more likely to be selected</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">select two individuals to breed; individuals with higher</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">fitness values are more likely to be selected</span>
     <span style="color: #000000; background-color: #ffffff;">ind1</span> = weighted_choice(weighted_population)
     <span style="color: #000000; background-color: #ffffff;">ind2</span> = weighted_choice(weighted_population)
 
-    <span style="color: #000000; background-color: #ffffff;">ind3</span> = crossover(ind1, ind2) <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">breed, creating a new individual</span>
-    mutate(ind3) <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do some random mutating</span>
+    <span style="color: #000000; background-color: #ffffff;">ind3</span> = crossover(ind1, ind2) <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">breed, creating a new individual</span>
+    mutate(ind3) <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do some random mutating</span>
     population.append(ind3)
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">maybe the parents die? this is just one of many parameters in a</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">GA algorithm</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">maybe the parents die? this is just one of many parameters in a</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">GA algorithm</span>
     population.remove(ind1)
     population.remove(ind2)
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">generations are completed; find maximum fitness individual</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">generations are completed; find maximum fitness individual</span>
 <span style="color: #000000; background-color: #ffffff;">max_fit</span> = fitness(population[0])
 <span style="color: #000000; background-color: #ffffff;">max_fit_individual</span> = population[0]
 <span style="color: #004dd0; background-color: #ffffff;">for</span> individual <span style="color: #004dd0; background-color: #ffffff;">in</span> population:
@@ -263,6 +263,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
+<!--
 <script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript"
     src="https://static.plupper.com/js/plupper.js"></script>
@@ -270,6 +271,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.init("joshuaeckroth@plupper.com");
     plupper.enableCobrowsing();
 </script>
+-->
 <!-- End of Plupper Tracking Code -->
 
 <script>

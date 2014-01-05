@@ -90,7 +90,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -178,7 +178,7 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <a href="index.html">Home</a> &nbsp; &nbsp;
           <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
+          <!-- <div id="plupperButton" style="display: inline;"></div> -->
           <!-- End of Plupper Button Code -->
 </div>
 <div id="content">
@@ -608,35 +608,35 @@ a measure of miles between them:
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">from: http://www.johndcook.com/python_longitude_latitude.html</span>
+<pre class="src src-python"><span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">from: http://www.johndcook.com/python_longitude_latitude.html</span>
 <span style="color: #004dd0; background-color: #ffffff;">import</span> math
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">dist</span>((long1, lat1), (long2, lat2)):
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Convert latitude and longitude to </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">spherical coordinates in radians.</span>
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">dist</span>((long1, lat1), (long2, lat2)):
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Convert latitude and longitude to </span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">spherical coordinates in radians.</span>
     <span style="color: #000000; background-color: #ffffff;">degrees_to_radians</span> = math.pi/180.0
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">phi = 90 - latitude</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">phi = 90 - latitude</span>
     <span style="color: #000000; background-color: #ffffff;">phi1</span> = (90.0 - lat1)*degrees_to_radians
     <span style="color: #000000; background-color: #ffffff;">phi2</span> = (90.0 - lat2)*degrees_to_radians
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">theta = longitude</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">theta = longitude</span>
     <span style="color: #000000; background-color: #ffffff;">theta1</span> = long1*degrees_to_radians
     <span style="color: #000000; background-color: #ffffff;">theta2</span> = long2*degrees_to_radians
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Compute spherical distance from spherical coordinates.</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Compute spherical distance from spherical coordinates.</span>
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">For two locations in spherical coordinates </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">(1, theta, phi) and (1, theta, phi)</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">cosine( arc length ) = </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">#    </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">sin phi sin phi' cos(theta-theta') + cos phi cos phi'</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">distance = rho * arc length</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">For two locations in spherical coordinates </span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">(1, theta, phi) and (1, theta, phi)</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">cosine( arc length ) = </span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">#    </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">sin phi sin phi' cos(theta-theta') + cos phi cos phi'</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">distance = rho * arc length</span>
 
     <span style="color: #000000; background-color: #ffffff;">cos</span> = (math.sin(phi1)*math.sin(phi2)*math.cos(theta1 - theta2) + 
            math.cos(phi1)*math.cos(phi2))
     <span style="color: #000000; background-color: #ffffff;">arc</span> = math.acos( cos )
 
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Remember to multiply arc by the radius of the earth </span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">in your favorite set of units to get length.</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Remember to multiply arc by the radius of the earth </span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">in your favorite set of units to get length.</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> (arc * 3960.0)
 </pre>
 </div>
@@ -729,6 +729,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
+<!--
 <script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript"
     src="https://static.plupper.com/js/plupper.js"></script>
@@ -736,6 +737,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.init("joshuaeckroth@plupper.com");
     plupper.enableCobrowsing();
 </script>
+-->
 <!-- End of Plupper Tracking Code -->
 
 <script>

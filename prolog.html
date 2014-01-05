@@ -90,7 +90,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -178,7 +178,7 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <a href="index.html">Home</a> &nbsp; &nbsp;
           <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
+          <!-- <div id="plupperButton" style="display: inline;"></div> -->
           <!-- End of Plupper Button Code -->
 </div>
 <div id="content">
@@ -267,18 +267,18 @@ Let's make a database by creating some facts:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(tom, liz).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(bob, ann).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(bob, pat).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">parent</span>(pat, jim).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(tom, liz).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(bob, ann).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(bob, pat).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(pat, jim).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(pam).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(tom).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(bob).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(liz).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(pat).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">female</span>(ann).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">male</span>(jim).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(pam).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">male</span>(tom).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">male</span>(bob).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(liz).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(pat).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(ann).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">male</span>(jim).
 </pre>
 </div>
 
@@ -408,7 +408,7 @@ defines a "mother." Let's make a rule (in our database file,
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">mother</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">mother</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>).
 </pre>
 </div>
 
@@ -418,7 +418,7 @@ Now for fathers. In the database, we add:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">father</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), male(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">father</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), male(<span style="color: #000000; background-color: #ffffff;">X</span>).
 </pre>
 </div>
 
@@ -450,7 +450,7 @@ See? <code>bob</code> is a grandparent. Let's make a rule:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">grandparent</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), parent(<span style="color: #000000; background-color: #ffffff;">Y</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">grandparent</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), parent(<span style="color: #000000; background-color: #ffffff;">Y</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
 </pre>
 </div>
 
@@ -474,7 +474,7 @@ Let's try defining the sister relationship:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">sister</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">X</span>), parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>), female(<span style="color: #000000; background-color: #ffffff;">Y</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">sister</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">X</span>), parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>), female(<span style="color: #000000; background-color: #ffffff;">Y</span>).
 </pre>
 </div>
 
@@ -521,7 +521,7 @@ Let's prevent that by adding another clause to the <code>sister</code> predicate
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">sister</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">X</span>), parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>), female(<span style="color: #000000; background-color: #ffffff;">Y</span>), <span style="color: #000000; background-color: #ffffff;">X</span> \= <span style="color: #000000; background-color: #ffffff;">Y</span>.
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">sister</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">X</span>), parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>), female(<span style="color: #000000; background-color: #ffffff;">Y</span>), <span style="color: #000000; background-color: #ffffff;">X</span> \= <span style="color: #000000; background-color: #ffffff;">Y</span>.
 </pre>
 </div>
 
@@ -581,13 +581,13 @@ way to satisfy a rule. For example,
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">engineer</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- mechanical_engineer(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">engineer</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- mechanical_engineer(<span style="color: #000000; background-color: #ffffff;">X</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">engineer</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- chemical_engineer(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">engineer</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- chemical_engineer(<span style="color: #000000; background-color: #ffffff;">X</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">engineer</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- electrical_engineer(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">engineer</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- electrical_engineer(<span style="color: #000000; background-color: #ffffff;">X</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">etc. etc.</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">etc. etc.</span>
 </pre>
 </div>
 
@@ -627,7 +627,7 @@ by <i>failing</i> to prove that <code>jim</code> is a father (with our <code>fat
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">not_a_father</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- \+father(<span style="color: #000000; background-color: #ffffff;">X</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">not_a_father</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- \+father(<span style="color: #000000; background-color: #ffffff;">X</span>).
 </pre>
 </div>
 
@@ -689,7 +689,7 @@ head (front) of a list:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">head</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">head</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
 </pre>
 </div>
 
@@ -725,17 +725,17 @@ membership predicate:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">X is a member of a list if the list only has the element X in it</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<pre class="src src-prolog"><span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">X is a member of a list if the list only has the element X in it</span>
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">X is a member of a list if the list starts with X</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">(technically, the above statement is not needed; this</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">statement suffices)</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">X is a member of a list if the list starts with X</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">(technically, the above statement is not needed; this</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">statement suffices)</span>
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Finally, X is a member of a list if it's a member of</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">the tail of the list</span>
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Tail</span>).
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Finally, X is a member of a list if it's a member of</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">the tail of the list</span>
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Tail</span>).
 </pre>
 </div>
 
@@ -792,7 +792,7 @@ either unemployed or has a job with a particular salary.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">family</span>(10392,
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">family</span>(10392,
        person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
        person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
        <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% here are the children...</span>
@@ -800,7 +800,7 @@ either unemployed or has a job with a particular salary.
         person(jim, fox, born(1, june, 1986), unemployed),
         person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #004dd0; background-color: #ffffff;">]</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">family</span>(38463, 
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">family</span>(38463, 
        person(susan, rothchild, born(13, september, 1972), works(osu, 75000)),
        person(jess, rothchild, born(20, july, 1975), works(nationwide, 123500)),
        <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% here are the children...</span>
@@ -845,11 +845,11 @@ predicate that says if two people are married:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">married</span>(<span style="color: #000000; background-color: #ffffff;">FirstName1</span>, <span style="color: #000000; background-color: #ffffff;">LastName1</span>, <span style="color: #000000; background-color: #ffffff;">FirstName2</span>, <span style="color: #000000; background-color: #ffffff;">LastName2</span>) :-
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">married</span>(<span style="color: #000000; background-color: #ffffff;">FirstName1</span>, <span style="color: #000000; background-color: #ffffff;">LastName1</span>, <span style="color: #000000; background-color: #ffffff;">FirstName2</span>, <span style="color: #000000; background-color: #ffffff;">LastName2</span>) :-
     family(<span style="color: #000000; background-color: #ffffff;">_</span>, person(<span style="color: #000000; background-color: #ffffff;">FirstName1</span>, <span style="color: #000000; background-color: #ffffff;">LastName1</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>),
            person(<span style="color: #000000; background-color: #ffffff;">FirstName2</span>, <span style="color: #000000; background-color: #ffffff;">LastName2</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">_</span>).
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">married</span>(<span style="color: #000000; background-color: #ffffff;">FirstName1</span>, <span style="color: #000000; background-color: #ffffff;">LastName1</span>, <span style="color: #000000; background-color: #ffffff;">FirstName2</span>, <span style="color: #000000; background-color: #ffffff;">LastName2</span>) :-
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">married</span>(<span style="color: #000000; background-color: #ffffff;">FirstName1</span>, <span style="color: #000000; background-color: #ffffff;">LastName1</span>, <span style="color: #000000; background-color: #ffffff;">FirstName2</span>, <span style="color: #000000; background-color: #ffffff;">LastName2</span>) :-
     family(<span style="color: #000000; background-color: #ffffff;">_</span>, person(<span style="color: #000000; background-color: #ffffff;">FirstName2</span>, <span style="color: #000000; background-color: #ffffff;">LastName2</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>),
            person(<span style="color: #000000; background-color: #ffffff;">FirstName1</span>, <span style="color: #000000; background-color: #ffffff;">LastName1</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">_</span>).
 </pre>
@@ -887,7 +887,7 @@ Here is a predicate for calculating household income. We can calculate
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">householdIncome</span>(<span style="color: #000000; background-color: #ffffff;">ID</span>, <span style="color: #000000; background-color: #ffffff;">Income</span>) :-
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">householdIncome</span>(<span style="color: #000000; background-color: #ffffff;">ID</span>, <span style="color: #000000; background-color: #ffffff;">Income</span>) :-
     family(<span style="color: #000000; background-color: #ffffff;">ID</span>, person(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, works(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Income1</span>)),
            person(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, works(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Income2</span>)), <span style="color: #000000; background-color: #ffffff;">_</span>),
     <span style="color: #000000; background-color: #ffffff;">Income</span> is <span style="color: #000000; background-color: #ffffff;">Income1</span> + <span style="color: #000000; background-color: #ffffff;">Income2</span>.
@@ -926,9 +926,9 @@ fact.
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>), member(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>), member(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>).
 </pre>
 </div>
 
@@ -977,7 +977,7 @@ Let's get a little more sophisticated. Here is an interesting query:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Find all people born after 1980 who do not work at OSU</span>
+<pre class="src src-prolog"><span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Find all people born after 1980 who do not work at OSU</span>
 
 ?- exists(person(<span style="color: #000000; background-color: #ffffff;">FirstName</span>, <span style="color: #000000; background-color: #ffffff;">LastName</span>, born(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>), <span style="color: #000000; background-color: #ffffff;">Job</span>)),
       <span style="color: #000000; background-color: #ffffff;">Year</span> &gt; 1980, <span style="color: #000000; background-color: #ffffff;">Job</span> \= osu.
@@ -1008,7 +1008,7 @@ children and adds 2 (for the parents):
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; text-decoration: underline;">householdSize</span>(<span style="color: #000000; background-color: #ffffff;">ID</span>, <span style="color: #000000; background-color: #ffffff;">Size</span>) :-
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">householdSize</span>(<span style="color: #000000; background-color: #ffffff;">ID</span>, <span style="color: #000000; background-color: #ffffff;">Size</span>) :-
     family(<span style="color: #000000; background-color: #ffffff;">ID</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>),
     length(<span style="color: #000000; background-color: #ffffff;">Children</span>, <span style="color: #000000; background-color: #ffffff;">ChildrenCount</span>),
     <span style="color: #000000; background-color: #ffffff;">Size</span> is 2 + <span style="color: #000000; background-color: #ffffff;">ChildrenCount</span>.
@@ -1022,9 +1022,9 @@ list of objects that match some "goal." Here is its use in a query:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">First part of findall is what to collect,</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">second part is the </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">"goal"</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;"> (a predicate),</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">third part is the name of the resulting list</span>
+<pre class="src src-prolog"><span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">First part of findall is what to collect,</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">second part is the </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">"goal"</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;"> (a predicate),</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">third part is the name of the resulting list</span>
 ?- findall(<span style="color: #000000; background-color: #ffffff;">FirstName</span>, exists(person(<span style="color: #000000; background-color: #ffffff;">FirstName</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>)), <span style="color: #000000; background-color: #ffffff;">Result</span>).
 <span style="color: #000000; background-color: #ffffff;">Result</span> = <span style="color: #004dd0; background-color: #ffffff;">[</span>tom, susan, ann, jess, pat, jim, amy, ace<span style="color: #004dd0; background-color: #ffffff;">]</span>.
 </pre>
@@ -1052,7 +1052,7 @@ load a Prolog library, however. Here is some code in a database file:
 
 <pre class="src src-prolog">:- <span style="color: #000000; background-color: #ffffff; font-weight: bold;">use_module</span>(library(lists)). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% load lists library for sumlist predicate</span>
 
-<span style="color: #000000; background-color: #ffffff; text-decoration: underline;">average</span>(<span style="color: #000000; background-color: #ffffff;">List</span>, <span style="color: #000000; background-color: #ffffff;">Avg</span>) :-
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">average</span>(<span style="color: #000000; background-color: #ffffff;">List</span>, <span style="color: #000000; background-color: #ffffff;">Avg</span>) :-
     sumlist(<span style="color: #000000; background-color: #ffffff;">List</span>, <span style="color: #000000; background-color: #ffffff;">Sum</span>),
     length(<span style="color: #000000; background-color: #ffffff;">List</span>, <span style="color: #000000; background-color: #ffffff;">N</span>),
     <span style="color: #000000; background-color: #ffffff;">Avg</span> is <span style="color: #000000; background-color: #ffffff;">Sum</span> / <span style="color: #000000; background-color: #ffffff;">N</span>.
@@ -1114,6 +1114,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
+<!--
 <script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript"
     src="https://static.plupper.com/js/plupper.js"></script>
@@ -1121,6 +1122,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.init("joshuaeckroth@plupper.com");
     plupper.enableCobrowsing();
 </script>
+-->
 <!-- End of Plupper Tracking Code -->
 
 <script>

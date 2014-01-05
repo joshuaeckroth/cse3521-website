@@ -90,7 +90,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012  Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -136,7 +136,7 @@ for the JavaScript code in this tag.
 <div id="preamble" class="status">
 <a href="index.html">Home</a> &nbsp; &nbsp;
           <!-- Plupper Button -->
-          <div id="plupperButton" style="display: inline;"></div>
+          <!-- <div id="plupperButton" style="display: inline;"></div> -->
           <!-- End of Plupper Button Code -->
 </div>
 <div id="content">
@@ -179,24 +179,24 @@ Handling images is quite simple. Full code: <a href="./opencv/images.cpp">images
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">load the image</span>
+<pre class="src src-c++"><span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">load the image</span>
 <span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img</span> = imread(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"lena.jpg"</span>);
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">show it in a window</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">show it in a window</span>
 imshow(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"Image"</span>, img);
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">image window will immediately disappear if the program ends, so</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">we'll wait for a keypress, indefinitely</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">image window will immediately disappear if the program ends, so</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">we'll wait for a keypress, indefinitely</span>
 waitKey();
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do a simple transformation: convert to grayscale</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do a simple transformation: convert to grayscale</span>
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">first copy the image</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">first copy the image</span>
 <span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img_gray</span> = img.clone();
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">now convert to grayscale</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">now convert to grayscale</span>
 cvtColor(img, img_gray, CV_RGB2GRAY);
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">save the image</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">save the image</span>
 <span style="color: #004dd0; background-color: #ffffff;">bool</span> <span style="color: #000000; background-color: #ffffff;">ret</span> = imwrite(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"lena.jpg"</span>, img_gray);
 <span style="color: #004dd0; background-color: #ffffff;">if</span>(ret) {
     cout &lt;&lt; <span style="color: #670088; background-color: #ffffff; font-style: italic;">"Save worked."</span> &lt;&lt; endl;
@@ -213,25 +213,25 @@ the same as handling cameras! Full code: <a href="./opencv/videos.cpp">videos.cp
 
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">VideoCapture</span> <span style="color: #000000; background-color: #ffffff; text-decoration: underline;">capture</span>(-1); <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">use webcam</span>
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">//</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">VideoCapture capture("output.mpg"); // use input file</span>
+<pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">VideoCapture</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">capture</span>(-1); <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">use webcam</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">//</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">VideoCapture capture("output.mpg"); // use input file</span>
 <span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">frame</span>;
 
 <span style="color: #004dd0; background-color: #ffffff;">if</span>(capture.isOpened()) {
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if using webcam:</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if using webcam:</span>
     <span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">fps</span> = 30;
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if using input file:</span>
-    <span style="color: #00005d; background-color: #ffffff; font-style: italic;">//</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">int fps = capture.get(CV_CAP_PROP_FPS);</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if using input file:</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">//</span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">int fps = capture.get(CV_CAP_PROP_FPS);</span>
 
     <span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">width</span> = capture.get(CV_CAP_PROP_FRAME_WIDTH);
     <span style="color: #004dd0; background-color: #ffffff;">int</span> <span style="color: #000000; background-color: #ffffff;">height</span> = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
     cout &lt;&lt; <span style="color: #670088; background-color: #ffffff; font-style: italic;">"FPS: "</span> &lt;&lt; fps &lt;&lt; <span style="color: #670088; background-color: #ffffff; font-style: italic;">", width: "</span> &lt;&lt; width &lt;&lt; <span style="color: #670088; background-color: #ffffff; font-style: italic;">", height: "</span> &lt;&lt; height &lt;&lt; endl;
 
     <span style="color: #004dd0; background-color: #ffffff;">VideoWriter</span> <span style="color: #000000; background-color: #ffffff;">writer</span>(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"input.mpg"</span>, CV_FOURCC(<span style="color: #670088; background-color: #ffffff; font-style: italic;">'P'</span>,<span style="color: #670088; background-color: #ffffff; font-style: italic;">'I'</span>,<span style="color: #670088; background-color: #ffffff; font-style: italic;">'M'</span>,<span style="color: #670088; background-color: #ffffff; font-style: italic;">'1'</span>),
-                       fps, cvSize(width, height), 0); <span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">0 means gray, 1 means color</span>
+                       fps, cvSize(width, height), 0); <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">0 means gray, 1 means color</span>
 
     <span style="color: #004dd0; background-color: #ffffff;">if</span>(writer.isOpened()) {
-        <span style="color: #004dd0; background-color: #ffffff;">while</span>(<span style="color: #0000f1; background-color: #ffffff;">true</span>) {
+        <span style="color: #004dd0; background-color: #ffffff;">while</span>(<span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">true</span>) {
             capture &gt;&gt; frame;
 
             <span style="color: #004dd0; background-color: #ffffff;">if</span>(!frame.empty()) {
@@ -263,21 +263,21 @@ the same as handling cameras! Full code: <a href="./opencv/videos.cpp">videos.cp
 
 imshow(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"Image"</span>, img);
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">convert to grayscale</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">convert to grayscale</span>
 <span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img_gray</span> = img.clone();
 cvtColor(img, img_gray, CV_RGB2GRAY);
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">convert to binary with a gray threshold</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">convert to binary with a gray threshold</span>
 <span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img_binary</span> = img_gray.clone();
 threshold(img_gray, img_binary, 128.0, 255.0, THRESH_BINARY);
 imshow(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"Binary"</span>, img_binary);
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">make a kernel of 4x4, all 1's</span>
-<span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">kernel</span> = <span style="color: #0000f1; background-color: #ffffff;">Mat</span>::ones(Size(4, 4), CV_8U);
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">make a kernel of 4x4, all 1's</span>
+<span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">kernel</span> = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">Mat</span>::ones(Size(4, 4), CV_8U);
 
 <span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">img_binary_erode4x4</span> = img_binary.clone();
 
-<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do the erosion</span>
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">do the erosion</span>
 erode(img_binary, img_binary_erode4x4, kernel);
 
 imshow(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"Erode binary 4x4"</span>, img_binary_erode4x4);
@@ -352,6 +352,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
+<!--
 <script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript"
     src="https://static.plupper.com/js/plupper.js"></script>
@@ -359,6 +360,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.init("joshuaeckroth@plupper.com");
     plupper.enableCobrowsing();
 </script>
+-->
 <!-- End of Plupper Tracking Code -->
 
 <script>
