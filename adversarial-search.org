@@ -13,8 +13,7 @@ overtaking humans in certain intellectual activities that we thought
 required intelligence. My God, I used to think chess required thought.
 Now, I realize it doesn't. It doesn't mean Kasparov isn't a deep
 thinker, just that you can bypass deep thinking in playing chess, the
-way you can fly without flapping your wings." --- Bruce Weber,
-"[[http://www.rci.rutgers.edu/~cfs/472_html/Intro/NYT_Intro/ChessMatch/MeanChessPlaying.html][Mean
+way you can fly without flapping your wings." --- Bruce Weber, "[[http://www.rci.rutgers.edu/~cfs/472_html/Intro/NYT_Intro/ChessMatch/MeanChessPlaying.html][Mean
 Chess-Playing Computer Tears at Meaning of Thought]]," The New York
 Times, Feb 19, 1996
 
@@ -250,8 +249,8 @@ equivalently, the "min" step), if we find that a certain move gives a
 maximum utility X (by searching its entire subtree), we can avoid any
 searches of subtrees whose minimum value is less than X.
 
-Look here, from ~min_utility~ (similar code is found in ~max_utility~
-and ~minimax~ functions as well):
+Look here, from =min_utility= (similar code is found in =max_utility=
+and =minimax= functions as well):
 
 #+BEGIN_SRC python
 min_u = None
@@ -265,28 +264,28 @@ for nextstate in transitions.values():
 return min_u
 #+END_SRC
 
-The variable ~min_u~ here will only get smaller. Recall that the
-utility that ~min_utility~ returns will be used by the ~max_utility~
-function. So different calls to ~min_utility~ will be compared to pick
-out the maximum ~min_utility~ value. Suppose the ~min_utilty~ function
-was told (via a parameter) that some other call to ~min_utility~
+The variable =min_u= here will only get smaller. Recall that the
+utility that =min_utility= returns will be used by the =max_utility=
+function. So different calls to =min_utility= will be compared to pick
+out the maximum =min_utility= value. Suppose the =min_utilty= function
+was told (via a parameter) that some other call to =min_utility=
 produced a minimum utility of \alpha, and that so far, \alpha is the
 greatest minimum utility found so far (the maximum of the
 minimums).
 
-Then if ~min_u~ ever goes smaller than \alpha, there is no reason to
-continue searching the other transitions (game moves), because ~min_u~
+Then if =min_u= ever goes smaller than \alpha, there is no reason to
+continue searching the other transitions (game moves), because =min_u=
 can only go smaller (being a minimum), and any value smaller than
-\alpha (the previously-found maximum ~min_u~ produced by earlier
+\alpha (the previously-found maximum =min_u= produced by earlier
 function calls) will simply be ignored when maximizing.
 
-The same can be said about ~max_u~ in the ~max_utility~ function; we
-use the \beta parameter to keep track of the smallest ~max_u~ so far
+The same can be said about =max_u= in the =max_utility= function; we
+use the \beta parameter to keep track of the smallest =max_u= so far
 seen.
 
-When maximizing (in ~max_utility~), we will only change \alpha because
+When maximizing (in =max_utility=), we will only change \alpha because
 we want to know the maximum of the minimums (\alpha is the greatest
-lower bound); when minimizing (in ~min_utility~), we will only change
+lower bound); when minimizing (in =min_utility=), we will only change
 \beta.
 
   - \alpha :: the utility of the best (highest-value) choice we have
@@ -306,10 +305,9 @@ does not produce different answers than minimax. Alpha-beta pruning
 simply does not bother checking subtrees when it is certain those
 subtrees will not change the answer produced by minimax.
 
-Check out the [[./images/ttt-alphabeta-example.png][final search
-graph]] of another tic-tac-toe example, this time with alpha-beta
-pruning. For comparison, [[./images/ttt-minimax-example-2.png][this is
-the search graph without alpha-beta pruning]].
+Check out the [[./images/ttt-alphabeta-example.png][final search graph]] of another tic-tac-toe example, this
+time with alpha-beta pruning. For comparison, [[./images/ttt-minimax-example-2.png][this is the search graph
+without alpha-beta pruning]].
 
 Alpha-beta pruning performs /much/ better than vanilla minimax:
 

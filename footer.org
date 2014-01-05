@@ -14,6 +14,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
 
 <!-- Plupper Tracking Code -->
+<!--
 <script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript"
     src="https://static.plupper.com/js/plupper.js"></script>
@@ -21,6 +22,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
     plupper.init("joshuaeckroth@plupper.com");
     plupper.enableCobrowsing();
 </script>
+-->
 <!-- End of Plupper Tracking Code -->
 
 <script>
