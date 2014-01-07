@@ -1,0 +1,39 @@
+#+SETUPFILE: setup.org
+#+TITLE: Learning Python
+
+We'll all need to learn some basic Python programming in order to
+survive this course. Here are some tips.
+
+* Install Python
+
+** Windows
+
+- Grab the 32-bit installer if you have 32-bit Windows or you aren't sure if you do: http://www.python.org/ftp/python/2.7.6/python-2.7.6.msi
+- Grab the 64-bit installer if you have 64-bit Windows and you're sure of that: http://www.python.org/ftp/python/2.7.6/python-2.7.6.amd64.msi
+
+** Mac OS X
+
+- If you have OS X 10.6 or later, grab http://www.python.org/ftp/python/2.7.6/python-2.7.6-macosx10.6.dmg
+- If you only have OS X 10.3 or later, grab instead http://www.python.org/ftp/python/2.7.6/python-2.7.6-macosx10.3.dmg
+
+** Linux
+
+- Use your package manager to install Python.
+
+* Read a tutorial (or two)
+
+1. Start with this: [[http://www.nerdparadise.com/tech/python/4minutecrashcourse/][4 Minute Python Crash Course]] --- it just gives some
+  example code so you know what Python looks like
+
+2. Next, read [[http://hetland.org/writing/instant-python.html][Instant Python]]. This is a longer read, but do read it
+   carefully. Try some examples yourself. You can stop when you reach
+   the section "A Jedi Mind Trick."
+
+3. If you want more tutorials, visit the official [[http://docs.python-guide.org/en/latest/intro/learning/][Learning Python]] page
+   from the creators of the language.
+
+If you get stuck on the installation (i.e., you can't get Python to
+work on your machine), you can go to the website [[http://www.learnpython.org/][learnpython.org]] and
+try some Python programming in your browser.
+
+#+INCLUDE: footer.org
