@@ -1,0 +1,47 @@
+#+SETUPFILE: setup.org
+#+TITLE: Daily notes
+
+* Day 1
+
+** What is AI?
+
+- [act/think] [rationally/humanly]
+
+  - act rationally: do the correct things in
+    the world
+
+  - act humanly: do the things the human would
+    do in the world
+
+  - think rationally: use the best algorithms
+    to get the correct results
+
+  - think humanly: the AI system has internal
+    representations and algorithms like human
+    cognition
+
+** Examples of AI
+
+- system that designs video games
+- IBM's Watson: won Jeopardy!, healthcare
+- Siri
+- IBM Deep Blue, beat Kasparov 1997, "Game Over",
+  used specialized chips that play chess
+- Google's autonomous vehicles
+- Google bought Boston Dynamics
+- Amazon Air (drones)
+- Video game AI
+- robots that learn new languages like toddlers do
+- drone fighting drones
+- military drones
+- Google Glass
+- Google Search
+- Google Ads
+- Google Now
+- Google Then
+- Google Future
+- Machine Learning, Data Mining
+- Fraud detection
+
+
+#+INCLUDE: footer.org
