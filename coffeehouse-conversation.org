@@ -793,14 +793,14 @@ beliefs and so on. *When things get complicated enough, you're*
 <b><i>forced</i></b>
 #+END_HTML
 *to change your level of description.* [fn::cf. [[./knowledge-level.html][The knowledge level]]
-lecture notes; also, an essay by John McCarthy, [[http://www-formal.stanford.edu/jmc/little/little.html]["Thoughts of Thinking
-Machines"]] for another viewpoint] To some extent that's already
-happening, which is why we use words such as "want," "think," "try,"
-and "hope" to describe chess programs and other attempts at mechanical
-thought. Dennett calls that kind of level switch by the observer
-"adapting the intentional stance." The really interesting things in AI
-will only begin to happen, I'd guess, when the program /itself/ adopts
-the intentional stance toward itself!
+lecture notes; also, an essay by John McCarthy, [[http://www.cse.msu.edu/~cse841/papers/McCarthy.pdf]["Little Thoughts of
+Thinking Machines"]] (PDF) for another viewpoint] To some extent that's
+already happening, which is why we use words such as "want," "think,"
+"try," and "hope" to describe chess programs and other attempts at
+mechanical thought. Dennett calls that kind of level switch by the
+observer "adapting the intentional stance." The really interesting
+things in AI will only begin to happen, I'd guess, when the program
+/itself/ adopts the intentional stance toward itself!
 
 *Chris:* That would be a very strange sort of level-crossing feedback
  loop.
