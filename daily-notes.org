@@ -44,4 +44,144 @@
 - Fraud detection
 
 
+* How do we test for AI?
+
+- put it in a human situation and see if it comes to the same
+  decisions as a human
+  - maybe just report its decisions, not act on them
+  - maybe also physically does the same things (if it has arms
+    and legs, etc.)
+- give it human tests for intelligence, IQ tests, SATs, LSAT,
+  behavioral tests
+- Voigt-Kampff test
+- Turing Test
+- interact with people who don't know it's a robot
+- mock tests of certain scenarios
+- see if you can tell the difference between human and machine
+- human-robot chat
+- see if it has self-preservation tendencies
+- ask how it feels, emotions
+- listen to a song with it, then ask it how the song makes it feel
+- put it in a paradoxical situation, ethical conundrum
+  - save your dog or the child
+- ask any question about any topic to see how it responds
+- job interview
+- meet the president, or the Queen
+
+
+* The Turing Test
+
+** The imitation game
+
+- A man (A), a woman (B), and a judge (C)
+- The judge cannot see A or B (or hear them)
+- The judge must determine who is the woman
+- The man (A) wants to convince the judge that he is a woman
+  - AND, (harder) that the woman is NOT a woman
+- And the woman (B) is trying to convince the judge that she is
+  the woman
+- If the man succeeds, then we can say he is intelligent
+
+** Replace the man with a machine
+
+- now the machine (A) is trying to convince the judge that it
+  is the woman
+  - woman still trying to say she is the woman
+
+- we often think of it as the machine trying to convince the judge
+  that it is the human
+
+** What's "success"?
+
+- How often (%) must the man convince the judge that he is the
+  woman to be considered a good woman imitator?
+  - about 25%
+  - Turing said 30% would be good enough
+
+
+* Dennett's weaker versions
+
+- Chess (beating Kasparov)
+  - doesn't cover range of intelligence
+  - isolatable skill
+- Solves the Arab-Israeli conflict
+  - harder than the TT
+  - unrepeatable
+  - slow
+  - not clear what is considered winning
+- Steals the crown jewels
+  - might be able to find security vulnerabilities
+  - luck
+  - ethically dubious
+
+** Langley's challenges
+
+- Synthetic entertainer
+  - American AIdoll
+- Synthetic attorney
+- Synthetic politician
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #+INCLUDE: footer.org
