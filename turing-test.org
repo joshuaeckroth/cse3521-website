@@ -102,6 +102,14 @@ convincing. The existence of a machine that can consistently convince
 a judge that it is human and the human is a machine, even though the
 human is begging for mercy, is an amazing thought!
 
+[Note, I've since read that this understanding of the Turing Test, in
+which the machine is trying to convince the judge it is a human, is a
+"neutered" version. Originally, it is said, Turing expected the
+machine to be tasked with convincing the judge that it is a woman,
+which is an easier task since the questions from the judge would not
+revolve around what it means to be a human. Read "[[http://www.aaai.org/ojs/index.php/aimagazine/article/view/2106/1996][The Voice of the
+Turtle: Whatever Happened to AI?]]" (PDF) by Lenat (2008).]
+
 ** A historical note
 
 Descartes somewhat "predicted" the usefulness of such a test,
@@ -185,6 +193,9 @@ and many other topics. Thus, such sentences, by putting a demand on
 such abilities, are good quick probes. That is, they test for a wider
 competence.
 #+END_QUOTE
+
+More about "Winograd Schemas" can be found in the paper "[[http://www.aaai.org/ocs/index.php/KR/KR12/paper/download/4492/4924][The Winograd
+Schema Challenge]]" (PDF) by Levesque, Davis, and Morgenstern (2012).
 
 ** Weaker varieties
 
