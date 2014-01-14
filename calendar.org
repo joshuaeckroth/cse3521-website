@@ -1,23 +1,23 @@
 #+SETUPFILE: setup.org
 #+TITLE: Course calendar
 
-| Week                           | Topics                                        | Homework      | Read in book |
-|--------------------------------+-----------------------------------------------+---------------+--------------|
-| 1 (Jan 8, 10)                  | Intro to AI, Turing test                      | Homework 1    |              |
-| 2 (Jan 15, 17)                 | Knowledge level, Uninformed search            | Homework 2    |              |
-| 3 (Jan 22, 24)                 | Informed search                               | Homework 3    |              |
-| 4 (Jan 29, 31)                 | Adversarial search                            | Homework 4    |              |
-| 5 (Feb 5, 7)                   | Boolean logic, Propositional logic            | Homework 5    |              |
-| 6 (Feb 12, 14)                 | First order logic, Theorem provers            | Homework 6    |              |
-| 7 (Feb 19, 21)                 | Prolog                                        | Homework 7    |              |
-| 8 (Feb 26, 28)                 | Prolog                                        | Homework 8    |              |
-| 9 (Mar 5, 7)                   | Review for Midterm, Midterm (Mar 7, in class) | Midterm guide |              |
-| 10 (Spring break)              |                                               |               |              |
-| 11 (Mar 19, 21)                | Planning                                      | Homework 9    |              |
-| 12 (Mar 26, 28)                | Planning                                      | Homework 10   |              |
-| 13 (Apr 2, 4)                  | Multi-agent systems                           | Homework 11   |              |
-| 14 (Apr 9, 11)                 | k-means clustering, k-nn classification, Weka | Homework 12   |              |
-| 15 (Apr 16, 18)                | Philosophical issues, Review for Final        | Final guide   |              |
-| Final (Wed Apr 23, 10-11:45am) |                                               |               |              |
+| Week                           | Topics                                                | Homework      | Read in book                         |
+|--------------------------------+-------------------------------------------------------+---------------+--------------------------------------|
+| 1 (Jan 8, 10)                  | Intro to AI, Turing test                              | Homework 1    | 1--31, 34--39                        |
+| 2 (Jan 15, 17)                 | Knowledge level, Uninformed search, Python            | Homework 2    | 64--95, 102--107, 120--129, 161--171 |
+| 3 (Jan 22, 24)                 | Uninformed search, Informed search, Python            | Homework 3    |                                      |
+| 4 (Jan 29, 31)                 | Adversarial search                                    |               |                                      |
+| 5 (Feb 5, 7)                   | Adversarial search                                    | Homework 4    |                                      |
+| 6 (Feb 12, 14)                 | Boolean logic, Propositional logic, First order logic | Homework 5    | 234--256, 265--274, 285--312         |
+| 7 (Feb 19, 21)                 | Prolog                                                | Homework 6    | 339--344                             |
+| 8 (Feb 26, 28)                 | Prolog                                                | Homework 7    |                                      |
+| 9 (Mar 5, 7)                   | Review for Midterm, Midterm (Mar 7, in class)         | Midterm guide |                                      |
+| 10 (Spring break)              |                                                       |               |                                      |
+| 11 (Mar 19, 21)                | Planning                                              | Homework 8    |                                      |
+| 12 (Mar 26, 28)                | Planning                                              | Homework 9    |                                      |
+| 13 (Apr 2, 4)                  | Multi-agent systems                                   | Homework 10   |                                      |
+| 14 (Apr 9, 11)                 | k-means clustering, k-nn classification, Weka         | Homework 11   |                                      |
+| 15 (Apr 16, 18)                | Philosophical issues, Review for Final                | Final guide   |                                      |
+| Final (Wed Apr 23, 10-11:45am) |                                                       |               |                                      |
 
 #+INCLUDE: footer.org
