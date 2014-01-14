@@ -1,0 +1,115 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 2
+
+* Task 1 Preparation
+
+Download this ZIP file with the Pacman source code: [[./downloads/pacman.zip][pacman.zip]]. This
+code, and the idea for the assignment, comes from [[http://inst.eecs.berkeley.edu/~cs188/pacman/html/navigation.html?page=p1/p1_introduction][UC Berkeley]].
+
+- Unzip the code.
+- Open up the Windows Command Line or Mac Terminal or Linux Terminal.
+- Change your directory to the folder with the pacman code. You should
+  see a file called =commands.txt= and two folders: =layouts= and
+  =py=.
+- Run some of these commands (as listed in =commands.txt=) to make
+  sure your setup works.
+  - =python py/pacman.py= (use your arrow keys to control pacman)
+  - =python py/pacman.py --layout tinyMaze --pacman GoWestAgent=
+  - etc.
+
+* Task 1 (20 pts)
+
+I want to make sure you can execute pacman. Tell me (in one sentence)
+what happens when you run this command:
+
+- =python py/pacman.py --layout tinyMaze --pacman GoWestAgent=
+
+Tell me the last message printed on your console window when you run
+this command:
+
+- =python py/pacman.py -l mediumMaze -p SearchAgent -a fn=bfs=
+
+* Task 2 (80 pts)
+
+Open the file =py/search.py= and find the function =depthFirstSearch=
+(line 70) which reads:
+
+#+BEGIN_SRC python
+def depthFirstSearch(problem):
+    """
+    Search the deepest nodes in the search tree first [p 85].
+
+    Your search algorithm needs to return a list of actions that reaches
+    the goal.  Make sure to implement a graph search algorithm [Fig. 3.7].
+
+    To get started, you might want to try some of these simple commands to
+    understand the search problem that is being passed in:
+
+    print "Start:", problem.getStartState()
+    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
+    print "Start's successors:", problem.getSuccessors(problem.getStartState())
+    """
+    "*** YOUR CODE HERE ***"
+    util.raiseNotDefined()
+#+END_SRC
+
+Take this template and finish the code so that depth-first search
+works. You can test it with pacman by running this command:
+
+- =python py/pacman.py -l mediumMaze -p SearchAgent -a fn=dfs=
+
+Note that the comments above the code will be helpful. Submit just
+this file (=search.py=) to the Dropbox, along with a text file with
+your answers to Task 1.
+
+#+BEGIN_SRC python
+def depthFirstSearch(problem):
+    """
+    Search the deepest nodes in the search tree first [p 85].
+
+    Your search algorithm needs to return a list of actions that reaches
+    the goal.  Make sure to implement a graph search algorithm [Fig. 3.7].
+
+    To get started, you might want to try some of these simple commands to
+    understand the search problem that is being passed in:
+
+    print "Start:", problem.getStartState()
+    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
+    print "Start's successors:", problem.getSuccessors(problem.getStartState())
+    """
+    closedset = []
+    openset = [problem.getStartState()] # openset starts with starting state
+    parents = {}
+    while len(openset) > 0:
+        state = openset.pop() # get most-recently-added element from openset
+
+        # ...
+
+        if # ...
+            print "Found goal!"
+
+            # retrieve series of steps that brought us here (use the parents map)
+            actions = []
+            while state != problem.getStartState():
+                # ...
+
+            print actions # just to see the resulting actions
+            return actions
+        else:
+            for (next_state, action, cost) in problem.getSuccessors(state):
+                # next_state is something like (4, 2) (coordinates)
+                # action is something like WEST
+                # cost is not used for depth-first search
+                # ...
+#+END_SRC
+
+* Task 3 (Extra credit, +25 pts)
+
+Implement breadth-first search for pacman, in the =breadthFirstSearch=
+function. Test with:
+
+- =python py/pacman.py -l mediumMaze -p SearchAgent -a fn=bfs=
+
+
+#+INCLUDE: footer.org
+

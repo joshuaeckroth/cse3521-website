@@ -41,7 +41,8 @@ All searches essentially follow the same algorithm:
 
 4. while the openset is not empty:
 
-   a. grab a state from the openset (and remove it)
+   a. grab a state from the openset (and remove it);
+      put it in the closedset (since we're now looking at it)
 
    b. if that state is the goal, hey we're done!
 
