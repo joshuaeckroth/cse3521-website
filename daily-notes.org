@@ -43,8 +43,9 @@
 - Machine Learning, Data Mining
 - Fraud detection
 
+* Day 2
 
-* How do we test for AI?
+** How do we test for AI?
 
 - put it in a human situation and see if it comes to the same
   decisions as a human
@@ -69,9 +70,9 @@
 - meet the president, or the Queen
 
 
-* The Turing Test
+** The Turing Test
 
-** The imitation game
+*** The imitation game
 
 - A man (A), a woman (B), and a judge (C)
 - The judge cannot see A or B (or hear them)
@@ -82,7 +83,7 @@
   the woman
 - If the man succeeds, then we can say he is intelligent
 
-** Replace the man with a machine
+*** Replace the man with a machine
 
 - now the machine (A) is trying to convince the judge that it
   is the woman
@@ -91,7 +92,7 @@
 - we often think of it as the machine trying to convince the judge
   that it is the human
 
-** What's "success"?
+*** What's "success"?
 
 - How often (%) must the man convince the judge that he is the
   woman to be considered a good woman imitator?
@@ -99,7 +100,7 @@
   - Turing said 30% would be good enough
 
 
-* Dennett's weaker versions
+** Dennett's weaker versions
 
 - Chess (beating Kasparov)
   - doesn't cover range of intelligence
@@ -120,6 +121,190 @@
   - American AIdoll
 - Synthetic attorney
 - Synthetic politician
+
+
+
+* Day 3
+
+** Python
+
+This is the code we played with. Try it out yourself at the "REPL"
+(just run =python= from your console).
+
+#+BEGIN_SRC python
+x = 5
+print x
+while x > 0:
+    print x
+    x -= 1
+
+mylist = ["bob", "jane", "alice"]
+print mylist
+
+for name in mylist:
+    print name
+
+print enumerate(mylist)
+print list(enumerate(mylist))
+for (i, name) in enumerate(mylist):
+    print "index is", i, "and name is", name
+
+mylist2 = [(1, 2, 3), (4, 5, 6)]
+for (x, y, z) in mylist2:
+    print x, y, z
+
+mystack = []
+mystack.append('A')
+print mystack
+mystack.append('B')
+print mystack
+print mystack.pop()
+print mystack
+
+from collections import deque
+myqueue = deque()
+print myqueue
+myqueue.append('A')
+myqueue.append('B')
+print myqueue
+print myqueue.popleft()
+print myqueue
+print myqueue.pop()
+print myqueue
+
+mylist = ["bob", "jane", "alice"]
+print mylist[0]
+print mylist[0:1]
+print mylist[0:2]
+print mylist[0:3]
+print mylist[1:3]
+print mylist[1:2]
+print mylist[1:-1]
+print mylist[1:-2]
+print mylist[0:-2]
+print mylist[-1]
+print mylist[-2]
+print mylist[-2:0]
+
+# This page describes "list splicing":
+# http://stackoverflow.com/questions/509211/pythons-slice-notation
+
+# reverse a string or list:
+mystring = "mystring"
+print mystring[::-1]
+
+def myfunc(x):
+    return x+1
+
+print myfunc(52)
+
+def myfunc(x):
+    return (x, x+1)
+
+print myfunc(52)
+
+def myfunc(x=5):  # default value for x
+    print x
+
+myfunc()
+myfunc(10)
+
+class MyClass:
+    def myclassfunc(self, x):
+        print x
+
+myobj = MyClass()
+myobj.myclassfunc(10)
+
+class MyClass:
+    # the constructor
+    def __init__(self):
+        self.timesExecuted = 0
+    def myclassfunc(self):
+        self.timesExecuted += 1
+        print self.timesExecuted
+
+myobj = MyClass()
+myobj.myclassfunc()  # prints 1
+myobj.myclassfunc()  # prints 2
+myobj.myclassfunc()  # prints 3
+#+END_SRC
+
+** Search
+
+*** Example: Wolves & chicks
+
+    - Take three chicks and three wolves across the river
+    - If there is a wolf on one side, it will eat the chicks
+    - Boat only holds two animals
+
+    - Initial state :: Three wolves and three chicks on same side
+
+    - Possible actions :: Put a chick on the boat, put a wolf
+         on the boat, move the boat across
+
+    - Transition model :: A function from state to [list of states]
+         and for this problem, the list of states are those
+         that do not kill the chicks
+
+    - Goal criteria :: All on other side
+
+    - Path cost :: A function from list of states/actions to
+         some kind of cost; 
+         sometimes you want the least-cost solution
+
+
+
+** Basic BFS algorithm:
+
+#+BEGIN_SRC
+   - openset = [start] # places I know about, but haven't been to
+   - closedset = [] # places I have been to
+   - while len(openset) > 0:  # i.e., openset not empty
+     - state = openset.popleft() # I want a queue/deque
+     - closedset.append(state)
+     - if state == goal:
+       - done
+     - else:
+       - for next_state in possible_moves(state):
+         - if next_state not in closedset:
+             - openset.append(next_state)
+#+END_SRC
+
+** Basic DFS algorithm:
+
+#+BEGIN_SRC
+   - openset = [start] # places I know about, but haven't been to
+   - closedset = [] # places I have been to
+   - while len(openset) > 0:  # i.e., openset not empty
+     - state = openset.pop() # I want a stack  <------- ONLY DIFFERENCE FROM BFS
+     - closedset.append(state)
+     - if state == goal:
+       - done
+     - else:
+       - for next_state in possible_moves(state):
+         - if next_state not in closedset:
+             - openset.append(next_state)
+#+END_SRC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
