@@ -60,7 +60,7 @@ heuristic is a "rule of thumb," or some kind of rule that's "usually a
 good idea." BFS and DFS have their own heuristics but their heuristics
 (how to choose the next states to check) do not change depending on
 the problem. Normally, we talk about heuristics in a more
-problem-specific sense. A heuristic would be applied in step ~4.b.~,
+problem-specific sense. A heuristic would be applied in step ~4.a.~,
 in which we choose the next state to check.
 
 * Heuristics for 8-puzzle
@@ -101,18 +101,24 @@ search arrives at a local maximum rather than a global maximum, it has
 no way of fixing that error.
 
 Our general search algorithm can be modified to support hill-climbing
-search by modifying step ~4.b.ii.~ so that the entire "tocheck" list
+search by modifying step ~4.c.~ so that the entire "openset"
 is deleted and replaced with only those states accessible from the
-current state. Also, step ~4.b.~ is modified to choose the best state
+current state. Also, step ~4.a.~ is modified to choose the best state
 in terms of the chosen heuristic ("climb up the hill" means "maximize
 the heuristic function").
 
-*Note*: hill-climbing may be your best option, /if you are actually climbing a hill./ You can't use breadth-first search, for example, if you are a robot physically navigating around a world, because you can't simply teleport yourself back to a different state that you visited earlier. Instead, you would have to walk back to that earlier state, and the cost might be so high it is better for you to keep climbing from where you are.
+*Note*: hill-climbing may be your best option, /if you are actually
+climbing a hill./ You can't use breadth-first search, for example, if
+you are a robot physically navigating around a world, because you
+can't simply teleport yourself back to a different state that you
+visited earlier. Instead, you would have to walk back to that earlier
+state, and the cost might be so high it is better for you to keep
+climbing from where you are.
 
 * Best-first search
 
 Best-first retains a record of every state that has been visited as
-well as the heuristic value of that state. At step ~4.b.~, the best
+well as the heuristic value of that state. At step ~4.a.~, the best
 state ever visited is retrieved and search continues from there. This
 makes best-first search appear to jump around the search tree, like a
 random search, but of course best-first search is not random. The
@@ -214,14 +220,17 @@ as A*.
 
 * Comparisons
 
-Refer to the [[./search.html][search notes]] (at the bottom) for an explanation of the variables $n$ (total possible states), $b$ (branch factor), $d$ (search depth of least-cost solution), and $m$ (maximum search depth, which may be $\infty$).
+Refer to the [[./search.html][search notes]] (at the bottom) for an explanation of the
+variables $n$ (total possible states), $b$ (branch factor), $d$
+(search depth of least-cost solution), and $m$ (maximum search depth,
+which may be $\infty$).
 
-| Metric | BFS | DFS | Hill-climbing | Best-first | A* |
-|--------+---------------+---------------------+-------------------|
-| Complete? | Yes  | Yes  | No | Yes | Yes |
-| Always optimal? (informed search) | No | No | No | No | Yes |
-| Time complexity | $O(b^d)$ | $O(b^d)$ | $O(m)$ | $O(b^d)$ | $O(b^d)$ |
-| Space complexity | $O(b^d)$ | $O(m)$ or $O(n)$ | $O(m)$ | $O(b^d)$ | $O(b^d)$ |
+| Metric                            | BFS      | DFS              | Hill-climbing | Best-first | A*       |
+|-----------------------------------+----------+------------------+---------------+------------+----------|
+| Complete?                         | Yes      | Yes              | No            | Yes        | Yes      |
+| Always optimal? (informed search) | No       | No               | No            | No         | Yes      |
+| Time complexity                   | $O(b^d)$ | $O(b^d)$         | $O(m)$        | $O(b^d)$   | $O(b^d)$ |
+| Space complexity                  | $O(b^d)$ | $O(m)$ or $O(n)$ | $O(m)$        | $O(b^d)$   | $O(b^d)$ |
 
 Note that A* is, in the worst case, just as bad as BFS in terms for
 time complexity. But, we can give A* a good heuristic function and its
@@ -269,9 +278,9 @@ efficient."
 #+END_CENTER
 
 "Memory" is measured as the maximum size ever encountered of the
-"tocheck" list. Hill-climbing search keeps the "tocheck" list the
-smallest, overall, because it always deletes the list and creates a
-new list with only the next accessible states.
+~openset~. Hill-climbing search keeps the ~openset~ the smallest,
+overall, because it always deletes the list and creates a new list
+with only the next accessible states.
 
 BFS uses a lot of memory because it keeps knowledge of all accessible
 states from every state higher up in the "search tree." Other
@@ -303,63 +312,62 @@ possibly because it is more likely it will look at a shallow node
 
 ** 8-puzzle
 
-   All numbers are compared to breadth-first search, the control
-   case. The numbers reflect averages across 20 runs.
+All numbers are compared to breadth-first search, the control
+case. The numbers reflect averages across 20 runs.
    
-| Search type  | Resulting path length | Largest closedset | Largest openset |
-|--------------+-----------------------+-------------------+-----------------|
-| A*           |                   0.0 |             -24.7 |           -15.6 |
+| Search type   | Resulting path length | Largest closedset | Largest openset |
+|---------------+-----------------------+-------------------+-----------------|
+| A*            |                   0.0 |             -24.7 |           -15.6 |
 | Hill-climbing |                  +4.9 |             -13.6 |           -18.1 |
-| Best-first   |                  +1.5 |             -10.8 |            -6.3 |
+| Best-first    |                  +1.5 |             -10.8 |            -6.3 |
 
 *** Discussion
 
-    A* finds an equally-good path as breadth-first (because both
-    breadth-first and A* are optimal with unweighted graphs). However,
-    A* checks fewer states ("largest closedset" is smaller).
+A* finds an equally-good path as breadth-first (because both
+breadth-first and A* are optimal with unweighted graphs). However, A*
+checks fewer states ("largest closedset" is smaller).
 
-    DFS was not tested here because it checks far too many states; the
-    simulations would have taken hours.
+DFS was not tested here because it checks far too many states; the
+simulations would have taken hours.
 
 ** Goodale routing
 
    All numbers are compared to breadth-first search, the control
    case. The numbers reflect averages across 20 runs.
 
-| Search type  | Resulting path length | Largest closedset | Largest openset |
-|--------------+-----------------------+-------------------+-----------------|
-| A*           |                  -1.9 |              -4.5 |            -1.1 |
+| Search type   | Resulting path length | Largest closedset | Largest openset |
+|---------------+-----------------------+-------------------+-----------------|
+| A*            |                  -1.9 |              -4.5 |            -1.1 |
 | Hill-climbing |                 +17.4 |              -1.0 |            -1.9 |
-| Best-first   |                  -1.9 |              +0.7 |            +0.1 |
-| Depth-first  |                  +8.6 |              +1.6 |            +0.7 |
+| Best-first    |                  -1.9 |              +0.7 |            +0.1 |
+| Depth-first   |                  +8.6 |              +1.6 |            +0.7 |
 
 *** Discussion
 
-    A* again finds the best paths; but so does best-first (in this
-    experiment; sometimes best-first does worse).
+A* again finds the best paths; but so does best-first (in this
+experiment; sometimes best-first does worse).
 
 ** Maze path-finding
 
-   All numbers are compared to breadth-first search, the control
-   case. The numbers reflect averages across 20 runs.
+All numbers are compared to breadth-first search, the control
+case. The numbers reflect averages across 20 runs.
 
-| Search type  | Resulting path length | Largest closedset | Largest openset |
-|--------------+-----------------------+-------------------+-----------------|
-| A*           |                   0.0 |            -524.8 |            -0.1 |
+| Search type   | Resulting path length | Largest closedset | Largest openset |
+|---------------+-----------------------+-------------------+-----------------|
+| A*            |                   0.0 |            -524.8 |            -0.1 |
 | Hill-climbing |                +213.0 |           -2166.9 |           -17.9 |
-| Best-first   |                   0.0 |              +0.8 |            +0.2 |
-| Depth-first  |                +505.4 |             -83.5 |           +43.6 |
+| Best-first    |                   0.0 |              +0.8 |            +0.2 |
+| Depth-first   |                +505.4 |             -83.5 |           +43.6 |
 
 *** Discussion
 
-    A* and best-first again find the best paths, which aren't any
-    better than those found by breadth-first, since all movements cost
-    the same.
+A* and best-first again find the best paths, which aren't any better
+than those found by breadth-first, since all movements cost the same.
 
-    However, A* considers far fewer states. Hill-climbing likewise, but
-    hill-climbing is terrible for finding optimal paths (in this case).
+However, A* considers far fewer states. Hill-climbing likewise, but
+hill-climbing is terrible for finding optimal paths (in this case).
 
-    As expected, depth-first also does not find short paths.
+As expected, depth-first also does not find short paths.
 
 
 #+INCLUDE: footer.org
