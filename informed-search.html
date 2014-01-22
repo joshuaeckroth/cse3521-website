@@ -246,7 +246,8 @@ lecture notes.
 
 4. while the openset is not empty:
 
-   a. grab a state from the openset (and remove it)
+   a. grab a state from the openset (and remove it);
+      put it in the closedset (since we're now looking at it)
 
    b. if that state is the goal, hey we're done!
 
@@ -294,7 +295,7 @@ heuristic is a "rule of thumb," or some kind of rule that's "usually a
 good idea." BFS and DFS have their own heuristics but their heuristics
 (how to choose the next states to check) do not change depending on
 the problem. Normally, we talk about heuristics in a more
-problem-specific sense. A heuristic would be applied in step <code>4.b.</code>,
+problem-specific sense. A heuristic would be applied in step <code>4.a.</code>,
 in which we choose the next state to check.
 </p>
 </div>
@@ -353,15 +354,21 @@ no way of fixing that error.
 
 <p>
 Our general search algorithm can be modified to support hill-climbing
-search by modifying step <code>4.b.ii.</code> so that the entire "tocheck" list
+search by modifying step <code>4.c.</code> so that the entire "openset"
 is deleted and replaced with only those states accessible from the
-current state. Also, step <code>4.b.</code> is modified to choose the best state
+current state. Also, step <code>4.a.</code> is modified to choose the best state
 in terms of the chosen heuristic ("climb up the hill" means "maximize
 the heuristic function").
 </p>
 
 <p>
-<b>Note</b>: hill-climbing may be your best option, <i>if you are actually climbing a hill.</i> You can't use breadth-first search, for example, if you are a robot physically navigating around a world, because you can't simply teleport yourself back to a different state that you visited earlier. Instead, you would have to walk back to that earlier state, and the cost might be so high it is better for you to keep climbing from where you are.
+<b>Note</b>: hill-climbing may be your best option, <i>if you are actually
+climbing a hill.</i> You can't use breadth-first search, for example, if
+you are a robot physically navigating around a world, because you
+can't simply teleport yourself back to a different state that you
+visited earlier. Instead, you would have to walk back to that earlier
+state, and the cost might be so high it is better for you to keep
+climbing from where you are.
 </p>
 </div>
 </div>
@@ -370,7 +377,7 @@ the heuristic function").
 <div class="outline-text-2" id="text-4">
 <p>
 Best-first retains a record of every state that has been visited as
-well as the heuristic value of that state. At step <code>4.b.</code>, the best
+well as the heuristic value of that state. At step <code>4.a.</code>, the best
 state ever visited is retrieved and search continues from there. This
 makes best-first search appear to jump around the search tree, like a
 random search, but of course best-first search is not random. The
@@ -508,7 +515,10 @@ as A*.
 <h2 id="sec-8">Comparisons</h2>
 <div class="outline-text-2" id="text-8">
 <p>
-Refer to the <a href="./search.html">search notes</a> (at the bottom) for an explanation of the variables \(n\) (total possible states), \(b\) (branch factor), \(d\) (search depth of least-cost solution), and \(m\) (maximum search depth, which may be \(\infty\)).
+Refer to the <a href="./search.html">search notes</a> (at the bottom) for an explanation of the
+variables \(n\) (total possible states), \(b\) (branch factor), \(d\)
+(search depth of least-cost solution), and \(m\) (maximum search depth,
+which may be \(\infty\)).
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -753,8 +763,8 @@ case. The numbers reflect averages across 20 runs.
 <div class="outline-text-4" id="text-10-1-1">
 <p>
 A* finds an equally-good path as breadth-first (because both
-breadth-first and A* are optimal with unweighted graphs). However,
-A* checks fewer states ("largest closedset" is smaller).
+breadth-first and A* are optimal with unweighted graphs). However, A*
+checks fewer states ("largest closedset" is smaller).
 </p>
 
 <p>
@@ -898,9 +908,8 @@ case. The numbers reflect averages across 20 runs.
 <h4 id="sec-10-3-1">Discussion</h4>
 <div class="outline-text-4" id="text-10-3-1">
 <p>
-A* and best-first again find the best paths, which aren't any
-better than those found by breadth-first, since all movements cost
-the same.
+A* and best-first again find the best paths, which aren't any better
+than those found by breadth-first, since all movements cost the same.
 </p>
 
 <p>
