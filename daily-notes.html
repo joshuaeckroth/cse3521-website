@@ -177,6 +177,27 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-4">Basic DFS algorithm:</a></li>
 </ul>
 </li>
+<li><a href="#sec-4">Day 4</a>
+<ul>
+<li><a href="#sec-4-1">Informed search</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Day 5</a>
+<ul>
+<li><a href="#sec-5-1">Pacman</a></li>
+<li><a href="#sec-5-2">Heuristics for 8-puzzle</a></li>
+<li><a href="#sec-5-3">Heuristics for Goodale routing</a></li>
+<li><a href="#sec-5-4">Hill-climbing</a></li>
+<li><a href="#sec-5-5">Best-first search</a></li>
+<li><a href="#sec-5-6">Again with the heuristics</a>
+<ul>
+<li><a href="#sec-5-6-1">Goodale</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-7">A*</a></li>
+<li><a href="#sec-5-8">Websites</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -619,6 +640,228 @@ sometimes you want the least-cost solution
       - if next_state not in closedset:
           - openset.append(next_state)
 </pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Day 4</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Informed search</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>what is a "better" solution to the Goodale problem?
+<ul class="org-ul">
+<li>faster i.e. less time
+</li>
+</ul>
+</li>
+<li>what information would you use to solve the Goodale problem better?
+<ul class="org-ul">
+<li>traffic information: how long it takes to make the next move
+</li>
+<li>distance
+</li>
+<li>speed limits
+</li>
+<li>stop lights
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Day 5</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">Pacman</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>your function should return something like:
+[NORTH, SOUTH, SOUTH, WEST]
+</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>parents[next_state] = (state, action)
+</li>
+
+<li>later, to reconstruct the path:
+<ul class="org-ul">
+<li>you know the goal, call it "state"
+</li>
+<li>create an empty list of actions:
+<ul class="org-ul">
+<li>actions = []
+</li>
+<li>then put stuff in it iteratively, by referring
+to the parents map:
+<ul class="org-ul">
+<li>while state in parents:
+<ul class="org-ul">
+<li>(prior_state, action) = parents[state]
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">Heuristics for 8-puzzle</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>number of pieces out of place
+</li>
+<li>sum of manhattan distances for each piece to where it
+needs to go
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3">Heuristics for Goodale routing</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>straight-line distance from state to goal
+<ul class="org-ul">
+<li>calculate with lat/lon
+</li>
+</ul>
+</li>
+<li>length of street &amp; speed limit
+<ul class="org-ul">
+<li>factor in traffic
+</li>
+</ul>
+</li>
+<li>manhattan distance from state to goal
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4">Hill-climbing</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>take "best" according to heuristic,
+then delete the openset
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5">Best-first search</h3>
+<div class="outline-text-3" id="text-5-5">
+<ul class="org-ul">
+<li>take "best" according to heuristic,
+but use openset as usual
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-6" class="outline-3">
+<h3 id="sec-5-6">Again with the heuristics</h3>
+<div class="outline-text-3" id="text-5-6">
+<ul class="org-ul">
+<li>"admissible": ALWAYS underestimates or is perfect
+</li>
+<li>impact: if it's admissible, the search will always
+find the best path
+</li>
+<li>when h(s) is admissible, it's called h*(s)
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-5-6-1" class="outline-4">
+<h4 id="sec-5-6-1">Goodale</h4>
+<div class="outline-text-4" id="text-5-6-1">
+<ul class="org-ul">
+<li>is straight-line distance "admissible"?
+<ul class="org-ul">
+<li>yes, can't go faster than straight-line
+</li>
+</ul>
+</li>
+<li>road distance * speed limit: admissible?
+<ul class="org-ul">
+<li>no, might get there faster (drive over the speed limit)
+</li>
+</ul>
+</li>
+<li>manhattan distance is not admissible
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-7" class="outline-3">
+<h3 id="sec-5-7">A*</h3>
+<div class="outline-text-3" id="text-5-7">
+<ul class="org-ul">
+<li>The search algorithm that uses f*(s) = g(s) + h*(s)
+is called A*
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-8" class="outline-3">
+<h3 id="sec-5-8">Websites</h3>
+<div class="outline-text-3" id="text-5-8">
+<ul class="org-ul">
+<li><a href="http://qiao.github.io/PathFinding.js/visual/">http://qiao.github.io/PathFinding.js/visual/</a>
+</li>
+<li><a href="https://www.youtube.com/watch?v=g418BSF6XBQ">https://www.youtube.com/watch?v=g418BSF6XBQ</a> (SimCity)
+</li>
+<li><a href="https://www.youtube.com/watch?v=WTDS3EhGH4w">https://www.youtube.com/watch?v=WTDS3EhGH4w</a> (SimCity)
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
