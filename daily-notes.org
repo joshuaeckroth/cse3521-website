@@ -288,6 +288,104 @@ myobj.myclassfunc()  # prints 3
 #+END_SRC
 
 
+* Day 4
+
+** Informed search
+
+   - what is a "better" solution to the Goodale problem?
+     - faster i.e. less time
+   - what information would you use to solve the Goodale problem better?
+     - traffic information: how long it takes to make the next move
+     - distance
+     - speed limits
+     - stop lights
+
+* Day 5
+
+** Pacman
+
+   - your function should return something like:
+     [NORTH, SOUTH, SOUTH, WEST]
+
+
+   - parents[next_state] = (state, action)
+
+   - later, to reconstruct the path:
+     - you know the goal, call it "state"
+     - create an empty list of actions:
+       - actions = []
+       - then put stuff in it iteratively, by referring
+         to the parents map:
+         - while state in parents:
+           - (prior_state, action) = parents[state]
+
+** Heuristics for 8-puzzle
+   - number of pieces out of place
+   - sum of manhattan distances for each piece to where it
+     needs to go
+** Heuristics for Goodale routing
+   - straight-line distance from state to goal
+     - calculate with lat/lon
+   - length of street & speed limit
+     - factor in traffic
+   - manhattan distance from state to goal
+** Hill-climbing
+   - take "best" according to heuristic,
+     then delete the openset
+** Best-first search
+   - take "best" according to heuristic,
+     but use openset as usual
+** Again with the heuristics
+   - "admissible": ALWAYS underestimates or is perfect
+   - impact: if it's admissible, the search will always
+     find the best path
+   - when h(s) is admissible, it's called h*(s)
+*** Goodale
+    - is straight-line distance "admissible"?
+      - yes, can't go faster than straight-line
+    - road distance * speed limit: admissible?
+      - no, might get there faster (drive over the speed limit)
+    - manhattan distance is not admissible
+** A*
+  - The search algorithm that uses f*(s) = g(s) + h*(s)
+    is called A*
+** Websites
+   - http://qiao.github.io/PathFinding.js/visual/
+   - https://www.youtube.com/watch?v=g418BSF6XBQ (SimCity)
+   - https://www.youtube.com/watch?v=WTDS3EhGH4w (SimCity)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
