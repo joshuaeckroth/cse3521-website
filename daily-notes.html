@@ -198,6 +198,17 @@ for the JavaScript code in this tag.
 <li><a href="#sec-5-8">Websites</a></li>
 </ul>
 </li>
+<li><a href="#sec-6">Day 6</a>
+<ul>
+<li><a href="#sec-6-1">A*</a></li>
+<li><a href="#sec-6-2">Heaps</a></li>
+<li><a href="#sec-6-3">Cost functions (path-cost + heuristic)</a>
+<ul>
+<li><a href="#sec-6-3-1">What's the number associated with a state?</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -831,6 +842,139 @@ is called A*
 <li><a href="https://www.youtube.com/watch?v=WTDS3EhGH4w">https://www.youtube.com/watch?v=WTDS3EhGH4w</a> (SimCity)
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Day 6</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">A*</h3>
+<div class="outline-text-3" id="text-6-1">
+<pre class="example">
+1. create an empty list called "closedset"; this list will contain
+   states that have been visited
+
+2. create a list called "openset" that contains just the starting
+   state; this list contains states that have not been visited but are
+   known to exist
+
+2.a. create a list called "openset_states" that contains just the states
+     that would otherwise be in openset
+
+3. create an empty map (key/value pairs) called "parents"; this map
+   contains the previous state of each state that has been visited
+
+4. while the openset is not empty:
+
+   a. grab a state from the openset (and remove it from both sets);
+      put it in the closedset (since we're now looking at it)
+
+      - we need to prefer better states first
+
+   b. if that state is the goal, hey we're done!
+
+      i. return a reconstructed path from the goal state to the start
+         state (this is easy: recursively grab parent states from the
+         "parents" map)
+
+   c. it's not the goal state; for each next state that is accessible
+      from here:
+
+       i. if this next state is in the closedset (it has been visited
+          before), ignore it
+
+      ii. if this next state is not in the openset, put it in the
+          openset and record its parent
+
+          - if state not in openset_states:
+
+   d. (repeat the loop)
+
+5. if the openset is empty and we never found the goal, oops!
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">Heaps</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li>heaps are ordered lists
+<ul class="org-ul">
+<li>stuff is sorted by what its value is:
+<ul class="org-ul">
+<li>best to use: (score, state) tuples
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3">Cost functions (path-cost + heuristic)</h3>
+<div class="outline-text-3" id="text-6-3">
+</div><div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1">What's the number associated with a state?</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<ul class="org-ul">
+<li>You can get BFS behavior if you do this:
+<ul class="org-ul">
+<li>cost = number of steps in the path
+</li>
+<li>i.e., cost of path to here, + 1
+</li>
+<li>bottom-up approach:
+<ul class="org-ul">
+<li>when you find successors,
+<ul class="org-ul">
+<li>record in another map, path cost + 1
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">for</span> (next_state, action, cost) <span style="color: #004dd0; background-color: #ffffff;">in</span> problem.getSuccessors(state):
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">next_state is something like (4, 2) (coordinates)</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">action is something like WEST</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">cost is not used for depth-first search</span>
+
+    <span style="color: #000000; background-color: #ffffff;">path_cost</span> = 0
+    <span style="color: #004dd0; background-color: #ffffff;">if</span> state <span style="color: #004dd0; background-color: #ffffff;">in</span> path_costs:
+        <span style="color: #000000; background-color: #ffffff;">path_cost</span> = path_costs[state] + cost
+    <span style="color: #000000; background-color: #ffffff;">path_costs</span>[next_state] = path_cost
+
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">path_cost is g(s) in the formula f*(s) = g(s) + h*(s)</span>
+
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">btw, BFS is f(s) = g(s)</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">btw, DFS is f(s) = -g(s)</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">btw, best-first is f(s) = h(s)</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">btw, A is f(s) = g(s) + h(s)</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">btw, A* is f*(s) = g(s) + h*(s)</span>
+
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">two options for h*(s): manhattanHeuristic, euclideanHeuristic,</span>
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;">#                        </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">nullHeuristic</span>
+
+    <span style="color: #000000; background-color: #ffffff;">total_cost</span> = path_cost + heuristic(next_state, problem)
+
+    heappush(openset, (total_cost, next_state))
+    openset_states.push(next_state)
+</pre>
+</div>
+
+
+
+
+
+
+
 
 
 
@@ -991,6 +1135,7 @@ $('.hidden > strong').click(function() {
   $(this).parent().find('.hidden-content').toggle();
 });
 </script>
+</div>
 </div>
 </div>
 </div>
