@@ -1,0 +1,68 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 3
+
+* Useful Python code
+
+Task 1 below asks you to implement A* for Pacman. So, you want to have
+an =openset= that's ordered by a heuristic value. Python has "heaps"
+for this purpose. Whenever you "pop" a value from a heap, the lowest
+value comes out. Use a tuple to keep the value and other data
+together.
+
+#+BEGIN_SRC python
+from heapq import heappush, heappop
+
+openset = []
+heappush(openset, (5, "foo"))
+heappush(openset, (7, "bar"))
+heappush(openset, (3, "baz"))
+heappush(openset, (9, "quux"))
+
+best = heappop(openset)
+print best
+#+END_SRC
+
+* Task 1 (100 pts)
+
+This task uses the same Pacman code as [[./homework-2.html][Homework
+2]]. *Grab the code again, and unzip to a new directory.* It's best
+not to mix the code for different assignments.
+
+Open the file =py/search.py= and find the function =aStarSearch=
+(line 104, at the bottom) which reads:
+
+#+BEGIN_SRC python
+def aStarSearch(problem, heuristic=nullHeuristic):
+    "Search the node that has the lowest combined cost and heuristic first."
+    "*** YOUR CODE HERE ***"
+    util.raiseNotDefined()
+#+END_SRC
+
+*Add this line of code above that function:*
+
+#+BEGIN_SRC python
+from heapq import heappush, heappop
+def aStarSearch(problem, heuristic=nullHeuristic):
+#+END_SRC
+
+Take the template and finish the code so that A* search works. (You
+probably want to adapt what you wrote for Homework 2.) You can use the
+argument =heuristic= as a function like so:
+
+#+BEGIN_SRC python
+dist = heuristic(state, problem)
+#+END_SRC
+
+You can test it with pacman by running this command:
+
+- =python py/pacman.py -l mediumScaryMaze -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic=
+
+* Task 2 (Extra credit, +20 pts)
+
+Create a worse search algorithm by modifying =aStarSearch= in a very
+simple way. Describe to me what your modification was, and how it
+affected performance (in terms of "search nodes expanded" and "total
+cost of path"; look at the output from the pacman program).
+
+#+INCLUDE: footer.org
+
