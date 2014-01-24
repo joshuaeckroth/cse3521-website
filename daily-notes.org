@@ -354,6 +354,105 @@ myobj.myclassfunc()  # prints 3
    - https://www.youtube.com/watch?v=g418BSF6XBQ (SimCity)
    - https://www.youtube.com/watch?v=WTDS3EhGH4w (SimCity)
 
+* Day 6
+
+** A*
+
+#+BEGIN_EXAMPLE
+1. create an empty list called "closedset"; this list will contain
+   states that have been visited
+
+2. create a list called "openset" that contains just the starting
+   state; this list contains states that have not been visited but are
+   known to exist
+
+2.a. create a list called "openset_states" that contains just the states
+     that would otherwise be in openset
+
+3. create an empty map (key/value pairs) called "parents"; this map
+   contains the previous state of each state that has been visited
+
+4. while the openset is not empty:
+
+   a. grab a state from the openset (and remove it from both sets);
+      put it in the closedset (since we're now looking at it)
+
+      - we need to prefer better states first
+
+   b. if that state is the goal, hey we're done!
+
+      i. return a reconstructed path from the goal state to the start
+         state (this is easy: recursively grab parent states from the
+         "parents" map)
+
+   c. it's not the goal state; for each next state that is accessible
+      from here:
+
+       i. if this next state is in the closedset (it has been visited
+          before), ignore it
+
+      ii. if this next state is not in the openset, put it in the
+          openset and record its parent
+
+          - if state not in openset_states:
+
+   d. (repeat the loop)
+
+5. if the openset is empty and we never found the goal, oops!
+#+END_EXAMPLE
+
+** Heaps
+
+   - heaps are ordered lists
+     - stuff is sorted by what its value is:
+       - best to use: (score, state) tuples
+
+** Cost functions (path-cost + heuristic)
+
+*** What's the number associated with a state?
+
+    - You can get BFS behavior if you do this:
+      - cost = number of steps in the path
+      - i.e., cost of path to here, + 1
+      - bottom-up approach:
+        - when you find successors,
+          - record in another map, path cost + 1
+
+#+BEGIN_SRC python
+for (next_state, action, cost) in problem.getSuccessors(state):
+    # next_state is something like (4, 2) (coordinates)
+    # action is something like WEST
+    # cost is not used for depth-first search
+
+    path_cost = 0
+    if state in path_costs:
+        path_cost = path_costs[state] + cost
+    path_costs[next_state] = path_cost
+
+    # path_cost is g(s) in the formula f*(s) = g(s) + h*(s)
+
+    # btw, BFS is f(s) = g(s)
+    # btw, DFS is f(s) = -g(s)
+    # btw, best-first is f(s) = h(s)
+    # btw, A is f(s) = g(s) + h(s)
+    # btw, A* is f*(s) = g(s) + h*(s)
+
+    # two options for h*(s): manhattanHeuristic, euclideanHeuristic,
+    #                        nullHeuristic
+
+    total_cost = path_cost + heuristic(next_state, problem)
+
+    heappush(openset, (total_cost, next_state))
+    openset_states.push(next_state)
+#+END_SRC
+
+
+
+
+
+
+
+
 
 
 
