@@ -209,6 +209,17 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
+<li><a href="#sec-7">Day 8</a>
+<ul>
+<li><a href="#sec-7-1">Zero-sum games</a></li>
+<li><a href="#sec-7-2">Tic-tac-toe</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">Day 9</a>
+<ul>
+<li><a href="#sec-8-1">Connect-four code with depth-limited minimax</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -968,6 +979,283 @@ is called A*
     openset_states.push(next_state)
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Day 8</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">Zero-sum games</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>A game where, in the end, all the players' utilities add up to zero
+</li>
+<li>Examples:
+<ul class="org-ul">
+<li>Chess
+</li>
+<li>Tug-o-war
+</li>
+<li>Poker
+</li>
+<li>Trading card game competitions
+</li>
+<li>Rock-paper-scissors-lizard-spock
+</li>
+<li>Go
+</li>
+<li>Tic-tac-toe
+</li>
+<li>Checkers
+</li>
+</ul>
+</li>
+<li>Non-examples:
+<ul class="org-ul">
+<li>Scrabble
+</li>
+<li>FPS with co-op
+</li>
+<li>Soccer, football, baseball
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">Tic-tac-toe</h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li>Initial state: blank board
+</li>
+<li>Possible actions: put an x, put an o
+</li>
+<li>Transition model: how a board changes after putting an x/o
+</li>
+<li>Players: x and o
+</li>
+<li>Terminal tests: three in a row for either x/o or a full board (tie)
+</li>
+<li>Utility function (always for x):
+<ul class="org-ul">
+<li>suppose x has three in a row: 1
+</li>
+<li>suppose o has three in a row: -1
+</li>
+<li>suppose there is a tie: 0
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">Day 9</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1">Connect-four code with depth-limited minimax</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">create_grid</span>():
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">grid is 6x7 so we'll create a list of size 42</span>
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> [<span style="color: #670088; background-color: #ffffff; font-style: italic;">' '</span> <span style="color: #004dd0; background-color: #ffffff;">for</span> _ <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(42)]
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">print_grid</span>(grid):
+    <span style="color: #000000; background-color: #ffffff;">s</span> = <span style="color: #670088; background-color: #ffffff; font-style: italic;">""</span>
+    <span style="color: #000000; background-color: #ffffff;">s</span> += <span style="color: #670088; background-color: #ffffff; font-style: italic;">"---------------\n"</span>
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
+        <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
+            <span style="color: #000000; background-color: #ffffff;">s</span> += <span style="color: #670088; background-color: #ffffff; font-style: italic;">"|%c"</span> % grid[i*7+j]
+        <span style="color: #000000; background-color: #ffffff;">s</span> += <span style="color: #670088; background-color: #ffffff; font-style: italic;">"|\n"</span>
+    <span style="color: #000000; background-color: #ffffff;">s</span> += <span style="color: #670088; background-color: #ffffff; font-style: italic;">"---------------\n"</span>
+    <span style="color: #000000; background-color: #ffffff;">s</span> += <span style="color: #670088; background-color: #ffffff; font-style: italic;">" 0 1 2 3 4 5 6 \n\n"</span>
+    <span style="color: #004dd0; background-color: #ffffff;">print</span> s
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">column_full</span>(grid, col):
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> (grid[col] != <span style="color: #670088; background-color: #ffffff; font-style: italic;">' '</span>)
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">add_to_column</span>(grid, col, player):
+    <span style="color: #000000; background-color: #ffffff;">newgrid</span> = grid[:]
+    <span style="color: #000000; background-color: #ffffff;">pos</span> = -1
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(5,-1,-1):
+        <span style="color: #004dd0; background-color: #ffffff;">if</span>(grid[i*7+col] == <span style="color: #670088; background-color: #ffffff; font-style: italic;">' '</span>):
+            <span style="color: #000000; background-color: #ffffff;">pos</span> = i
+            <span style="color: #004dd0; background-color: #ffffff;">break</span>
+    <span style="color: #004dd0; background-color: #ffffff;">if</span> pos != -1:
+        <span style="color: #000000; background-color: #ffffff;">newgrid</span>[pos*7+col] = player
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> newgrid
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_horizontal</span>(grid, player):
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
+        <span style="color: #000000; background-color: #ffffff;">player_count</span> = 0
+        <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
+            <span style="color: #004dd0; background-color: #ffffff;">if</span> grid[i*7+j] == player:
+                player_count += 1
+            <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+                player_count = 0
+            <span style="color: #004dd0; background-color: #ffffff;">if</span> player_count == 4:
+                <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_vertical</span>(grid, player):
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
+        player_count = 0
+        <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
+            <span style="color: #004dd0; background-color: #ffffff;">if</span> grid[i*7+j] == player:
+                player_count += 1
+            <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+                player_count = 0
+            <span style="color: #004dd0; background-color: #ffffff;">if</span> player_count == 4:
+                <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_downleft</span>(grid, player):
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
+        <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
+            player_count = 0
+            <span style="color: #004dd0; background-color: #ffffff;">for</span> (ii,jj) <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">zip</span>(<span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(i, 6), <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(j, -1, -1)):
+                <span style="color: #004dd0; background-color: #ffffff;">if</span> grid[ii*7+jj] == player:
+                    player_count += 1
+                <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+                    player_count = 0
+            <span style="color: #004dd0; background-color: #ffffff;">if</span> player_count == 4:
+                <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_downright</span>(grid, player):
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
+        <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
+            player_count = 0
+            <span style="color: #004dd0; background-color: #ffffff;">for</span> (ii,jj) <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">zip</span>(<span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(i, 6), <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(j, 7)):
+                <span style="color: #004dd0; background-color: #ffffff;">if</span> grid[ii*7+jj] == player:
+                    player_count += 1
+                <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+                    player_count = 0
+            <span style="color: #004dd0; background-color: #ffffff;">if</span> player_count == 4:
+                <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">won</span>(grid, player):
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> (win_vertical(grid, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> win_horizontal(grid, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
+                win_downleft(grid, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> win_downright(grid, player))
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">is_terminal</span>(grid):
+    free_moves = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
+        <span style="color: #004dd0; background-color: #ffffff;">if</span> <span style="color: #004dd0; background-color: #ffffff;">not</span> column_full(grid, i):
+            free_moves = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
+            <span style="color: #004dd0; background-color: #ffffff;">break</span>
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> (won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>) <span style="color: #004dd0; background-color: #ffffff;">or</span> won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'B'</span>) <span style="color: #004dd0; background-color: #ffffff;">or</span> <span style="color: #004dd0; background-color: #ffffff;">not</span> free_moves)
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">next_moves</span>(grid, player):
+    moves = {}
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
+        <span style="color: #004dd0; background-color: #ffffff;">if</span> <span style="color: #004dd0; background-color: #ffffff;">not</span> column_full(grid, i):
+            moves[i] = add_to_column(grid, i, player)
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> moves
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">utility</span>(grid):
+    <span style="color: #004dd0; background-color: #ffffff;">if</span> won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>):
+        <span style="color: #004dd0; background-color: #ffffff;">return</span> 1.0
+    <span style="color: #004dd0; background-color: #ffffff;">if</span> won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'B'</span>):
+        <span style="color: #004dd0; background-color: #ffffff;">return</span> -1.0
+    <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+        <span style="color: #004dd0; background-color: #ffffff;">return</span> 0.0
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">estimate_utility</span>(grid, depth):
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> -1.0/depth
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">switch_player</span>(player):
+    <span style="color: #004dd0; background-color: #ffffff;">if</span> player == <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>:
+        <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">'B'</span>
+    <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+        <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">minimax</span>(grid, player, depth = 0):
+    <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">player is A (computer) or B (opponent)</span>
+    best_u = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
+    best_move = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
+    trans = next_moves(grid, player)
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> (move, nextstate) <span style="color: #004dd0; background-color: #ffffff;">in</span> trans.iteritems():
+        <span style="color: #004dd0; background-color: #ffffff;">if</span> is_terminal(nextstate):
+            u = utility(nextstate)
+        <span style="color: #004dd0; background-color: #ffffff;">elif</span> depth &gt; 3:
+            u = estimate_utility(grid, depth)
+        <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+            <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">look deeper in the game search tree</span>
+            (u, _) = minimax(nextstate, switch_player(player), depth+1)
+        <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">find best utility &amp; move</span>
+        <span style="color: #004dd0; background-color: #ffffff;">if</span> best_u == <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span> <span style="color: #004dd0; background-color: #ffffff;">or</span> (player == <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span> <span style="color: #004dd0; background-color: #ffffff;">and</span> u &gt; best_u) \
+           <span style="color: #004dd0; background-color: #ffffff;">or</span> (player == <span style="color: #670088; background-color: #ffffff; font-style: italic;">'B'</span> <span style="color: #004dd0; background-color: #ffffff;">and</span> u &lt; best_u):
+            best_u = u
+            best_move = move
+
+    <span style="color: #004dd0; background-color: #ffffff;">return</span> (best_u, best_move)
+
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">game</span>():
+    grid = create_grid()
+    player = <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>
+    <span style="color: #004dd0; background-color: #ffffff;">while</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>:
+        print_grid(grid)
+
+        <span style="color: #004dd0; background-color: #ffffff;">if</span> player == <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>:
+            <span style="color: #004dd0; background-color: #ffffff;">print</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">"Searching..."</span>
+            (u, col) = minimax(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>)
+            <span style="color: #004dd0; background-color: #ffffff;">print</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">"I choose %d with value %.2f"</span> % (col, u)
+            grid = add_to_column(grid, col, player)
+        <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+            col = <span style="color: #000000; background-color: #ffffff; font-weight: bold;">input</span>(<span style="color: #670088; background-color: #ffffff; font-style: italic;">"Player %c, which column (0-6)? "</span> % player)
+            <span style="color: #004dd0; background-color: #ffffff;">if</span> column_full(grid, col):
+                <span style="color: #004dd0; background-color: #ffffff;">print</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">"\n\nCan't, column full.\n\n"</span>
+                <span style="color: #004dd0; background-color: #ffffff;">continue</span>
+            <span style="color: #004dd0; background-color: #ffffff;">else</span>:
+                grid = add_to_column(grid, col, player)
+
+        <span style="color: #004dd0; background-color: #ffffff;">if</span> won(grid, player):
+            print_grid(grid)
+            <span style="color: #004dd0; background-color: #ffffff;">print</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">"\n\nPlayer %c wins!!"</span> % player
+            <span style="color: #004dd0; background-color: #ffffff;">return</span>
+        player = switch_player(player)
+
+game()
+</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1135,7 +1423,6 @@ $('.hidden > strong').click(function() {
   $(this).parent().find('.hidden-content').toggle();
 });
 </script>
-</div>
 </div>
 </div>
 </div>
