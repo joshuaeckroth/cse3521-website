@@ -447,6 +447,232 @@ for (next_state, action, cost) in problem.getSuccessors(state):
 #+END_SRC
 
 
+* Day 8
+** Zero-sum games
+   - A game where, in the end, all the players' utilities add up to zero
+   - Examples:
+     - Chess
+     - Tug-o-war
+     - Poker
+     - Trading card game competitions
+     - Rock-paper-scissors-lizard-spock
+     - Go
+     - Tic-tac-toe
+     - Checkers
+   - Non-examples:
+     - Scrabble
+     - FPS with co-op
+     - Soccer, football, baseball
+** Tic-tac-toe
+   - Initial state: blank board
+   - Possible actions: put an x, put an o
+   - Transition model: how a board changes after putting an x/o
+   - Players: x and o
+   - Terminal tests: three in a row for either x/o or a full board (tie)
+   - Utility function (always for x):
+     - suppose x has three in a row: 1
+     - suppose o has three in a row: -1
+     - suppose there is a tie: 0
+
+* Day 9
+
+** Connect-four code with depth-limited minimax
+
+#+BEGIN_SRC python
+def create_grid():
+    # grid is 6x7 so we'll create a list of size 42
+    return [' ' for _ in range(42)]
+
+def print_grid(grid):
+    s = ""
+    s += "---------------\n"
+    for i in range(6):
+        for j in range(7):
+            s += "|%c" % grid[i*7+j]
+        s += "|\n"
+    s += "---------------\n"
+    s += " 0 1 2 3 4 5 6 \n\n"
+    print s
+
+def column_full(grid, col):
+    return (grid[col] != ' ')
+
+def add_to_column(grid, col, player):
+    newgrid = grid[:]
+    pos = -1
+    for i in range(5,-1,-1):
+        if(grid[i*7+col] == ' '):
+            pos = i
+            break
+    if pos != -1:
+        newgrid[pos*7+col] = player
+    return newgrid
+
+def win_horizontal(grid, player):
+    for i in range(6):
+        player_count = 0
+        for j in range(7):
+            if grid[i*7+j] == player:
+                player_count += 1
+            else:
+                player_count = 0
+            if player_count == 4:
+                return True
+    return False
+
+def win_vertical(grid, player):
+    for j in range(7):
+        player_count = 0
+        for i in range(6):
+            if grid[i*7+j] == player:
+                player_count += 1
+            else:
+                player_count = 0
+            if player_count == 4:
+                return True
+    return False
+
+def win_downleft(grid, player):
+    for i in range(6):
+        for j in range(7):
+            player_count = 0
+            for (ii,jj) in zip(range(i, 6), range(j, -1, -1)):
+                if grid[ii*7+jj] == player:
+                    player_count += 1
+                else:
+                    player_count = 0
+            if player_count == 4:
+                return True
+    return False
+
+def win_downright(grid, player):
+    for i in range(6):
+        for j in range(7):
+            player_count = 0
+            for (ii,jj) in zip(range(i, 6), range(j, 7)):
+                if grid[ii*7+jj] == player:
+                    player_count += 1
+                else:
+                    player_count = 0
+            if player_count == 4:
+                return True
+    return False
+
+def won(grid, player):
+    return (win_vertical(grid, player) or win_horizontal(grid, player) or \
+                win_downleft(grid, player) or win_downright(grid, player))
+
+def is_terminal(grid):
+    free_moves = False
+    for i in range(7):
+        if not column_full(grid, i):
+            free_moves = True
+            break
+    return (won(grid, 'A') or won(grid, 'B') or not free_moves)
+
+def next_moves(grid, player):
+    moves = {}
+    for i in range(7):
+        if not column_full(grid, i):
+            moves[i] = add_to_column(grid, i, player)
+    return moves
+
+def utility(grid):
+    if won(grid, 'A'):
+        return 1.0
+    if won(grid, 'B'):
+        return -1.0
+    else:
+        return 0.0
+
+def estimate_utility(grid, depth):
+    return -1.0/depth
+
+def switch_player(player):
+    if player == 'A':
+        return 'B'
+    else:
+        return 'A'
+
+def minimax(grid, player, depth = 0):
+    # player is A (computer) or B (opponent)
+    best_u = None
+    best_move = None
+    trans = next_moves(grid, player)
+    for (move, nextstate) in trans.iteritems():
+        if is_terminal(nextstate):
+            u = utility(nextstate)
+        elif depth > 3:
+            u = estimate_utility(grid, depth)
+        else:
+            # look deeper in the game search tree
+            (u, _) = minimax(nextstate, switch_player(player), depth+1)
+        # find best utility & move
+        if best_u == None or (player == 'A' and u > best_u) \
+           or (player == 'B' and u < best_u):
+            best_u = u
+            best_move = move
+
+    return (best_u, best_move)
+
+
+def game():
+    grid = create_grid()
+    player = 'A'
+    while True:
+        print_grid(grid)
+
+        if player == 'A':
+            print "Searching..."
+            (u, col) = minimax(grid, 'A')
+            print "I choose %d with value %.2f" % (col, u)
+            grid = add_to_column(grid, col, player)
+        else:
+            col = input("Player %c, which column (0-6)? " % player)
+            if column_full(grid, col):
+                print "\n\nCan't, column full.\n\n"
+                continue
+            else:
+                grid = add_to_column(grid, col, player)
+
+        if won(grid, player):
+            print_grid(grid)
+            print "\n\nPlayer %c wins!!" % player
+            return
+        player = switch_player(player)
+
+game()
+#+END_SRC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
