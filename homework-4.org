@@ -1,0 +1,88 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 4
+
+* Task 1 (40 pts)
+
+This task asks you to read and understand some code I wrote. My code
+solves a question in the original Pacman assignments from UC
+Berkeley. The question had to do with writing minimax for Pacman (so
+the guy can avoid the ghosts and eat the dots).
+
+Go to the [[https://carmen.osu.edu][Carmen]] page for this class, and download the Pacman
+multi-agent ZIP file. In the file ~multiAgents.py~ is my *solution*
+for minimax search. *Do not share this file outside of this class.*
+The internet will hate me because they will never be able to use this
+question again! So keep it to yourself.
+
+Read the code starting at line 115, the function called ~minimax~ in
+the class called ~MinimaxAgent~. Also practice running Pacman with
+different mazes ("layouts") and depth limits:
+
+- =python pacman.py -p MinimaxAgent -l minimaxClassic -f -a depth=2=
+- =python pacman.py -p MinimaxAgent -l openClassic -f -a depth=2=
+- =python pacman.py -p MinimaxAgent -l trickyClassic -f -a depth=1=
+- =python pacman.py -p MinimaxAgent -l trickyClassic -f -a depth=2=
+- =python pacman.py -p MinimaxAgent -l trickyClassic -f -a depth=3=
+- =python pacman.py -p MinimaxAgent -l originalClassic -f -a depth=2=
+
+And so on. Look at the various layouts in the ~layouts~ folder and try
+those for fun.
+
+Now, anwser these questions (on paper or in a text file):
+
+1. Recall that "minimax" means we want to find the best (max) move for
+   the player (Pacman) but this depends on determining the worst (min)
+   move for all the ghosts (best for the ghosts, worst for
+   Pacman). Sometimes the ~minimax~ function should act like a ~min~
+   function, sometimes like a ~max~ function. Describe or copy the
+   small chunk of code in the Pacman ~minimax~ function that I wrote
+   that handles this min/max difference.
+
+2. This code uses a depth limit. Does the depth increase in this code
+   for each Pacman and ghost move, or only for each Pacman move, or
+   only for each ghost move?
+
+3. Sometimes Pacman just sits there, without eating any dots
+   (especially on ~openClassic~). Why does this happen? You might want
+   to add some ~print~ statements to the code to see why it chooses
+   the ~STOP~ action instead of something else. Also, how does the
+   depth limit change this behavior? Try running the examples with
+   different depth limits. Note, the impact of the depth limit is a
+   bit counter-intuitive.
+
+* Task 2 (60 pts)
+
+Look at the ~multiAgents.py~ file again, below the function you were
+looking at earlier. You will find the ~AlphaBetaAgent~ class and the
+exact same ~minimax~ function as before. Your task is to modify this
+~minimax~ function to use alpha-beta pruning. Note, if you do it
+correctly, you will only need to modify the function header (where the
+arguments are listed) and add some code at the end of the ~for~ loop
+(but still inside the ~for~ loop).
+
+*Important note:* In the lecture notes on this website, the code shows
+that you should ~return u~ if ~u <= alpha~ or if ~u >= beta~. Instead
+of this, you should ~break~ from the ~for~ loop (not ~return u~) and
+you should check ~u < alpha~ and ~u > beta~ (not ~<=~ or ~>=~). Email
+me if you don't understand what I mean.
+
+Test if you did it correctly with this command:
+
+=python autograder.py -q q3=
+
+It should report "Total: 4/4" tests passed. Ignore what it says about
+grades. You should also find that the demos work faster (since they
+will use the alpha-beta pruning), but otherwise make the same moves:
+
+- =python pacman.py -p AlphaBetaAgent -l minimaxClassic -f -a depth=2=
+- =python pacman.py -p AlphaBetaAgent -l openClassic -f -a depth=2=
+- =python pacman.py -p AlphaBetaAgent -l trickyClassic -f -a depth=1=
+- =python pacman.py -p AlphaBetaAgent -l trickyClassic -f -a depth=2=
+- =python pacman.py -p AlphaBetaAgent -l trickyClassic -f -a depth=3=
+- =python pacman.py -p AlphaBetaAgent -l originalClassic -f -a depth=2=
+
+Submit just the ~multiAgents.py~ file (plus your answers to Task 1 if
+not on paper) to the Dropbox on Carmen.
+
+#+INCLUDE: footer.org
+
