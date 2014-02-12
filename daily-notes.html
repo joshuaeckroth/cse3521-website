@@ -220,6 +220,17 @@ for the JavaScript code in this tag.
 <li><a href="#sec-8-1">Connect-four code with depth-limited minimax</a></li>
 </ul>
 </li>
+<li><a href="#sec-9">Day 10</a>
+<ul>
+<li><a href="#sec-9-1">Knowledge representation</a></li>
+<li><a href="#sec-9-2">Boolean logic</a></li>
+<li><a href="#sec-9-3">Propositional logic</a>
+<ul>
+<li><a href="#sec-9-3-1">Rules of inference</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1228,6 +1239,336 @@ is called A*
 game()
 </pre>
 </div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">Day 10</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1">Knowledge representation</h3>
+<div class="outline-text-3" id="text-9-1">
+<dl class="org-dl">
+<dt> Procedural knowledge </dt><dd>the steps of a process; building a bike; a python program; a recipe
+</dd>
+
+<dt> Declarative knowledge </dt><dd>factual knowledge, universally true knowledge; the sky is blue; etc
+</dd>
+</dl>
+
+<p>
+How they differ: declarative knowledge does not include knowledge
+about how to use it, and it is difficult to get declarative
+knowledge from procedural knowledge
+</p>
+
+<ul class="org-ul">
+<li>Properties of declarative knowledge representations:
+<ul class="org-ul">
+<li>surrogates for real world entities, so thinking can be done "in
+the head" rather than physically manipulating entities in the
+world
+</li>
+<li>ontological commitment about what entities matter (i.e., what entities exist)
+</li>
+<li>theory of intelligent reasoning
+</li>
+<li>medium for computation, gotta keep it a bit unexpressive (if
+it's too powerful, e.g., first order logic, it becomes
+impossible to reason about efficiently)
+</li>
+<li>medium for human expression
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2">Boolean logic</h3>
+<div class="outline-text-3" id="text-9-2">
+<ul class="org-ul">
+<li>True / False, variables x, y, z, &#x2026;
+</li>
+<li>connectives:
+<ul class="org-ul">
+<li>not x: ¬x
+</li>
+<li>x or y: x ∨ y
+</li>
+<li>x and y: x ∧ y
+</li>
+</ul>
+</li>
+<li>truth tables:
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">x</th>
+<th scope="col" class="left">y</th>
+<th scope="col" class="left">x∨y</th>
+<th scope="col" class="left">¬(x ∨ y)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>some equivalences:
+
+<ul class="org-ul">
+<li>x ∧ (y ∨ z) ≡ (x ∧ y) ∨ (x ∧ z)
+</li>
+<li>¬(x ∧ y) ≡ ¬x ∨ ¬y
+</li>
+<li>x ∧ (x ∨ y) ≡ x
+</li>
+<li>x ∨ (x ∧ y) ≡ x
+</li>
+</ul>
+</li>
+
+<li>simplify: z ∨ ¬(y ∧ z) ≡ z ∨ (¬y ∨ ¬z) ≡ (z ∨ ¬z) ∨ ¬y ≡ T ∨ ¬y ≡ T
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3">Propositional logic</h3>
+<div class="outline-text-3" id="text-9-3">
+<ul class="org-ul">
+<li>have T/F, x, y, z
+</li>
+<li>also like to represent long formulas as φ, ρ, ψ, etc.
+</li>
+<li>still have ¬, ∨, ∧
+</li>
+<li>add: → (implies, "if"), ↔ (if-and-only-if)
+</li>
+
+<li>truth table for →
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">φ</th>
+<th scope="col" class="left">ψ</th>
+<th scope="col" class="left">φ → ψ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+</tr>
+</tbody>
+</table>
+</li>
+
+<li>truth table for ↔
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">φ</th>
+<th scope="col" class="left">ψ</th>
+<th scope="col" class="left">φ ↔ ψ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+</tr>
+</tbody>
+</table>
+</li>
+
+<li>some equivalences:
+
+<ul class="org-ul">
+<li>"contrapositive": φ → ψ ≡ ¬ψ → ¬φ
+</li>
+
+<li>p → (q → r) ≡ (p ∧ q) → r
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+<div id="outline-container-sec-9-3-1" class="outline-4">
+<h4 id="sec-9-3-1">Rules of inference</h4>
+<div class="outline-text-4" id="text-9-3-1">
+<ul class="org-ul">
+<li>suppose you have a "knowledge base," such as:
+
+<ol class="org-ol">
+<li>p ∧ ¬q
+</li>
+<li>r
+</li>
+<li>¬s → q
+</li>
+</ol>
+</li>
+
+<li>what else do you know?
+</li>
+
+<li>¬q (from line 1)
+</li>
+<li>s (¬q plus modus tollens)
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1423,6 +1764,7 @@ $('.hidden > strong').click(function() {
   $(this).parent().find('.hidden-content').toggle();
 });
 </script>
+</div>
 </div>
 </div>
 </div>
