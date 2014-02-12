@@ -644,6 +644,148 @@ def game():
 game()
 #+END_SRC
 
+* Day 10
+
+** Knowledge representation
+
+   - Procedural knowledge :: the steps of a process; building a bike; a python program; a recipe
+
+   - Declarative knowledge :: factual knowledge, universally true knowledge; the sky is blue; etc
+
+   How they differ: declarative knowledge does not include knowledge
+   about how to use it, and it is difficult to get declarative
+   knowledge from procedural knowledge
+
+   - Properties of declarative knowledge representations:
+     - surrogates for real world entities, so thinking can be done "in
+       the head" rather than physically manipulating entities in the
+       world
+     - ontological commitment about what entities matter (i.e., what entities exist)
+     - theory of intelligent reasoning
+     - medium for computation, gotta keep it a bit unexpressive (if
+       it's too powerful, e.g., first order logic, it becomes
+       impossible to reason about efficiently)
+     - medium for human expression
+
+** Boolean logic
+
+   - True / False, variables x, y, z, ...
+   - connectives:
+     - not x: ¬x
+     - x or y: x ∨ y
+     - x and y: x ∧ y
+   - truth tables:
+
+| x | y | x∨y | ¬(x ∨ y) |
+|---+---+-----+----------|
+| T | T | T   | F        |
+| T | F | T   | F        |
+| F | T | T   | F        |
+| F | F | F   | T        |
+
+   - some equivalences:
+
+     - x ∧ (y ∨ z) ≡ (x ∧ y) ∨ (x ∧ z)
+     - ¬(x ∧ y) ≡ ¬x ∨ ¬y
+     - x ∧ (x ∨ y) ≡ x
+     - x ∨ (x ∧ y) ≡ x
+
+   - simplify: z ∨ ¬(y ∧ z) ≡ z ∨ (¬y ∨ ¬z) ≡ (z ∨ ¬z) ∨ ¬y ≡ T ∨ ¬y ≡ T
+
+** Propositional logic
+
+   - have T/F, x, y, z
+   - also like to represent long formulas as φ, ρ, ψ, etc.
+   - still have ¬, ∨, ∧
+   - add: → (implies, "if"), ↔ (if-and-only-if)
+
+   - truth table for →
+
+     | φ | ψ | φ → ψ |
+     |---+---+-------|
+     | T | T | T     |
+     | T | F | F     |
+     | F | T | T     |
+     | F | F | T     |
+
+   - truth table for ↔
+
+     | φ | ψ | φ ↔ ψ |
+     |---+---+-------|
+     | T | T | T     |
+     | T | F | F     |
+     | F | T | F     |
+     | F | F | T     |
+
+   - some equivalences:
+
+     - "contrapositive": φ → ψ ≡ ¬ψ → ¬φ
+
+     - p → (q → r) ≡ (p ∧ q) → r
+
+
+*** Rules of inference
+
+    - suppose you have a "knowledge base," such as:
+
+      1. p ∧ ¬q
+      2. r
+      3. ¬s → q
+
+    - what else do you know?
+
+    - ¬q (from line 1)
+    - s (¬q plus modus tollens)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
 
 
 
