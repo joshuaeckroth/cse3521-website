@@ -2,7 +2,6 @@
 #+TITLE: Adversarial search
 
 #+BEGIN_QUOTE
-
 "It was a watershed event, but it doesn't have to do with computers
 becoming intelligent," said Douglas Hofstadter, a professor of
 computer science at Indiana University and author of several books
@@ -16,7 +15,6 @@ thinker, just that you can bypass deep thinking in playing chess, the
 way you can fly without flapping your wings." --- Bruce Weber, "[[http://www.rci.rutgers.edu/~cfs/472_html/Intro/NYT_Intro/ChessMatch/MeanChessPlaying.html][Mean
 Chess-Playing Computer Tears at Meaning of Thought]]," The New York
 Times, Feb 19, 1996
-
 #+END_QUOTE
 
 Chess, tic-tac-toe, connect-four, checkers, go, etc. etc. are
