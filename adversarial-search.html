@@ -352,7 +352,7 @@ PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Vers
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">minimax</span>(state):
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">minimax</span>(state):
     <span style="color: #000000; background-color: #ffffff;">max_trans</span> = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
     <span style="color: #000000; background-color: #ffffff;">max_u</span> = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
     <span style="color: #000000; background-color: #ffffff;">transitions</span> = possible_transitions(state, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'x'</span>)
@@ -370,7 +370,7 @@ PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Vers
             <span style="color: #000000; background-color: #ffffff;">max_u</span> = u
     <span style="color: #004dd0; background-color: #ffffff;">return</span> max_trans
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">min_utility</span>(state, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">min_utility</span>(state, player):
     <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if the current state is a win/loss/tie, stop searching</span>
     <span style="color: #004dd0; background-color: #ffffff;">if</span> is_winning(state, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
             is_winning(state, switch_player(player)) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
@@ -388,7 +388,7 @@ PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Vers
                 <span style="color: #000000; background-color: #ffffff;">min_u</span> = u
         <span style="color: #004dd0; background-color: #ffffff;">return</span> min_u
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">max_utility</span>(state, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">max_utility</span>(state, player):
     <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if the current state is a win/loss/tie, stop searching</span>
     <span style="color: #004dd0; background-color: #ffffff;">if</span> is_winning(state, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
             is_winning(state, switch_player(player)) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
@@ -420,11 +420,11 @@ shown here, however.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">switch_player</span>(player):
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">switch_player</span>(player):
     <span style="color: #004dd0; background-color: #ffffff;">if</span> player == <span style="color: #670088; background-color: #ffffff; font-style: italic;">'x'</span>: <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">'o'</span>
     <span style="color: #004dd0; background-color: #ffffff;">else</span>: <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">'x'</span>
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">is_winning</span>(state, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">is_winning</span>(state, player):
     winning = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> [0,1,2]:
         <span style="color: #004dd0; background-color: #ffffff;">if</span> state[i][0] == state[i][1] == state[i][2] == player:
@@ -438,7 +438,7 @@ shown here, however.
         winning = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> winning
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">is_tie</span>(state):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">is_tie</span>(state):
     blanks = 0
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> [0,1,2]:
         <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> [0,1,2]:
@@ -447,7 +447,7 @@ shown here, however.
                <span style="color: #004dd0; background-color: #ffffff;">not</span> is_winning(state, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'x'</span>) <span style="color: #004dd0; background-color: #ffffff;">and</span> \
                <span style="color: #004dd0; background-color: #ffffff;">not</span> is_winning(state, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'o'</span>))
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">utility</span>(state, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">utility</span>(state, player):
     <span style="color: #004dd0; background-color: #ffffff;">if</span> is_winning(state, player): <span style="color: #004dd0; background-color: #ffffff;">return</span> 1
     <span style="color: #004dd0; background-color: #ffffff;">if</span> is_winning(state, switch_player(player)): <span style="color: #004dd0; background-color: #ffffff;">return</span> -1
     <span style="color: #004dd0; background-color: #ffffff;">return</span> 0
@@ -620,7 +620,7 @@ pruning:
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">minimax_ab</span>(state):
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">minimax_ab</span>(state):
     <span style="color: #000000; background-color: #ffffff;">max_trans</span> = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
     <span style="color: #000000; background-color: #ffffff;">max_u</span> = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
     <span style="color: #000000; background-color: #ffffff;">alpha</span> = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
@@ -651,7 +651,7 @@ pruning:
             <span style="color: #000000; background-color: #ffffff;">alpha</span> = u
     <span style="color: #004dd0; background-color: #ffffff;">return</span> max_trans
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">min_utility_ab</span>(state, player, alpha, beta):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">min_utility_ab</span>(state, player, alpha, beta):
     <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if the current state is a win/loss/tie, stop searching</span>
     <span style="color: #004dd0; background-color: #ffffff;">if</span> is_winning(state, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
             is_winning(state, switch_player(player)) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
@@ -681,7 +681,7 @@ pruning:
                 <span style="color: #000000; background-color: #ffffff;">beta</span> = u
         <span style="color: #004dd0; background-color: #ffffff;">return</span> min_u
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">max_utility_ab</span>(state, player, alpha, beta):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">max_utility_ab</span>(state, player, alpha, beta):
     <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">if the current state is a win/loss/tie, stop searching</span>
     <span style="color: #004dd0; background-color: #ffffff;">if</span> is_winning(state, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
             is_winning(state, switch_player(player)) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
@@ -762,18 +762,6 @@ Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
 website available at <a
 href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
-
-<!-- Plupper Tracking Code -->
-<!--
-<script src="https://www.google.com/jsapi"></script>
-<script type="text/javascript"
-    src="https://static.plupper.com/js/plupper.js"></script>
-<script type="text/javascript">
-    plupper.init("joshuaeckroth@plupper.com");
-    plupper.enableCobrowsing();
-</script>
--->
-<!-- End of Plupper Tracking Code -->
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

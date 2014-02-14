@@ -255,7 +255,8 @@ All searches essentially follow the same algorithm:
 
 4. while the openset is not empty:
 
-   a. grab a state from the openset (and remove it)
+   a. grab a state from the openset (and remove it);
+      put it in the closedset (since we're now looking at it)
 
    b. if that state is the goal, hey we're done!
 
@@ -498,18 +499,6 @@ Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
 website available at <a
 href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
 </div>
-
-<!-- Plupper Tracking Code -->
-<!--
-<script src="https://www.google.com/jsapi"></script>
-<script type="text/javascript"
-    src="https://static.plupper.com/js/plupper.js"></script>
-<script type="text/javascript">
-    plupper.init("joshuaeckroth@plupper.com");
-    plupper.enableCobrowsing();
-</script>
--->
-<!-- End of Plupper Tracking Code -->
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
