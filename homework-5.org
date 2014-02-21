@@ -38,7 +38,7 @@ d. $P \rightarrow \neg Q$
 
 e. $(R \rightarrow S) \rightarrow (\neg H \rightarrow J)$
 
-f. $(\wedge Q \vee T) \rightarrow J$
+f. $(\neg Q \vee T) \rightarrow J$
 
 Derive each of the following using inference rules for propositional
 logic. Indicate the rule used (i.e., MP for modus ponens) and the
