@@ -18,8 +18,7 @@ Prolog has three kinds of *terms*:
 
   2. Variables like ~X~ and ~Person~ (words that start with upper-case).
 
-  3. Complex terms like ~parent(franklin, bo).~ and ~foobar(X) :-
-     baz(X, Y), quux(Y).~
+  3. Complex terms like ~parent(franklin, bo)~ and ~baz(X, quux(Y))~
 
 Two terms *unify* if they can be matched. Two terms can be matched if:
 
@@ -55,15 +54,6 @@ We saw in the [[./prolog.html][Prolog]] notes that we can "query" the knowledge 
 get, say, all the people who love ~mia~. When we query with ~loves(X,
 mia).~ we are asking Prolog to give us all the values for ~X~ that
 unify. These values are, essentially, the people who love ~mia~.
-
-All "computation" in Prolog centers on unification.
-
-Not surprisingly, the method Prolog uses to unify is a depth-first
-search (could instead be breadth-first, I suppose; the difference may
-matter with large programs that have many "shallow" rules, so that
-depth-first search provides a unification faster). The order that
-terms are listed in the knowledge base is the order that Prolog
-attempts to give variables their values to check for unification.
 
 * A more formal definition
 
