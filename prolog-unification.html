@@ -134,10 +134,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="preamble" class="status">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <!-- <div id="plupperButton" style="display: inline;"></div> -->
-          <!-- End of Plupper Button Code -->
+<a href="index.html">Home</a>
 </div>
 <div id="content">
 <h1 class="title">Prolog unification</h1>
@@ -176,8 +173,7 @@ lower-case words).
 <li>Variables like <code>X</code> and <code>Person</code> (words that start with upper-case).
 </li>
 
-<li>Complex terms like <code>parent(franklin, bo).</code> and <code>foobar(X) :-
-     baz(X, Y), quux(Y).</code>
+<li>Complex terms like <code>parent(franklin, bo)</code> and <code>baz(X, quux(Y))</code>
 </li>
 </ol>
 
@@ -200,9 +196,9 @@ For example, suppose our knowledge base is:
 
 <div class="org-src-container">
 
-<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%;">woman</span>(mia).
-<span style="color: #000000; background-color: #ffffff; font-size: 110%;">loves</span>(vincent, angela).
-<span style="color: #000000; background-color: #ffffff; font-size: 110%;">loves</span>(franklin, mia).
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">woman</span>(mia).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">loves</span>(vincent, angela).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">loves</span>(franklin, mia).
 </pre>
 </div>
 
@@ -233,19 +229,6 @@ We saw in the <a href="./prolog.html">Prolog</a> notes that we can "query" the k
 get, say, all the people who love <code>mia</code>. When we query with <code>loves(X,
 mia).</code> we are asking Prolog to give us all the values for <code>X</code> that
 unify. These values are, essentially, the people who love <code>mia</code>.
-</p>
-
-<p>
-All "computation" in Prolog centers on unification.
-</p>
-
-<p>
-Not surprisingly, the method Prolog uses to unify is a depth-first
-search (could instead be breadth-first, I suppose; the difference may
-matter with large programs that have many "shallow" rules, so that
-depth-first search provides a unification faster). The order that
-terms are listed in the knowledge base is the order that Prolog
-attempts to give variables their values to check for unification.
 </p>
 </div>
 </div>
