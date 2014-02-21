@@ -134,10 +134,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="preamble" class="status">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <!-- <div id="plupperButton" style="display: inline;"></div> -->
-          <!-- End of Plupper Button Code -->
+<a href="index.html">Home</a>
 </div>
 <div id="content">
 <h1 class="title">Daily notes</h1>
@@ -229,6 +226,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-9-3-1">Rules of inference</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#sec-10">Day 12</a>
+<ul>
+<li><a href="#sec-10-1">First-order logic</a></li>
+<li><a href="#sec-10-2">Prolog</a></li>
 </ul>
 </li>
 </ul>
@@ -561,24 +564,24 @@ myqueue.append(<span style="color: #670088; background-color: #ffffff; font-styl
 <span style="color: #000000; background-color: #ffffff;">mystring</span> = <span style="color: #670088; background-color: #ffffff; font-style: italic;">"mystring"</span>
 <span style="color: #004dd0; background-color: #ffffff;">print</span> mystring[::-1]
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">myfunc</span>(x):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">myfunc</span>(x):
     <span style="color: #004dd0; background-color: #ffffff;">return</span> x+1
 
 <span style="color: #004dd0; background-color: #ffffff;">print</span> myfunc(52)
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">myfunc</span>(x):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">myfunc</span>(x):
     <span style="color: #004dd0; background-color: #ffffff;">return</span> (x, x+1)
 
 <span style="color: #004dd0; background-color: #ffffff;">print</span> myfunc(52)
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">myfunc</span>(x=5):  <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">default value for x</span>
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">myfunc</span>(x=5):  <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">default value for x</span>
     <span style="color: #004dd0; background-color: #ffffff;">print</span> x
 
 myfunc()
 myfunc(10)
 
 <span style="color: #004dd0; background-color: #ffffff;">class</span> <span style="color: #004dd0; background-color: #ffffff;">MyClass</span>:
-    <span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">myclassfunc</span>(<span style="color: #004dd0; background-color: #ffffff;">self</span>, x):
+    <span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">myclassfunc</span>(<span style="color: #004dd0; background-color: #ffffff;">self</span>, x):
         <span style="color: #004dd0; background-color: #ffffff;">print</span> x
 
 <span style="color: #000000; background-color: #ffffff;">myobj</span> = MyClass()
@@ -586,9 +589,9 @@ myobj.myclassfunc(10)
 
 <span style="color: #004dd0; background-color: #ffffff;">class</span> <span style="color: #004dd0; background-color: #ffffff;">MyClass</span>:
     <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">the constructor</span>
-    <span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">__init__</span>(<span style="color: #004dd0; background-color: #ffffff;">self</span>):
+    <span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">__init__</span>(<span style="color: #004dd0; background-color: #ffffff;">self</span>):
         <span style="color: #004dd0; background-color: #ffffff;">self</span>.timesExecuted = 0
-    <span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">myclassfunc</span>(<span style="color: #004dd0; background-color: #ffffff;">self</span>):
+    <span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">myclassfunc</span>(<span style="color: #004dd0; background-color: #ffffff;">self</span>):
         <span style="color: #004dd0; background-color: #ffffff;">self</span>.timesExecuted += 1
         <span style="color: #004dd0; background-color: #ffffff;">print</span> <span style="color: #004dd0; background-color: #ffffff;">self</span>.timesExecuted
 
@@ -1074,11 +1077,11 @@ is called A*
 <div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">create_grid</span>():
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">create_grid</span>():
     <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">grid is 6x7 so we'll create a list of size 42</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> [<span style="color: #670088; background-color: #ffffff; font-style: italic;">' '</span> <span style="color: #004dd0; background-color: #ffffff;">for</span> _ <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(42)]
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">print_grid</span>(grid):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">print_grid</span>(grid):
     <span style="color: #000000; background-color: #ffffff;">s</span> = <span style="color: #670088; background-color: #ffffff; font-style: italic;">""</span>
     <span style="color: #000000; background-color: #ffffff;">s</span> += <span style="color: #670088; background-color: #ffffff; font-style: italic;">"---------------\n"</span>
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
@@ -1089,10 +1092,10 @@ is called A*
     <span style="color: #000000; background-color: #ffffff;">s</span> += <span style="color: #670088; background-color: #ffffff; font-style: italic;">" 0 1 2 3 4 5 6 \n\n"</span>
     <span style="color: #004dd0; background-color: #ffffff;">print</span> s
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">column_full</span>(grid, col):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">column_full</span>(grid, col):
     <span style="color: #004dd0; background-color: #ffffff;">return</span> (grid[col] != <span style="color: #670088; background-color: #ffffff; font-style: italic;">' '</span>)
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">add_to_column</span>(grid, col, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">add_to_column</span>(grid, col, player):
     <span style="color: #000000; background-color: #ffffff;">newgrid</span> = grid[:]
     <span style="color: #000000; background-color: #ffffff;">pos</span> = -1
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(5,-1,-1):
@@ -1103,7 +1106,7 @@ is called A*
         <span style="color: #000000; background-color: #ffffff;">newgrid</span>[pos*7+col] = player
     <span style="color: #004dd0; background-color: #ffffff;">return</span> newgrid
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_horizontal</span>(grid, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">win_horizontal</span>(grid, player):
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
         <span style="color: #000000; background-color: #ffffff;">player_count</span> = 0
         <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
@@ -1115,7 +1118,7 @@ is called A*
                 <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_vertical</span>(grid, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">win_vertical</span>(grid, player):
     <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
         player_count = 0
         <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
@@ -1127,7 +1130,7 @@ is called A*
                 <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_downleft</span>(grid, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">win_downleft</span>(grid, player):
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
         <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
             player_count = 0
@@ -1140,7 +1143,7 @@ is called A*
                 <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">win_downright</span>(grid, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">win_downright</span>(grid, player):
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(6):
         <span style="color: #004dd0; background-color: #ffffff;">for</span> j <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
             player_count = 0
@@ -1153,11 +1156,11 @@ is called A*
                 <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">won</span>(grid, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">won</span>(grid, player):
     <span style="color: #004dd0; background-color: #ffffff;">return</span> (win_vertical(grid, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> win_horizontal(grid, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> \
                 win_downleft(grid, player) <span style="color: #004dd0; background-color: #ffffff;">or</span> win_downright(grid, player))
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">is_terminal</span>(grid):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">is_terminal</span>(grid):
     free_moves = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">False</span>
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
         <span style="color: #004dd0; background-color: #ffffff;">if</span> <span style="color: #004dd0; background-color: #ffffff;">not</span> column_full(grid, i):
@@ -1165,14 +1168,14 @@ is called A*
             <span style="color: #004dd0; background-color: #ffffff;">break</span>
     <span style="color: #004dd0; background-color: #ffffff;">return</span> (won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>) <span style="color: #004dd0; background-color: #ffffff;">or</span> won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'B'</span>) <span style="color: #004dd0; background-color: #ffffff;">or</span> <span style="color: #004dd0; background-color: #ffffff;">not</span> free_moves)
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">next_moves</span>(grid, player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">next_moves</span>(grid, player):
     moves = {}
     <span style="color: #004dd0; background-color: #ffffff;">for</span> i <span style="color: #004dd0; background-color: #ffffff;">in</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">range</span>(7):
         <span style="color: #004dd0; background-color: #ffffff;">if</span> <span style="color: #004dd0; background-color: #ffffff;">not</span> column_full(grid, i):
             moves[i] = add_to_column(grid, i, player)
     <span style="color: #004dd0; background-color: #ffffff;">return</span> moves
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">utility</span>(grid):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">utility</span>(grid):
     <span style="color: #004dd0; background-color: #ffffff;">if</span> won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>):
         <span style="color: #004dd0; background-color: #ffffff;">return</span> 1.0
     <span style="color: #004dd0; background-color: #ffffff;">if</span> won(grid, <span style="color: #670088; background-color: #ffffff; font-style: italic;">'B'</span>):
@@ -1180,16 +1183,16 @@ is called A*
     <span style="color: #004dd0; background-color: #ffffff;">else</span>:
         <span style="color: #004dd0; background-color: #ffffff;">return</span> 0.0
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">estimate_utility</span>(grid, depth):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">estimate_utility</span>(grid, depth):
     <span style="color: #004dd0; background-color: #ffffff;">return</span> -1.0/depth
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">switch_player</span>(player):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">switch_player</span>(player):
     <span style="color: #004dd0; background-color: #ffffff;">if</span> player == <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>:
         <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">'B'</span>
     <span style="color: #004dd0; background-color: #ffffff;">else</span>:
         <span style="color: #004dd0; background-color: #ffffff;">return</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">minimax</span>(grid, player, depth = 0):
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">minimax</span>(grid, player, depth = 0):
     <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">player is A (computer) or B (opponent)</span>
     best_u = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
     best_move = <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">None</span>
@@ -1211,7 +1214,7 @@ is called A*
     <span style="color: #004dd0; background-color: #ffffff;">return</span> (best_u, best_move)
 
 
-<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">game</span>():
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">game</span>():
     grid = create_grid()
     player = <span style="color: #670088; background-color: #ffffff; font-style: italic;">'A'</span>
     <span style="color: #004dd0; background-color: #ffffff;">while</span> <span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">True</span>:
@@ -1520,6 +1523,68 @@ impossible to reason about efficiently)
 <li>s (¬q plus modus tollens)
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10">Day 12</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1">First-order logic</h3>
+<div class="outline-text-3" id="text-10-1">
+<ul class="org-ul">
+<li>constants: jane, john, my_cat
+</li>
+<li>variables: X, Foo, Cat
+</li>
+<li>predicates: is-a-cat(my_cat), blue(sky)
+</li>
+<li>rules: ∀X (is-a-cat(X) → meows(X))
+∀X (is-a-cat(X) ∧ meows(X)) (BAD)
+∃X (is-a-cat(X) ∧ has-claws(X))
+∃X (is-a-cat(X) → has-claws(X)) (BAD)
+
+<p>
+"forall books, there exists an author"
+∀X ∃Y (book(X) → author(X, Y))
+</p>
+</li>
+
+<li>here is a knowledge database:
+
+<ul class="org-ul">
+<li>female(jane)
+</li>
+<li>male(john)
+</li>
+<li>parent(jane, john)
+</li>
+<li>∀X ∀Y (female(X) ∧ parent(X, Y)) → mother(X, Y)
+</li>
+<li>∀X ∀Y (mother(X,Y)) → mother(X)
+</li>
+<li>Horn clause:
+mother(X,Y) ← female(X) ∧ parent(X, Y)
+mother(X) ← mother(X,Y)
+pred(X,Y, &#x2026;) ← foo(X, Y, &#x2026;) ∧ bar(X, Y, &#x2026;) ∧ baz(X, Y, &#x2026;)
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-10-2" class="outline-3">
+<h3 id="sec-10-2">Prolog</h3>
+<div class="outline-text-3" id="text-10-2">
+<ul class="org-ul">
+<li>there is a "closed world assumption": whatever is not stated, is false
+</li>
+</ul>
+
+
+
+
 
 
 
@@ -1752,7 +1817,6 @@ $('.hidden > strong').click(function() {
   $(this).parent().find('.hidden-content').toggle();
 });
 </script>
-</div>
 </div>
 </div>
 </div>
