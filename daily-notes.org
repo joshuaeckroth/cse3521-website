@@ -737,6 +737,40 @@ game()
     - ¬q (from line 1)
     - s (¬q plus modus tollens)
 
+* Day 12
+
+** First-order logic
+
+   - constants: jane, john, my_cat
+   - variables: X, Foo, Cat
+   - predicates: is-a-cat(my_cat), blue(sky)
+   - rules: ∀X (is-a-cat(X) → meows(X))
+            ∀X (is-a-cat(X) ∧ meows(X)) (BAD)
+            ∃X (is-a-cat(X) ∧ has-claws(X))
+            ∃X (is-a-cat(X) → has-claws(X)) (BAD)
+
+            "forall books, there exists an author"
+            ∀X ∃Y (book(X) → author(X, Y))
+
+   - here is a knowledge database:
+
+     - female(jane)
+     - male(john)
+     - parent(jane, john)
+     - ∀X ∀Y (female(X) ∧ parent(X, Y)) → mother(X, Y)
+     - ∀X ∀Y (mother(X,Y)) → mother(X)
+     - Horn clause:
+        mother(X,Y) ← female(X) ∧ parent(X, Y)
+        mother(X) ← mother(X,Y)
+        pred(X,Y, ...) ← foo(X, Y, ...) ∧ bar(X, Y, ...) ∧ baz(X, Y, ...)
+
+** Prolog
+   - there is a "closed world assumption": whatever is not stated, is false
+
+
+
+
+
 
 
 

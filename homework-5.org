@@ -1,0 +1,81 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 5
+
+* Task 1 (25 pts)
+
+Build truth tables for the following formulas:
+
+1. $A \vee B \vee \neg C$
+
+2. $(A \wedge \neg B) \vee C$
+
+3. $(\neg A \leftrightarrow B) \vee B$
+
+* Task 2 (25 pts)
+
+Express the following statements in propositional logic:
+
+1. $B$ and $C$ are both true should $A$ be true.
+
+2. $B$ is known to be true when $A$ is true and not otherwise.
+
+3. At most one of $R$, $S$, and $T$ can be true.
+
+4. The grass is wet if either it rained or the sprinkler was
+   on. (Create propositional symbols, and give their definitions.)
+
+* Task 3 (25 pts)
+
+We have a knowledge base that contains:
+
+a. $(R \rightarrow S) \wedge Q$
+
+b. $(J \wedge Q) \rightarrow P$
+
+c. $Q \rightarrow Z$
+
+d. $P \rightarrow \neg Q$
+
+e. $(R \rightarrow S) \rightarrow (\neg H \rightarrow J)$
+
+f. $(\wedge Q \vee T) \rightarrow J$
+
+Derive each of the following using inference rules for propositional
+logic. Indicate the rule used (i.e., MP for modus ponens) and the
+propositions used with the rule. You can use propositions you have
+already proved but were not in the initial knowledge base.
+
+1. $Z$
+
+2. $\neg P$
+
+3. $\neg (J \wedge Q)$
+
+4. $\neg J$
+
+5. $\neg T$
+
+* Task 4 (25 pts)
+
+Rewrite the following statements in first-order logic, stating
+definitions for the predicates you use. (Note, one of these is
+exceedingly hard, yet still possible; make an attempt...)
+
+1. James is a dolphin.
+
+2. Dolphins are mammals.
+
+3. Mammals have hair and three middle ear bones.
+
+4. Not all dolphins live in the ocean.
+
+5. Some mammals have sweat glands and specialized teeth.
+
+6. Every US President lives in the White House.
+
+7. No US President is the same person as the US Vice President.
+
+8. This sentence cannot be proved.
+
+
+#+INCLUDE: footer.org
