@@ -234,6 +234,11 @@ for the JavaScript code in this tag.
 <li><a href="#sec-10-2">Prolog</a></li>
 </ul>
 </li>
+<li><a href="#sec-11">Day 13</a>
+<ul>
+<li><a href="#sec-11-1">Prolog</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1572,6 +1577,32 @@ pred(X,Y, &#x2026;) ← foo(X, Y, &#x2026;) ∧ bar(X, Y, &#x2026;) ∧ baz(X, Y
 </ul>
 </li>
 </ul>
+
+
+<ul class="org-ul">
+<li>p → q ≡ ¬p ∨ q
+</li>
+
+<li>∀x(Person(x) → ¬Likes(x, ice-cream))
+"all people don't like ice cream"
+</li>
+
+<li>¬∀x(Person(x) → Likes(x, ice-cream))
+"not all people like ice cream"
+
+<p>
+¬∀x(¬Person(x) ∨ Likes(x, ice-cream))
+</p>
+
+<p>
+∃x(Person(x) ∧ ¬Likes(x, ice-cream))
+</p>
+</li>
+
+<li>∃x(Person(x) ∧ ¬Likes(x, ice-cream))
+"some people don't like ice cream"
+</li>
+</ul>
 </div>
 </div>
 <div id="outline-container-sec-10-2" class="outline-3">
@@ -1581,6 +1612,111 @@ pred(X,Y, &#x2026;) ← foo(X, Y, &#x2026;) ∧ bar(X, Y, &#x2026;) ∧ baz(X, Y
 <li>there is a "closed world assumption": whatever is not stated, is false
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11">Day 13</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1">Prolog</h3>
+<div class="outline-text-3" id="text-11-1">
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(tom, liz).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(bob, ann).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(bob, pat).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">parent</span>(pat, jim).
+
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">male</span>(tom).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">male</span>(bob).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">male</span>(jim).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(pam).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(liz).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(pat).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">female</span>(ann).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">mother</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">grandparent</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Z</span>), parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">sister</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), parent(<span style="color: #000000; background-color: #ffffff;">Z</span>, <span style="color: #000000; background-color: #ffffff;">X</span>), female(<span style="color: #000000; background-color: #ffffff;">X</span>), <span style="color: #000000; background-color: #ffffff;">X</span> \= <span style="color: #000000; background-color: #ffffff;">Y</span>.
+
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">%% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">lists</span>
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">first</span>(<span style="color: #000000; background-color: #ffffff;">Head</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Head</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">second</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span>,<span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">E</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">E</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">member</span>(<span style="color: #000000; background-color: #ffffff;">E</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">E</span>, <span style="color: #000000; background-color: #ffffff;">Tail</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">sum</span>(0, <span style="color: #004dd0; background-color: #ffffff;">[]</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">sum</span>(<span style="color: #000000; background-color: #ffffff;">Sum</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- sum(<span style="color: #000000; background-color: #ffffff;">SumRest</span>, <span style="color: #000000; background-color: #ffffff;">Tail</span>), <span style="color: #000000; background-color: #ffffff;">Sum</span> is <span style="color: #000000; background-color: #ffffff;">X</span> + <span style="color: #000000; background-color: #ffffff;">SumRest</span>.
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">average</span>(<span style="color: #000000; background-color: #ffffff;">Avg</span>, <span style="color: #000000; background-color: #ffffff;">List</span>) :- sum(<span style="color: #000000; background-color: #ffffff;">S</span>, <span style="color: #000000; background-color: #ffffff;">List</span>), length(<span style="color: #000000; background-color: #ffffff;">List</span>, <span style="color: #000000; background-color: #ffffff;">L</span>), <span style="color: #000000; background-color: #ffffff;">Avg</span> is <span style="color: #000000; background-color: #ffffff;">S</span> / <span style="color: #000000; background-color: #ffffff;">L</span>.
+
+
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">%% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">negation?</span>
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">not_a_mother</span>(<span style="color: #000000; background-color: #ffffff;">X</span>) :- \+(mother(<span style="color: #000000; background-color: #ffffff;">X</span>)).
+
+
+<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">%% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">databases</span>
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">family</span>(10392,
+       person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
+       person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
+       <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% here are the children...</span>
+       <span style="color: #004dd0; background-color: #ffffff;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+        person(jim, fox, born(1, june, 1986), unemployed),
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">family</span>(38463, 
+       person(susan, rothchild, born(13, september, 1972), works(osu, 75000)),
+       person(jess, rothchild, born(20, july, 1975), works(nationwide, 123500)),
+       <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% here are the children...</span>
+       <span style="color: #004dd0; background-color: #ffffff;">[</span>person(ace, rothchild, born(2, january, 2010), unemployed)<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">person</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">person</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">person</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>), member(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">born</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>) :- person(<span style="color: #000000; background-color: #ffffff;">Person</span>),
+                      <span style="color: #000000; background-color: #ffffff;">Person</span> = person(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, born(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>), <span style="color: #000000; background-color: #ffffff;">_</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">born_between</span>(<span style="color: #000000; background-color: #ffffff;">Year1</span>, <span style="color: #000000; background-color: #ffffff;">Year2</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>) :-
+    person(<span style="color: #000000; background-color: #ffffff;">Person</span>),
+    born(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>),
+    <span style="color: #000000; background-color: #ffffff;">Year</span> =&lt; <span style="color: #000000; background-color: #ffffff;">Year2</span>,
+    <span style="color: #000000; background-color: #ffffff;">Year1</span> =&lt; <span style="color: #000000; background-color: #ffffff;">Year</span>.
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">all_born_between</span>(<span style="color: #000000; background-color: #ffffff;">Year1</span>, <span style="color: #000000; background-color: #ffffff;">Year2</span>, <span style="color: #000000; background-color: #ffffff;">ThePeople</span>) :-
+    findall(<span style="color: #000000; background-color: #ffffff;">P</span>, (person(<span style="color: #000000; background-color: #ffffff;">P</span>),
+                born(<span style="color: #000000; background-color: #ffffff;">P</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>),
+                <span style="color: #000000; background-color: #ffffff;">Year</span> =&lt; <span style="color: #000000; background-color: #ffffff;">Year2</span>,
+                <span style="color: #000000; background-color: #ffffff;">Year1</span> =&lt; <span style="color: #000000; background-color: #ffffff;">Year</span>),
+            <span style="color: #000000; background-color: #ffffff;">ThePeople</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">even</span>(<span style="color: #000000; background-color: #ffffff;">N</span>) :- <span style="color: #000000; background-color: #ffffff;">M</span> is <span style="color: #000000; background-color: #ffffff;">N</span> mod 2, <span style="color: #000000; background-color: #ffffff;">M</span> = 0.
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">keep_only_evens</span>(<span style="color: #004dd0; background-color: #ffffff;">[]</span>, <span style="color: #004dd0; background-color: #ffffff;">[]</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">keep_only_evens</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Head1</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail1</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Head1</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail2</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
+    even(<span style="color: #000000; background-color: #ffffff;">Head1</span>),
+    keep_only_evens(<span style="color: #000000; background-color: #ffffff;">Tail1</span>, <span style="color: #000000; background-color: #ffffff;">Tail2</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">keep_only_evens</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail1</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #000000; background-color: #ffffff;">Tail2</span>) :-
+    keep_only_evens(<span style="color: #000000; background-color: #ffffff;">Tail1</span>, <span style="color: #000000; background-color: #ffffff;">Tail2</span>).
+
+
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">filter</span>(<span style="color: #004dd0; background-color: #ffffff;">[]</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #004dd0; background-color: #ffffff;">[]</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">filter</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Head1</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail1</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #000000; background-color: #ffffff;">Pred</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">Head1</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail2</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :-
+    call(<span style="color: #000000; background-color: #ffffff;">Pred</span>, <span style="color: #000000; background-color: #ffffff;">Head1</span>), <span style="color: #004dd0; background-color: #ffffff;">!</span>,
+    filter(<span style="color: #000000; background-color: #ffffff;">Tail1</span>, <span style="color: #000000; background-color: #ffffff;">Pred</span>, <span style="color: #000000; background-color: #ffffff;">Tail2</span>).
+<span style="color: #000000; background-color: #ffffff; font-size: 110%; text-decoration: underline;">filter</span>(<span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail1</span><span style="color: #004dd0; background-color: #ffffff;">]</span>, <span style="color: #000000; background-color: #ffffff;">Pred</span>, <span style="color: #000000; background-color: #ffffff;">Tail2</span>) :-
+    filter(<span style="color: #000000; background-color: #ffffff;">Tail1</span>, <span style="color: #000000; background-color: #ffffff;">Pred</span>, <span style="color: #000000; background-color: #ffffff;">Tail2</span>).
+</pre>
+</div>
 
 
 
