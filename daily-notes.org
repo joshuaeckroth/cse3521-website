@@ -764,10 +764,125 @@ game()
         mother(X) ← mother(X,Y)
         pred(X,Y, ...) ← foo(X, Y, ...) ∧ bar(X, Y, ...) ∧ baz(X, Y, ...)
 
+
+     - p → q ≡ ¬p ∨ q
+
+     - ∀x(Person(x) → ¬Likes(x, ice-cream))
+       "all people don't like ice cream"
+
+     - ¬∀x(Person(x) → Likes(x, ice-cream))
+       "not all people like ice cream"
+
+       ¬∀x(¬Person(x) ∨ Likes(x, ice-cream))
+
+       ∃x(Person(x) ∧ ¬Likes(x, ice-cream))
+
+     - ∃x(Person(x) ∧ ¬Likes(x, ice-cream))
+       "some people don't like ice cream"
+
 ** Prolog
    - there is a "closed world assumption": whatever is not stated, is false
 
+* Day 13
 
+** Prolog
+
+#+BEGIN_SRC prolog
+parent(tom, liz).
+parent(bob, ann).
+parent(bob, pat).
+parent(pat, jim).
+
+
+male(tom).
+male(bob).
+male(jim).
+
+female(pam).
+female(liz).
+female(pat).
+female(ann).
+
+mother(X) :- parent(X, _), female(X).
+
+grandparent(X, Y) :- parent(X, Z), parent(Z, Y).
+
+sister(X, Y) :- parent(Z, Y), parent(Z, X), female(X), X \= Y.
+
+%% lists
+
+first(Head, [Head|_]).
+second(X, [_,X|_]).
+
+member(E, [E|_]).
+member(E, [_|Tail]) :- member(E, Tail).
+
+sum(0, []).
+sum(Sum, [X|Tail]) :- sum(SumRest, Tail), Sum is X + SumRest.
+
+average(Avg, List) :- sum(S, List), length(List, L), Avg is S / L.
+
+
+%% negation?
+
+not_a_mother(X) :- \+(mother(X)).
+
+
+%% databases
+
+family(10392,
+       person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
+       person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
+       % here are the children...
+       [person(pat, fox, born(5, october, 1983), unemployed),
+        person(jim, fox, born(1, june, 1986), unemployed),
+        person(amy, fox, born(17, december, 1990), unemployed)]).
+
+family(38463, 
+       person(susan, rothchild, born(13, september, 1972), works(osu, 75000)),
+       person(jess, rothchild, born(20, july, 1975), works(nationwide, 123500)),
+       % here are the children...
+       [person(ace, rothchild, born(2, january, 2010), unemployed)]).
+
+person(Person) :- family(_, Person, _, _).
+person(Person) :- family(_, _, Person, _).
+person(Person) :- family(_, _, _, Children), member(Person, Children).
+
+born(Person, Year) :- person(Person),
+                      Person = person(_, _, born(_, _, Year), _).
+
+born_between(Year1, Year2, Person) :-
+    person(Person),
+    born(Person, Year),
+    Year =< Year2,
+    Year1 =< Year.
+
+all_born_between(Year1, Year2, ThePeople) :-
+    findall(P, (person(P),
+                born(P, Year),
+                Year =< Year2,
+                Year1 =< Year),
+            ThePeople).
+
+even(N) :- M is N mod 2, M = 0.
+
+keep_only_evens([], []).
+keep_only_evens([Head1|Tail1], [Head1|Tail2]) :-
+    even(Head1),
+    keep_only_evens(Tail1, Tail2).
+keep_only_evens([_|Tail1], Tail2) :-
+    keep_only_evens(Tail1, Tail2).
+
+
+filter([], _, []).
+filter([Head1|Tail1], Pred, [Head1|Tail2]) :-
+    call(Pred, Head1), !,
+    filter(Tail1, Pred, Tail2).
+filter([_|Tail1], Pred, Tail2) :-
+    filter(Tail1, Pred, Tail2).
+#+END_SRC
+
+   
 
 
 
