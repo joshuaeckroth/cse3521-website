@@ -1,6 +1,38 @@
 #+SETUPFILE: setup.org
 #+TITLE: Prolog examples
 
+* Fun with lists
+
+#+BEGIN_SRC prolog
+%% Sorted is a sorted version of List if Sorted is
+%% a permutation of List (same elements in possibly
+%% different order) and Sorted is sorted (second rule).
+sorted(List, Sorted) :-
+    perm(List, Sorted),
+    sorted(Sorted).
+
+%% A list is sorted if it has zero or one elements,
+%% or if it has two or more and they are in the
+%% right order (recursively).
+sorted([]).
+sorted([_]).
+sorted([X,Y|Rest]) :- X =< Y, sorted([Y|Rest]).
+
+%% A permutation of a list is one of the elements
+%% of the original list stuck at the head of the
+%% permuted list, and the rest is a permuted version
+%% of the original list without that element.
+perm([],[]).
+perm(List, [H|Perm]) :-
+    delete(H, List, Rest),
+    perm(Rest, Perm).
+
+%% Delete an element from a list by just not including
+%% it when it's found (recursively; like the member rule).
+delete(X, [X|T], T).
+delete(X, [H|T], [H|NT]) :- delete(X, T, NT).
+#+END_SRC
+
 * 8-puzzle
 
 Prolog does depth-first search natively. So, let's exploit that to

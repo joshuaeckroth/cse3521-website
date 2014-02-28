@@ -1,0 +1,461 @@
+#+SETUPFILE: setup.org
+#+TITLE: Midterm 1 guide
+
+*Answers on the bottom.* Also, you can *bring a notecard* (5in x 7in
+max) with notes or whatnot.
+
+* Turing test
+
+True or false? Turing first described a test between a monkey and a
+human before describing a test between a human and a machine.
+
+True or false? The goal of the machine is to convince the judge that
+the human is a machine.
+
+True or false? To pass the Turing test, the machine should be expected
+to fool the judge (convince the judge that the machine is a human)
+nearly 100% of the time; or, maybe just 70% of the time.
+
+True or false? Dennett thinks that winning a chess championship is
+just as strong a test for computer intelligence as the Turing test.
+
+* Search
+
+** General search
+
+Give an initial state, describe possible actions and the transition
+model (i.e., how states connect), and specify a goal criterion for the
+following search problem:
+
+#+BEGIN_QUOTE
+A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
+#+END_QUOTE
+
+Repeat this exercise for the following search problem:
+
+#+BEGIN_QUOTE
+Recall from calculus that the derivative is the inverse of the
+integral. Finding the derivative of a formula is easy (no search
+needed). But finding the integral of a formula is often challenging,
+and may require a search procedure. Describe this search procedure.
+#+END_QUOTE
+
+Complete the following table for weighted, finite search graphs:
+
+| Search algorithm     | Always complete? | Always optimal? | Uses a heuristic? |
+|----------------------+------------------+-----------------+-------------------|
+| Random search        |                  |                 |                   |
+| Breadth-first search | Yes              |                 |                   |
+| Depth-first search   |                  | No              |                   |
+| Best-first search    |                  |                 |                   |
+| A* search            |                  |                 | Yes               |
+
+Recall the Goodale route search problem from [[./search-practice.html][Practice with searching]]
+notes. Answer the following questions for each of breadth-first
+search, depth-first search, best-first search, and A* search (using
+some heuristic like distance "as the crow flies"). Assume we start at
+~Woodruff & Tuttle~ and the goal is ~Goodale parking lot~. For each
+question, there may be more than one correct answer.
+
+  1. What are the first two states (beyond ~Woodruff & Tuttle~) that
+     will be checked?
+
+  2. What does the ~tocheck~ list look like after checking those
+     states from question 1? Be sure to order the list by an
+     appropriate sort order (breadth-first, best-first, and A* will
+     take the next state from the front of the list; depth-first will
+     take the next state from the end).
+
+What is the singular requirement for a heuristic to be called
+"admissible?"
+
+** Adversarial search
+
+Describe a utility function for an adversarial search procedure (e.g.,
+minimax) for playing chess.
+
+True or false? Minimax is an appropriate search procedure for
+single-player games (like a solitaire card game or a Rubik's cube)?
+
+True or false? Alpha-beta pruning, as applied to the minimax
+procedure, produces more optimal solutions (e.g., produces game moves
+that allow the computer to win in fewer moves).
+
+True or false? Alpha-beta pruning (applied to minimax) uses different
+utility functions than regular minimax.
+
+True or false? Alpha-beta pruning (applied to minimax) is the same
+algorithm as minimax, just faster because irrelevant computations are
+omitted.
+
+What is the best move, according to a minimax procedure, for 'x' to
+make in the following tic-tac-toe board?
+
+#+BEGIN_HTML
+<table class="full">
+<tr>
+<td>o</td><td>o</td><td>x</td>
+</tr>
+<tr>
+<td></td><td></td><td>x</td>
+</tr>
+<tr>
+<td></td><td>x</td><td>o</td>
+</tr>
+</table>
+#+END_HTML
+
+* Knowledge representation
+
+** Boolean logic
+
+Simplify the following expression using Boole's and De Morgan's laws:
+$$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
+
+** Propositional logic
+
+Build a truth-table for:
+$$\neg A \vee (B \leftrightarrow A)$$
+
+Given,
+
+  1. $(S \vee T) \wedge (A \vee B)$
+
+  2. $S \rightarrow Q$
+
+  3. $\neg Q$
+
+  4. $\neg C \vee Q$
+
+Prove (and state the rules and premises you utilize):
+
+  1. $\neg S$
+
+  2. $T$
+
+  3. $\neg C \vee W$
+
+** First-order logic
+
+Rewrite the following statements in first-order logic:
+
+  1. Tony is a tiger.
+
+  2. All tigers have stripes.
+
+  3. Some tigers are white.
+
+  4. If any tiger is white, then we know it lives in the snow (but not
+     necessarily vice versa).
+
+  5. A tiger is not both white and orange.
+
+Rewrite the following without using $\forall$ (hint: use negation):
+$$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+
+Rewrite the following without using $\exists$:
+$$(\exists x)(W(x) \vee \neg Q(x))$$
+
+
+* Answers...
+
+** Turing test
+
+True or false? Turing first described a test between a monkey and a
+human before describing a test between a human and a machine.
+
+*False* --- the original test was between a man and a woman; the man
+was supposed to impersonate the woman.
+
+True or false? The goal of the machine is to convince the judge that
+the human is a machine.
+
+*True* --- or, *False* --- my fault, both answers are true: the
+machine is supposed to convince the judge that it is a human, which is
+equivalent to convincing the judge that the human is a machine.
+
+True or false? To pass the Turing test, the machine should be expected
+to fool the judge (convince the judge that the machine is a human)
+nearly 100% of the time; or, maybe just 70% of the time.
+
+*False* --- the machine should not be expected to be "more human than
+human," so convincing the judge just 25% of the time seems
+sufficient. Over 50% may well change our definition of humanity...
+
+True or false? Dennett thinks that winning a chess championship is
+just as strong a test for computer intelligence as the Turing test. 
+
+*False* --- beating humans in chess is not sufficient because chess
+requires only a narrow kind of intelligence, more calculation than
+anything
+
+** Search
+
+*** General search
+
+Give an initial state, describe possible actions and the transition
+model (i.e., how states connect), and specify a goal criterion for the
+following search problem:
+
+#+BEGIN_QUOTE
+A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
+#+END_QUOTE
+
+  - initial state: the robot's starting location
+
+  - possible actions: move north, south, east, west (not all movements
+    are always possible)
+
+  - transition model: look at the map, connect grid locations via
+    north/south/east/west links
+
+  - goal criterion: finding the exit from the maze
+
+Repeat this exercise for the following search problem:
+
+#+BEGIN_QUOTE
+Recall from calculus that the derivative is the inverse of the
+integral. Finding the derivative of a formula is easy (no search
+needed). But finding the integral of a formula is often challenging,
+and may require a search procedure. Describe this search procedure.
+#+END_QUOTE
+
+  - initial state: the starting formula that needs a symbolic integral
+    to be found
+
+  - possible actions / transition model: create a database like this:
+
+    - ~sin(x) --> -cos(x)~
+
+    - ~cx --> cx^2/2~
+
+    - ~x^n --> (x^(n+1)/(n+1))~
+
+    - ...
+
+  - goal criterion: say you are looking at a new formula ~g~, and the
+    original formula is ~f~, then you want ~dg/dx = f~; every "state"
+    (formula) is checked in this way
+
+Complete the following table for weighted, finite search graphs:
+
+| Search algorithm     | Always complete? | Always optimal? | Uses a heuristic? |
+|----------------------+------------------+-----------------+-------------------|
+| Random search        | Yes              | No              | No                |
+| Breadth-first search | Yes              | No              | No                |
+| Depth-first search   | Yes              | No              | No                |
+| Best-first search    | Yes              | No              | Yes               |
+| A* search            | Yes              | Yes             | Yes               |
+
+Recall the Goodale route search problem from [[./search-practice.html][Practice with searching]]
+notes. Answer the following questions for each of breadth-first
+search, depth-first search, hill-climbing search, best-first search,
+and A* search (using some heuristic like distance "as the crow
+flies"). Assume we start at ~Woodruff & Tuttle~ and the goal is
+~Goodale parking lot~. For each question, there may be more than one
+correct answer.
+
+  1. What are the first two states (beyond ~Woodruff & Tuttle~) that
+     will be checked?
+
+     - breadth-first (one possible answer): ~Lane & Tuttle~, ~High &
+       Woodruff~
+
+     - depth-first (one possible answer): ~Lane & Tuttle~, ~SR-315 &
+       Lane~
+
+     - best-first (only answer): ~High & Woodruff~, ~High & 15th~
+
+     - A* (only answer): ~Lane & Tuttle~, ~High & Woodruff~
+
+  2. What does the ~tocheck~ list look like after checking those
+     states from question 1? Be sure to order the list by an
+     appropriate sort order (breadth-first, hill-climbing, best-first,
+     and A* will take the next state from the front of the list;
+     depth-first will take the next state from the end). Assume
+     already-checked states are not added.
+
+     - breadth-first (one possible answer): ~[SR-315 & Lane, High & 15th]~
+
+     - depth-first (one possible answer): ~[High & Woodruff, SR-315 I-670 offramp, SR-315 & King]~
+
+     - best-first: ~[High & 11th, US-23 & 15th, Lane & Tuttle]~
+
+     - A*: ~[High & 15th, SR-315 & Lane]~
+
+What is the singular requirement for a heuristic to be called
+"admissible?"
+
+  - The heuristic must always /underestimate/ (or exactly match) the
+    true cost from the current state to the goal state.
+
+*** Adversarial search
+
+Describe a utility function for an adversarial search procedure (e.g.,
+minimax) for playing chess.
+
+  - One possible answer: Number of captured pieces, maybe with a
+    weight for each piece (so a queen will have a large weight, a pawn
+    not so much)
+
+True or false? Minimax is an appropriate search procedure for
+single-player games (like a solitaire card game or a Rubik's cube)?
+
+*False* --- there is no adversary to simulate and minimize, thus no
+minimax
+
+True or false? Alpha-beta pruning, as applied to the minimax
+procedure, produces more optimal solutions (e.g., produces game moves
+that allow the computer to win in fewer moves).
+
+*False* --- alpha-beta does not change the solutions.
+
+True or false? Alpha-beta pruning (applied to minimax) uses different
+utility functions than regular minimax.
+
+*False* --- the utility functions are not changed, just which parts of
+the search space are actually searched.
+
+True or false? Alpha-beta pruning (applied to minimax) is the same
+algorithm as minimax, just faster because irrelevant computations are
+omitted.
+
+*True* --- that's all alpha-beta pruning is; it still does minimax.
+
+What is the best move, according to a minimax procedure, for 'x' to
+make in the following tic-tac-toe board?
+
+#+BEGIN_HTML
+<table class="full">
+<tr>
+<td>o</td><td>o</td><td>x</td>
+</tr>
+<tr>
+<td></td><td></td><td>x</td>
+</tr>
+<tr>
+<td></td><td>x</td><td>o</td>
+</tr>
+</table>
+#+END_HTML
+
+The answer is that 'x' should move in the exact middle, as proved by
+this minimax search tree:
+
+#+BEGIN_CENTER
+[[./images/midterm-1-guide-ttt-solution.png]]
+#+END_CENTER
+
+** Knowledge representation
+
+*** Boolean logic
+
+Simplify the following expression using Boole's and De Morgan's laws:
+$$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
+
+  - Change $y \vee \neg y$ to $T$, yielding: $\neg(\neg x \vee \neg y)
+    \wedge (x \wedge T)$
+
+  - Change $x \wedge T$ to $x$, yielding: $\neg(\neg x \vee \neg y)
+    \wedge x$
+
+  - Distribute the negative, yielding: $(x \wedge y) \wedge x$
+
+  - Get rid of parentheses, reduce redundancy, yielding $x \wedge y$
+
+*** Propositional logic
+
+Build a truth-table for:
+$$\neg A \vee (B \leftrightarrow A)$$
+
+| $A$ | $B$ | $B \leftrightarrow A$ | $\neg A \vee (B \leftrightarrow A)$ |
+|-----+-----+-----------------------+-------------------------------------|
+| T   | T   | T                     | T                                   |
+| T   | F   | F                     | F                                   |
+| F   | T   | F                     | T                                   |
+| F   | F   | T                     | T                                   |
+
+Build a truth table to find this:
+
+| $A$ | $B$ | $C$ | $B \wedge C$ | $A \rightarrow (B \wedge C)$ | $\neg A \wedge (A \rightarrow (B \wedge C))$ |
+|-----+-----+-----+--------------+------------------------------+----------------------------------------------|
+| T   | T   | T   | T            | T                            | F                                            |
+| T   | T   | F   | F            | F                            | F                                            |
+| T   | F   | T   | F            | F                            | F                                            |
+| T   | F   | F   | F            | F                            | F                                            |
+| F   | T   | T   | T            | T                            | T                                            |
+| F   | T   | F   | F            | T                            | T                                            |
+| F   | F   | T   | F            | T                            | T                                            |
+| F   | F   | F   | F            | T                            | T                                            | 
+
+The last four rows will provide satisfying assignments.  
+
+Given,
+
+  1. $(S \vee T) \wedge (A \vee B)$
+
+  2. $S \rightarrow Q$
+
+  3. $\neg Q$
+
+  4. $\neg C \vee Q$
+
+Prove (and state the rules and premises you utilize):
+
+  1. $\neg S$
+
+     1. From 2, 3 and modus tollens.
+
+  2. $T$
+
+     1. From $\neg S$ (above) and 1, simplification, and disjunctive
+        syllogism.
+
+  3. $\neg C \vee W$
+
+     1. From 3, 4 and disjunctive syllogism (which gives us $\neg C$);
+        now apply addition plus introduce the arbitrary symbol $W$
+        (which is allowed with the addition rule)
+
+*** First-order logic
+
+Rewrite the following statements in first-order logic:
+
+  1. Tony is a tiger.
+
+     - $Tiger(Tony)$
+
+  2. All tigers have stripes.
+
+     - $(\forall x)(Tiger(x) \rightarrow Striped(x))$
+
+  3. Some tigers are white.
+
+     - $(\exists x)(Tiger(x) \wedge White(x))$
+
+  4. If any tiger is white, then we know it lives in the snow (but not
+     necessarily vice versa).
+
+     - $(\forall x)((Tiger(x) \wedge White(x)) \rightarrow LivesInSnow(x))$
+
+  5. A tiger is not both white and orange.
+
+     - $(\forall x)(Tiger(x) \rightarrow (\neg White(x) \vee \neg Orange(x)))$
+
+Rewrite the following without using $\forall$ (hint: use negation):
+$$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+
+$$\neg(\exists x)((P(x) \vee (A(x) \wedge B(x))) \wedge (\neg P(x)
+\vee \neg(A(x) \wedge B(x))))$$
+
+Rewrite the following without using $\exists$:
+$$(\exists x)(W(x) \vee \neg Q(x))$$
+
+$$\neg (\forall x)(\neg W(x) \wedge Q(x))$$
+
+
+#+INCLUDE: footer.org

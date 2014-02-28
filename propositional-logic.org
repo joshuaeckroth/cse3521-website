@@ -151,7 +151,7 @@ Ok, can we deduce that $m$ is a logical consequence? Yes:
   6. $d$ because of premise 1 and consequence 5 and disjunctive
      syllogism.
 
-  7. $m$ because of premise 2 and consequence 6 and modus ponens.
+  7. $m$ because of premise 3 and consequence 6 and modus ponens.
 
 
 #+INCLUDE: footer.org

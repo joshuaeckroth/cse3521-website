@@ -882,8 +882,23 @@ filter([_|Tail1], Pred, Tail2) :-
     filter(Tail1, Pred, Tail2).
 #+END_SRC
 
-   
+* Day 14
 
+** Prolog unification
+
+   - "unify" a query or goal with something from the source file
+
+     - female(X) needs to be unified with something in the file
+
+       - female(pam) looks like it might work.
+
+       - just make X = pam, now they are equivalent
+
+     - parent(X, Y) unifies with parent(bob, ann) if X=bob and Y=ann
+
+     - family(Id, person(FirstName, _, _, _, _), _, _)
+       would unify with the first family fact if Id=10392 and
+       FirstName=tom
 
 
 

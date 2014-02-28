@@ -61,7 +61,7 @@ loves(marcellus, mia).
 jealous(A, B) :- loves(A, C), loves(B, C).
 #+END_SRC
 
-How does Prolog find the proof for ~jealous(X, Y)~, and what values to
+How does Prolog find the proof for ~jealous(X, Y)~, and what values do
 the variables take?
 
 The proof tree is shown below. Note that there are four smiley-face
