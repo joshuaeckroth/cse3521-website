@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Midterm 1 guide</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<a href="index.html">Home</a>
+</div>
+<div id="content">
+<h1 class="title">Midterm 1 guide</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Turing test</a></li>
+<li><a href="#sec-2">Search</a>
+<ul>
+<li><a href="#sec-2-1">General search</a></li>
+<li><a href="#sec-2-2">Adversarial search</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Knowledge representation</a>
+<ul>
+<li><a href="#sec-3-1">Boolean logic</a></li>
+<li><a href="#sec-3-2">Propositional logic</a></li>
+<li><a href="#sec-3-3">First-order logic</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Answers&#x2026;</a>
+<ul>
+<li><a href="#sec-4-1">Turing test</a></li>
+<li><a href="#sec-4-2">Search</a>
+<ul>
+<li><a href="#sec-4-2-1">General search</a></li>
+<li><a href="#sec-4-2-2">Adversarial search</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-3">Knowledge representation</a>
+<ul>
+<li><a href="#sec-4-3-1">Boolean logic</a></li>
+<li><a href="#sec-4-3-2">Propositional logic</a></li>
+<li><a href="#sec-4-3-3">First-order logic</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+<b>Answers on the bottom.</b> Also, you can <b>bring a notecard</b> (5in x 7in
+max) with notes or whatnot.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Turing test</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+True or false? Turing first described a test between a monkey and a
+human before describing a test between a human and a machine.
+</p>
+
+<p>
+True or false? The goal of the machine is to convince the judge that
+the human is a machine.
+</p>
+
+<p>
+True or false? To pass the Turing test, the machine should be expected
+to fool the judge (convince the judge that the machine is a human)
+nearly 100% of the time; or, maybe just 70% of the time.
+</p>
+
+<p>
+True or false? Dennett thinks that winning a chess championship is
+just as strong a test for computer intelligence as the Turing test.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Search</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">General search</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Give an initial state, describe possible actions and the transition
+model (i.e., how states connect), and specify a goal criterion for the
+following search problem:
+</p>
+
+<blockquote>
+<p>
+A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
+</p>
+</blockquote>
+
+<p>
+Repeat this exercise for the following search problem:
+</p>
+
+<blockquote>
+<p>
+Recall from calculus that the derivative is the inverse of the
+integral. Finding the derivative of a formula is easy (no search
+needed). But finding the integral of a formula is often challenging,
+and may require a search procedure. Describe this search procedure.
+</p>
+</blockquote>
+
+<p>
+Complete the following table for weighted, finite search graphs:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Search algorithm</th>
+<th scope="col" class="left">Always complete?</th>
+<th scope="col" class="left">Always optimal?</th>
+<th scope="col" class="left">Uses a heuristic?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">Random search</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Breadth-first search</td>
+<td class="left">Yes</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Depth-first search</td>
+<td class="left">&#xa0;</td>
+<td class="left">No</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">Best-first search</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">A* search</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">Yes</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Recall the Goodale route search problem from <a href="./search-practice.html">Practice with searching</a>
+notes. Answer the following questions for each of breadth-first
+search, depth-first search, best-first search, and A* search (using
+some heuristic like distance "as the crow flies"). Assume we start at
+<code>Woodruff &amp; Tuttle</code> and the goal is <code>Goodale parking lot</code>. For each
+question, there may be more than one correct answer.
+</p>
+
+<ol class="org-ol">
+<li>What are the first two states (beyond <code>Woodruff &amp; Tuttle</code>) that
+will be checked?
+</li>
+
+<li>What does the <code>tocheck</code> list look like after checking those
+states from question 1? Be sure to order the list by an
+appropriate sort order (breadth-first, best-first, and A* will
+take the next state from the front of the list; depth-first will
+take the next state from the end).
+</li>
+</ol>
+
+<p>
+What is the singular requirement for a heuristic to be called
+"admissible?"
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Adversarial search</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Describe a utility function for an adversarial search procedure (e.g.,
+minimax) for playing chess.
+</p>
+
+<p>
+True or false? Minimax is an appropriate search procedure for
+single-player games (like a solitaire card game or a Rubik's cube)?
+</p>
+
+<p>
+True or false? Alpha-beta pruning, as applied to the minimax
+procedure, produces more optimal solutions (e.g., produces game moves
+that allow the computer to win in fewer moves).
+</p>
+
+<p>
+True or false? Alpha-beta pruning (applied to minimax) uses different
+utility functions than regular minimax.
+</p>
+
+<p>
+True or false? Alpha-beta pruning (applied to minimax) is the same
+algorithm as minimax, just faster because irrelevant computations are
+omitted.
+</p>
+
+<p>
+What is the best move, according to a minimax procedure, for 'x' to
+make in the following tic-tac-toe board?
+</p>
+
+<table class="full">
+<tr>
+<td>o</td><td>o</td><td>x</td>
+</tr>
+<tr>
+<td></td><td></td><td>x</td>
+</tr>
+<tr>
+<td></td><td>x</td><td>o</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Knowledge representation</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Boolean logic</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Simplify the following expression using Boole's and De Morgan's laws:
+$$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">Propositional logic</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Build a truth-table for:
+$$\neg A \vee (B \leftrightarrow A)$$
+</p>
+
+<p>
+Given,
+</p>
+
+<ol class="org-ol">
+<li>\((S \vee T) \wedge (A \vee B)\)
+</li>
+
+<li>\(S \rightarrow Q\)
+</li>
+
+<li>\(\neg Q\)
+</li>
+
+<li>\(\neg C \vee Q\)
+</li>
+</ol>
+
+<p>
+Prove (and state the rules and premises you utilize):
+</p>
+
+<ol class="org-ol">
+<li>\(\neg S\)
+</li>
+
+<li>\(T\)
+</li>
+
+<li>\(\neg C \vee W\)
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">First-order logic</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Rewrite the following statements in first-order logic:
+</p>
+
+<ol class="org-ol">
+<li>Tony is a tiger.
+</li>
+
+<li>All tigers have stripes.
+</li>
+
+<li>Some tigers are white.
+</li>
+
+<li>If any tiger is white, then we know it lives in the snow (but not
+necessarily vice versa).
+</li>
+
+<li>A tiger is not both white and orange.
+</li>
+</ol>
+
+<p>
+Rewrite the following without using \(\forall\) (hint: use negation):
+$$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+</p>
+
+<p>
+Rewrite the following without using \(\exists\):
+$$(\exists x)(W(x) \vee \neg Q(x))$$
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Answers&#x2026;</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Turing test</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+True or false? Turing first described a test between a monkey and a
+human before describing a test between a human and a machine.
+</p>
+
+<p>
+<b>False</b> &#x2014; the original test was between a man and a woman; the man
+was supposed to impersonate the woman.
+</p>
+
+<p>
+True or false? The goal of the machine is to convince the judge that
+the human is a machine.
+</p>
+
+<p>
+<b>True</b> &#x2014; or, <b>False</b> &#x2014; my fault, both answers are true: the
+machine is supposed to convince the judge that it is a human, which is
+equivalent to convincing the judge that the human is a machine.
+</p>
+
+<p>
+True or false? To pass the Turing test, the machine should be expected
+to fool the judge (convince the judge that the machine is a human)
+nearly 100% of the time; or, maybe just 70% of the time.
+</p>
+
+<p>
+<b>False</b> &#x2014; the machine should not be expected to be "more human than
+human," so convincing the judge just 25% of the time seems
+sufficient. Over 50% may well change our definition of humanity&#x2026;
+</p>
+
+<p>
+True or false? Dennett thinks that winning a chess championship is
+just as strong a test for computer intelligence as the Turing test. 
+</p>
+
+<p>
+<b>False</b> &#x2014; beating humans in chess is not sufficient because chess
+requires only a narrow kind of intelligence, more calculation than
+anything
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Search</h3>
+<div class="outline-text-3" id="text-4-2">
+</div><div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1">General search</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+Give an initial state, describe possible actions and the transition
+model (i.e., how states connect), and specify a goal criterion for the
+following search problem:
+</p>
+
+<blockquote>
+<p>
+A robot wants a path to exit a maze. The maze is represented as a
+square grid; open areas are represented by white grid cells, and walls
+are represented by black grid cells.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>initial state: the robot's starting location
+</li>
+
+<li>possible actions: move north, south, east, west (not all movements
+are always possible)
+</li>
+
+<li>transition model: look at the map, connect grid locations via
+north/south/east/west links
+</li>
+
+<li>goal criterion: finding the exit from the maze
+</li>
+</ul>
+
+<p>
+Repeat this exercise for the following search problem:
+</p>
+
+<blockquote>
+<p>
+Recall from calculus that the derivative is the inverse of the
+integral. Finding the derivative of a formula is easy (no search
+needed). But finding the integral of a formula is often challenging,
+and may require a search procedure. Describe this search procedure.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>initial state: the starting formula that needs a symbolic integral
+to be found
+</li>
+
+<li>possible actions / transition model: create a database like this:
+
+<ul class="org-ul">
+<li><code>sin(x) --&gt; -cos(x)</code>
+</li>
+
+<li><code>cx --&gt; cx^2/2</code>
+</li>
+
+<li><code>x^n --&gt; (x^(n+1)/(n+1))</code>
+</li>
+
+<li>&#x2026;
+</li>
+</ul>
+</li>
+
+<li>goal criterion: say you are looking at a new formula <code>g</code>, and the
+original formula is <code>f</code>, then you want <code>dg/dx = f</code>; every "state"
+(formula) is checked in this way
+</li>
+</ul>
+
+<p>
+Complete the following table for weighted, finite search graphs:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Search algorithm</th>
+<th scope="col" class="left">Always complete?</th>
+<th scope="col" class="left">Always optimal?</th>
+<th scope="col" class="left">Uses a heuristic?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">Random search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">Breadth-first search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">Depth-first search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">No</td>
+</tr>
+
+<tr>
+<td class="left">Best-first search</td>
+<td class="left">Yes</td>
+<td class="left">No</td>
+<td class="left">Yes</td>
+</tr>
+
+<tr>
+<td class="left">A* search</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+<td class="left">Yes</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Recall the Goodale route search problem from <a href="./search-practice.html">Practice with searching</a>
+notes. Answer the following questions for each of breadth-first
+search, depth-first search, hill-climbing search, best-first search,
+and A* search (using some heuristic like distance "as the crow
+flies"). Assume we start at <code>Woodruff &amp; Tuttle</code> and the goal is
+<code>Goodale parking lot</code>. For each question, there may be more than one
+correct answer.
+</p>
+
+<ol class="org-ol">
+<li>What are the first two states (beyond <code>Woodruff &amp; Tuttle</code>) that
+will be checked?
+
+<ul class="org-ul">
+<li>breadth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>High &amp;
+       Woodruff</code>
+</li>
+
+<li>depth-first (one possible answer): <code>Lane &amp; Tuttle</code>, <code>SR-315 &amp;
+       Lane</code>
+</li>
+
+<li>best-first (only answer): <code>High &amp; Woodruff</code>, <code>High &amp; 15th</code>
+</li>
+
+<li>A* (only answer): <code>Lane &amp; Tuttle</code>, <code>High &amp; Woodruff</code>
+</li>
+</ul>
+</li>
+
+<li>What does the <code>tocheck</code> list look like after checking those
+states from question 1? Be sure to order the list by an
+appropriate sort order (breadth-first, hill-climbing, best-first,
+and A* will take the next state from the front of the list;
+depth-first will take the next state from the end). Assume
+already-checked states are not added.
+
+<ul class="org-ul">
+<li>breadth-first (one possible answer): <code>[SR-315 &amp; Lane, High &amp; 15th]</code>
+</li>
+
+<li>depth-first (one possible answer): <code>[High &amp; Woodruff, SR-315 I-670 offramp, SR-315 &amp; King]</code>
+</li>
+
+<li>best-first: <code>[High &amp; 11th, US-23 &amp; 15th, Lane &amp; Tuttle]</code>
+</li>
+
+<li>A*: <code>[High &amp; 15th, SR-315 &amp; Lane]</code>
+</li>
+</ul>
+</li>
+</ol>
+
+<p>
+What is the singular requirement for a heuristic to be called
+"admissible?"
+</p>
+
+<ul class="org-ul">
+<li>The heuristic must always <i>underestimate</i> (or exactly match) the
+true cost from the current state to the goal state.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2">Adversarial search</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<p>
+Describe a utility function for an adversarial search procedure (e.g.,
+minimax) for playing chess.
+</p>
+
+<ul class="org-ul">
+<li>One possible answer: Number of captured pieces, maybe with a
+weight for each piece (so a queen will have a large weight, a pawn
+not so much)
+</li>
+</ul>
+
+<p>
+True or false? Minimax is an appropriate search procedure for
+single-player games (like a solitaire card game or a Rubik's cube)?
+</p>
+
+<p>
+<b>False</b> &#x2014; there is no adversary to simulate and minimize, thus no
+minimax
+</p>
+
+<p>
+True or false? Alpha-beta pruning, as applied to the minimax
+procedure, produces more optimal solutions (e.g., produces game moves
+that allow the computer to win in fewer moves).
+</p>
+
+<p>
+<b>False</b> &#x2014; alpha-beta does not change the solutions.
+</p>
+
+<p>
+True or false? Alpha-beta pruning (applied to minimax) uses different
+utility functions than regular minimax.
+</p>
+
+<p>
+<b>False</b> &#x2014; the utility functions are not changed, just which parts of
+the search space are actually searched.
+</p>
+
+<p>
+True or false? Alpha-beta pruning (applied to minimax) is the same
+algorithm as minimax, just faster because irrelevant computations are
+omitted.
+</p>
+
+<p>
+<b>True</b> &#x2014; that's all alpha-beta pruning is; it still does minimax.
+</p>
+
+<p>
+What is the best move, according to a minimax procedure, for 'x' to
+make in the following tic-tac-toe board?
+</p>
+
+<table class="full">
+<tr>
+<td>o</td><td>o</td><td>x</td>
+</tr>
+<tr>
+<td></td><td></td><td>x</td>
+</tr>
+<tr>
+<td></td><td>x</td><td>o</td>
+</tr>
+</table>
+
+<p>
+The answer is that 'x' should move in the exact middle, as proved by
+this minimax search tree:
+</p>
+
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/midterm-1-guide-ttt-solution.png" alt="midterm-1-guide-ttt-solution.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">Knowledge representation</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-sec-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1">Boolean logic</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+Simplify the following expression using Boole's and De Morgan's laws:
+$$\neg(\neg x \vee \neg y) \wedge (x \wedge (y \vee \neg y))$$
+</p>
+
+<ul class="org-ul">
+<li>Change \(y \vee \neg y\) to \(T\), yielding: \(\neg(\neg x \vee \neg y)
+    \wedge (x \wedge T)\)
+</li>
+
+<li>Change \(x \wedge T\) to \(x\), yielding: \(\neg(\neg x \vee \neg y)
+    \wedge x\)
+</li>
+
+<li>Distribute the negative, yielding: \((x \wedge y) \wedge x\)
+</li>
+
+<li>Get rid of parentheses, reduce redundancy, yielding \(x \wedge y\)
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2">Propositional logic</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+Build a truth-table for:
+$$\neg A \vee (B \leftrightarrow A)$$
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">\(A\)</th>
+<th scope="col" class="left">\(B\)</th>
+<th scope="col" class="left">\(B \leftrightarrow A\)</th>
+<th scope="col" class="left">\(\neg A \vee (B \leftrightarrow A)\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Build a truth table to find this:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">\(A\)</th>
+<th scope="col" class="left">\(B\)</th>
+<th scope="col" class="left">\(C\)</th>
+<th scope="col" class="left">\(B \wedge C\)</th>
+<th scope="col" class="left">\(A \rightarrow (B \wedge C)\)</th>
+<th scope="col" class="left">\(\neg A \wedge (A \rightarrow (B \wedge C))\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+
+<tr>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">F</td>
+<td class="left">T</td>
+<td class="left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The last four rows will provide satisfying assignments.  
+</p>
+
+<p>
+Given,
+</p>
+
+<ol class="org-ol">
+<li>\((S \vee T) \wedge (A \vee B)\)
+</li>
+
+<li>\(S \rightarrow Q\)
+</li>
+
+<li>\(\neg Q\)
+</li>
+
+<li>\(\neg C \vee Q\)
+</li>
+</ol>
+
+<p>
+Prove (and state the rules and premises you utilize):
+</p>
+
+<ol class="org-ol">
+<li>\(\neg S\)
+
+<ol class="org-ol">
+<li>From 2, 3 and modus tollens.
+</li>
+</ol>
+</li>
+
+<li>\(T\)
+
+<ol class="org-ol">
+<li>From \(\neg S\) (above) and 1, simplification, and disjunctive
+syllogism.
+</li>
+</ol>
+</li>
+
+<li>\(\neg C \vee W\)
+
+<ol class="org-ol">
+<li>From 3, 4 and disjunctive syllogism (which gives us \(\neg C\));
+now apply addition plus introduce the arbitrary symbol \(W\)
+(which is allowed with the addition rule)
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-4-3-3" class="outline-4">
+<h4 id="sec-4-3-3">First-order logic</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<p>
+Rewrite the following statements in first-order logic:
+</p>
+
+<ol class="org-ol">
+<li>Tony is a tiger.
+
+<ul class="org-ul">
+<li>\(Tiger(Tony)\)
+</li>
+</ul>
+</li>
+
+<li>All tigers have stripes.
+
+<ul class="org-ul">
+<li>\((\forall x)(Tiger(x) \rightarrow Striped(x))\)
+</li>
+</ul>
+</li>
+
+<li>Some tigers are white.
+
+<ul class="org-ul">
+<li>\((\exists x)(Tiger(x) \wedge White(x))\)
+</li>
+</ul>
+</li>
+
+<li>If any tiger is white, then we know it lives in the snow (but not
+necessarily vice versa).
+
+<ul class="org-ul">
+<li>\((\forall x)((Tiger(x) \wedge White(x)) \rightarrow LivesInSnow(x))\)
+</li>
+</ul>
+</li>
+
+<li>A tiger is not both white and orange.
+
+<ul class="org-ul">
+<li>\((\forall x)(Tiger(x) \rightarrow (\neg White(x) \vee \neg Orange(x)))\)
+</li>
+</ul>
+</li>
+</ol>
+
+<p>
+Rewrite the following without using \(\forall\) (hint: use negation):
+$$(\forall x)(P(x) \leftrightarrow (A(x) \wedge B(x)))$$
+</p>
+
+<p>
+$$\neg(\exists x)((P(x) \vee (A(x) \wedge B(x))) \wedge (\neg P(x)
+\vee \neg(A(x) \wedge B(x))))$$
+</p>
+
+<p>
+Rewrite the following without using \(\exists\):
+$$(\exists x)(W(x) \vee \neg Q(x))$$
+</p>
+
+<p>
+$$\neg (\forall x)(\neg W(x) \wedge Q(x))$$
+</p>
+
+
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

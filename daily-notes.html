@@ -239,6 +239,11 @@ for the JavaScript code in this tag.
 <li><a href="#sec-11-1">Prolog</a></li>
 </ul>
 </li>
+<li><a href="#sec-12">Day 14</a>
+<ul>
+<li><a href="#sec-12-1">Prolog unification</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1717,9 +1722,40 @@ pred(X,Y, &#x2026;) ← foo(X, Y, &#x2026;) ∧ bar(X, Y, &#x2026;) ∧ baz(X, Y
     filter(<span style="color: #000000; background-color: #ffffff;">Tail1</span>, <span style="color: #000000; background-color: #ffffff;">Pred</span>, <span style="color: #000000; background-color: #ffffff;">Tail2</span>).
 </pre>
 </div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12">Day 14</h2>
+<div class="outline-text-2" id="text-12">
+</div><div id="outline-container-sec-12-1" class="outline-3">
+<h3 id="sec-12-1">Prolog unification</h3>
+<div class="outline-text-3" id="text-12-1">
+<ul class="org-ul">
+<li>"unify" a query or goal with something from the source file
 
+<ul class="org-ul">
+<li>female(X) needs to be unified with something in the file
 
+<ul class="org-ul">
+<li>female(pam) looks like it might work.
+</li>
 
+<li>just make X = pam, now they are equivalent
+</li>
+</ul>
+</li>
+
+<li>parent(X, Y) unifies with parent(bob, ann) if X=bob and Y=ann
+</li>
+
+<li>family(Id, person(FirstName, _, _, _, _), _, _)
+would unify with the first family fact if Id=10392 and
+FirstName=tom
+</li>
+</ul>
+</li>
+</ul>
 
 
 
