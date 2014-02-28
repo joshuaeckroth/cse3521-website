@@ -145,7 +145,7 @@ If we start with an initial board that is one /down/ move away from
 the goal, ...
 
 #+BEGIN_SRC prolog
-?- dfs([1,2,3, 4,7,5, 6,0,8], Path).
+?- dfsSimplest([1,2,3, 4,7,5, 6,0,8], Path).
 .... get a cup of coffee now?
 
 ERROR: Out of local stack
