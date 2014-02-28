@@ -443,4 +443,343 @@ garden? Hint: the answer involves modifying ~toggle(switch1)~
 predicate to include the requirement that the ~current_room~ predicate
 has a certain value...
 
+* Constraint logic programming (over finite domains)
+
+The following text is a slightly modified version of a Wikibooks page:
+http://en.wikibooks.org/wiki/Prolog/Constraint_Logic_Programming
+
+#+BEGIN_SRC prolog
+?- use_module(library(clpfd)).
+#+END_SRC
+
+Do you remember how arithmetic in Prolog fails when used with
+insufficiently instantiated variables? Try this for a starter:
+
+#+BEGIN_SRC prolog
+?- X > Y, member(X,[1,2,3]), Y=2.
+#+END_SRC
+
+Even though there is logically one possible answer to this query
+(~X=3~), Prolog cannot infer it. We can get the right answer by
+rearranging the conjuncts of the query:
+
+#+BEGIN_SRC prolog
+?- member(X,[1,2,3]), Y=2, X > Y.
+#+END_SRC
+
+CLP(fd) is a lot smarter than Prolog when it comes to arithmetic. Try
+this:
+
+#+BEGIN_SRC prolog
+?- X #> Y, X in 1..3, Y=2.
+#+END_SRC
+
+This succeeds with the only correct answer, ~X=3~. The predicate
+~#>/2~, when given two variables, posts the constraint that it left
+argument should be greater than its right argument. CLP(fd) holds this
+constraint in its constraint store until it knows enough about the
+variables' possible values to infer further information from it. The
+moment that ~Y~ gets the value ~2~, CLP(fd) infers that ~X~ can only
+have the value ~3~.  What happens when we bind ~Y~ to ~1~ instead?
+
+#+BEGIN_SRC prolog
+?- X #> Y, X in 1..3, Y=1.
+Y = 1,
+X in 2..3.
+#+END_SRC
+
+Rather than start backtracking over the possible values of ~X~, CLP(fd)
+constrains ~X~ to a smaller domain and stops. To have CLP(fd) search for
+possible assignments to variables, we must tell it do so
+explicitly. The simplest way to do that is with the predicate ~label/1~:
+
+#+BEGIN_SRC prolog
+?- X #> Y, X in 1..3, Y=1, label([X]).
+X = 2,
+Y = 1 ;
+X = 3,
+Y = 1.
+#+END_SRC
+
+What we've seen so far isn't very interesting, because there was only
+one constraint variable. Let's have a look at a problem with eight
+variables.
+
+** Send more money
+
+The send more money puzzle is the quintessential example of a
+constraint problem. It amount to assigning different digits ~0~
+through ~9~ to the variables ~[S,E,N,D,M,O,R,Y]~ such that the sum
+
+#+BEGIN_EXAMPLE
+   SEND
++  MORE
+= MONEY
+#+END_EXAMPLE
+
+is solved; ~S~ and ~M~ should both be greater than zero. Instead of
+typing to the Prolog prompt, let's make a proper Prolog source file.
+
+#+BEGIN_SRC prolog
+:- use_module(library(clpfd)).
+ 
+sendmoremoney(Vars) :-
+    Vars = [S,E,N,D,M,O,R,Y],
+    Vars ins 0..9,
+    S #\= 0,
+    M #\= 0,
+    all_different(Vars),
+                 1000*S + 100*E + 10*N + D
+    +            1000*M + 100*O + 10*R + E
+    #= 10000*M + 1000*O + 100*N + 10*E + Y.
+#+END_SRC
+
+~ins/2~ is the same as ~in/2~, except that it sets the domains of
+several variables at the same time. ~all_different~ is logically
+equivalent to posting disequality constraints (~#\=~) on all pairs of
+variables in ~Vars~, but is shorter and possibly more efficient. Note
+that we can express the sum as one constraint over all eight variables
+at the same time. Let's try this out:
+
+#+BEGIN_SRC prolog
+?- sendmoremoney([S,E,N,D,M,O,R,Y]).
+S = 9,
+M = 1,
+O = 0,
+E in 4..7,
+all_different([E, N, D, R, Y, 0, 1, 9]),
+1000*9+91*E+ -90*N+D+ -9000*1+ -900*0+10*R+ -1*Y#=0,
+N in 5..8,
+D in 2..8,
+R in 2..8,
+Y in 2..8.
+#+END_SRC
+
+Even without labeling variables, CLP(fd) has inferred the values of
+three variables, has simplified the sum and put tighter bounds on the
+remaining five variables. Of course, we want values for all our
+variables:
+
+#+BEGIN_SRC prolog
+?- Vars=[S,E,N,D,M,O,R,Y], sendmoremoney(Vars), label(Vars).
+Vars = [9, 5, 6, 7, 1, 0, 8, 2],
+S = 9,
+E = 5,
+N = 6,
+D = 7,
+M = 1,
+O = 0,
+R = 8,
+Y = 2.
+#+END_SRC
+
+** Reverse factorial
+
+Here is an example from some Prolog docs: http://www.swi-prolog.org/man/clpfd.html
+
+#+BEGIN_SRC prolog
+:- use_module(library(clpfd)).
+
+factorial(0, 1).
+factorial(N, F) :-
+        N #> 0,
+        N1 #= N - 1,
+        F #= N * F1,
+        factorial(N1, F1).
+#+END_SRC
+
+The code above is the factorial function, written with constraints. We
+can use it in the normal way:
+
+#+BEGIN_SRC prolog
+?- factorial(5, Fact).
+Fact = 120.
+
+?- factorial(12, Fact).
+Fact = 479001600.
+#+END_SRC
+
+But we can also use it in reverse:
+
+#+BEGIN_SRC prolog
+?- factorial(N, 479001600).
+N = 12.
+#+END_SRC
+
+Or, find out all the possible outputs:
+
+#+BEGIN_SRC prolog
+?- factorial(N, F).
+N = 0,
+F = 1 ;
+N = F, F = 1 ;
+N = F, F = 2 ;
+N = 3,
+F = 6 ;
+N = 4,
+F = 24 ;
+N = 5,
+F = 120 ;
+N = 6,
+F = 720 ;
+N = 7,
+F = 5040 ;
+N = 8,
+F = 40320 ;
+N = 9,
+F = 362880 ;
+N = 10,
+F = 3628800 ;
+N = 11,
+F = 39916800 ;
+N = 12,
+F = 479001600 ......
+#+END_SRC
+
+#+BEGIN_CENTER
+[[./images/compute-all-the-factorials.jpg]]
+#+END_CENTER
+
+#+BEGIN_SRC prolog
+?- findall([N, F], (N #< 50, factorial(N, F)), SomeFactorials), writeln(SomeFactorials).
+
+[[0,1],[1,1],[2,2],[3,6],[4,24],[5,120],[6,720],[7,5040],[8,40320],[9,362880],[10,3628800],
+[11,39916800],[12,479001600],[13,6227020800],[14,87178291200],[15,1307674368000],
+[16,20922789888000],[17,355687428096000],[18,6402373705728000],[19,121645100408832000],
+[20,2432902008176640000],[21,51090942171709440000],[22,1124000727777607680000],
+[23,25852016738884976640000],[24,620448401733239439360000],[25,15511210043330985984000000],
+[26,403291461126605635584000000],[27,10888869450418352160768000000],
+[28,304888344611713860501504000000],[29,8841761993739701954543616000000],
+[30,265252859812191058636308480000000],[31,8222838654177922817725562880000000],
+[32,263130836933693530167218012160000000],[33,8683317618811886495518194401280000000],
+[34,295232799039604140847618609643520000000],[35,10333147966386144929666651337523200000000],
+[36,371993326789901217467999448150835200000000],
+[37,13763753091226345046315979581580902400000000],
+[38,523022617466601111760007224100074291200000000],
+[39,20397882081197443358640281739902897356800000000],
+[40,815915283247897734345611269596115894272000000000],
+[41,33452526613163807108170062053440751665152000000000],
+[42,1405006117752879898543142606244511569936384000000000],
+[43,60415263063373835637355132068513997507264512000000000],
+[44,2658271574788448768043625811014615890319638528000000000],
+[45,119622220865480194561963161495657715064383733760000000000],
+[46,5502622159812088949850305428800254892961651752960000000000],
+[47,258623241511168180642964355153611979969197632389120000000000],
+[48,12413915592536072670862289047373375038521486354677760000000000],
+[49,608281864034267560872252163321295376887552831379210240000000000]]
+#+END_SRC
+
+So, we wrote a function, then collected (some of) the valid
+input/output pairs of that function, just by asking for them. Can your
+programming language do that?
+
+* Sudoku
+
+The key to solving Sudoku puzzles with Prolog is to use the ~clpfd~
+(constraint logic programming over finite domains) library to restrict
+the search space to numbers 1-9. Then, it's just a matter of
+describing what a solution looks like.
+
+#+BEGIN_SRC prolog
+%% need the module "clpfd" (constraint logic programming over finite domains)
+%% so that we can specify the range of numbers to search
+?- use_module(library(clpfd)).
+
+sudoku(Rows) :-
+        length(Rows, 9),  % ensure there are 9 rows
+        maplist(length_(9), Rows),  % ensure each row has 9 elements (see below for length_)
+        append(Rows, Vs),  % combined all rows into the variable Vs
+        Vs ins 1..9,  % ensure that the elements of Vs should be numbers 1-9
+        maplist(all_distinct, Rows),  % ensure each row is distinct
+        transpose(Rows, Columns),  % flip the matrix
+        maplist(all_distinct, Columns),  % ensure each column is distinct
+        Rows = [A,B,C,D,E,F,G,H,I],  % create variables A-I for each row
+        blocks(A, B, C),  % make sure all values in these three rows (three 3x3 blocks) are distinct
+        blocks(D, E, F),  % ... and these rows/blocks
+        blocks(G, H, I).  % ... and these rows/blocks
+
+length_(L, Ls) :- length(Ls, L).  % version of length that's easierto use with maplist (above)
+
+% this predicate ensures a "block" (3x3 grid) contains only distinct values
+blocks([], [], []).
+blocks([A,B,C|Bs1], [D,E,F|Bs2], [G,H,I|Bs3]) :-
+        all_distinct([A,B,C,D,E,F,G,H,I]),
+        blocks(Bs1, Bs2, Bs3).
+
+problem([[_,_,_,_,_,_,_,_,_],
+          [_,_,_,_,_,3,_,8,5],
+          [_,_,1,_,2,_,_,_,_],
+          [_,_,_,5,_,7,_,_,_],
+          [_,_,4,_,_,_,1,_,_],
+          [_,9,_,_,_,_,_,_,_],
+          [5,_,_,_,_,_,_,7,3],
+          [_,_,2,_,1,_,_,_,_],
+          [_,_,_,_,4,_,_,_,9]]).
+
+problem([[_,_,_,_,_,_,_,_,_],
+          [_,_,_,_,_,3,_,8,5],
+          [_,_,9,_,2,_,_,_,_],
+          [_,_,_,5,_,7,_,_,_],
+          [_,_,4,_,_,_,9,_,_],
+          [_,1,_,_,_,_,_,_,_],
+          [5,_,_,_,_,_,_,7,3],
+          [_,_,2,_,9,_,_,_,_],
+          [_,_,_,_,4,_,_,_,1]]).
+
+% top-left of:
+% http://puzzles.about.com/library/sudoku/blprsudokuh16.htm
+problem([[_,_,_,8,4,_,_,_,9],
+          [_,_,1,_,_,_,_,_,5],
+          [8,_,_,_,2,1,4,6,_],
+          [7,_,8,_,_,_,_,9,_],
+          [_,_,_,_,_,_,_,_,_],
+          [_,5,_,_,_,_,3,_,1],
+          [_,2,4,9,1,_,_,_,7],
+          [9,_,_,_,_,_,5,_,_],
+          [3,_,_,_,8,4,_,_,_]]).
+
+% from:
+% http://www.jibble.org/impossible-sudoku/
+problem([[_,7,_,_,_,6,_,_,_],
+          [9,_,_,_,_,_,_,4,1],
+          [_,_,8,_,_,9,_,5,_],
+          [_,9,_,_,_,7,_,_,2],
+          [_,_,3,_,_,_,8,_,_],
+          [4,_,_,8,_,_,_,1,_],
+          [_,8,_,3,_,_,9,_,_],
+          [1,6,_,_,_,_,_,_,7],
+          [_,_,_,5,_,_,_,8,_]]).
+
+% from:
+% http://www.guardian.co.uk/media/2010/aug/23/worlds-hardest-sudoku-solution?INTCMP=SRCH#_
+problem([[_,_,5,3,_,_,_,_,_],
+          [8,_,_,_,_,_,_,2,_],
+          [_,7,_,_,1,_,5,_,_],
+          [4,_,_,_,_,5,3,_,_],
+          [_,1,_,_,7,_,_,_,6],
+          [_,_,3,2,_,_,_,8,_],
+          [_,6,_,5,_,_,_,_,9],
+          [_,_,4,_,_,_,_,3,_],
+          [_,_,_,_,_,9,7,_,_]]).
+ 
+problem([[_,3,1,_,_,_,_,8,_],
+          [_,_,2,_,7,_,9,_,4],
+          [_,_,6,8,_,_,_,_,_],
+          [_,_,_,6,1,_,_,_,_],
+          [6,_,_,_,2,_,_,_,3],
+          [_,_,_,_,4,5,_,_,_],
+          [_,_,_,_,_,1,2,_,_],
+          [7,_,5,_,3,_,8,_,_],
+          [_,9,_,_,_,_,6,3,_]]).
+
+
+solve_problems :-
+        problem(Rows),
+	statistics(runtime, _),  % builtin function, establishes "runtime" variable
+    	sudoku(Rows),  % solve the puzzle
+    	maplist(writeln, Rows),  % show the solution (writeln, i.e., println each row)
+	statistics(runtime, [_,T]),  % use "runtime" variable to compute total time
+	write('CPU time = '), write(T), write(' msec'), nl, nl, false. % write total time
+#+END_SRC
+
 #+INCLUDE: footer.org
