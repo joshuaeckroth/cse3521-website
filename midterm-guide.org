@@ -42,7 +42,8 @@ needed). But finding the integral of a formula is often challenging,
 and may require a search procedure. Describe this search procedure.
 #+END_QUOTE
 
-Complete the following table for weighted, finite search graphs:
+Complete the following table for *weighted* (different branches have
+different costs), finite search graphs:
 
 | Search algorithm     | Always complete? | Always optimal? | Uses a heuristic? |
 |----------------------+------------------+-----------------+-------------------|
@@ -241,7 +242,8 @@ and may require a search procedure. Describe this search procedure.
     original formula is ~f~, then you want ~dg/dx = f~; every "state"
     (formula) is checked in this way
 
-Complete the following table for weighted, finite search graphs:
+Complete the following table for *weighted* (different branches have
+different costs), finite search graphs:
 
 | Search algorithm     | Always complete? | Always optimal? | Uses a heuristic? |
 |----------------------+------------------+-----------------+-------------------|
