@@ -9,14 +9,14 @@
 | 4 (Jan 29, 31)                 | Adversarial search                                    |               |                                      |
 | 5 (Feb 5, 7)                   | Adversarial search                                    | Homework 4    |                                      |
 | 6 (Feb 12, 14)                 | Boolean logic, Propositional logic, First order logic | Homework 5    | 234--256, 265--274, 285--312         |
-| 7 (Feb 19, 21)                 | Prolog                                                | Homework 6    | 339--344                             |
-| 8 (Feb 26, 28)                 | Prolog                                                | Homework 7    |                                      |
+| 7 (Feb 19, 21)                 | Prolog                                                |               | 339--344                             |
+| 8 (Feb 26, 28)                 | Prolog                                                |               |                                      |
 | 9 (Mar 5, 7)                   | Review for Midterm, Midterm (Mar 7, in class)         | Midterm guide |                                      |
 | 10 (Spring break)              |                                                       |               |                                      |
-| 11 (Mar 19, 21)                | Planning                                              | Homework 8    |                                      |
-| 12 (Mar 26, 28)                | Planning                                              | Homework 9    |                                      |
-| 13 (Apr 2, 4)                  | Multi-agent systems                                   | Homework 10   |                                      |
-| 14 (Apr 9, 11)                 | k-means clustering, k-nn classification, Weka         | Homework 11   |                                      |
+| 11 (Mar 19, 21)                | Planning                                              | Homework 6    |                                      |
+| 12 (Mar 28)                    | Planning; (*no class Wed, Mar 26*)                    | Homework 7    |                                      |
+| 13 (Apr 2, 4)                  | Multi-agent systems                                   | Homework 8    |                                      |
+| 14 (Apr 9, 11)                 | k-means clustering, k-nn classification, Weka         | Homework 9    |                                      |
 | 15 (Apr 16, 18)                | Philosophical issues, Review for Final                | Final guide   |                                      |
 | Final (Wed Apr 23, 10-11:45am) |                                                       |               |                                      |
 
