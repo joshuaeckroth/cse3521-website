@@ -1,0 +1,255 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 6
+
+* Task 1 (20 pts)
+
+Assume we have the following Prolog database:
+
+#+BEGIN_SRC prolog
+parent(tom, liz).
+parent(tim, bob).
+parent(bob, ann).
+parent(bob, pat).
+parent(pat, jim).
+
+male(tim).
+male(tom).
+male(bob).
+male(jim).
+female(pam).
+female(liz).
+female(pat).
+female(ann).
+
+mother(X) :- parent(X, _), female(X).
+#+END_SRC
+
+1. Write Prolog queries for the following questions:
+
+   1. Who is Ann's parent?
+
+   2. Is Jim Bob's child?
+
+   3. Who is Jim's grandparent?
+
+2. Write a rule that describes a child, so that ~child(X, Y)~ means
+   ~X~ is the child of ~Y~. Don't allow a person to be his or her
+   own child.
+
+4. Define an ancestor rule. An ancestor is a parent of a person, a
+   grandparent, a great-grandparent, etc. Naturally, this rule is
+   recursive (like the ~member~ predicate in the notes).
+
+5. Define a "has no parents" rule. Use negation ("negation as
+   failure").
+
+*Make sure you actually test your queries and rules with SWI-Prolog!*
+And look at the [[https://vimeo.com/album/2672434/video/87951697][video from Day 13]], about the 14 minute mark, for help.
+
+* Task 2 (10 pts)
+
+Do the following unify, and if so, what are values for the variables
+that make the unification work? Note: Each pair of terms has new
+variable assignments. Look at the [[https://vimeo.com/album/2672434/video/87951698][video from Day 14]] for help.
+
+1. ~parent(tom, liz)~ and ~parent(tom, X)~
+
+2. ~parent(X, liz)~ and ~parent(liz, X)~
+
+3. ~parent(X, Y)~ and ~parent(Y, X)~
+
+4. ~head(X, [a, b, c])~ and ~head(b, [a, b, c])~
+
+5. ~head(foo(Y), X)~ and ~head(foo(Z), [foo(w)])~
+
+6. ~foo(bar(a, b), baz(c))~ and ~foo(bar(X), baz(Y))~
+
+* Task 3 (10 pts)
+
+Draw a resolution tree for ~mother(X)~, refering back to the database
+above. Note that there is a particular order by which Prolog creates
+subgoals (that is, the order that facts/rules are written in the
+knowledge base). You only need to show the tree until the first time
+the predicate is proved. Look at the [[https://vimeo.com/album/2672434/video/87951698][video from Day 14]] for help.
+
+* Task 4 (60 pts)
+
+Extend the Prolog program at the bottom of this page to support the
+following interactions. (The user types the stuff after the ~|:~) Look
+at the [[https://vimeo.com/album/2672434/video/87951700][video from Day 15]], starting at about the 18 minute mark, for
+help. In particular, you'll need to use ~assertz~ and ~retract~ and
+~retractall~ (21:30 mark in the video).
+
+#+BEGIN_EXAMPLE
+?- consult('nldb.pl').
+%    library(error) compiled into error 0.00 sec, 18,352 bytes
+%   library(lists) compiled into lists 0.01 sec, 46,096 bytes
+%  library(readln) compiled into readln 0.01 sec, 60,696 bytes
+% nldb.pl compiled 0.01 sec, 78,560 bytes
+true.
+
+?- run.
+|: quit.
+Ok we're done! 
+true.
+
+?- run.
+|: anteater is bigger than ant.
+Ok, I learned that ant is smaller than anteater 
+|: ant is smaller than foot.
+Ok, I learned that ant is smaller than foot 
+|: what is bigger than ant?
+These are bigger: 
+anteater, foot.
+|: what is smaller than anteater?
+These are smaller: 
+ant.
+|: what is smaller than ant?
+These are smaller: 
+
+|: godzilla is bigger than anteater.
+Ok, I learned that anteater is smaller than godzilla 
+|: what is bigger than ant?
+These are bigger: 
+anteater, foot, godzilla.
+|: what is smaller than godzilla?
+These are smaller: 
+anteater, ant.
+|: today is thursday.
+Ok, I learned that today is a/an thursday 
+|: socrates is mortal.
+Ok, I learned that socrates is a/an mortal 
+|: what is socrates?
+socrates is a/an: 
+mortal.
+|: what is today?
+today is a/an: 
+thursday.
+|: what is xyz?
+I'm not sure! Care to tell me? 
+|: is xyz abc?
+No 
+|: xyz is abc.
+Ok, I learned that xyz is a/an abc 
+|: is xyz abc?
+Yes
+|: what is 15?
+15 
+|: what is 2 + 2?
+4 
+|: what is 2 - 3 * 5?
+-13 
+|: what is 2 * 3 - 2?
+2 
+|: what is 4 / 3?
+1.3333333333333333 
+|: wow, you are very smart!
+Huh? 
+|: quit.
+Ok we're done! 
+true.
+
+?- 
+#+END_EXAMPLE
+
+Start with this code. Pay special attention to the "TODO" comments.
+
+#+BEGIN_SRC prolog
+:- use_module(library(readln)).
+
+% these allow us to use assertz with these two predicates
+:- dynamic(learned_isa/2).
+:- dynamic(learned_smaller/2).
+
+% strip_puncation/2 & read_sentence/1 from The Art of Prolog 2nd Ed. (Sterling & Shaprio)
+
+strip_punctuation([], []).
+strip_punctuation([Word|Tail], [Word|Result]) :-
+    \+(member(Word, ['.', ',', '?', '!'])),
+    strip_punctuation(Tail, Result).
+strip_punctuation([_|Tail], Result) :-
+    strip_punctuation(Tail, Result).
+
+read_sentence(Input) :-
+    readln(Input1),
+    strip_punctuation(Input1, Input).
+
+reply([Head|Tail]) :- write(Head), write(' '), reply(Tail).
+reply([]) :- nl.
+
+% TODO: code reply_list/1
+
+run :- read_sentence(Input), run(Input), !.
+
+run(['quit']) :- reply(['Ok we\'re done!']).
+
+run(Input) :-
+    process_sentence(Input),
+    read_sentence(NextInput),
+    !, run(NextInput).
+
+process_sentence([what, is, bigger, than, Object]) :-
+    % TODO: code findall using Object and creating Things
+    reply(['These are bigger:']),
+    reply_list(Things).
+
+process_sentence([what, is, smaller, than, Object]) :-
+    % TODO: finish predicate
+
+process_sentence([what, is | Math]) :-
+    math(Math, Z),
+    reply([Z]).
+
+process_sentence([what, is, Object]) :-
+    % TODO: finish predicate
+
+process_sentence([what, is, _]) :-
+    reply(['I''m not sure! Care to tell me?']).
+
+process_sentence([is, Subject, Object]) :-
+    % TODO: put a line of code here
+    reply(['Yes']).
+
+% TODO: handle case where "is xyz abc" says "No"
+% (i.e., above predicate failed)
+
+process_sentence([Subject, is, Object]) :-
+    assertz(learned_isa(Subject, Object)),
+    reply(['Ok, I learned that', Subject, 'is a/an', Object]).
+
+% TODO: handle "x is bigger than y" and "x is smaller than y"
+% similarly to how "is" is handled above,
+% using assertz(learned_smaller(...))
+
+process_sentence(_) :-
+    reply(['Huh?']).
+
+% right-associative math
+
+% default math case (an atom)
+math(X, Z) :-
+    number(X),
+    Z = X.
+
+% default math case (a list)
+math([X], Z) :-
+    number(X),
+    Z = X.
+
+math([X, + | Tail], Z) :-
+    % TODO: finish predicate
+
+% TODO: code rest of math
+
+isa(X, Y) :- learned_isa(X, Y).
+
+% TODO: code transitive isa
+
+smaller(X, Y) :- learned_smaller(X, Y).
+
+% TODO: code transitive smaller
+#+END_SRC
+
+
+
+#+INCLUDE: footer.org
