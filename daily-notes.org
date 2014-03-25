@@ -888,17 +888,150 @@ filter([_|Tail1], Pred, Tail2) :-
 
    - "unify" a query or goal with something from the source file
 
-     - female(X) needs to be unified with something in the file
+     - ~female(X)~ needs to be unified with something in the file
 
-       - female(pam) looks like it might work.
+       - ~female(pam)~ looks like it might work.
 
-       - just make X = pam, now they are equivalent
+       - just make ~X = pam~, now they are equivalent
 
-     - parent(X, Y) unifies with parent(bob, ann) if X=bob and Y=ann
+     - ~parent(X, Y)~ unifies with ~parent(bob, ann)~ if ~X=bob~ and ~Y=ann~
 
-     - family(Id, person(FirstName, _, _, _, _), _, _)
-       would unify with the first family fact if Id=10392 and
-       FirstName=tom
+     - ~family(Id, person(FirstName, _, _, _, _), _, _)~
+       would unify with the first family fact if ~Id=10392~ and
+       ~FirstName=tom~
+
+* Day 19
+
+** Planning
+
+- Still a search problem
+
+- Purpose: generate a list of actions that take you from starting
+  state to goal state
+
+- Consider:
+
+  - 10 airports
+  - 50 planes
+  - 200 pieces of cargo
+  - All cargo starts at SFO, needs to be at JFK
+  - Planes have infinite capacity
+  - Actions:
+    - load cargo into plane: ~load(p, c)~
+    - fly to airport: ~fly(p, a1, a2)~
+    - unload cargo: ~unload(p, c)~
+  - 50*200*9*50 = 4.5million possible actions at the start
+
+- Solution:
+  - represent states as partial configurations of the world
+  - search backwards from the goal
+
+- literal :: a singular fact with no fluents, e.g., ~on(monkey, floor)~;
+             could have negation: ~not(on(monkey, floor))~
+
+*** Features of a planning problem
+
+  - Initial state :: a conjunction of positive literals (no fluents),
+                     e.g., ~on(monkey, floor), at(monkey, 5, 2),
+                     on(box, floor), at(box, 3, 0), on(bananas, box)~
+
+  - Actions :: each action has a name, relevant variables (fluents),
+               preconditions, effects
+               - preconditions can refer to the variables (fluents)
+               - effects have positive and negative parts
+                 - also called add-lists and delete-lists
+                 - these can refer to the variables (fluents)
+               - here is an example action:
+#+BEGIN_EXAMPLE
+action: climb(A, X)
+  preconditions: on(A, floor), near(A, X)
+  effects:
+    add: on(A, X)
+    delete: on(A, floor)
+#+END_EXAMPLE
+
+  - Goal state criteria :: conjunction of literals, no fluents, can
+       have positive and negative literals
+       - e.g., ~not(on(monkey, floor)), has(monkey, bananas), ...~
+
+
+*** Typical assumptions
+
+- atomic time (every action is indivisible)
+- no concurrent actions
+- deterministic actions
+- agent is the sole source of change (frame problem)
+- agent is omniscient
+- closed world assumption
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
