@@ -77,10 +77,10 @@ the predicate is proved. Look at the [[https://vimeo.com/album/2672434/video/879
 Extend the Prolog program at the bottom of this page to support the
 following interactions. (The user types the stuff after the ~|:~) Look
 at the [[https://vimeo.com/album/2672434/video/87951700][video from Day 15]], starting at about the 18 minute mark, for
-help. In particular, you'll need to use ~assertz~ and ~retract~ and
-~retractall~ (21:30 mark in the video). *Write this in a Prolog source
-file (~hw6.pl~ maybe), and test your code. Submit the source file so
-the grader can also test your code.*
+help. In particular, you'll need to use ~assertz~ (21:30 mark in the
+video). *Write this in a Prolog source file (~hw6.pl~ maybe), and test
+your code. Submit the source file so the grader can also test your
+code.*
 
 #+BEGIN_EXAMPLE
 ?- consult('nldb.pl').
