@@ -53,6 +53,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -134,10 +136,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="preamble" class="status">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <!-- <div id="plupperButton" style="display: inline;"></div> -->
-          <!-- End of Plupper Button Code -->
+<a href="index.html">Home</a>
 </div>
 <div id="content">
 <h1 class="title">General Problem Solver (GPS)</h1>
@@ -177,7 +176,7 @@ last</b>&#x2026; and what is last in the order of analysis seems to be first
 in the order of becoming. <b>And if we come on an impossibility, we give
 up the search</b>, e.g., if we need money and this cannot be got; but if
 a thing appears possible we try to do it. &#x2014; Aristotle, <i>Nicomachean
-Ethics</i> (<a href="http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0054%3Abekker%20page%3D1112b%3Abekker%20line%3D1">Book III.3,1112b</a>)
+Ethics</i> (<a href="http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0054:bekker%20page=1112b:bekker%20line=1">Book III.3,1112b</a>)
 </p>
 </blockquote>
 
@@ -217,7 +216,8 @@ timeframes.
 <h2 id="sec-1">Means-ends analysis</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Simon and Newell studied how humans solved problems, and realized that we often perform means-ends analysis. Here is one of their examples:
+Simon and Newell studied how humans solved problems, and realized that
+we often perform means-ends analysis. Here is one of their examples:
 </p>
 
 <blockquote>
@@ -411,12 +411,24 @@ how to apply an operator:
 </pre>
 
 <p>
-This algorithm is clearly a means-ends search process. The ultimate goals are first considered; if they are already achieved, then we're done. Otherwise, one or more goals can only be achieved by applying some operators. Appropriate operators are identified (those that achieve the goals), but each operator may itself require certain goals (preconditions) to be achieved first. So then those are investigated. Etc. This is just what Aristotle said in the quote above:
+This algorithm is clearly a means-ends search process. The ultimate
+goals are first considered; if they are already achieved, then we're
+done. Otherwise, one or more goals can only be achieved by applying
+some operators. Appropriate operators are identified (those that
+achieve the goals), but each operator may itself require certain goals
+(preconditions) to be achieved first. So then those are
+investigated. Etc. This is just what Aristotle said in the quote
+above:
 </p>
 
 <blockquote>
 <p>
-They assume the end and consider how and by what means it is attained; [&#x2026;] if it is achieved by one only they consider how it will be achieved by this and by what means <i>this</i> will be achieved, till they come to the first cause, which in the order of discovery is last [&#x2026;] And if we come on an impossibility, we give up the search [&#x2026;] &#x2014; Aristotle
+They assume the end and consider how and by what means it is attained;
+[&#x2026;] if it is achieved by one only they consider how it will be
+achieved by this and by what means <i>this</i> will be achieved, till they
+come to the first cause, which in the order of discovery is last [&#x2026;]
+And if we come on an impossibility, we give up the search [&#x2026;] &#x2014;
+Aristotle
 </p>
 </blockquote>
 </div>
@@ -506,7 +518,10 @@ allowfullscreen></iframe>
 <h2 id="sec-6">Problems</h2>
 <div class="outline-text-2" id="text-6">
 <p>
-Our GPS algorithm is very simplistic. There are ways to improve it. However, we'll stay with the simple version and look at some of its inadequacies. These problems and their examples come from Norvig's book <i>Paradigms of artificial intelligence programming</i>, 1992.
+Our GPS algorithm is very simplistic. There are ways to improve
+it. However, we'll stay with the simple version and look at some of
+its inadequacies. These problems and their examples come from Norvig's
+book <i>Paradigms of artificial intelligence programming</i>, 1992.
 </p>
 </div>
 
@@ -514,7 +529,9 @@ Our GPS algorithm is very simplistic. There are ways to improve it. However, we'
 <h3 id="sec-6-1">"Prerequisite clobbers sibling goal"</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
-Since each goal is achieved in a certain order, we might find that achieving a subsequent goal erases the gains we made with a prior goal. For example, if we have:
+Since each goal is achieved in a certain order, we might find that
+achieving a subsequent goal erases the gains we made with a prior
+goal. For example, if we have:
 </p>
 
 <ul class="org-ul">
@@ -564,7 +581,11 @@ Then our simple GPS search finds the solution to be:
 </ol>
 
 <p>
-However, the result is we don't have any money, because it was spent at the shop. GPS saw "have money" as the first goal, and considered it already achieved (it was an initial state). So then it moved on to the next goal, which actually spent all the money. But GPS did not go back and reconsider whether the first goal was still met.
+However, the result is we don't have any money, because it was spent
+at the shop. GPS saw "have money" as the first goal, and considered it
+already achieved (it was an initial state). So then it moved on to the
+next goal, which actually spent all the money. But GPS did not go back
+and reconsider whether the first goal was still met.
 </p>
 </div>
 </div>
@@ -572,11 +593,9 @@ However, the result is we don't have any money, because it was spent at the shop
 <h3 id="sec-6-2">"Leaping before you look"</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
-One could reorder the goals from the prior example to be "son at school, have money." In this case, GPS will indicate to us that there is no solution. However, it will still apply operators in its doomed search for a solution. If this was real life, a GPS robot would repair the car, drive the son to school, and then discover it had no money!
-</p>
-
-<p>
-In a simpler example, consider the goals:
+One could reorder the goals from the prior example to be "son at
+school, have money." In this case, GPS will indicate to us that there
+is no solution. In a simpler example, consider the goals:
 </p>
 
 <ul class="org-ul">
@@ -585,7 +604,10 @@ In a simpler example, consider the goals:
 </ul>
 
 <p>
-GPS will first find a way to achieve "jump off cliff," but only once achieved, figure out how to "land safely." The problem, of course, is that in our algorithm planning to take an action is interleaved with taking other actions (applying operators). Our algorithm has no way to only think about actions without doing them, and "back up" its search process if those actions turn out to be bad ideas.
+GPS will first find a way to achieve "jump off cliff," but only once
+achieved, figure out how to "land safely." Our GPS algorithm has no
+way to "back track" during its search when it discovers that not all
+parts of the goal can be met with the partial plan built so far.
 </p>
 </div>
 </div>
@@ -593,7 +615,13 @@ GPS will first find a way to achieve "jump off cliff," but only once achieved, f
 <h3 id="sec-6-3">Recursive subgoals</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
-Suppose we had a goal like "call shop" which required "know phone number" which can be achieved by "ask friend for a phone number." Further suppose asking a friend for a phone number requires "know phone number." Then GPS will get stuck in a loop trying to figure out how to get the friend's phone number from another friend in order to call the shop, even if other operators are available for finding a phone number (such as looking in a phone book).
+Suppose we had a goal like "call shop" which required "know phone
+number" which can be achieved by "ask friend for a phone number."
+Further suppose asking a friend for a phone number requires "know
+phone number." Then GPS will get stuck in a loop trying to figure out
+how to get the friend's phone number from another friend in order to
+call the shop, even if other operators are available for finding a
+phone number (such as looking in a phone book).
 </p>
 </div>
 </div>
@@ -601,7 +629,10 @@ Suppose we had a goal like "call shop" which required "know phone number" which 
 <h3 id="sec-6-4">Lack of intermediate information</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
-Our simplistic GPS algorithm does not indicate why it failed to achieve its goals. It just says "nope, can't do it." It would be useful to know which goals could not be achieved and, perhaps, what are the best options for us (as humans) in order to make progress.
+Our simplistic GPS algorithm does not indicate why it failed to
+achieve its goals. It just says "nope, can't do it." It would be
+useful to know which goals could not be achieved and, perhaps, what
+are the best options for us (as humans) in order to make progress.
 </p>
 </div>
 </div>
@@ -610,7 +641,12 @@ Our simplistic GPS algorithm does not indicate why it failed to achieve its goal
 <h2 id="sec-7">Epilogue</h2>
 <div class="outline-text-2" id="text-7">
 <p>
-<b>It must be noted that the "problems" listed above are not necessarily those of the real GPS program.</b> Those problems were more about our simplistic algorithm. However, GPS still failed to live up to its name. In the early days, many grandiose AI programs failed to deliver their full promises. Of course, all that has changed today is that the wise researchers avoid naming their programs "general problem solver."
+<b>It must be noted that the "problems" listed above are not necessarily
+those of the real GPS program.</b> Those problems were more about our
+simplistic algorithm. However, GPS still failed to live up to its
+name. In the early days, many grandiose AI programs failed to deliver
+their full promises. Of course, all that has changed today is that the
+wise researchers avoid naming their programs "general problem solver."
 </p>
 
 <blockquote>
@@ -643,7 +679,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-23971505-3', 'artifice.cc');
   ga('send', 'pageview');

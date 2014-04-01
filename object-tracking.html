@@ -53,6 +53,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -176,10 +178,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="preamble" class="status">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <!-- <div id="plupperButton" style="display: inline;"></div> -->
-          <!-- End of Plupper Button Code -->
+<a href="index.html">Home</a>
 </div>
 <div id="content">
 <h1 class="title">Object tracking</h1>
@@ -231,7 +230,7 @@ frame_sub = frame_binary - frame_old_binary;
 
 <pre class="src src-c++"><span style="color: #004dd0; background-color: #ffffff;">BackgroundSubtractorMOG2</span> <span style="color: #000000; background-color: #ffffff;">backsub</span>;
 
-<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">and for each frame:</span>
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">and for each frame:</span>
 fgmask = frame.clone();
 backsub(frame, fgmask, 0.1);
 backsub.getBackgroundImage(bg);
@@ -257,7 +256,7 @@ backsub.getBackgroundImage(bg);
 <span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point&gt; &gt; <span style="color: #000000; background-color: #ffffff;">contours</span>;
 <span style="color: #004dd0; background-color: #ffffff;">Mat</span> <span style="color: #000000; background-color: #ffffff;">fgmask_contours</span> = fgmask.clone();
 findContours(fgmask_contours, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
-<span style="color: #0000f1; background-color: #ffffff; font-weight: bold;">vector</span>&lt;<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point&gt; &gt;::<span style="color: #004dd0; background-color: #ffffff;">const_iterator</span> <span style="color: #000000; background-color: #ffffff;">it</span> = contours.begin();
+<span style="color: #0000f1; background-color: #ffffff;">vector</span>&lt;<span style="color: #004dd0; background-color: #ffffff;">vector</span>&lt;Point&gt; &gt;::<span style="color: #004dd0; background-color: #ffffff;">const_iterator</span> <span style="color: #000000; background-color: #ffffff;">it</span> = contours.begin();
 <span style="color: #004dd0; background-color: #ffffff;">while</span>(it != contours.end()) {
     <span style="color: #004dd0; background-color: #ffffff;">Rect</span> <span style="color: #000000; background-color: #ffffff;">box</span> = boundingRect(Mat(*it));
     <span style="color: #004dd0; background-color: #ffffff;">if</span>(box.width &gt; 5 &amp;&amp; box.height &gt; 5) {
@@ -265,7 +264,7 @@ findContours(fgmask_contours, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
     }
     ++it;
 }
-<span style="color: #fa8072; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">visualize the contours</span>
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">// </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">visualize the contours</span>
 drawContours(frame, contours, -1, Scalar(255), 1);
 </pre>
 </div>
@@ -297,7 +296,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-23971505-3', 'artifice.cc');
   ga('send', 'pageview');

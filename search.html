@@ -53,6 +53,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -176,10 +178,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="preamble" class="status">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <!-- <div id="plupperButton" style="display: inline;"></div> -->
-          <!-- End of Plupper Button Code -->
+<a href="index.html">Home</a>
 </div>
 <div id="content">
 <h1 class="title">Search</h1>
@@ -366,7 +365,8 @@ transition model is useless.
 <h2 id="sec-3">Comparisons of search algorithms</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-In computer science, we typically compare algorithms based on two criteria: "time complexity" and "space complexity."
+In computer science, we typically compare algorithms based on two
+criteria: "time complexity" and "space complexity."
 </p>
 </div>
 
@@ -374,7 +374,9 @@ In computer science, we typically compare algorithms based on two criteria: "tim
 <h3 id="sec-3-1">Time complexity</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-The time complexity of an algorithm is generally the number of operations required (e.g., basic CPU operations such as addition, subtraction, tests for equality, memory reads and writes, etc.).
+The time complexity of an algorithm is generally the number of
+operations required (e.g., basic CPU operations such as addition,
+subtraction, tests for equality, memory reads and writes, etc.).
 </p>
 
 <p>
@@ -414,20 +416,26 @@ sort it.
 <h3 id="sec-3-3">Search-specific analysis</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-For comparing search algorithms in particular, we'll often want to talk about the following values:
+For comparing search algorithms in particular, we'll often want to
+talk about the following values:
 </p>
 
 <ul class="org-ul">
 <li>\(n\), the total number of possible states
 </li>
 
-<li>\(b\), the branching factor; this is the maximum number of possible actions or branches we might expect from any state in the search space.
+<li>\(b\), the branching factor; this is the maximum number of possible
+actions or branches we might expect from any state in the search
+space.
 </li>
 
-<li>\(d\), the depth in the search tree of the least-cost path, i.e., the minimum number of steps required to reach the goal
+<li>\(d\), the depth in the search tree of the least-cost path, i.e., the
+minimum number of steps required to reach the goal
 </li>
 
-<li>\(m\), the maximum search depth, if we choose to make it a finite number (so that the algorithm might stop looking deeper and instead choose to backtrack to an earlier state), or \(\infty\) otherwise
+<li>\(m\), the maximum search depth, if we choose to make it a finite
+number (so that the algorithm might stop looking deeper and instead
+choose to backtrack to an earlier state), or \(\infty\) otherwise
 </li>
 </ul>
 
@@ -449,7 +457,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-23971505-3', 'artifice.cc');
   ga('send', 'pageview');

@@ -53,6 +53,8 @@
   pre.src-sql:before   { content: 'SQL'; }
 
   table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
   th.right  { text-align: center;  }
   th.left   { text-align: center;   }
@@ -134,10 +136,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="preamble" class="status">
-<a href="index.html">Home</a> &nbsp; &nbsp;
-          <!-- Plupper Button -->
-          <!-- <div id="plupperButton" style="display: inline;"></div> -->
-          <!-- End of Plupper Button Code -->
+<a href="index.html">Home</a>
 </div>
 <div id="content">
 <h1 class="title">Homework 2</h1>
@@ -218,7 +217,7 @@ Open the file <code>py/search.py</code> and find the function <code>depthFirstSe
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">depthFirstSearch</span>(problem):
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">depthFirstSearch</span>(problem):
     <span style="color: #670088; background-color: #ffffff; font-style: italic;">"""</span>
 <span style="color: #670088; background-color: #ffffff; font-style: italic;">    Search the deepest nodes in the search tree first [p 85].</span>
 
@@ -255,7 +254,7 @@ your answers to Task 1.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-size: 110%;">depthFirstSearch</span>(problem):
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">depthFirstSearch</span>(problem):
     <span style="color: #670088; background-color: #ffffff; font-style: italic;">"""</span>
 <span style="color: #670088; background-color: #ffffff; font-style: italic;">    Search the deepest nodes in the search tree first [p 85].</span>
 
@@ -270,29 +269,29 @@ your answers to Task 1.
 <span style="color: #670088; background-color: #ffffff; font-style: italic;">    print "Start's successors:", problem.getSuccessors(problem.getStartState())</span>
 <span style="color: #670088; background-color: #ffffff; font-style: italic;">    """</span>
     <span style="color: #000000; background-color: #ffffff;">closedset</span> = []
-    <span style="color: #000000; background-color: #ffffff;">openset</span> = [problem.getStartState()] <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">openset starts with starting state</span>
+    <span style="color: #000000; background-color: #ffffff;">openset</span> = [problem.getStartState()] <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">openset starts with starting state</span>
     <span style="color: #000000; background-color: #ffffff;">parents</span> = {}
     <span style="color: #004dd0; background-color: #ffffff;">while</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">len</span>(openset) &gt; 0:
-        <span style="color: #000000; background-color: #ffffff;">state</span> = openset.pop() <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">get most-recently-added element from openset</span>
+        <span style="color: #000000; background-color: #ffffff;">state</span> = openset.pop() <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">get most-recently-added element from openset</span>
 
-        <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
+        <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
 
-        <span style="color: #004dd0; background-color: #ffffff;">if</span> <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
+        <span style="color: #004dd0; background-color: #ffffff;">if</span> <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
             <span style="color: #004dd0; background-color: #ffffff;">print</span> <span style="color: #670088; background-color: #ffffff; font-style: italic;">"Found goal!"</span>
 
-            <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">retrieve series of steps that brought us here (use the parents map)</span>
+            <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">retrieve series of steps that brought us here (use the parents map)</span>
             <span style="color: #000000; background-color: #ffffff;">actions</span> = []
             <span style="color: #004dd0; background-color: #ffffff;">while</span> state != problem.getStartState():
-                <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
+                <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
 
-            <span style="color: #004dd0; background-color: #ffffff;">print</span> actions <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">just to see the resulting actions</span>
+            <span style="color: #004dd0; background-color: #ffffff;">print</span> actions <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">just to see the resulting actions</span>
             <span style="color: #004dd0; background-color: #ffffff;">return</span> actions
         <span style="color: #004dd0; background-color: #ffffff;">else</span>:
             <span style="color: #004dd0; background-color: #ffffff;">for</span> (next_state, action, cost) <span style="color: #004dd0; background-color: #ffffff;">in</span> problem.getSuccessors(state):
-                <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">next_state is something like (4, 2) (coordinates)</span>
-                <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">action is something like WEST</span>
-                <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">cost is not used for depth-first search</span>
-                <span style="color: #fa8072; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
+                <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">next_state is something like (4, 2) (coordinates)</span>
+                <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">action is something like WEST</span>
+                <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">cost is not used for depth-first search</span>
+                <span style="color: #00005d; background-color: #ffffff; font-style: italic;"># </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">...</span>
 </pre>
 </div>
 </div>
@@ -329,7 +328,7 @@ href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-23971505-3', 'artifice.cc');
   ga('send', 'pageview');

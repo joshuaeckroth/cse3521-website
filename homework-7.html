@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Homework 7</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<a href="index.html">Home</a>
+</div>
+<div id="content">
+<h1 class="title">Homework 7</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Task 1 (50 pts)</a></li>
+<li><a href="#sec-2">Task 2 (50 pts)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Task 1 (50 pts)</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Write a GPS "problem" for the following scenario. Make sure GPS can
+correctly find a plan. See below for how to code and execute GPS.
+</p>
+
+<blockquote>
+<p>
+<b>The scenario:</b> Your sister wants to go to a concert. Your brother
+ wants to go to the park. You are at home, your sister is at the park,
+ and your brother is at home. You have a car, and can drive to the
+ various places. You can carry one passenger who has to be "in" the
+ car. The pickup action should put the person in the car, and the
+ dropoff action should take them out of the car. At the end, you want
+ to be back home. What is a plan that meets the goal?
+</p>
+</blockquote>
+
+<p>
+<b>Download <a href="./downloads/paip.zip">paip.zip</a>, which contains Python code for <a href="./gps.html">GPS</a>.</b> This code
+comes from <a href="https://github.com/dhconnelly/paip-python">Daniel Connelly</a>, who adapted the code from Peter Norvig's
+book <a href="http://norvig.com/paip.html">Paradigms of Artificial Intelligence Programming: Case Studies in
+Common Lisp</a>.
+</p>
+
+<p>
+<b>Edit the file <code>paip/examples/gps/hw7.py</code></b> It looks like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #004dd0; background-color: #ffffff;">from</span> paip.gps <span style="color: #004dd0; background-color: #ffffff;">import</span> gps
+
+<span style="color: #000000; background-color: #ffffff;">problem</span> = {
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"start"</span>: [],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"finish"</span>: [],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"ops"</span>: []
+}
+
+<span style="color: #004dd0; background-color: #ffffff;">def</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">main</span>():
+    <span style="color: #000000; background-color: #ffffff;">start</span> = problem[<span style="color: #670088; background-color: #ffffff; font-style: italic;">'start'</span>]
+    <span style="color: #000000; background-color: #ffffff;">finish</span> = problem[<span style="color: #670088; background-color: #ffffff; font-style: italic;">'finish'</span>]
+    <span style="color: #000000; background-color: #ffffff;">ops</span> = problem[<span style="color: #670088; background-color: #ffffff; font-style: italic;">'ops'</span>]
+    <span style="color: #004dd0; background-color: #ffffff;">for</span> action <span style="color: #004dd0; background-color: #ffffff;">in</span> gps(start, finish, ops):
+        <span style="color: #004dd0; background-color: #ffffff;">print</span> action
+
+<span style="color: #004dd0; background-color: #ffffff;">if</span> <span style="color: #000000; background-color: #ffffff; font-weight: bold;">__name__</span> == <span style="color: #670088; background-color: #ffffff; font-style: italic;">'__main__'</span>:
+    main()
+</pre>
+</div>
+
+<p>
+Don't change <code>def main()</code> and anything below that. Change the
+definition of the <code>problem</code> variable. Look at the other examples in
+that folder for guidance, as well as our <a href="./gps.html">GPS</a> notes.
+</p>
+
+<p>
+<b>Run GPS like this:</b> Open a command prompt or terminal. <code>cd</code> into the
+directory with the <code>run_examples.py</code> file. Type <code>python
+run_examples.py</code>, and you should see this list. (Note, this requires
+Python 2.7).
+</p>
+
+<pre class="example">
+Please choose an example to run:
+0       paip.examples.eliza.eliza
+1       paip.examples.eliza.support
+2       paip.examples.emycin.mycin
+3       paip.examples.gps.blocks
+4       paip.examples.gps.door
+5       paip.examples.gps.eat
+6       paip.examples.gps.hw7
+7       paip.examples.gps.monkeys
+8       paip.examples.gps.school
+9       paip.examples.logic.find_elements
+10      paip.examples.logic.find_length
+11      paip.examples.logic.find_list
+12      paip.examples.logic.find_lists_lengths
+13      paip.examples.logic.find_list_length_4
+14      paip.examples.logic.likes
+15      paip.examples.logic.transitive
+16      paip.examples.othello.othello
+17      paip.examples.search.gps
+18      paip.examples.search.pathfinding
+&gt;&gt; 6
+</pre>
+
+<p>
+Type <code>6</code> to run your HW7 code. It should find a correct plan. Try the
+other GPS examples to see what you should expect. (Ignore the "None"
+at the start of each plan.)
+</p>
+
+<p>
+<b>Turn in <code>hw7.py</code></b>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Task 2 (50 pts)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Write a new solution to the same scenario in <a href="./pddl.html">PDDL</a> format.</b> This
+format requires two files: a "domain" file and a "problem" file. Name
+your domain file <code>hw7-domain.pddl</code> and your problem file
+<code>hw7-prob.pddl</code>. They should start like this (replace the "&#x2026;"):
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-PDDL"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">;; </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">hw7-domain.pddl</span>
+
+(<span style="color: #004dd0; background-color: #ffffff;">define</span> (<span style="color: #004dd0; background-color: #ffffff;">domain</span> hw7)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:requirements</span> <span style="color: #0000f1; background-color: #ffffff;">:strips</span>)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:constants</span> car self)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:predicates</span> (<span style="color: #004dd0; background-color: #ffffff;">at</span><span style="color: #000000; background-color: #ffffff;"> ?x ?y</span>)
+               ...)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:action</span> goto
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:parameters</span> <span style="color: #000000; background-color: #ffffff;">(?from ?to</span>)
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:precondition</span> (<span style="color: #004dd0; background-color: #ffffff;">and</span> (<span style="color: #004dd0; background-color: #ffffff;">at</span> car<span style="color: #000000; background-color: #ffffff;"> ?from</span>)
+                              (in self car))
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:effect</span> ...)
+
+  ...)
+</pre>
+</div>
+
+<p>
+The problem file starts like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-PDDL"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">;; </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">hw7-prob.pddl</span>
+
+(<span style="color: #004dd0; background-color: #ffffff;">define</span> (<span style="color: #004dd0; background-color: #ffffff;">problem</span> hw7-prob)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:domain</span> hw7)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:objects</span> car self sister brother home concerthall park)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:init</span> (<span style="color: #004dd0; background-color: #ffffff;">at</span> car home) ...)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:goal</span> (<span style="color: #004dd0; background-color: #ffffff;">and</span> (<span style="color: #004dd0; background-color: #ffffff;">at</span> sister concerthall)
+              ...)))
+</pre>
+</div>
+
+<p>
+Test your domain/problem with <a href="./downloads/javaff.zip">JavaFF.zip</a> (from: <a href="http://www.inf.kcl.ac.uk/staff/andrew/JavaFF/">Coles et al.</a>). Download
+the ZIP and put your <code>hw7-domain.pddl</code> and <code>hw7-prob.pddl</code> files in
+the extracted folder. Run like this:
+</p>
+
+<pre class="example">
+java -cp . javaff.JavaFF hw7-domain.pddl hw7-prob.pddl
+#+END_SRC
+
+You should also be able to run the Cargo example, just to be sure you
+downloaded everything correctly:
+
+#+BEGIN_EXAMPLE
+java -cp . javaff.JavaFF cargo-domain.pddl cargo-prob.pddl
+
+C:\Users\Joshua\Documents\teaching\cse3521\javaff&gt;java -cp . javaff.JavaFF cargo-domain.pddl cargo-prob.pddl
+Parsed Domain file cargo-domain.pddl successfully
+Parsed Problem file cargo-prob.pddl successfully
+Performing search as in FF - first considering EHC with only helpful actions
+6
+4
+3
+1
+(load c2 p1 jfk)
+(fly p1 jfk sfo)
+(unload c2 p1 sfo)
+(load c1 p2 sfo)
+(fly p2 sfo jfk)
+(unload c1 p2 jfk)
+Instantiation Time =            0.073sec
+Planning Time = 0.071sec
+</pre>
+
+<p>
+<b>Turn in <code>hw7-domain.pddl</code> and <code>hw7-prob.pddl</code>.</b>
+</p>
+
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
+</div>
+</div>
+</div>
+</body>
+</html>
