@@ -900,7 +900,7 @@ filter([_|Tail1], Pred, Tail2) :-
        would unify with the first family fact if ~Id=10392~ and
        ~FirstName=tom~
 
-* Day 19
+* Day 22
 
 ** Planning
 
@@ -963,6 +963,14 @@ action: climb(A, X)
 - agent is the sole source of change (frame problem)
 - agent is omniscient
 - closed world assumption
+
+* Day 23
+
+** Notes about Prolog assignment
+
+** General Problem Solver (GPS)
+
+** PDDL language
 
 
 

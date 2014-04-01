@@ -1,0 +1,156 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 7
+
+* Task 1 (50 pts)
+
+Write a GPS "problem" for the following scenario. Make sure GPS can
+correctly find a plan. See below for how to code and execute GPS.
+
+#+BEGIN_QUOTE
+*The scenario:* Your sister wants to go to a concert. Your brother
+ wants to go to the park. You are at home, your sister is at the park,
+ and your brother is at home. You have a car, and can drive to the
+ various places. You can carry one passenger who has to be "in" the
+ car. The pickup action should put the person in the car, and the
+ dropoff action should take them out of the car. At the end, you want
+ to be back home. What is a plan that meets the goal?
+#+END_QUOTE
+
+*Download [[./downloads/paip.zip][paip.zip]], which contains Python code for [[./gps.html][GPS]].* This code
+comes from [[https://github.com/dhconnelly/paip-python][Daniel Connelly]], who adapted the code from Peter Norvig's
+book [[http://norvig.com/paip.html][Paradigms of Artificial Intelligence Programming: Case Studies in
+Common Lisp]].
+
+*Edit the file ~paip/examples/gps/hw7.py~* It looks like this:
+
+#+BEGIN_SRC python
+from paip.gps import gps
+
+problem = {
+    "start": [],
+    "finish": [],
+    "ops": []
+}
+
+def main():
+    start = problem['start']
+    finish = problem['finish']
+    ops = problem['ops']
+    for action in gps(start, finish, ops):
+        print action
+
+if __name__ == '__main__':
+    main()
+#+END_SRC
+
+Don't change ~def main()~ and anything below that. Change the
+definition of the ~problem~ variable. Look at the other examples in
+that folder for guidance, as well as our [[./gps.html][GPS]] notes.
+
+*Run GPS like this:* Open a command prompt or terminal. ~cd~ into the
+directory with the ~run_examples.py~ file. Type ~python
+run_examples.py~, and you should see this list. (Note, this requires
+Python 2.7).
+
+#+BEGIN_EXAMPLE
+Please choose an example to run:
+0       paip.examples.eliza.eliza
+1       paip.examples.eliza.support
+2       paip.examples.emycin.mycin
+3       paip.examples.gps.blocks
+4       paip.examples.gps.door
+5       paip.examples.gps.eat
+6       paip.examples.gps.hw7
+7       paip.examples.gps.monkeys
+8       paip.examples.gps.school
+9       paip.examples.logic.find_elements
+10      paip.examples.logic.find_length
+11      paip.examples.logic.find_list
+12      paip.examples.logic.find_lists_lengths
+13      paip.examples.logic.find_list_length_4
+14      paip.examples.logic.likes
+15      paip.examples.logic.transitive
+16      paip.examples.othello.othello
+17      paip.examples.search.gps
+18      paip.examples.search.pathfinding
+>> 6
+#+END_EXAMPLE
+
+Type ~6~ to run your HW7 code. It should find a correct plan. Try the
+other GPS examples to see what you should expect. (Ignore the "None"
+at the start of each plan.)
+
+*Turn in ~hw7.py~*.
+
+* Task 2 (50 pts)
+
+*Write a new solution to the same scenario in [[./pddl.html][PDDL]] format.* This
+format requires two files: a "domain" file and a "problem" file. Name
+your domain file ~hw7-domain.pddl~ and your problem file
+~hw7-prob.pddl~. They should start like this (replace the "..."):
+
+#+BEGIN_SRC PDDL
+;; hw7-domain.pddl
+
+(define (domain hw7)
+  (:requirements :strips)
+  (:constants car self)
+  (:predicates (at ?x ?y)
+               ...)
+  (:action goto
+           :parameters (?from ?to)
+           :precondition (and (at car ?from)
+                              (in self car))
+           :effect ...)
+
+  ...)
+#+END_SRC
+
+The problem file starts like this:
+
+#+BEGIN_SRC PDDL
+;; hw7-prob.pddl
+
+(define (problem hw7-prob)
+  (:domain hw7)
+  (:objects car self sister brother home concerthall park)
+  (:init (at car home) ...)
+  (:goal (and (at sister concerthall)
+              ...)))
+#+END_SRC
+
+Test your domain/problem with [[./downloads/javaff.zip][JavaFF.zip]] (from: [[http://www.inf.kcl.ac.uk/staff/andrew/JavaFF/][Coles et al.]]). Download
+the ZIP and put your ~hw7-domain.pddl~ and ~hw7-prob.pddl~ files in
+the extracted folder. Run like this:
+
+#+BEGIN_EXAMPLE
+java -cp . javaff.JavaFF hw7-domain.pddl hw7-prob.pddl
+#+END_SRC
+
+You should also be able to run the Cargo example, just to be sure you
+downloaded everything correctly:
+
+#+BEGIN_EXAMPLE
+java -cp . javaff.JavaFF cargo-domain.pddl cargo-prob.pddl
+
+C:\Users\Joshua\Documents\teaching\cse3521\javaff>java -cp . javaff.JavaFF cargo-domain.pddl cargo-prob.pddl
+Parsed Domain file cargo-domain.pddl successfully
+Parsed Problem file cargo-prob.pddl successfully
+Performing search as in FF - first considering EHC with only helpful actions
+6
+4
+3
+1
+(load c2 p1 jfk)
+(fly p1 jfk sfo)
+(unload c2 p1 sfo)
+(load c1 p2 sfo)
+(fly p2 sfo jfk)
+(unload c1 p2 jfk)
+Instantiation Time =            0.073sec
+Planning Time = 0.071sec
+#+END_EXAMPLE
+
+*Turn in ~hw7-domain.pddl~ and ~hw7-prob.pddl~.*
+
+#+INCLUDE: footer.org

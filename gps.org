@@ -47,7 +47,8 @@ timeframes.
 
 * Means-ends analysis
 
-Simon and Newell studied how humans solved problems, and realized that we often perform means-ends analysis. Here is one of their examples:
+Simon and Newell studied how humans solved problems, and realized that
+we often perform means-ends analysis. Here is one of their examples:
 
 #+BEGIN_QUOTE
 I want to take my son to nursery school. What's the difference between
@@ -58,7 +59,6 @@ want the repair shop to put in a new battery; but the shop doesn't
 know I need one. What is the difficulty? One of communication. What
 allows communication?  A telephone... and so on. --- Newell and
 Simon's example from their 1972 book /Human Problem Solving/
-
 #+END_QUOTE
 
 * Basic structuring of a problem
@@ -201,10 +201,22 @@ how to apply an operator:
   - return failure
 #+END_EXAMPLE
 
-This algorithm is clearly a means-ends search process. The ultimate goals are first considered; if they are already achieved, then we're done. Otherwise, one or more goals can only be achieved by applying some operators. Appropriate operators are identified (those that achieve the goals), but each operator may itself require certain goals (preconditions) to be achieved first. So then those are investigated. Etc. This is just what Aristotle said in the quote above:
+This algorithm is clearly a means-ends search process. The ultimate
+goals are first considered; if they are already achieved, then we're
+done. Otherwise, one or more goals can only be achieved by applying
+some operators. Appropriate operators are identified (those that
+achieve the goals), but each operator may itself require certain goals
+(preconditions) to be achieved first. So then those are
+investigated. Etc. This is just what Aristotle said in the quote
+above:
 
 #+BEGIN_QUOTE
-They assume the end and consider how and by what means it is attained; [...] if it is achieved by one only they consider how it will be achieved by this and by what means /this/ will be achieved, till they come to the first cause, which in the order of discovery is last [...] And if we come on an impossibility, we give up the search [...] --- Aristotle
+They assume the end and consider how and by what means it is attained;
+[...] if it is achieved by one only they consider how it will be
+achieved by this and by what means /this/ will be achieved, till they
+come to the first cause, which in the order of discovery is last [...]
+And if we come on an impossibility, we give up the search [...] ---
+Aristotle
 #+END_QUOTE
 
 * The monkey and banana problem
@@ -286,11 +298,16 @@ allowfullscreen></iframe>
 
 * Problems
 
-Our GPS algorithm is very simplistic. There are ways to improve it. However, we'll stay with the simple version and look at some of its inadequacies. These problems and their examples come from Norvig's book /Paradigms of artificial intelligence programming/, 1992.
+Our GPS algorithm is very simplistic. There are ways to improve
+it. However, we'll stay with the simple version and look at some of
+its inadequacies. These problems and their examples come from Norvig's
+book /Paradigms of artificial intelligence programming/, 1992.
 
 ** "Prerequisite clobbers sibling goal"
 
-Since each goal is achieved in a certain order, we might find that achieving a subsequent goal erases the gains we made with a prior goal. For example, if we have:
+Since each goal is achieved in a certain order, we might find that
+achieving a subsequent goal erases the gains we made with a prior
+goal. For example, if we have:
 
 - initial states: son at home, have money, car works
 - goal states: have money, son at school
@@ -313,29 +330,50 @@ Then our simple GPS search finds the solution to be:
 5. shop installs battery
 6. drive son to school
 
-However, the result is we don't have any money, because it was spent at the shop. GPS saw "have money" as the first goal, and considered it already achieved (it was an initial state). So then it moved on to the next goal, which actually spent all the money. But GPS did not go back and reconsider whether the first goal was still met.
+However, the result is we don't have any money, because it was spent
+at the shop. GPS saw "have money" as the first goal, and considered it
+already achieved (it was an initial state). So then it moved on to the
+next goal, which actually spent all the money. But GPS did not go back
+and reconsider whether the first goal was still met.
 
 ** "Leaping before you look"
 
-One could reorder the goals from the prior example to be "son at school, have money." In this case, GPS will indicate to us that there is no solution. However, it will still apply operators in its doomed search for a solution. If this was real life, a GPS robot would repair the car, drive the son to school, and then discover it had no money!
-
-In a simpler example, consider the goals:
+One could reorder the goals from the prior example to be "son at
+school, have money." In this case, GPS will indicate to us that there
+is no solution. In a simpler example, consider the goals:
 
 - jump off cliff, land safely
 
-GPS will first find a way to achieve "jump off cliff," but only once achieved, figure out how to "land safely." The problem, of course, is that in our algorithm planning to take an action is interleaved with taking other actions (applying operators). Our algorithm has no way to only think about actions without doing them, and "back up" its search process if those actions turn out to be bad ideas.
+GPS will first find a way to achieve "jump off cliff," but only once
+achieved, figure out how to "land safely." Our GPS algorithm has no
+way to "back track" during its search when it discovers that not all
+parts of the goal can be met with the partial plan built so far.
 
 ** Recursive subgoals
 
-Suppose we had a goal like "call shop" which required "know phone number" which can be achieved by "ask friend for a phone number." Further suppose asking a friend for a phone number requires "know phone number." Then GPS will get stuck in a loop trying to figure out how to get the friend's phone number from another friend in order to call the shop, even if other operators are available for finding a phone number (such as looking in a phone book).
+Suppose we had a goal like "call shop" which required "know phone
+number" which can be achieved by "ask friend for a phone number."
+Further suppose asking a friend for a phone number requires "know
+phone number." Then GPS will get stuck in a loop trying to figure out
+how to get the friend's phone number from another friend in order to
+call the shop, even if other operators are available for finding a
+phone number (such as looking in a phone book).
 
 ** Lack of intermediate information
 
-Our simplistic GPS algorithm does not indicate why it failed to achieve its goals. It just says "nope, can't do it." It would be useful to know which goals could not be achieved and, perhaps, what are the best options for us (as humans) in order to make progress.
+Our simplistic GPS algorithm does not indicate why it failed to
+achieve its goals. It just says "nope, can't do it." It would be
+useful to know which goals could not be achieved and, perhaps, what
+are the best options for us (as humans) in order to make progress.
 
 * Epilogue
 
-*It must be noted that the "problems" listed above are not necessarily those of the real GPS program.* Those problems were more about our simplistic algorithm. However, GPS still failed to live up to its name. In the early days, many grandiose AI programs failed to deliver their full promises. Of course, all that has changed today is that the wise researchers avoid naming their programs "general problem solver."
+*It must be noted that the "problems" listed above are not necessarily
+those of the real GPS program.* Those problems were more about our
+simplistic algorithm. However, GPS still failed to live up to its
+name. In the early days, many grandiose AI programs failed to deliver
+their full promises. Of course, all that has changed today is that the
+wise researchers avoid naming their programs "general problem solver."
 
 #+BEGIN_QUOTE
 Remember GPS? By now, "GPS" is a colorless term denoting a

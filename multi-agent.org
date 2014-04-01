@@ -255,8 +255,7 @@ think there is something else going on:
 #+BEGIN_CENTER
 #+BEGIN_HTML
 <img src="./images/emergence.jpg" /></br>
-<iframe width="474" height="54" frameborder="0"
-src="//www.radiolab.org/widgets/ondemand_player/#file=http%3A%2F%2Fwww.radiolab.org%2Faudio%2Fxspf%2F91500%2F;containerClass=radiolab"></iframe>
+<iframe width="474" height="54" frameborder="0" scrolling="no" src="//www.radiolab.org/widgets/ondemand_player/#file=http%3A%2F%2Fwww.radiolab.org%2Faudio%2Fxspf%2F91500%2F;containerClass=radiolab"></iframe>
 #+END_HTML
 
 1 hour /

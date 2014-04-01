@@ -115,11 +115,14 @@ transition model is useless.
 
 * Comparisons of search algorithms
 
-In computer science, we typically compare algorithms based on two criteria: "time complexity" and "space complexity."
+In computer science, we typically compare algorithms based on two
+criteria: "time complexity" and "space complexity."
 
 ** Time complexity
 
-The time complexity of an algorithm is generally the number of operations required (e.g., basic CPU operations such as addition, subtraction, tests for equality, memory reads and writes, etc.).
+The time complexity of an algorithm is generally the number of
+operations required (e.g., basic CPU operations such as addition,
+subtraction, tests for equality, memory reads and writes, etc.).
 
 For example, suppose we have a ~min~ algorithm that finds the smallest
 value in any list. The algorithm checks every element in the list, so
@@ -147,14 +150,20 @@ sort it.
 
 ** Search-specific analysis
 
-For comparing search algorithms in particular, we'll often want to talk about the following values:
+For comparing search algorithms in particular, we'll often want to
+talk about the following values:
 
 - $n$, the total number of possible states
 
-- $b$, the branching factor; this is the maximum number of possible actions or branches we might expect from any state in the search space.
+- $b$, the branching factor; this is the maximum number of possible
+  actions or branches we might expect from any state in the search
+  space.
 
-- $d$, the depth in the search tree of the least-cost path, i.e., the minimum number of steps required to reach the goal
+- $d$, the depth in the search tree of the least-cost path, i.e., the
+  minimum number of steps required to reach the goal
 
-- $m$, the maximum search depth, if we choose to make it a finite number (so that the algorithm might stop looking deeper and instead choose to backtrack to an earlier state), or $\infty$ otherwise
+- $m$, the maximum search depth, if we choose to make it a finite
+  number (so that the algorithm might stop looking deeper and instead
+  choose to backtrack to an earlier state), or $\infty$ otherwise
 
 #+INCLUDE: footer.org
