@@ -125,7 +125,7 @@ the extracted folder. Run like this:
 
 #+BEGIN_EXAMPLE
 java -cp . javaff.JavaFF hw7-domain.pddl hw7-prob.pddl
-#+END_SRC
+#+END_EXAMPLE
 
 You should also be able to run the Cargo example, just to be sure you
 downloaded everything correctly:

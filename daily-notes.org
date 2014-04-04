@@ -964,13 +964,116 @@ action: climb(A, X)
 - agent is omniscient
 - closed world assumption
 
+* Day 22
+
+** Boids
+
+- "birds" -- flocking behavior
+- each boid has these rules:
+  - cohesion: try to approach other boids
+  - separation: try to keep a minimum distance
+  - imitation: try to move the same way as other boids
+** Altruism model
+- each patch's calculation:
+  - if patch is altruistic:
+    - F = 1 + (# of altruists nearby / 5) * benefit-from-altruism -
+      cost-of-altruism
+  - if patch is selfish:
+    - F = 1 + (# of altruists nearby / 5) * benefit-from-altruism
+- higher harshness: reduces the chance of a patch turning either
+  altruistic or selfish. Limits population growth.
+** Termite collecting
+- predesignated collection spot:
+  - check: is all sand in the pile?
+    - if not, do I have sand?
+      - if yes, take it to pile, drop off
+      - else, pick up sand not in pile, then start over
+- use flocking behavior to group together,
+  - if encounter sand, pick up along the way,
+  - drop off after flocking behavior is terminated
+    - (all sand should be in nearly same spot)
+- what actually happens:
+  - each termite wanders randomly
+  - if it bumps into sand and has none in its mouth, it picks it up
+  - if it bumps into sand and has some, it finds a nearby empty space
+    and drops its sand
+** Principles of designing multi-agent systems
+- agents not functions (i.e., independent acting entities)
+- keep them small in size (not much knowledge)
+- keep them small in time (forgetful)
+- keep agents small in scope (look only locally, etc.)
+- decentralized system control
+
 * Day 23
 
-** Notes about Prolog assignment
+** HCOMP 2014
+- http://www.humancomputation.com/2014/
+** In the news
+- http://www.computerworld.com/s/article/9226851/Crowdsourcing_game_helps_diagnose_infectious_diseases
 
-** General Problem Solver (GPS)
+** Ant sorting
+- wander randomly
+- sense nearby objects and maintain a small queue of what has been
+  seen
+- if not carrying anything, and at an object, decide stochastically
+  whether or not to pick it up
+  - probability of picking it up decreases if this color has been seen
+    recently
+  - p = (K+ / (K+ + F))^2
+    - F is the fraction of items in memory of same color
+    - K+ is a constant
+    - if F becomes small compared to K+, p trends up (certainty)
+- if carrying something, drop according to:
+  - p = (F / (K- + F))^2
+  - if seen this color recently, more chance that you'll drop it
+** Prisoner's dilemma
+- if you screw over a nice person you win
 
-** PDDL language
+- you and your partner committed a crime
+  - you are both arrested
+  - the cops don't have much on you
+  - if you defect (rat out your partner), AND your partner stays
+    silent, you get no jail time, partner gets 5 years
+  - if you cooperate (stay silent), AND your partner cooperates, you
+    both get 1 year
+  - if you both defect, you both get three years
+
+- what is your best option (if you don't communicate)
+  - if you never see your partner again
+  - always defect
+
+
+| Y | P |  Y |  P |
+|---+---+----+----|
+| D | D | -3 | -3 |
+| D | C |  0 | -5 |
+| C | D | -5 |  0 |
+| C | C | -1 | -1 |
+
+
+** K-means clustering
+- groups data into clusters
+- you have to decide k, i.e., how many clusters
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
