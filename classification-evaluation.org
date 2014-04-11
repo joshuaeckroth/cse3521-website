@@ -9,7 +9,14 @@
 - $fscore = 2*\frac{precision*recall}{precision+recall}$ is the
   harmonic mean of precision and recall, which produces a better
   average of the two measures than an arithmetic mean.
+- 10-fold cross validation means we choose 90% of the data to be the
+  training set, and 10% to be the testing set. We evaluate the
+  precision/recall/etc. with this split, then choose a different 90/10
+  split and do it again. Because there are 10 possible splits, we do
+  it 10 times and average 10 results.
 {{{end-summary}}}
+
+** Precision, Recall, F1
 
 Assume we have a classifier that adds labels (classes) to each
 document or data point. How do we evaluate how well it is doing its
@@ -55,6 +62,29 @@ increases in $x$ and $y$.
 
 #+BEGIN_CENTER
 [[./images/harmonic-mean.png]]
+#+END_CENTER
+
+** k-Fold Cross Validation
+
+When we have one dataset with the answers (the "class" for each data
+point), we can split this dataset into a training and testing
+portion. The training portion is used to build a model of the dataset,
+and the testing version is used to test that model. We'll want to split
+the dataset multiple times at random places and then average the
+results. That way, we can be sure that we didn't just get lucky (or
+unlucky) and split the dataset into training/testing portions that are
+not representative of all the data.
+
+Most common is 10-fold cross validation. This means we choose 90% of
+the data to be the training set, and 10% to be the testing set. We
+evaluate the precision/recall/etc. with this split, then choose a
+different 90/10 split and do it again. Because there are 10 possible
+splits, we do it 10 times and average 10 results. The graph below
+(from [[http://www.intechopen.com/books/advances-in-data-mining-knowledge-discovery-and-applications/selecting-representative-data-sets][Selecting Representative Data Sets]] by Borovicka, et al.)
+illustrates k-fold cross validation.
+
+#+BEGIN_CENTER
+[[./images/k-fold-cross-validation.jpg]]
 #+END_CENTER
 
 #+INCLUDE: footer.org

@@ -1050,10 +1050,56 @@ action: climb(A, X)
 | C | D | -5 |  0 |
 | C | C | -1 | -1 |
 
+* Day 24
+
+** Machine learning
+
+- *clustering*: grouping data, without really having a clue what the
+  right groups are
+- *classification*: take a single data point and predict its class
+
+- why use clustering?
+  - Wolfram Alpha, connect to facebook
+  - marketing: get an idea of demographics, are there distinct groups
+    of consumers
+  - *exploratory analysis*
+
+- why use classification?
+  - facebook tags faces automatically
+  - finding porn, and filtering it out
+  - detect copyrighted videos
+  - spam
+  - separating email by promotions, social, etc.
+  - xbox kinect detecting gameplay speaking vs. other speaking
+    - and various motions
+  - cheating analysis
+
+- with clustering, you don't have predefined groups (classes)
+  - you also don't have the answers
+- with classification, you do
+  - you also have some training set
 
 ** K-means clustering
 - groups data into clusters
-- you have to decide k, i.e., how many clusters
+- you have to decide k, i.e., how many clusters (decide *a priori*)
+- "closest" -- Euclidean distance, Manhattan distance
+  - each of these require that all dimensions are numeric
+    - not all features are necessarily numeric
+      - e.g., ethinicity, gender, country-of-residence, etc.
+- the centroids live in the feature space
+  - must be able to generate new centroids as averages of points
+- algorithm:
+  - randomly select k centroids
+  - now loop:
+    - for each point, determine the closest cluster
+    - recompute centroids as averages of points for each cluster
+    - repeat, until centroids don't change
+- k-means assumes clusters have "spherical" distributions
+  - actually, the partition of the space is not spherical,
+    it's a Voronoi diagram
+    - every possible point is closest to some cluster (or equidistant)
+    - can ask about a new point, which cluster is it in?
+
 
 
 

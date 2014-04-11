@@ -1,0 +1,80 @@
+#+SETUPFILE: setup.org
+#+TITLE: Homework 8
+
+* Task 1 (20 pts)
+
+Read/skim "Strong and Weak Emergence" by David Chalmers from 2006
+([[./Chalmers-Emergence.pdf][PDF]]; [[http://scholar.google.com/scholar.bib?q=info:j3WRL72mFMkJ:scholar.google.com/&output=citation&hl=en&as_sdt=1,36&scfhb=1&ct=citation&cd=1][full citation]]). Answer these questions:
+
+  1. Define what Chalmers means by weak emergence.
+
+  2. Chalmers writes, "We can think of strongly emergent phenomena as
+     being systematically determined by low-level facts without being
+     deducible from those facts." Give an example (1-2 sentences) that
+     may possibly satisfy this definition of strong emergence.
+
+  3. Are the NetLogo models we looked at (sheep and wolves, ants,
+     termites) examples of strong or weak emergence? Provide a 1-2
+     sentence argument.
+
+* Task 2 (20 pts)
+
+Execute the k-means algorithm by hand on the following data:
+
+| item # |   w |   x |   y |   z | true label |
+|--------+-----+-----+-----+-----+------------|
+|      1 | 1.0 | 1.0 | 0.0 | 1.0 | A          |
+|      2 | 0.0 | 0.0 | 1.0 | 0.0 | B          |
+|      3 | 2.0 | 2.0 | 0.0 | 2.0 | A          |
+|      4 | 0.0 | 0.0 | 1.0 | 1.0 | B          |
+|      5 | 2.0 | 2.0 | 0.0 | 2.0 | A          |
+|      6 | 0.0 | 2.0 | 1.0 | 1.0 | B          |
+
+Use $k=2$. Show the centroids as they change, and give the final
+centroids. Choose random (or not so random) starting centroid
+values. Finally, give the confusion matrix.
+
+* Task 3 (20 pts)
+
+Run the k-means algorithm in Weka using this dataset: [[./iris.arff][iris.arff]] (iris
+species clustering).
+
+Choose $k=3$ and $k=4$. Give the confusion matrix for each value of
+$k$. Also report the percent of correctly classified instances for
+each class, for each $k$.
+
+* Task 4 (20 pts)
+
+Execute the k-nearest neighbor algorithm by hand on the dataset below
+(same as before). Use $k = 2$. Classify the data point: $<1, 0, 1,
+2>$.
+
+| item # |   w |   x |   y |   z | true label |
+|--------+-----+-----+-----+-----+------------|
+|      1 | 1.0 | 1.0 | 0.0 | 1.0 | A          |
+|      2 | 0.0 | 0.0 | 1.0 | 0.0 | B          |
+|      3 | 2.0 | 2.0 | 0.0 | 2.0 | A          |
+|      4 | 0.0 | 0.0 | 1.0 | 1.0 | B          |
+|      5 | 2.0 | 2.0 | 0.0 | 2.0 | A          |
+|      6 | 0.0 | 2.0 | 1.0 | 1.0 | B          |
+
+* Task 5 (10 pts)
+
+Run the k-nearest neighbor in Weka using this dataset: [[./letter.arff][letter.arff]]
+(handwritten letter classification). Find a good value of $k$. Use
+10-fold cross validation and report the accuracy and give the
+confusion matrix.
+
+* Task 6 (10 pts)
+
+Explain the differences between k-means and k-nearest neighbor
+algorithms.
+
+* Extra credit (+20 pts)
+
+Play around with Weka. Report how well at least three different
+classification algorithms (avoid k-means and k-nn) perform on the
+[[./letter.arff][letter.arff]] data with 10-fold cross validation. Collect accuracies in
+a table.
+
+#+INCLUDE: footer.org
