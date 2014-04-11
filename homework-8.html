@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Classification evaluation</title>
+<title>Homework 8</title>
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <style type="text/css">
@@ -181,147 +181,281 @@ for the JavaScript code in this tag.
 <a href="index.html">Home</a>
 </div>
 <div id="content">
-<h1 class="title">Classification evaluation</h1>
+<h1 class="title">Homework 8</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">Precision, Recall, F1</a></li>
-<li><a href="#sec-2">k-Fold Cross Validation</a></li>
+<li><a href="#sec-1">Task 1 (20 pts)</a></li>
+<li><a href="#sec-2">Task 2 (20 pts)</a></li>
+<li><a href="#sec-3">Task 3 (20 pts)</a></li>
+<li><a href="#sec-4">Task 4 (20 pts)</a></li>
+<li><a href="#sec-5">Task 5 (10 pts)</a></li>
+<li><a href="#sec-6">Task 6 (10 pts)</a></li>
+<li><a href="#sec-7">Extra credit (+20 pts)</a></li>
 </ul>
 </div>
-</div>
-<div class="summary"><h2>Summary</h2>
-<ul class="org-ul">
-<li>\(precision = \frac{tp}{tp+fp}\).
-</li>
-<li>\(recall = \frac{tp}{tp+fn}\).
-</li>
-<li>High precision can be achieved trivially, at the cost of recall; and
-vice versa.
-</li>
-<li>\(fscore = 2*\frac{precision*recall}{precision+recall}\) is the
-harmonic mean of precision and recall, which produces a better
-average of the two measures than an arithmetic mean.
-</li>
-<li>10-fold cross validation means we choose 90% of the data to be the
-training set, and 10% to be the testing set. We evaluate the
-precision/recall/etc. with this split, then choose a different 90/10
-split and do it again. Because there are 10 possible splits, we do
-it 10 times and average 10 results.
-</li>
-</ul>
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Precision, Recall, F1</h2>
+<h2 id="sec-1">Task 1 (20 pts)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Assume we have a classifier that adds labels (classes) to each
-document or data point. How do we evaluate how well it is doing its
-job? We have three cases, considering all predicted labels as a group:
+Read/skim "Strong and Weak Emergence" by David Chalmers from 2006
+(<a href="./Chalmers-Emergence.pdf">PDF</a>; <a href="http://scholar.google.com/scholar.bib?q=info:j3WRL72mFMkJ:scholar.google.com/&output=citation&hl=en&as_sdt=1,36&scfhb=1&ct=citation&cd=1">full citation</a>). Answer these questions:
 </p>
 
-<dl class="org-dl">
-<dt> True positive (tp) </dt><dd>predicted labels that are true labels
-</dd>
+<ol class="org-ol">
+<li>Define what Chalmers means by weak emergence.
+</li>
 
-<dt> False positive (fp) </dt><dd>predicted labels that are not true labels
-</dd>
+<li>Chalmers writes, "We can think of strongly emergent phenomena as
+being systematically determined by low-level facts without being
+deducible from those facts." Give an example (1-2 sentences) that
+may possibly satisfy this definition of strong emergence.
+</li>
 
-<dt> False negatives (fn) </dt><dd>true labels that were not predicted
-</dd>
-</dl>
-
-<p>
-Since these measures depend on the number of labels (predicted and
-true), and that may differ depending on the document/data point or
-experiment, we calculate the following normalized scores:
-</p>
-
-<dl class="org-dl">
-<dt> Precision </dt><dd>\(tp/(tp+fp)\) &#x2014; higher precision means the labels
-that were predicted were more often true labels
-</dd>
-
-<dt> Recall </dt><dd>\(tp/(tp+fn)\) &#x2014; higher recall means more of the true
-labels were predicted
-</dd>
-</dl>
-
-<p>
-We can achieve very high precision by only predicting labels for which
-we have very high confidence (until we nearly choose no labels at
-all); this would decrease recall, however. We can achieve high recall
-by predicting every label for every data point; this would decrease
-precision, however.
-</p>
-
-<p>
-Best would be high precision and high recall. We can measure this by
-combining precision and recall into a single formula, called the
-"F-score" or "F1-measure":
-</p>
-
-<dl class="org-dl">
-<dt> F-score </dt><dd>\(2*precision*recall / (precision + recall)\)
-</dd>
-</dl>
-
-<p>
-Notice that precision and recall are treated equally in this
-calcuation. Technically, the F-score is the harmonic mean of precision
-and recall.
-</p>
-
-<p>
-This graph (from <a href="http://en.wikipedia.org/wiki/File:Harmonic_mean_3D_plot_from_0_to_100.png">Wikipedia</a>) shows the harmonic mean of two numbers
-(\(x\) and \(y\), which you can interpret as \(precision\) and \(recall\)). It
-shows the relationship we want: if either \(x\) or \(y\) is \(0\), the
-F-score is \(0\). Otherwise, the F-score generally increases with
-increases in \(x\) and \(y\).
-</p>
-
-<div class="center">
-
-<div class="figure">
-<p><img src="./images/harmonic-mean.png" alt="harmonic-mean.png" />
-</p>
-</div>
-</div>
+<li>Are the NetLogo models we looked at (sheep and wolves, ants,
+termites) examples of strong or weak emergence? Provide a 1-2
+sentence argument.
+</li>
+</ol>
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">k-Fold Cross Validation</h2>
+<h2 id="sec-2">Task 2 (20 pts)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-When we have one dataset with the answers (the "class" for each data
-point), we can split this dataset into a training and testing
-portion. The training portion is used to build a model of the dataset,
-and the testing version is used to test that model. We'll want to split
-the dataset multiple times at random places and then average the
-results. That way, we can be sure that we didn't just get lucky (or
-unlucky) and split the dataset into training/testing portions that are
-not representative of all the data.
+Execute the k-means algorithm by hand on the following data:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">item #</th>
+<th scope="col" class="right">w</th>
+<th scope="col" class="right">x</th>
+<th scope="col" class="right">y</th>
+<th scope="col" class="right">z</th>
+<th scope="col" class="left">true label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="right">1.0</td>
+<td class="right">1.0</td>
+<td class="right">0.0</td>
+<td class="right">1.0</td>
+<td class="left">A</td>
+</tr>
+
+<tr>
+<td class="right">2</td>
+<td class="right">0.0</td>
+<td class="right">0.0</td>
+<td class="right">1.0</td>
+<td class="right">0.0</td>
+<td class="left">B</td>
+</tr>
+
+<tr>
+<td class="right">3</td>
+<td class="right">2.0</td>
+<td class="right">2.0</td>
+<td class="right">0.0</td>
+<td class="right">2.0</td>
+<td class="left">A</td>
+</tr>
+
+<tr>
+<td class="right">4</td>
+<td class="right">0.0</td>
+<td class="right">0.0</td>
+<td class="right">1.0</td>
+<td class="right">1.0</td>
+<td class="left">B</td>
+</tr>
+
+<tr>
+<td class="right">5</td>
+<td class="right">2.0</td>
+<td class="right">2.0</td>
+<td class="right">0.0</td>
+<td class="right">2.0</td>
+<td class="left">A</td>
+</tr>
+
+<tr>
+<td class="right">6</td>
+<td class="right">0.0</td>
+<td class="right">2.0</td>
+<td class="right">1.0</td>
+<td class="right">1.0</td>
+<td class="left">B</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Use \(k=2\). Show the centroids as they change, and give the final
+centroids. Choose random (or not so random) starting centroid
+values. Finally, give the confusion matrix.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Task 3 (20 pts)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Run the k-means algorithm in Weka using this dataset: <a href="./iris.arff">iris.arff</a> (iris
+species clustering).
 </p>
 
 <p>
-Most common is 10-fold cross validation. This means we choose 90% of
-the data to be the training set, and 10% to be the testing set. We
-evaluate the precision/recall/etc. with this split, then choose a
-different 90/10 split and do it again. Because there are 10 possible
-splits, we do it 10 times and average 10 results. The graph below
-(from <a href="http://www.intechopen.com/books/advances-in-data-mining-knowledge-discovery-and-applications/selecting-representative-data-sets">Selecting Representative Data Sets</a> by Borovicka, et al.)
-illustrates k-fold cross validation.
-</p>
-
-<div class="center">
-
-<div class="figure">
-<p><img src="./images/k-fold-cross-validation.jpg" alt="k-fold-cross-validation.jpg" />
+Choose \(k=3\) and \(k=4\). Give the confusion matrix for each value of
+\(k\). Also report the percent of correctly classified instances for
+each class, for each \(k\).
 </p>
 </div>
 </div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Task 4 (20 pts)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Execute the k-nearest neighbor algorithm by hand on the dataset below
+(same as before). Use \(k = 2\). Classify the data point: \(<1, 0, 1,
+2>\).
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">item #</th>
+<th scope="col" class="right">w</th>
+<th scope="col" class="right">x</th>
+<th scope="col" class="right">y</th>
+<th scope="col" class="right">z</th>
+<th scope="col" class="left">true label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="right">1.0</td>
+<td class="right">1.0</td>
+<td class="right">0.0</td>
+<td class="right">1.0</td>
+<td class="left">A</td>
+</tr>
+
+<tr>
+<td class="right">2</td>
+<td class="right">0.0</td>
+<td class="right">0.0</td>
+<td class="right">1.0</td>
+<td class="right">0.0</td>
+<td class="left">B</td>
+</tr>
+
+<tr>
+<td class="right">3</td>
+<td class="right">2.0</td>
+<td class="right">2.0</td>
+<td class="right">0.0</td>
+<td class="right">2.0</td>
+<td class="left">A</td>
+</tr>
+
+<tr>
+<td class="right">4</td>
+<td class="right">0.0</td>
+<td class="right">0.0</td>
+<td class="right">1.0</td>
+<td class="right">1.0</td>
+<td class="left">B</td>
+</tr>
+
+<tr>
+<td class="right">5</td>
+<td class="right">2.0</td>
+<td class="right">2.0</td>
+<td class="right">0.0</td>
+<td class="right">2.0</td>
+<td class="left">A</td>
+</tr>
+
+<tr>
+<td class="right">6</td>
+<td class="right">0.0</td>
+<td class="right">2.0</td>
+<td class="right">1.0</td>
+<td class="right">1.0</td>
+<td class="left">B</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Task 5 (10 pts)</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Run the k-nearest neighbor in Weka using this dataset: <a href="./letter.arff">letter.arff</a>
+(handwritten letter classification). Find a good value of \(k\). Use
+10-fold cross validation and report the accuracy and give the
+confusion matrix.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Task 6 (10 pts)</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Explain the differences between k-means and k-nearest neighbor
+algorithms.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Extra credit (+20 pts)</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Play around with Weka. Report how well at least three different
+classification algorithms (avoid k-means and k-nn) perform on the
+<a href="./letter.arff">letter.arff</a> data with 10-fold cross validation. Collect accuracies in
+a table.
+</p>
 
 <div style="font-size: 80%; clear: both;"> <span
 xmlns:dct="http://purl.org/dc/terms/"

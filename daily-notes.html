@@ -270,7 +270,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-15-2">In the news</a></li>
 <li><a href="#sec-15-3">Ant sorting</a></li>
 <li><a href="#sec-15-4">Prisoner's dilemma</a></li>
-<li><a href="#sec-15-5">K-means clustering</a></li>
+</ul>
+</li>
+<li><a href="#sec-16">Day 24</a>
+<ul>
+<li><a href="#sec-16-1">Machine learning</a></li>
+<li><a href="#sec-16-2">K-means clustering</a></li>
 </ul>
 </li>
 </ul>
@@ -2177,17 +2182,128 @@ both get 1 year
 </table>
 </div>
 </div>
+</div>
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16">Day 24</h2>
+<div class="outline-text-2" id="text-16">
+</div><div id="outline-container-sec-16-1" class="outline-3">
+<h3 id="sec-16-1">Machine learning</h3>
+<div class="outline-text-3" id="text-16-1">
+<ul class="org-ul">
+<li><b>clustering</b>: grouping data, without really having a clue what the
+right groups are
+</li>
+<li><b>classification</b>: take a single data point and predict its class
+</li>
 
-<div id="outline-container-sec-15-5" class="outline-3">
-<h3 id="sec-15-5">K-means clustering</h3>
-<div class="outline-text-3" id="text-15-5">
+<li>why use clustering?
+<ul class="org-ul">
+<li>Wolfram Alpha, connect to facebook
+</li>
+<li>marketing: get an idea of demographics, are there distinct groups
+of consumers
+</li>
+<li><b>exploratory analysis</b>
+</li>
+</ul>
+</li>
+
+<li>why use classification?
+<ul class="org-ul">
+<li>facebook tags faces automatically
+</li>
+<li>finding porn, and filtering it out
+</li>
+<li>detect copyrighted videos
+</li>
+<li>spam
+</li>
+<li>separating email by promotions, social, etc.
+</li>
+<li>xbox kinect detecting gameplay speaking vs. other speaking
+<ul class="org-ul">
+<li>and various motions
+</li>
+</ul>
+</li>
+<li>cheating analysis
+</li>
+</ul>
+</li>
+
+<li>with clustering, you don't have predefined groups (classes)
+<ul class="org-ul">
+<li>you also don't have the answers
+</li>
+</ul>
+</li>
+<li>with classification, you do
+<ul class="org-ul">
+<li>you also have some training set
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-16-2" class="outline-3">
+<h3 id="sec-16-2">K-means clustering</h3>
+<div class="outline-text-3" id="text-16-2">
 <ul class="org-ul">
 <li>groups data into clusters
 </li>
-<li>you have to decide k, i.e., how many clusters
+<li>you have to decide k, i.e., how many clusters (decide <b>a priori</b>)
+</li>
+<li>"closest" &#x2013; Euclidean distance, Manhattan distance
+<ul class="org-ul">
+<li>each of these require that all dimensions are numeric
+<ul class="org-ul">
+<li>not all features are necessarily numeric
+<ul class="org-ul">
+<li>e.g., ethinicity, gender, country-of-residence, etc.
 </li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>the centroids live in the feature space
+<ul class="org-ul">
+<li>must be able to generate new centroids as averages of points
+</li>
+</ul>
+</li>
+<li>algorithm:
+<ul class="org-ul">
+<li>randomly select k centroids
+</li>
+<li>now loop:
+<ul class="org-ul">
+<li>for each point, determine the closest cluster
+</li>
+<li>recompute centroids as averages of points for each cluster
+</li>
+<li>repeat, until centroids don't change
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>k-means assumes clusters have "spherical" distributions
+<ul class="org-ul">
+<li>actually, the partition of the space is not spherical,
+it's a Voronoi diagram
+<ul class="org-ul">
+<li>every possible point is closest to some cluster (or equidistant)
+</li>
+<li>can ask about a new point, which cluster is it in?
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 
 
