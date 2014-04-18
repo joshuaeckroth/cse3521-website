@@ -278,6 +278,45 @@ for the JavaScript code in this tag.
 <li><a href="#sec-16-2">K-means clustering</a></li>
 </ul>
 </li>
+<li><a href="#sec-17">Day 25</a>
+<ul>
+<li><a href="#sec-17-1">Classification evaluation</a></li>
+</ul>
+</li>
+<li><a href="#sec-18">Day 26</a>
+<ul>
+<li><a href="#sec-18-1">Chinese room argument (Searle)</a>
+<ul>
+<li><a href="#sec-18-1-1">Weak AI</a></li>
+<li><a href="#sec-18-1-2">Strong AI</a></li>
+<li><a href="#sec-18-1-3">Schank's scripts</a>
+<ul>
+<li><a href="#sec-18-1-3-1">Scripts</a></li>
+</ul>
+</li>
+<li><a href="#sec-18-1-4">Searle's counterargument</a>
+<ul>
+<li><a href="#sec-18-1-4-1">The setup</a></li>
+<li><a href="#sec-18-1-4-2">What if I told you that:</a></li>
+<li><a href="#sec-18-1-4-3">Questions</a></li>
+<li><a href="#sec-18-1-4-4">Possible replies</a></li>
+</ul>
+</li>
+<li><a href="#sec-18-1-5">The point</a></li>
+</ul>
+</li>
+<li><a href="#sec-18-2">Robot ethics</a>
+<ul>
+<li><a href="#sec-18-2-1">Asimov's three laws</a>
+<ul>
+<li><a href="#sec-18-2-1-1">Issues with Asimov's three laws</a></li>
+</ul>
+</li>
+<li><a href="#sec-18-2-2">Machine ethics (computable ethics)</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -2304,32 +2343,409 @@ it's a Voronoi diagram
 </ul>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-17" class="outline-2">
+<h2 id="sec-17">Day 25</h2>
+<div class="outline-text-2" id="text-17">
+<ul class="org-ul">
+<li>k-nearest neighbor is a way to do classification (not clustering)
+</li>
 
+<li>scenario for classification:
 
+<ul class="org-ul">
+<li>you've got a lot of example points (with known classes)
+</li>
+<li>you've got a new example, with an unknown class
+</li>
+<li>what do you do?
+<ul class="org-ul">
+<li>figure out which point of which class is closest
+<ul class="org-ul">
+<li>according to, say, euclidean distance
+</li>
+</ul>
+</li>
+<li>or better, give each k closest points a "vote"
+<ul class="org-ul">
+<li>problems with large/small k:
+<ul class="org-ul">
+<li>if k is too small, noise has too great of an impact
+</li>
+<li>if k is too large, the dominant class has too large of an
+impact
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 
+<li>k-nearest neighbor algorithm:
+<ul class="org-ul">
+<li>for new point X, find k closest known points
+</li>
+<li>give each point a vote for that class
+</li>
+<li>X gets class of most votes
+</li>
+</ul>
+</li>
 
+<li>variations:
+<ul class="org-ul">
+<li>weigh the vote by closeness: closer points get bigger vote
+<ul class="org-ul">
+<li>vote is worth 1/distance(p, X)
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 
+<div id="outline-container-sec-17-1" class="outline-3">
+<h3 id="sec-17-1">Classification evaluation</h3>
+<div class="outline-text-3" id="text-17-1">
+<ul class="org-ul">
+<li>we have one dataset with known classes
 
+<ul class="org-ul">
+<li>let's split it into a training and testing set (say, 90/10%)
+</li>
+</ul>
+</li>
 
+<li>what are we interested in when we classify a set of points?
 
+<ul class="org-ul">
+<li>true positive (TP): the predicted class is the true class
+</li>
 
+<li>false positive (FP): the predicted class is false
+</li>
 
+<li>false negative (FN): failed to predict the true class
+</li>
 
+<li>precision: tp/(tp+fp) &#x2013; fraction of times it said "A class" and
+got it right; in other words, fraction of responses about A class
+that were correct
+</li>
 
+<li>recall: tp/(tp+fn) &#x2013; fraction of times it said "A class" over
+number of things in A class; in other words, fraction of A class
+things it correctly identified (recalled)
+</li>
 
+<li>these measures come from information retrieval (e.g., search
+engines)
 
+<ul class="org-ul">
+<li>imagine searching for "machine learning"
+</li>
 
+<li>get high precision but lose on recall by doing:
 
+<ul class="org-ul">
+<li>it gives you just a couple good articles about ML, but misses
+many
+</li>
+</ul>
+</li>
 
+<li>get high recall but lose on precision by doing:
 
+<ul class="org-ul">
+<li>give back the internet (surely it gets all the ML articles in
+there)
+</li>
+</ul>
+</li>
+</ul>
+</li>
 
+<li>so we have two metrics (precision/recall) that somewhat compete
+<ul class="org-ul">
+<li>it's a tradeoff
+</li>
 
+<li>another metric: precision/recall
+</li>
 
+<li>another metric: the arithmetic average
+</li>
 
+<li>another metric: the harmonic average (F-score)
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-18" class="outline-2">
+<h2 id="sec-18">Day 26</h2>
+<div class="outline-text-2" id="text-18">
+</div><div id="outline-container-sec-18-1" class="outline-3">
+<h3 id="sec-18-1">Chinese room argument (Searle)</h3>
+<div class="outline-text-3" id="text-18-1">
+</div><div id="outline-container-sec-18-1-1" class="outline-4">
+<h4 id="sec-18-1-1">Weak AI</h4>
+<div class="outline-text-4" id="text-18-1-1">
+<ul class="org-ul">
+<li>Can help test psychological theories
+</li>
+<li>Not positing that the software is conscious or understands something
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-18-1-2" class="outline-4">
+<h4 id="sec-18-1-2">Strong AI</h4>
+<div class="outline-text-4" id="text-18-1-2">
+<ul class="org-ul">
+<li>The program is a mind
+</li>
+<li>It truly understands things
+</li>
+<li>Is the psychological theory
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-18-1-3" class="outline-4">
+<h4 id="sec-18-1-3">Schank's scripts</h4>
+<div class="outline-text-4" id="text-18-1-3">
+<ul class="org-ul">
+<li>Here's a story:
+</li>
+</ul>
 
+<p>
+A man went into a restaurant and ordered a hamburger. When the
+hamburger arrived it was burned to a crisp, and the man stormed out of
+the restaurant angrily, without paying for the hamburger or leaving a
+tip.
+</p>
 
+<ul class="org-ul">
+<li>Did the man eat the hamburger? No
+</li>
+</ul>
 
+<p>
+A man went into a restaurant and ordered a hamburger; when the
+hamburger came he was very pleased with it; and as he left the
+restaurant he gave the waitress a large tip before paying his bill."
+</p>
 
+<ul class="org-ul">
+<li>Did the man eat the hamburger? Yes
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-18-1-3-1" class="outline-5">
+<h5 id="sec-18-1-3-1">Scripts</h5>
+<div class="outline-text-5" id="text-18-1-3-1">
+<p>
+Are templates for stories; depending on the story, a certain template
+is activated (e.g., the restaurant template), and can fill in missing
+details.
+</p>
+
+<ul class="org-ul">
+<li>If it answers correctly, consistently, we can say the software
+understands what happened in the story.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-18-1-4" class="outline-4">
+<h4 id="sec-18-1-4">Searle's counterargument</h4>
+<div class="outline-text-4" id="text-18-1-4">
+</div><div id="outline-container-sec-18-1-4-1" class="outline-5">
+<h5 id="sec-18-1-4-1">The setup</h5>
+<div class="outline-text-5" id="text-18-1-4-1">
+<ul class="org-ul">
+<li>The assumption: Searle does not understand Chinese
+</li>
+<li>Searle is stuck in a room
+</li>
+<li>Three books:
+<ul class="org-ul">
+<li>Book 1: Chinese symbols
+</li>
+<li>Book 2: Chinese symbols + English rules that utilize books 1 &amp; 2
+</li>
+<li>Book 3: Chinese symbols + English rules that utilize books 1 &amp; 2
+</li>
+</ul>
+</li>
+<li>What happens?
+<ul class="org-ul">
+<li>Searle gets a message from the outside, in Chinese
+</li>
+<li>He looks in books 1 &amp; 2 &amp; 3 and follows the English rules for
+matching and correlating symbols, and spits out another Chinese
+symbol
+</li>
+</ul>
+</li>
+<li>Clearly,
+<ul class="org-ul">
+<li>Searle is the computer
+</li>
+<li>The English rules are the program
+</li>
+<li>The books are the data
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-18-1-4-2" class="outline-5">
+<h5 id="sec-18-1-4-2">What if I told you that:</h5>
+<div class="outline-text-5" id="text-18-1-4-2">
+<p>
+Searle was responding correctly, in Chinese, to Chinese questions
+about Chinese stories?
+</p>
+</div>
+</div>
+<div id="outline-container-sec-18-1-4-3" class="outline-5">
+<h5 id="sec-18-1-4-3">Questions</h5>
+<div class="outline-text-5" id="text-18-1-4-3">
+<ul class="org-ul">
+<li>Does Searle understand Chinese?
+<ul class="org-ul">
+<li>No
+</li>
+</ul>
+</li>
+<li>Does this program (the whole room) explain human understanding?
+<ul class="org-ul">
+<li>No, there is no understanding anywhere
+</li>
+</ul>
+</li>
+<li>What does Searle "have" in the case of English that he doesn't have
+in the case of Chinese?
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-18-1-4-4" class="outline-5">
+<h5 id="sec-18-1-4-4">Possible replies</h5>
+<div class="outline-text-5" id="text-18-1-4-4">
+<ul class="org-ul">
+<li>Brain simulator reply
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-18-1-5" class="outline-4">
+<h4 id="sec-18-1-5">The point</h4>
+<div class="outline-text-4" id="text-18-1-5">
+<ul class="org-ul">
+<li>formal symbols and their manipulation will never produce
+"understanding" or mental states
+</li>
+
+<li>while on the other hand, when I think about "rain", I'm thinking
+about rain, not the string "r a i n"
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-18-2" class="outline-3">
+<h3 id="sec-18-2">Robot ethics</h3>
+<div class="outline-text-3" id="text-18-2">
+<ul class="org-ul">
+<li>Scenario: a self-driving car will hit a bus with children inside, or
+it can swerve into traffic and hit a mother
+</li>
+
+<li>What are the ethical issues, from a computational standpoint?
+<ul class="org-ul">
+<li>What is the right action?
+</li>
+<li>How to compute it?
+</li>
+<li>Who is responsible?
+</li>
+</ul>
+</li>
+<li><b>What are the ethical dimensions of an elevator?</b>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-18-2-1" class="outline-4">
+<h4 id="sec-18-2-1">Asimov's three laws</h4>
+<div class="outline-text-4" id="text-18-2-1">
+<ol class="org-ol">
+<li>Robot cannot harm a human, or by inaction, allow a human to come to
+harm.
+</li>
+
+<li>Has to obey orders of a human, unless it violates first rule.
+</li>
+
+<li>Robot shall preserve itself unless that violates rule 1 or 2.
+</li>
+</ol>
+</div>
+
+<div id="outline-container-sec-18-2-1-1" class="outline-5">
+<h5 id="sec-18-2-1-1">Issues with Asimov's three laws</h5>
+<div class="outline-text-5" id="text-18-2-1-1">
+<ul class="org-ul">
+<li>Are they computable?
+</li>
+
+<li>No consideration of time
+</li>
+
+<li>Curious question: Suppose you write a computer program for "ethical
+questions", and then you ask it about abortion.
+</li>
+
+<li>The harm may be "emergent" &#x2013; e.g., telling a robot to forget what
+it just did.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-18-2-2" class="outline-4">
+<h4 id="sec-18-2-2">Machine ethics (computable ethics)</h4>
+<div class="outline-text-4" id="text-18-2-2">
+<ul class="org-ul">
+<li>Implicit ethical agents: e.g., ATM machine that gives the correct
+amount of money; or passwords, privacy, etc.
+</li>
+
+<li>Explicit ethical agents: it actually reasons about ethical dilemmas
+and has "data" that represents ethical concepts
+</li>
+
+<li>Bentham's utilitarianism (1748-1832)
+</li>
+</ul>
 
 
 
@@ -2627,6 +3043,7 @@ $('.hidden > strong').click(function() {
   $(this).parent().find('.hidden-content').toggle();
 });
 </script>
+</div>
 </div>
 </div>
 </div>
