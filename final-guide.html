@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Final guide</title>
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<a href="index.html">Home</a>
+</div>
+<div id="content">
+<h1 class="title">Final guide</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Prolog</a></li>
+<li><a href="#sec-2">Planning</a>
+<ul>
+<li><a href="#sec-2-1">General Problem Solver</a></li>
+<li><a href="#sec-2-2">PDDL</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Multi-agent systems</a></li>
+<li><a href="#sec-4">Learning</a>
+<ul>
+<li><a href="#sec-4-1">k-means clustering</a></li>
+<li><a href="#sec-4-2">Classification evaluation</a></li>
+<li><a href="#sec-4-3">k-nearest neighbor</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Philosophy</a>
+<ul>
+<li><a href="#sec-5-1">The "Chinese room" argument</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">Extra credit</a></li>
+</ul>
+</div>
+</div>
+<p>
+You can <b>bring a notecard</b> (5in x 7in max) with notes or whatnot.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Prolog</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Given,
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">X</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span><span style="color: #000000; background-color: #ffffff;">_</span><span style="color: #004dd0; background-color: #ffffff;">|</span><span style="color: #000000; background-color: #ffffff;">Tail</span><span style="color: #004dd0; background-color: #ffffff;">]</span>) :- member(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Tail</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foobar</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">List</span>) :- member(<span style="color: #000000; background-color: #ffffff;">Y</span>, <span style="color: #000000; background-color: #ffffff;">List</span>), <span style="color: #000000; background-color: #ffffff;">X</span> \= <span style="color: #000000; background-color: #ffffff;">Y</span>.
+</pre>
+</div>
+
+<p>
+What are the values of each of these queries? (Write "true" or
+"false", or give one value of the variable X.)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">member</span>(5, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 1, 1<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+</pre>
+</div>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">member</span>(5, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; false</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">member</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; X = 1 or 2 or 3</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 2, 3<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; true</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foobar</span>(1, <span style="color: #004dd0; background-color: #ffffff;">[</span>1, 1, 1<span style="color: #004dd0; background-color: #ffffff;">]</span>). <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% --&gt; false</span>
+</pre>
+</div>
+</div></div>
+
+<p>
+Given,
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">family</span>(10392,
+       person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
+       person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
+       <span style="color: #00005d; background-color: #ffffff; font-style: italic;">% here are the children...</span>
+       <span style="color: #004dd0; background-color: #ffffff;">[</span>person(pat, fox, born(5, october, 1983), unemployed),
+        person(jim, fox, born(1, june, 1986), unemployed),
+        person(amy, fox, born(17, december, 1990), unemployed)<span style="color: #004dd0; background-color: #ffffff;">]</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">_</span>).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">exists</span>(<span style="color: #000000; background-color: #ffffff;">Person</span>) :- family(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>), member(<span style="color: #000000; background-color: #ffffff;">Person</span>, <span style="color: #000000; background-color: #ffffff;">Children</span>).
+
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foo</span>(x, y).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foo</span>(a, y).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">foo</span>(b, c).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">bar</span>(x, w).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">bar</span>(x, x).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">bar</span>(c, a).
+</pre>
+</div>
+
+<p>
+What are the values of each of these queries (write "true" or "false",
+or give one value for each of the variables)? Note, if the result is a
+list, order matters.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">family</span>(<span style="color: #000000; background-color: #ffffff;">_</span>, person(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, born(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>), <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">Year</span> &gt; 1960.
+
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">don't forget to give one value for each variable:</span>
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">FirstName, LastName, and X</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">exists</span>(person(<span style="color: #000000; background-color: #ffffff;">FirstName</span>, <span style="color: #000000; background-color: #ffffff;">LastName</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">X</span>)), <span style="color: #000000; background-color: #ffffff;">X</span> \= unemployed.
+
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">just give the value of Stuff</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">findall</span>(<span style="color: #000000; background-color: #ffffff;">Z</span>, (foo(<span style="color: #000000; background-color: #ffffff;">Z</span>, y), bar(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Z</span>)), <span style="color: #000000; background-color: #ffffff;">Stuff</span>).
+</pre>
+</div>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">family</span>(<span style="color: #000000; background-color: #ffffff;">_</span>, person(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, born(<span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">Year</span>), <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">_</span>), <span style="color: #000000; background-color: #ffffff;">Year</span> &gt; 1960.
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">answer: false</span>
+
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">don't forget to give one value for each variable:</span>
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">FirstName, LastName, and X</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">exists</span>(person(<span style="color: #000000; background-color: #ffffff;">FirstName</span>, <span style="color: #000000; background-color: #ffffff;">LastName</span>, <span style="color: #000000; background-color: #ffffff;">_</span>, <span style="color: #000000; background-color: #ffffff;">X</span>)), <span style="color: #000000; background-color: #ffffff;">X</span> \= unemployed.
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">one answer: FirstName = tom, LastName = fox, X = works(cnn, 152000)</span>
+
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">just give the value of Stuff</span>
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">findall</span>(<span style="color: #000000; background-color: #ffffff;">Z</span>, (foo(<span style="color: #000000; background-color: #ffffff;">Z</span>, y), bar(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Z</span>)), <span style="color: #000000; background-color: #ffffff;">Stuff</span>).
+<span style="color: #00005d; background-color: #ffffff; font-style: italic;">% </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">Stuff = [x, a]</span>
+</pre>
+</div>
+</div></div>
+
+<p>
+Do the following unify, and if so, what are values for the variables
+(one set of values for each question), if any variables are involved,
+that make the unification work?
+</p>
+
+<ul class="org-ul">
+<li><code>foo</code> and <code>foo</code>
+</li>
+</ul>
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<ul class="org-ul">
+<li>Yes, they unify (trivially).
+</li>
+</ul>
+</div></div>
+
+<ul class="org-ul">
+<li><code>foo(X)</code> and <code>X</code>
+</li>
+</ul>
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<ul class="org-ul">
+<li>No. There is no value of <code>X</code> such that <code>X = foo(X)</code>.
+</li>
+</ul>
+</div></div>
+
+<ul class="org-ul">
+<li><code>foo(foo(foo))</code> and <code>foo(X)</code>
+</li>
+</ul>
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<ul class="org-ul">
+<li>Yes, with <code>X = foo(foo)</code>.
+</li>
+</ul>
+</div></div>
+
+<ul class="org-ul">
+<li><code>foo(X, foo)</code> and <code>foo(foo, X)</code>
+</li>
+</ul>
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<ul class="org-ul">
+<li>Yes, with <code>X = foo</code>.
+</li>
+</ul>
+</div></div>
+
+<ul class="org-ul">
+<li><code>foo(X, foo)</code> and <code>foo(Y)</code>
+</li>
+</ul>
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<ul class="org-ul">
+<li>No, arities differ.
+</li>
+</ul>
+</div></div>
+
+<ul class="org-ul">
+<li><code>foo(foo(X, Y))</code> and <code>foo(Z)</code>
+</li>
+</ul>
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<ul class="org-ul">
+<li>Yes, with <code>Z = foo(X, Y)</code>.
+</li>
+</ul>
+</div></div>
+
+<p>
+Suppose we have the following knowledge base:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-prolog"><span style="color: #000000; background-color: #ffffff; font-weight: bold;">f</span>(a).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">f</span>(b). 
+
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">g</span>(a, a).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">g</span>(b, c).
+
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">h</span>(b).
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">h</span>(c).
+
+<span style="color: #000000; background-color: #ffffff; font-weight: bold;">k</span>(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>) :- f(<span style="color: #000000; background-color: #ffffff;">X</span>), g(<span style="color: #000000; background-color: #ffffff;">X</span>, <span style="color: #000000; background-color: #ffffff;">Y</span>), h(<span style="color: #000000; background-color: #ffffff;">Y</span>).
+</pre>
+</div>
+
+<p>
+Draw the resolution tree for the first successful proof of <code>k(X, c)</code>.
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<div class="center">
+
+<div class="figure">
+<p><img src="./images/prolog-resolution-midterm-1-guide.png" alt="prolog-resolution-midterm-1-guide.png" />
+</p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Planning</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">General Problem Solver</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Modify the following "program" so that GPS can find the solution.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #000000; background-color: #ffffff;">problem</span> = {
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"start"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"finish"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"ops"</span>: [
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"open door"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door unlocked"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>]
+            },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"unlock door"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>]
+            }
+        ]
+    }
+</pre>
+</div>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<p>
+Here is one possible answer.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #000000; background-color: #ffffff;">problem</span> = {
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"start"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"finish"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
+    <span style="color: #670088; background-color: #ffffff; font-style: italic;">"ops"</span>: [
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"open door"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door unlocked"</span>, <span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
+
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door open"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>]
+            },
+        {
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"action"</span>: <span style="color: #670088; background-color: #ffffff; font-style: italic;">"unlock door"</span>,
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"preconds"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door closed"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"add"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door unlocked"</span>],
+            <span style="color: #670088; background-color: #ffffff; font-style: italic;">"delete"</span>: [<span style="color: #670088; background-color: #ffffff; font-style: italic;">"door locked"</span>]
+            }
+        ]
+    }
+</pre>
+</div>
+</div></div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">PDDL</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Given the following domain and problem files, write a successul plan.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-PDDL"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">;; </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">bogus-domain.pddl</span>
+
+(<span style="color: #004dd0; background-color: #ffffff;">define</span> (<span style="color: #004dd0; background-color: #ffffff;">domain</span> bogus)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:requirements</span> <span style="color: #0000f1; background-color: #ffffff;">:strips</span>)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:predicates</span> (baz<span style="color: #000000; background-color: #ffffff;"> ?x ?y</span>)
+               (quux<span style="color: #000000; background-color: #ffffff;"> ?x</span>))
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:action</span> do-abc
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:parameters</span> <span style="color: #000000; background-color: #ffffff;">(?a ?b ?c</span>)
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:precondition</span> (baz<span style="color: #000000; background-color: #ffffff;"> ?a ?a</span>)
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:effect</span> (<span style="color: #004dd0; background-color: #ffffff;">and</span> (baz<span style="color: #000000; background-color: #ffffff;"> ?a ?b</span>) (quux<span style="color: #000000; background-color: #ffffff;"> ?c</span>) (<span style="color: #004dd0; background-color: #ffffff;">not</span> (baz<span style="color: #000000; background-color: #ffffff;"> ?b ?b</span>))))
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:action</span> do-xyz
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:parameters</span> <span style="color: #000000; background-color: #ffffff;">(?a ?b</span>)
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:precondition</span> (<span style="color: #004dd0; background-color: #ffffff;">and</span> (quux<span style="color: #000000; background-color: #ffffff;"> ?b</span>) (baz<span style="color: #000000; background-color: #ffffff;"> ?a ?b</span>))
+           <span style="color: #000000; background-color: #ffffff; font-weight: bold;">:effect</span> (<span style="color: #004dd0; background-color: #ffffff;">and</span> (baz<span style="color: #000000; background-color: #ffffff;"> ?b ?b</span>) (<span style="color: #004dd0; background-color: #ffffff;">not</span> (quux<span style="color: #000000; background-color: #ffffff;"> ?a</span>)))))
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-PDDL"><span style="color: #00005d; background-color: #ffffff; font-style: italic;">;; </span><span style="color: #00005d; background-color: #ffffff; font-style: italic;">bogus-prob1.pddl</span>
+
+(<span style="color: #004dd0; background-color: #ffffff;">define</span> (<span style="color: #004dd0; background-color: #ffffff;">problem</span> bogus-prob1)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:domain</span> bogus)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:objects</span> r s t)
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:init</span> (baz r s) (quux s))
+  (<span style="color: #000000; background-color: #ffffff; font-weight: bold;">:goal</span> (<span style="color: #004dd0; background-color: #ffffff;">and</span> (quux t) (baz s r))))
+</pre>
+</div>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<p>
+Here is a successful plan. There might be other successful plans.
+</p>
+
+<pre class="example">
+(do-xyz r s)
+(do-abc s r t)
+</pre>
+</div></div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Multi-agent systems</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+What are two principles for designing agent-based simulations?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<p>
+Here are six:
+</p>
+
+<ol class="org-ol">
+<li>agents not functions (not functional decomposition)
+</li>
+<li>keep agents small in size
+</li>
+<li>keep agents small in time (forgetful)
+</li>
+<li>keep agents small in scope (local sensing and action)
+</li>
+<li>decentralizd system control
+</li>
+<li>support agent diversity
+</li>
+</ol>
+</div></div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Learning</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Describe the difference between "supervised" and "unsupervised"
+learning.
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+Supervised learning uses information about the truth when
+training. Unsupervised learning does not have the truth (unless we're
+hiding the truth to test an algorithm) so obviously cannot use this
+information.
+</p>
+
+</div></div>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">k-means clustering</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+k-means clustering is an unsupervised or supervised learning strategy?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<p>
+Unsupervised
+</p>
+</div></div>
+
+<p>
+What does the choice of \(k\) represent?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<p>
+The number of clusters.
+</p>
+</div></div>
+
+<p>
+How does the choice of initial clusters affect the outcome?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+The resulting clusters may be different. Initial clusters near
+outliers may result in small clusters around the outliers (which is
+usually a bad thing).
+</p>
+
+</div></div>
+
+<p>
+<b>Note: also be able to perform k-means clustering on some data as in
+ Homework 8.</b>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Classification evaluation</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Define true positive (TP). Define false positive (FP). Define false
+negative (FN). Define precision (in terms of TP and/or FP and/or
+FN). Define recall (in terms of TP and/or FP and/or FN). Define
+F-score (in terms of precision and/or recall).
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<dl class="org-dl">
+<dt> True positive (tp) </dt><dd>chosen categories that are true categories.
+</dd>
+
+<dt> False positive (fp) </dt><dd>chosen categories that are not true categories.
+</dd>
+
+<dt> False negatives (fn) </dt><dd>true categories that are not chosen.
+</dd>
+
+<dt> Precision </dt><dd>\(tp/(tp+fp)\).
+</dd>
+
+<dt> Recall </dt><dd>\(tp/(tp+fn)\).
+</dd>
+
+<dt> F-score </dt><dd>\(2 * precision * recall / (precision + recall)\).
+</dd>
+</dl>
+
+</div></div>
+
+<p>
+Suppose we make our classification engine more cautious; that is, it
+is less likely overall to predict any category. Does precision go up
+or down or remain unchanged? Does recall go up or down or remain
+unchanged?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+Precision goes up because there are fewer \(fp\). Recall goes down
+because there are more \(fn\).
+</p>
+
+</div></div>
+
+<p>
+What are the precision and recall for the following scenario:
+</p>
+
+<ul class="org-ul">
+<li>The true categories for some data points are:
+<ul class="org-ul">
+<li>{noise, noise, signal, noise, signal}
+</li>
+</ul>
+</li>
+<li>The predicted categories for the data are (same ordering of the data
+points):
+<ul class="org-ul">
+<li>{noise, signal, signal, signal, noise}
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+Consider "signal" to be a "positive" claim and "noise" to be a
+"negative" claim.
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<ul class="org-ul">
+<li>tp = 1, fp = 2, fn = 1
+</li>
+<li>precision is 1/3
+</li>
+<li>recall is 1/2
+</li>
+</ul>
+
+</div></div>
+
+<p>
+What does "10-fold cross validation" mean?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+This happens 10 times, and the results are averaged: Take 90% of the
+input data and train the learning algorithm on it; test the learning
+algorithm on the remaining 10%. For each of the 10 iterations,
+separate the input data into a different 90/10 split.
+</p>
+
+</div></div>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">k-nearest neighbor</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+What does k-nearest neighbor allow us to do with a new, unknown data
+point?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<p>
+Determine its category (class, label, tag, etc.).
+</p>
+</div></div>
+
+<p>
+k-nearest neighbor is an unsupervised or supervised learning strategy?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+<p>
+Supervised
+</p>
+</div></div>
+
+<p>
+What does the choice of \(k\) represent?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+The number of neighbors that get a "vote" during the classification
+stage.
+</p>
+
+</div></div>
+
+<p>
+What problem may a very small value of \(k\) cause?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+Noise has too great an impact. The nearest neighbor will be chosen
+without considering the "larger" picture.
+</p>
+
+</div></div>
+
+<p>
+What problem may a very large value of \(k\) cause?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+The more common category will be chosen more often than it should.
+</p>
+
+</div></div>
+
+<p>
+Is there one value for \(k\) that works best for nearly all data sets?
+If so, what is it?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+There is not one best value; you need to experiment with different
+values to find the best for your dataset.
+</p>
+
+</div></div>
+
+<p>
+Give one benefit of k-nearest neighbor learning.
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+It is a very simple algorithm and can work quite well in some cases.
+</p>
+
+</div></div>
+
+<p>
+Give one drawback of k-nearest neighbor learning.
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+It is very slow because it checks every item in the database (though
+other techniques can be used). It also requires one to retain all the
+training examples in the database.
+</p>
+
+</div></div>
+
+<p>
+<b>Note: also be able to perform k-nearest neighbor classification on
+some data as in Homework 8.</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Philosophy</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">The "Chinese room" argument</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+What is the essential goal of "strong AI?"
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+Create a true "mind," i.e., an intelligent thinking machine. It may
+even be conscious.
+</p>
+
+</div></div>
+
+<p>
+What is the most critical assumption in the Chinese room argument?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+That the person in the room does not understand Chinese.
+</p>
+
+</div></div>
+
+<p>
+If you believe the Chinese room argument, can you also (reasonably)
+believe that passing the Turing test gives proof that a machine
+possesses a mind (i.e., can be said to truly understand things)?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+No.
+</p>
+
+</div></div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Extra credit</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+What is bigger than ant?
+</p>
+
+<div class="hidden"><strong>Answer <small>click to toggle</small></strong><div class="hidden-content">
+
+<p>
+These are bigger:
+</p>
+<ul class="org-ul">
+<li>anteater, foot, godzilla.
+</li>
+</ul>
+
+<p>
+(Just kidding.)
+</p>
+
+</div></div>
+
+<div style="font-size: 80%; clear: both;"> <span
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Text" property="dct:title"
+rel="dct:type">Intro to AI material</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://cse3521.artifice.cc" property="cc:attributionName"
+rel="cc:attributionURL">Joshua Eckroth</a> is licensed under a <a
+rel="license"
+href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+Attribution-ShareAlike 3.0 Unported License</a>. Source code for this
+website available at <a
+href="https://github.com/joshuaeckroth/cse3521-website">GitHub</a>.
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-23971505-3', 'artifice.cc');
+  ga('send', 'pageview');
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script type="text/javascript">
+$('.hidden .hidden-content').hide();
+$('.hidden > strong').click(function() {
+  $(this).parent().find('.hidden-content').toggle();
+});
+</script>
+</div>
+</div>
+</div>
+</body>
+</html>
