@@ -77,7 +77,7 @@
         padding:0 0 30px 0;
         margin-top: 10px;
         margin-bottom: 10px;
-        color: #666;
+        color: #333;
     }
 
     h2 {
@@ -85,7 +85,7 @@
         font-size:1.45em;
         line-height:16px;
         padding:7px 0 0 0;
-        color: #999;
+        color: #666;
     }
 
     .outline-text-2 {
@@ -99,7 +99,7 @@
     h3 {
         font-family:Arial,sans-serif;
         font-size:1.3em;
-        color: #999;
+        color: #666;
         margin-left: 0.6em;
     }
 
@@ -111,7 +111,7 @@
         font-family:Arial,sans-serif;
         font-size:1.2em;
         margin-left: 1.2em;
-        color: #999;
+        color: #666;
     }
 
     .outline-text-4 {
@@ -1036,7 +1036,7 @@ blockquote {
 div.hidden > strong {
     margin-left: 0;
     cursor: pointer;
-    color: #999;
+    color: #aaa;
 }
 
 div.hidden > strong > small {
@@ -1048,7 +1048,8 @@ div.hidden > strong > small {
 
 div.hidden div.hidden-content {
     padding-left: 10px;
-    border-left: 1px solid #999;
+    margin-bottom: 4em;
+    border-left: 3px solid #999;
 }
 
 div.hidden {

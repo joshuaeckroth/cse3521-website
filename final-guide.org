@@ -1,0 +1,477 @@
+#+SETUPFILE: setup.org
+#+TITLE: Final guide
+
+You can *bring a notecard* (5in x 7in max) with notes or whatnot.
+
+* Prolog
+
+Given,
+
+#+BEGIN_SRC prolog
+member(X, [X|_]).
+member(X, [_|Tail]) :- member(X, Tail).
+
+foobar(X, List) :- member(Y, List), X \= Y.
+#+END_SRC
+
+What are the values of each of these queries? (Write "true" or
+"false", or give one value of the variable X.)
+
+#+BEGIN_SRC prolog
+member(5, [1, 2, 3]).
+member(X, [1, 2, 3]).
+foobar(1, [1, 2, 3]).
+foobar(1, [1, 1, 1]).
+#+END_SRC
+
+{{{begin-hidden(Answer)}}}
+#+BEGIN_SRC prolog
+member(5, [1, 2, 3]). % --> false
+member(X, [1, 2, 3]). % --> X = 1 or 2 or 3
+foobar(1, [1, 2, 3]). % --> true
+foobar(1, [1, 1, 1]). % --> false
+#+END_SRC
+{{{end-hidden}}}
+
+Given,
+
+#+BEGIN_SRC prolog
+family(10392,
+       person(tom, fox, born(7, may, 1960), works(cnn, 152000)),
+       person(ann, fox, born(19, april, 1961), works(nyu, 65000)),
+       % here are the children...
+       [person(pat, fox, born(5, october, 1983), unemployed),
+        person(jim, fox, born(1, june, 1986), unemployed),
+        person(amy, fox, born(17, december, 1990), unemployed)]).
+
+exists(Person) :- family(_, Person, _, _).
+exists(Person) :- family(_, _, Person, _).
+exists(Person) :- family(_, _, _, Children), member(Person, Children).
+
+foo(x, y).
+foo(a, y).
+foo(b, c).
+bar(x, w).
+bar(x, x).
+bar(c, a).
+#+END_SRC
+
+What are the values of each of these queries (write "true" or "false",
+or give one value for each of the variables)? Note, if the result is a
+list, order matters.
+
+#+BEGIN_SRC prolog
+family(_, person(_, _, born(_, _, Year), _), _, _), Year > 1960.
+
+% don't forget to give one value for each variable:
+% FirstName, LastName, and X
+exists(person(FirstName, LastName, _, X)), X \= unemployed.
+
+% just give the value of Stuff
+findall(Z, (foo(Z, y), bar(X, Z)), Stuff).
+#+END_SRC
+
+{{{begin-hidden(Answer)}}}
+#+BEGIN_SRC prolog
+family(_, person(_, _, born(_, _, Year), _), _, _), Year > 1960.
+% answer: false
+
+% don't forget to give one value for each variable:
+% FirstName, LastName, and X
+exists(person(FirstName, LastName, _, X)), X \= unemployed.
+% one answer: FirstName = tom, LastName = fox, X = works(cnn, 152000)
+
+% just give the value of Stuff
+findall(Z, (foo(Z, y), bar(X, Z)), Stuff).
+% Stuff = [x, a]
+#+END_SRC
+{{{end-hidden}}}
+
+Do the following unify, and if so, what are values for the variables
+(one set of values for each question), if any variables are involved,
+that make the unification work?
+
+  - ~foo~ and ~foo~
+{{{begin-hidden(Answer)}}}
+    - Yes, they unify (trivially).
+{{{end-hidden}}}
+
+  - ~foo(X)~ and ~X~
+{{{begin-hidden(Answer)}}}
+    - No. There is no value of ~X~ such that ~X = foo(X)~.
+{{{end-hidden}}}
+
+  - ~foo(foo(foo))~ and ~foo(X)~
+{{{begin-hidden(Answer)}}}
+    - Yes, with ~X = foo(foo)~.
+{{{end-hidden}}}
+
+  - ~foo(X, foo)~ and ~foo(foo, X)~
+{{{begin-hidden(Answer)}}}
+    - Yes, with ~X = foo~.
+{{{end-hidden}}}
+
+  - ~foo(X, foo)~ and ~foo(Y)~
+{{{begin-hidden(Answer)}}}
+    - No, arities differ.
+{{{end-hidden}}}
+
+  - ~foo(foo(X, Y))~ and ~foo(Z)~
+{{{begin-hidden(Answer)}}}
+    - Yes, with ~Z = foo(X, Y)~.
+{{{end-hidden}}}
+
+Suppose we have the following knowledge base:
+
+#+BEGIN_SRC prolog
+f(a).
+f(b). 
+
+g(a, a).
+g(b, c).
+
+h(b).
+h(c).
+
+k(X, Y) :- f(X), g(X, Y), h(Y).
+#+END_SRC
+
+Draw the resolution tree for the first successful proof of ~k(X, c)~.
+
+{{{begin-hidden(Answer)}}}
+#+BEGIN_CENTER
+[[./images/prolog-resolution-midterm-1-guide.png]]
+#+END_CENTER
+{{{end-hidden}}}
+
+* Planning
+
+** General Problem Solver
+
+Modify the following "program" so that GPS can find the solution.
+
+#+BEGIN_SRC python
+problem = {
+    "start": ["door locked"],
+    "finish": ["door open"],
+    "ops": [
+        {
+            "action": "open door",
+            "preconds": ["door unlocked", "door closed"],
+            "add": ["door open"],
+            "delete": ["door closed"]
+            },
+        {
+            "action": "unlock door",
+            "preconds": ["door closed"],
+            "add": [],
+            "delete": ["door locked"]
+            }
+        ]
+    }
+#+END_SRC
+
+{{{begin-hidden(Answer)}}}
+Here is one possible answer.
+#+BEGIN_SRC python
+problem = {
+    "start": ["door closed", "door locked"],
+    "finish": ["door open"],
+    "ops": [
+        {
+            "action": "open door",
+            "preconds": ["door unlocked", "door closed"],
+
+            "add": ["door open"],
+            "delete": ["door closed"]
+            },
+        {
+            "action": "unlock door",
+            "preconds": ["door closed"],
+            "add": ["door unlocked"],
+            "delete": ["door locked"]
+            }
+        ]
+    }
+#+END_SRC
+{{{end-hidden}}}
+
+** PDDL
+
+Given the following domain and problem files, write a successul plan.
+
+#+BEGIN_SRC PDDL
+;; bogus-domain.pddl
+
+(define (domain bogus)
+  (:requirements :strips)
+  (:predicates (baz ?x ?y)
+               (quux ?x))
+  (:action do-abc
+           :parameters (?a ?b ?c)
+           :precondition (baz ?a ?a)
+           :effect (and (baz ?a ?b) (quux ?c) (not (baz ?b ?b))))
+  (:action do-xyz
+           :parameters (?a ?b)
+           :precondition (and (quux ?b) (baz ?a ?b))
+           :effect (and (baz ?b ?b) (not (quux ?a)))))
+#+END_SRC
+
+#+BEGIN_SRC PDDL
+;; bogus-prob1.pddl
+
+(define (problem bogus-prob1)
+  (:domain bogus)
+  (:objects r s t)
+  (:init (baz r s) (quux s))
+  (:goal (and (quux t) (baz s r))))
+#+END_SRC
+
+{{{begin-hidden(Answer)}}}
+Here is a successful plan. There might be other successful plans.
+
+#+BEGIN_EXAMPLE
+(do-xyz r s)
+(do-abc s r t)
+#+END_EXAMPLE
+{{{end-hidden}}}
+
+* Multi-agent systems
+
+What are two principles for designing agent-based simulations?
+
+{{{begin-hidden(Answer)}}}
+Here are six:
+
+1. agents not functions (not functional decomposition)
+2. keep agents small in size
+3. keep agents small in time (forgetful)
+4. keep agents small in scope (local sensing and action)
+5. decentralizd system control
+6. support agent diversity
+{{{end-hidden}}}
+
+* Learning
+
+Describe the difference between "supervised" and "unsupervised"
+learning.
+
+{{{begin-hidden(Answer)}}}
+
+Supervised learning uses information about the truth when
+training. Unsupervised learning does not have the truth (unless we're
+hiding the truth to test an algorithm) so obviously cannot use this
+information.
+
+{{{end-hidden}}}
+
+** k-means clustering
+
+k-means clustering is an unsupervised or supervised learning strategy?
+
+{{{begin-hidden(Answer)}}}
+Unsupervised
+{{{end-hidden}}}
+
+What does the choice of $k$ represent?
+
+{{{begin-hidden(Answer)}}}
+The number of clusters.
+{{{end-hidden}}}
+
+How does the choice of initial clusters affect the outcome?
+
+{{{begin-hidden(Answer)}}}
+
+The resulting clusters may be different. Initial clusters near
+outliers may result in small clusters around the outliers (which is
+usually a bad thing).
+
+{{{end-hidden}}}
+
+*Note: also be able to perform k-means clustering on some data as in
+ Homework 8.*
+
+** Classification evaluation
+
+Define true positive (TP). Define false positive (FP). Define false
+negative (FN). Define precision (in terms of TP and/or FP and/or
+FN). Define recall (in terms of TP and/or FP and/or FN). Define
+F-score (in terms of precision and/or recall).
+
+{{{begin-hidden(Answer)}}}
+
+- True positive (tp) :: chosen categories that are true categories.
+
+- False positive (fp) :: chosen categories that are not true categories.
+
+- False negatives (fn) :: true categories that are not chosen.
+
+- Precision :: $tp/(tp+fp)$.
+
+- Recall :: $tp/(tp+fn)$.
+
+- F-score :: $2 * precision * recall / (precision + recall)$.
+
+{{{end-hidden}}}
+
+Suppose we make our classification engine more cautious; that is, it
+is less likely overall to predict any category. Does precision go up
+or down or remain unchanged? Does recall go up or down or remain
+unchanged?
+
+{{{begin-hidden(Answer)}}}
+
+Precision goes up because there are fewer $fp$. Recall goes down
+because there are more $fn$.
+
+{{{end-hidden}}}
+
+What are the precision and recall for the following scenario:
+
+- The true categories for some data points are:
+  - {noise, noise, signal, noise, signal}
+- The predicted categories for the data are (same ordering of the data
+  points):
+  - {noise, signal, signal, signal, noise}
+
+Consider "signal" to be a "positive" claim and "noise" to be a
+"negative" claim.
+
+{{{begin-hidden(Answer)}}}
+
+- tp = 1, fp = 2, fn = 1
+- precision is 1/3
+- recall is 1/2
+
+{{{end-hidden}}}
+
+What does "10-fold cross validation" mean?
+
+{{{begin-hidden(Answer)}}}
+
+This happens 10 times, and the results are averaged: Take 90% of the
+input data and train the learning algorithm on it; test the learning
+algorithm on the remaining 10%. For each of the 10 iterations,
+separate the input data into a different 90/10 split.
+
+{{{end-hidden}}}
+
+** k-nearest neighbor
+
+What does k-nearest neighbor allow us to do with a new, unknown data
+point?
+
+{{{begin-hidden(Answer)}}}
+Determine its category (class, label, tag, etc.).
+{{{end-hidden}}}
+
+k-nearest neighbor is an unsupervised or supervised learning strategy?
+
+{{{begin-hidden(Answer)}}}
+Supervised
+{{{end-hidden}}}
+
+What does the choice of $k$ represent?
+
+{{{begin-hidden(Answer)}}}
+
+The number of neighbors that get a "vote" during the classification
+stage.
+
+{{{end-hidden}}}
+
+What problem may a very small value of $k$ cause?
+
+{{{begin-hidden(Answer)}}}
+
+Noise has too great an impact. The nearest neighbor will be chosen
+without considering the "larger" picture.
+
+{{{end-hidden}}}
+
+What problem may a very large value of $k$ cause?
+
+{{{begin-hidden(Answer)}}}
+
+The more common category will be chosen more often than it should.
+
+{{{end-hidden}}}
+
+Is there one value for $k$ that works best for nearly all data sets?
+If so, what is it?
+
+{{{begin-hidden(Answer)}}}
+
+There is not one best value; you need to experiment with different
+values to find the best for your dataset.
+
+{{{end-hidden}}}
+
+Give one benefit of k-nearest neighbor learning.
+
+{{{begin-hidden(Answer)}}}
+
+It is a very simple algorithm and can work quite well in some cases.
+
+{{{end-hidden}}}
+
+Give one drawback of k-nearest neighbor learning.
+
+{{{begin-hidden(Answer)}}}
+
+It is very slow because it checks every item in the database (though
+other techniques can be used). It also requires one to retain all the
+training examples in the database.
+
+{{{end-hidden}}}
+
+*Note: also be able to perform k-nearest neighbor classification on
+some data as in Homework 8.*
+
+* Philosophy
+
+** The "Chinese room" argument
+
+What is the essential goal of "strong AI?"
+
+{{{begin-hidden(Answer)}}}
+
+Create a true "mind," i.e., an intelligent thinking machine. It may
+even be conscious.
+
+{{{end-hidden}}}
+
+What is the most critical assumption in the Chinese room argument?
+
+{{{begin-hidden(Answer)}}}
+
+That the person in the room does not understand Chinese.
+
+{{{end-hidden}}}
+
+If you believe the Chinese room argument, can you also (reasonably)
+believe that passing the Turing test gives proof that a machine
+possesses a mind (i.e., can be said to truly understand things)?
+
+{{{begin-hidden(Answer)}}}
+
+No.
+
+{{{end-hidden}}}
+
+* Extra credit
+
+What is bigger than ant?
+
+{{{begin-hidden(Answer)}}}
+
+These are bigger:
+- anteater, foot, godzilla.
+
+(Just kidding.)
+
+{{{end-hidden}}}
+
+#+INCLUDE: footer.org
+
