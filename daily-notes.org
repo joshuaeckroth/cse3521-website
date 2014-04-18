@@ -1100,26 +1100,205 @@ action: climb(A, X)
     - every possible point is closest to some cluster (or equidistant)
     - can ask about a new point, which cluster is it in?
 
+* Day 25
 
+- k-nearest neighbor is a way to do classification (not clustering)
 
+- scenario for classification:
 
+  - you've got a lot of example points (with known classes)
+  - you've got a new example, with an unknown class
+  - what do you do?
+    - figure out which point of which class is closest
+      - according to, say, euclidean distance
+    - or better, give each k closest points a "vote"
+      - problems with large/small k:
+        - if k is too small, noise has too great of an impact
+        - if k is too large, the dominant class has too large of an
+          impact
 
+- k-nearest neighbor algorithm:
+  - for new point X, find k closest known points
+  - give each point a vote for that class
+  - X gets class of most votes
 
+- variations:
+  - weigh the vote by closeness: closer points get bigger vote
+    - vote is worth 1/distance(p, X)
 
+** Classification evaluation
 
+- we have one dataset with known classes
 
+  - let's split it into a training and testing set (say, 90/10%)
 
+- what are we interested in when we classify a set of points?
 
+  - true positive (TP): the predicted class is the true class
 
+  - false positive (FP): the predicted class is false
 
+  - false negative (FN): failed to predict the true class
 
+  - precision: tp/(tp+fp) -- fraction of times it said "A class" and
+    got it right; in other words, fraction of responses about A class
+    that were correct
 
+  - recall: tp/(tp+fn) -- fraction of times it said "A class" over
+    number of things in A class; in other words, fraction of A class
+    things it correctly identified (recalled)
 
+  - these measures come from information retrieval (e.g., search
+    engines)
 
+    - imagine searching for "machine learning"
 
+    - get high precision but lose on recall by doing:
 
+      - it gives you just a couple good articles about ML, but misses
+        many
 
+    - get high recall but lose on precision by doing:
 
+      - give back the internet (surely it gets all the ML articles in
+        there)
+
+  - so we have two metrics (precision/recall) that somewhat compete
+    - it's a tradeoff
+
+    - another metric: precision/recall
+
+    - another metric: the arithmetic average
+
+    - another metric: the harmonic average (F-score)
+
+* Day 26
+
+** Chinese room argument (Searle)
+
+*** Weak AI
+
+- Can help test psychological theories
+- Not positing that the software is conscious or understands something
+
+*** Strong AI
+
+- The program is a mind
+- It truly understands things
+- Is the psychological theory
+
+*** Schank's scripts
+
+- Here's a story:
+
+A man went into a restaurant and ordered a hamburger. When the
+hamburger arrived it was burned to a crisp, and the man stormed out of
+the restaurant angrily, without paying for the hamburger or leaving a
+tip.
+
+- Did the man eat the hamburger? No
+
+A man went into a restaurant and ordered a hamburger; when the
+hamburger came he was very pleased with it; and as he left the
+restaurant he gave the waitress a large tip before paying his bill."
+
+- Did the man eat the hamburger? Yes
+
+**** Scripts
+
+Are templates for stories; depending on the story, a certain template
+is activated (e.g., the restaurant template), and can fill in missing
+details.
+
+- If it answers correctly, consistently, we can say the software
+  understands what happened in the story.
+
+*** Searle's counterargument
+
+**** The setup
+
+- The assumption: Searle does not understand Chinese
+- Searle is stuck in a room
+- Three books:
+  - Book 1: Chinese symbols
+  - Book 2: Chinese symbols + English rules that utilize books 1 & 2
+  - Book 3: Chinese symbols + English rules that utilize books 1 & 2
+- What happens?
+  - Searle gets a message from the outside, in Chinese
+  - He looks in books 1 & 2 & 3 and follows the English rules for
+    matching and correlating symbols, and spits out another Chinese
+    symbol
+- Clearly,
+  - Searle is the computer
+  - The English rules are the program
+  - The books are the data
+
+**** What if I told you that:
+Searle was responding correctly, in Chinese, to Chinese questions
+about Chinese stories?
+
+**** Questions
+
+- Does Searle understand Chinese?
+  - No
+- Does this program (the whole room) explain human understanding?
+  - No, there is no understanding anywhere
+- What does Searle "have" in the case of English that he doesn't have
+  in the case of Chinese?
+
+**** Possible replies
+
+- Brain simulator reply
+
+*** The point
+
+- formal symbols and their manipulation will never produce
+  "understanding" or mental states
+
+- while on the other hand, when I think about "rain", I'm thinking
+  about rain, not the string "r a i n"
+
+** Robot ethics
+
+- Scenario: a self-driving car will hit a bus with children inside, or
+  it can swerve into traffic and hit a mother
+
+- What are the ethical issues, from a computational standpoint?
+  - What is the right action?
+  - How to compute it?
+  - Who is responsible?
+- *What are the ethical dimensions of an elevator?*
+
+*** Asimov's three laws
+
+1. Robot cannot harm a human, or by inaction, allow a human to come to
+   harm.
+
+2. Has to obey orders of a human, unless it violates first rule.
+
+3. Robot shall preserve itself unless that violates rule 1 or 2.
+
+**** Issues with Asimov's three laws
+
+- Are they computable?
+
+- No consideration of time
+
+- Curious question: Suppose you write a computer program for "ethical
+  questions", and then you ask it about abortion.
+
+- The harm may be "emergent" -- e.g., telling a robot to forget what
+  it just did.
+
+*** Machine ethics (computable ethics)
+
+- Implicit ethical agents: e.g., ATM machine that gives the correct
+  amount of money; or passwords, privacy, etc.
+
+- Explicit ethical agents: it actually reasons about ethical dilemmas
+  and has "data" that represents ethical concepts
+
+- Bentham's utilitarianism (1748-1832)
 
 
 
@@ -1229,11 +1408,6 @@ action: climb(A, X)
 
 
      
-
-
-
-
-
 
 
 
