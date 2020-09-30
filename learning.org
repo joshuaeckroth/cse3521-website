@@ -2,8 +2,8 @@
 #+TITLE: Learning
 
 {{{begin-summary}}}
-- "Unsupervised" learning takes unlabeled data and attempts to find
-  relationships among the data.
+- "Unsupervised" learning - No labels are given to the learning algorithm, leaving it on its own to find structure in its input. 
+Unsupervised learning can be a goal in itself (discovering hidden patterns in data) or a means towards an end (feature learning).
 - "Supervised" learning takes labeled data (the training set), builds
   a model, and uses this model on new data to predict unknown
   properties (such as class labels).
