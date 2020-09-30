@@ -1,4 +1,4 @@
 cse3521-website
 ===============
 
-http://cse3521.artifice.cc
+For more information visit http://cse3521.artifice.cc
