@@ -1,4 +1,4 @@
-cse3521-website
+# Welcome to the AI world:)
 ===============
 
 http://cse3521.artifice.cc
