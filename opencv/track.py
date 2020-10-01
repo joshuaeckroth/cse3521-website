@@ -16,7 +16,7 @@ if capture:
             except: hierarchy = []
             for contour, hier in zip(contours, hierarchy):
                 (x,y,w,h) = cv2.boundingRect(contour)
-                if w > 10 and h > 10:
+                if (w>10)and(h>10):
                     # figure out id
                     best_id = 1
                     .....
