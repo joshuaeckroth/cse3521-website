@@ -1,9 +1,9 @@
 #+SETUPFILE: setup.org
-#+TITLE: Daily notes
+#+TITLE: Daily notes about AI
 
 * Day 1
 
-** What is AI?
+** What is AI? 
 
 - [act/think] [rationally/humanly]
 
@@ -20,7 +20,7 @@
     representations and algorithms like human
     cognition
 
-** Examples of AI
+** The best examples of AI in Day to day life
 
 - system that designs video games
 - IBM's Watson: won Jeopardy!, healthcare
