@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class Goodale
+class Google
 {
     private HashMap<String, HashMap<String, Double>> distances;
     private HashMap<String, Double> lon;
