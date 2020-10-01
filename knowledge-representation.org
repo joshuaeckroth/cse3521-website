@@ -139,6 +139,9 @@ theory of intelligent reasoning:
 
 *** What is intelligent reasoning?
 
+Reasoning is defined as logical or sensible thinking.
+When you think through a problem to try to find a sensible solution, 
+this is an example of reasoning.
 The field of AI has discovered/invented many varieties of intelligent
 reasoning. We have deduction (which is what we'll study), induction,
 abduction, reasoning by analogy, probabilistic reasoning, case-based
