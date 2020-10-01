@@ -1,5 +1,5 @@
 #+SETUPFILE: setup.org
-#+TITLE: Homework 3
+#+TITLE: assignment 3
 
 * Useful Python code
 
@@ -22,7 +22,7 @@ best = heappop(openset)
 print best
 #+END_SRC
 
-* Task 1 (100 pts)
+* problem 1 (credit 100 pts)
 
 This task uses the same Pacman code as [[./homework-2.html][Homework
 2]]. *Grab the code again, and unzip to a new directory.* It's best
