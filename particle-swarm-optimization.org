@@ -35,7 +35,7 @@ toroidal (wrapping) world, and to enhance the visualization of the
 swarm motion. Also, the function being optimized is discrete (based on
 a grid of values), rather than continuous.
 
-* How it works
+* How does it works?
 
 Each particle has a position $(xcor, ycor)$ in the search space and a
 velocity $(vx, vy)$ at which it is moving through that
