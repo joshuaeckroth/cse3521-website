@@ -31,7 +31,7 @@ system that responds to its environment, and changes it environment
 (by acting within it), in the most rational manner in order to achieve
 goals.
 
-* The AI archetype
+* The AI prototype
 
 #+BEGIN_HTML
 <div style="text-align: center">
