@@ -1,4 +1,4 @@
-cse3521-website
+amazing cse3521-website
 ===============
 
 http://cse3521.artifice.cc
