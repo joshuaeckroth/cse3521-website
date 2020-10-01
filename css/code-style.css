@@ -15,7 +15,7 @@
 .kn { font-weight: bold } /* Keyword.Namespace */
 .kr { font-weight: bold } /* Keyword.Reserved */
 .s { font-style: italic } /* Literal.String */
-.nc { font-weight: bold } /* Name.Class */
+.nc { font-weight: italic } /* Name.Class */
 .ni { font-weight: bold } /* Name.Entity */
 .ne { font-weight: bold } /* Name.Exception */
 .nn { font-weight: bold } /* Name.Namespace */
@@ -32,3 +32,4 @@
 .sr { font-style: italic } /* Literal.String.Regex */
 .s1 { font-style: italic } /* Literal.String.Single */
 .ss { font-style: italic } /* Literal.String.Symbol */
+/*nice project*?
