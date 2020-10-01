@@ -1,7 +1,7 @@
 #+SETUPFILE: setup.org
 #+TITLE: Homework 3
 
-* Useful Python code
+*  very Useful Python code
 
 Task 1 below asks you to implement A* for Pacman. So, you want to have
 an =openset= that's ordered by a heuristic value. Python has "heaps"
