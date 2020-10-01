@@ -1,5 +1,5 @@
 #+SETUPFILE: setup.org
-#+TITLE: Ant intelligence
+#+TITLE: Ant intelligence swag
 
 And, termite intelligence.
 
