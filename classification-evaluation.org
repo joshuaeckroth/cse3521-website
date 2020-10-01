@@ -65,6 +65,9 @@ increases in $x$ and $y$.
 #+END_CENTER
 
 ** k-Fold Cross Validation
+Cross-validation is a statistical method used to estimate the skill of machine learning models.
+
+It is commonly used in applied machine learning to compare and select a model for a given predictive modeling problem because it is easy to understand, easy to implement, and results in skill estimates that generally have a lower bias than other methods.
 
 When we have one dataset with the answers (the "class" for each data
 point), we can split this dataset into a training and testing
