@@ -1,5 +1,5 @@
 #+SETUPFILE: setup.org
-#+TITLE: Course calendar
+#+TITLE: Course calendar with syllabus
 
 | Week                           | Topics                                                | Homework      | Read in book                         |
 |--------------------------------+-------------------------------------------------------+---------------+--------------------------------------|
